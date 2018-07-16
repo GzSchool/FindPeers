@@ -1,0 +1,14 @@
+<!--pages/addCards/addcards.wxml-->
+<view class="addCards">
+  <input class="addname">姓名：</input>
+  <input class="addnumber">微信号：</input>
+  <input class="addcompany">公司：</input>
+  <input class="addjob">行业：</input>
+  <input class="addcity">城市：</input>
+  <input class="addphone">手机号：</input>
+  <input class="addneed">需求：</input>
+  <input class="addcan">资源：</input>
+  <button class="addmore" bindtap='addmore'>添加更多信息</button>
+  <textarea class="addtext">简介：</textarea>
+</view>
+<button class="save">保存</button>

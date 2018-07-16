@@ -1,0 +1,85 @@
+/* pages/findmore/findmore.wxss */
+page {
+  display: block;
+  min-height: 100%;
+  background-color: #d6dbe0;
+}
+.findmore{
+  width: 100%;
+  height: 100%;
+}
+.findmore-inputSearch{
+  width: 100%;
+  height: 10%;
+  background-color: #ffffff;
+}
+.inputSearch{
+  background-color: #d6dbe0;
+  width: 80%;
+  height: 80%;
+  position: absolute;
+  top:10%;
+  left: 10%;
+}
+.finmore-mycard{
+  width: 100%;
+  height: 5%;
+  margin: 1% 0;
+  background-color: #ffffff;
+
+}
+.findmore-mine{
+  font-size: 15px;
+}
+.findmore-card{
+  width: 100%;
+  height: 20%;
+  background-color: #ffffff;
+   position: relative;
+}
+.image{
+  width: 30%;
+  height: 80%;
+  
+}
+.findmore-name{
+  font-size: 15px;
+  position: absolute;
+  top: 15px;
+  left: 32%;
+}
+.findmore-job{
+  font-size: 15px;
+  position: absolute;
+  top: 40px;
+  left: 32%;
+  }
+.findmore-company{
+  font-size: 15px;
+  position: absolute;
+  top: 65px;
+  left: 32%;
+  }
+  .findmore-get{
+    width: 100%;
+    height: 5%;
+    background-color: #ffffff;
+    position: absolute;
+    top: 37%;
+    left: 0;
+    font-size: 15px;
+  }
+  .finmore-zhaotonghang{
+    width: 100%;
+    height: 20%;
+    background-color: #ffffff;
+    position: absolute;
+    top:43%;
+  }
+  .finmore-geren{
+    width: 100%;
+    height: 20%;
+    background-color: #ffffff;
+    position: absolute;
+    top:64%;
+  }

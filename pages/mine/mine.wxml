@@ -1,0 +1,10 @@
+<!--pages/mine/mine.wxml-->
+<view class="mine">
+  <view class="mine-cards">
+    <view class="mine-name">{{name}}</view>
+    <view class="mine-job">{{job}}</view>
+    <view class="mine-company">{{company}}</view>
+  </view>
+  <view class="find">如何在微信中查看“找同行”小程序</view>
+  <button class="share">推荐给同行</button>
+</view>

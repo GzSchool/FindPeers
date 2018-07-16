@@ -1,0 +1,30 @@
+<!--pages/findmore/findmore.wxml-->
+<view class="findmore">
+  <view class="findmore-inputSearch">
+    <input class="inputSearch"></input>
+  </view>
+  <view class="finmore-mycard">
+    <text class="findmore-mine">我的名片</text>
+  </view>
+  <view class="findmore-card">
+    <image class="image" src="/pages/images/1.png"></image>
+    <view class="findmore-name">{{name}}</view>
+    <view class="findmore-job">{{job}}</view>
+    <view class="findmore-company">{{company}}</view>
+  </view>
+  <view class="findmore-get">
+    <view class="findmore-get1">收到的同行信息</view>
+  </view>
+  <view class="finmore-zhaotonghang">
+  <image class="image" src="/pages/images/1.png"></image>
+    <view class="findmore-name">{{name}}</view>
+    <view class="findmore-job">{{job}}</view>
+    <view class="findmore-company">{{company}}</view>
+  </view>
+  <view class="finmore-geren">
+    <image class="image" src="/pages/images/1.png"></image>
+    <view class="findmore-name">{{name}}</view>
+    <view class="findmore-job">{{job}}</view>
+    <view class="findmore-company">{{company}}</view>
+  </view>
+</view>

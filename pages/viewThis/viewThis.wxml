@@ -1,0 +1,12 @@
+<view class="viewThis-teamName">微信群名字</view>
+<view class="viewThis">  
+  <view class="viewThis-name">名字</view>
+  <view class="viewThis-job">职务</view>
+  <view class="viewThis-company">公司</view>
+</view>
+<view class="viewThis-area">
+  <view class="viewThis-name">名字</view>
+  <view class="viewThis-job">职务</view>
+  <view class="viewThis-company">公司</view>
+</view>
+<button class="myCards">进入我的名片夹</button>

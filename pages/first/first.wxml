@@ -1,0 +1,19 @@
+<!--pages/first/first.wxml-->
+<view class="container">
+  <view class="continer-view">
+    <view class="continer-name">{{name}}</view>
+    <view class="continer-job">{{job}}</view>
+    <view class="continer-company">{{company}}</view>
+    <button class="set">设置</button>
+  </view>
+  <view class="continer-area">
+    <view class="continer-telephone">{{telephone}}</view>
+    <view class="continer-weChat">{{weChatNumber}}</view>
+    <view class="continer-email">{{email}}</view>
+    <view class="continer-adress">{{adress}}</view>
+  </view>
+  <view class="continer-button">
+    <button class="continer-mine">进入我的名片夹</button>
+    <button class="continer-others" bindtap='viewThisCards'>名片夹已有，查看更多本群名片夹</button>
+  </view>
+</view>

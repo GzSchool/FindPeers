@@ -1,0 +1,54 @@
+page {
+  display: block;
+  min-height: 100%;
+  background-color: #d6dbe0;
+}
+.viewThis-teamName{
+font-size: 20px;
+position: absolute;
+top: 10px;
+display: flex;
+ justify-content: center;
+}
+.viewThis{
+  background-color: #ffffff;
+  width: 100%;
+  height:20%;
+  position: absolute;
+  top: 10%;
+  left: 0;
+}
+.viewThis-name{
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 15px;
+}
+.viewThis-job{
+  position: absolute;
+  top: 40px;
+  left: 10px;
+  font-size: 15px;
+}
+.viewThis-company{
+  position: absolute;
+  top: 65px;
+  left: 10px;
+  font-size: 15px;
+}
+.viewThis-area{
+  background-color: #ffffff;
+  width: 100%;
+  height:20%;
+  position: absolute;
+  top: 31%;
+  left: 0;
+}
+.myCards{
+  position: absolute;
+  top:85%;
+  left:5%;
+  border-radius: 40px;
+  width: 90%;
+  height:10%;
+}

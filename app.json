@@ -1,0 +1,42 @@
+{
+  "pages": [
+    "pages/findmore/findmore",
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/information/information",
+    "pages/viewThis/viewThis",
+    "pages/first/first",
+    "pages/addcards/addcards",
+    "pages/addmore/addmore",
+    "pages/fail/fail",
+    
+    "pages/quncards/quncards",
+    "pages/mine/mine"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTitleText": "同行",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#d6dbe0"
+  },
+  "tabBar": {
+    "list": [{
+      "pagePath": "pages/findmore/findmore",
+      "text": "找同行",
+      "iconPath": "pages/images/1.png",
+      "selectedIconPath": "pages/images/1.png"
+    },{
+      "pagePath": "pages/quncards/quncards",
+      "text": "群名片",
+      "iconPath": "pages/images/1.png",
+      "selectedIconPath": "pages/images/1.png"
+    },{
+      "pagePath": "pages/mine/mine",
+      "text": "我的",
+      "iconPath": "pages/images/1.png",
+      "selectedIconPath": "pages/images/1.png"
+    }
+    ]
+  }
+}

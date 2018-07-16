@@ -1,0 +1,33 @@
+<!--pages/quncards/quncards.wxml-->
+<view class="qun">
+  <view class="quncards">
+    <image class="image" src="/pages/images/1.png"></image>
+    <view class="qunname">{{qunname}}</view>
+    <view class="qunsave">未保存{{nonum}}张 以保存{{num}}张</view>
+    <view class="time">{{time}}</view>
+  </view>
+  <view class="quncards1">
+    <image class="image" src="/pages/images/1.png"></image>
+    <view class="qunname">{{qunname}}</view>
+    <view class="qunsave">未保存{{nonum}}张 以保存{{num}}张</view>
+    <view class="time">{{time}}</view>
+  </view>
+  <view class="quncards2">
+    <image class="image" src="/pages/images/1.png"></image>
+    <view class="qunname">{{qunname}}</view>
+    <view class="qunsave">未保存{{nonum}}张 以保存{{num}}张</view>
+    <view class="time">{{time}}</view>
+  </view>
+  <view class="quncards3">
+    <image class="image" src="/pages/images/1.png"></image>
+    <view class="qunname">{{qunname}}</view>
+    <view class="qunsave">未保存{{nonum}}张 以保存{{num}}张</view>
+    <view class="time">{{time}}</view>
+  </view>
+  <view class="quncards4">
+    <image class="image" src="/pages/images/1.png"></image>
+    <view class="qunname">{{qunname}}</view>
+    <view class="qunsave">未保存{{nonum}}张 以保存{{num}}张</view>
+    <view class="time">{{time}}</view>
+  </view>
+</view>
