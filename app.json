@@ -1,15 +1,17 @@
 {
   "pages": [
+    "pages/addcards/addcards",
     "pages/findmore/findmore",
+    "pages/company/company",
+    "pages/mycards/mycards",
     "pages/index/index",
     "pages/logs/logs",
     "pages/information/information",
     "pages/viewThis/viewThis",
     "pages/first/first",
-    "pages/addcards/addcards",
     "pages/addmore/addmore",
     "pages/fail/fail",
-    
+    "pages/peerscards/peerscards",
     "pages/quncards/quncards",
     "pages/mine/mine"
   ],

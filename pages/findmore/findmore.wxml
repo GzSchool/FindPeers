@@ -6,7 +6,7 @@
   <view class="finmore-mycard">
     <text class="findmore-mine">我的名片</text>
   </view>
-  <view class="findmore-card">
+  <view class="findmore-card" bindtap='mycards'>
     <image class="image" src="/pages/images/1.png"></image>
     <view class="findmore-name">{{name}}</view>
     <view class="findmore-job">{{job}}</view>
@@ -15,13 +15,13 @@
   <view class="findmore-get">
     <view class="findmore-get1">收到的同行信息</view>
   </view>
-  <view class="finmore-zhaotonghang">
+  <view class="finmore-zhaotonghang" bindtap='trans'>
   <image class="image" src="/pages/images/1.png"></image>
-    <view class="findmore-name">{{name}}</view>
-    <view class="findmore-job">{{job}}</view>
-    <view class="findmore-company">{{company}}</view>
+    <view class="findmore-name">找同行团队</view>
+    <view class="findmore-job">找同行助手</view>
+    <view class="findmore-company">北京格致文化传媒有限公司</view>
   </view>
-  <view class="finmore-geren">
+  <view class="finmore-geren" bindtap='peerscards'>
     <image class="image" src="/pages/images/1.png"></image>
     <view class="findmore-name">{{name}}</view>
     <view class="findmore-job">{{job}}</view>

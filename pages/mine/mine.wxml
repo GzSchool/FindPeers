@@ -3,7 +3,10 @@
   <view class="mine-cards">
     <view class="mine-name">{{name}}</view>
     <view class="mine-job">{{job}}</view>
+    <view class="mine-adress">{{adress}}</view>
     <view class="mine-company">{{company}}</view>
+    <image class="image" src="/pages/images/1.png"></image>
+    <view class="help">微信扫一扫二维码，存入同行信息</view>
   </view>
   <view class="find">如何在微信中查看“找同行”小程序</view>
   <button class="share">推荐给同行</button>

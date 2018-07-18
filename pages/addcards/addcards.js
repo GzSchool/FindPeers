@@ -8,9 +8,17 @@ Page({
   
   },
 addmore:function(){
-  wx.navigateTo({
-    url: '/pages/addmore/addmore',
+  wx.showActionSheet({
+    itemList: ["需求","资源","邮箱"],
+    success:function(res){
+      if(res.tapIndex == 0){
+        this.setData({
+          
+        })
+      }
+    }
   })
+  
 }
  
 })

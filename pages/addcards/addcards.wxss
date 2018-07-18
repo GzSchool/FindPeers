@@ -100,3 +100,14 @@ page {
   height: 8%;
    font-size: 15px;
 }
+.map-hide{
+  display: none;
+}
+.addemail{
+  position: absolute;
+  top: 260px;
+  left: 40px;
+  width: 100%;
+  height: 10%;
+   font-size: 15px;
+}

@@ -1,6 +1,7 @@
 Page({
   globalData: {
-    session_Key: null
+    session_Key: null,
+    userInfo:null
   },
   data: {
     //判断小程序的API，回调，参数，组件等是否在当前版本可用。
@@ -32,7 +33,7 @@ Page({
                 },
                 success: function (res) {
                   console.log(res)
-                  getApp().globalData.userInfo = res.data;
+                  
                   wx.navigateTo({
                     url: '/pages/first/first',
                   })
@@ -44,6 +45,9 @@ Page({
             }
           })
         }
+      },
+      fail:function(){
+
       }
     })
   },

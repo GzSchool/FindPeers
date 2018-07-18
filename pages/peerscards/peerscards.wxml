@@ -1,0 +1,15 @@
+<!--pages/peerscards/peerscards.wxml-->
+<view class="mycards">
+  <view class="mycards1">
+    <text class="name">{{name}}</text>
+    <text class="adress">{{adress}}</text>
+    <text class="idustry">{{idustry}}</text>
+    <text class="company">{{company}}</text>
+    <text class="phone {{showphone?'':map-hide}}">{{phone}}</text>
+    <text class="wechatnum">{{wechatnum}}</text>
+    <text class="resource {{showresource?'':map-hide}}">{{resource}}</text>
+    <text class="demand {{showdemand?'':map-hide}}">{{demand}}</text>
+    <text class="introduction {{showintroduction?'':map-hide}}">{{introduction}}</text>
+  </view>
+  <button class="write">删除同行名片</button>
+</view>
