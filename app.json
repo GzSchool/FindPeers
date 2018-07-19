@@ -1,7 +1,9 @@
 {
   "pages": [
-    "pages/addcards/addcards",
     "pages/findmore/findmore",
+    "pages/peerscards/peerscards",
+    "pages/addcards/addcards",
+    
     "pages/company/company",
     "pages/mycards/mycards",
     "pages/index/index",
@@ -11,7 +13,7 @@
     "pages/first/first",
     "pages/addmore/addmore",
     "pages/fail/fail",
-    "pages/peerscards/peerscards",
+    
     "pages/quncards/quncards",
     "pages/mine/mine"
   ],

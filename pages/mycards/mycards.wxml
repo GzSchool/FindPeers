@@ -2,15 +2,17 @@
 <view class="mycards">
   <view class="mycards1">
     <text class="name">{{name}}</text>
-    <text class="adress">{{adress}}</text>
     <text class="idustry">{{idustry}}</text>
+    <text class="adress">{{adress}}</text>
+    
     <text class="company">{{company}}</text>
-    <text class="phone {{showphone?'':map-hide}}">{{phone}}</text>
+    <image class="image" src="{{image}}"></image>
+    <text class="phone ">{{phone}}</text>
     <text class="wechatnum">{{wechatnum}}</text>
-    <text class="resource {{showresource?'':map-hide}}">{{resource}}</text>
-    <text class="demand {{showdemand?'':map-hide}}">{{demand}}</text>
-    <text class="introduction {{showintroduction?'':map-hide}}">{{introduction}}</text>
+    <text class="email">{{email}}</text>
   </view>
-  <button class="share">发送这张名片</button>
-  <button class="write">修改这张名片</button>
+  <view class="continer-button">
+    <button class="continer-mine">进入我的名片夹</button>
+    <button class="continer-others" bindtap='viewThisCards'>名片夹已有，查看更多本群名片夹</button>
+  </view>
 </view>

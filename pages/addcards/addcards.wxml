@@ -1,34 +1,25 @@
 <!--pages/addCards/addcards.wxml-->
 <view class="addCards">
-  <view class="addname">姓名：
-    <input></input>
-  </view>
-  <view class="addnumber">微信号：
-    <input></input>
-  </view>
-  <view class="addcompany">公司：
-    <input></input>
-  </view>  
-  <view class="addjob">行业：
-    <input></input>
-  </view>
-  <view class="addcity">城市：
-    <input></input>
-  </view>
-  <view class="addphone">手机号：
-    <input></input>
-  </view>  
-  <view class="addneed {{isshow0?'':map-hide}}">需求：
-    <input></input>
-  </view>  
-  <view class="addcan {{isshow1?'':map-hide}}">资源：
-    <input></input>
-  </view>
-  <view class="addemail {{isshow2?'':map-hide}}">邮箱：
-    <input></input>
-  </view>
-  <view></view>
-  <button class="addmore" bindtap='addmore'>添加更多信息</button>
-  <textarea class="addtext">简介：</textarea>
+  <view class="name">姓名：</view>
+  <input class="addname line" bindblur='addname' focus='true' type='text' value='{{name}}' name="name"></input>
+  <view class="number">微信号:</view>
+  <input class="addnumber line" bindblur='addnumber' focus='true' type='text' value='{{wechatnum}}' name="number"></input>
+  <view class="company">公司：</view>
+  <input class="addcompany line" bindblur='addcompany' focus='true' type='text' value='{{company}}' name="company"></input>
+  <view class="idustry">行业：</view>
+  <input class="addjob line" bindblur='addidustry' focus='true'  type='text' value='{{idustry}}' name="idustry"></input>
+  <view class="city">城市：</view>
+  <input class="addcity line" bindblur='addcity' focus='true'  type='text' value='{{city}}' name="city"></input>
+  <view class="phone">手机号：</view>
+  <input class="addphone line" bindblur='addphone' focus='true'  type='number' value='{{phone}}' name="phone"></input>
+  <view class="demand {{isshow0?'map-block':'map-hide'}}">需求：</view>
+  <input class="addneed {{isshow0?'map-block':'map-hide'}} line" bindblur='adddemand' focus='true'  type='text' value='{{demand}}' name="demand"></input>
+  <view class="resource {{isshow1?'map-block':'map-hide'}}">资源：</view>
+  <input class="addcan {{isshow1?'map-block':'map-hide'}} line" bindblur='addresource' focus='true'  type='text' value='{{resource}}' name="resource"></input>
+  <view class="email {{isshow2?'map-block':'map-hide'}}">邮箱：</view>
+  <input class="addemail {{isshow2?'map-block':'map-hide'}} line" bindblur='addemail' focus='true'  type='text' value='{{email}}'></input>
+  <button class="addmore" bindtap='addmore' >添加更多信息</button>
+  <view class="introduction"></view>
+  <textarea class="addtext line" bindblur='addintroduction' type='text' value='简介：{{introduction}}'  type='text' name="introduction"></textarea>
 </view>
-<button class="save">保存</button>
+<button class="save" bindtap='save'>保存</button>

@@ -2,14 +2,20 @@
 <view class="mycards">
   <view class="mycards1">
     <text class="name">{{name}}</text>
-    <text class="adress">{{adress}}</text>
     <text class="idustry">{{idustry}}</text>
+    <text class="adress">{{adress}}</text>
+    <text class="adress hide {{isshow?'map-hide':''}}">需填写信息才可查看</text>
     <text class="company">{{company}}</text>
-    <text class="phone {{showphone?'':map-hide}}">{{phone}}</text>
+    <text class="company hide {{isshow?'map-hide':''}}">需填写信息才可查看</text>
+    <image class="image {{isshow?'':'map-hide'}}" src="{{image}}"></image>
+    <text class="phone ">{{phone}}</text>
+    <text class="phone hide {{isshow?'map-hide':''}}">需填写信息才可查看</text>
     <text class="wechatnum">{{wechatnum}}</text>
-    <text class="resource {{showresource?'':map-hide}}">{{resource}}</text>
-    <text class="demand {{showdemand?'':map-hide}}">{{demand}}</text>
-    <text class="introduction {{showintroduction?'':map-hide}}">{{introduction}}</text>
+    <text class="wechatnum hide {{isshow?'map-hide':''}}">需填写信息才可查看</text>
+    <text class="email">{{email}}</text>
+     <text class="email hide {{isshow?'map-hide':''}}">需填写信息才可查看</text>
+    <button class="set {{isshow?'':'map-hide'}}" bindtap='setting'>设置</button>
   </view>
-  <button class="write">删除同行名片</button>
+  <button class="write {{isshow?'':'map-hide'}}" bindtap='remove'>删除同行名片</button>
+  <button class="write {{isshow?'map-hide':''}}" bindtap='addcards'>添加个人信息</button>
 </view>
