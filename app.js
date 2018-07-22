@@ -1,11 +1,13 @@
 //app.js
 App({
   globalData:{
-    openid: '333',
+    openid: '',
     otheropenid:'',
-    isshow: '',
+    isshow: false,
     notadd:'',
     openGid:'',
+    mycardid:'',
+    othercardid:'',
     login:'',
   },
   onLaunch: function (ops) {
@@ -14,7 +16,7 @@ App({
     var otheropenid = that.globalData.otheropenid
     console.log(otheropenid==null)
     //if (ops.otheropenid!=null) {                            //要是有id 说明点击的别人分享的（只有两个 一是：群里点击的， 二是：别人分享的）
-      if(otheropenid){
+      if(otheropenid!=""){
         console.log(otheropenid)
       //that.globalData.otheropenid = ops.otheropenid
       if (ops.scene == 1044) {               // 等于这个 就是群里点击的
@@ -32,7 +34,7 @@ App({
       })
         // 登录
 
-       /* wx.login({
+       wx.login({
           success: res => {
                                                                                 // 发送 res.code 到后台换取 openId, sessionKey, unionId
                                                                                 // 登陆成功
@@ -40,13 +42,13 @@ App({
             if (res.code) {
               // 发起网络请求，获取微信信息
               console.log(res.code);
-              var jsCode = res.code;
+              var code = res.code;
               wx.request({
                 method: 'GET',
-                url: 'http://localhost:8080/user/userAuthor',
+                url: 'http://192.168.2.123:8080/user/userAuthor',
 
                 data: {
-                  jsCode: res.code
+                  code: res.code
                 },
 
                 header: {
@@ -55,7 +57,7 @@ App({
                 success: function (a) {                                      //后台获取openid
                   console.log(a);
                   var openid = a.data.data.openId;
-                  that.globalData.openid = a.data.data.openId;*/
+                  that.globalData.openid = a.data.data.openId;
                   var openid=that.globalData.openid;
                   wx.getSetting({                  
                     success: function (b) { 
@@ -71,7 +73,7 @@ App({
                       console.log(openid)
                       wx.request({
                         method: 'GET',
-                        url: 'http://localhost:8080/userCard/findOneByOpenId',
+                        url: 'http://192.168.2.123:8080/userCard/findOneByOpenId',
                         data: {
                           openId: openid
                         },
@@ -82,9 +84,13 @@ App({
                           console.log(c)
                           if (c.data.data!=null) {                                      //返回值不空 说明有添加过信息
                             var otheropenid = that.globalData.otheropenid;
-                            wx.redirectTo({
-                              url: '/pages/peerscards/peerscards?otheropenid='+otheropenid+"&isshow=true",
+                            that.globalData.notadd=true
+                            wx.redirectTo({                                              //说明没有添加过名片信息
+                              url: '/pages/peerscards/peerscards?otheropenid=' + otheropenid,
                             })
+                           /* wx.switchTab({
+                              url: '/pages/findmore/findmore',
+                            })*/
                           } else {
                             wx.redirectTo({                                              //说明没有添加过名片信息
                               url: '/pages/peerscards/peerscards?otheropenid='+otheropenid,
@@ -107,7 +113,7 @@ App({
                         url: '/pages/index/index?otheropenid=' + otheropenid + '&openid=' + openid,
                       })
                     }
-                  })/*
+                  })
                 },
                 fail: function () {
                   console.log("获取openId失败1")
@@ -118,23 +124,23 @@ App({
           fail: function () {
             console.log("登录失败1")
           }
-        })*/
+        })
       } else {                                                                   //点击的个人的分享
         console.log("2222222222222")
-        /*wx.login({
+        wx.login({
           success: function (a) {
             if (a.code) {
-              var jsCode = a.code;
-              console.log(jsCode)*/
+              var code = a.code;
+              console.log(code)
               wx.getSetting({
                 success: function (r) {
                   if (r.authSetting['scope.userInfo']) {                //成功回调 说明已经授权过                                    
                     that.globalData.login = true;
-                  /*wx.request({
+                  wx.request({
                     method: 'GET',
-                    url: 'http://localhost:8080/user/userAuthor',
+                    url: 'http://192.168.2.123:8080/user/userAuthor',
                     data: {
-                      jsCode
+                      code:a.code
                     },
                     header: {
                       'content-type': 'application/json'
@@ -142,12 +148,12 @@ App({
                     success: function (b) {
                       var openId = b.data.data.openId;                 //获取自己的openId
                       console.log(openId)
-                      that.globalData.openid = b.data.data.openId;*/
+                      that.globalData.openid = b.data.data.openId;
                     var openid = that.globalData.openid;
                     console.log(openid)
                       wx.request({
                         method: 'GET',
-                        url: 'http://localhost:8080/userCard/findOneByOpenId',
+                        url: 'http://192.168.2.123:8080/userCard/findOneByOpenId',
                         data: {
                           /*openId: b.data.data.openId*/
                           openId:openid
@@ -161,9 +167,13 @@ App({
                           var openid = that.globalData.openid;
                           console.log(c.data.data==null)                          
                           if (c.data.data!=null) {                                //要是有返回的 说明已经添加过信息
-                            wx.redirectTo({
-                              url: '/pages/peerscards/peerscards?otheropenid='+otheropenid+'&isshow=true',
-                            })       
+                            that.globalData.notadd = true
+                            wx.redirectTo({                                              //说明没有添加过名片信息
+                              url: '/pages/peerscards/peerscards?otheropenid=' + otheropenid,
+                            })
+                            /*wx.switchTab({
+                              url: '/pages/findmore/findmore',
+                            })  */     
                           } else {                                                //要是没有返回 说明没有添加过信息
                             wx.redirectTo({
                               url: '/pages/addcards/addcards?otheropenid='+otheropenid+'&openid='+openid,
@@ -173,12 +183,12 @@ App({
                         fail: function () {
                           console.log("用openId获取失败2")
                         }
-                      })/*
+                      })
                     },
                     fail: function () {
                       console.log("获取openId失败2")
                     }
-                  })*/
+                  })
                 }else{
                     var otheropenid = that.globalData.otheropenid;                  //说明还没有授权
                     var openid = that.globalData.openid;
@@ -194,25 +204,26 @@ App({
                     url: '/pages/index/index?otheropenid='+otheropenid+'&openid='+openid,
                   })
                 }
-              })/*
+              })
             }
           },
           fail: function () {
             console.log("登录失败2")
           }
-        })*/
+        })
       }
     } else {               //搜索小程序点击小程序的
      console.log("333333333333333")
-     /* wx.login({
+      wx.login({
         success: function (a) {
-          var jsCode = a.code;
-          if (jsCode) {
+          var code = a.code;
+          console.log(code)
+          if (code) {
             wx.request({
               method: 'GET',
-              url: 'http://localhost:8080/user/userAuthor',
+              url: 'http://192.168.2.123:8080/user/userAuthor',
               data: {
-                jsCode: jsCode
+                code: a.code
               },
               header: {
                 'content-type': 'application/json'
@@ -221,7 +232,7 @@ App({
                 console.log(b)                 //用code 获取openid
                 var openid = b.data.data.openId;             
                 that.globalData.openid=b.data.data.openId;
-                console.log(openid)*/
+                console.log(openid)
                 var openid=that.globalData.openid
                 wx.getSetting({
                   success: function (c) {
@@ -230,7 +241,7 @@ App({
                     console.log(c)
                     wx.request({
                       method: 'GET',
-                      url: 'http://localhost:8080/userCard/findOneByOpenId',
+                      url: 'http://192.168.2.123:8080/userCard/findOneByOpenId',
                       data: {
                         /*openId: b.data.data.openId*/
                         openId: that.globalData.openid
@@ -273,7 +284,7 @@ App({
                     })
                   }
                 })
-              /*},
+              },
               fail: function () {
                 console.log("获取openId失败3")
               }
@@ -286,7 +297,7 @@ App({
         fail: function () {
           console.log("登录失败3")
         }
-      })*/
+      })
     }
   }
 })

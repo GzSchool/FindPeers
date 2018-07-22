@@ -62,7 +62,7 @@ Page({
           console.log(otheropenid==null)
           if(otheropenid!=""){
           wx.navigateTo({
-            url: '/pages/peerscards/peerscards?otheropenid=' + otheropenid+'&isshow=false',
+            url: '/pages/peerscards/peerscards?otheropenid=' + otheropenid,
             })
           }else{
             app.globalData.notadd=false
@@ -196,22 +196,25 @@ Page({
     this.data.introduction = e.detail.value
     console.log(introduction)
   },
+
+
+
   save: function(e) {
     var other=this.data.other
     if (other) {
-      if (this.data.wechatnum == null) {
+      if (this.data.wechatnum == "") {
         wx.showToast({
           title: '微信号不能为空',
         })
-      } else if (this.data.company == null) {
+      } else if (this.data.company == "") {
         wx.showToast({
           title: '公司名称不能为空'
         })
-      } else if (this.data.idustry == null) {
+      } else if (this.data.idustry == "") {
         wx.showToast({
           title: '行业信息不能为空',
         })
-      } else if (this.data.city == null) {
+      } else if (this.data.city == "") {
         wx.showToast({
           title: '城市信息不能为空',
         })
@@ -234,7 +237,7 @@ Page({
             synopsis:this.data.introduction,
             userEmail:this.data.email
           },
-          url: 'http://localhost:8080/userCard/saveOrUpdate',
+          url: 'http://192.168.2.123:8080/userCard/saveOrUpdate',
           header: {
             'content-type': 'application/json'
           },
@@ -246,12 +249,9 @@ Page({
             console.log(otheropenid)                       
             if (otheropenid!="") {
               console.log(openid) 
-              wx.navigateTo({
-                url: '/pages/peerscards/peerscards?otheropenid='+otheropenid+'&isshow=true',
-              })
-              /*wx.switchTab({
+              wx.switchTab({
                 url: '/pages/findmore/findmore',
-              })*/
+              })
             } else {
               console.log(openid)
               app.globalData.notadd=true;
@@ -263,19 +263,19 @@ Page({
         })
       }
     } else {
-      if (this.data.wechatnum == null) {
+      if (this.data.wechatnum == "") {
         wx.showToast({
           title: '微信号不能为空',
         })
-      } else if (this.data.company == null) {
+      } else if (this.data.company == "") {
         wx.showToast({
           title: '公司名称不能为空'
         })
-      } else if (this.data.idustry == null) {
+      } else if (this.data.idustry == "") {
         wx.showToast({
           title: '行业信息不能为空',
         })
-      } else if (this.data.city == null) {
+      } else if (this.data.city == "") {
         wx.showToast({
           title: '城市信息不能为空',
         })
@@ -298,7 +298,7 @@ Page({
             synopsis: this.data.introduction,
             userEmail: this.data.email
           },
-          url: 'http://localhost:8080/userCard/saveOrUpdate',
+          url: 'http://192.168.2.123:8080/userCard/saveOrUpdate',
           header: {
             'content-type': 'application/json'
           },
@@ -308,8 +308,8 @@ Page({
             var otheropenid = app.globalData.otheropenid;
             if (otheropenid!="") {
               app.globalData.notadd=true;
-              wx.navigateTo({
-                url: '/pages/peerscards/peerscards?otheropenid=' + otheropenid + '&isshow=true',
+              wx.switchTab({
+                url: '/pages/findmore/findmore',
               })
             } else {
               app.globalData.notadd = true;

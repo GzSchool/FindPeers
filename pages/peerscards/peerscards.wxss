@@ -86,6 +86,14 @@ page {
   left: 3%;
   border-radius: 10px;
 }
+.back{
+  width: 94%;
+  height: 8%;
+  position: absolute;
+  top: 77%;
+  left: 3%;
+  border-radius: 10px;
+}
 .write{
   width: 94%;
   height: 8%;

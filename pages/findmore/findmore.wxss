@@ -4,16 +4,31 @@ page {
   min-height: 100%;
   background-color: #d6dbe0;
 }
-.map-inputSearch-input input{
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  height: 60rpx;
-  line-height: 60rpx;
-  font-size: 15px;
-  width: 90%;
-  box-sizing: border-box;
-  padding: 0 5px;
-  margin-top: 10rpx;
+.search{
+  width:80%;display:inline-block;height:100%;
+  position: absolute;
+  left: 23%;
+  top: 0px;
+}
+.search1{
+  width:20%;display:inline-block;height:40%;
+  position: absolute;
+  left: 5%;
+  top: 30%;
+}
+.inputSearch{
+  border: 1px solid #D6D7DC;
+  border-radius: 3px;
+  position: absolute;
+  top: 10px;
+  left: 5%;
+  width:90%;
+  height:40px;
+  display:inline-block;
+  background:#fff;
+}
+.image1{
+  display: inline;
 }
 .findmore{
   width: 100%;
@@ -35,7 +50,6 @@ page {
 .inputSearch{
   background-color: #ffffff;
   width: 90%;
-  height: 80%;
   border-radius: 10px;
   position: relative;
   top: 10%;

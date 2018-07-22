@@ -15,6 +15,7 @@
     <text class="email">{{email}}</text>
     <button class="set {{isshow?'':'map-hide'}}" bindtap='setting'>设置</button>
   </view>
-  <button class="write {{isshow?'':'map-hide'}}" bindtap='remove'>删除同行名片</button>
+  <button class="back" bindtap='back'>回到首页</button>
+  <button class="write {{isshow?'':'map-hide'}}" open-type='share' bindtap='remove'>分享同行名片</button>
   <button class="write {{isshow?'map-hide':''}}" bindtap='addcards'>添加个人信息</button>
 </view>

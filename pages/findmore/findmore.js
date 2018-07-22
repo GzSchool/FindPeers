@@ -35,6 +35,9 @@ Page({
         });
       }
     });
+    that.setData({
+      list:[]
+    })
     that.data.notadd=app.globalData.notadd;
     that.data.openid=app.globalData.openid;
     var openid=that.data.openid
@@ -42,7 +45,7 @@ Page({
     console.log(that.data.notadd)    
     wx.request({
       method: 'GET',
-      url: 'http://localhost:8080/userCard/findOneByOpenId',
+      url: 'http://192.168.2.123:8080/userCard/findOneByOpenId',
       data: {
         openId: openid
       },
@@ -50,6 +53,10 @@ Page({
         'content-type': 'application/json'
       },
       success: function (b) {
+        if(b.data.data!=null){
+          app.globalData.notadd=true
+          that.data.notadd=true
+        }
         console.log(b)
         that.setData({
           name:b.data.data.username,
@@ -70,7 +77,7 @@ Page({
     var list = that.data.list
     wx.request({
       method: 'GET',
-      url: 'http://localhost:8080/userPeer/findAllByOpenId',
+      url: 'http://192.168.2.123:8080/userPeer/findAllByOpenId',
       data: {
         openId: openid,
       },
@@ -79,10 +86,17 @@ Page({
       },
       success: function (res) {
         console.log(res);        
-        console.log(list);
-        for (var i = 0; i < 3; i++) {
+        console.log(res.data.data.length);
+        var length = res.data.data.length;
+        /*for (var i = 0; i < length; i++) {
           list.push(res.data.data[i]);
+          console.log(list[i])
+        }*/
+        for(var i in res.data.data){
+          var a=res.data.data[i]
+            list.push(a)
         }
+        console.log(list)
         that.setData({
           list: list
         });
@@ -144,5 +158,14 @@ Page({
     wx.navigateTo({
       url: '/pages/inputSearch/inputSearch',
     })
+  },
+  select:function(a){
+    var otheropenid = a.currentTarget.dataset.key;
+    wx.navigateTo({
+      url: '/pages/peerscards/peerscards?otheropenid=' + otheropenid +'&isshow=true',
+    })
+  },
+  onShow:function(){
+    this.onLoad();
   }
 })

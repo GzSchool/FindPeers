@@ -106,7 +106,7 @@ Page({
                 var otheropenid = this.data.otheropenid;
                 console.log(otheropenid)                    
                 wx.navigateTo({
-                  url: '/pages/peerscards/peerscards?otheropenid='+otheropenid+'&ishow=false',
+                  url: '/pages/peerscards/peerscards?otheropenid='+otheropenid+'&isshow=false',
                 })
               }
             }

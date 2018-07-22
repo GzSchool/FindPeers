@@ -1,13 +1,13 @@
 <!--pages/fix/fix.wxml-->
 <view class="mycards1">
-    <text class="name1">{{name1}}</text>
-    <text class="idustry1">{{idustry1}}</text>
-    <text class="adress1">{{adress1}}</text>
-    <text class="company1">{{company1}}</text>
-    <image class="image1" src="{{image}}">{{image1}}</image>
-    <text class="phone1 ">{{phone1}}</text>
-    <text class="wechatnum1">{{wechatnum1}}</text>
-    <text class="email1">{{email1}}</text>
+    <text class="name1">{{name}}</text>
+    <text class="idustry1">{{idustry}}</text>
+    <text class="adress1">{{adress}}</text>
+    <text class="company1">{{company}}</text>
+    <image class="image1" src="{{image}}">{{image}}</image>
+    <text class="phone1 ">{{phone}}</text>
+    <text class="wechatnum1">{{wechatnum}}</text>
+    <text class="email1">{{email}}</text>
   </view>
   <!--pages/addCards/addcards.wxml-->
 <view class="addCards">

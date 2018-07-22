@@ -14,32 +14,30 @@ Page({
     img2:"/pages/images/about2.png"
   },
   onLoad:function(){
-    wx.showShareMenu({
-      withShareTicket: true
-    })
+    
     var that=this
     var openid=app.globalData.openid
-    /*wx.login({
+    wx.login({
       success:function(a){
         if(a.code){
-          var jsCode=a.code
+          var code=a.code
           wx.request({
             method: 'GET',
-            url: 'http://localhost:8080/weChatAuth/authorize',
+            url: 'http://192.168.2.123:8080/weChatAuth/authorize',
 
             data: {
-              jsCode: res.code
+              code:a.code
             },
 
             header: {
               'content-type': 'application/json'
             },
             success:function(b){
-              var openid=b.data.data.openId;*/
+              var openid=b.data.data.openId;
               var openid=app.globalData.openid;
               wx.request({
                 method: 'GET',
-                url: 'http://localhost:8080/userCard/findOneByOpenId',
+                url: 'http://192.168.2.123:8080/userCard/findOneByOpenId',
 
                 data: {
                   openId:openid
@@ -60,19 +58,22 @@ Page({
                     image: c.data.data.userImg,
                   })
                 }
-              })/*
+              })
             }
           })
         }
       }
-    })*/
+    })
   },
   
   onShareAppMessage: function (a) {
+    wx.showShareMenu({
+      withShareTicket: true
+    })
     console.log("2222222222222333333333333333") 
-    return {
+    return{
       title: '自定义转发标题',
-      path: '/page/mine/mine',
+      path: '/page/mine/mine?otheropenid='+this.data.openid,
       success: function (res) {
         console.log("66666666666") 
         console.log(res)

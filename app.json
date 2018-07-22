@@ -12,7 +12,8 @@
     "pages/mine/mine",
     "pages/inputSearch/inputSearch",
     "pages/other/other",
-    "pages/fix/fix"
+    "pages/fix/fix",
+    "pages/teampeers/teampeers"
   ],
   "window": {
     "backgroundTextStyle": "light",

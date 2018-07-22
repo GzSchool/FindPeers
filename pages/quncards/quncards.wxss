@@ -28,6 +28,9 @@ page {
   border-radius: 10px;
 }
 .name{
+  position: relative;
+  top:20px;
+  left: 100px;
  display: flex;
  flex-direction: row;
   font-style: MicrosoftYaHei;

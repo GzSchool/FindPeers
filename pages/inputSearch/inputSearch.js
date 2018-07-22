@@ -30,7 +30,7 @@ Page({
     var list=that.data.list
     wx.request({
       method: 'GET',
-      url: 'http://localhost:8080/userCard/findAllByParam',
+      url: 'http://192.168.2.123:8080/userCard/findAllByParam',
       data: {
         param:key
       },
@@ -39,7 +39,8 @@ Page({
       },
       success: function (res) {
         console.log(list);
-        for (var i = 0; i < 3; i++) {
+        var length=res.data.data.length;
+        for (var i = 0; i < length; i++) {
           list.push(res.data.data[i]);
         }
         that.setData({
@@ -50,6 +51,14 @@ Page({
         });
       }
     });
+  },
+  find:function(a){
+    console.log(a)
+    var openId=a.currentTarget.dataset.key;
+    console.log(openId)
+    wx.navigateTo({
+      url: '/pages/peerscards/peerscards?otheropenid=' + openId +'&isshow=true',
+    })
   }
   
 })

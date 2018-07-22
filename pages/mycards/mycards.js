@@ -29,7 +29,7 @@ Page({
     console.log(openid)
     wx.request({
       method: 'GET',
-      url: 'http://localhost:8080/userCard/findOneByOpenId',
+      url: 'http://192.168.2.123:8080/userCard/findOneByOpenId',
       data: {
         openId: openid
       },

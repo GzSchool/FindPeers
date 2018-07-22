@@ -21,7 +21,7 @@ Page({
   onShareAppMessage:function(){
     return {
       title: '自定义转发标题',
-      path: '/page/peerscards/peerscards',
+      path: '/page/peerscards/peerscards?otheropenid='+this.data.otheropenid,
       success: function (res) {
         console.log("66666666666")
         console.log(res)
@@ -57,7 +57,6 @@ Page({
     if (ops.otheropenid != ""){
       that.data.otheropenid = ops.otheropenid
     }
-    that.otheropenid=app.globalData.otheropenid;
     if(ops.isshow){
       console.log(true)
       that.setData({
@@ -69,11 +68,11 @@ Page({
       
       console.log(that.data.isshow)
       console.log(this.data.isshow)
-      var otheropenid = app.globalData.otheropenid
+      var otheropenid = that.data.otheropenid;
     var openid=app.globalData.openid
     wx.request({
       method: 'GET',
-      url: 'http://localhost:8080/userCard/findOneByOpenId',
+      url: 'http://192.168.2.123:8080/userCard/findOneByOpenId',
       data:{
         openId: otheropenid
       },
@@ -96,11 +95,13 @@ Page({
     })
   },
   addcards:function(){
+    var that=this
+    var openid = app.globalData.openid;
     var login=app.globalData.login;
     console.log(login)
     if(login){
     var openid = app.globalData.openid
-    var otheropenid=app.globalData.otheropenid
+    var otheropenid = that.data.otheropenid
     wx.redirectTo({
       url: '/pages/addcards/addcards?openid='+openid,
       
@@ -113,7 +114,7 @@ Page({
         confirmText: '知道了',
         success:function(a){
           wx.navigateTo({
-            url: '/pages/index/index?openid=' + openid+'&other=true'+'other=true',
+            url: '/pages/index/index?openid=' + openid+'&other=true',
           })
         }
       })
@@ -122,10 +123,26 @@ Page({
   setting:function(a){
     var that=this
     wx.showActionSheet({
-      itemList: ["转发","保存至通讯录"],
+      itemList: ["删除同行信息","保存至通讯录"],
       success:function(b){
         if(b.tapIndex==0){
-          
+            var otheropenid = this.data.otheropenid
+            wx.request({
+              method: 'GET',
+              url: 'http://192.168.2.123:8080/userCard/saveOrUpdate',
+              data: {
+                openId: otheropenid,
+                delFlag: 2
+              },
+              header: {
+                'content-type': 'application/json'
+              },
+              success: function (res) {
+                wx.switchTab({
+                  url: '/pages/findmore/findmore',
+                })
+              }
+            })
         }else{
           if (that.data.phone!=null){
             console.log(that.data.phone)
@@ -155,21 +172,14 @@ Page({
       }
     })
   },
-  remove:function(){
-    var id=this.data.id
-    wx.request({
-      method: 'GET',
-      url: '',
-      data: {
-        id: this.data.id
-      },
-      header: {
-        'content-type': 'application/json'
-      },
-      success:function(res){
-
-      }
+  
+  back:function(){
+    wx.switchTab({
+      url: '/pages/findmore/findmore',
     })
+  },
+  onShow(){
+    this.onLoad()
   }
 
 })

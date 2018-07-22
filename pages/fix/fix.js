@@ -6,21 +6,13 @@ Page({
    * 页面的初始数据
    */
   data: {
-    name1: "",
-    adress1: "",
-    idustry1: "",
-    company1: "",
-    phone1: "",
-    wechatnum1: "",
-    emai1: "",
-    openid: "",
-    userId: 0,
     name: "",
     other: '',
     wechatnum: "",
     company: "",
     idustry: "",
     job: '',
+    id:'',
     city: "",
     phone: "",
     demand: "",
@@ -47,7 +39,7 @@ Page({
     console.log(openid)
     wx.request({
       method: 'GET',
-      url: 'http://localhost:8080/userCard/findOneByOpenId',
+      url: 'http://192.168.2.123:8080/userCard/findOneByOpenId',
       data: {
         openId: openid
       },
@@ -57,14 +49,16 @@ Page({
       success: function (b) {
         console.log(b)
         that.setData({
-          name1: b.data.data.username,
-          wechatnum1: b.data.data.userWechat,
-          company1: b.data.data.userCompany,
-          idustry1: b.data.data.userIndustry,
-          city1: b.data.data.userCity,
-          emai1: b.data.data.userEmail,
-          phone1: b.data.data.userPhone,
-          //image: b.data.data.userImg,
+          name: b.data.data.username,
+          wechatnum: b.data.data.userWechat,
+          company: b.data.data.userCompany,
+          idustry: b.data.data.userIndustry,
+          city: b.data.data.userCity,
+          email: b.data.data.userEmail,
+          phone: b.data.data.userPhone,
+          image: b.data.data.userImg,
+          id:b.data.data.id,
+          job:b.data.data.userJob
         })
       }
     })
@@ -177,7 +171,7 @@ Page({
   },
   save: function (e) {
     var other = this.data.other
-    if (other) {
+    
       if (this.data.wechatnum == null) {
         wx.showToast({
           title: '微信号不能为空',
@@ -198,6 +192,7 @@ Page({
         wx.request({
           method: 'GET',
           data: {
+            id:this.data.id,
             username: this.data.name,
             openId: this.data.openid,
             userWechat: this.data.wechatnum,
@@ -212,7 +207,7 @@ Page({
             synopsis: this.data.introduction,
             userEmail: this.data.email
           },
-          url: 'http://localhost:8080/userCard/saveOrUpdate',
+          url: 'http://192.168.2.123:8080/userCard/saveOrUpdate',
           header: {
             'content-type': 'application/json'
           },
@@ -224,12 +219,9 @@ Page({
             console.log(otheropenid)
             if (otheropenid != "") {
               console.log(openid)
-              wx.navigateTo({
-                url: '/pages/peerscards/peerscards?otheropenid=' + otheropenid + '&isshow=true',
-              })
-              /*wx.switchTab({
+              wx.switchTab({
                 url: '/pages/findmore/findmore',
-              })*/
+              })
             } else {
               console.log(openid)
               app.globalData.notadd = true;
@@ -240,65 +232,9 @@ Page({
           }
         })
       }
-    } else {
-      if (this.data.wechatnum == null) {
-        wx.showToast({
-          title: '微信号不能为空',
-        })
-      } else if (this.data.company == null) {
-        wx.showToast({
-          title: '公司名称不能为空'
-        })
-      } else if (this.data.idustry == null) {
-        wx.showToast({
-          title: '行业信息不能为空',
-        })
-      } else if (this.data.city == null) {
-        wx.showToast({
-          title: '城市信息不能为空',
-        })
-      } else {
-        wx.request({
-          method: 'GET',
-          data: {
-            username: this.data.name,
-            openId: this.data.openid,
-            userWechat: this.data.wechatnum,
-            userCity: this.data.city,
-            userJob: this.data.job,
-            userCompany: this.data.company,
-            userIndustry: this.data.idustry,
-            userPhone: this.data.phone,
-            userJob: this.data.job,
-            demande: this.data.demand,
-            resources: this.data.resource,
-            synopsis: this.data.introduction,
-            userEmail: this.data.email
-          },
-          url: 'http://localhost:8080/userCard/saveOrUpdate',
-          header: {
-            'content-type': 'application/json'
-          },
-          success: function (res) {
-            console.log(res)
-            var openid = app.globalData.openid;
-            var otheropenid = app.globalData.otheropenid;
-            if (otheropenid != "") {
-              app.globalData.notadd = true;
-              wx.navigateTo({
-                url: '/pages/peerscards/peerscards?otheropenid=' + otheropenid + '&isshow=true',
-              })
-            } else {
-              app.globalData.notadd = true;
-              wx.switchTab({
-                url: '/pages/findmore/findmore',
-              })
-            }
-          }
-        })
-      }
+    
     }
-  }
+  
 
 
 })
