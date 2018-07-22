@@ -6,12 +6,12 @@ page {
 }
 .addCards{
   width:100%;
-  height: 80%;
+  height: 100%;
   background-color: #ffffff;
   margin-top: 5px;
 }
 .addname{
-  position: absolute;
+  position: relative;
   top: 10px;
   left: 75px;
   width: 100%;
@@ -20,82 +20,90 @@ page {
   align-items: center;
 }
 .input{
-  position: absolute;
+  position: relative;
   left: 30px;
-  top: 40px;
+  top: 5px;
   width: 80%;
   font-size: 15px;
   z-index: 0;
 }
 .addnumber{
-  position: absolute;
-  top: 35px;
+  position: relative;
+  top: 5px;
   left: 100px;
   width: 100%;
   height: 8rpx;
    font-size: 15px;
 }
 .addcompany{
-  position: absolute;
-  top: 60px;
+  position: relative;
+  top: 5px;
+  left: 75px;
+  width: 100%;
+  height: 8rpx;
+   font-size: 15px;
+}
+.addidustry{
+  position: relative;
+  top: 5px;
+  left: 75px;
+  width: 60%;
+  height: 8rpx;
+   font-size: 15px;
+}
+.addcity{
+  position: relative;
+  top: 5px;
   left: 75px;
   width: 100%;
   height: 8rpx;
    font-size: 15px;
 }
 .addjob{
-  position: absolute;
-  top: 85px;
-  left: 75px;
-  width: 100%;
-  height: 8rpx;
-   font-size: 15px;
-}
-.addcity{
-  position: absolute;
-  top: 110px;
+  position: relative;
+  top: 5px;
   left: 75px;
   width: 100%;
   height: 8rpx;
    font-size: 15px;
 }
 .addphone{
-  position: absolute;
-  top: 135px;
+  position: relative;
+  top: 5px;
   left: 100px;
   width: 100%;
   height: 8rpx;
    font-size: 15px;
 }
 .addneed{
-  position: absolute;
-  top: 160px;
+  position: relative;
+  top: 5px;
   left: 75px;
   width: 100%;
   height: 8rpx;
    font-size: 15px;
 }
 .addcan{
-  position: absolute;
-  top: 185px;
+  position: relative;
+  top: 5px;
   left: 75px;
   width: 100%;
   height: 8rpx;
    font-size: 15px;
 }
 .addmore{
-  position: absolute;
-  top: 45%;
-  left: 20%;
+  position: relative;
+  top: 20px;
+  left: 20px;
   width: 50%;
   height: 6%;
   border-radius: 10px;
    font-size: 15px;
 }
 .addtext{
-  position: absolute;
-  top: 52%;
-  left: 10%;
+  position: relative;
+  top: 50px;
+  left: 50px;
   width: 80%;
   height: 20%;
   font-size: 15px;
@@ -104,7 +112,7 @@ page {
 }
 .save{
   position: absolute;
-  top:85%;
+  top: 90%;
   left: 10%;
   width: 80%;
   height: 8%;
@@ -114,8 +122,8 @@ page {
   display: none;
 }
 .addemail{
-  position: absolute;
-  top: 210px;
+  position: relative;
+  top: 0px;
   left: 75px;
   width: 100%;
   height: 8rpx;
@@ -123,65 +131,78 @@ page {
 }
 .name{
   font-size: 15px;
-  position: absolute;
+  position: relative;
   top:13px;
   left: 40px;
-   height: 8rpx
+   height: 4rpx
 }
 .number{
   font-size: 15px;
-  position: absolute;
-  top:39px;
+  position: relative;
+  top:10px;
   left: 40px;
    height: 8rpx
 }
 .company{
   font-size: 15px;
-position: absolute;
-  top:64px;
+position: relative;
+  top:10px;
   left: 40px;
    height: 8rpx
 }
 .idustry{
   font-size: 15px;
-  position: absolute;
-  top:89px;
+  position: relative;
+  top:10px;
   left: 40px;
    height: 8rpx
 }
 .city{
 font-size: 15px;
-position: absolute;
-  top:114px;
+position: relative;
+  top:10px;
   left: 40px;
    height: 8rpx
 }
-
+.job{
+  font-size: 15px;
+position: relative;
+  top:10px;
+  left: 40px;
+   height: 8rpx
+}
 .phone{
   font-size: 15px;
-  position: absolute;
-  top:139px;
+  position: relative;
+  top:10px;
   left: 40px;
    height: 8rpx
 }
 .demand{
   font-size: 15px;
-  position: absolute;
-  top:164px;
+  position: relative;
+  top:10px;
   left: 40px;
    height: 8rpx
 }
 .resource{
   font-size: 15px;
-  position: absolute;
-  top:190px;
+  position: relative;
+  top:10px;
   left: 40px;
    height: 8rpx
 }
 .email{
   font-size: 15px;
-  position: absolute;
-  top:214px;
+  position: relative;
+  top:10px;
   left: 40px;
    height: 8rpx
+}
+.image{
+  width: 10%;
+  height: 8px;
+  position: absolute;
+  top:120px;
+  left: 90%;
 }

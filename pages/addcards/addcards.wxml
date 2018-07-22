@@ -7,9 +7,12 @@
   <view class="company">公司：</view>
   <input class="addcompany line" bindblur='addcompany' focus='true' type='text' value='{{company}}' name="company"></input>
   <view class="idustry">行业：</view>
-  <input class="addjob line" bindblur='addidustry' focus='true'  type='text' value='{{idustry}}' name="idustry"></input>
+  <input class="addidustry line" bindblur='addidustry' focus='true'  type='text' value='{{idustry}}' name="idustry"></input>
+  <image src="/pages/images/2.png" class="image" bindtap='select'></image>
   <view class="city">城市：</view>
   <input class="addcity line" bindblur='addcity' focus='true'  type='text' value='{{city}}' name="city"></input>
+  <view class="job">职务：</view>
+  <input class="addjob line" bindblur='addjob' focus='true'  type='text' value='{{job}}' name="job"></input>
   <view class="phone">手机号：</view>
   <input class="addphone line" bindblur='addphone' focus='true'  type='number' value='{{phone}}' name="phone"></input>
   <view class="demand {{isshow0?'map-block':'map-hide'}}">需求：</view>
@@ -21,5 +24,5 @@
   <button class="addmore" bindtap='addmore' >添加更多信息</button>
   <view class="introduction"></view>
   <textarea class="addtext line" bindblur='addintroduction' type='text' value='简介：{{introduction}}'  type='text' name="introduction"></textarea>
+  <button class="save" bindtap='save'>保存</button>
 </view>
-<button class="save" bindtap='save'>保存</button>

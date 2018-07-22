@@ -1,21 +1,18 @@
 {
   "pages": [
-    "pages/findmore/findmore",
-    "pages/peerscards/peerscards",
-    "pages/addcards/addcards",
-    
-    "pages/company/company",
-    "pages/mycards/mycards",
     "pages/index/index",
-    "pages/logs/logs",
-    "pages/information/information",
+    "pages/findmore/findmore",
+    "pages/mycards/mycards",    
+    "pages/peerscards/peerscards",
+    "pages/addcards/addcards",    
+    "pages/company/company",  
     "pages/viewThis/viewThis",
     "pages/first/first",
-    "pages/addmore/addmore",
-    "pages/fail/fail",
-    
     "pages/quncards/quncards",
-    "pages/mine/mine"
+    "pages/mine/mine",
+    "pages/inputSearch/inputSearch",
+    "pages/other/other",
+    "pages/fix/fix"
   ],
   "window": {
     "backgroundTextStyle": "light",

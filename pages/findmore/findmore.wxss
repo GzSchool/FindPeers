@@ -4,9 +4,28 @@ page {
   min-height: 100%;
   background-color: #d6dbe0;
 }
+.map-inputSearch-input input{
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  height: 60rpx;
+  line-height: 60rpx;
+  font-size: 15px;
+  width: 90%;
+  box-sizing: border-box;
+  padding: 0 5px;
+  margin-top: 10rpx;
+}
 .findmore{
   width: 100%;
   height: 100%;
+}
+.add{
+  width: 30%;
+  height: 20%;
+  position: absolute;
+  top: 40%;
+  left: 35%;
+  font-size: 10px;
 }
 .findmore-inputSearch{
   width: 100%;
@@ -84,3 +103,76 @@ page {
     position: absolute;
     top:64%;
   }
+  .map-hide{
+    display: none;
+  }
+  .list{
+    position: absolute;
+    top: 65%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .item{
+    margin-top: 5px;
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  width: 100%;
+  height: 20%;
+  background-color: #ffffff;
+}
+.find{
+  display: flex;
+  background-color: #ffffff;
+  width: 100%;
+  height: 70%;
+  position: relative;
+  top: 10px;
+  left: 100;
+}
+.url{
+  display: flex;
+  flex-direction: row;
+  width: 80px;
+  height: 80px;
+  margin-top: 15px;
+  margin-left: 20px;
+  border-radius: 10px;
+}
+.name{
+ display: flex;
+  flex-wrap: wrap;
+  font-style: MicrosoftYaHei;
+  font-weight: Regular;
+  font-size: 20px;
+  text-align: left;
+  color: #505050;
+}
+.industry{
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 12px;
+  font-style: MicrosoftYaHei;
+  font-weight: Regular;
+  text-align: left;
+  color: #505050;
+}
+.city{
+   display: flex;
+  flex-wrap: wrap;
+  font-size: 16px;
+  font-style: MicrosoftYaHei;
+  font-weight: Regular;
+  text-align: left;
+  color: #505050;
+}
+.company{
+   display: flex;
+  flex-wrap: wrap;
+  font-size: 16px;
+  font-style: MicrosoftYaHei;
+  font-weight: Regular;
+  text-align: left;
+  color: #505050;
+}

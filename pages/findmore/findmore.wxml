@@ -1,15 +1,19 @@
 <!--pages/findmore/findmore.wxml-->
 <view class="findmore">
-  <view class="findmore-inputSearch">
-    <input class="inputSearch"></input>
+  <view class="map-inputSearch-input">
+    <input class="inputSearch" bindtap="bindtrans" placeholder='{{key}}'></input>
+    <!--<input class="inputSearch"></input> -->
   </view>
   <view class="finmore-mycard">
     <text class="findmore-mine">我的名片</text>
   </view>
-  <view class="findmore-card" bindtap='mycards'>
+  <view class="findmore-card {{notadd?'map-hide':''}}">
+  <button class="add" bindtap='addcards'>添加我的信息</button>
+  </view>
+  <view class="findmore-card {{notadd?'':'map-hide'}}" bindtap='mycards'>
     <image class="image" src="/pages/images/1.png"></image>
     <view class="findmore-name">{{name}}</view>
-    <view class="findmore-job">{{job}}</view>
+    <view class="findmore-job">{{idustry}}</view>
     <view class="findmore-company">{{company}}</view>
   </view>
   <view class="findmore-get">
@@ -21,10 +25,17 @@
     <view class="findmore-job">找同行助手</view>
     <view class="findmore-company">北京格致文化传媒有限公司</view>
   </view>
-  <view class="finmore-geren" bindtap='peerscards'>
-    <image class="image" src="/pages/images/1.png"></image>
-    <view class="findmore-name">{{name}}</view>
-    <view class="findmore-job">{{job}}</view>
-    <view class="findmore-company">{{company}}</view>
+    <view class="list" bindscrolltolower="bindDownLoad" bindscroll="scroll" bindscrolltoupper="refresh">
+    <view class="item" wx:for="{{list}}" wx:for-index="index" wx:for-item="item" wx:key="11">
+      <!--<image class="img" src="{{item.pic_url}}"></image>-->
+      <view class="find" bindtap='other{{index}}'>
+      <image class="url" src="/pages/images/1.png"></image>
+        <view class="name">{{item.username}}</view>
+        <view class="industry">{{item.userIndustry}}</view>
+        <view class="city">{{item.userCity}}</view>
+        <view class="company">{{item.userCompany}}</view>
+      </view>      
+    </view>
+  
   </view>
 </view>

@@ -1,3 +1,5 @@
 {
-  "navigationBarTitleText": "找同行详情"
+  "navigationBarTitleText": "找同行详情",
+  "navigationBarBackgroundColor": "#2C7FE7",
+  "navigationBarTextStyle": "white"
 }

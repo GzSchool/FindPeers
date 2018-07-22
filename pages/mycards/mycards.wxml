@@ -4,15 +4,14 @@
     <text class="name">{{name}}</text>
     <text class="idustry">{{idustry}}</text>
     <text class="adress">{{adress}}</text>
-    
     <text class="company">{{company}}</text>
-    <image class="image" src="{{image}}"></image>
+    <image class="image" src="{{image}}">{{image}}</image>
     <text class="phone ">{{phone}}</text>
     <text class="wechatnum">{{wechatnum}}</text>
     <text class="email">{{email}}</text>
   </view>
   <view class="continer-button">
-    <button class="continer-mine">进入我的名片夹</button>
-    <button class="continer-others" bindtap='viewThisCards'>名片夹已有，查看更多本群名片夹</button>
+    <button class="continer-mine" open-type='share' bindtap='toMyPeers'>发送我的名片</button>
+    <button class="continer-others" bindtap='viewThisCards'>修改我的名片</button>
   </view>
 </view>
