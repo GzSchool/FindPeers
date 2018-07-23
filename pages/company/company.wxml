@@ -1,7 +1,7 @@
 <!--pages/company/company.wxml-->
 <view class="company">
   <view class="company1">
-    <image class="image" src="/pages/images/1.png"></image>
+    <image class="image" src="/pages/images/findpeers.png"></image>
     <view class="company-team">找同行团队</view>
     <view class="company-name">北京格致文化传媒有限公司</view>
   </view>

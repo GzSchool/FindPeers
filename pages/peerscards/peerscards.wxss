@@ -48,14 +48,14 @@ page {
   border-radius: 50%;
 }
 .set{
-  width: 15%;
-  height: 3%;
-  position: absolute;
-  top: 24%;
-  left: 80%;
-  font-size: 10px;
-  border-radius: 5px;
-  background-color: aqua;
+  width:9%;
+height:5%;
+position:absolute;
+top:23%;
+left:79%;
+font-size:10px;
+border-radius:5px;
+
 }
 .phone{
   font-size: 15px;
@@ -93,6 +93,9 @@ page {
   top: 77%;
   left: 3%;
   border-radius: 10px;
+  color:#ffffff;
+background-color:#2C7FE7;
+
 }
 .write{
   width: 94%;
@@ -101,6 +104,9 @@ page {
   top: 86%;
   left: 3%;
   border-radius: 10px;
+  color:#ffffff;
+background-color:#2C7FE7;
+
 }
 .hide{
   width: 50%;

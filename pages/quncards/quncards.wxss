@@ -5,43 +5,60 @@ page {
   min-height: 100%;
   background-color: #d6dbe0;
 }
+.shu{
+  width:8px;
+height:24px;
+background:rgba(0,122,255,1);
+position:relative;
+top:6px;
+left:28px;
+}
 .qun{
   width: 100%;
   height: 100%;
 }
 .qunbiao{
-  width: 100%;
-  height: 20px;
-  position: relative;
-  top: 10px;
-  left: 0;
-  background-color: white;
+  width:100%;
+height:35px;
+position:relative;
+top:8px;
+left:0;
+background-color:white;
+border-bottom:1px #ddd;
+
+
 }
-.shu{
-  color: #2c7fe7;
-  width: 1px;
-  height: 100%;
-  position: relative;
-  left: 20px;
+.line{
+
+width:100%;
+
+height:2rpx;
+
+background:#aaa;
+
 }
 .text{
-  font-size: 15px;
-  position: relative;
-  left: 50px;
+  font-size:18px;
+text-align:left;
+position:relative;
+left:44px;
+top:-19px;
+
   }
 .list{
     position: relative;
-    top: 1px;
+    top: 8px;
     left: 0;
     width: 100%;
     height: 100%;
 }
 .item{
-    margin-top: 5px;
   display: flex;
   flex-wrap: wrap;
   position: relative;
-  width: 100%;
+  top: 2px;
+  left:0;
+    width: 100%;
   height: 20%;
   background-color: #ffffff;
 }
@@ -70,8 +87,9 @@ page {
   font-size: 20px;
   text-align: left;
   color: #505050;
-  margin-top: 20px;
-  margin-left: 20px;
+  margin-top:17px;
+margin-left:21px;
+
 }
 .industry{
   display: flex;
@@ -95,5 +113,7 @@ page {
   font-style: MicrosoftYaHei;
   font-weight: Regular;
   color: #505050;
-  margin-top: 60px;
+  margin-top:57px;
+margin-left:-23px;
+
 }

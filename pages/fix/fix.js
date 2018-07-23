@@ -59,7 +59,7 @@ Page({
           city: b.data.data.userCity,
           email: b.data.data.userEmail,
           phone: b.data.data.userPhone,
-          image: b.data.data.userImg,
+          //image: b.data.data.userImg,
           id:b.data.data.id,
           job:b.data.data.userJob
         })

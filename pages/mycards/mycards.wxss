@@ -5,46 +5,84 @@ page {
   background-color: #d6dbe0;
 }
 .mycards{
-  width: 100%;
-  height: 100%;
+ width:100%;
+height:100%;
+margin-top:10px;
+
 }
 .mycards1{
    background-color: #ffffff;
    width: 100%;
-   height:30%;
-   margin-top: 3px;
+   height:40%;
 }
 .name{
-  font-size: 15px;
-  position: absolute;
-  top: 30px;
-  left: 20px;
+  font-size:20px;
+position:relative;
+top:9%;
+left:27px;
+
 }
 .adress{
-  font-size: 15px;
-  position: absolute;
-  top: 70px;
-  left: 20px;
+  font-size:15px;
+position:absolute;
+top:92px;
+left:37px;
+
 }
 .idustry{
- font-size: 15px;
-  position: absolute;
-  top: 50px;
-  left: 20px;
+ font-size:15px;
+position:relative;
+top:54px;
+left:-42px;
 }
 .company{
-  font-size: 15px;
-  position: absolute;
-  top: 90px;
-  left: 20px;
+  font-size:15px;
+position:relative;
+top:97px;
+left:-118px;
 }
 .image{
-  width: 20%;
-  height:10%;
-  position: absolute;
-  top: 4%;
-  left:75%;
-  border-radius: 50%;
+  width:26%;
+height:37%;
+position:relative;
+top:1%;
+left:70%;
+border-radius:10px;
+
+}
+.image1{
+ width:13px;
+height:20px;
+position:relative;
+top:52px;
+left:-66px;
+
+}
+.image2{
+  width:10px;
+height:20px;
+position:relative;
+top:83px;
+left:-157px;
+
+}
+.image3{
+  width:10px;
+height:20px;
+position:relative;
+top:113px;
+left:-211px;
+
+
+}
+.fix{
+  width:30px;
+height:30px;
+position:relative;
+top:79px;
+left:328px;
+
+
 }
 .set{
   width: 15%;
@@ -57,22 +95,25 @@ page {
   background-color: aqua;
 }
 .phone{
-  font-size: 15px;
-  position: absolute;
-  top: 130px;
-  left: 40px;
+  font-size:15px;
+position:relative;
+top:48px;
+left:-57px;
+
 }
 .wechatnum{
- font-size: 15px;
- position: absolute;
-  top: 150px;
-  left: 40px;
+ font-size:15px;
+position:relative;
+top:79px;
+left:-147px;
+
 }
 .email{
-  font-size: 15px;
- position: absolute;
-  top: 170px;
-  left: 40px;
+  font-size:15px;
+position:relative;
+top:110px;
+left:-201px;
+
 }
 .map-hide{
   display: none;
@@ -99,20 +140,28 @@ page {
 }
 .continer-button{
   width:90%;
-  height: 30%;
-  position: fixed;
-  top:75%;
-  left:20px;
+height:30%;
+position:relative;
+top:48%;
+left:20px;
+
 }
 .continer-mine{
   width:100%;
-  height:30%;
-  border-radius: 40px;
-  background-color: #00BFFF;
+height:24%;
+border-radius:6px;
+background-color:#2C7FE7;
+font-style:white;
+
+}
+.font{
+  color:#ffffff;
 }
 .continer-others{
-  width:100%;
-  height: 30%;
-  border-radius: 40px;
-  background-color: #fff;
+  width:90%;
+height:30%;
+position:relative;
+top:48%;
+left:20px;
+
 }

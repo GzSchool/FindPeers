@@ -13,20 +13,31 @@ page {
   height: 40%;
   margin-top: 5px;
   background-color: #ffffff;
+  
 }
 .image{
   width: 45%;
   height: 60%;
   margin-left: 30%;
   margin-top: 15px;
+  border-radius:50%;
+
 }
 .company-team{
   font-size: 15px;
   text-align: center;
+  position:relative;
+top:10px;
+left:7px;
+
 }
 .company-name{
   font-size: 15px;
   text-align: center;
+  position:relative;
+top:20px;
+left:10px;
+
 }
 .company2{
   width: 100%;

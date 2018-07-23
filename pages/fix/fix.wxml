@@ -2,35 +2,39 @@
 <view class="mycards1">
     <text class="name1">{{name}}</text>
     <text class="idustry1">{{idustry}}</text>
-    <text class="adress1">{{adress}}</text>
+    <text class="adress1">{{city}}</text>
     <text class="company1">{{company}}</text>
     <image class="image1" src="{{image}}">{{image}}</image>
+    <image class="image4" src="/pages/images/phone.png"></image>
     <text class="phone1 ">{{phone}}</text>
+    <image class="image2" src="/pages/images/wechat.png"></image>
     <text class="wechatnum1">{{wechatnum}}</text>
+    <image class="image3" src="/pages/images/email.png"></image>
     <text class="email1">{{email}}</text>
   </view>
   <!--pages/addCards/addcards.wxml-->
 <view class="addCards">
-  <view class="name">姓名：</view>
+  <view class="name ">姓名：</view>
   <input class="addname line" bindblur='addname' focus='true' type='text' value='{{name}}' name="name"></input>
-  <view class="number">微信号:</view>
+  <view class="number ">微信号:</view>
   <input class="addnumber line" bindblur='addnumber' focus='true' type='text' value='{{wechatnum}}' name="number"></input>
-  <view class="company">公司：</view>
+  <view class="company ">公司：</view>
   <input class="addcompany line" bindblur='addcompany' focus='true' type='text' value='{{company}}' name="company"></input>
-  <view class="idustry">行业：</view>
+  <view class="idustry ">行业：</view>
   <input class="addjob line" bindblur='addidustry' focus='true'  type='text' value='{{idustry}}' name="idustry"></input>
   <image src="/pages/images/2.png" class="image" bindtap='select'></image>
-  <view class="city">城市：</view>
+  <view class="city ">城市：</view>
   <input class="addcity line" bindblur='addcity' focus='true'  type='text' value='{{city}}' name="city"></input>
-  <view class="job">职务：</view>
-  <input class="addjob line" bindblur='addjob' focus='true'  type='text' value='{{job}}' name="job"></input>
+  <view class="job ">职务：</view>
+  <input class="addindustry line" bindblur='addjob' focus='true'  type='text' value='{{job}}' name="job"></input>
   <view class="phone">手机号：</view>
   <input class="addphone line" bindblur='addphone' focus='true'  type='number' value='{{phone}}' name="phone"></input>
+  <button class="getphone">微信获取</button>
   <view class="demand {{isshow0?'map-block':'map-hide'}}">需求：</view>
-  <input class="addneed {{isshow0?'map-block':'map-hide'}} line" bindblur='adddemand' focus='true'  type='text' value='{{demand}}' name="demand"></input>
-  <view class="resource {{isshow1?'map-block':'map-hide'}}">资源：</view>
+  <input class="addneed line {{isshow0?'map-block':'map-hide'}} line" bindblur='adddemand' focus='true'  type='text' value='{{demand}}' name="demand"></input>
+  <view class="resource  {{isshow1?'map-block':'map-hide'}}">资源：</view>
   <input class="addcan {{isshow1?'map-block':'map-hide'}} line" bindblur='addresource' focus='true'  type='text' value='{{resource}}' name="resource"></input>
-  <view class="email {{isshow2?'map-block':'map-hide'}}">邮箱：</view>
+  <view class="email  {{isshow2?'map-block':'map-hide'}}">邮箱：</view>
   <input class="addemail {{isshow2?'map-block':'map-hide'}} line" bindblur='addemail' focus='true'  type='text' value='{{email}}'></input>
   <button class="addmore" bindtap='addmore' >添加更多信息</button>
   <view class="introduction"></view>

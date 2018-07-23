@@ -2,7 +2,7 @@
 App({
   globalData:{
     openid: '003',
-    otheropenid:'',
+    otheropenid:'002',
     isshow: false,
     notadd:'',
     openGid:'',

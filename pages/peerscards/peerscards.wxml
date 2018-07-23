@@ -13,7 +13,7 @@
     <text class="wechatnum">{{wechatnum}}</text>
     <text class="wechatnum hide {{isshow?'map-hide':''}}">需填写信息才可查看</text>
     <text class="email">{{email}}</text>
-    <button class="set {{isshow?'':'map-hide'}}" bindtap='setting'>设置</button>
+    <image src="/pages/images/set.png" class="set"  bindtap='setting'>设置</image>
   </view>
   <button class="back" bindtap='back'>回到首页</button>
   <button class="write {{isshow?'':'map-hide'}}" open-type='share' bindtap='remove'>分享同行名片</button>

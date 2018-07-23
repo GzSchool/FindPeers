@@ -80,8 +80,9 @@ page {
   width: 90%;
   height: 8%;
   margin: 30% 20px;
-  font-size: 15px;
+  font-size: 18px;
   background-color: #2C7FE7;
+  color: #ffffff;
   position: absolute;
   top: 63%;
   left: 5px;

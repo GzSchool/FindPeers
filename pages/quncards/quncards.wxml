@@ -1,8 +1,9 @@
 <!--pages/quncards/quncards.wxml-->
 <view class="qun">
   <view class="qunbiao">
-  <button class="shu"></button>
+  <view class="shu"></view>
   <view class="text">群列表</view>
+  <view class="line"></view>
   </view>
   <scroll-view scroll-top="{{scrollTop}}" scroll-y="true" style="height:{{scrollHeight}}px;" class="list" bindscrolltolower="bindDownLoad" bindscroll="scroll" bindscrolltoupper="refresh">
     <view class="item" wx:for="{{list}}" wx:for-index="index" wx:for-item="item" wx:key="11" data-key="{{item.groupId}}" data-id="{{item.openId}}" bindtap='search'>

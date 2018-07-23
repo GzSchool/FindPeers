@@ -204,7 +204,7 @@ Page({
 
   save: function(e) {
     var other=this.data.other
-    var server = that.data.server
+    var server = this.data.server
     if (other) {
       if (this.data.wechatnum == "") {
         wx.showToast({
@@ -253,8 +253,8 @@ Page({
             console.log(otheropenid)                       
             if (otheropenid!="") {
               console.log(openid) 
-              wx.switchTab({
-                url: '/pages/findmore/findmore',
+              wx.navigateTo({
+                url: '/pages/peerscards/peerscards?otheropenid='+otheropenid+'&isshow=true',
               })
             } else {
               console.log(openid)
@@ -312,9 +312,13 @@ Page({
             var otheropenid = app.globalData.otheropenid;
             if (otheropenid!="") {
               app.globalData.notadd=true;
+              wx.navigateTo({
+                url: '/pages/peerscards/peerscards?otheropenid=' + otheropenid + '&isshow=true',
+              })
+              /*
               wx.switchTab({
                 url: '/pages/findmore/findmore',
-              })
+              })*/
             } else {
               app.globalData.notadd = true;
               wx.switchTab({

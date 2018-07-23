@@ -5,7 +5,7 @@
     <view class="mine-job">{{industry}}</view>
     <view class="mine-adress">{{city}}</view>
     <view class="mine-company">{{company}}</view>
-    <image class="image" src="/pages/images/1.png"></image>
+    <image class="image" src="/pages/images/findpeers.png"></image>
     <view class="help">微信扫一扫二维码</view>
   </view>
   <view class="find">

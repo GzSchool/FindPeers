@@ -108,7 +108,7 @@ Page({
           city: b.data.data.userCity,
           email: b.data.data.userEmail,
           phone: b.data.data.userPhone,
-          image: b.data.data.userImg,
+          //image: b.data.data.userImg,
         })
       }
     })
@@ -140,13 +140,15 @@ Page({
     }
   },
   setting:function(a){
+    var that = this
     var server = that.data.server
-    var that=this
+    
     wx.showActionSheet({
       itemList: ["删除同行信息","保存至通讯录"],
       success:function(b){
         if(b.tapIndex==0){
-            var otheropenid = this.data.otheropenid
+            var otheropenid = that.data.otheropenid
+            var server = that.data.server
             wx.request({
               method: 'GET',
               url: server+'/userCard/saveOrUpdate',

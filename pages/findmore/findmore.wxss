@@ -9,6 +9,7 @@ page {
   position: absolute;
   left: 23%;
   top: 0px;
+  font-size: 22px;
 }
 .search1{
   width:20%;display:inline-block;height:40%;
@@ -19,8 +20,8 @@ page {
 .inputSearch{
   border: 1px solid #D6D7DC;
   border-radius: 3px;
-  position: absolute;
-  top: 10px;
+  position: relative;
+  top: 5px;
   left: 5%;
   width:90%;
   height:40px;
@@ -30,30 +31,41 @@ page {
 .image1{
   display: inline;
 }
+.shu{
+  width:4px;
+height:20px;
+background:rgba(0,122,255,1);
+margin-left:40px;
+position:relative;
+top:5px;
+
+}
 .findmore{
   width: 100%;
   height: 100%;
 }
 .add{
-  width: 30%;
-  height: 20%;
-  position: absolute;
-  top: 40%;
-  left: 35%;
-  font-size: 10px;
+  width:150px;
+height:40px;
+position:absolute;
+top:33%;
+left:34%;
+font-size:15px;
+color:#2C7FE7;
+}
+.shu1{
+  width:4px;
+height:20px;
+background:rgba(0,122,255,1);
+position:relative;
+left:40px;
+top:4px;
+
 }
 .findmore-inputSearch{
   width: 100%;
   height: 10%;
   background-color: #d6dbe0;
-}
-.inputSearch{
-  background-color: #ffffff;
-  width: 90%;
-  border-radius: 10px;
-  position: relative;
-  top: 10%;
-  left: 5%;
 }
 .finmore-mycard{
   width: 100%;
@@ -63,52 +75,87 @@ page {
 
 }
 .findmore-mine{
-  font-size: 15px;
+ width:118px;
+height:30px;
+font-size:18px;
+font-family:MicrosoftYaHei;
+color:rgba(50,50,50,1);
+line-height:88px;
+margin-left:60px;
+position:relative;
+top:-48px;
+
 }
 .findmore-card{
   width: 100%;
   height: 20%;
   background-color: #ffffff;
    position: relative;
+   top: -2px;
 }
 .image{
   width: 30%;
   height: 80%;
-  
+  position:relative;
+top:10px;
+left:10px;
+
 }
 .findmore-name{
   font-size: 15px;
-  position: absolute;
-  top: 15px;
-  left: 32%;
+  position:relative;
+top:-88px;
+left:34%;
+
 }
 .findmore-job{
   font-size: 15px;
-  position: absolute;
-  top: 40px;
-  left: 32%;
+  position: relative;
+ top:-84px;
+left:34%;
+
+  }
+  .findmore-industry{
+    font-size:12px;
+position:relative;
+top:-104px;
+left:222px;
+
   }
 .findmore-company{
   font-size: 15px;
   position: absolute;
-  top: 65px;
-  left: 32%;
+  top:-78px;
+left:34%;
+
   }
   .findmore-get{
-    width: 100%;
-    height: 5%;
-    background-color: #ffffff;
-    position: absolute;
-    top: 37%;
-    left: 0;
-    font-size: 15px;
+    width:100%;
+height:5%;
+background-color:#ffffff;
+position:relative;
+top:1%;
+left:0;
+font-size:15px;
+  }
+  .findmore-get1{
+    width:416px;
+height:60px;
+font-size:18px;
+font-family:MicrosoftYaHei;
+color:rgba(50,50,50,1);
+line-height:176px;
+position:relative;
+top:-93px;
+left:60px;
+
   }
   .finmore-zhaotonghang{
     width: 100%;
     height: 20%;
     background-color: #ffffff;
-    position: absolute;
-    top:43%;
+    position:relative;
+top:2%;
   }
   .finmore-geren{
     width: 100%;
