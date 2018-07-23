@@ -11,6 +11,7 @@ Page({
     num: 1,
     time: "2018/7/16",
     list: [],
+    server:"",
     hidden: true,
     list: [],
     scrollTop: 0,
@@ -18,6 +19,7 @@ Page({
   },
   onLoad: function (a) {
     var that = this;
+    that.data.server=app.globalData.server;
     wx.getSystemInfo({
       success: function (res) {
         console.info(res.windowHeight);
@@ -29,9 +31,10 @@ Page({
     var openid = app.globalData.openid;
     var openGid = app.globalData.openGid;
     var list = that.data.list;
+    var server = that.data.server
     wx.request({
       method: 'GET',
-      url: 'http://192.168.2.123:8080/userGroup/findGroupCards',
+      url: server+'/userGroup/findGroupCards',
       data: {
         openId: "333",
         groupId: "1",

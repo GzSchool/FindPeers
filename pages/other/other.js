@@ -13,6 +13,7 @@ Page({
     phone: "",
     wechatnum: "",
     emai: "",
+    server:"",
     image: "",
     showphone: false,
     showdemand: false,
@@ -21,13 +22,15 @@ Page({
   },
   onLoad: function (a) {
     var that = this
+    that.data.server=app.globalData.server
     that.data.openid = app.globalData.openid;
     var openid = that.data.openid;
     var otheropenid=app.globalData.openid;
+    var server = that.data.server
     console.log(openid)
     wx.request({
       method: 'GET',
-      url: 'http://192.168.2.123:8080/userCard/findOneByOpenId',
+      url: server+'/userCard/findOneByOpenId',
       data: {
         openId: otheropenid
       },

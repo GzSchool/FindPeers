@@ -1,23 +1,25 @@
 // pages/teampeers/teampeers.js
+var app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-   openid:"",
-   groupid:"",
-   list:[],
-   name: "",
-   cansee:false,
-   city: "",
-   key:"按微信号，城市，行业搜索",
-   industry: "",
-   company: "",
-   phone: "",
-   wechatnum: "",
-   emai: "",
-   image: "/pages/images/1.png",
+    openid: "",
+    groupid: "",
+    list: [],
+    name: "",
+    server: "",
+    cansee: false,
+    city: "",
+    key: "按微信号，城市，行业搜索",
+    industry: "",
+    company: "",
+    phone: "",
+    wechatnum: "",
+    emai: "",
+    image: "/pages/images/1.png",
 
   },
 
@@ -25,15 +27,17 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (ops) {
-    var that=this
-      that.setData({
-        openid:ops.openid,
-        groupid:ops.groupid
-      })
-      var list=that.data.list;
+    var that = this
+    that.setData({
+      server: app.globalData.server,
+      openid: ops.openid,
+      groupid: ops.groupid
+    })
+    var list = that.data.list;
+    var server = that.data.server
     wx.request({
       method: 'GET',
-      url: 'http://192.168.2.123:8080/userGroup/findGroupCards',
+      url: server + '/userGroup/findGroupCards',
       data: {
         openId: that.data.openid,
         groupId: that.data.groupid
@@ -43,7 +47,7 @@ Page({
       },
       success: function (b) {
         console.log(b)
-        var length=b.data.data.length
+        var length = b.data.data.length
         for (var i = 0; i < length; i++) {
           list.push(b.data.data[i]);
         }
@@ -58,7 +62,7 @@ Page({
     })
     wx.request({
       method: 'GET',
-      url: 'http://192.168.2.123:8080/userCard/findOneByOpenId',
+      url: server + '/userCard/findOneByOpenId',
 
       data: {
         openId: that.data.openid
@@ -82,30 +86,31 @@ Page({
       }
     })
   },
-  share:function(){
-    var that=this
-    var openid=this.data.openid
-    var groupid=this.data.groupid
+  share: function () {
+    var that = this
+    var openid = this.data.openid
+    var groupid = this.data.groupid
+    var server = that.data.server
     wx.showModal({
       title: '分享到本群',
       content: '确定分享到本群',
-      success:function(r){
-        if(r.confirm){
+      success: function (r) {
+        if (r.confirm) {
           wx.request({
             method: 'GET',
-            url: 'http://192.168.2.123:8080/userGroup/saveOrUpdate',
+            url: server + '/userGroup/saveOrUpdate',
 
             data: {
-              openId:openid,
-              groupId:groupid
+              openId: openid,
+              groupId: groupid
             },
             header: {
               'content-type': 'application/json'
             },
-            success:function(a){
+            success: function (a) {
               console.log(a)
               that.setData({
-                cansee:true
+                cansee: true
               })
             }
           })
@@ -113,10 +118,18 @@ Page({
       }
     })
   },
-  mycards:function(){
+  mycards: function () {
     wx.navigateTo({
       url: '/pages/mycards/mycards',
     })
   },
+  checkboxChange: function (a) {
+    if(a.type=="change"){
 
+    }
+    console.log(a)
+    
+  },
+  check:function(a){
+  }
 })

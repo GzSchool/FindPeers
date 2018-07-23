@@ -1,7 +1,7 @@
 //app.js
 App({
   globalData:{
-    openid: '005',
+    openid: '003',
     otheropenid:'',
     isshow: false,
     notadd:'',
@@ -9,7 +9,7 @@ App({
     mycardid:'',
     othercardid:'',
     login:'',
-    server:"http://egpika.natappfree.cc"
+    server:'http://localhost:8080'
   },
   onLaunch: function (ops) {
     var that=this

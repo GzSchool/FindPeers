@@ -9,6 +9,7 @@ Page({
     name: "",
     city: "",
     idustry: "",
+    server:"",
     company: "",
     phone: "",
     wechatnum: "",
@@ -19,6 +20,7 @@ Page({
     otheropenid:''
   },
   onShareAppMessage:function(){
+    var server = that.data.server
     return {
       title: '自定义转发标题',
       path: '/page/peerscards/peerscards?otheropenid='+this.data.otheropenid,
@@ -39,7 +41,7 @@ Page({
             var iv = res.iv;
             wx.request({
               method: 'GET',
-              url: 'http://192.168.2.123:8080/userGroup/saveOrUpdate',
+              url: server+'/userGroup/saveOrUpdate',
 
               data: {
                 encryptedData: encryptedData,
@@ -69,7 +71,7 @@ Page({
     })
     console.log(ops)
     var that = this
-    
+    that.data.server=app.globalData.server
     if (ops.otheropenid != ""){
       that.data.otheropenid = ops.otheropenid
     }
@@ -86,9 +88,10 @@ Page({
       console.log(this.data.isshow)
       var otheropenid = that.data.otheropenid;
     var openid=app.globalData.openid
+    var server = that.data.server
     wx.request({
       method: 'GET',
-      url: 'http://192.168.2.123:8080/userCard/findOneByOpenId',
+      url: server+'/userCard/findOneByOpenId',
       data:{
         openId: otheropenid
       },
@@ -137,6 +140,7 @@ Page({
     }
   },
   setting:function(a){
+    var server = that.data.server
     var that=this
     wx.showActionSheet({
       itemList: ["删除同行信息","保存至通讯录"],
@@ -145,7 +149,7 @@ Page({
             var otheropenid = this.data.otheropenid
             wx.request({
               method: 'GET',
-              url: 'http://192.168.2.123:8080/userCard/saveOrUpdate',
+              url: server+'/userCard/saveOrUpdate',
               data: {
                 openId: otheropenid,
                 delFlag: 2

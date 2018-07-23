@@ -7,13 +7,15 @@ Page({
   data: {
     key:"微信号，行业，城市等进行搜索",
     list: [],
+    server:"",
     hidden: true,
     list: [],
     scrollTop: 0,
     scrollHeight: 0
   },
   onLoad: function (options) {
-  
+  var that=this
+  that.data.server=app.globalData.server
   },
   bindSearch:function(res){
     var key=res.detail.value;
@@ -28,9 +30,10 @@ Page({
       }
     });
     var list=that.data.list
+    var server = that.data.server
     wx.request({
       method: 'GET',
-      url: 'https://192.168.2.123:8080/userCard/findAllByParam',
+      url: server+'/userCard/findAllByParam',
       data: {
         param:key
       },

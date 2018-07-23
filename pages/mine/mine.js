@@ -9,6 +9,7 @@ Page({
     name:"",
     industry:"",
     city:"",
+    server:"",
     company:"",
     img1:"/pages/images/about1.png",
     img2:"/pages/images/about2.png"
@@ -16,14 +17,16 @@ Page({
   onLoad:function(){
     
     var that=this
-    var openid=app.globalData.openid
+    var openid = app.globalData.openid
+    that.data.server=app.globalData.server;
+    var server = that.data.server
     wx.login({
       success:function(a){
         if(a.code){
           var code=a.code
           wx.request({
             method: 'GET',
-            url: 'http://192.168.2.123:8080/weChatAuth/authorize',
+            url: server+'/weChatAuth/authorize',
 
             data: {
               code:a.code
@@ -37,7 +40,7 @@ Page({
               var openid=app.globalData.openid;
               wx.request({
                 method: 'GET',
-                url: 'http://192.168.2.123:8080/userCard/findOneByOpenId',
+                url: server+'/userCard/findOneByOpenId',
 
                 data: {
                   openId:openid
@@ -91,7 +94,7 @@ Page({
             var iv = res.iv;
             wx.request({
               method: 'GET',
-              url: 'http://192.168.2.123:8080/userGroup/saveOrUpdate',
+              url: server+'/userGroup/saveOrUpdate',
 
               data: {
                 encryptedData: encryptedData,

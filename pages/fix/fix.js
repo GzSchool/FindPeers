@@ -12,6 +12,7 @@ Page({
     company: "",
     idustry: "",
     job: '',
+    server:"",
     id:'',
     city: "",
     phone: "",
@@ -31,12 +32,14 @@ Page({
   },
   onLoad: function (a) {
     var that = this
+    that.data.server=app.globalData.server
     wx.showShareMenu({
       withShareTicket: true
     })
     that.data.openid = app.globalData.openid;
     var openid = that.data.openid;
     console.log(openid)
+    var server = that.data.server
     wx.request({
       method: 'GET',
       url: server+'/userCard/findOneByOpenId',
@@ -120,6 +123,7 @@ Page({
     }
   },
   addidustry: function (e) {
+    var server = that.data.server
     if (e.detail.value == null) {
       wx.showToast({
         title: '行业信息不能为空',

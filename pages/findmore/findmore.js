@@ -15,6 +15,7 @@ Page({
     emai:'',
     phone:'',
     image:'',
+    server:"",
     list: [],
     hidden: true,
     list: [],
@@ -25,6 +26,7 @@ Page({
     console.log(a)
     var that = this;
     that.setData({
+      server:app.globalData.server,
       notadd:app.globalData.notadd
     })
     wx.getSystemInfo({
@@ -42,7 +44,8 @@ Page({
     that.data.openid=app.globalData.openid;
     var openid=that.data.openid
     console.log(openid)
-    console.log(that.data.notadd)    
+    var server=that.data.server
+    console.log(that.data.server + '/userCard/findOneByOpenId')    
     wx.request({
       method: 'GET',
       url: server+'/userCard/findOneByOpenId',
@@ -56,25 +59,28 @@ Page({
         if(b.data.data!=null){
           app.globalData.notadd=true
           that.data.notadd=true
+          that.setData({
+            name: b.data.data.username,
+            wechatnum: b.data.data.userWechat,
+            company: b.data.data.userCompany,
+            idustry: b.data.data.userIndustry,
+            city: b.data.data.userCity,
+            emai: b.data.data.userEmail,
+            phone: b.data.data.userPhone,
+            image: b.data.data.userImg,
+
+          })
         }
         console.log(b)
-        that.setData({
-          name:b.data.data.username,
-          wechatnum: b.data.data.userWechat,
-          company: b.data.data.userCompany,
-          idustry: b.data.data.userIndustry,
-          city: b.data.data.userCity,
-          emai: b.data.data.userEmail,
-          phone: b.data.data.userPhone,
-          image: b.data.data.userImg,
-          
-        })
+        
         
         console.log(that.data)
       }
     })
     var openid=app.globalData.openid;
     var list = that.data.list
+    console.log(that.data.server)
+    var server = that.data.server
     wx.request({
       method: 'GET',
       url: server+'/userPeer/findAllByOpenId',
@@ -88,14 +94,14 @@ Page({
         console.log(res);        
         console.log(res.data.data.length);
         var length = res.data.data.length;
-        /*for (var i = 0; i < length; i++) {
+        for (var i = 0; i < length; i++) {
           list.push(res.data.data[i]);
           console.log(list[i])
-        }*/
-        for(var i in res.data.data){
+        }
+        /*for(var i in res.data.data){
           var a=res.data.data[i]
             list.push(a)
-        }
+        }*/
         console.log(list)
         that.setData({
           list: list

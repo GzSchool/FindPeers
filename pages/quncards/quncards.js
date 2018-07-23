@@ -9,6 +9,7 @@ Page({
   qunname:"格致文化",
   nonum:0,
   num:1,
+  server:"",
   time:"2018/7/16",
   list: [],
   hidden: true,
@@ -17,6 +18,8 @@ Page({
   },
   onLoad:function(a){
     var that = this;
+    that.data.server=app.globalData.server
+    var server = that.data.server
     wx.getSystemInfo({
       success: function (res) {
         console.info(res.windowHeight);
@@ -33,7 +36,7 @@ Page({
     var list=that.data.list;
     wx.request({
       method: 'GET',
-      url: 'http://192.168.2.123:8080/userGroup/findUserGroupByParam',
+      url: server+'/userGroup/findUserGroupByParam',
       data: {
         openId: openid,
       },

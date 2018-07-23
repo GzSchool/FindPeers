@@ -5,22 +5,32 @@
   </view>
   <input class="search" bindblur='bindSearch' placeholder-style='font-size:12px;' placeholder='{{key}}'></input>
 </view>
-<view class="mycards1" >
-<image class="image1" src="{{image}}">{{image}}</image>
-    <view class="name1" bindtap='mycards'>{{name}}</view>
-    <view class="idustry1">{{industry}}</view>
-    <view class="company1">{{company}}</view>
-    <button class="{{cansee?'map-hide':''}}" bindtap='share'>分享到本群</button>
-  </view>
+<view class="mycards1">
+  <image class="image1" src="{{image}}">{{image}}</image>
+  <view class="name1" bindtap='mycards'>{{name}}</view>
+  <view class="idustry1">{{industry}}</view>
+  <view class="company1">{{company}}</view>
+  <button class="{{cansee?'map-hide':''}}" bindtap='share'>分享到本群</button>
+</view>
 <view class="list" bindscrolltolower="bindDownLoad" bindscroll="scroll" bindscrolltoupper="refresh">
-    <view class="item" wx:for="{{list}}" wx:for-index="index" wx:for-item="item" wx:key="11" data-key='{{item.openId}}' bindtap='select'>
+  <checkbox-group bindchange="checkboxChange">
+    <label class="checkbox">
+      <checkbox/>全选</label>
+    <button class="saveall" bindtap='aaa'>保存</button>
+    <view class="item" wx:for="{{list}}" wx:for-index="index" wx:for-item="item" wx:key="11" bindtap='select'>
       <!--<image class="img" src="{{item.pic_url}}"></image>-->
-      <view class="find" bindtap='other{{index}}'>
-      <image class="url" src="/pages/images/1.png"></image>
+      <view class="find">
+        <label class="checkbox">
+          <checkbox class="{{item.saveFlag==1?'':'map-hide'}}" data-key='{{item.id}}' checked="{{item.checked}}" bindtap='check'/>
+        </label>
+        <image class="url" src="/pages/images/1.png"></image>
         <view class="name">{{item.username}}</view>
         <view class="industry">{{item.userIndustry}}</view>
         <view class="city">{{item.userCity}}</view>
         <view class="company">{{item.userCompany}}</view>
-      </view>      
+
+      </view>
+
     </view>
- </view>
+  </checkbox-group>
+</view>

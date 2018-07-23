@@ -11,6 +11,7 @@ Page({
     idustry:"",
     company:"",
     phone: "",
+    server:"",
     wechatnum: "",
     emai:"",
     image:"/pages/images/1.png",
@@ -24,12 +25,14 @@ Page({
       withShareTicket: true
     })
     var that=this
+    that.data.server=app.globalData.server
     that.data.openid=app.globalData.openid;
     var openid=that.data.openid;
     console.log(openid)
+    var server = that.data.server
     wx.request({
       method: 'GET',
-      url: 'http://192.168.2.123:8080/userCard/findOneByOpenId',
+      url: server+'/userCard/findOneByOpenId',
       data: {
         openId: openid
       },
@@ -53,6 +56,7 @@ Page({
   },
   onShareAppMessage: function (a) {
     console.log("2222222222222333333333333333")
+    var server = that.data.server
     return {
       title: '自定义转发标题',
       path: '/page/mine/mine',
@@ -73,7 +77,7 @@ Page({
             var iv = res.iv;
             wx.request({
               method: 'GET',
-              url: 'http://192.168.2.123:8080/userGroup/saveOrUpdate',
+              url: server+'/userGroup/saveOrUpdate',
 
               data: {
                 encryptedData: encryptedData,

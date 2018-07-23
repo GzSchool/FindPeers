@@ -17,6 +17,7 @@ Page({
     job:'',
     city: "",
     phone: "",
+    server:"",
     demand: "",
     introduction: "",
     resource: "",
@@ -28,8 +29,10 @@ Page({
   },
   onLoad: function(res) {
     var that = this
+    that.data.server=app.globalData.server;
     if (res.other) {
       that.setData({
+        
         other: res.other
       })
     }
@@ -201,6 +204,7 @@ Page({
 
   save: function(e) {
     var other=this.data.other
+    var server = that.data.server
     if (other) {
       if (this.data.wechatnum == "") {
         wx.showToast({
@@ -237,7 +241,7 @@ Page({
             synopsis:this.data.introduction,
             userEmail:this.data.email
           },
-          url: 'http://192.168.2.123:8080/userCard/saveOrUpdate',
+          url: server+'/userCard/saveOrUpdate',
           header: {
             'content-type': 'application/json'
           },
@@ -298,7 +302,7 @@ Page({
             synopsis: this.data.introduction,
             userEmail: this.data.email
           },
-          url: 'http://192.168.2.123:8080/userCard/saveOrUpdate',
+          url: server+'/userCard/saveOrUpdate',
           header: {
             'content-type': 'application/json'
           },

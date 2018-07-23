@@ -6,11 +6,13 @@ Page({
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     openid: "",
     otheropenid:'',
+    server:"",
     isshow: "",
     other:''
   },
   onLoad: function (ops) {
     var that=this
+    that.data.server=app.globalData.server;
     that.data.otheropenid=app.globalData.otheropenid;
     that.data.openid=app.globalData.openid;
     console.log(that.data.otheropenid)
@@ -23,6 +25,8 @@ Page({
   },
   bindGetUserInfo: function (e) {
     var that = this;
+    var server = that.data.server
+    
     if (e.detail.userInfo) {
       console.log('000')
       //用户按了允许授权按钮
