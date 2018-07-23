@@ -39,7 +39,7 @@ Page({
     console.log(openid)
     wx.request({
       method: 'GET',
-      url: 'http://192.168.2.123:8080/userCard/findOneByOpenId',
+      url: 'https://192.168.2.123:8080/userCard/findOneByOpenId',
       data: {
         openId: openid
       },
@@ -207,7 +207,7 @@ Page({
             synopsis: this.data.introduction,
             userEmail: this.data.email
           },
-          url: 'http://192.168.2.123:8080/userCard/saveOrUpdate',
+          url: 'https://192.168.2.123:8080/userCard/saveOrUpdate',
           header: {
             'content-type': 'application/json'
           },

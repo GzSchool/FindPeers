@@ -45,7 +45,7 @@ Page({
     console.log(that.data.notadd)    
     wx.request({
       method: 'GET',
-      url: 'http://192.168.2.123:8080/userCard/findOneByOpenId',
+      url: 'https://192.168.2.123:8080/userCard/findOneByOpenId',
       data: {
         openId: openid
       },
@@ -77,7 +77,7 @@ Page({
     var list = that.data.list
     wx.request({
       method: 'GET',
-      url: 'http://192.168.2.123:8080/userPeer/findAllByOpenId',
+      url: 'https://192.168.2.123:8080/userPeer/findAllByOpenId',
       data: {
         openId: openid,
       },

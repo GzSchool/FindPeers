@@ -5,7 +5,7 @@
       <!--<image class="img" src="{{item.pic_url}}"></image>-->
       <view class="find">
       <image class="url" src="/pages/images/1.png"></image>
-        <view class="name">{{item.appId}}</view>
+        <view class="name">{{item.groupId}}</view>
         <view class="company">{{item.delFlag}}</view>
       </view>
     </view>

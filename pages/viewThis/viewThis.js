@@ -31,7 +31,7 @@ Page({
     var list = that.data.list;
     wx.request({
       method: 'GET',
-      url: 'http://192.168.2.123:8080/userGroup/findGroupCards',
+      url: 'https://192.168.2.123:8080/userGroup/findGroupCards',
       data: {
         openId: "333",
         groupId: "1",

@@ -30,7 +30,7 @@ Page({
     var list=that.data.list
     wx.request({
       method: 'GET',
-      url: 'http://192.168.2.123:8080/userCard/findAllByParam',
+      url: 'https://192.168.2.123:8080/userCard/findAllByParam',
       data: {
         param:key
       },

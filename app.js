@@ -12,13 +12,11 @@ App({
   },
   onLaunch: function (ops) {
     var that=this
-    //that.global.otheropenid="123"
     var otheropenid = that.globalData.otheropenid
     console.log(otheropenid==null)
-    //if (ops.otheropenid!=null) {                            //要是有id 说明点击的别人分享的（只有两个 一是：群里点击的， 二是：别人分享的）
+                             //要是有id 说明点击的别人分享的（只有两个 一是：群里点击的， 二是：别人分享的）
       if(otheropenid!=""){
         console.log(otheropenid)
-      //that.globalData.otheropenid = ops.otheropenid
       if (ops.scene == 1044) {               // 等于这个 就是群里点击的
       console.log("1111111111111111111")
       var shareTickets = ops.shareTicket;
@@ -45,7 +43,7 @@ App({
               var code = res.code;
               wx.request({
                 method: 'GET',
-                url: 'http://192.168.2.123:8080/user/userAuthor',
+                url: 'https://192.168.2.123:8080/user/userAuthor',
 
                 data: {
                   code: res.code
@@ -73,7 +71,7 @@ App({
                       console.log(openid)
                       wx.request({
                         method: 'GET',
-                        url: 'http://192.168.2.123:8080/userCard/findOneByOpenId',
+                        url: 'https://192.168.2.123:8080/userCard/findOneByOpenId',
                         data: {
                           openId: openid
                         },
@@ -138,7 +136,7 @@ App({
                     that.globalData.login = true;
                   wx.request({
                     method: 'GET',
-                    url: 'http://192.168.2.123:8080/user/userAuthor',
+                    url: 'https://192.168.2.123:8080/user/userAuthor',
                     data: {
                       code:a.code
                     },
@@ -153,7 +151,7 @@ App({
                     console.log(openid)
                       wx.request({
                         method: 'GET',
-                        url: 'http://192.168.2.123:8080/userCard/findOneByOpenId',
+                        url: 'https://192.168.2.123:8080/userCard/findOneByOpenId',
                         data: {
                           /*openId: b.data.data.openId*/
                           openId:openid
@@ -221,7 +219,7 @@ App({
           if (code) {
             wx.request({
               method: 'GET',
-              url: 'http://192.168.2.123:8080/user/userAuthor',
+              url: 'https://192.168.2.123/user/userAuthor',
               data: {
                 code: a.code
               },
@@ -241,7 +239,7 @@ App({
                     console.log(c)
                     wx.request({
                       method: 'GET',
-                      url: 'http://192.168.2.123:8080/userCard/findOneByOpenId',
+                      url: 'https://192.168.2.123:8080/userCard/findOneByOpenId',
                       data: {
                         /*openId: b.data.data.openId*/
                         openId: that.globalData.openid
