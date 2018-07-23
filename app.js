@@ -1,7 +1,7 @@
 //app.js
 App({
   globalData:{
-    openid: '',
+    openid: '005',
     otheropenid:'',
     isshow: false,
     notadd:'',
@@ -9,9 +9,11 @@ App({
     mycardid:'',
     othercardid:'',
     login:'',
+    server:"http://egpika.natappfree.cc"
   },
   onLaunch: function (ops) {
     var that=this
+    var server =that.globalData.server
     var otheropenid = that.globalData.otheropenid
     console.log(otheropenid==null)
                              //要是有id 说明点击的别人分享的（只有两个 一是：群里点击的， 二是：别人分享的）
@@ -32,7 +34,7 @@ App({
       })
         // 登录
 
-       wx.login({
+      /* wx.login({
           success: res => {
                                                                                 // 发送 res.code 到后台换取 openId, sessionKey, unionId
                                                                                 // 登陆成功
@@ -43,7 +45,7 @@ App({
               var code = res.code;
               wx.request({
                 method: 'GET',
-                url: 'https://192.168.2.123:8080/user/userAuthor',
+                url: server+'/user/userAuthor',
 
                 data: {
                   code: res.code
@@ -55,7 +57,7 @@ App({
                 success: function (a) {                                      //后台获取openid
                   console.log(a);
                   var openid = a.data.data.openId;
-                  that.globalData.openid = a.data.data.openId;
+                  that.globalData.openid = a.data.data.openId;*/
                   var openid=that.globalData.openid;
                   wx.getSetting({                  
                     success: function (b) { 
@@ -71,7 +73,7 @@ App({
                       console.log(openid)
                       wx.request({
                         method: 'GET',
-                        url: 'https://192.168.2.123:8080/userCard/findOneByOpenId',
+                        url: server+'/userCard/findOneByOpenId',
                         data: {
                           openId: openid
                         },
@@ -111,7 +113,7 @@ App({
                         url: '/pages/index/index?otheropenid=' + otheropenid + '&openid=' + openid,
                       })
                     }
-                  })
+                  })/*
                 },
                 fail: function () {
                   console.log("获取openId失败1")
@@ -122,10 +124,10 @@ App({
           fail: function () {
             console.log("登录失败1")
           }
-        })
+        })*/
       } else {                                                                   //点击的个人的分享
         console.log("2222222222222")
-        wx.login({
+       /* wx.login({
           success: function (a) {
             if (a.code) {
               var code = a.code;
@@ -136,7 +138,7 @@ App({
                     that.globalData.login = true;
                   wx.request({
                     method: 'GET',
-                    url: 'https://192.168.2.123:8080/user/userAuthor',
+                    url: server+'/user/userAuthor',
                     data: {
                       code:a.code
                     },
@@ -146,12 +148,12 @@ App({
                     success: function (b) {
                       var openId = b.data.data.openId;                 //获取自己的openId
                       console.log(openId)
-                      that.globalData.openid = b.data.data.openId;
+                      that.globalData.openid = b.data.data.openId;*/
                     var openid = that.globalData.openid;
                     console.log(openid)
                       wx.request({
                         method: 'GET',
-                        url: 'https://192.168.2.123:8080/userCard/findOneByOpenId',
+                        url: server+'/userCard/findOneByOpenId',
                         data: {
                           /*openId: b.data.data.openId*/
                           openId:openid
@@ -181,7 +183,7 @@ App({
                         fail: function () {
                           console.log("用openId获取失败2")
                         }
-                      })
+                      })/*
                     },
                     fail: function () {
                       console.log("获取openId失败2")
@@ -208,18 +210,18 @@ App({
           fail: function () {
             console.log("登录失败2")
           }
-        })
+        })*/
       }
     } else {               //搜索小程序点击小程序的
      console.log("333333333333333")
-      wx.login({
+      /*wx.login({
         success: function (a) {
           var code = a.code;
           console.log(code)
           if (code) {
             wx.request({
               method: 'GET',
-              url: 'https://192.168.2.123/user/userAuthor',
+              url: server+'/user/userAuthor',
               data: {
                 code: a.code
               },
@@ -231,7 +233,7 @@ App({
                 var openid = b.data.data.openId;             
                 that.globalData.openid=b.data.data.openId;
                 console.log(openid)
-                var openid=that.globalData.openid
+                var openid=that.globalData.openid*/
                 wx.getSetting({
                   success: function (c) {
                     if (c.authSetting['scope.userInfo']) {                 //说明授权了
@@ -239,7 +241,7 @@ App({
                     console.log(c)
                     wx.request({
                       method: 'GET',
-                      url: 'https://192.168.2.123:8080/userCard/findOneByOpenId',
+                      url: server+'/userCard/findOneByOpenId',
                       data: {
                         /*openId: b.data.data.openId*/
                         openId: that.globalData.openid
@@ -281,7 +283,7 @@ App({
                       url: '/pages/index/index?openid='+openid,
                     })
                   }
-                })
+                })/*
               },
               fail: function () {
                 console.log("获取openId失败3")
@@ -295,7 +297,7 @@ App({
         fail: function () {
           console.log("登录失败3")
         }
-      })
+      })*/
     }
   }
 })

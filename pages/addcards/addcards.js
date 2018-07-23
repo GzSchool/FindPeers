@@ -237,7 +237,7 @@ Page({
             synopsis:this.data.introduction,
             userEmail:this.data.email
           },
-          url: 'https://192.168.2.123:8080/userCard/saveOrUpdate',
+          url: 'http://192.168.2.123:8080/userCard/saveOrUpdate',
           header: {
             'content-type': 'application/json'
           },
@@ -298,7 +298,7 @@ Page({
             synopsis: this.data.introduction,
             userEmail: this.data.email
           },
-          url: 'https://192.168.2.123:8080/userCard/saveOrUpdate',
+          url: 'http://192.168.2.123:8080/userCard/saveOrUpdate',
           header: {
             'content-type': 'application/json'
           },

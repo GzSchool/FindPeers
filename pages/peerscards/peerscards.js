@@ -39,7 +39,7 @@ Page({
             var iv = res.iv;
             wx.request({
               method: 'GET',
-              url: 'https://192.168.2.123:8080/userGroup/saveOrUpdate',
+              url: 'http://192.168.2.123:8080/userGroup/saveOrUpdate',
 
               data: {
                 encryptedData: encryptedData,
@@ -88,7 +88,7 @@ Page({
     var openid=app.globalData.openid
     wx.request({
       method: 'GET',
-      url: 'https://192.168.2.123:8080/userCard/findOneByOpenId',
+      url: 'http://192.168.2.123:8080/userCard/findOneByOpenId',
       data:{
         openId: otheropenid
       },
@@ -145,7 +145,7 @@ Page({
             var otheropenid = this.data.otheropenid
             wx.request({
               method: 'GET',
-              url: 'https://192.168.2.123:8080/userCard/saveOrUpdate',
+              url: 'http://192.168.2.123:8080/userCard/saveOrUpdate',
               data: {
                 openId: otheropenid,
                 delFlag: 2
