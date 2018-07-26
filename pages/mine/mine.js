@@ -20,13 +20,13 @@ Page({
     var openid = app.globalData.openid
     that.data.server=app.globalData.server;
     var server = that.data.server
-    /*wx.login({
+    wx.login({
       success:function(a){
         if(a.code){
           var code=a.code
           wx.request({
             method: 'GET',
-            url: server+'/weChatAuth/authorize',
+            url: server +'/user/userAuthor',
 
             data: {
               code:a.code
@@ -66,7 +66,7 @@ Page({
           })
         }
       }
-    })*/
+    })
   },
   
   onShareAppMessage: function (a) {

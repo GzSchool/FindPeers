@@ -1,4 +1,4 @@
-// pages/quncards/quncards.js
+   // pages/quncards/quncards.js
 var app=getApp() 
 Page({
 
@@ -32,7 +32,7 @@ Page({
       list:[]
     })
     var openid=app.globalData.openid;
-    var openGid=app.globalData.openGid;
+    var groupid = app.globalData.groupid;
     var list=that.data.list;
     wx.request({
       method: 'GET',

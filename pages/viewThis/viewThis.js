@@ -29,7 +29,7 @@ Page({
       }
     });
     var openid = app.globalData.openid;
-    var openGid = app.globalData.openGid;
+    var groupid = app.globalData.groupid;
     var list = that.data.list;
     var server = that.data.server
     wx.request({

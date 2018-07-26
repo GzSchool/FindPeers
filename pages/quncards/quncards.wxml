@@ -6,7 +6,7 @@
   <view class="line"></view>
   </view>
   <scroll-view scroll-top="{{scrollTop}}" scroll-y="true" style="height:{{scrollHeight}}px;" class="list" bindscrolltolower="bindDownLoad" bindscroll="scroll" bindscrolltoupper="refresh">
-    <view class="item" wx:for="{{list}}" wx:for-index="index" wx:for-item="item" wx:key="11" data-key="{{item.groupId}}" data-id="{{item.openId}}" bindtap='search'>
+    <view class="item line" wx:for="{{list}}" wx:for-index="index" wx:for-item="item" wx:key="11" data-key="{{item.groupId}}" data-id="{{item.openId}}" bindtap='search'>
       <!--<image class="img" src="{{item.pic_url}}"></image>-->
       <view class="find">
       <image class="url" src="/pages/images/1.png"></image>

@@ -2,10 +2,21 @@
 page {
   display: block;
   min-height: 100%;
-  background-color: #d6dbe0;
+  background-color: #EEEEE0;
 }
+.choose{height:100%;
+position:relative;
+top:0;
+text-align:center;
+z-index:1000;
+}
+.section{
+  font-size:15px;
+
+}
+.picker{}
 .addCards{
-  width:100%;
+  width:90%;
   height: 100%;
   background-color: #ffffff;
   margin-top: 5px;
@@ -18,6 +29,15 @@ page {
   height: 8rpx;
   font-size: 15px;
   align-items: center;
+}
+.getphone {
+  position: relative;
+  font-size: 10px;
+  width: 69px;
+  height: 28px;
+  color: #2c7fe7;
+  top: -53px;
+  left: 161px;
 }
 .input{
   position: relative;

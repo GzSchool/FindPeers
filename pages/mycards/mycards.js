@@ -26,11 +26,8 @@ Page({
       withShareTicket: true
     })
     var that=this
-    that.data.server=app.globalData.server
-    that.data.openid=app.globalData.openid;
-    var openid=that.data.openid;
-    console.log(openid)
-    var server = that.data.server
+    var openid = app.globalData.openid;
+    var server = app.globalData.server;
     wx.request({
       method: 'GET',
       url: server+'/userCard/findOneByOpenId',
@@ -50,13 +47,14 @@ Page({
           city: b.data.data.userCity,
           email: b.data.data.userEmail,
           phone: b.data.data.userPhone,
-          //image: b.data.data.userImg,
+          image: b.data.data.userImg,
         })
       }
     })
   },
   onShareAppMessage: function (a) {
     console.log("2222222222222333333333333333")
+    var that=this
     var server = that.data.server
     return {
       title: '自定义转发标题',
@@ -64,7 +62,6 @@ Page({
       success: function (res) {
         console.log("66666666666")
         console.log(res)
-        console.log(a)
         var shareTickets = res.shareTickets;
         if (shareTickets.length == 0) {
           return false;
@@ -106,6 +103,11 @@ Page({
     var openid = app.globalData.openid;
     wx.navigateTo({
       url: '/pages/fix/fix',
+    })
+  },
+  goFindmore:function(a){
+    wx.switchTab({
+      url: '/pages/findmore/findmore',
     })
   }
 

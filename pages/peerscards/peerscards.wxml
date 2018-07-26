@@ -7,15 +7,27 @@
     <text class="adress {{isshow?'map-hide':''}} hide ">需填写信息才可查看</text>
     <text class="company">{{company}}</text>
     <text class="company hide {{isshow?'map-hide':''}}">需填写信息才可查看</text>
-    <image class="image {{isshow?'':'map-hide'}}" src="{{image}}">{{image}}</image>
+    <image class="image" src="{{image}}">{{image}}</image>
+    <image class="img1" src="/pages/images/phone.png"></image>
     <text class="phone ">{{phone}}</text>
     <text class="phone hide {{isshow?'map-hide':''}}">需填写信息才可查看</text>
+    <image class="img2" src="/pages/images/wechat.png"></image>
     <text class="wechatnum">{{wechatnum}}</text>
     <text class="wechatnum hide {{isshow?'map-hide':''}}">需填写信息才可查看</text>
+    <image class="img3" src="/pages/images/email.png"></image>
     <text class="email">{{email}}</text>
-    <image src="/pages/images/set.png" class="set"  bindtap='setting'>设置</image>
+    <view class="{{isshow?'':'map-hide'}}" bindtap='chooseSize'>
+      <image src="/pages/images/set.png" class="set"></image>
+    </view>
+    <view class='maskLayer' wx:if="{{chooseSize}}" bindtap='hideModal'></view>
+    <view class='choose' wx:if="{{chooseSize}}" animation='{{animationData}}'>
+      <button class="trans" open-type='share' bindtap='trans'>转发</button>
+      <button class="saveToPhone" bindtap='saveToPhone'>保存到通讯录</button>
+      <button class="save" bindtap='save'>保存到名片夹</button>
+      <button class="goback" bindtap='hideModal'>取消</button>
+    </view>
   </view>
   <button class="back" bindtap='back'>回到首页</button>
-  <button class="write {{isshow?'':'map-hide'}}" open-type='share' bindtap='remove'>分享同行名片</button>
+  <button class="write {{isshow?'':'map-hide'}}" bindtap='remove'>删除同行信息</button>
   <button class="write {{isshow?'map-hide':''}}" bindtap='addcards'>添加个人信息</button>
 </view>

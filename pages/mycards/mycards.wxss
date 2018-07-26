@@ -2,12 +2,22 @@
 page {
   display: block;
   min-height: 100%;
-  background-color: #d6dbe0;
+  background-color: #EEEEE0;
 }
 .mycards{
  width:100%;
 height:100%;
 margin-top:10px;
+
+}
+.mine{
+  position:absolute;
+top:-51px;
+width:100%;
+height:24%;
+border-radius:6px;
+background-color:#2C7FE7;
+color:white;
 
 }
 .mycards1{
@@ -17,77 +27,68 @@ margin-top:10px;
 }
 .name{
   font-size:20px;
-position:relative;
-top:9%;
-left:27px;
-
+position:absolute;
+top:25px;
+left:42px;
 }
 .adress{
   font-size:15px;
 position:absolute;
-top:92px;
-left:37px;
-
+top:78px;
+left:52px;
 }
 .idustry{
  font-size:15px;
-position:relative;
-top:54px;
-left:-42px;
+position:absolute;
+top:56px;
+left:54px;
 }
 .company{
   font-size:15px;
-position:relative;
-top:97px;
-left:-118px;
+position:absolute;
+top:102px;
+left:52px;
 }
 .image{
-  width:26%;
-height:37%;
-position:relative;
-top:1%;
-left:70%;
+  width:25%;
+height:15%;
+position:absolute;
+top:4%;
+left:67%;
 border-radius:10px;
-
 }
 .image1{
  width:13px;
 height:20px;
-position:relative;
-top:52px;
-left:-66px;
-
+position:absolute;
+top:138px;
+left:51px;
 }
 .image2{
-  width:10px;
+ width:10px;
 height:20px;
-position:relative;
-top:83px;
-left:-157px;
-
+position:absolute;
+top:176px;
+left:53px;
 }
 .image3{
   width:10px;
 height:20px;
-position:relative;
-top:113px;
-left:-211px;
-
-
+position:absolute;
+top:211px;
+left:52px;
 }
 .fix{
-  width:30px;
+width:30px;
 height:30px;
-position:relative;
-top:79px;
-left:328px;
-
-
+position:absolute;
+top:190px;
+left:303px;
 }
 .set{
   width: 15%;
   height: 3%;
-  position: absolute;
+  position: relative;
   top: 24%;
   left: 80%;
   font-size: 10px;
@@ -95,25 +96,22 @@ left:328px;
   background-color: aqua;
 }
 .phone{
-  font-size:15px;
-position:relative;
-top:48px;
-left:-57px;
-
+ font-size:15px;
+position:absolute;
+top:137px;
+left:68px;
 }
 .wechatnum{
  font-size:15px;
-position:relative;
-top:79px;
-left:-147px;
-
+position:absolute;
+top:174px;
+left:69px;
 }
 .email{
-  font-size:15px;
-position:relative;
-top:110px;
-left:-201px;
-
+ font-size:15px;
+position:absolute;
+top:210px;
+left:68px;
 }
 .map-hide{
   display: none;
@@ -121,7 +119,7 @@ left:-201px;
 .share{
   width: 94%;
   height: 8%;
-  position: absolute;
+  position: relative;
   top: 78%;
   left: 3%;
   border-radius: 10px;
@@ -129,7 +127,7 @@ left:-201px;
 .write{
   width: 94%;
   height: 8%;
-  position: absolute;
+  position: relative;
   top: 86%;
   left: 3%;
   border-radius: 10px;

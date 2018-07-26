@@ -1,11 +1,9 @@
 /* pages/mine/mine.wxss */
-
 page {
   display: block;
   min-height: 100%;
-  background-color: #cccccc;
+  background-color: #EEEEE0;
 }
-
 .mine {
   width: 100%;
   height: 100%;

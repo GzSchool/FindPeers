@@ -2,7 +2,7 @@
 page {
   display: block;
   min-height: 100%;
-  background-color: #d6dbe0;
+  background-color: #EEEEE0;
 }
 .company{
   width: 100%;

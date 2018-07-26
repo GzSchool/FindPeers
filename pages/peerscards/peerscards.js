@@ -11,19 +11,22 @@ Page({
     idustry: "",
     server:"",
     company: "",
+    cardId:[],
     phone: "",
     wechatnum: "",
     image:"/pages/images/1.png",
     email:"",
     isshow:false,
     othercards:'',
-    otheropenid:''
+    chooseSize: false,
+    animationData: {}
   },
   onShareAppMessage:function(){
     var server = that.data.server
+    var that=this
     return {
       title: '自定义转发标题',
-      path: '/page/peerscards/peerscards?otheropenid='+this.data.otheropenid,
+      path: '/page/peerscards/peerscards?othercardid='+that.data.cardId,
       success: function (res) {
         console.log("66666666666")
         console.log(res)
@@ -52,6 +55,7 @@ Page({
                 'content-type': 'application/json'
               },
               success: function (c) {
+                that.hideModal();
                 console.log(c)
               }
             })
@@ -72,28 +76,19 @@ Page({
     console.log(ops)
     var that = this
     that.data.server=app.globalData.server
-    if (ops.otheropenid != ""){
-      that.data.otheropenid = ops.otheropenid
-    }
-    if(ops.isshow){
-      console.log(true)
-      that.setData({
-        isshow:true
-      })
-    }else{
-      console.log(false)
-    }
-      
-      console.log(that.data.isshow)
-      console.log(this.data.isshow)
-      var otheropenid = that.data.otheropenid;
+    that.setData({
+      isshow: app.globalData.isshow
+    })
     var openid=app.globalData.openid
     var server = that.data.server
+    var othercardid=app.globalData.othercardid;
+    if(ops.cardId){
+      that.data.cardId.push(ops.cardId)
     wx.request({
       method: 'GET',
-      url: server+'/userCard/findOneByOpenId',
+      url: server +'/userCard/findCardByParam',
       data:{
-        openId: otheropenid
+        id: ops.cardId
       },
       header: {
         'content-type': 'application/json'
@@ -101,28 +96,53 @@ Page({
       success:function(b){
         console.log(b)
         that.setData({
-          name: b.data.data.username,
-          wechatnum: b.data.data.userWechat,
-          company: b.data.data.userCompany,
-          idustry: b.data.data.userIndustry,
-          city: b.data.data.userCity,
-          email: b.data.data.userEmail,
-          phone: b.data.data.userPhone,
-          //image: b.data.data.userImg,
+          name: b.data.data[0].username,
+          wechatnum: b.data.data[0].userWechat,
+          company: b.data.data[0].userCompany,
+          idustry: b.data.data[0].userIndustry,
+          city: b.data.data[0].userCity,
+          email: b.data.data[0].userEmail,
+          phone: b.data.data[0].userPhone,
+          //image: b.data.data[0].userImg,
         })
       }
     })
+    }else{
+      wx.request({
+        method: 'GET',
+        url: server + '/userCard/findCardByParam',
+        data: {
+          id: othercardid
+        },
+        header: {
+          'content-type': 'application/json'
+        },
+        success: function (b) {
+          console.log(b)
+          that.setData({
+            name: b.data.data[0].username,
+            wechatnum: b.data.data[0].userWechat,
+            company: b.data.data[0].userCompany,
+            idustry: b.data.data[0].userIndustry,
+            city: b.data.data[0].userCity,
+            email: b.data.data[0].userEmail,
+            phone: b.data.data[0].userPhone,
+            //image: b.data.data[0].userImg,
+          })
+        }
+      })
+    }
   },
   addcards:function(){
     var that=this
     var openid = app.globalData.openid;
-    var login=app.globalData.login;
-    console.log(login)
-    if(login){
+    var isshow=app.globalData.isshow;
+    wx.getSetting({
+      success: function (b) {
+        if (b.authSetting['scope.userInfo']) {  
     var openid = app.globalData.openid
-    var otheropenid = that.data.otheropenid
     wx.redirectTo({
-      url: '/pages/addcards/addcards?openid='+openid,
+      url: '/pages/addcards/addcards',
       
     })
     }else{
@@ -133,71 +153,149 @@ Page({
         confirmText: '知道了',
         success:function(a){
           wx.navigateTo({
-            url: '/pages/index/index?openid=' + openid+'&other=true',
+            url: '/pages/index/index',
           })
         }
       })
     }
-  },
-  setting:function(a){
-    var that = this
-    var server = that.data.server
-    
-    wx.showActionSheet({
-      itemList: ["删除同行信息","保存至通讯录"],
-      success:function(b){
-        if(b.tapIndex==0){
-            var otheropenid = that.data.otheropenid
-            var server = that.data.server
-            wx.request({
-              method: 'GET',
-              url: server+'/userCard/saveOrUpdate',
-              data: {
-                openId: otheropenid,
-                delFlag: 2
-              },
-              header: {
-                'content-type': 'application/json'
-              },
-              success: function (res) {
-                wx.switchTab({
-                  url: '/pages/findmore/findmore',
-                })
-              }
-            })
-        }else{
-          if (that.data.phone!=null){
-            console.log(that.data.phone)
-          wx.addPhoneContact({
-            firstName: that.data.name,
-            mobilePhoneNumber: that.data.phone,
-            success:function(a){
-              console.log("保存成功")
-            }
-          })
-          }else{
-            wx.showModal({
-              title: '温馨提示',
-              content: '该同行名片手机号为空',
-              confirmText: '知道了',
-              success: function (res) {
-                that.setData({
-                  showModal2: false
-                });
-              }
-            })
-          }
-        }
-      },
-      fail:function(){
-
       }
     })
   },
-  
+  remove:function(){
+    var that=this
+    var server = app.globalData.server;
+    var othercardid=app.globalData.othercardid;
+    var openid=app.globalData.openid;
+    var cardId=that.data.cardId
+    wx.request({
+      method: 'GET',
+      url: server + '/userPeer/saveOrUpdate',
+      data: {
+        openId:openid,
+        cardIds: cardId,
+        saveFlag: 1
+      },
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        wx.switchTab({
+          url: '/pages/findmore/findmore',
+        })
+      }
+    })
+  },
   back:function(){
     wx.switchTab({
       url: '/pages/findmore/findmore',
+    })
+  },
+  chooseSize:function (e) {
+    // 用that取代this，防止不必要的情况发生
+    var that = this;
+    // 创建一个动画实例
+    var animation = wx.createAnimation({
+      // 动画持续时间
+      duration: 500,
+      // 定义动画效果，当前是匀速
+      timingFunction: 'linear'
+    })
+    // 将该变量赋值给当前动画
+    that.animation = animation
+    // 先在y轴偏移，然后用step()完成一个动画
+    animation.translateY(200).step()
+    // 用setData改变当前动画
+    that.setData({
+      // 通过export()方法导出数据
+      animationData: animation.export(),
+      // 改变view里面的Wx：if
+      chooseSize: true
+    })
+    // 设置setTimeout来改变y轴偏移量，实现有感觉的滑动
+    setTimeout(function () {
+      animation.translateY(0).step()
+      that.setData({
+        animationData: animation.export()
+      })
+    }, 200)
+  },
+  hideModal: function (e) {
+    var that = this;
+    var animation = wx.createAnimation({
+      duration: 1000,
+      timingFunction: 'linear'
+    })
+    that.animation = animation
+    animation.translateY(200).step()
+    that.setData({
+      animationData: animation.export()
+
+    })
+    setTimeout(function () {
+      animation.translateY(0).step()
+      that.setData({
+        animationData: animation.export(),
+        chooseSize: false
+      })
+    }, 200)
+  },
+  saveToPhone:function(){
+    var that=this
+    if (that.data.phone !== null) {
+      console.log(that.data.phone)
+      wx.addPhoneContact({
+        firstName: that.data.name,
+        mobilePhoneNumber: that.data.phone,
+        success: function (a) {
+          that.hideModal();
+          console.log("保存成功")
+        },fail:function(p){
+          console.log(p)
+          that.hideModal();
+        }
+      })
+    } else {
+      wx.showModal({
+        title: '温馨提示',
+        content: '该同行名片手机号为空',
+        confirmText: '知道了',
+        success: function (res) {
+          that.hideModal();
+          that.setData({
+            showModal2: false
+          });
+        },fail:function(p){
+          console.log(p)
+          that.hideModal();
+        }
+      })
+    }
+  },
+  save:function(){
+    var that=this
+    var server=app.globalData.server;
+    var openid=app.globalData.openid;
+    var othercardid=app.globalData.othercardid
+    var cardId=that.data.cardId
+    wx.request({
+      method: 'POST',
+      url: server + '/userPeer/saveOrUpdate',
+      data: {
+        openId: openid,
+        cardIds: cardId,
+        saveFlag: 2
+      },
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        console.log(res)
+        that.hideModal();
+      },
+      fail:function(p){
+        console.log(p)
+        that.hideModal();
+      }
     })
   },
   onShow(){

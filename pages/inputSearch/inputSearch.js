@@ -9,6 +9,7 @@ Page({
     key:"微信号，行业，城市等进行搜索",
     list: [],
     server:"",
+    cardId:"",
     hidden: true,
     list: [],
     scrollTop: 0,
@@ -31,7 +32,8 @@ Page({
       }
     });
     var list=that.data.list
-    var server = that.data.server
+    var server = that.data.server;
+    list=[];
     wx.request({
       method: 'GET',
       url: server+'/userCard/findAllByParam',
@@ -59,10 +61,14 @@ Page({
   find:function(a){
     console.log(a)
     var openId=a.currentTarget.dataset.key;
+    var cardId = a.currentTarget.dataset.id;
     console.log(openId)
     wx.navigateTo({
-      url: '/pages/peerscards/peerscards?otheropenid=' + openId +'&isshow=true',
+      url: '/pages/peerscards/peerscards?cardId=' + cardId +'&isshow=true',
     })
+  },
+  onShow(){
+    this.onLoad();
   }
   
 })
