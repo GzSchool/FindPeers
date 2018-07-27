@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    count: 0,
     myJob: [{
       "value": "销售管理",
       data: ["销售总监", "销售经理", "销售主管", "客户总监", "客户经理", "客户主管", "渠道\\分销总监", "渠道\\分销经理\\主管", "区域销售总监", "区域销售经理\\主管", "业务拓展经理\\主管", "大客户销售经理", "团购经理\\主管", "医药销售经理\\主管", "其他"]
@@ -375,6 +376,7 @@ Page({
     if (e.detail.value == null) {
       wx.showToast({
         title: '微信号不能为空',
+        icon: 'none'
       })
     } else {
       this.data.wechatnum = e.detail.value
@@ -384,7 +386,8 @@ Page({
   addcompany: function(e) {
     if (e.detail.value == null) {
       wx.showToast({
-        title: '公司名称不能为空'
+        title: '公司名称不能为空',
+        icon: 'none'
       })
     } else {
 
@@ -396,6 +399,7 @@ Page({
     if (e.detail.value == null) {
       wx.showToast({
         title: '行业信息不能为空',
+        icon: 'none'
       })
     } else {
 
@@ -407,6 +411,7 @@ Page({
     if (e.detail.value == null) {
       wx.showToast({
         title: '城市信息不能为空',
+        icon: 'none'
       })
     } else {
 
@@ -457,18 +462,22 @@ Page({
       if (this.data.wechatnum == "") {
         wx.showToast({
           title: '微信号不能为空',
+          icon: 'none'
         })
       } else if (this.data.company == "") {
         wx.showToast({
-          title: '公司名称不能为空'
+          title: '公司名称不能为空',
+          icon: 'none'
         })
       } else if (this.data.idustry == "") {
         wx.showToast({
           title: '行业信息不能为空',
+          icon: 'none'
         })
       } else if (this.data.city == "") {
         wx.showToast({
           title: '城市信息不能为空',
+          icon: 'none'
         })
       } else {
         wx.request({
@@ -607,5 +616,17 @@ Page({
       idustry:industry
     })
     this.hideModal();
+  },
+  introInput (e) {
+    let i = e.detail.value.length
+    this.setData({
+      count: i
+    })
+  },
+  chooseIn () {
+    console.log('click')
+    wx.navigateTo({
+      url: '../industry/industry',
+    })
   }
 })

@@ -1,0 +1,35 @@
+/* pages/industry/industry.wxss */
+page{
+  background-color: #f8f8f8;
+  padding-top: 20rpx;
+  box-sizing: border-box;
+}
+.main {
+  background-color: #ffffff;
+  display: flex;
+  font-size: 27rpx;
+  color: #101010;
+  height: 100%;
+  overflow: hidden;
+}
+.main .main-nav {
+  min-width: 150rpx;
+  text-align: center;
+  background-color: #fafafa;
+  overflow: auto;
+}
+.main .main-nav .main-nav-li {
+  height: 50rpx;
+  line-height: 50rpx;
+  border-bottom: 1rpx solid #ffffff;
+}
+.main .main-content {
+  flex: 1;
+  overflow: auto;
+}
+.main .main-content .main-content-li {
+  height: 50rpx;
+  line-height: 50rpx;
+  text-align: center;
+  border-bottom: 1px solid #fffffa;
+}

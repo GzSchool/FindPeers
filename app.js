@@ -1,5 +1,7 @@
 //app.js
+const industry = require('./utils/industry.js')
 App({
+  industry: industry,
   globalData: {
     openid: '',
     isshow: false,
