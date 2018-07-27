@@ -15,7 +15,7 @@
     <image class="fix" src="/pages/images/fix.png" bindtap='viewThisCards'></image>
   </view>
   <view class="continer-button">
-  <button class="mine" bindtap='goFindmore'>进入我的名片夹</button>
+  <!--<button class="mine" bindtap='goFindmore'>进入我的名片夹</button>-->
     <button class="continer-mine" open-type='share' bindtap='toMyPeers'>
     <text class="font">发送我的名片</text>
     </button>

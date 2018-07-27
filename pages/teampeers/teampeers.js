@@ -7,7 +7,7 @@ Page({
    */
   data: {
     openid: "",
-    groupid: "",
+    groupId: "",
     list: [],
     name: "",
     id: [],
@@ -15,12 +15,11 @@ Page({
     isAdd:"",
     canSee:"",
     listOfSave: [],
-    isChecked: false,
+    isChecked: "",
     isAllChecked: "",
     job:"",
     qunname:"格致文化",
     server: "",
-    cansee: false,
     city: "",
     key: "按微信号，城市，行业搜索",
     industry: "",
@@ -29,7 +28,7 @@ Page({
     wechatnum: "",
     emai: "",
     image: "/pages/images/1.png",
-    chooseSize: false,
+    chooseSize: "",
     animationData: {}
   },
 
@@ -41,8 +40,10 @@ Page({
     that.setData({
       server: app.globalData.server,
       openid: ops.openid,
-      groupid: ops.groupid,
-      notadd:app.globalData.notadd
+      groupId: ops.groupid,
+      notadd:app.globalData.notadd,
+      canSee:app.globalData.canSee,
+      list:[]
     })
     console.log(that.data.notadd)
     var list = that.data.list;
@@ -53,7 +54,7 @@ Page({
       url: 'http://localhost:8080/userGroup/findGroupCards',
       data: {
         openId: that.data.openid,
-        groupId: that.data.groupid
+        groupId: that.data.groupId
       },
       header: {
         'content-type': 'application/json'
@@ -65,6 +66,7 @@ Page({
           list.push(b.data.data[i]);
           if (b.data.data[i].saveFlag == 1) {
             listOfSave.push(b.data.data[i].id)
+            console.log(b.data.data[i].id)
           }
         }
         console.log(list)
@@ -91,9 +93,9 @@ Page({
       },
       success: function (c) {
         console.log(c)
-        if(c.data.data!==""||c.data.data!==null){
+        if(c.data.data!==null){
           that.setData({
-            canSee :true,
+            canSee:false,
             name: c.data.data.username,
             wechatnum: c.data.data.userWechat,
             company: c.data.data.userCompany,
@@ -104,10 +106,12 @@ Page({
             phone: c.data.data.userPhone,
             image: c.data.data.userImg,
           })
+          console.log(that.data.canSee)
         }else{
-          that.data.canSee=false
+          that.data.canSee=true
+          console.log(that.data.canSee)
         }
-        
+        console.log(that.data.canSee)
       }
     })
   },
@@ -145,7 +149,7 @@ Page({
   },
   mycards: function () {
     wx.navigateTo({
-      url: '/pages/mycards/mycards',
+      url: '/pages/mycards/mycards?back=true',
     })
   },
   checkboxChange: function (a) {
@@ -183,8 +187,9 @@ Page({
       animation.translateY(0).step()
       that.setData({
         animationData: animation.export(),
-        
+        canSee:true
       })
+      app.globalData.canSee=true
     }, 200)
   },
   hideModal: function (e) {
@@ -215,7 +220,17 @@ Page({
     var listOfSave = that.data.listOfSave
     var length1 = e.detail.value.length
     var length2 = listOfSave.length
-    if (length1 < length2) {
+    console.log(length1)
+    console.log(length2)    
+    if (length1 >=length2) {
+      that.setData({
+        isAllChecked: false,
+        isChecked: false,
+        id: []
+      })
+      
+
+    } else {
       for (var i = 0; i < listOfSave.length; i++) {
         id.push(listOfSave[i])
         console.log(listOfSave[i])
@@ -224,13 +239,6 @@ Page({
         isAllChecked: true,
         isChecked: true,
         id: id
-      })
-
-    } else {
-      that.setData({
-        isAllChecked: false,
-        isChecked: false,
-        id: []
       })
     }
     console.log(id)
@@ -269,14 +277,41 @@ Page({
     })
   },
   goPeers:function(e){
+    console.log(e)
     var cardId=e.currentTarget.dataset.id;
+    var groupId = this.data.groupId;    
+    console.log(cardId) 
     wx.navigateTo({
-      url: '/pages/peerscards/peerscards?cardId='+cardId,
+      url: '/pages/otherpeers/otherpeers?cardId=' + cardId + '&groupId=' + groupId,
     })
   },
   inputSearch:function(){
     wx.navigateTo({
       url: '/pages/inputSearch/inputSearch',
     })
+  },
+  addcards: function (e) {
+    var othercardid = app.globalData.othercardid;
+    var openid=app.globalData.openid;
+    var groupId=this.data.groupId
+    console.log(groupId)
+    console.log(othercardid !== "")
+    if (e.detail.userInfo) {
+      wx.redirectTo({
+        url: '/pages/addcards/addcards?back=true' +'&groupId='+groupId+'&openid='+openid,
+      })
+    }
+    /*wx.getSetting({
+      success: function (b) {
+        if (b.authSetting['scope.userInfo']) {
+
+          var openid = app.globalData.openid
+          var othercardid = app.globalData.othercardid
+          wx.navigateTo({
+            url: '/pages/addcards/addcards?back=true',
+          })
+        }
+      }
+    })*/
   }
 })

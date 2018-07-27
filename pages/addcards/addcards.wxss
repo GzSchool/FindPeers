@@ -16,7 +16,7 @@ z-index:1000;
 }
 .picker{}
 .addCards{
-  width:90%;
+  width:100%;
   height: 100%;
   background-color: #ffffff;
   margin-top: 5px;
@@ -88,28 +88,27 @@ z-index:1000;
    font-size: 15px;
 }
 .addphone{
-  position: relative;
-  top: -32px;
-  left: 100px;
-  width: 100%;
-  height: 8rpx;
-   font-size: 15px;
+position:relative;
+font-size:16px;
+width:239px;
+height:28px;
+top:-30px;
+left:90px;
 }
 .addneed{
-  position: relative;
-  top: -28px;
-  left: 75px;
-  width: 100%;
-  height: 8rpx;
-   font-size: 15px;
+  position:relative;
+top:-55px;
+left:75px;
+width:100%;
+height:8rpx;
+font-size:15px;
 }
-.addcan{
-  position: relative;
-  top: -22px;
-  left: 75px;
-  width: 100%;
-  height: 8rpx;
-   font-size: 15px;
+.addcan{position:relative;
+top:-48px;
+left:75px;
+width:100%;
+height:8rpx;
+font-size:15px;
 }
 .addmore{
   position: relative;
@@ -146,12 +145,12 @@ left:44px;
   display: none;
 }
 .addemail{
-  position: relative;
-  top: -20px;
-  left: 75px;
-  width: 100%;
-  height: 8rpx;
-   font-size: 15px;
+  position:relative;
+top:-40px;
+left:75px;
+width:100%;
+height:8rpx;
+font-size:15px;
 }
 .name{
   font-size: 15px;
@@ -206,25 +205,25 @@ height:8rpx;
 
 }
 .demand{
-  font-size: 15px;
-  position: relative;
-  top:-21px;
-  left: 40px;
-   height: 8rpx
+  font-size:15px;
+position:relative;
+top:-46px;
+left:40px;
+height:8rpx;
 }
 .resource{
-  font-size: 15px;
-  position: relative;
-  top:-15px;
-  left: 40px;
-   height: 8rpx
+  font-size:15px;
+position:relative;
+top:-40px;
+left:40px;
+height:8rpx;
 }
 .email{
-  font-size: 15px;
-  position: relative;
-  top:-13px;
-  left: 40px;
-   height: 8rpx
+  font-size:15px;
+position:relative;
+top:-32px;
+left:40px;
+height:8rpx;
 }
 .image{
   width: 10%;

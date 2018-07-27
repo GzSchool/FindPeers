@@ -2,6 +2,7 @@
   "pages": [
     "pages/index/index",
     "pages/findmore/findmore",
+    "pages/otherpeers/otherpeers",
     "pages/mycards/mycards",    
     "pages/peerscards/peerscards",
     "pages/addcards/addcards",    
