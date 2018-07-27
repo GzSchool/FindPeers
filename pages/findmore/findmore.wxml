@@ -1,4 +1,69 @@
 <!--pages/findmore/findmore.wxml-->
+<view class='search' bindtap='bindtrans'>
+  <view class='search-in'>
+    <image src='/pages/images/3.png' mode="aspectFit"></image>
+    <input placeholder='{{key}}' bindblur='bindSearch' placeholder-style='font-size:26rpx;color:#ccc;'></input>
+  </view>
+</view>
+<view class='mine-card'>
+  <view class='card-title'>
+    <view class='title-tips'></view>
+    <view class='title-name'>我的名片</view>
+  </view>
+  <view class='mine-info'>
+    <button class='btn' wx:if='{{notadd}}' open-type="getUserInfo" bindgetuserinfo='addcards'>添加我的信息</button>
+    <view class='mes-li' wx:if='{{!notadd}}' bindtap='mycards'>
+      <view class='li-left'>
+        <image src='{{image}}'></image>
+      </view>
+      <view class='li-right'>
+        <view class='mes-name'>{{name}}<text>{{idustry}}</text></view>
+        <view class='mes-info'>{{city}}</view>
+        <view class='mes-info'>{{company}}</view>
+      </view>
+    </view>
+  </view>
+</view>
+<view class='mine-card res-card'>
+  <view class='card-title'>
+    <view class='title-tips'></view>
+    <view class='title-name'>收到的同行信息</view>
+  </view>
+</view>
+<view class='mes-list'>
+  <view class='letter'>A</view>
+  <view class='mes-li' bindtap='trans'>
+    <view class='li-left'>
+      <image src=''></image>
+    </view>
+    <view class='li-right'>
+      <view class='mes-name'>找同行团队<text>教育行业</text></view>
+      <view class='mes-info'>北京市海淀区</view>
+      <view class='mes-info'>北京格致文化传播有限公司</view>
+    </view>
+  </view>
+  <view class='letter'>B</view>
+  
+  <view class='mes-li'>
+    <view class='li-left'>
+      <image src=''></image>
+    </view>
+    <view class='li-right'>
+      <view class='mes-name'>找同行团队<text>教育行业</text></view>
+      <view class='mes-info'>北京市海淀区</view>
+      <view class='mes-info'>北京格致文化传播有限公司</view>
+    </view>
+  </view>
+  <view class='letter'>Z</view>
+  <view class='mes-link'>
+    <image src='/pages/images/3.png'></image>
+    <view class='link-item'>A</view>
+    <view class='link-item'>B</view>
+    <view class='link-item'>Z</view>
+
+  </view>
+</view>
+<!-- 
 <view class="inputSearch" bindtap='bindtrans'>
   <view class="search1">
     <image src='/pages/images/3.png' class="image1" mode="aspectFit"></image>
@@ -11,7 +76,7 @@
     <text class="findmore-mine">我的名片</text>
   </view>
   <view class="findmore-card {{notadd?'':'map-hide'}}">
-  <button class="add" open-type="getUserInfo" bindgetuserinfo='addcards'>添加我的信息</button>
+    <button class="add" open-type="getUserInfo" bindgetuserinfo='addcards'>添加我的信息</button>
   </view>
   <view class="findmore-card {{notadd?'map-hide':''}}" bindtap='mycards'>
     <image class="image" src="{{image}}"></image>
@@ -20,27 +85,31 @@
     <view class="findmore-company">{{company}}</view>
   </view>
   <view class="findmore-get">
-  <view class="shu1"></view>
+    <view class="shu1"></view>
     <view class="findmore-get1">收到的同行信息</view>
   </view>
   <view class="finmore-zhaotonghang" bindtap='trans'>
-  <image class="image" src="/pages/images/findpeers.png"></image>
+    <image class="image" src="/pages/images/findpeers.png"></image>
     <view class="findmore-name">找同行团队</view>
     <view class="findmore-industry">教育行业</view>
     <view class="findmore-job">找同行助手</view>
     <view class="findmore-company">北京格致文化传媒有限公司</view>
   </view>
-    <view class="list" bindscrolltolower="bindDownLoad" bindscroll="scroll" bindscrolltoupper="refresh">
+  <view class="list" bindscrolltolower="bindDownLoad" bindscroll="scroll" bindscrolltoupper="refresh">
     <view class="item" wx:for="{{list}}" wx:for-index="index" wx:for-item="item" data-id="{{item.id}}" wx:key="11" data-key='{{item.openId}}' bindtap='select'>
-      <!--<image class="img" src="{{item.pic_url}}"></image>-->
+
+
       <view class="find">
-      <image class="url" src="/pages/images/1.png"></image>
+        <image class="url" src="/pages/images/1.png"></image>
         <view class="name">{{item.username}}</view>
         <view class="industry">{{item.userIndustry}}</view>
         <view class="city">{{item.userCity}}</view>
         <view class="company">{{item.userCompany}}</view>
-      </view>      
+      </view>
     </view>
-  
+
   </view>
 </view>
+
+ -->
+<!-- <image class="img" src="{{item.pic_url}}"></image> -->

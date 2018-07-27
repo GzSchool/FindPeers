@@ -6,7 +6,7 @@ Page({
     job: '',
     wechatnum: '',
     othercardid: "",
-    key: "微信号，行业，城市等进行搜索",
+    key: "微信号、城市、公司、行业等进行搜索",
     company: '',
     openid: '',
     notadd: false,

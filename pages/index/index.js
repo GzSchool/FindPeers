@@ -10,12 +10,12 @@ Page({
     other:''
   },
   onLoad: function (ops) {
-    // wx.switchTab({
-    //   url: '../mine/mine',
-    // })
-    wx.navigateTo({
-      url: '../first/first',
+    wx.switchTab({
+      url: '../findmore/findmore',
     })
+    // wx.navigateTo({
+    //   url: '../first/first',
+    // })
     var that=this
     that.data.server=app.globalData.server;
     that.data.othercardid = app.globalData.othercardid;
