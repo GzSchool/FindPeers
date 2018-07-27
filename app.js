@@ -8,7 +8,8 @@ App({
     mycardid: '',
     othercardid: '21',
     login: '',
-    server: 'http://localhost:8080'
+    server: 'http://localhost:8080',
+    server: 'http://192.168.2.213:8080'
   },
   onLaunch: function(ops) {
     var that = this

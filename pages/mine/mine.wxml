@@ -1,12 +1,12 @@
 <!--pages/mine/mine.wxml-->
 <view class="mine">
-  <view class="mine-cards">
-    <view class="mine-name">{{name}}</view>
-    <view class="mine-job">{{industry}}</view>
-    <view class="mine-adress">{{city}}</view>
-    <view class="mine-company">{{company}}</view>
-    <image class="image" src="/pages/images/findpeers.png"></image>
-    <view class="help">微信扫一扫二维码</view>
+  <view class="card">
+    <view wx:if='{{name}}' class="card-info card-name">{{name}}</view>
+    <view wx:if='{{industry}}' class="card-info">{{industry}}</view>
+    <view wx:if='{{city}}' class="card-info">{{city}}</view>
+    <view wx:if='{{company}}' class="card-info">{{company}}</view>
+    <image class="card-img" src="/pages/images/findpeers.png"></image>
+    <view class="card-help">微信扫一扫二维码</view>
   </view>
   <view class="find">
     <image class="img1" src="{{img1}}"></image>

@@ -1,5 +1,32 @@
 <!--pages/first/first.wxml-->
-<view class="container">
+<view class='main'>
+  <view class='main-top'>
+    <view class='top-left'>
+      <view class='info name'>{{name}}</view>
+      <view class='info'>{{job}}</view>
+      <view class='info'>{{adress}}</view>
+      <view class='info'>{{company}}</view>
+    </view>
+    <view class='top-right'>
+      <image src=''></image>
+    </view>
+  </view>
+  <view class='main-down'>
+    <view class='down-left'>
+      <view class='contact-info'>{{telephone}}</view>
+      <view class='contact-info'>{{weChatNumber}}</view>
+      <view class='contact-info'>{{email}}</view>
+    </view>
+    <view class='down-right'>
+      <image src='../images/set.png'></image>
+    </view>
+  </view>
+</view>
+<view class="footer">
+    <button class="footer-btn btn-1">进入我的名片夹</button>
+    <button class="footer-btn btn-2" bindtap='viewThisCards'>名片夹已有，查看更多本群名片夹</button>
+</view>
+<!-- <view class="container">
   <view class="continer-view">
     <view class="continer-name">{{name}}</view>
     <view class="continer-job">{{job}}</view>
@@ -16,4 +43,4 @@
     <button class="continer-mine">进入我的名片夹</button>
     <button class="continer-others" bindtap='viewThisCards'>名片夹已有，查看更多本群名片夹</button>
   </view>
-</view>
+</view> -->

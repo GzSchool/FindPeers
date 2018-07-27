@@ -26,18 +26,18 @@
     "list": [{
       "pagePath": "pages/findmore/findmore",
       "text": "找同行",
-      "iconPath": "pages/images/5.png",
-      "selectedIconPath": "pages/images/5.png"
+      "iconPath": "pages/images/menu_1.png",
+      "selectedIconPath": "pages/images/menu_1_active.png"
     },{
       "pagePath": "pages/quncards/quncards",
       "text": "群名片",
-      "iconPath": "pages/images/quncards1.png",
-      "selectedIconPath": "pages/images/quncards2.png"
+      "iconPath": "pages/images/menu_2.png",
+      "selectedIconPath": "pages/images/menu_2_active.png"
     },{
       "pagePath": "pages/mine/mine",
       "text": "我的",
-      "iconPath": "pages/images/mine1.png",
-      "selectedIconPath": "pages/images/mine2.png"
+      "iconPath": "pages/images/menu_3.png",
+      "selectedIconPath": "pages/images/menu_3_active.png"
     }
     ]
   }
