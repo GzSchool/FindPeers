@@ -23,13 +23,15 @@ page{
 .main-ul .main-li .wx-get{
   width: 130rpx;
   height: 44rpx;
-  line-height: 44rpx;
   color: #2C7FE7;
   font-size: 20rpx;
   border: 1px solid #2C7FE7;
   border-radius: 10rpx;
   text-align: center;
   margin-right: 26rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .main-ul .main-li .star{
   min-width: 20rpx;

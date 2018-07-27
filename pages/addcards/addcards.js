@@ -262,8 +262,11 @@ Page({
     isshow2: false
   },
   onLoad: function(res) {
-    console.log(res)
+    console.log(res.job)
     var that = this
+    this.setData({
+      idustry: res.job
+    })
     that.data.server=app.globalData.server;
     that.data.openid = app.globalData.openid;
     that.data.isshow=app.globalData.isshow;

@@ -13,13 +13,12 @@ Page({
     })
   },
   chooseItem (e) {
-    console.log(app)
-    console.log(this)
     let i = this.data.active
     let j = e.currentTarget.dataset.index
-    console.log(this.data.industry[i].value + "\\" + this.data.industry[i].data[j])
-    // wx.navigateTo({
-    //   url: '',
-    // })
+    let mes = this.data.industry[i].value + "\\" + this.data.industry[i].data[j]
+    console.log(mes)
+    wx.navigateTo({
+      url: '../addcards/addcards?job=' + mes,
+    })
   }
 })
