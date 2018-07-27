@@ -1,6 +1,6 @@
 //app.js
-var util=require('/utils/util.js');
-App({
+var util=require('/utils/util.js');App({
+const industry = require('./utils/industry.js')  industry: industry,
   globalData: {
     openid: '',
     isshow: false,

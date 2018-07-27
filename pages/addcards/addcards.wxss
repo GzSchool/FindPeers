@@ -1,5 +1,106 @@
 /* pages/addCards/adcards.wxss */
-page {
+page{
+  background-color: #f8f8f8;
+  padding-top: 20rpx;
+  box-sizing: border-box;
+}
+.main{
+  box-sizing: border-box;
+  background-color: #ffffff;
+  width: 710rpx;
+  margin: 0 auto 20rpx;
+  padding: 0 20rpx 20rpx;
+}
+.main-ul .main-li{
+  border-bottom: 1rpx solid #D9D8D9;
+  height: 66rpx;
+  line-height: 66rpx;
+  font-size: 28rpx;
+  color: #505050;
+  display: flex;
+  align-items: center;
+}
+.main-ul .main-li .wx-get{
+  width: 130rpx;
+  height: 44rpx;
+  color: #2C7FE7;
+  font-size: 20rpx;
+  border: 1px solid #2C7FE7;
+  border-radius: 10rpx;
+  text-align: center;
+  margin-right: 26rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.main-ul .main-li .star{
+  min-width: 20rpx;
+  color: #FF0000;
+  display: inline-block;
+}
+.main-ul .main-li .title{
+  min-width: 100rpx;
+  display: flex;
+  justify-content: space-between;
+}
+.main-ul .main-li image {
+  width: 16rpx;
+  height: 25rpx;
+  margin-right: 20rpx;
+}
+.main-ul .main-li input{
+  height: 100%;
+  line-height: 100%;
+  padding-left: 32rpx;
+  flex: 1;
+}
+.more {
+  width: 240rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  color: #2C7FE7;
+  border: 1rpx solid #2C7FE7;
+  border-radius: 10rpx;
+  margin: 52rpx auto 50rpx;
+  font-size: 30rpx;
+  text-align: center;
+}
+.intro {
+  border: 1px solid #D9D8D9;
+  border-radius: 10rpx;
+  padding: 20rpx 14rpx 14rpx 30rpx;
+  height: 260rpx;
+}
+.intro .intro-title{
+  display: flex;
+  justify-content: space-between;
+  font-size: 28rpx;
+  color: #505050;
+  height: 40rpx;
+  line-height: 40rpx;
+}
+.intro .intro-title .count{
+  font-size: 22rpx;
+}
+.intro textarea {
+  font-size: 24rpx;
+}
+.phcolor {
+  color: #CCCCCC;
+  font-size: 24rpx;
+}
+.save-btn{
+  margin: 100rpx auto 30rpx;
+  width: 670rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  background-color: #2C7FE7;
+  text-align: center;
+  font-size: 34rpx;
+  color: #ffffff;
+  border-radius: 10rpx;
+}
+/* page {
   display: block;
   min-height: 100%;
   background-color: #EEEEE0;
@@ -232,4 +333,4 @@ height:8rpx;
   top:-36px;
 
   left: 90%;
-}
+} */

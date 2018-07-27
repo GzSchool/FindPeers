@@ -3,10 +3,10 @@
     "pages/index/index",
     "pages/findmore/findmore",
     "pages/otherpeers/otherpeers",
-    "pages/mycards/mycards",    
+    "pages/mycards/mycards",
     "pages/peerscards/peerscards",
-    "pages/addcards/addcards",    
-    "pages/company/company",  
+    "pages/addcards/addcards",
+    "pages/company/company",
     "pages/viewThis/viewThis",
     "pages/first/first",
     "pages/quncards/quncards",
@@ -14,7 +14,8 @@
     "pages/inputSearch/inputSearch",
     "pages/other/other",
     "pages/fix/fix",
-    "pages/teampeers/teampeers"
+    "pages/teampeers/teampeers",
+    "pages/industry/industry"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -24,22 +25,25 @@
     "backgroundColor": "#d6dbe0"
   },
   "tabBar": {
-    "list": [{
-      "pagePath": "pages/findmore/findmore",
-      "text": "找同行",
-      "iconPath": "pages/images/menu_1.png",
-      "selectedIconPath": "pages/images/menu_1_active.png"
-    },{
-      "pagePath": "pages/quncards/quncards",
-      "text": "群名片",
-      "iconPath": "pages/images/menu_2.png",
-      "selectedIconPath": "pages/images/menu_2_active.png"
-    },{
-      "pagePath": "pages/mine/mine",
-      "text": "我的",
-      "iconPath": "pages/images/menu_3.png",
-      "selectedIconPath": "pages/images/menu_3_active.png"
-    }
+    "list": [
+      {
+        "pagePath": "pages/findmore/findmore",
+        "text": "找同行",
+        "iconPath": "pages/images/menu_1.png",
+        "selectedIconPath": "pages/images/menu_1_active.png"
+      },
+      {
+        "pagePath": "pages/quncards/quncards",
+        "text": "群名片",
+        "iconPath": "pages/images/menu_2.png",
+        "selectedIconPath": "pages/images/menu_2_active.png"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "text": "我的",
+        "iconPath": "pages/images/menu_3.png",
+        "selectedIconPath": "pages/images/menu_3_active.png"
+      }
     ]
   }
 }

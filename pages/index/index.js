@@ -11,10 +11,10 @@ Page({
   },
   onLoad: function (ops) {
     // wx.switchTab({
-    //   url: '../mine/mine',
+    //   url: '../quncards/quncards',
     // })
     wx.navigateTo({
-      url: '../first/first',
+      url: '../industry/industry',
     })
     var that=this
     that.data.server=app.globalData.server;
