@@ -238,6 +238,7 @@ Page({
     ],
     openid: "",
     othercardid:"",
+    groupId:"",
     userId: 0,
     name: "",
     other: '',
@@ -253,12 +254,14 @@ Page({
     introduction: "",
     resource: "",
     email: "",
+    back:"",
     isshow:'',
     isshow0: false,
     isshow1: false,
     isshow2: false
   },
   onLoad: function(res) {
+    console.log(res)
     var that = this
     that.data.server=app.globalData.server;
     that.data.openid = app.globalData.openid;
@@ -266,7 +269,21 @@ Page({
     that.data.othercardid = app.globalData.othercardid;    
     var openid = that.data.openid;
     var isshow = that.data.isshow;
-    console.log(isshow)
+    if(res.back){
+      that.setData({
+        back:true,
+        openid: res.openid,
+        groupId: res.groupId,
+      })
+    }else{
+      that.setData({
+        back: false,
+        openid: res.openid,
+        groupId: res.groupId,
+      })
+    }
+    console.log(openid)
+    console.log(that.data.groupId)    
     wx.getUserInfo({
       success:function(a){
         that.setData({
@@ -274,6 +291,7 @@ Page({
         })
       }
     })
+    /*if(app.globalData.othercardid){
     wx.showActionSheet({
       itemList: ["马上添加", "暂不添加"],
       success: function(d) {
@@ -311,7 +329,11 @@ Page({
         }
       }
     })
-
+    }else{
+      wx.navigateTo({
+        url: '/pages/addcards/addcards',
+      })
+    }*/
   },
   addmore: function() {
     var that = this
@@ -423,8 +445,15 @@ Page({
 
 
   save: function(e) {
+    var that=this
     var othercardid = app.globalData.othercardid
     var server = this.data.server
+    var back=false;
+    if(this.data.back==""){
+      back=false
+    }else{
+      back=this.data.back
+    }
       if (this.data.wechatnum == "") {
         wx.showToast({
           title: '微信号不能为空',
@@ -469,15 +498,23 @@ Page({
             var openid = app.globalData.openid;
             console.log(openid)            
             var othercardid = app.globalData.othercardid;
-            console.log(othercardid)                       
+            var openid = that.data.openid;
+            var groupId = that.data.groupId;
             if (othercardid!="") {
-              that.globalData.isshow = true
+              app.globalData.isshow = true
               app.globalData.notadd = false              
               console.log(openid) 
               wx.navigateTo({
                 url: '/pages/peerscards/peerscards?othercardid=' + othercardid+'&isshow=true',
               })
-            } else {
+            } else if(back){
+              app.globalData.notadd = false;
+              console.log(openid);
+              console.log(groupId);              
+              wx.redirectTo({
+                url: '/pages/teampeers/teampeers?openid='+openid+'&groupid='+groupId,
+              })
+            }else{
               app.globalData.notadd = false
               wx.switchTab({
                 url: '/pages/findmore/findmore',

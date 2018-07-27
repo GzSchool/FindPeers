@@ -242,6 +242,7 @@ Page({
     company: "",
     idustry: "",
     job: '',
+    back:"",
     server: "",
     id: '',
     city: "",
@@ -262,10 +263,16 @@ Page({
   },
   onLoad: function(a) {
     var that = this
+    console.log(a)
     that.data.server = app.globalData.server
     wx.showShareMenu({
       withShareTicket: true
     })
+    if(a.back){
+      that.setData({
+        back:true
+      })
+    }
     that.data.openid = app.globalData.openid;
     var openid = that.data.openid;
     console.log(openid)
@@ -408,7 +415,8 @@ Page({
     console.log(introduction)
   },
   save: function(e) {
-    var server = this.data.server
+    var server = app.globalData.server
+    var that=this
     if (this.data.wechatnum == null) {
       wx.showToast({
         title: '微信号不能为空',
@@ -449,11 +457,17 @@ Page({
           'content-type': 'application/json'
         },
         success: function(res) {
-          console.log(res)
-          var openid = app.globalData.openid;
-          wx.switchTab({
-            url: '/pages/findmore/findmore',
-          })
+          var back = that.data.back;
+          console.log(back)
+          if (back){
+            wx.navigateBack({
+              delta:2
+            })
+          }else{
+            wx.switchTab({
+              url: '/pages/findmore/findmore',
+            })
+          }                   
         }
       })
     }

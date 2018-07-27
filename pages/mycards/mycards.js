@@ -10,6 +10,7 @@ Page({
     adress: "",
     idustry:"",
     city:"",
+    back:"",
     company:"",
     phone: "",
     server:"",
@@ -26,6 +27,9 @@ Page({
       withShareTicket: true
     })
     var that=this
+    if(a.back){
+      that.data.back=true
+    }
     var openid = app.globalData.openid;
     var server = app.globalData.server;
     wx.request({
@@ -61,6 +65,9 @@ Page({
       path: '/page/mine/mine',
       success: function (res) {
         console.log("66666666666")
+        wx.switchTab({
+          url: '/pages/findmore/findmore',
+        })
         console.log(res)
         var shareTickets = res.shareTickets;
         if (shareTickets.length == 0) {
@@ -86,7 +93,9 @@ Page({
                 'content-type': 'application/json'
               },
               success: function (c) {
-                console.log(c)
+                wx.switchTab({
+                  url: '/pages/findmore/findmore',
+                })
               }
             })
           }
@@ -102,7 +111,7 @@ Page({
   viewThisCards:function(){
     var openid = app.globalData.openid;
     wx.navigateTo({
-      url: '/pages/fix/fix',
+      url: '/pages/fix/fix?back=true',
     })
   },
   goFindmore:function(a){

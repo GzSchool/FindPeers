@@ -11,7 +11,7 @@
     <text class="findmore-mine">我的名片</text>
   </view>
   <view class="findmore-card {{notadd?'':'map-hide'}}">
-  <button class="add" bindtap='addcards'>添加我的信息</button>
+  <button class="add" open-type="getUserInfo" bindgetuserinfo='addcards'>添加我的信息</button>
   </view>
   <view class="findmore-card {{notadd?'map-hide':''}}" bindtap='mycards'>
     <image class="image" src="{{image}}"></image>
@@ -33,7 +33,7 @@
     <view class="list" bindscrolltolower="bindDownLoad" bindscroll="scroll" bindscrolltoupper="refresh">
     <view class="item" wx:for="{{list}}" wx:for-index="index" wx:for-item="item" data-id="{{item.id}}" wx:key="11" data-key='{{item.openId}}' bindtap='select'>
       <!--<image class="img" src="{{item.pic_url}}"></image>-->
-      <view class="find" bindtap='other{{index}}'>
+      <view class="find">
       <image class="url" src="/pages/images/1.png"></image>
         <view class="name">{{item.username}}</view>
         <view class="industry">{{item.userIndustry}}</view>

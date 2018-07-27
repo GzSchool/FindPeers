@@ -159,7 +159,7 @@ top:37px;
 }
 
 .image1 {
-  width: 29%;
+  width: 25%;
   height: 65%;
   position: relative;
   top: 9%;
@@ -188,7 +188,7 @@ top:37px;
   height: 20px;
   position: relative;
   left: 348px;
-  top: -68px;
+  top: 97px;
 }
 
 .name1 {
@@ -257,13 +257,13 @@ top:37px;
 
 .checkbox1 {
   position: relative;
-  top: -115px;
+  top: -136px;
   left: 86%;
 }
 
 .check1 {
   position: relative;
-  top: -66px;
+  top: -138px;
   left: 85%;
 }
 
@@ -316,14 +316,20 @@ top:37px;
   left: 129px;
   top: -69px;
 }
-.name2 {
-  font-size: 20px;
-  text-align: left;
-  color: #505050;
+.url1 {
+  width: 100px;
+  height: 80px;
   position: relative;
-  left:122px;
-top:-13px;
-
+  top: 13px;
+  left: 22px;
+}
+.name2 {
+  font-size:20px;
+text-align:left;
+color:#505050;
+position:relative;
+left:99px;
+top:-151px;
 }
 
 .industry {
@@ -332,7 +338,7 @@ top:-13px;
   color: #505050;
   position: relative;
   left: 232px;
-  top: -27px;
+  top: -85px;
 }
 .industry2 {
   font-size: 12px;
@@ -352,13 +358,13 @@ top:-13px;
   width: 200px;
 }
 .city2 {
-  font-size: 16px;
-  text-align: left;
-  color: #505050;
-  position: relative;
-  left:126px;
-top:-47px;
-  width: 200px;
+  font-size:16px;
+text-align:left;
+color:#505050;
+position:relative;
+left:-79px;
+top:-125px;
+width:200px;
 }
 
 .company {
@@ -370,10 +376,10 @@ top:-47px;
   top: -72px;
 }
 .company2 {
-  font-size: 16px;
-  text-align: left;
-  color: #505050;
-  position: relative;
-  left: 127px;
-  top: -63px;
+  font-size:16px;
+text-align:left;
+color:#505050;
+position:relative;
+left:127px;
+top:-125px;
 }

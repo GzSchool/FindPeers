@@ -7,18 +7,18 @@
 </view>
 <view class="qunname">{{qunname}}</view>
 <view class="findmore-card {{notadd?'':'map-hide'}}">
-  <button class="add" bindtap='addcards'>添加我的信息</button>
+  <button class="add" open-type='getUserInfo' bindgetuserinfo='addcards'>添加我的信息</button>
   </view>
 <view class="mycards1 {{notadd?'map-hide':''}}">
   <image class="image1" src="{{image}}">{{image}}</image>
 </view>
-  <view class="need {{notadd?'map-hide':''}}">
-    <view class="name1" bindtap='mycards'>{{name}}</view>
+  <view class="need {{notadd?'map-hide':''}}"  bindtap='mycards'>
+    <view class="name1">{{name}}</view>
     <view class="job1">{{job}}</view>
     <view class="idustry1">{{industry}}</view>
     <view class="company1">{{company}}</view>
   </view>
-  <image class="img {{cansee?'map-hide':''}}" src="/pages/images/share.png" bindtap='chooseSize'></image>
+  <image class="img {{notadd?'map-hide':''}} {{canSee?'map-hide':''}}" src="/pages/images/share.png" bindtap='chooseSize'></image>
   <view class='maskLayer' wx:if="{{chooseSize}}" bindtap='hideModal'></view>
 <view class='choose' wx:if="{{chooseSize}}" animation='{{animationData}}'>
 <view class="sada" >
@@ -37,17 +37,17 @@
       <checkbox class="check {{isAdd?'map-hide':''}}" bindscrolltolower="bindDownLoad"  checked="{{isAllChecked?'checked':''}}"  data-openid='{{index}}' bindscroll="scroll" bindscrolltoupper="refresh" />
       
 
-    <view class="item line" wx:for="{{list}}" wx:for-index="index" wx:for-item="item" wx:key="11" data-id='{{item.id}}' bindtap='select'>
+    <view class="item line" wx:for="{{list}}" wx:for-index="index" wx:for-item="item" wx:key="11" data-id='{{item.id}}' bindtap='goPeers' >
       <!--<image class="img" src="{{item.pic_url}}"></image>-->
-        <image class="url {{notadd?'map-hide':''}}" src="/pages/1.png"></image>
+        <image class="url" src="/pages/images/1.png"></image>
         <view class="name">{{item.username}}</view>
-        <text class="name2 {{notadd?'':'map-hide'}} hide ">需填写信息才可查看</text>
         <view class="industry">{{item.userIndustry}}</view>
         <view class="city">{{item.userCity}}</view>
-        <text class="city2 {{notadd?'':'map-hide'}} hide ">需填写信息才可查看</text>
         <view class="company">{{item.userCompany}}</view>
+        <checkbox class="check1 {{item.saveFlag==1?'':'map-hide'}}" data-cardId="{{item.id}}"data-index='{{index}}' checked="{{isChecked?'checked':''}}"/>
+        <text class="name2 {{notadd?'':'map-hide'}} hide ">需填写信息才可查看</text>
+        <text class="city2 {{notadd?'':'map-hide'}} hide ">需填写信息才可查看</text>
         <text class="company2 {{notadd?'':'map-hide'}} hide ">需填写信息才可查看</text>
-        <checkbox class="check1 {{item.saveFlag==1?'':'map-hide'}} {{isAdd?'map-hide':''}}" data-cardId="{{item.id}}" data-index='{{index}}' checked="{{isChecked?'checked':''}}" bindtap='goPeers' />
     </view>
 
 </checkbox-group>
