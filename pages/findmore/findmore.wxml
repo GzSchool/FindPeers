@@ -3,7 +3,7 @@
   <view class="search1">
     <image src='/pages/images/3.png' class="image1" mode="aspectFit"></image>
   </view>
-  <input class="search" bindblur='bindSearch' placeholder-style='font-size:12px;' placeholder='{{key}}'></input>
+  <input class="search" disabled='false' bindtap='bindSearch' placeholder-style='font-size:12px;' placeholder='{{key}}'></input>
 </view>
 <view class="findmore">
   <view class="finmore-mycard ">

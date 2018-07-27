@@ -1,4 +1,5 @@
    // pages/quncards/quncards.js
+var util = require('../../utils/util.js');
 var app=getApp() 
 Page({
 
@@ -34,7 +35,19 @@ Page({
     var openid=app.globalData.openid;
     var groupid = app.globalData.groupid;
     var list=that.data.list;
-    wx.request({
+    util.getUserGroupById(openid).then(function(res){
+      var length = res.data.data.length;
+      for (var i = 0; i < length; i++) {
+        list.push(res.data.data[i]);
+      }
+      that.setData({
+        list: list
+      });
+      that.setData({
+        hidden: true
+      });
+    })
+    /*wx.request({
       method: 'GET',
       url: server+'/userGroup/findUserGroupByParam',
       data: {
@@ -61,7 +74,7 @@ Page({
           hidden: true
         });
       }
-    })
+    })*/
   },
   search:function(a){
    console.log(a)

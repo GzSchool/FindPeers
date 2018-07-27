@@ -1,5 +1,6 @@
 // pages/mycards/mycards.js
 var app=getApp();
+var util = require('../../utils/util.js');
 Page({
 
   /**
@@ -32,26 +33,25 @@ Page({
     }
     var openid = app.globalData.openid;
     var server = app.globalData.server;
-    wx.request({
-      method: 'GET',
-      url: server+'/userCard/findOneByOpenId',
-      data: {
-        openId: openid
-      },
-      header: {
-        'content-type': 'application/json'
-      },
-      success:function(b){
-        console.log(b)
+    util.getMyData(openid).then(function (res) {
+      console.log(res)
+      if (res == null) {
         that.setData({
-          name: b.data.data.username,
-          wechatnum: b.data.data.userWechat,
-          company: b.data.data.userCompany,
-          idustry: b.data.data.userIndustry,
-          city: b.data.data.userCity,
-          email: b.data.data.userEmail,
-          phone: b.data.data.userPhone,
-          image: b.data.data.userImg,
+          notadd: true
+        })
+        app.globalData.notadd = true
+      } else {
+        app.globalData.notadd = false
+        app.globalData.isshow = true
+        that.setData({
+          name: res.username,
+          wechatnum: res.userWechat,
+          company: res.userCompany,
+          idustry: res.userIndustry,
+          city: res.userCity,
+          emai: res.userEmail,
+          phone: res.userPhone,
+          image: res.userImg,
         })
       }
     })

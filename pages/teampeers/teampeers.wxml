@@ -45,7 +45,6 @@
         <view class="city">{{item.userCity}}</view>
         <view class="company">{{item.userCompany}}</view>
         <checkbox class="check1 {{item.saveFlag==1?'':'map-hide'}}" data-cardId="{{item.id}}"data-index='{{index}}' checked="{{isChecked?'checked':''}}"/>
-        <text class="name2 {{notadd?'':'map-hide'}} hide ">需填写信息才可查看</text>
         <text class="city2 {{notadd?'':'map-hide'}} hide ">需填写信息才可查看</text>
         <text class="company2 {{notadd?'':'map-hide'}} hide ">需填写信息才可查看</text>
     </view>

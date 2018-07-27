@@ -1,5 +1,6 @@
 // pages/teampeers/teampeers.js
 var app = getApp()
+var util = require('../../utils/util.js');
 Page({
 
   /**
@@ -36,6 +37,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (ops) {
+    console.log(ops)
     var that = this
     that.setData({
       server: app.globalData.server,
@@ -49,7 +51,25 @@ Page({
     var list = that.data.list;
     var server = that.data.server
     var listOfSave=that.data.listOfSave
-    wx.request({
+    var openId = that.data.openid;
+    var groupId = that.data.groupId;
+    util.getGroupCards(openId, groupId).then(function(res){
+      var length = res.data.data.length;
+      for (var i = 0; i < length; i++) {
+        list.push(res.data.data[i]);
+        if (res.data.data[i].saveFlag == 1) {
+          listOfSave.push(res.data.data[i].id)
+        }
+      }
+      that.setData({
+        list: list,
+        listOfSave: listOfSave
+      });
+      that.setData({
+        hidden: true
+      });
+    })
+    /*wx.request({
       method: 'GET',
       url: 'http://localhost:8080/userGroup/findGroupCards',
       data: {
@@ -79,8 +99,26 @@ Page({
           hidden: true
         });
       }
+    })*/
+    util.getMyData(openId).then(function(res){
+      if (res !== null) {
+        that.setData({
+          canSee: false,
+          name: res.username,
+          wechatnum: res.userWechat,
+          company: res.userCompany,
+          job: res.userJob,
+          industry: res.userIndustry,
+          city: res.userCity,
+          email: res.userEmail,
+          phone: res.userPhone,
+          image: res.userImg,
+        })
+      } else {
+        that.data.canSee = true
+      }
     })
-    wx.request({
+    /*wx.request({
       method: 'GET',
       url: server + '/userCard/findOneByOpenId',
 
@@ -113,7 +151,7 @@ Page({
         }
         console.log(that.data.canSee)
       }
-    })
+    })*/
   },
   share: function () {
     var that = this
@@ -255,8 +293,12 @@ Page({
     
     console.log(groupid)
     var userpeers=[];
-    userpeers.push()
-    wx.request({
+    util.saveOrUpdate(openid,groupid,2,id).then(function(res){
+      that.setData({
+        isAdd: true
+      })
+    })
+    /*wx.request({
       method: 'POST',
       url: server + '/userPeer/saveOrUpdate',
       data: {
@@ -274,7 +316,7 @@ Page({
         })
         console.log(res)
       }
-    })
+    })*/
   },
   goPeers:function(e){
     console.log(e)
@@ -301,17 +343,5 @@ Page({
         url: '/pages/addcards/addcards?back=true' +'&groupId='+groupId+'&openid='+openid,
       })
     }
-    /*wx.getSetting({
-      success: function (b) {
-        if (b.authSetting['scope.userInfo']) {
-
-          var openid = app.globalData.openid
-          var othercardid = app.globalData.othercardid
-          wx.navigateTo({
-            url: '/pages/addcards/addcards?back=true',
-          })
-        }
-      }
-    })*/
   }
 })

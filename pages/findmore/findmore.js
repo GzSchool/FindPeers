@@ -1,5 +1,6 @@
 // pages/findmore/findmore.js
 var app = getApp();
+var util = require('../../utils/util.js');
 Page({
   data: {
     name: '',
@@ -32,21 +33,40 @@ Page({
         });
       }
     });
-    console.log(app.globalData.notadd)
     that.setData({
       notadd: app.globalData.notadd,
       server: app.globalData.server,
       othercardid: app.globalData.othercardid
     })
-    console.log(that.data.notadd)
-    console.log(app.globalData.notadd)
     that.setData({
       list: []
     })
     var notadd = app.globalData.notadd;
     that.data.openid = app.globalData.openid;
     var openid = app.globalData.openid;
-    console.log(app.globalData.openid)
+    util.getMyData(openid).then(function (res) {
+      console.log(res)
+      if (res == null) {
+        that.setData({
+          notadd: true
+        })
+        app.globalData.notadd=true
+      } else {
+        app.globalData.notadd = false
+        app.globalData.isshow = true
+        that.setData({
+          name: res.username,
+          wechatnum: res.userWechat,
+          company: res.userCompany,
+          idustry: res.userIndustry,
+          city: res.userCity,
+          emai: res.userEmail,
+          phone: res.userPhone,
+          image: res.userImg,
+        })
+      }
+    })
+   /* console.log(app.globalData.openid)
     var server = that.data.server
     console.log(that.data.server + '/userCard/findOneByOpenId')
     wx.request({
@@ -82,10 +102,24 @@ Page({
           })
         }
       }
-    })
+    })*/
     var openid = app.globalData.openid;
     var list = that.data.list
-    var server = that.data.server
+    util.getMyPeers(openid).then(function (res) {
+      console.log(res)
+      var length = res.data.data.length;
+      for (var i = 0; i < length; i++) {
+        list.push(res.data.data[i]);
+        that.setData({
+          list: list
+        });
+        console.log(list);
+        that.setData({
+          hidden: true
+        });
+      }
+    });
+    /*var server = that.data.server
     wx.request({
       method: 'GET',
       url: server + '/userPeer/findAllByOpenId',
@@ -102,11 +136,6 @@ Page({
         for (var i = 0; i < length; i++) {
           list.push(res.data.data[i]);
           console.log(list[i])
-        }
-        /*for(var i in res.data.data){
-          var a=res.data.data[i]
-            list.push(a)
-        }*/
         console.log(list)
         that.setData({
           list: list
@@ -116,7 +145,7 @@ Page({
           hidden: true
         });
       }
-    });
+    });*/
   },
   trans: function () {
     wx.navigateTo({
@@ -147,24 +176,6 @@ Page({
         url: '/pages/findmore/findmore',
       })
     }
-    /*  wx.getSetting({
-        success: function(b) {
-          console.log("success1")
-          if (b.authSetting['scope.userInfo']) {
-            console.log("success2")
-            var openid = app.globalData.openid
-            var othercardid = app.globalData.othercardid
-            wx.navigateTo({
-              url: '/pages/addcards/addcards',
-            })
-          } else {
-            wx.switchTab({
-              url: '/pages/findmore/findmore',
-            })
-          }
-        }
-      })*/
-
   },
   bindtrans: function () {
     wx.navigateTo({

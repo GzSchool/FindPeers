@@ -1,5 +1,6 @@
 // pages/inputSearch/inputSearch.js
 var app=getApp()
+var util = require('../../utils/util.js');
 Page({
 
   /**
@@ -34,29 +35,19 @@ Page({
     var list=that.data.list
     var server = that.data.server;
     list=[];
-    wx.request({
-      method: 'GET',
-      url: server+'/userCard/findAllByParam',
-      data: {
-        param:key
-      },
-      header: {
-        'content-type': 'application/json'
-      },
-      success: function (res) {
-        console.log(list);
-        var length=res.data.data.length;
-        for (var i = 0; i < length; i++) {
-          list.push(res.data.data[i]);
-        }
-        that.setData({
-          list: list
-        });
-        that.setData({
-          hidden: true
-        });
+    util.searchByParam(key).then(function(src){
+      console.log(src)
+      var length = src.data.data.length;
+      for (var i = 0; i < length; i++) {
+        list.push(src.data.data[i]);
       }
-    });
+      that.setData({
+        list: list
+      });
+      that.setData({
+        hidden: true
+      })
+    })
   },
   find:function(a){
     console.log(a)

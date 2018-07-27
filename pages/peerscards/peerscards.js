@@ -1,5 +1,6 @@
 // pages/peerscards/peerscards.js
-var app=getApp()
+var util = require('../../utils/util.js');
+var app=getApp();
 Page({
 
   /**
@@ -87,10 +88,20 @@ Page({
     var openid=app.globalData.openid
     var server = that.data.server
     var othercardid=app.globalData.othercardid;
-    that.data.cardId.push(app.globalData.othercardid)
-    
-      that.data.cardId.push(ops.cardId)
-    wx.request({
+    that.cardId.push(othercardid)
+    util.getCardsById(othercardid).then(function (res) {
+      that.setData({
+        name: res.data.data[0].username,
+        wechatnum: res.data.data[0].userWechat,
+        company: res.data.data[0].userCompany,
+        idustry: res.data.data[0].userIndustry,
+        city: res.data.data[0].userCity,
+        email: res.data.data[0].userEmail,
+        phone: res.data.data[0].userPhone,
+        image: res.data.data[0].userImg,
+      })
+    })
+    /*wx.request({
       method: 'GET',
       url: server +'/userCard/findCardByParam',
       data:{
@@ -112,7 +123,7 @@ Page({
           image: b.data.data[0].userImg,
         })
       }
-    })
+    })*/
   },
   addcards:function(e){
     var that=this
@@ -123,27 +134,19 @@ Page({
         url: '/pages/addcards/addcards',
       })
     }
-    /*wx.getSetting({
-      success: function (b) {
-        if (b.authSetting['scope.userInfo']) {
-
-          var openid = app.globalData.openid
-          var othercardid = app.globalData.othercardid
-          wx.navigateTo({
-            url: '/pages/addcards/addcards',
-          })
-        }
-      }
-    })*/
   },
   remove:function(){
     var that=this
     var server = app.globalData.server;
     var othercardid=app.globalData.othercardid;
     var openid=app.globalData.openid;
-
     var cardId=that.data.cardId
-    wx.request({
+    util.saveOrUpdate(openid, groupId, 2, cardId).then(function (res) {
+      wx.navigateBack({
+        delta: 1
+      })
+    })
+    /*wx.request({
       method: 'GET',
       url: server + '/userPeer/saveOrUpdate',
       data: {
@@ -160,7 +163,7 @@ Page({
           url: '/pages/findmore/findmore',
         })
       }
-    })
+    })*/
   },
   back:function(){
     wx.switchTab({
@@ -258,7 +261,12 @@ Page({
     var othercardid=app.globalData.othercardid
     var cardId=that.data.cardId
     console.log(cardId)
-    wx.request({
+    util.saveOrUpdate(openid, groupId, 2, cardId).then(function (res) {
+      wx.navigateBack({
+        delta: 1
+      })
+    })
+    /*wx.request({
       method: 'POST',
       url: server + '/userPeer/saveOrUpdate',
       data: {
@@ -282,7 +290,7 @@ Page({
           url: '/pages/findmore/findmore',
         })
       }
-    })
+    })*/
   },
   backToFind:function(){
     wx.switchTab({
