@@ -7,20 +7,21 @@ page{
 .main {
   background-color: #ffffff;
   display: flex;
-  font-size: 27rpx;
+  font-size: 30rpx;
   color: #101010;
   height: 100%;
   overflow: hidden;
 }
 .main .main-nav {
-  min-width: 150rpx;
+  /* min-width: 200rpx; */
+  padding: 0 30rpx;
   text-align: center;
   background-color: #fafafa;
   overflow: auto;
 }
 .main .main-nav .main-nav-li {
-  height: 50rpx;
-  line-height: 50rpx;
+  height: 60rpx;
+  line-height: 60rpx;
   border-bottom: 1rpx solid #ffffff;
 }
 .main .main-content {
@@ -28,8 +29,8 @@ page{
   overflow: auto;
 }
 .main .main-content .main-content-li {
-  height: 50rpx;
-  line-height: 50rpx;
+  height: 60rpx;
+  line-height: 60rpx;
   text-align: center;
   border-bottom: 1px solid #fffffa;
 }

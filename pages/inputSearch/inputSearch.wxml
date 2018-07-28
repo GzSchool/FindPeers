@@ -1,5 +1,21 @@
 <!--pages/inputSearch/inputSearch.wxml-->
-<view class="inputSearch">
+<view class='search' bindtap='bindtrans'>
+  <view class='search-in'>
+    <image src='/pages/images/3.png' mode="aspectFit"></image>
+    <input placeholder='{{key}}' bindblur='bindSearch' placeholder-style='font-size:26rpx;color:#ccc;'></input>
+  </view>
+</view>
+<view class='list' bindscrolltolower="bindDownLoad" bindscroll="scroll" bindscrolltoupper="refresh">
+  <view class='item' wx:for='aaa'>
+    <view class='item-left'><image src=''></image></view> 
+    <view class='item-right'>
+      <view class='name'>李盼<text>互联网</text></view>
+      <view class='info'>北京市海淀区</view>
+      <view class='info'>北京格致文化传播有限公司</view>
+    </view> 
+  </view>
+</view>
+<!-- <view class="inputSearch">
   <view class="search1">
     <image src='/pages/images/3.png' class="image" mode="aspectFit"></image>
   </view>
@@ -14,4 +30,4 @@
         <view class="city">{{item.userCity}}</view>
         <view class="company">{{item.userCompany}}</view>
     </view>
-</view>
+</view> -->

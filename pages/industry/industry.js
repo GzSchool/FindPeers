@@ -15,7 +15,7 @@ Page({
   chooseItem (e) {
     let i = this.data.active
     let j = e.currentTarget.dataset.index
-    let mes = this.data.industry[i].value + "\\" + this.data.industry[i].data[j]
+    let mes = this.data.industry[i].value + "/" + this.data.industry[i].data[j]
     console.log(mes)
     wx.navigateTo({
       url: '../addcards/addcards?job=' + mes,
