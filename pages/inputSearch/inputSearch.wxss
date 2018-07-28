@@ -1,5 +1,83 @@
 /* pages/inputSearch/inputSearch.wxss */
-page {
+page{
+  background-color: #f8f8f8;
+  padding-top: 89rpx;
+  box-sizing: border-box;
+}
+.search{
+  background-color: #f8f8f8;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 13rpx 40rpx 16rpx;
+  border-bottom: 1rpx solid #D9D8D9;
+}
+.search .search-in{
+  background-color: #ffffff;
+  border-radius: 6rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  display: flex;
+  align-items: center;
+  padding-left: 83rpx;
+}
+.search .search-in image{
+  width: 24rpx;
+  height: 24rpx;
+  margin-right: 10rpx;
+}
+.search .search-in input {
+  flex: 1;
+  font-size: 26rpx;
+  color: #101010;
+}
+.list {
+  background-color: #ffffff;
+  padding-left: 40rpx;
+  border-bottom: 1rpx solid #D9D8D9;
+}
+.list .item:last-child {
+  border-bottom: none;
+}
+.list .item {
+  border-bottom: 1rpx solid #D9D8D9;
+  display: flex;
+  align-items: center;
+}
+.list .item .item-left {
+  width: 120rpx;
+  height: 120rpx;
+  margin: 30rpx 40rpx 30rpx 0;
+}
+.list .item .item-left image{
+  width: 120rpx;
+  height: 120rpx;
+  background-color: #53adff;
+  border-radius: 20rpx;
+}
+.list .item .item-right {
+  flex: 1;
+  padding-right: 10rpx;
+}
+.list .item .item-right .info {
+  color: #606060;
+  font-size: 24rpx;
+  height: 44rpx;
+  line-height: 44rpx;
+}
+.list .item .item-right .name {
+  color: #505050;
+  font-size: 28rpx;
+  height: 58rpx;
+  line-height: 58rpx;
+}
+.list .item .item-right .name text {
+  color: #606060;
+  font-size: 20rpx;
+  padding-left: 20rpx;
+}
+/* page {
   display: block;
   min-height: 100%;
   background-color: #EEEEE0;
@@ -94,4 +172,4 @@ top:-72px}
 .line{
 border-bottom:1px #ddd solid;
 width:100%;
-}
+} */
