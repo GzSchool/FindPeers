@@ -1,5 +1,44 @@
 <!--pages/mycards/mycards.wxml-->
-<view class="mycards">
+<view class='main'>
+  <view class='main-top'>
+    <view class='top-left'>
+      <view class='info name'>{{name}}</view>
+      <view class='info'>{{idustry}}</view>
+      <view class='info'>{{city}}</view>
+      <view class='info'>{{company}}</view>
+    </view>
+    <view class='top-right'>
+      <image src='{{image}}'></image>
+    </view>
+  </view>
+  <view class='main-down'>
+    <view class='down-left'>
+      <view class='contact-info'>
+        <view class='info-left'>
+          <image src='../images/phone.png' style='width:17rpx;height:25rpx;'></image>
+        </view>
+      {{phone}}</view>
+      <view class='contact-info'>
+        <view class='info-left'>
+          <image src='../images/wechat.png' style='width:26rpx;height:21rpx;'></image>
+        </view>
+        {{wechatnum}}</view>
+      <view class='contact-info'>
+        <view class='info-left'>
+          <image src='../images/email.png' style='width:24rpx;height:16rpx;'></image>
+        </view>
+        {{email}}</view>
+    </view>
+    <view class='down-right'>
+      <image src='../images/fix.png' bindtap='viewThisCards'></image>
+    </view>
+  </view>
+</view>
+<view class="footer">
+    <button class="footer-btn" open-type='share' bindtap='toMyPeers'>发送本张名片</button>
+</view>
+
+<!-- <view class="mycards">
   <view class="mycards1">
     <text class="name">{{name}}</text>
     <text class="idustry">{{idustry}}</text>
@@ -14,10 +53,10 @@
     <text class="email">{{email}}</text>
     <image class="fix" src="/pages/images/fix.png" bindtap='viewThisCards'></image>
   </view>
-  <view class="continer-button">
+  <view class="continer-button"> -->
   <!--<button class="mine" bindtap='goFindmore'>进入我的名片夹</button>-->
-    <button class="continer-mine" open-type='share' bindtap='toMyPeers'>
+    <!-- <button class="continer-mine" open-type='share' bindtap='toMyPeers'>
     <text class="font">发送我的名片</text>
     </button>
   </view>
-</view>
+</view> -->

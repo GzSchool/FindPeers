@@ -1,12 +1,8 @@
 // pages/inputSearch/inputSearch.js
 var app=getApp()
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-    key:"微信号、城市、公司、行业等进行搜索",
+    key:" 微信号、城市、公司、行业等进行搜索",
     list: [],
     server:"",
     cardId:"",

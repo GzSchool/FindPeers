@@ -17,8 +17,12 @@ Page({
     let j = e.currentTarget.dataset.index
     let mes = this.data.industry[i].value + "/" + this.data.industry[i].data[j]
     console.log(mes)
-    wx.navigateTo({
-      url: '../addcards/addcards?job=' + mes,
+    let pages = getCurrentPages(),
+        currPage = pages[pages.length-1],
+        prevPage = pages[pages.length-2]
+    prevPage.setData({
+      idustry: mes
     })
+    wx.navigateBack({})
   }
 })

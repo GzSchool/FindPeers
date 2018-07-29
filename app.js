@@ -13,7 +13,7 @@ App({
     canSee:"",
     login: '',
     server: 'http://localhost:8080',
-    server: 'http://192.168.2.213:8080'
+    server: 'http://192.168.2.123:8080'
   },
   onLaunch: function(ops) {
     var that = this

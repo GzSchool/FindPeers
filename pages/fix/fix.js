@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    count: 0,
     myJob: [{
         "value": "销售管理",
         data: ["销售总监", "销售经理", "销售主管", "客户总监", "客户经理", "客户主管", "渠道\\分销总监", "渠道\\分销经理\\主管", "区域销售总监", "区域销售经理\\主管", "业务拓展经理\\主管", "大客户销售经理", "团购经理\\主管", "医药销售经理\\主管", "其他"]
@@ -415,6 +416,7 @@ Page({
     console.log(introduction)
   },
   save: function(e) {
+    console.log('save')
     var server = app.globalData.server
     var that=this
     if (this.data.wechatnum == null) {
@@ -564,5 +566,16 @@ Page({
       idustry: industry
     })
     this.hideModal();
+  },
+  introInput(e) {
+    let i = e.detail.value.length
+    this.setData({
+      count: i
+    })
+  },
+  chooseIn() {
+    wx.navigateTo({
+      url: '../industry/industry',
+    })
   }
 })

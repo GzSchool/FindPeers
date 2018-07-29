@@ -13,10 +13,11 @@ Page({
     // wx.switchTab({
     //   url: '../quncards/quncards',
     // })
-    wx.navigateTo({
-      url: '../inputSearch/inputSearch',
-      // url: '../industry/industry',
-    })
+    // wx.navigateTo({
+    //   // url: '../inputSearch/inputSearch',
+    //   // url: '../company/company',
+    //   url: 'pages/industry/industry'
+    // })
     var that=this
     that.data.server=app.globalData.server;
     that.data.othercardid = app.globalData.othercardid;

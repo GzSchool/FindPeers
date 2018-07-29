@@ -25,6 +25,10 @@
     "backgroundColor": "#d6dbe0"
   },
   "tabBar": {
+    "color": "#949494",
+    "selectedColor": "#2C7FE7",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "#D8D8D8",
     "list": [
       {
         "pagePath": "pages/findmore/findmore",

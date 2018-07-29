@@ -1,5 +1,72 @@
 /* pages/quncards/quncards.wxss */
 page {
+  background-color: #f8f8f8;
+  padding-top: 20rpx;
+}
+.main {
+  background-color: #ffffff;
+}
+.main .tab {
+  height: 70rpx;
+  line-height: 70rpx;
+  border-bottom: 1rpx solid #D9D8D9;
+  color: #323232;
+  font-size: 30rpx;
+  display: flex;
+  align-items: center;
+  padding-left: 40rpx;
+}
+.main .tab .tips {
+  width: 2px;
+  height: 24rpx;
+  background-color: #007AFF;
+  margin-right: 15rpx;
+}
+.main .mes-ul {
+  padding-left: 40rpx; 
+  border-bottom: 1px solid #D9D8D9
+}
+.main .mes-ul .mes-li {
+  border-bottom: 1px solid #D9D8D9;
+  display: flex;
+  align-items: center;
+}
+.main .mes-ul .mes-li:last-child {
+  border-bottom: none;
+}
+.main .mes-ul .mes-li .li-left {
+  width: 120rpx;
+  height: 120rpx;
+  margin: 30rpx 38rpx 30rpx 0;
+}
+.main .mes-ul .mes-li .li-left image {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 20rpx;
+  background-color: #53adff;
+}
+.main .mes-ul .mes-li .li-right {
+  flex: 1;
+  padding-right: 40rpx;
+}
+.main .mes-ul .mes-li .li-right .title {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 25rpx;
+}
+.main .mes-ul .mes-li .li-right .title .title-name {
+  font-size: 28rpx;
+  color: #505050;
+}
+.main .mes-ul .mes-li .li-right .title .title-time {
+  font-size: 20rpx;
+  color: #A8A8A8;
+}
+.main .mes-ul .mes-li .li-right .count {
+  font-size: 24rpx;
+  color: #A8A8A8;
+}
+/* page {
   display: block;
   min-height: 100%;
   background-color: #EEEEE0;
@@ -118,4 +185,4 @@ margin-left:21px;
   margin-top:57px;
 margin-left:-23px;
 
-}
+} */

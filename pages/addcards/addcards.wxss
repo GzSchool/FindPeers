@@ -14,7 +14,7 @@ page{
 .main-ul .main-li{
   border-bottom: 1rpx solid #D9D8D9;
   height: 66rpx;
-  line-height: 66rpx;
+  /* line-height: 66rpx; */
   font-size: 28rpx;
   color: #505050;
   display: flex;
@@ -49,10 +49,11 @@ page{
   margin-right: 20rpx;
 }
 .main-ul .main-li input{
-  height: 100%;
-  line-height: 100%;
+  width: 100%;
   padding-left: 32rpx;
   flex: 1;
+  height: 63rpx;
+  line-height: 63rpx;
 }
 .more {
   width: 240rpx;
@@ -83,11 +84,13 @@ page{
   font-size: 22rpx;
 }
 .intro textarea {
-  font-size: 24rpx;
+  font-size: 28rpx;
 }
 .phcolor {
   color: #CCCCCC;
-  font-size: 24rpx;
+  font-size: 25rpx;
+  height: 63rpx;
+  line-height: 63rpx;
 }
 .save-btn{
   margin: 100rpx auto 30rpx;

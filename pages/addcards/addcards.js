@@ -264,9 +264,9 @@ Page({
   onLoad: function(res) {
     console.log(res.job)
     var that = this
-    this.setData({
-      idustry: res.job
-    })
+    // this.setData({
+    //   idustry: res.job
+    // })
     that.data.server=app.globalData.server;
     that.data.openid = app.globalData.openid;
     that.data.isshow=app.globalData.isshow;
@@ -627,7 +627,6 @@ Page({
     })
   },
   chooseIn () {
-    console.log('click')
     wx.navigateTo({
       url: '../industry/industry',
     })

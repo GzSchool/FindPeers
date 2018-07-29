@@ -1,5 +1,63 @@
 /* pages/company/company.wxss */
 page {
+  background-color: #f8f8f8;
+  padding-top: 22rpx;
+  /* box-sizing: border-box; */
+}
+.main {
+  background-color: #ffffff;
+}
+.main .main-top {
+  padding: 48rpx 0 39rpx;
+  text-align: center;
+  border-bottom: 1px solid #D9D8D9;
+}
+.main .main-top .img{
+  width: 180rpx;
+  height: 180rpx;
+  margin: 0 auto 72rpx;
+}
+.main .main-top .img image{
+  width: 180rpx;
+  height: 180rpx;
+  border-radius: 50%;
+}
+.main .main-top .name {
+  color: #505050;
+  font-size: 30rpx;
+  height: 46rpx;
+  line-height: 46rpx;
+}
+.main .main-down {
+  padding: 32rpx 100rpx 10rpx 40rpx;
+  font-size: 26rpx;
+  color: #505050;
+  line-height: 46rpx;
+}
+.main .main-down .info {
+  display: flex;
+}
+.main .main-down .info .info-left {
+  margin-right: 6rpx;
+}
+.main .main-down .info .info-right {
+  flex: 1;
+}
+.btn {
+  width: 670rpx;
+  background-color: #ffffff;
+  color: #2C7FE7;
+  font-size: 34rpx;
+  text-align: center;
+  border-radius: 10rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  position: absolute;
+  bottom: 30rpx;
+  left: 40rpx;
+  border: 1rpx solid #2C7FE7;
+}
+/* page {
   display: block;
   min-height: 100%;
   background-color: #EEEEE0;
@@ -73,4 +131,4 @@ left:10px;
  background-color: #ffffff;
  border-radius: 5px;
  border: 1px solid #2C7FE7;
-}
+} */

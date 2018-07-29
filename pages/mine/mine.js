@@ -12,7 +12,7 @@ Page({
     server:"",
     company:"",
     img1:"/pages/images/about1.png",
-    img2:"/pages/images/about2.png"
+    img2:"/pages/images/right.png"
   },
   onLoad:function(){
     

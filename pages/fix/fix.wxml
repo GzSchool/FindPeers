@@ -1,5 +1,109 @@
 <!--pages/fix/fix.wxml-->
-<view class="mycards1">
+<view class='main'>
+  <view class='main-top'>
+    <view class='top-left'>
+      <view class='info name'>{{name}}</view>
+      <view class='info'>{{idustry}}</view>
+      <view class='info'>{{city}}</view>
+      <view class='info'>{{company}}</view>
+    </view>
+    <view class='top-right'>
+      <image src='{{image}}'></image>
+    </view>
+  </view>
+  <view class='main-down'>
+    <view class='down-left'>
+      <view class='contact-info'>
+        <view class='info-left'>
+          <image src='../images/phone.png' style='width:17rpx;height:25rpx;'></image>
+        </view>
+      {{phone}}</view>
+      <view class='contact-info'>
+        <view class='info-left'>
+          <image src='../images/wechat.png' style='width:26rpx;height:21rpx;'></image>
+        </view>
+        {{wechatnum}}</view>
+      <view class='contact-info'>
+        <view class='info-left'>
+          <image src='../images/email.png' style='width:24rpx;height:16rpx;'></image>
+        </view>
+        {{email}}</view>
+    </view>
+    <!-- <view class='down-right'>
+      <image src='../images/fix.png' bindtap='viewThisCards'></image>
+    </view> -->
+  </view>
+</view>
+
+<view class='main-content'>
+  <view class='main-ul'>
+    <view class='main-li'>
+      <view class='star'></view>
+      <view class='title'> <text>姓</text><text>名:</text></view>
+      <input placeholder-class="phcolor" placeholder='姓名' bindblur='addname' focus='true' type='text' value='{{name}}' name="name"></input>
+    </view>
+    <view class='main-li'>
+      <view class='star'>*</view>
+      <view class='title'><text>微</text><text>信</text><text>号:</text></view>
+      <input placeholder-class="phcolor" placeholder='必填' bindblur='addnumber' focus='true' type='text' value='{{wechatnum}}' name="number"></input>
+    </view>
+    <view class='main-li'>
+      <view class='star'>*</view>
+      <view class='title'><text>公</text><text>司:</text></view>
+      <input placeholder-class="phcolor" placeholder='必填' bindblur='addcompany' focus='true' type='text' value='{{company}}' name="company"></input>
+    </view>
+    <view class='main-li'>
+      <view class='star'>*</view>
+      <view class='title'><text>行</text><text>业:</text></view>
+      <input placeholder-class="phcolor" disabled='disabled' bindtap='chooseIn' placeholder='必填' bindblur='addidustry' focus='true' type='text' value='{{idustry}}' name="idustry"></input>
+      <image src='/pages/images/right.png' bindtap='chooseIn'></image>
+    </view>
+    <view class='main-li'>
+      <view class='star'>*</view>
+      <view class='title'><text>城</text><text>市:</text></view>
+      <input placeholder-class="phcolor" placeholder='必填' bindblur='addcity' focus='true' type='text' value='{{city}}' name="city"></input>
+    </view>
+    <view class='main-li'>
+      <view class='star'></view>
+      <view class='title'><text>职</text><text>务:</text></view>
+      <input placeholder-class="phcolor" placeholder='填写公司职务' bindblur='addjob' focus='true' type='text' value='{{job}}' name="job"></input>
+    </view>
+    <view class='main-li'>
+      <view class='star'></view>
+      <view class='title'><text>手</text><text>机</text><text>号:</text></view>
+      <input placeholder-class="phcolor" placeholder='填写可见同行手机号' bindblur='addphone' focus='true' type='number' value='{{phone}}' name="phone"></input>
+      <button style='padding:0;' class='wx-get' open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">微信获取</button>
+    </view>
+    <view class='main-li' wx:if='{{isshow0}}'>
+      <view class='star'></view>
+      <view class='title'><text>需</text><text>求:</text></view>
+      <input placeholder-class="phcolor" placeholder='需求' bindblur='adddemand' focus='true' type='text' value='{{demand}}' name="demand"></input>
+    </view>
+    <view class='main-li' wx:if='{{isshow1}}'>
+      <view class='star'></view>
+      <view class='title'><text>资</text><text>源:</text></view>
+      <input placeholder-class="phcolor" placeholder='资源' bindblur='addresource' focus='true' type='text' value='{{resource}}' name="resource"></input>
+    </view>
+    <view class='main-li' wx:if='{{isshow2}}'>
+      <view class='star'></view>
+      <view class='title'><text>邮</text><text>箱:</text></view>
+      <input placeholder-class="phcolor" placeholder='邮箱' bindblur='addemail' focus='true' type='text' value='{{email}}'></input>
+    </view>
+  </view>
+  <view class='more' bindtap='addmore'>添加更多信息</view>
+  <view class='intro'>
+    <view class='intro-title'>
+      <view>简介</view>
+      <view class='count'>{{count}}/140</view>
+    </view>
+    <textarea maxlength='140' placeholder-class="phcolor" placeholder='请您填写自我介绍或公司简介' bindinput='introInput' bindblur='addintroduction' type='text' value='{{introduction}}' name="introduction"></textarea>
+  </view>
+</view>
+
+<view class="footer">
+    <button class="footer-btn" bindtap='save'>保存</button>
+</view>
+<!-- <view class="mycards1">
     <text class="name1">{{name}}</text>
     <text class="idustry1">{{idustry}}</text>
     <text class="adress1">{{city}}</text>
@@ -11,9 +115,9 @@
     <text class="wechatnum1">{{wechatnum}}</text>
     <image class="image3" src="/pages/images/email.png"></image>
     <text class="email1">{{email}}</text>
-  </view>
+  </view> -->
   <!--pages/addCards/addcards.wxml-->
-<view class="addCards">
+<!-- <view class="addCards">
   <view class="name ">姓名：</view>
   <input class="addname line" bindblur='addname' focus='true' type='text' value='{{name}}' name="name"></input>
   <view class="number ">微信号:</view>
@@ -48,4 +152,4 @@
   <view class="introduction"></view>
   <textarea class="addtext line" bindblur='addintroduction' type='text' value='简介：{{introduction}}'  type='text' name="introduction"></textarea>
   <button class="save" bindtap='save'>保存</button>
-</view>
+</view> -->

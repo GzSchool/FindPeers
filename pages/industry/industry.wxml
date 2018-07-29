@@ -1,9 +1,9 @@
 <!--pages/industry/industry.wxml-->
 <view class='main'>
   <view class='main-nav'>
-    <view class='main-nav-li' bindtap='chooseParent' data-index='{{index}}' wx:for='{{industry}}'>{{item.value}}</view>
+    <view class="main-nav-li {{active==index?'li-active':''}}" bindtap='chooseParent' data-index='{{index}}' wx:for='{{industry}}' wx:key='11'>{{item.value}}</view>
   </view>
   <view class='main-content'>
-    <view class='main-content-li' wx:for='{{industry[active].data}}' data-index='{{index}}' bindtap='chooseItem'>{{item}}</view>
+    <view class='main-content-li' wx:for='{{industry[active].data}}' data-index='{{index}}' bindtap='chooseItem' wx:key='11'>{{item}}</view>
   </view>
 </view>
