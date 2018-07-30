@@ -7,14 +7,14 @@ Page({
     list: [],
     name: "",
     id: [],
-    notadd:"",
-    isAdd:"",
-    canSee:"",
+    notadd: "",
+    isAdd: "",
+    canSee: "",
     listOfSave: [],
     isChecked: "",
     isAllChecked: "",
-    job:"",
-    qunname:"格致文化",
+    job: "",
+    qunname: "格致文化",
     server: "",
     city: "",
     key: " 微信号、城市、公司、行业等进行搜索",
@@ -25,26 +25,27 @@ Page({
     emai: "",
     image: "/pages/images/1.png",
     chooseSize: "",
-    animationData: {}
+    animationData: {},
+    selectAll: false,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (ops) {
+  onLoad: function(ops) {
     var that = this
     that.setData({
       server: app.globalData.server,
       openid: ops.openid,
       groupId: ops.groupid,
-      notadd:app.globalData.notadd,
-      canSee:app.globalData.canSee,
-      list:[]
+      notadd: app.globalData.notadd,
+      canSee: app.globalData.canSee,
+      list: []
     })
     console.log(that.data.notadd)
     var list = that.data.list;
     var server = that.data.server
-    var listOfSave=that.data.listOfSave
+    var listOfSave = that.data.listOfSave
     wx.request({
       method: 'GET',
       url: app.globalData.server + '/userGroup/findGroupCards',
@@ -55,10 +56,11 @@ Page({
       header: {
         'content-type': 'application/json'
       },
-      success: function (b) {
+      success: function(b) {
         console.log(b)
         var length = b.data.data.length
         for (var i = 0; i < length; i++) {
+          b.data.data[i].isselect = false
           list.push(b.data.data[i]);
           if (b.data.data[i].saveFlag == 1) {
             listOfSave.push(b.data.data[i].id)
@@ -87,11 +89,11 @@ Page({
       header: {
         'content-type': 'application/json'
       },
-      success: function (c) {
+      success: function(c) {
         console.log(c)
-        if(c.data.data!==null){
+        if (c.data.data !== null) {
           that.setData({
-            canSee:false,
+            canSee: false,
             name: c.data.data.username,
             wechatnum: c.data.data.userWechat,
             company: c.data.data.userCompany,
@@ -103,15 +105,15 @@ Page({
             image: c.data.data.userImg,
           })
           console.log(that.data.canSee)
-        }else{
-          that.data.canSee=true
+        } else {
+          that.data.canSee = true
           console.log(that.data.canSee)
         }
         console.log(that.data.canSee)
       }
     })
   },
-  share: function () {
+  share: function() {
     var that = this
     var openid = this.data.openid
     var groupid = this.data.groupid
@@ -119,7 +121,7 @@ Page({
     wx.showModal({
       title: '分享到本群',
       content: '确定分享到本群',
-      success: function (r) {
+      success: function(r) {
         if (r.confirm) {
           wx.request({
             method: 'GET',
@@ -132,7 +134,7 @@ Page({
             header: {
               'content-type': 'application/json'
             },
-            success: function (a) {
+            success: function(a) {
               console.log(a)
               that.setData({
                 cansee: true
@@ -143,21 +145,20 @@ Page({
       }
     })
   },
-  mycards: function () {
+  mycards: function() {
     wx.navigateTo({
       url: '/pages/mycards/mycards?back=true',
     })
   },
-  checkboxChange: function (a) {
-    if(a.type=="change"){
+  checkboxChange: function(a) {
+    if (a.type == "change") {
 
     }
     console.log(a)
-    
+
   },
-  check:function(a){
-  },
-  chooseSize: function (e) {
+  check: function(a) {},
+  chooseSize: function(e) {
     // 用that取代this，防止不必要的情况发生
     var that = this;
     // 创建一个动画实例
@@ -179,16 +180,16 @@ Page({
       chooseSize: true
     })
     // 设置setTimeout来改变y轴偏移量，实现有感觉的滑动
-    setTimeout(function () {
+    setTimeout(function() {
       animation.translateY(0).step()
       that.setData({
         animationData: animation.export(),
-        canSee:true
+        canSee: true
       })
-      app.globalData.canSee=true
+      app.globalData.canSee = true
     }, 200)
   },
-  hideModal: function (e) {
+  hideModal: function(e) {
     var that = this;
     var animation = wx.createAnimation({
       duration: 1000,
@@ -200,7 +201,7 @@ Page({
       animationData: animation.export()
 
     })
-    setTimeout(function () {
+    setTimeout(function() {
       animation.translateY(0).step()
       that.setData({
         animationData: animation.export(),
@@ -209,7 +210,7 @@ Page({
       })
     }, 200)
   },
-  checkboxChange: function (e) {
+  checkboxChange: function(e) {
     var that = this
     console.log(e)
     var id = that.data.id;
@@ -217,15 +218,13 @@ Page({
     var length1 = e.detail.value.length
     var length2 = listOfSave.length
     console.log(length1)
-    console.log(length2)    
-    if (length1 >=length2) {
+    console.log(length2)
+    if (length1 >= length2) {
       that.setData({
         isAllChecked: false,
         isChecked: false,
         id: []
       })
-      
-
     } else {
       for (var i = 0; i < listOfSave.length; i++) {
         id.push(listOfSave[i])
@@ -239,18 +238,17 @@ Page({
     }
     console.log(id)
   },
-  aaa:function(e){
+  aaa: function(e) {
     var that = this
     var server = app.globalData.server;
     var openid = app.globalData.openid;
     var othercardid = app.globalData.othercardid
     console.log(othercardid)
-    var groupid=that.data.groupid
-    var id=that.data.id
+    var groupid = that.data.groupid
+    var id = that.data.id
     console.log(id)
-    
     console.log(groupid)
-    var userpeers=[];
+    var userpeers = [];
     userpeers.push()
     wx.request({
       method: 'POST',
@@ -259,42 +257,42 @@ Page({
         openId: openid,
         cardIds: id,
         saveFlag: 2,
-        groupId:groupid
+        groupId: groupid
       },
       header: {
         'content-type': 'application/json'
       },
-      success: function (res) {
+      success: function(res) {
         that.setData({
-          isAdd:true
+          isAdd: true
         })
         console.log(res)
       }
     })
   },
-  goPeers:function(e){
+  goPeers: function(e) {
     console.log(e)
-    var cardId=e.currentTarget.dataset.id;
-    var groupId = this.data.groupId;    
-    console.log(cardId) 
+    var cardId = e.currentTarget.dataset.id;
+    var groupId = this.data.groupId;
+    console.log(cardId)
     wx.navigateTo({
       url: '/pages/otherpeers/otherpeers?cardId=' + cardId + '&groupId=' + groupId,
     })
   },
-  inputSearch:function(){
+  inputSearch: function() {
     wx.navigateTo({
       url: '/pages/inputSearch/inputSearch',
     })
   },
-  addcards: function (e) {
+  addcards: function(e) {
     var othercardid = app.globalData.othercardid;
-    var openid=app.globalData.openid;
-    var groupId=this.data.groupId
+    var openid = app.globalData.openid;
+    var groupId = this.data.groupId
     console.log(groupId)
     console.log(othercardid !== "")
     if (e.detail.userInfo) {
       wx.redirectTo({
-        url: '/pages/addcards/addcards?back=true' +'&groupId='+groupId+'&openid='+openid,
+        url: '/pages/addcards/addcards?back=true' + '&groupId=' + groupId + '&openid=' + openid,
       })
     }
     /*wx.getSetting({
@@ -309,5 +307,23 @@ Page({
         }
       }
     })*/
+  },
+  selectAll: function() {
+    let val = this.data.selectAll
+    let list = this.data.list
+    for (let i = 0; i < list.length ; i ++ ) {
+      list[i].isselect = !list[i].isselect
+    }
+    console.log(list)
+    this.setData({
+      selectAll: !val,
+      list: list
+    })
+  },
+  selectOne: function() {
+    let val = this.data.selectAll
+    this.setData({
+      selectOne: !val
+    })
   }
 })

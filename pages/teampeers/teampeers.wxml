@@ -28,7 +28,7 @@
     </view>
   </view>
   <view class='crowd-title'>
-    <view class='crowd-title-left'><view class='select noselect'></view>全选</view>
+    <view class='crowd-title-left'><view class="select {{selectAll?'':'noselect'}}" bindtap='selectAll'></view>全选</view>
     <view class='crowd-title-middle'>n张名片未保存</view>
     <view class='crowd-title-right'>保存</view>
   </view>
@@ -39,14 +39,14 @@
           <image src='{{item.pic_url}}'></image>
         </view>
         <view class='li-right'>
-          <view class='mes-name'>{{name}}
-            <text>{{item.username}}</text>
+          <view class='mes-name'>{{item.username}}
+            <text>{{item.userIndustry}}</text>
           </view>
           <view class='mes-info'>{{item.userCity}}</view>
           <view class='mes-info'>{{item.userCompany}}</view>
         </view>
         <view class='li-select'>
-          <view class='select noselect'></view>
+          <view class="select {{item.isselect?'':'noselect'}}" bindtap='selectOne'></view>
         </view>
       </view>
     </view>
