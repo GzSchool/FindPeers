@@ -5,20 +5,20 @@ App({
 
   globalData: {
     industry: industry,                                
-    openid: '',                                                    //当前用户标识
-    isshow: false,                                                 //是否能看別人信息
-    notadd: true,                                                  //是否沒有添加個人信息
-    groupid: '',                                                   //群标识
-    mycardid: '',                                                  //自己的cardid 
-    isgroup:false,                                                 //是不是群
-    othercardid: '',                                                //点击别人分享的别人的id
-    canSee:"",                                                      //群名片里的自己的信息是不是已经分享
-    login: '',                                                      //登陆标识
-    server: 'http://localhost:8080',                              //服务器地址
+    openid: '',                     //当前用户标识
+    isshow: false,                 //是否能看別人信息
+    notadd: true,                 //是否沒有添加個人信息
+    groupid: '',                  //群标识
+    mycardid: '',                    //自己的cardid 
+    isgroup:false,               //是不是群
+    othercardid: '',             //点击别人分享的别人的id
+    canSee:"",                   //群名片里的自己的信息是不是已经分享
+    login: '',                   //登陆标识
+    server: 'http://localhost:8080',                 //服务器地址
     // server: 'http://192.168.2.123:8080',
-    urlOfLogin:'/user/userAuthor',                                 //登录接口
-    urlOfAddOrUpdate: '/userCard/saveOrUpdate',                    //添加或修改个人信息接口
-    urlOfGetCardByOpenID: '/userCard/findOneByOpenId',              //获取当前用户信息
+    urlOfLogin:'/user/userAuthor',                    //登录接口
+    urlOfAddOrUpdate: '/userCard/saveOrUpdate',       //添加或修改个人信息接口
+    urlOfGetCardByOpenID: '/userCard/findOneByOpenId', //获取当前用户信息
 },
   onLaunch: function(ops) {
     var that = this
@@ -41,17 +41,17 @@ App({
             var iv = res.iv;
           }
         })
-                                                                             // 登录
+                                                            // 登录
         util.Login(url).then(function (data) {
           console.log(data)
           if (data !== "") {
             that.globalData.openid = data
             var openid = that.globalData.openid
           }
-          var openid = that.globalData.openid;
-          util.getMyData(openid).then(function (res) {                        //用用户标识访问数据库获取用户信息
+          var openid = that.globalData.openid;                  //用用户标识访问数据库获取用户信息
+          util.getMyData(openid).then(function (res) {             
             console.log(res)
-            if (res !== null) {                                                //判断是否返回 有返回值就是已经添加过信息
+            if (res !== null) {                                //判断是否返回 有返回值就是已经添加过信息
               that.globalData.isshow = true
               that.globalData.notadd = false
               wx.redirectTo({
@@ -60,24 +60,24 @@ App({
             } else {
               that.globalData.notadd = true
               that.globalData.isshow = false
-              wx.redirectTo({ //说明没有添加过名片信息
+              wx.redirectTo({                                //说明没有添加过名片信息
                 url: '/pages/peerscards/peerscards',
               })
             }
           })
         })
-      } else {                                                        //点击的个人的分享
+      } else {                                             //点击的个人的分享
         console.log("2222222222222")
         var that = this
         var othercardid = that.globalData.othercardid
-        util.Login(url).then(function (data) {                                     // 登录
+        util.Login(url).then(function (data) {                     // 登录
           console.log(data)
           if (data !== "") {
             that.globalData.openid = data
             var openid = that.globalData.openid
           }
-          var openid = that.globalData.openid;
-          util.getMyData(openid).then(function (res) {                             //用用户标识访问数据库获取用户信息
+          var openid = that.globalData.openid;                      //用用户标识访问数据库获取用户信息
+          util.getMyData(openid).then(function (res) {                          
             console.log(res)
             if (res !== null) {
               that.globalData.isshow = true
@@ -95,16 +95,16 @@ App({
           })
         })
       }
-    } else {                                                                          //搜索小程序点击小程序的
+    } else {                                                //搜索小程序点击小程序的
       console.log("333333333333333")
-      util.Login(url).then(function (data) {                                         // 登录
+      util.Login(url).then(function (data) {                // 登录
         console.log(data)
         if(data!==""){
           that.globalData.openid = data
           var openid = that.globalData.openid
         }
-        var openid=that.globalData.openid;
-        util.getMyData(openid).then(function (res) {                                 //用用户标识访问数据库获取用户信息
+        var openid = that.globalData.openid;                //用用户标识访问数据库获取用户信息
+        util.getMyData(openid).then(function (res) {                               
           console.log(res)  
           if(res!==null){
             that.globalData.notadd = false;

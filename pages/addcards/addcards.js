@@ -2,30 +2,30 @@
 var app = getApp();
 Page({
   data: {
-    count: 0,                                                           //简介字数
-    openid: "",                                                         //用户标识
-    othercardid:"",                                                     //分享的人的标识
-    groupId:"",                                                         //群id
-    userId: 0,                                                          //用户id
-    name: "",                                                           //用户名字
+    count: 0,             //简介字数
+    openid: "",            //用户标识
+    othercardid:"",        //分享的人的标识
+    groupId:"",            //群id
+    userId: 0,             //用户id
+    name: "",              //用户名字
     other: '',                                                      
-    wechatnum: "",                                                      //用户填写的微信号
-    image:"",                                                           //用户的微信头像
-    company: "",                                                        //用户填写的公司名称
-    idustry: "",                                                        //用户选择的行业
-    job:'',                                                             //用户填写的职务 
-    city: "",                                                           //用户填写的城市
-    phone: "",                                                          //用户手机号
-    server:"",                                                          //服务器地址
-    demand: "",                                                         //用户填写的需求
-    introduction: "",                                                   //用户简介
-    resource: "",                                                       //用户资源
-    email: "",                                                          //用户邮箱
-    back:"",                                                            //是否返回
-    isshow:'',                                                          //是否显示
-    isshow0: false,                                                     //需求是否显示
-    isshow1: false,                                                     //资源是否显示
-    isshow2: false                                                      //邮箱是否显示
+    wechatnum: "",          //用户填写的微信号
+    image:"",               //用户的微信头像
+    company: "",            //用户填写的公司名称
+    idustry: "",            //用户选择的行业
+    job:'',                 //用户填写的职务 
+    city: "",               //用户填写的城市
+    phone: "",              //用户手机号
+    server:"",              //服务器地址
+    demand: "",             //用户填写的需求
+    introduction: "",       //用户简介
+    resource: "",           //用户资源
+    email: "",              //用户邮箱
+    back:"",               //是否返回
+    isshow:'',              //是否显示
+    isshow0: false,         //需求是否显示
+    isshow1: false,        //资源是否显示
+    isshow2: false          //邮箱是否显示
   },
   onLoad: function(res) {
     console.log(res.job)
