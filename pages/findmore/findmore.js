@@ -59,7 +59,7 @@ Page({
           company: res.userCompany,
           idustry: res.userIndustry,
           city: res.userCity,
-          emai: res.userEmail,
+          email: res.userEmail,
           phone: res.userPhone,
           image: res.userImg,
         })

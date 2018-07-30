@@ -36,6 +36,7 @@ function Login(url) {
               'content-type': 'application/json'
             },
             success: function(a) { //后台获取openid
+            console.log(a)
               resove(a.data.data.openId)
             }
           })

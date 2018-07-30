@@ -99,7 +99,7 @@ Page({
     }
   },
   addnumber: function(e) {
-    if (e.detail.value == null) {
+    if (e.detail.value == '') {
       wx.showToast({
         title: '微信号不能为空',
         icon: 'none'
@@ -110,7 +110,7 @@ Page({
     }
   },
   addcompany: function(e) {
-    if (e.detail.value == null) {
+    if (e.detail.value == '') {
       wx.showToast({
         title: '公司名称不能为空',
         icon: 'none'
@@ -122,7 +122,7 @@ Page({
     }
   },
   addidustry: function(e) {
-    if (e.detail.value == null) {
+    if (e.detail.value == '') {
       wx.showToast({
         title: '行业信息不能为空',
         icon: 'none'
@@ -134,7 +134,7 @@ Page({
     }
   },
   addcity: function(e) {
-    if (e.detail.value == null) {
+    if (e.detail.value == '') {
       wx.showToast({
         title: '城市信息不能为空',
         icon: 'none'
