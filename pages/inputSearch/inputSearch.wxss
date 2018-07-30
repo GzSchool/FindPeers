@@ -11,7 +11,8 @@ page{
   width: 100%;
   box-sizing: border-box;
   padding: 13rpx 40rpx 16rpx;
-  border-bottom: 1rpx solid #D9D8D9;
+  /* border-bottom: 1px solid #D9D8D9; */
+  box-shadow: 0 1px 1px #fafafa;
 }
 .search .search-in{
   background-color: #ffffff;
@@ -25,12 +26,14 @@ page{
 .search .search-in image{
   width: 24rpx;
   height: 24rpx;
-  margin-right: 10rpx;
+  margin-right: 12rpx;
 }
 .search .search-in input {
   flex: 1;
   font-size: 26rpx;
   color: #101010;
+  height: 100%;
+  line-height: 100%;
 }
 .list {
   background-color: #ffffff;

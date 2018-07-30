@@ -18,7 +18,7 @@ const formatNumber = n => {
 /*
   用户登陆的时候，向后台发送用户登陆的凭证code，获取用户标识openid
 */ 
-function myLogin() {
+function Login(url) {
   return new Promise(function(resove) {
     wx.login({
       success: res => { // 发送 res.code 到后台换取 openId, sessionKey,unionId
@@ -27,7 +27,7 @@ function myLogin() {
           // 发起网络请求，获取微信信息
           wx.request({
             method: 'GET',
-            url: server + '/user/userAuthor',
+            url: server + url,
             data: {
               code: res.code
             },
@@ -196,7 +196,7 @@ function getGroupCards(openId, groupId){
 module.exports = {
   formatTime: formatTime,
   formatNumber: formatNumber,
-  myLogin: myLogin,
+  Login: Login,
   server: server,
   getMyData: getMyData,
   getMyPeers: getMyPeers,

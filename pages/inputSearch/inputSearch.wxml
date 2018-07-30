@@ -2,16 +2,16 @@
 <view class='search' bindtap='bindtrans'>
   <view class='search-in'>
     <image src='/pages/images/3.png' mode="aspectFit"></image>
-    <input placeholder='{{key}}' bindblur='bindSearch' placeholder-style='font-size:26rpx;color:#ccc;'></input>
+    <input focus='true' selection-start='1' placeholder='{{key}}' bindblur='bindSearch' placeholder-style='font-size:26rpx;color:#ccc;'></input>
   </view>
 </view>
 <view class='list' bindscrolltolower="bindDownLoad" bindscroll="scroll" bindscrolltoupper="refresh">
-  <view class='item' wx:for='aaa'>
+  <view class='item' wx:for="{{list}}" wx:for-index="index" wx:for-item="item" data-id="{{item.id}}" wx:key="11" data-key='{{item.openId}}' bindtap='find'>
     <view class='item-left'><image src=''></image></view> 
     <view class='item-right'>
-      <view class='name'>李盼<text>互联网</text></view>
-      <view class='info'>北京市海淀区</view>
-      <view class='info'>北京格致文化传播有限公司</view>
+      <view class='name'>{{item.username}}<text>{{item.userIndustry}}</text></view>
+      <view class='info'>{{item.userCity}}</view>
+      <view class='info'>{{item.userCompany}}</view>
     </view> 
   </view>
 </view>

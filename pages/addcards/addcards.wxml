@@ -41,17 +41,17 @@
     <view class='main-li' wx:if='{{isshow0}}'>
       <view class='star'></view>
       <view class='title'><text>需</text><text>求:</text></view>
-      <input placeholder-class="phcolor" placeholder='必填' bindblur='adddemand' focus='true' type='text' value='{{demand}}' name="demand"></input>
+      <input placeholder-class="phcolor" placeholder='需求' bindblur='adddemand' focus='true' type='text' value='{{demand}}' name="demand"></input>
     </view>
     <view class='main-li' wx:if='{{isshow1}}'>
       <view class='star'></view>
       <view class='title'><text>资</text><text>源:</text></view>
-      <input placeholder-class="phcolor" placeholder='必填' bindblur='addresource' focus='true' type='text' value='{{resource}}' name="resource"></input>
+      <input placeholder-class="phcolor" placeholder='资源' bindblur='addresource' focus='true' type='text' value='{{resource}}' name="resource"></input>
     </view>
     <view class='main-li' wx:if='{{isshow2}}'>
       <view class='star'></view>
       <view class='title'><text>邮</text><text>箱:</text></view>
-      <input placeholder-class="phcolor" placeholder='必填' bindblur='addemail' focus='true' type='text' value='{{email}}'></input>
+      <input placeholder-class="phcolor" placeholder='邮箱' bindblur='addemail' focus='true' type='text' value='{{email}}'></input>
     </view>
   </view>
   <view class='more' bindtap='addmore'>添加更多信息</view>

@@ -54,8 +54,8 @@ page {
   height: 33rpx;
 }
 .find .img2{
-  width: 24rpx;
-  height: 36rpx;
+  width: 16rpx;
+  height: 25rpx;
 }
 
 .share {

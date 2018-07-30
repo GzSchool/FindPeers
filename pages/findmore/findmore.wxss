@@ -15,13 +15,17 @@ page{
   align-items: center;
   padding-left: 83rpx;
 }
-.search .search-in image{
+.search .search-in image {
   width: 24rpx;
   height: 24rpx;
-  margin-right: 10rpx;
+  margin-right: 12rpx;
 }
 .search .search-in input {
   flex: 1;
+  font-size: 26rpx;
+  color: #101010;
+  height: 100%;
+  line-height: 100%;
 }
 .mine-card{
   background-color: #ffffff;

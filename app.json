@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/index/index",
     "pages/findmore/findmore",
+    "pages/index/index",
     "pages/otherpeers/otherpeers",
     "pages/mycards/mycards",
     "pages/peerscards/peerscards",
@@ -25,6 +25,10 @@
     "backgroundColor": "#d6dbe0"
   },
   "tabBar": {
+    "color": "#949494",
+    "selectedColor": "#2C7FE7",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "#D8D8D8",
     "list": [
       {
         "pagePath": "pages/findmore/findmore",
