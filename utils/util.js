@@ -1,6 +1,6 @@
 //服务器地址
-var server = "http://localhost:8080"
-// var server = 'http://192.168.2.123:8080'
+// var server = "http://localhost:8080"
+var server = 'http://192.168.2.123:8080'
 const formatTime = date => {
   const year = date.getFullYear()
   const month = date.getMonth() + 1

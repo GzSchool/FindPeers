@@ -3,24 +3,24 @@ var app = getApp();
 var util = require('../../utils/util.js');
 Page({
   data: {
-    name: '',                                                 //用户名字
-    job: '',                                                  //用户职务 
-    wechatnum: '',                                            //用户微信号
-    othercardid: "",                                          //分享的人的标识
-    key: " 微信号、城市、公司、行业等进行搜索",                  //搜索框值
-    company: '',                                              //用户公司
-    openid: '',                                               //用户标识
-    notadd: false,                                            //是否已添加信息
-    idustry: '',                                              //用户行业
-    city: '',                                                 //用户城市
-    email: '',                                                //用户邮箱
-    phone: '',                                                //用户手机号
-    image: '',                                                //用户头像
-    server: "",                                               //服务器地址
-    list: [],                                                 //存储收到的同行信息
+    name: '',        //用户名字
+    job: '',         //用户职务 
+    wechatnum: '',   //用户微信号
+    othercardid: "", //分享的人的标识
+    company: '',     //用户公司
+    openid: '',      //用户标识
+    notadd: false,   //是否已添加信息
+    idustry: '',     //用户行业
+    city: '',        //用户城市
+    email: '',       //用户邮箱
+    phone: '',       //用户手机号
+    image: '',       //用户头像
+    server: "",      //服务器地址
+    list: [],        //存储收到的同行信息
     hidden: true,     
-    scrollTop: 0,                                             //滚动菜单
-    scrollHeight: 0                                           //滚动菜单高度 
+    scrollTop: 0,    //滚动菜单
+    scrollHeight: 0, //滚动菜单高度 
+    key: " 微信号、城市、公司、行业等进行搜索"   //搜索框值
   },
   onLoad: function (a) {
     var that = this;
@@ -59,7 +59,7 @@ Page({
           company: res.userCompany,
           idustry: res.userIndustry,
           city: res.userCity,
-          emai: res.userEmail,
+          email: res.userEmail,
           phone: res.userPhone,
           image: res.userImg,
         })

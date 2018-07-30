@@ -3,7 +3,7 @@
   <view class='search-in'>
     <image src='/pages/images/3.png' mode="aspectFit"></image>
     <!-- <input placeholder='{{key}}' disabled='false' bindblur='bindSearch' placeholder-style='font-size:26rpx;color:#ccc;'></input> -->
-    <input placeholder='{{key}}' placeholder-style='font-size:26rpx;color:#ccc;'></input>
+    <input placeholder='{{key}}' disabled='disabled' placeholder-style='font-size:26rpx;color:#ccc;'></input>
   </view>
 </view>
 <view class='mine-card'>
