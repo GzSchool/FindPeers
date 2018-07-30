@@ -60,37 +60,5 @@ Page({
             })
           }
     }
-    /*wx.login({
-      success: function (c) {
-        if (c.code) {
-          wx.getUserInfo({
-            success:function(res){
-              if (this.data.otheropenid!=null){
-                var otheropenid = this.data.otheropenid;
-                console.log(otheropenid)                    
-              wx.redirectTo({
-                url: '/pages/peerscards/peerscards?otheropenid='+otheropenid,
-              })
-              }else{
-                var openid = this.data.openid;
-                console.log(openid)                  
-                wx.redirectTo({
-                  url: '/pages/addcards/addcards?openid='+openid,
-                })
-              }
-            },
-            fail:function(a){
-              if (this.data.otheropenid){
-                var otheropenid = this.data.otheropenid;
-                console.log(otheropenid)                    
-                wx.navigateTo({
-                  url: '/pages/peerscards/peerscards?otheropenid='+otheropenid+'&isshow=false',
-                })
-              }
-            }
-          })
-        }
-      }
-    })*/
   }
 })

@@ -101,29 +101,6 @@ Page({
         image: res.data.data[0].userImg,
       })
     })
-    /*wx.request({
-      method: 'GET',
-      url: server +'/userCard/findCardByParam',
-      data:{
-        id: othercardid
-      },
-      header: {
-        'content-type': 'application/json'
-      },
-      success:function(b){
-        console.log(b)
-        that.setData({
-          name: b.data.data[0].username,
-          wechatnum: b.data.data[0].userWechat,
-          company: b.data.data[0].userCompany,
-          idustry: b.data.data[0].userIndustry,
-          city: b.data.data[0].userCity,
-          email: b.data.data[0].userEmail,
-          phone: b.data.data[0].userPhone,
-          image: b.data.data[0].userImg,
-        })
-      }
-    })*/
   },
   addcards:function(e){
     var that=this
@@ -146,24 +123,6 @@ Page({
         delta: 1
       })
     })
-    /*wx.request({
-      method: 'GET',
-      url: server + '/userPeer/saveOrUpdate',
-      data: {
-        openId:openid,
-        cardIds: cardId,
-        saveFlag: 1,
-        groupId:'0'
-      },
-      header: {
-        'content-type': 'application/json'
-      },
-      success: function (res) {
-        wx.switchTab({
-          url: '/pages/findmore/findmore',
-        })
-      }
-    })*/
   },
   back:function(){
     wx.switchTab({
@@ -266,31 +225,6 @@ Page({
         delta: 1
       })
     })
-    /*wx.request({
-      method: 'POST',
-      url: server + '/userPeer/saveOrUpdate',
-      data: {
-        openId: openid,
-        cardIds: cardId,
-        saveFlag: 2,
-        groupId:'0'
-      },
-      header: {
-        'content-type': 'application/json'
-      },
-      success: function (res) {
-        console.log(res)
-        wx.switchTab({
-          url: '/pages/findmore/findmore',
-        })
-      },
-      fail:function(p){
-        console.log(p)
-        wx.switchTab({
-          url: '/pages/findmore/findmore',
-        })
-      }
-    })*/
   },
   backToFind:function(){
     this.hideModal()

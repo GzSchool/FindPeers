@@ -65,37 +65,6 @@ Page({
         hidden: true
       });
     })
-    /*wx.request({
-      method: 'GET',
-      url: app.globalData.server + '/userGroup/findGroupCards',
-      data: {
-        openId: that.data.openid,
-        groupId: that.data.groupId
-      },
-      header: {
-        'content-type': 'application/json'
-      },
-      success: function (b) {
-        console.log(b)
-        var length = b.data.data.length
-        for (var i = 0; i < length; i++) {
-          list.push(b.data.data[i]);
-          if (b.data.data[i].saveFlag == 1) {
-            listOfSave.push(b.data.data[i].id)
-            console.log(b.data.data[i].id)
-          }
-        }
-        console.log(list)
-        console.log(listOfSave)
-        that.setData({
-          list: list,
-          listOfSave: listOfSave
-        });
-        that.setData({
-          hidden: true
-        });
-      }
-    })*/
     util.getMyData(openId).then(function(res){
       if (res !== null) {
         that.setData({
@@ -114,40 +83,6 @@ Page({
         that.data.canSee = true
       }
     })
-    /*wx.request({
-      method: 'GET',
-      url: server + '/userCard/findOneByOpenId',
-
-      data: {
-        openId: that.data.openid
-      },
-
-      header: {
-        'content-type': 'application/json'
-      },
-      success: function (c) {
-        console.log(c)
-        if(c.data.data!==null){
-          that.setData({
-            canSee:false,
-            name: c.data.data.username,
-            wechatnum: c.data.data.userWechat,
-            company: c.data.data.userCompany,
-            job: c.data.data.userJob,
-            industry: c.data.data.userIndustry,
-            city: c.data.data.userCity,
-            email: c.data.data.userEmail,
-            phone: c.data.data.userPhone,
-            image: c.data.data.userImg,
-          })
-          console.log(that.data.canSee)
-        }else{
-          that.data.canSee=true
-          console.log(that.data.canSee)
-        }
-        console.log(that.data.canSee)
-      }
-    })*/
   },
   share: function () {
     var that = this
@@ -294,25 +229,6 @@ Page({
         isAdd: true
       })
     })
-    /*wx.request({
-      method: 'POST',
-      url: server + '/userPeer/saveOrUpdate',
-      data: {
-        openId: openid,
-        cardIds: id,
-        saveFlag: 2,
-        groupId:groupid
-      },
-      header: {
-        'content-type': 'application/json'
-      },
-      success: function (res) {
-        that.setData({
-          isAdd:true
-        })
-        console.log(res)
-      }
-    })*/
   },
   goPeers:function(e){
     console.log(e)

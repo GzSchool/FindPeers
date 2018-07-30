@@ -46,34 +46,6 @@ Page({
         hidden: true
       });
     })
-    /*wx.request({
-      method: 'GET',
-      url: server+'/userGroup/findUserGroupByParam',
-      data: {
-        openId: openid,
-      },
-      header: {
-        'content-type': 'application/json'
-      },
-      success:function(b){
-        console.log(b)
-        var length=b.data.data.length;
-        var i = 0
-        for (i; i < length; i++) {
-          console.log(length);
-          console.log(i);
-
-          list.push(b.data.data[i]);
-        }
-        console.log(list)
-        that.setData({
-          list: list
-        });
-        that.setData({
-          hidden: true
-        });
-      }
-    })*/
   },
   search:function(a){
    console.log(a)

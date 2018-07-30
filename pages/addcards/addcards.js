@@ -2,30 +2,30 @@
 var app = getApp();
 Page({
   data: {
-    count: 0,
-    openid: "",
-    othercardid:"",
-    groupId:"",
-    userId: 0,
-    name: "",
-    other: '',
-    wechatnum: "",
-    image:"",
-    company: "",
-    idustry: "",
-    job:'',
-    city: "",
-    phone: "",
-    server:"",
-    demand: "",
-    introduction: "",
-    resource: "",
-    email: "",
-    back:"",
-    isshow:'',
-    isshow0: false,
-    isshow1: false,
-    isshow2: false
+    count: 0,                                                           //简介字数
+    openid: "",                                                         //用户标识
+    othercardid:"",                                                     //分享的人的标识
+    groupId:"",                                                         //群id
+    userId: 0,                                                          //用户id
+    name: "",                                                           //用户名字
+    other: '',                                                      
+    wechatnum: "",                                                      //用户填写的微信号
+    image:"",                                                           //用户的微信头像
+    company: "",                                                        //用户填写的公司名称
+    idustry: "",                                                        //用户选择的行业
+    job:'',                                                             //用户填写的职务 
+    city: "",                                                           //用户填写的城市
+    phone: "",                                                          //用户手机号
+    server:"",                                                          //服务器地址
+    demand: "",                                                         //用户填写的需求
+    introduction: "",                                                   //用户简介
+    resource: "",                                                       //用户资源
+    email: "",                                                          //用户邮箱
+    back:"",                                                            //是否返回
+    isshow:'',                                                          //是否显示
+    isshow0: false,                                                     //需求是否显示
+    isshow1: false,                                                     //资源是否显示
+    isshow2: false                                                      //邮箱是否显示
   },
   onLoad: function(res) {
     console.log(res.job)
@@ -62,7 +62,7 @@ Page({
       }
     })
   },
-  addmore: function() {
+  addmore: function() {                                                //用户点击添加更多
     var that = this
     wx.showActionSheet({
       itemList: ["需求", "资源", "邮箱"],
@@ -82,7 +82,7 @@ Page({
         }
       }
     })
-  },
+  }, 
   addname: function(e) {
     console.log(e)
     if (e.detail.value == null) {
@@ -175,7 +175,7 @@ Page({
 
 
 
-  save: function(e) {
+  save: function(e) {                                                              //用户点击保存
     var that=this
     var othercardid = app.globalData.othercardid
     var server = this.data.server
@@ -259,7 +259,7 @@ Page({
         })
       }
     },
-  getPhoneNumber: function (e) {
+  getPhoneNumber: function (e) {                                                        //用户点击微信获取手机
     console.log(e.detail.errMsg)
     console.log(e.detail.iv)
     console.log(e.detail.encryptedData)
@@ -284,7 +284,7 @@ Page({
       })
     }
   },
-  chooseSize: function (e) {
+  chooseSize: function (e) {                                
     // 用that取代this，防止不必要的情况发生
     var that = this;
     // 创建一个动画实例

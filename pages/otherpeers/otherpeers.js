@@ -97,29 +97,6 @@ Page({
         image: res.data.data[0].userImg,
       })
     })
-    /*wx.request({
-      method: 'GET',
-      url: server + '/userCard/findCardByParam',
-      data: {
-        id: ops.cardId
-      },
-      header: {
-        'content-type': 'application/json'
-      },
-      success: function (b) {
-        console.log(b)
-        that.setData({
-          name: b.data.data[0].username,
-          wechatnum: b.data.data[0].userWechat,
-          company: b.data.data[0].userCompany,
-          idustry: b.data.data[0].userIndustry,
-          city: b.data.data[0].userCity,
-          email: b.data.data[0].userEmail,
-          phone: b.data.data[0].userPhone,
-          image: b.data.data[0].userImg,
-        })
-      }
-    })*/
   },
   addcards: function (e) {
     var othercardid = app.globalData.othercardid;
@@ -242,28 +219,5 @@ Page({
         delta: 1
       })
     })
-    /*wx.request({
-      method: 'POST',
-      url: server + '/userPeer/saveOrUpdate',
-      data: {
-        openId: openid,
-        cardIds: cardIds,
-        saveFlag: 2,
-        groupId: groupId,
-      },
-      header: {
-        'content-type': 'application/json'
-      },
-      success: function (res) {
-        wx.navigateBack({
-          delta: 1
-        })
-      },
-      fail: function (p) {
-        wx.navigateBack({
-          delta:1
-        })
-      }
-    })*/
   }
 })

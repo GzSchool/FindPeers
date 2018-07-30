@@ -3,29 +3,28 @@ var app = getApp();
 var util = require('../../utils/util.js');
 Page({
   data: {
-    name: '',
-    job: '',
-    wechatnum: '',
-    othercardid: "",
-    key: " 微信号、城市、公司、行业等进行搜索",
-    company: '',
-    openid: '',
-    notadd: false,
-    idustry: '',
-    city: '',
-    email: '',
-    phone: '',
-    image: '',
-    server: "",
-    list: [],
-    hidden: true,
-    list: [],
-    scrollTop: 0,
-    scrollHeight: 0
+    name: '',                                                 //用户名字
+    job: '',                                                  //用户职务 
+    wechatnum: '',                                            //用户微信号
+    othercardid: "",                                          //分享的人的标识
+    key: " 微信号、城市、公司、行业等进行搜索",                  //搜索框值
+    company: '',                                              //用户公司
+    openid: '',                                               //用户标识
+    notadd: false,                                            //是否已添加信息
+    idustry: '',                                              //用户行业
+    city: '',                                                 //用户城市
+    email: '',                                                //用户邮箱
+    phone: '',                                                //用户手机号
+    image: '',                                                //用户头像
+    server: "",                                               //服务器地址
+    list: [],                                                 //存储收到的同行信息
+    hidden: true,     
+    scrollTop: 0,                                             //滚动菜单
+    scrollHeight: 0                                           //滚动菜单高度 
   },
   onLoad: function (a) {
     var that = this;
-    wx.getSystemInfo({
+    wx.getSystemInfo({                                        //获取屏幕高度给滚动条添加高度
       success: function (res) {
         console.info(res.windowHeight);
         that.setData({
@@ -44,13 +43,13 @@ Page({
     var notadd = app.globalData.notadd;
     that.data.openid = app.globalData.openid;
     var openid = app.globalData.openid;
-    util.getMyData(openid).then(function (res) {
+    util.getMyData(openid).then(function (res) {               //用户查询自己信息
       console.log(res)
       if (res == null) {
         that.setData({
           notadd: true
         })
-        app.globalData.notadd=true
+        app.globalData.notadd = true
       } else {
         app.globalData.notadd = false
         app.globalData.isshow = true
@@ -66,46 +65,9 @@ Page({
         })
       }
     })
-   /* console.log(app.globalData.openid)
-    var server = that.data.server
-    console.log(that.data.server + '/userCard/findOneByOpenId')
-    wx.request({
-      method: 'GET',
-      url: server + '/userCard/findOneByOpenId',
-      data: {
-        openId: openid
-      },
-      header: {
-        'content-type': 'application/json'
-      },
-      success: function (b) {
-        console.log(b)
-        if (b.data.data == null) {
-          console.log(b.data.data == null)
-          that.setData({
-            notadd: true
-          })
-          app.globalData.notadd = true
-        } else {
-          that.data.notadd = false
-          app.globalData.notadd = false
-          app.globalData.isshow = true
-          that.setData({
-            name: b.data.data.username,
-            wechatnum: b.data.data.userWechat,
-            company: b.data.data.userCompany,
-            idustry: b.data.data.userIndustry,
-            city: b.data.data.userCity,
-            emai: b.data.data.userEmail,
-            phone: b.data.data.userPhone,
-            image: b.data.data.userImg
-          })
-        }
-      }
-    })*/
     var openid = app.globalData.openid;
     var list = that.data.list
-    util.getMyPeers(openid).then(function (res) {
+    util.getMyPeers(openid).then(function (res) {             //获取当前保存的同行名片
       console.log(res)
       var length = res.data.data.length;
       for (var i = 0; i < length; i++) {
@@ -119,33 +81,6 @@ Page({
         });
       }
     });
-    /*var server = that.data.server
-    wx.request({
-      method: 'GET',
-      url: server + '/userPeer/findAllByOpenId',
-      data: {
-        openId: openid,
-      },
-      header: {
-        'content-type': 'application/json'
-      },
-      success: function (res) {
-        console.log(res);
-        console.log(res.data.data.length);
-        var length = res.data.data.length;
-        for (var i = 0; i < length; i++) {
-          list.push(res.data.data[i]);
-          console.log(list[i])
-        console.log(list)
-        that.setData({
-          list: list
-        });
-        console.log(list);
-        that.setData({
-          hidden: true
-        });
-      }
-    });*/
   },
   trans: function () {
     wx.navigateTo({
