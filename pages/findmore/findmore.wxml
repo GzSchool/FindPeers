@@ -2,11 +2,8 @@
 <view class='search' bindtap='bindtrans'>
   <view class='search-in'>
     <image src='/pages/images/3.png' mode="aspectFit"></image>
-<<<<<<< HEAD
     <input placeholder='{{key}}' disabled='false' bindblur='bindSearch' placeholder-style='font-size:26rpx;color:#ccc;'></input>
-=======
     <input placeholder='{{key}}' placeholder-style='font-size:26rpx;color:#ccc;'></input>
->>>>>>> 27be0a2584ddec61d68e0101ad95f06f11c5c750
   </view>
 </view>
 <view class='mine-card'>
