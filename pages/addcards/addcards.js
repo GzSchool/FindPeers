@@ -61,49 +61,6 @@ Page({
         })
       }
     })
-    /*if(app.globalData.othercardid){
-    wx.showActionSheet({
-      itemList: ["马上添加", "暂不添加"],
-      success: function(d) {
-        if (d.tapIndex == 0) {
-          console.log(1111);
-        }
-        if (d.tapIndex == 1) {
-          var openid = that.data.openid
-          var othercardid = app.globalData.othercardid
-          console.log(othercardid==null)
-          if (othercardid!=""){
-            that.globalData.isshow = false
-          wx.navigateTo({
-            url: '/pages/peerscards/peerscards?othercardid=' + othercardid,
-            })
-          }else{
-            wx.switchTab({
-            url: '/pages/findmore/findmore',
-          })
-          }
-          
-        }
-      },
-      fail: function() {
-        console.log(openid)
-        if (othercardid != "") {
-          that.globalData.isshow = false
-          wx.navigateTo({
-            url: '/pages/peerscards/peerscards?othercardid=' + othercardid,
-          })
-        } else {
-          wx.switchTab({
-            url: '/pages/findmore/findmore',
-          })
-        }
-      }
-    })
-    }else{
-      wx.navigateTo({
-        url: '/pages/addcards/addcards',
-      })
-    }*/
   },
   addmore: function() {
     var that = this

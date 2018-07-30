@@ -34,11 +34,11 @@
   </view>
   <view class='mine-card'>
     <view class='mine-info'>
-      <view class='mes-li' wx:for="{{list}}" wx:for-index="index" wx:for-item="item" wx:key="11" data-id='{{item.id}}' bindtap='goPeers'>
-        <view class='li-left'>
+      <view class='mes-li' wx:for="{{list}}"  wx:for-item="item" data-index='{{index}}' wx:key="11" data-id='{{item.id}}' bindtap='selectOne'>
+        <view class='li-left' bindtap='goPeers'>
           <image src='{{item.pic_url}}'></image>
         </view>
-        <view class='li-right'>
+        <view class='li-right' bindtap='goPeers'>
           <view class='mes-name'>{{item.username}}
             <text>{{item.userIndustry}}</text>
           </view>
@@ -46,7 +46,7 @@
           <view class='mes-info'>{{item.userCompany}}</view>
         </view>
         <view class='li-select'>
-          <view class="select {{item.isselect?'':'noselect'}}" bindtap='selectOne'></view>
+          <view class="select {{item.isselect?'':'noselect'}}"></view>
         </view>
       </view>
     </view>
@@ -98,7 +98,6 @@
         <view class="city">{{item.userCity}}</view>
         <view class="company">{{item.userCompany}}</view>
         <checkbox class="check1 {{item.saveFlag==1?'':'map-hide'}}" data-cardId="{{item.id}}"data-index='{{index}}' checked="{{isChecked?'checked':''}}"/>
-        <text class="name2 {{notadd?'':'map-hide'}} hide ">需填写信息才可查看</text>
         <text class="city2 {{notadd?'':'map-hide'}} hide ">需填写信息才可查看</text>
         <text class="company2 {{notadd?'':'map-hide'}} hide ">需填写信息才可查看</text>
     </view>

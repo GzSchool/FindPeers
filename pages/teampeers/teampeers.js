@@ -1,5 +1,6 @@
 // pages/teampeers/teampeers.js
 var app = getApp()
+var util = require('../../utils/util.js');
 Page({
   data: {
     openid: "",
@@ -32,7 +33,8 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(ops) {
+  onLoad: function (ops) {
+    console.log(ops)
     var that = this
     that.setData({
       server: app.globalData.server,
@@ -46,74 +48,46 @@ Page({
     var list = that.data.list;
     var server = that.data.server
     var listOfSave = that.data.listOfSave
-    wx.request({
-      method: 'GET',
-      url: app.globalData.server + '/userGroup/findGroupCards',
-      data: {
-        openId: that.data.openid,
-        groupId: that.data.groupId
-      },
-      header: {
-        'content-type': 'application/json'
-      },
-      success: function(b) {
-        console.log(b)
-        var length = b.data.data.length
-        for (var i = 0; i < length; i++) {
-          b.data.data[i].isselect = false
-          list.push(b.data.data[i]);
-          if (b.data.data[i].saveFlag == 1) {
-            listOfSave.push(b.data.data[i].id)
-            console.log(b.data.data[i].id)
-          }
+    var openId = that.data.openid;
+    var groupId = that.data.groupId;
+    util.getGroupCards(openId, groupId).then(function (res) {
+      var length = res.data.data.length;
+      for (var i = 0; i < length; i++) {
+        res.data.data[i].isselect = false
+        // res.data.data[i].index = i
+        list.push(res.data.data[i]);
+        if (res.data.data[i].saveFlag == 1) {
+          listOfSave.push(res.data.data[i].id)
         }
-        console.log(list)
-        console.log(listOfSave)
-        that.setData({
-          list: list,
-          listOfSave: listOfSave
-        });
-        that.setData({
-          hidden: true
-        });
       }
+      that.setData({
+        list: list,
+        listOfSave: listOfSave
+      });
+      that.setData({
+        hidden: true
+      });
     })
-    wx.request({
-      method: 'GET',
-      url: server + '/userCard/findOneByOpenId',
-
-      data: {
-        openId: that.data.openid
-      },
-
-      header: {
-        'content-type': 'application/json'
-      },
-      success: function(c) {
-        console.log(c)
-        if (c.data.data !== null) {
-          that.setData({
-            canSee: false,
-            name: c.data.data.username,
-            wechatnum: c.data.data.userWechat,
-            company: c.data.data.userCompany,
-            job: c.data.data.userJob,
-            industry: c.data.data.userIndustry,
-            city: c.data.data.userCity,
-            email: c.data.data.userEmail,
-            phone: c.data.data.userPhone,
-            image: c.data.data.userImg,
-          })
-          console.log(that.data.canSee)
-        } else {
-          that.data.canSee = true
-          console.log(that.data.canSee)
-        }
-        console.log(that.data.canSee)
+    util.getMyData(openId).then(function (res) {
+      if (res !== null) {
+        that.setData({
+          canSee: false,
+          name: res.username,
+          wechatnum: res.userWechat,
+          company: res.userCompany,
+          job: res.userJob,
+          industry: res.userIndustry,
+          city: res.userCity,
+          email: res.userEmail,
+          phone: res.userPhone,
+          image: res.userImg,
+        })
+      } else {
+        that.data.canSee = true
       }
     })
   },
-  share: function() {
+  share: function () {
     var that = this
     var openid = this.data.openid
     var groupid = this.data.groupid
@@ -121,7 +95,7 @@ Page({
     wx.showModal({
       title: '分享到本群',
       content: '确定分享到本群',
-      success: function(r) {
+      success: function (r) {
         if (r.confirm) {
           wx.request({
             method: 'GET',
@@ -134,7 +108,7 @@ Page({
             header: {
               'content-type': 'application/json'
             },
-            success: function(a) {
+            success: function (a) {
               console.log(a)
               that.setData({
                 cansee: true
@@ -145,20 +119,21 @@ Page({
       }
     })
   },
-  mycards: function() {
+  mycards: function () {
     wx.navigateTo({
       url: '/pages/mycards/mycards?back=true',
     })
   },
-  checkboxChange: function(a) {
+  checkboxChange: function (a) {
     if (a.type == "change") {
 
     }
     console.log(a)
 
   },
-  check: function(a) {},
-  chooseSize: function(e) {
+  check: function (a) {
+  },
+  chooseSize: function (e) {
     // 用that取代this，防止不必要的情况发生
     var that = this;
     // 创建一个动画实例
@@ -180,7 +155,7 @@ Page({
       chooseSize: true
     })
     // 设置setTimeout来改变y轴偏移量，实现有感觉的滑动
-    setTimeout(function() {
+    setTimeout(function () {
       animation.translateY(0).step()
       that.setData({
         animationData: animation.export(),
@@ -189,7 +164,7 @@ Page({
       app.globalData.canSee = true
     }, 200)
   },
-  hideModal: function(e) {
+  hideModal: function (e) {
     var that = this;
     var animation = wx.createAnimation({
       duration: 1000,
@@ -201,7 +176,7 @@ Page({
       animationData: animation.export()
 
     })
-    setTimeout(function() {
+    setTimeout(function () {
       animation.translateY(0).step()
       that.setData({
         animationData: animation.export(),
@@ -210,7 +185,7 @@ Page({
       })
     }, 200)
   },
-  checkboxChange: function(e) {
+  checkboxChange: function (e) {
     var that = this
     console.log(e)
     var id = that.data.id;
@@ -225,6 +200,8 @@ Page({
         isChecked: false,
         id: []
       })
+
+
     } else {
       for (var i = 0; i < listOfSave.length; i++) {
         id.push(listOfSave[i])
@@ -238,7 +215,7 @@ Page({
     }
     console.log(id)
   },
-  aaa: function(e) {
+  aaa: function (e) {
     var that = this
     var server = app.globalData.server;
     var openid = app.globalData.openid;
@@ -247,30 +224,16 @@ Page({
     var groupid = that.data.groupid
     var id = that.data.id
     console.log(id)
+
     console.log(groupid)
     var userpeers = [];
-    userpeers.push()
-    wx.request({
-      method: 'POST',
-      url: server + '/userPeer/saveOrUpdate',
-      data: {
-        openId: openid,
-        cardIds: id,
-        saveFlag: 2,
-        groupId: groupid
-      },
-      header: {
-        'content-type': 'application/json'
-      },
-      success: function(res) {
-        that.setData({
-          isAdd: true
-        })
-        console.log(res)
-      }
+    util.saveOrUpdate(openid, groupid, 2, id).then(function (res) {
+      that.setData({
+        isAdd: true
+      })
     })
   },
-  goPeers: function(e) {
+  goPeers: function (e) {
     console.log(e)
     var cardId = e.currentTarget.dataset.id;
     var groupId = this.data.groupId;
@@ -279,12 +242,12 @@ Page({
       url: '/pages/otherpeers/otherpeers?cardId=' + cardId + '&groupId=' + groupId,
     })
   },
-  inputSearch: function() {
+  inputSearch: function () {
     wx.navigateTo({
       url: '/pages/inputSearch/inputSearch',
     })
   },
-  addcards: function(e) {
+  addcards: function (e) {
     var othercardid = app.globalData.othercardid;
     var openid = app.globalData.openid;
     var groupId = this.data.groupId
@@ -295,35 +258,41 @@ Page({
         url: '/pages/addcards/addcards?back=true' + '&groupId=' + groupId + '&openid=' + openid,
       })
     }
-    /*wx.getSetting({
-      success: function (b) {
-        if (b.authSetting['scope.userInfo']) {
-
-          var openid = app.globalData.openid
-          var othercardid = app.globalData.othercardid
-          wx.navigateTo({
-            url: '/pages/addcards/addcards?back=true',
-          })
-        }
-      }
-    })*/
   },
-  selectAll: function() {
+  selectAll: function () {
     let val = this.data.selectAll
+    console.log(val)
     let list = this.data.list
-    for (let i = 0; i < list.length ; i ++ ) {
-      list[i].isselect = !list[i].isselect
+    for (let i = 0; i < list.length; i++) {
+      list[i].isselect = val?false:true
     }
     console.log(list)
     this.setData({
-      selectAll: !val,
+      selectAll: val?false:true,
       list: list
     })
   },
-  selectOne: function() {
-    let val = this.data.selectAll
+  selectOne: function (e) {
+    let i = e.currentTarget.dataset.index
+    let list = this.data.list
+    list[i].isselect = list[i].isselect?false:true
     this.setData({
-      selectOne: !val
+      list: list
     })
+    let j = 0;
+    for (let k = 0; k < list.length; k ++) {
+      if (list[k].isselect === true) {
+        j ++;
+      }
+    }
+    if (j === list.length) {
+      this.setData({
+        selectAll: true
+      })
+    } else {
+      this.setData({
+        selectAll: false
+      })
+    }
   }
 })

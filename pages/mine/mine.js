@@ -1,5 +1,6 @@
 // pages/mine/mine.js
 var app=getApp();
+var util = require('../../utils/util.js');
 Page({
 
   /**
@@ -20,51 +21,26 @@ Page({
     var openid = app.globalData.openid
     that.data.server=app.globalData.server;
     var server = that.data.server
-    wx.login({
-      success:function(a){
-        if(a.code){
-          var code=a.code
-          wx.request({
-            method: 'GET',
-            url: server +'/user/userAuthor',
-
-            data: {
-              code:a.code
-            },
-
-            header: {
-              'content-type': 'application/json'
-            },
-            success:function(b){
-              var openid=b.data.data.openId;
-              var openid=app.globalData.openid;
-              wx.request({
-                method: 'GET',
-                url: server+'/userCard/findOneByOpenId',
-
-                data: {
-                  openId:openid
-                },
-
-                header: {
-                  'content-type': 'application/json'
-                },
-                success:function(c){
-                  that.setData({
-                    name: c.data.data.username,
-                    wechatnum: c.data.data.userWechat,
-                    company: c.data.data.userCompany,
-                    industry: c.data.data.userIndustry,
-                    city: c.data.data.userCity,
-                    email: c.data.data.userEmail,
-                    phone: c.data.data.userPhone,
-                    image: c.data.data.userImg,
-                  })
-                }
-              })
-            }
-          })
-        }
+    util.getMyData(openid).then(function (res) {
+      console.log(res)
+      if (res == null) {
+        that.setData({
+          notadd: true
+        })
+        app.globalData.notadd = true
+      } else {
+        app.globalData.notadd = false
+        app.globalData.isshow = true
+        that.setData({
+          name: res.username,
+          wechatnum: res.userWechat,
+          company: res.userCompany,
+          idustry: res.userIndustry,
+          city: res.userCity,
+          emai: res.userEmail,
+          phone: res.userPhone,
+          image: res.userImg,
+        })
       }
     })
   },
