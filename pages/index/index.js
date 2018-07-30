@@ -14,9 +14,9 @@ Page({
     //   url: '../quncards/quncards',
     // })
     // wx.navigateTo({
-    //   // url: '../inputSearch/inputSearch',
-    //   // url: '../company/company',
-    //   url: 'pages/industry/industry'
+      // url: '../inputSearch/inputSearch',
+      // url: '../company/company',
+      // url: '../first/first'
     // })
     var that=this
     that.data.server=app.globalData.server;

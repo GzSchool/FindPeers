@@ -1,13 +1,13 @@
 <!--pages/inputSearch/inputSearch.wxml-->
-<view class='search' bindtap='bindtrans'>
+<view class='search'>
   <view class='search-in'>
     <image src='/pages/images/3.png' mode="aspectFit"></image>
-    <input focus='true' selection-start='1' placeholder='{{key}}' bindblur='bindSearch' placeholder-style='font-size:26rpx;color:#ccc;'></input>
+    <input focus='true' selection-start='1' placeholder='{{key}}' bindinput='bindSearch' placeholder-style='font-size:26rpx;color:#ccc;'></input>
   </view>
 </view>
 <view class='list' bindscrolltolower="bindDownLoad" bindscroll="scroll" bindscrolltoupper="refresh">
   <view class='item' wx:for="{{list}}" wx:for-index="index" wx:for-item="item" data-id="{{item.id}}" wx:key="11" data-key='{{item.openId}}' bindtap='find'>
-    <view class='item-left'><image src=''></image></view> 
+    <view class='item-left'><image src='{{item.userImg}}'></image></view> 
     <view class='item-right'>
       <view class='name'>{{item.username}}<text>{{item.userIndustry}}</text></view>
       <view class='info'>{{item.userCity}}</view>

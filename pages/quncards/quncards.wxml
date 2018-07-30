@@ -13,9 +13,9 @@
         <view class='li-right'>
           <view class='title'>
             <view class='title-name'>{{item.groupId}}</view>
-            <view class='title-time'>{{item.delFlag}}</view>
+            <view class='title-time'>{{item.ctTime}}</view>
           </view>
-          <view class='count'>未保存：0张</view>
+          <view class='count'>未保存：{{item.delFlag}}张</view>
         </view>
       </view>
     </view>

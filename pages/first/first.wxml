@@ -13,13 +13,33 @@
   </view>
   <view class='main-down'>
     <view class='down-left'>
+      <view class='contact-info'>
+        <view class='info-left'>
+          <image src='../images/phone.png' style='width:17rpx;height:25rpx;'></image>
+        </view>
+      {{telephone}}</view>
+      <view class='contact-info'>
+        <view class='info-left'>
+          <image src='../images/wechat.png' style='width:26rpx;height:21rpx;'></image>
+        </view>
+        {{weChatNumber}}</view>
+      <view class='contact-info'>
+        <view class='info-left'>
+          <image src='../images/email.png' style='width:24rpx;height:16rpx;'></image>
+        </view>
+        {{email}}</view>
+    </view>
+    <view class='down-right'>
+      <image src='../images/set.png' bindtap='viewThisCards'></image>
+    </view>
+    <!-- <view class='down-left'>
       <view class='contact-info'>{{telephone}}</view>
       <view class='contact-info'>{{weChatNumber}}</view>
       <view class='contact-info'>{{email}}</view>
     </view>
     <view class='down-right'>
       <image src='../images/set.png'></image>
-    </view>
+    </view> -->
   </view>
 </view>
 <view class="footer">

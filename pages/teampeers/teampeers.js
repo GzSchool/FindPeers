@@ -1,10 +1,6 @@
 // pages/teampeers/teampeers.js
 var app = getApp()
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
     openid: "",
     groupId: "",
@@ -21,7 +17,7 @@ Page({
     qunname:"格致文化",
     server: "",
     city: "",
-    key: "按微信号，城市，行业搜索",
+    key: " 微信号、城市、公司、行业等进行搜索",
     industry: "",
     company: "",
     phone: "",
@@ -51,7 +47,7 @@ Page({
     var listOfSave=that.data.listOfSave
     wx.request({
       method: 'GET',
-      url: 'http://localhost:8080/userGroup/findGroupCards',
+      url: app.globalData.server + '/userGroup/findGroupCards',
       data: {
         openId: that.data.openid,
         groupId: that.data.groupId
