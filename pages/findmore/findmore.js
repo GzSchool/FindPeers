@@ -98,7 +98,7 @@ Page({
             city: b.data.data.userCity,
             emai: b.data.data.userEmail,
             phone: b.data.data.userPhone,
-            image: b.data.data.userImg,
+            image: b.data.data.userImg
           })
         }
       }
@@ -190,6 +190,9 @@ Page({
     })
   },
   onShow: function () {
+    // wx.navigateTo({
+    //   url: '../first/first'
+    // })
     this.onLoad();
   }
 })

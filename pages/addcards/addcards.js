@@ -1,12 +1,9 @@
 // pages/addCards/addcards.js
 var app = getApp();
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
     count: 0,
+<<<<<<< HEAD
     myJob: [
       {
         "value": "广告/传媒/文化",
@@ -69,6 +66,8 @@ Page({
         data: ["政府/公共事业", "非营利机构"],
       }
     ],
+=======
+>>>>>>> 27be0a2584ddec61d68e0101ad95f06f11c5c750
     openid: "",
     othercardid:"",
     groupId:"",

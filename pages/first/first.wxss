@@ -37,6 +37,7 @@ Page{
   height: 160rpx;
   border-radius: 20rpx;
 }
+
 .main .main-down {
   margin-top: 60rpx;
   box-sizing: border-box;
@@ -47,6 +48,11 @@ Page{
   color: #606060;
   height: 48rpx;
   line-height: 48rpx;
+  display: flex;
+  align-items: center;
+}
+.main .main-down .down-left .contact-info .info-left {
+  width: 32rpx;
 }
 .main .main-down .down-left{
   flex: 1;
@@ -60,6 +66,7 @@ Page{
   width: 36rpx;
   height: 36rpx;
 }
+
 .footer {
   position: absolute;
   bottom: 30rpx;

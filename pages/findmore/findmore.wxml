@@ -2,7 +2,11 @@
 <view class='search' bindtap='bindtrans'>
   <view class='search-in'>
     <image src='/pages/images/3.png' mode="aspectFit"></image>
+<<<<<<< HEAD
     <input placeholder='{{key}}' disabled='false' bindblur='bindSearch' placeholder-style='font-size:26rpx;color:#ccc;'></input>
+=======
+    <input placeholder='{{key}}' placeholder-style='font-size:26rpx;color:#ccc;'></input>
+>>>>>>> 27be0a2584ddec61d68e0101ad95f06f11c5c750
   </view>
 </view>
 <view class='mine-card'>
@@ -42,7 +46,7 @@
       <view class='mes-info'>北京格致文化传播有限公司</view>
     </view>
   </view>
-  <view class='letter'>B</view>
+  <!-- <view class='letter'>B</view>
   
   <view class='mes-li'>
     <view class='li-left'>
@@ -53,8 +57,7 @@
       <view class='mes-info'>北京市海淀区</view>
       <view class='mes-info'>北京格致文化传播有限公司</view>
     </view>
-  </view>
-  <view class='letter'>Z</view>
+  </view> -->
   <view class='mes-link'>
     <image src='/pages/images/3.png'></image>
     <view class='link-item'>A</view>

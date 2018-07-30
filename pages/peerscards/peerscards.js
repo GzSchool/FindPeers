@@ -176,7 +176,7 @@ Page({
     // 创建一个动画实例
     var animation = wx.createAnimation({
       // 动画持续时间
-      duration: 500,
+      duration: 400,
       // 定义动画效果，当前是匀速
       timingFunction: 'linear'
     })
@@ -293,9 +293,10 @@ Page({
     })*/
   },
   backToFind:function(){
-    wx.switchTab({
-      url: '/pages/findmore/findmore',
-    })
+    this.hideModal()
+    // wx.switchTab({
+    //   url: '/pages/findmore/findmore',
+    // })
   },
   toTeamPeers:function(){
     var groupId=app.globalData.groupid;

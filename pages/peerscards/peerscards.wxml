@@ -1,5 +1,62 @@
 <!--pages/peerscards/peerscards.wxml-->
-<view class="mycards">
+
+<view class='main'>
+  <view class='main-top'>
+    <view class='top-left'>
+      <view class='info name'>{{name}}</view>
+      <view class='info'>{{idustry}}</view>
+      <view class='info shade' wx:if='{{!isshow}}'>需添加信息才可查看</view>
+      <view class='info' wx:if='{{isshow}}'>{{city}}</view>
+      <view class='info shade' wx:if='{{!isshow}}' style='margin-top:20rpx;'>需添加信息才可查看</view>
+      <view class='info' wx:if='{{isshow}}'>{{company}}</view>
+    </view>
+    <view class='top-right'>
+      <image src='{{image}}'></image>
+    </view>
+  </view>
+  <view class='main-down'>
+    <view class='down-left'>
+      <view class='contact-info'>
+        <view class='info-left'>
+          <image src='../images/phone.png' style='width:17rpx;height:25rpx;'></image>
+        </view>
+        <view class='info-right shades' wx:if='{{!isshow}}'>需添加信息才可查看</view>
+        <view class='info-right' wx:if='{{isshow}}'>{{phone}}</view>
+      </view>
+      <view class='contact-info'>
+        <view class='info-left'>
+          <image src='../images/wechat.png' style='width:26rpx;height:21rpx;'></image>
+        </view>
+        <view class='info-right shades' wx:if='{{!isshow}}'>需添加信息才可查看</view>
+        <view class='info-right' wx:if='{{isshow}}'>{{wechatnum}}</view>
+      </view>
+      <view class='contact-info'>
+        <view class='info-left'>
+          <image src='../images/email.png' style='width:24rpx;height:16rpx;'></image>
+        </view>
+        <view class='info-right'>{{email}}</view>
+      </view>
+    </view>
+    <view class='down-right' wx:if='{{isshow}}' bindtap='chooseSize'>
+      <image src='../images/set.png' bindtap='viewThisCards'></image>
+    </view>
+    <view class='maskLayer' wx:if="{{chooseSize}}" bindtap='hideModal'></view>
+    <view class='choose' wx:if="{{chooseSize}}" animation='{{animationData}}'>
+      <button class="choose-in" open-type='share' bindtap='trans'>转发</button>
+      <button class="choose-in" bindtap='saveToPhone'>保存到通讯录</button>
+      <button class="choose-in" bindtap='save'>保存到名片夹</button>
+      <button class="choose-in" bindtap='backToFind'>取消</button>
+    </view>
+  </view>
+</view>
+<view class="footer">
+  <button class="footer-btn back" bindtap='back'>查看同行信息</button>
+  <button class="footer-btn back {{isgroup?'':'map-hide'}}" wx:if='{{isgroup}}' bindtap='toTeamPeers'>查看本群名片</button>
+  <button class="footer-btn write {{isshow?'':'map-hide'}}" wx:if='{{isshow}}' bindtap='remove'>删除同行信息</button>
+  <button class="footer-btn write {{isshow?'map-hide':''}}" wx:if='{{!isshow}}' open-type='getUserInfo' bindgetuserinfo='addcards'>添加个人信息</button>
+</view>
+
+<!-- <view class="mycards">
   <view class="mycards1">
     <text class="name">{{name}}</text>
     <text class="idustry">{{idustry}}</text>
@@ -31,4 +88,4 @@
   <button class="back {{isgroup?'':'map-hide'}}" bindtap='toTeamPeers'>查看本群名片</button>
   <button class="write {{isshow?'':'map-hide'}}" bindtap='remove'>删除同行信息</button>
   <button class="write {{isshow?'map-hide':''}}" open-type='getUserInfo' bindgetuserinfo='addcards'>添加个人信息</button>
-</view>
+</view> -->
