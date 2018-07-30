@@ -15,7 +15,7 @@ App({
     canSee:"",                                                      //群名片里的自己的信息是不是已经分享
     login: '',                                                      //登陆标识
     server: 'http://localhost:8080',                              //服务器地址
-    server: 'http://192.168.2.123:8080',
+    // server: 'http://192.168.2.123:8080',
     urlOfLogin:'/user/userAuthor',                                 //登录接口
     urlOfAddOrUpdate: '/userCard/saveOrUpdate',                    //添加或修改个人信息接口
     urlOfGetCardByOpenID: '/userCard/findOneByOpenId',              //获取当前用户信息

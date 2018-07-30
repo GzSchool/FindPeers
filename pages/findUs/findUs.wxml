@@ -1,0 +1,7 @@
+<!--pages/findUs/findUs.wxml-->
+<view class='main'>
+  <view class='main-title'>如何找到"找同行"小程序</view>
+  <view class='main-img'>
+    <image src='../images/findus.jpg'></image>
+  </view>
+</view>

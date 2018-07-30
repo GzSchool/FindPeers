@@ -38,7 +38,7 @@
       </view>
     </view>
     <view class='down-right' wx:if='{{isshow}}' bindtap='chooseSize'>
-      <image src='../images/set.png' bindtap='viewThisCards'></image>
+      <image src='../images/set.png'></image>
     </view>
     <view class='maskLayer' wx:if="{{chooseSize}}" bindtap='hideModal'></view>
     <view class='choose' wx:if="{{chooseSize}}" animation='{{animationData}}'>

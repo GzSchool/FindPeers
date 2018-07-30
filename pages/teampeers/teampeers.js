@@ -28,6 +28,8 @@ Page({
     chooseSize: "",
     animationData: {},
     selectAll: false,
+    hasSelect: false,
+    selectMyCard: true, //分享弹出层选中自己
   },
 
   /**
@@ -269,6 +271,7 @@ Page({
     console.log(list)
     this.setData({
       selectAll: val?false:true,
+      hasSelect: val?false:true,
       list: list
     })
   },
@@ -285,14 +288,27 @@ Page({
         j ++;
       }
     }
-    if (j === list.length) {
+    if (j === list.length) { //全选
       this.setData({
-        selectAll: true
+        selectAll: true,
+        hasSelect: true
       })
-    } else {
+    } else if(j === 0) {     //没有被选中的项
       this.setData({
+        hasSelect: false,
         selectAll: false
       })
+    } else {
+      this.setData({      // 有被选中的项
+        selectAll: false,
+        hasSelect: true
+      })
     }
+  },
+  selectMyCards () {
+    let val = this.data.selectMyCard
+    this.setData({
+      selectMyCard: val?false:true
+    })
   }
 })

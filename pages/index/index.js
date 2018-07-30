@@ -11,7 +11,7 @@ Page({
   },
   onLoad: function (ops) {
     // wx.switchTab({
-    //   url: '../quncards/quncards',
+    //   url: '../otherpeers/otherpeers',
     // })
     // wx.navigateTo({
       // url: '../inputSearch/inputSearch',

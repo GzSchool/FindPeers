@@ -1,0 +1,22 @@
+/* pages/findUs/findUs.wxss */
+page {
+  background-color: #f8f8f8;
+  padding-top: 10rpx;
+}
+.main .main-title {
+  height: 114rpx;
+  line-height: 114rpx;
+  text-align: center;
+  color: #505050;
+  font-size: 36rpx;
+}
+.main .main-img {
+  width: 557rpx;
+  height: 994rpx;
+  background-color: #cccccc;
+  margin: 0 auto;
+}
+.main .main-img image {
+  width: 557rpx;
+  height: 994rpx;
+}

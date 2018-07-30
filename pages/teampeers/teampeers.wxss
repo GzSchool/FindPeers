@@ -48,7 +48,7 @@ page{
 .mine-card .mine-info .mes-li{
   display: flex;
   align-items: center;
-  padding: 19rpx 40rpx 19rpx 0;
+  padding: 19rpx 0 19rpx;
   background-color: #ffffff;
   border-bottom: 1rpx solid #D9D8D9;
 }
@@ -79,13 +79,26 @@ page{
   line-height: 44rpx;
   font-size: 24rpx;
 }
+.mine-card .mine-info .mes-li .li-right .mes-info.shade {
+  color: #FE0000;
+  font-size: 20rpx;
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
+.mine-card .mine-info .mes-li .li-right .mes-info.shade .shade-in {
+  height: 28rpx;
+  width: 306rpx;
+  line-height: 28rpx;
+  background-color: #E6E6E6;
+}
 .mine-card .mine-info .mes-li .li-share {
   align-self: flex-start;
-  padding: 18rpx 2rpx;
+  padding: 18rpx 40rpx;
 }
 .mine-card .mine-info .mes-li .li-select {
   align-self: center;
-  padding: 18rpx 2rpx;
+  padding: 22rpx 40rpx;
 }
 .mine-card .mine-info .mes-li .li-share image {
   width: 25rpx;
@@ -119,19 +132,115 @@ page{
   align-items: center;
 }
 .crowd-title .crowd-title-right {
+  color: #606060;
+}
+.crowd-title .crowd-title-right.active {
   color: #2C7FE7;
 }
 /* checkbox */
-.main .select {
-  width: 26rpx;
-  height: 26rpx;
+.select {
+  width: 32rpx;
+  height: 32rpx;
   border-radius: 50%;
-  background-color: #2C7FE7;
+  /* background-color: #2C7FE7; */
   margin-right: 4rpx;
 }
-.main .select.noselect {
-  border: 1rpx solid #D9D8D9;
+/* .select.noselect { */
+  /* border: 1rpx solid #D9D8D9; */
+  /* background-color: pink; */
+/* } */
+/* 弹出层 */
+.maskLayer {
+  background-color: #000000;
+  opacity: 0.75;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  position: fixed;
+  z-index: 99;
+}
+.popup {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
   background-color: #ffffff;
+}
+.popup .popup-title {
+  height: 90rpx;
+  line-height: 90rpx;
+  text-align: center;
+  color: #505050;
+  font-size: 32rpx;
+  position: relative;
+}
+.popup .popup-title .popup-close {
+  padding: 10rpx 40rpx;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.popup .popup-title .popup-close image {
+  width: 34rpx;
+  height: 34rpx;
+}
+.popup .popup-content .mes-li{
+  display: flex;
+  align-items: center;
+  padding: 19rpx 0 19rpx;
+  background-color: #ffffff;
+}
+.popup .popup-content .mes-li .li-left image{
+  margin-right: 40rpx;
+  width: 120rpx;
+  height: 120rpx;
+  background-color: #53adff;
+  border-radius: 20rpx;
+}
+.popup .popup-content .mes-li .li-right {
+  flex: 1;
+}
+.popup .popup-content .mes-li .li-right .mes-name{
+  height: 48rpx;
+  line-height: 48rpx;
+  color: #505050;
+  font-size: 28rpx;
+}
+.popup .popup-content .mes-li .li-right .mes-name text{
+  font-size: 20rpx;
+  color: #606060;
+  padding-left: 29rpx;
+}
+.popup .popup-content .mes-li .li-right .mes-info{
+  color: #606060;
+  height: 44rpx;
+  line-height: 44rpx;
+  font-size: 24rpx;
+}
+.popup .popup-content .mes-li .mine-card-select {
+  align-self: center;
+  padding: 22rpx 58rpx 22rpx 40rpx;
+}
+.popup .popup-content .mes-li .mine-card-select image {
+  width: 32rpx;
+  height: 32rpx;
+}
+.popup .popup-btn {
+  width: 670rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  background-color: #83bafe;
+  text-align: center;
+  color: #ffffff;
+  border-radius: 10rpx;
+  margin: 300rpx auto 30rpx;
+  font-size: 34rpx;
+}
+.popup .popup-btn.active {
+  background-color: #2C7FE7;
 }
 /* page {
   display: block;

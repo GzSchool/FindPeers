@@ -15,7 +15,8 @@
     "pages/other/other",
     "pages/fix/fix",
     "pages/teampeers/teampeers",
-    "pages/industry/industry"
+    "pages/industry/industry",
+    "pages/findUs/findUs"
   ],
   "window": {
     "backgroundTextStyle": "light",

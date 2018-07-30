@@ -192,7 +192,7 @@ function getGroupCards(openId, groupId){
         resolve(b)
       }
     })
-    })
+  })
 }
 module.exports = {
   formatTime: formatTime,

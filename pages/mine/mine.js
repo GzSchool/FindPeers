@@ -93,5 +93,10 @@ Page({
         // 转发失败
       }
     }
+  },
+  findUs () {
+    wx.navigateTo({
+      url: '../findUs/findUs',
+    })
   }
 })
