@@ -1,4 +1,5 @@
 // pages/addCards/addcards.js
+import { validateEmail, isvalidatemobile } from '../../utils/validate.js'
 var app = getApp();
 Page({
   data: {
@@ -82,8 +83,7 @@ Page({
     })
   },
   addname: function (e) {
-    console.log(e)
-    if (e.detail.value == null) {
+    if (e.detail.value == '') {
       wx.getUserInfo({
         success: function (a) {
           that.setData({
@@ -97,47 +97,43 @@ Page({
     }
   },
   addnumber: function (e) {
-    if (e.detail.value == null) {
+    if (e.detail.value == '') {
       wx.showToast({
         title: '微信号不能为空',
         icon: 'none'
       })
     } else {
       this.data.wechatnum = e.detail.value
-      console.log(e.detail.value)
     }
   },
   addcompany: function (e) {
-    if (e.detail.value == null) {
+    if (e.detail.value == '') {
       wx.showToast({
         title: '公司名称不能为空',
         icon: 'none'
       })
     } else {
       this.data.company = e.detail.value
-      console.log(e.detail.value)
     }
   },
   addidustry: function (e) {
-    if (e.detail.value == null) {
+    if (e.detail.value == '') {
       wx.showToast({
         title: '行业信息不能为空',
         icon: 'none'
       })
     } else {
       this.data.idustry = e.detail.value
-      console.log(e.detail.value)
     }
   },
   addcity: function (e) {
-    if (e.detail.value == null) {
+    if (e.detail.value == '') {
       wx.showToast({
         title: '城市信息不能为空',
         icon: 'none'
       })
     } else {
       this.data.city = e.detail.value
-      console.log(e.detail.value)
     }
   },
   addjob: function (e) {
@@ -145,22 +141,22 @@ Page({
   },
   addphone: function (e) {
     this.data.phone = e.detail.value
-    console.log(e.detail.value)
   },
   adddemand: function (e) {
     this.data.demand = e.detail.value
-    console.log(e.detail.value)
   },
   addresource: function (e) {
     this.data.resource = e.detail.value
-    console.log(e.detail.value)
   },
   addemail: function (e) {
     this.data.email = e.detail.value
-    console.log(e.detail.value)
   },
-  addintroduction: function (e) {
+  introInput(e) {
     this.data.introduction = e.detail.value
+    let i = e.detail.value.length
+    this.setData({
+      count: i
+    })
   },
   // 用户点击保存
   save: function (e) {                                                              
@@ -173,7 +169,17 @@ Page({
     } else {
       back = this.data.back
     }
-    if (this.data.wechatnum == "") {
+    if (isvalidatemobile(this.data.phone)[0]) {
+      wx.showToast({
+        title: isvalidatemobile(this.data.phone)[1],
+        icon: 'none'
+      })
+    } else if (!validateEmail(this.data.email)) {
+      wx.showToast({
+        title: '邮箱格式不正确',
+        icon: 'none'
+      })
+    } else if (this.data.wechatnum == "") {
       wx.showToast({
         title: '微信号不能为空',
         icon: 'none'
@@ -270,69 +276,6 @@ Page({
         }
       })
     }
-  },
-  chooseSize: function (e) {
-    // 用that取代this，防止不必要的情况发生
-    var that = this;
-    // 创建一个动画实例
-    var animation = wx.createAnimation({
-      // 动画持续时间
-      duration: 500,
-      // 定义动画效果，当前是匀速
-      timingFunction: 'linear'
-    })
-    // 将该变量赋值给当前动画
-    that.animation = animation
-    // 先在y轴偏移，然后用step()完成一个动画
-    animation.translateY(200).step()
-    // 用setData改变当前动画
-    that.setData({
-      // 通过export()方法导出数据
-      animationData: animation.export(),
-      // 改变view里面的Wx：if
-      chooseSize: true
-    })
-    // 设置setTimeout来改变y轴偏移量，实现有感觉的滑动
-    setTimeout(function () {
-      animation.translateY(0).step()
-      that.setData({
-        animationData: animation.export()
-      })
-    }, 200)
-  },
-  hideModal: function (e) {
-    var that = this;
-    var animation = wx.createAnimation({
-      duration: 1000,
-      timingFunction: 'linear'
-    })
-    that.animation = animation
-    animation.translateY(200).step()
-    that.setData({
-      animationData: animation.export()
-    })
-    setTimeout(function () {
-      animation.translateY(0).step()
-      that.setData({
-        animationData: animation.export(),
-        chooseSize: false,
-        cansee: true
-      })
-    }, 200)
-  },
-  select: function (e) {
-    console.log(e)
-    var industry = e.currentTarget.dataset.value;
-    this.setData({
-      idustry: industry
-    })
-    this.hideModal();
-  },
-  introInput(e) {
-    let i = e.detail.value.length
-    this.setData({
-      count: i
-    })
   },
   chooseIn() {
     wx.navigateTo({

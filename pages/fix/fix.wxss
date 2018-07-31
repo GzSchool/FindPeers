@@ -18,7 +18,7 @@ Page{
 .main .main-top .top-left .info{
   color: #606060;
   font-size: 26rpx;
-  height: 46rpx;
+  /* height: 46rpx; */
   line-height: 46rpx;
 }
 .main .main-top .top-left .info.name{
@@ -45,7 +45,7 @@ Page{
 .main .main-down .down-left .contact-info{
   font-size: 26rpx;
   color: #606060;
-  height: 48rpx;
+  /* height: 48rpx; */
   line-height: 48rpx;
   display: flex;
   align-items: center;
@@ -66,19 +66,17 @@ Page{
   height: 36rpx;
 }
 .footer {
-  width: 100%;
   margin-top: 20rpx;
   margin-bottom: 30rpx;
-}
-.footer .footer-btn {
+  margin: 20rpx auto 30rpx;
   font-size: 34rpx;
-  width: 670rpx;
   border-radius: 10rpx;
   height: 80rpx;
   line-height: 80rpx;
   background-color: #2C7FE7;
   color: #ffffff;
-  margin: 0 auto;
+  width: 670rpx;
+  text-align: center;
 }
 /* 表单 */
 .main-content{
@@ -149,6 +147,11 @@ Page{
   padding: 20rpx 14rpx 14rpx 30rpx;
   height: 260rpx;
 }
+.intro textarea {
+  height: 85%;
+  overflow: auto;
+  font-size: 28rpx;
+}
 .intro .intro-title{
   display: flex;
   justify-content: space-between;
@@ -159,9 +162,6 @@ Page{
 }
 .intro .intro-title .count{
   font-size: 22rpx;
-}
-.intro textarea {
-  font-size: 28rpx;
 }
 .phcolor {
   color: #CCCCCC;
