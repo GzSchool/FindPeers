@@ -52,7 +52,7 @@ Page({
     var cardId = a.currentTarget.dataset.id;
     console.log(openId)
     wx.navigateTo({
-      url: '/pages/peerscards/peerscards?cardId=' + cardId +'&isshow=true',
+      url: '/pages/otherpeers/otherpeers?cardId=' + cardId +'&isshow=true',
     })
   },
   onShow(){
