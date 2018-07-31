@@ -239,10 +239,10 @@ Page({
     // console.log(groupid)
     var userpeers = [];
     util.saveOrUpdate(openid, groupid, 2, activeList).then(function(res) {
-      // console.log(res)
-      that.setData({
-        isAdd: true
-      })
+      console.log(res)
+      if (res.data.success && res.statusCode == 200) {
+        app.showToast('保存成功')
+      }
     })
   },
   goPeers: function(e) {
