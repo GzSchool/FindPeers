@@ -4,6 +4,7 @@ var app = getApp();
 Page({
   data: {
     count: 0,
+    groupId:"",
     name: "",
     other: '',
     wechatnum: "",
@@ -38,7 +39,8 @@ Page({
     })
     if(a.back){
       that.setData({
-        back:true
+        back:true,
+        groupId:a.groupId
       })
     }
     that.data.openid = app.globalData.openid;
@@ -201,7 +203,6 @@ Page({
           userIndustry: this.data.idustry,
           userPhone: this.data.phone,
           userJob: this.data.job,
-          userJob: this.data.job,
           demand: this.data.demand,
           resources: this.data.resource,
           synopsis: this.data.introduction,
@@ -220,8 +221,11 @@ Page({
           var back = that.data.back;
           console.log(back)
           if (back){
-            wx.navigateBack({
-              delta:2
+            var openid = app.globalData.openid;
+            var groupId = that.data.groupId
+            console.log(groupId)
+            wx.navigateTo({
+              url: '/pages/teampeers/teampeers?groupid=' + groupId + '&openid=' + openid,
             })
           }else{
             wx.switchTab({

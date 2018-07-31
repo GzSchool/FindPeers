@@ -122,8 +122,9 @@ Page({
     })
   },
   mycards: function() {
+    var groupId = this.data.groupId;
     wx.navigateTo({
-      url: '/pages/mycards/mycards?back=true',
+      url: '/pages/mycards/mycards?back=true' + '&groupId=' + groupId,
     })
   },
   checkboxChange: function(a) {

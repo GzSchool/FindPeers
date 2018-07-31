@@ -13,6 +13,7 @@ Page({
     server:"",
     wechatnum: "",
     email:"",
+    groupId:"",
     image:"/pages/images/1.png",
     showphone:false,
     showdemand:false,
@@ -23,9 +24,11 @@ Page({
     wx.showShareMenu({
       withShareTicket: true
     })
+    console.log(a)
     var that=this
     if(a.back){
-      that.data.back=true
+      that.data.back=true,
+      that.data.groupId=a.groupId
     }
     var openid = app.globalData.openid;
     var server = app.globalData.server;
@@ -106,8 +109,9 @@ Page({
   },
   viewThisCards:function(){
     var openid = app.globalData.openid;
+    var groupId= this.data.groupId;
     wx.navigateTo({
-      url: '/pages/fix/fix?back=true',
+      url: '/pages/fix/fix?back=true' + '&groupId=' + groupId +'&openid=' + openid,
     })
   },
   goFindmore:function(a){
