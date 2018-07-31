@@ -83,6 +83,15 @@ Page({
       notadd:app.globalData.notadd,
       groupId: ops.groupId
     })
+    if(ops.back){
+      that.setData({
+        back:true
+      })
+    }else{
+      that.setData({
+        back: false
+      })
+    }
     var server=app.globalData.server;
     var cardId=that.data.cardId
     util.getCardsById(cardId).then(function(res){
@@ -113,14 +122,22 @@ Page({
     var cardIds=[]
     cardIds.push(that.data.cardId)
     var groupId=that.data.groupId
+    var back = that.data.back;
     // console.log(cardIds)
     // console.log(groupId)
     // console.log(openid)
     util.saveOrUpdate(openid,groupId,1,cardIds).then(function(res){
       // console.log(res)
-      wx.navigateBack({
-        delta: 1
-      })
+      if(back){
+        wx.navigateTo({
+          url: '/pages/teampeers/teampeers?openid=' + openid + '&groupid=' + groupId,
+        })
+      }else{
+        wx.switchTab({
+          url: '/pages/findmore/findmore',
+        })
+      }
+      
     })
    
   },
@@ -215,13 +232,20 @@ Page({
     var groupId=that.data.groupId
     var cardIds = []
     var length = cardId.length;
+    var back = that.data.back
     console.log(length)
     cardIds.push(that.data.cardId)
     console.log(cardIds)
     util.saveOrUpdate(openid, groupId, 2, cardIds).then(function (res) {
-      wx.navigateBack({
-        delta: 1
-      })
+      if (back) {
+        wx.navigateTo({
+          url: '/pages/teampeers/teampeers?openid=' + openid + '&groupid=' + groupId,
+        })
+      } else {
+        wx.switchTab({
+          url: '/pages/findmore/findmore',
+        })
+      }
     })
   }
 })

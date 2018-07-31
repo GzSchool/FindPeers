@@ -76,24 +76,26 @@
 <view class='popup' wx:if="{{chooseSize}}" animation='{{animationData}}'>
   <view class='popup-title'>
     <view>分享到本微信群</view>
-    <view class='popup-close' catchtap='hideModal'><image src='../images/close.png'></image></view>
+    <view class='popup-close' catchtap='hideModal'>
+      <image src='../images/close.png'></image>
+    </view>
   </view>
   <view class='popup-content'>
     <view class='mes-li' bindtap='selectMyCards'>
-        <view class='mine-card-select'>
-          <image class="select {{selectMyCard?'':'noselect'}}" src="{{selectMyCard?'../images/select.png':'../images/select_no.png'}}"></image>
-        </view>
-        <view class='li-left'>
-          <image src='{{image}}'></image>
-        </view>
-        <view class='li-right'>
-          <view class='mes-name'>{{name}}
-            <text>{{industry}}</text>
-          </view>
-          <view class='mes-info'>{{city}}</view>
-          <view class='mes-info'>{{company}}</view>
-        </view>
+      <view class='mine-card-select'>
+        <image class="select {{selectMyCard?'':'noselect'}}" src="{{selectMyCard?'../images/select.png':'../images/select_no.png'}}"></image>
       </view>
+      <view class='li-left'>
+        <image src='{{image}}'></image>
+      </view>
+      <view class='li-right'>
+        <view class='mes-name'>{{name}}
+          <text>{{industry}}</text>
+        </view>
+        <view class='mes-info'>{{city}}</view>
+        <view class='mes-info'>{{company}}</view>
+      </view>
+    </view>
   </view>
   <view class="popup-btn" wx:if='{{!selectMyCard}}'>确定</view>
   <view class="popup-btn active" wx:if='{{selectMyCard}}' bindtap='hideModal'>确定</view>

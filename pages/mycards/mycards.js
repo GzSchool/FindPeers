@@ -26,6 +26,7 @@ Page({
     })
     console.log(a)
     var that=this
+    console.log(a.back)
     if(a.back){
       that.data.back=true,
       that.data.groupId=a.groupId
@@ -110,9 +111,16 @@ Page({
   viewThisCards:function(){
     var openid = app.globalData.openid;
     var groupId= this.data.groupId;
-    wx.navigateTo({
-      url: '/pages/fix/fix?back=true' + '&groupId=' + groupId +'&openid=' + openid,
-    })
+    if(this.data.back){
+      wx.navigateTo({
+        url: '/pages/fix/fix?back=true' + '&groupId=' + groupId + '&openid=' + openid,
+      })
+    }else{
+      wx.navigateTo({
+        url: '/pages/fix/fix',
+      })
+    }
+    
   },
   goFindmore:function(a){
     wx.switchTab({
