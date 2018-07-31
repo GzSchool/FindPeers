@@ -2,7 +2,6 @@
 var app = getApp()
 Page({
   data: {
-    server: ""
   },
   touch: function() {
     var that = this

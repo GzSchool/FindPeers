@@ -109,52 +109,64 @@ Page({
     if (e.detail.value == null) {
 
     } else {
-      this.data.name = e.detail.value
+      this.setData({
+        name: e.detail.value
+      })
     }
   },
   addnumber: function(e) {
-    if (e.detail.value == null) {
+    if (e.detail.value == '') {
       wx.showToast({
         title: '微信号不能为空',
+        icon: 'none'
       })
     } else {
-      this.data.wechatnum = e.detail.value
-      console.log(e.detail.value)
+      // this.data.wechatnum = e.detail.value
+      // console.log(e.detail.value)
+      this.setData({
+        wechatnum: e.detail.value
+      })
     }
   },
   addcompany: function(e) {
-    if (e.detail.value == null) {
+    if (e.detail.value == '') {
       wx.showToast({
         title: '公司名称不能为空'
       })
     } else {
-
-      this.data.company = e.detail.value
-      console.log(e.detail.value)
-    }
-  },
-  addidustry: function(e) {
-    var that = this
-    var server = that.data.server
-    if (e.detail.value == null) {
-      wx.showToast({
-        title: '行业信息不能为空',
+      this.setData({
+        company: e.detail.value
       })
-    } else {
 
-      this.data.idustry = e.detail.value
-      console.log(e.detail.value)
+      // this.data.company = e.detail.value
+      // console.log(e.detail.value)
     }
   },
+  // addidustry: function(e) {
+  //   var that = this
+  //   var server = that.data.server
+  //   if (e.detail.value == null) {
+  //     wx.showToast({
+  //       title: '行业信息不能为空',
+  //     })
+  //   } else {
+
+  //     this.data.idustry = e.detail.value
+  //     console.log(e.detail.value)
+  //   }
+  // },
   addcity: function(e) {
     if (e.detail.value == null) {
       wx.showToast({
         title: '城市信息不能为空',
       })
     } else {
+      this.setData({
+        city: e.detail.value
+      })
 
-      this.data.city = e.detail.value
-      console.log(e.detail.value)
+      // this.data.city = e.detail.value
+      // console.log(e.detail.value)
     }
   },
   addjob: function(e) {

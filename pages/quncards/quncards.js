@@ -34,6 +34,8 @@ Page({
     util.getUserGroupById(openid).then(function(res){
       var length = res.data.data.length;
       for (var i = 0; i < length; i++) {
+        // 处理时间截取字母T之前的年月日
+        res.data.data[i].ctTime = res.data.data[i].ctTime.split('T')[0]
         list.push(res.data.data[i]);
       }
       that.setData({
