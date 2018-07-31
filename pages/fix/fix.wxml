@@ -40,17 +40,17 @@
     <view class='main-li'>
       <view class='star'></view>
       <view class='title'> <text>姓</text><text>名:</text></view>
-      <input placeholder-class="phcolor" placeholder='姓名' bindinput='addname' type='text' value='{{name}}' name="name" maxlength='8'></input>
+      <input placeholder-class="phcolor" placeholder='姓名' bindinput='addname' type='text' value='{{name}}'  maxlength='8'></input>
     </view>
     <view class='main-li'>
       <view class='star'>*</view>
       <view class='title'><text>微</text><text>信</text><text>号:</text></view>
-      <input placeholder-class="phcolor" placeholder='必填' bindinput='addnumber' focus='true' type='text' value='{{wechatnum}}' name="number" maxlength='20'></input>
+      <input placeholder-class="phcolor" placeholder='必填' bindinput='addnumber' type='text' value='{{wechatnum}}' maxlength='20'></input>
     </view>
     <view class='main-li'>
       <view class='star'>*</view>
       <view class='title'><text>公</text><text>司:</text></view>
-      <input placeholder-class="phcolor" placeholder='必填' bindinput='addcompany' focus='true' type='text' value='{{company}}' name="company" maxlength='40'></input>
+      <input placeholder-class="phcolor" placeholder='必填' bindinput='addcompany' type='text' value='{{company}}' maxlength='40'></input>
     </view>
     <view class='main-li'>
       <view class='star'>*</view>
@@ -61,33 +61,33 @@
     <view class='main-li'>
       <view class='star'>*</view>
       <view class='title'><text>城</text><text>市:</text></view>
-      <input placeholder-class="phcolor" placeholder='必填' bindinput='addcity' type='text' value='{{city}}'></input>
+      <input placeholder-class="phcolor" maxlength='40' placeholder='必填' bindinput='addcity' type='text' value='{{city}}'></input>
     </view>
     <view class='main-li'>
       <view class='star'></view>
       <view class='title'><text>职</text><text>务:</text></view>
-      <input placeholder-class="phcolor" placeholder='填写公司职务' bindblur='addjob' type='text' value='{{job}}'></input>
+      <input placeholder-class="phcolor" maxlength='40' placeholder='填写公司职务' bindinput='addjob' type='text' value='{{job}}'></input>
     </view>
     <view class='main-li'>
       <view class='star'></view>
       <view class='title'><text>手</text><text>机</text><text>号:</text></view>
-      <input placeholder-class="phcolor" placeholder='填写可见同行手机号' bindblur='addphone' focus='true' type='number' value='{{phone}}' name="phone"></input>
+      <input placeholder-class="phcolor" maxlength='11' placeholder='填写可见同行手机号' bindinput='addphone' type='number' value='{{phone}}'></input>
       <button style='padding:0;' class='wx-get' open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">微信获取</button>
     </view>
     <view class='main-li' wx:if='{{isshow0}}'>
       <view class='star'></view>
       <view class='title'><text>需</text><text>求:</text></view>
-      <input placeholder-class="phcolor" placeholder='需求' bindblur='adddemand' type='text' value='{{demand}}'></input>
+      <input placeholder-class="phcolor" placeholder='需求' bindinput='adddemand' type='text' value='{{demand}}' maxlength='40'></input>
     </view>
     <view class='main-li' wx:if='{{isshow1}}'>
       <view class='star'></view>
       <view class='title'><text>资</text><text>源:</text></view>
-      <input placeholder-class="phcolor" placeholder='资源' bindblur='addresource' type='text' value='{{resource}}'></input>
+      <input placeholder-class="phcolor" placeholder='资源' bindinput='addresource' type='text' value='{{resource}}' maxlength='40'></input>
     </view>
     <view class='main-li' wx:if='{{isshow2}}'>
       <view class='star'></view>
       <view class='title'><text>邮</text><text>箱:</text></view>
-      <input placeholder-class="phcolor" placeholder='邮箱' bindblur='addemail' type='text' value='{{email}}'></input>
+      <input placeholder-class="phcolor" maxlength='40' placeholder='邮箱' bindinput='addemail' type='text' value='{{email}}'></input>
     </view>
   </view>
   <view class='more' bindtap='addmore'>添加更多信息</view>
@@ -96,13 +96,11 @@
       <view>简介</view>
       <view class='count'>{{count}}/140</view>
     </view>
-    <textarea maxlength='140' placeholder-class="phcolor" placeholder='请您填写自我介绍或公司简介' bindinput='introInput'  type='text' value='{{introduction}}'></textarea>
+    <textarea maxlength='140' placeholder-class="phcolor" placeholder='请您填写自我介绍或公司简介' bindinput='introInput' type='text' value='{{introduction}}'></textarea>
   </view>
 </view>
 
-<view class="footer" bindtap='save'>
-    <button class="footer-btn">保存</button>
-</view>
+<view class="footer" bindtap='save'>保存</view>
 <!-- <view class="mycards1">
     <text class="name1">{{name}}</text>
     <text class="idustry1">{{idustry}}</text>

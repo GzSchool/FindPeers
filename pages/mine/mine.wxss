@@ -16,10 +16,11 @@ page {
   font-size: 30rpx;
 }
 .card .card-info{
-  height: 46rpx;
+  /* height: 46rpx; */
   line-height: 46rpx;
   color: #505050;
   font-size: 26rpx;
+  padding: 0 40rpx;
 }
 .card .card-img{
   margin-top: 30rpx;

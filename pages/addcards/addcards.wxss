@@ -84,6 +84,8 @@ page{
   font-size: 22rpx;
 }
 .intro textarea {
+  height: 85%;
+  overflow: auto;
   font-size: 28rpx;
 }
 .phcolor {

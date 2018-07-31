@@ -63,7 +63,7 @@ page{
   flex: 1;
 }
 .mine-card .mine-info .mes-li .li-right .mes-name{
-  height: 48rpx;
+  /* height: 48rpx; */
   line-height: 48rpx;
   color: #505050;
   font-size: 28rpx;
@@ -75,7 +75,7 @@ page{
 }
 .mine-card .mine-info .mes-li .li-right .mes-info{
   color: #606060;
-  height: 44rpx;
+  /* height: 44rpx; */
   line-height: 44rpx;
   font-size: 24rpx;
 }

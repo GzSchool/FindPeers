@@ -18,7 +18,6 @@ Page({
     let i = this.data.active
     let j = e.currentTarget.dataset.index
     let mes =this.data.industry[i].data[j]
-    // 拼接选中行业，给前一个页面data.industry赋值
     let pages = getCurrentPages(),
         currPage = pages[pages.length-1],
         prevPage = pages[pages.length-2]

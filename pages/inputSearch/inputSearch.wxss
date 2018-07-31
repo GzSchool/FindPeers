@@ -44,6 +44,7 @@ page{
   border-bottom: none;
 }
 .list .item {
+  padding: 30rpx 0;
   border-bottom: 1rpx solid #D9D8D9;
   display: flex;
   align-items: center;
@@ -51,7 +52,8 @@ page{
 .list .item .item-left {
   width: 120rpx;
   height: 120rpx;
-  margin: 30rpx 40rpx 30rpx 0;
+  /* margin: 30rpx 40rpx 30rpx 0; */
+  margin-right: 40rpx;
 }
 .list .item .item-left image{
   width: 120rpx;
@@ -66,7 +68,7 @@ page{
 .list .item .item-right .info {
   color: #606060;
   font-size: 24rpx;
-  height: 44rpx;
+  /* height: 44rpx; */
   line-height: 44rpx;
 }
 .list .item .item-right .name {

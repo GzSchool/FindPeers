@@ -18,13 +18,13 @@ Page{
 .main .main-top .top-left .info{
   color: #606060;
   font-size: 26rpx;
-  height: 46rpx;
+  /* height: 46rpx; */
   line-height: 46rpx;
 }
 .main .main-top .top-left .info.name{
   font-size: 30rpx;
   color: #505050;
-  height: 64rpx;
+  /* height: 64rpx; */
   line-height: 64rpx;
 }
 .main .main-top .top-right{
@@ -45,7 +45,7 @@ Page{
 .main .main-down .down-left .contact-info{
   font-size: 26rpx;
   color: #606060;
-  height: 48rpx;
+  /* height: 48rpx; */
   line-height: 48rpx;
   display: flex;
   align-items: center;

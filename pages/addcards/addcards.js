@@ -1,6 +1,6 @@
 // pages/addCards/addcards.js
+import { validateEmail, isvalidatemobile } from '../../utils/validate.js'
 var app = getApp();
-var util = require('../../utils/util.js');
 Page({
   data: {
     count: 0,        //简介字数
@@ -83,8 +83,7 @@ Page({
     })
   },
   addname: function (e) {
-    console.log(e)
-    if (e.detail.value =='') {
+    if (e.detail.value == '') {
       wx.getUserInfo({
         success: function (a) {
           that.setData({
@@ -105,7 +104,6 @@ Page({
       })
     } else {
       this.data.wechatnum = e.detail.value
-      console.log(e.detail.value)
     }
   },
   addcompany: function (e) {
@@ -116,7 +114,6 @@ Page({
       })
     } else {
       this.data.company = e.detail.value
-      console.log(e.detail.value)
     }
   },
   addidustry: function (e) {
@@ -127,7 +124,6 @@ Page({
       })
     } else {
       this.data.idustry = e.detail.value
-      console.log(e.detail.value)
     }
   },
   addcity: function (e) {
@@ -138,62 +134,29 @@ Page({
       })
     } else {
       this.data.city = e.detail.value
-      console.log(e.detail.value)
     }
   },
   addjob: function (e) {
     this.data.job = e.detail.value
   },
   addphone: function (e) {
-    var that = this
-    if (e.detail.value === '' || util.testPhone(e.detail.value)) {
-      that.data.phone = e.detail.value
-    } else {
-      wx.showModal({
-        title: '验证失败',
-        content: '你输入的手机号有错误，请重新输入',
-        success: function () {
-          that.setData({
-            phone: ""
-          });
-        }, fail: function () {
-          that.setData({
-            phone: ""
-          });
-        }
-      })
-    }
+    this.data.phone = e.detail.value
   },
   adddemand: function (e) {
     this.data.demand = e.detail.value
-    console.log(e.detail.value)
   },
   addresource: function (e) {
     this.data.resource = e.detail.value
-    console.log(e.detail.value)
   },
   addemail: function (e) {
-    var that = this
-    if (util.testEmail(e.detail.value)) {
-      that.data.email = e.detail.value
-    } else {
-      wx.showModal({
-        title: '验证失败',
-        content: '你输入的邮箱地址错误，请重新输入',
-        success: function () {
-          that.setData({
-            email: ""
-          });
-        }, fail: function () {
-          that.setData({
-            email: ""
-          });
-        }
-      })
-    }
+    this.data.email = e.detail.value
   },
-  addintroduction: function (e) {
+  introInput(e) {
     this.data.introduction = e.detail.value
+    let i = e.detail.value.length
+    this.setData({
+      count: i
+    })
   },
   // 用户点击保存
   save: function (e) {                                                              
@@ -206,7 +169,17 @@ Page({
     } else {
       back = this.data.back
     }
-    if (this.data.wechatnum == "") {
+    if (isvalidatemobile(this.data.phone)[0]) {
+      wx.showToast({
+        title: isvalidatemobile(this.data.phone)[1],
+        icon: 'none'
+      })
+    } else if (!validateEmail(this.data.email)) {
+      wx.showToast({
+        title: '邮箱格式不正确',
+        icon: 'none'
+      })
+    } else if (this.data.wechatnum == "") {
       wx.showToast({
         title: '微信号不能为空',
         icon: 'none'
@@ -251,22 +224,12 @@ Page({
         success: function (res) {
           app.globalData.notadd = false
           console.log(res)
-          if (res.data.success) {
-            wx.showToast({
-              title: '修改成功',
-            })
-          } else {
-            wx.showToast({
-              title: '修改失败',
-              icon: 'none'
-            })
-          }
           var openid = app.globalData.openid;
           console.log(openid)
           var othercardid = app.globalData.othercardid;
           var openid = that.data.openid;
           var groupId = that.data.groupId;
-          if (othercardid) {
+          if (othercardid != "") {
             app.globalData.isshow = true
             app.globalData.notadd = false
             console.log(openid)
@@ -313,69 +276,6 @@ Page({
         }
       })
     }
-  },
-  chooseSize: function (e) {
-    // 用that取代this，防止不必要的情况发生
-    var that = this;
-    // 创建一个动画实例
-    var animation = wx.createAnimation({
-      // 动画持续时间
-      duration: 500,
-      // 定义动画效果，当前是匀速
-      timingFunction: 'linear'
-    })
-    // 将该变量赋值给当前动画
-    that.animation = animation
-    // 先在y轴偏移，然后用step()完成一个动画
-    animation.translateY(200).step()
-    // 用setData改变当前动画
-    that.setData({
-      // 通过export()方法导出数据
-      animationData: animation.export(),
-      // 改变view里面的Wx：if
-      chooseSize: true
-    })
-    // 设置setTimeout来改变y轴偏移量，实现有感觉的滑动
-    setTimeout(function () {
-      animation.translateY(0).step()
-      that.setData({
-        animationData: animation.export()
-      })
-    }, 200)
-  },
-  hideModal: function (e) {
-    var that = this;
-    var animation = wx.createAnimation({
-      duration: 1000,
-      timingFunction: 'linear'
-    })
-    that.animation = animation
-    animation.translateY(200).step()
-    that.setData({
-      animationData: animation.export()
-    })
-    setTimeout(function () {
-      animation.translateY(0).step()
-      that.setData({
-        animationData: animation.export(),
-        chooseSize: false,
-        cansee: true
-      })
-    }, 200)
-  },
-  select: function (e) {
-    console.log(e)
-    var industry = e.currentTarget.dataset.value;
-    this.setData({
-      idustry: industry
-    })
-    this.hideModal();
-  },
-  introInput(e) {
-    let i = e.detail.value.length
-    this.setData({
-      count: i
-    })
   },
   chooseIn() {
     wx.navigateTo({
