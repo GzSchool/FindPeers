@@ -31,11 +31,11 @@ Page({
     // var server = that.data.server;
     list=[];
     if (key.length !== 0) {
-      util.searchByParam(key).then(function (src) {
+      util.searchByParam(key, 1, 20).then(function (src) {
         console.log(src)
-        var length = src.data.data.length;
+        var length = src.data.data.result.length;
         for (var i = 0; i < length; i++) {
-          list.push(src.data.data[i]);
+          list.push(src.data.data.result[i]);
         }
         that.setData({
           list: list
@@ -50,9 +50,11 @@ Page({
     console.log(a)
     var openId=a.currentTarget.dataset.key;
     var cardId = a.currentTarget.dataset.id;
-    console.log(openId)
+    // console.log(openId)
+    // console.log(cardId)
     wx.navigateTo({
-      url: '/pages/peerscards/peerscards?cardId=' + cardId +'&isshow=true',
+      // url: '/pages/peerscards/peerscards?cardId=' + cardId + '&isshow=true',
+      url: '/pages/otherpeers/otherpeers?cardId=' + cardId + '&isshow=true',
     })
   },
   onShow(){

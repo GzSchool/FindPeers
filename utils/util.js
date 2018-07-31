@@ -69,13 +69,15 @@ function getMyData(openid) {
 /*
   从数据库获取这个用户已经保存的同行信息
 */
-function getMyPeers(openid) {
+function getMyPeers(openid, pageNum, pageSize) {
   return new Promise(function(resolve) {
     wx.request({
       method: 'GET',
       url: server + '/userPeer/findAllByOpenId',
       data: {
         openId: openid,
+        pageNum: pageNum,
+        pageSize: pageSize
       },
       header: {
         'content-type': 'application/json'
@@ -90,13 +92,15 @@ function getMyPeers(openid) {
 /*
   从用户输入的字段从数据里模糊搜索
 */
-function searchByParam(key) {
+function searchByParam(key, pageNum, pageSize) {
   return new Promise(function(resolve) {
     wx.request({
       method: 'GET',
       url: server + '/userCard/findAllByParam',
       data: {
-        param: key
+        param: key,
+        pageNum: pageNum,
+        pageSize: pageSize
       },
       header: {
         'content-type': 'application/json'
@@ -177,14 +181,16 @@ function getUserGroupById(openid){
 /*
   当前用户的群里的信息
  */
-function getGroupCards(openId, groupId){
+function getGroupCards(openId, groupId, pageNum, pageSize){
   return new Promise(function(resolve){
     wx.request({
       method: 'GET',
       url: server+'/userGroup/findGroupCards',
       data: {
         openId: openId,
-        groupId: groupId
+        groupId: groupId,
+        pageNum: pageNum,
+        pageSize: pageSize
       },
       header: {
         'content-type': 'application/json'

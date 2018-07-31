@@ -82,9 +82,7 @@ Page({
     that.data.isgroup=app.globalData.isgroup;
     that.setData({
       isshow: app.globalData.isshow
-    })
-    console.log(app.globalData.isshow)
-    console.log(app.globalData.notadd)    
+    }) 
     var openid=app.globalData.openid
     var server = that.data.server
     var othercardid=app.globalData.othercardid;

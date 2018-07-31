@@ -52,20 +52,22 @@ Page({
     var listOfSave = that.data.listOfSave
     var openId = that.data.openid;
     var groupId = that.data.groupId;
-    util.getGroupCards(openId, groupId).then(function(res) {
-      var length = res.data.data.length;
+    util.getGroupCards(openId, groupId, 1, 20).then(function(res) {
+      var length = res.data.data.result.length;
+      console.log(res.data.data)
       for (var i = 0; i < length; i++) {
-        res.data.data[i].isselect = false
+        res.data.data.result[i].isselect = false
         // res.data.data[i].index = i
-        list.push(res.data.data[i]);
-        if (res.data.data[i].saveFlag == 1) {
-          listOfSave.push(res.data.data[i].id)
+        list.push(res.data.data.result[i]);
+        if (res.data.data.result[i].saveFlag == 1) {
+          listOfSave.push(res.data.data.result[i].id)
         }
       }
       that.setData({
         list: list,
         listOfSave: listOfSave
       });
+      console.log(that.data.listOfSave)
       that.setData({
         hidden: true
       });
@@ -216,19 +218,28 @@ Page({
     }
     console.log(id)
   },
-  aaa: function(e) {
+  aaa: function (e) {
+    let activeList = []
+    let list = this.data.list
+    for (let i = 0; i< list.length; i ++) {
+      if (list[i].isselect == true) {
+        activeList.push(list[i].id)
+      }
+    }
+    console.log(activeList)
     var that = this
+    console.log(app)
     var server = app.globalData.server;
     var openid = app.globalData.openid;
     var othercardid = app.globalData.othercardid
-    console.log(othercardid)
+    // console.log(othercardid)
     var groupid = that.data.groupId
     var id = that.data.id
-    console.log(id)
-    console.log(groupid)
+    // console.log(id)
+    // console.log(groupid)
     var userpeers = [];
-    util.saveOrUpdate(openid, groupid, 2, id).then(function(res) {
-      console.log(res)
+    util.saveOrUpdate(openid, groupid, 2, activeList).then(function(res) {
+      // console.log(res)
       that.setData({
         isAdd: true
       })
@@ -276,6 +287,7 @@ Page({
   },
   selectOne: function(e) {
     let i = e.currentTarget.dataset.index
+    console.log(e)
     let list = this.data.list
     list[i].isselect = list[i].isselect ? false : true
     this.setData({

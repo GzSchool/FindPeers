@@ -50,8 +50,8 @@
   </view>
 </view>
 <view class="footer">
-  <button class="footer-btn write wx:if='{{!notadd}}" bindtap='remove'>删除同行信息</button>
-  <button class="footer-btn write wx:if='{{notadd}}" open-type='getUserInfo' bindgetuserinfo='addcards'>添加个人信息</button>
+  <button class="footer-btn write" wx:if='{{!notadd}}' bindtap='remove'>删除同行信息</button>
+  <button class="footer-btn write" wx:if='{{notadd}}' open-type='getUserInfo' bindgetuserinfo='addcards'>添加个人信息</button>
 </view>
 <!-- <view class="mycards">
   <view class="mycards1">
