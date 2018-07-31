@@ -180,7 +180,7 @@ Page({
   },
   saveToPhone:function(){
     var that=this
-    if (that.data.phone !== null) {
+    if (that.data.phone) {
       console.log(that.data.phone)
       wx.addPhoneContact({
         firstName: that.data.name,

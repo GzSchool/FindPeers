@@ -26,7 +26,7 @@ App({
     var othercardid = that.globalData.othercardid
     var url = that.globalData.urlOfLogin
                                                                 //要是有id 说明点击的别人分享的（只有两个 一是：群里点击的， 二是：别人分享的）
-    if (othercardid !== "" && othercardid !== null) {
+    if (othercardid) {
       that.globalData.othercardid=ops.cardId
       if (ops.scene == 1044) {                                            // 等于这个 就是群里点击的
         that.globalData.isgroup=true
@@ -44,14 +44,14 @@ App({
                                                             // 登录
         util.Login(url).then(function (data) {
           console.log(data)
-          if (data !== "") {
+          if (data) {
             that.globalData.openid = data
             var openid = that.globalData.openid
           }
           var openid = that.globalData.openid;                  //用用户标识访问数据库获取用户信息
           util.getMyData(openid).then(function (res) {             
             console.log(res)
-            if (res !== null) {                                //判断是否返回 有返回值就是已经添加过信息
+            if (res) {                                //判断是否返回 有返回值就是已经添加过信息
               that.globalData.isshow = true
               that.globalData.notadd = false
               wx.redirectTo({
@@ -72,14 +72,14 @@ App({
         var othercardid = that.globalData.othercardid
         util.Login(url).then(function (data) {                     // 登录
           console.log(data)
-          if (data !== "") {
+          if (data) {
             that.globalData.openid = data
             var openid = that.globalData.openid
           }
           var openid = that.globalData.openid;                      //用用户标识访问数据库获取用户信息
           util.getMyData(openid).then(function (res) {                          
             console.log(res)
-            if (res !== null) {
+            if (res) {
               that.globalData.isshow = true
               that.globalData.notadd = false
               wx.redirectTo({
@@ -99,14 +99,14 @@ App({
       console.log("333333333333333")
       util.Login(url).then(function (data) {                // 登录
         console.log(data)
-        if(data!==""){
+        if(data){
           that.globalData.openid = data
           var openid = that.globalData.openid
         }
         var openid = that.globalData.openid;                //用用户标识访问数据库获取用户信息
         util.getMyData(openid).then(function (res) {                               
           console.log(res)  
-          if(res!==null){
+          if(res){
             that.globalData.notadd = false;
             that.globalData.isshow = true;
             wx.switchTab({

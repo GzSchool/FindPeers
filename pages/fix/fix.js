@@ -1,5 +1,6 @@
 // pages/mycards/mycards.js
 var app = getApp();
+var util=require('../../utils/util.js');
 Page({
 
   /**
@@ -106,8 +107,15 @@ Page({
   },
   addname: function(e) {
     console.log(e)
-    if (e.detail.value == null) {
-
+    if (e.detail.value ==='') {
+      wx.getUserInfo({
+        success: function (a) {
+          that.setData({
+            name: a.userInfo.nickName,
+            image: a.userInfo.avatarUrl
+          })
+        }
+      })
     } else {
       this.setData({
         name: e.detail.value
@@ -115,7 +123,7 @@ Page({
     }
   },
   addnumber: function(e) {
-    if (e.detail.value == '') {
+    if (e.detail.value === '') {
       wx.showToast({
         title: '微信号不能为空',
         icon: 'none'
@@ -129,9 +137,10 @@ Page({
     }
   },
   addcompany: function(e) {
-    if (e.detail.value == '') {
+    if (e.detail.value === '') {
       wx.showToast({
-        title: '公司名称不能为空'
+        title: '公司名称不能为空',
+        icon: 'none'
       })
     } else {
       this.setData({
@@ -156,9 +165,10 @@ Page({
   //   }
   // },
   addcity: function(e) {
-    if (e.detail.value == null) {
+    if (e.detail.value ==='' ) {
       wx.showToast({
         title: '城市信息不能为空',
+        icon:'none'
       })
     } else {
       this.setData({
@@ -173,9 +183,24 @@ Page({
     this.data.job = e.detail.value
   },
   addphone: function(e) {
-
-    this.data.phone = e.detail.value
-    console.log(e.detail.value)
+    var that=this
+    if (e.detail.value===''||util.testPhone(e.detail.value)){
+      that.data.phone = e.detail.value
+    }else{
+      wx.showModal({
+        title: '验证失败',
+        content: '你输入的手机号有错误，请重新输入',
+        success: function () {
+          that.setData({
+            phone: ""
+          });
+        }, fail: function () {
+          that.setData({
+            phone: ""
+          });
+        }
+      })
+    }
   },
   adddemand: function(e) {
 
@@ -188,9 +213,24 @@ Page({
     console.log(e.detail.value)
   },
   addemail: function(e) {
-
-    this.data.email = e.detail.value
-    console.log(e.detail.value)
+    var that = this
+    if(util.testEmail(e.detail.value)){
+      that.data.email = e.detail.value
+    }else{
+      wx.showModal({
+        title: '验证失败',
+        content: '你输入的邮箱地址错误，请重新输入',
+        success:function(){
+          that.setData({
+            email: ""
+          });
+        },fail:function(){
+          that.setData({
+            email: ""
+          });
+        }
+      })
+    }
   },
   addintroduction: function(e) {
 
@@ -201,21 +241,25 @@ Page({
     console.log('save')
     var server = app.globalData.server
     var that=this
-    if (this.data.wechatnum == null) {
+    if (this.data.wechatnum === '') {
       wx.showToast({
         title: '微信号不能为空',
+        icon: 'none'
       })
-    } else if (this.data.company == null) {
+    } else if (this.data.company === '') {
       wx.showToast({
-        title: '公司名称不能为空'
+        title: '公司名称不能为空',
+        icon: 'none'
       })
-    } else if (this.data.idustry == null) {
+    } else if (this.data.idustry === '') {
       wx.showToast({
         title: '行业信息不能为空',
+        icon: 'none'
       })
-    } else if (this.data.city == null) {
+    } else if (this.data.city === '') {
       wx.showToast({
         title: '城市信息不能为空',
+        icon: 'none'
       })
     } else {
       wx.request({
@@ -241,6 +285,17 @@ Page({
           'content-type': 'application/json'
         },
         success: function(res) {
+          console.log(res.data.success)
+          if(res.data.success){
+            wx.showToast({
+              title: '修改成功',
+            })
+          }else{
+            wx.showToast({
+              title: '修改失败',
+              icon: 'none'
+            })
+          }
           var back = that.data.back;
           console.log(back)
           if (back){

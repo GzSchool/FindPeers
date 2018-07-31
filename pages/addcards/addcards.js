@@ -1,5 +1,6 @@
 // pages/addCards/addcards.js
 var app = getApp();
+var util = require('../../utils/util.js');
 Page({
   data: {
     count: 0,        //简介字数
@@ -83,7 +84,7 @@ Page({
   },
   addname: function (e) {
     console.log(e)
-    if (e.detail.value == null) {
+    if (e.detail.value =='') {
       wx.getUserInfo({
         success: function (a) {
           that.setData({
@@ -144,8 +145,24 @@ Page({
     this.data.job = e.detail.value
   },
   addphone: function (e) {
-    this.data.phone = e.detail.value
-    console.log(e.detail.value)
+    var that = this
+    if (e.detail.value === '' || util.testPhone(e.detail.value)) {
+      that.data.phone = e.detail.value
+    } else {
+      wx.showModal({
+        title: '验证失败',
+        content: '你输入的手机号有错误，请重新输入',
+        success: function () {
+          that.setData({
+            phone: ""
+          });
+        }, fail: function () {
+          that.setData({
+            phone: ""
+          });
+        }
+      })
+    }
   },
   adddemand: function (e) {
     this.data.demand = e.detail.value
@@ -156,8 +173,24 @@ Page({
     console.log(e.detail.value)
   },
   addemail: function (e) {
-    this.data.email = e.detail.value
-    console.log(e.detail.value)
+    var that = this
+    if (util.testEmail(e.detail.value)) {
+      that.data.email = e.detail.value
+    } else {
+      wx.showModal({
+        title: '验证失败',
+        content: '你输入的邮箱地址错误，请重新输入',
+        success: function () {
+          that.setData({
+            email: ""
+          });
+        }, fail: function () {
+          that.setData({
+            email: ""
+          });
+        }
+      })
+    }
   },
   addintroduction: function (e) {
     this.data.introduction = e.detail.value
@@ -218,12 +251,22 @@ Page({
         success: function (res) {
           app.globalData.notadd = false
           console.log(res)
+          if (res.data.success) {
+            wx.showToast({
+              title: '修改成功',
+            })
+          } else {
+            wx.showToast({
+              title: '修改失败',
+              icon: 'none'
+            })
+          }
           var openid = app.globalData.openid;
           console.log(openid)
           var othercardid = app.globalData.othercardid;
           var openid = that.data.openid;
           var groupId = that.data.groupId;
-          if (othercardid != "") {
+          if (othercardid) {
             app.globalData.isshow = true
             app.globalData.notadd = false
             console.log(openid)

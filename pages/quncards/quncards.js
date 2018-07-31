@@ -50,6 +50,7 @@ Page({
    console.log(a)
    var openid = a.currentTarget.dataset.id;
    var groupid=a.currentTarget.dataset.key;
+   console.log(groupid)
     wx.navigateTo({
       url: '/pages/teampeers/teampeers?openid='+openid+'&groupid='+groupid,
     })

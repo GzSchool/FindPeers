@@ -35,7 +35,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (ops) {
+  onLoad: function(ops) {
     console.log(ops)
     var that = this
     that.setData({
@@ -52,7 +52,7 @@ Page({
     var listOfSave = that.data.listOfSave
     var openId = that.data.openid;
     var groupId = that.data.groupId;
-    util.getGroupCards(openId, groupId).then(function (res) {
+    util.getGroupCards(openId, groupId).then(function(res) {
       var length = res.data.data.length;
       for (var i = 0; i < length; i++) {
         res.data.data[i].isselect = false
@@ -70,8 +70,8 @@ Page({
         hidden: true
       });
     })
-    util.getMyData(openId).then(function (res) {
-      if (res !== null) {
+    util.getMyData(openId).then(function(res) {
+      if (res) {
         that.setData({
           canSee: false,
           name: res.username,
@@ -89,7 +89,7 @@ Page({
       }
     })
   },
-  share: function () {
+  share: function() {
     var that = this
     var openid = this.data.openid
     var groupid = this.data.groupid
@@ -97,7 +97,7 @@ Page({
     wx.showModal({
       title: '分享到本群',
       content: '确定分享到本群',
-      success: function (r) {
+      success: function(r) {
         if (r.confirm) {
           wx.request({
             method: 'GET',
@@ -110,7 +110,7 @@ Page({
             header: {
               'content-type': 'application/json'
             },
-            success: function (a) {
+            success: function(a) {
               console.log(a)
               that.setData({
                 cansee: true
@@ -121,21 +121,20 @@ Page({
       }
     })
   },
-  mycards: function () {
+  mycards: function() {
     wx.navigateTo({
       url: '/pages/mycards/mycards?back=true',
     })
   },
-  checkboxChange: function (a) {
+  checkboxChange: function(a) {
     if (a.type == "change") {
 
     }
     console.log(a)
 
   },
-  check: function (a) {
-  },
-  chooseSize: function (e) {
+  check: function(a) {},
+  chooseSize: function(e) {
     // 用that取代this，防止不必要的情况发生
     var that = this;
     // 创建一个动画实例
@@ -157,7 +156,7 @@ Page({
       chooseSize: true
     })
     // 设置setTimeout来改变y轴偏移量，实现有感觉的滑动
-    setTimeout(function () {
+    setTimeout(function() {
       animation.translateY(0).step()
       that.setData({
         animationData: animation.export(),
@@ -166,7 +165,7 @@ Page({
       app.globalData.canSee = true
     }, 200)
   },
-  hideModal: function (e) {
+  hideModal: function(e) {
     var that = this;
     var animation = wx.createAnimation({
       duration: 1000,
@@ -178,7 +177,7 @@ Page({
       animationData: animation.export()
 
     })
-    setTimeout(function () {
+    setTimeout(function() {
       animation.translateY(0).step()
       that.setData({
         animationData: animation.export(),
@@ -187,7 +186,7 @@ Page({
       })
     }, 200)
   },
-  checkboxChange: function (e) {
+  checkboxChange: function(e) {
     var that = this
     console.log(e)
     var id = that.data.id;
@@ -217,25 +216,25 @@ Page({
     }
     console.log(id)
   },
-  aaa: function (e) {
+  aaa: function(e) {
     var that = this
     var server = app.globalData.server;
     var openid = app.globalData.openid;
     var othercardid = app.globalData.othercardid
     console.log(othercardid)
-    var groupid = that.data.groupid
+    var groupid = that.data.groupId
     var id = that.data.id
     console.log(id)
-
     console.log(groupid)
     var userpeers = [];
-    util.saveOrUpdate(openid, groupid, 2, id).then(function (res) {
+    util.saveOrUpdate(openid, groupid, 2, id).then(function(res) {
+      console.log(res)
       that.setData({
         isAdd: true
       })
     })
   },
-  goPeers: function (e) {
+  goPeers: function(e) {
     console.log(e)
     var cardId = e.currentTarget.dataset.id;
     var groupId = this.data.groupId;
@@ -244,48 +243,48 @@ Page({
       url: '/pages/otherpeers/otherpeers?cardId=' + cardId + '&groupId=' + groupId,
     })
   },
-  inputSearch: function () {
+  inputSearch: function() {
     wx.navigateTo({
       url: '/pages/inputSearch/inputSearch',
     })
   },
-  addcards: function (e) {
+  addcards: function(e) {
     var othercardid = app.globalData.othercardid;
     var openid = app.globalData.openid;
     var groupId = this.data.groupId
     console.log(groupId)
-    console.log(othercardid !== "")
+    console.log(othercardid)
     if (e.detail.userInfo) {
       wx.redirectTo({
         url: '/pages/addcards/addcards?back=true' + '&groupId=' + groupId + '&openid=' + openid,
       })
     }
   },
-  selectAll: function () {
+  selectAll: function() {
     let val = this.data.selectAll
     console.log(val)
     let list = this.data.list
     for (let i = 0; i < list.length; i++) {
-      list[i].isselect = val?false:true
+      list[i].isselect = val ? false : true
     }
     console.log(list)
     this.setData({
-      selectAll: val?false:true,
-      hasSelect: val?false:true,
+      selectAll: val ? false : true,
+      hasSelect: val ? false : true,
       list: list
     })
   },
-  selectOne: function (e) {
+  selectOne: function(e) {
     let i = e.currentTarget.dataset.index
     let list = this.data.list
-    list[i].isselect = list[i].isselect?false:true
+    list[i].isselect = list[i].isselect ? false : true
     this.setData({
       list: list
     })
     let j = 0;
-    for (let k = 0; k < list.length; k ++) {
+    for (let k = 0; k < list.length; k++) {
       if (list[k].isselect === true) {
-        j ++;
+        j++;
       }
     }
     if (j === list.length) { //全选
@@ -293,22 +292,22 @@ Page({
         selectAll: true,
         hasSelect: true
       })
-    } else if(j === 0) {     //没有被选中的项
+    } else if (j === 0) { //没有被选中的项
       this.setData({
         hasSelect: false,
         selectAll: false
       })
     } else {
-      this.setData({      // 有被选中的项
+      this.setData({ // 有被选中的项
         selectAll: false,
         hasSelect: true
       })
     }
   },
-  selectMyCards () {
+  selectMyCards() {
     let val = this.data.selectMyCard
     this.setData({
-      selectMyCard: val?false:true
+      selectMyCard: val ? false : true
     })
   }
 })

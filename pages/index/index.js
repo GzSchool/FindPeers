@@ -30,11 +30,11 @@ Page({
     if (e.detail.userInfo) {
       console.log('000')
       //用户按了允许授权按钮
-      if (that.data.othercardid != null) {
+      if (that.data.othercardid) {
         var othercardid = app.globalData.othercardid;
         var openid = that.data.openid;
         console.log(othercardid)
-        if (othercardid != "") {
+        if (othercardid) {
           wx.redirectTo({
             url: '/pages/addcards/addcards?othercardid=' + othercardid,
           })
@@ -47,7 +47,7 @@ Page({
     } else {
       var othercardid = app.globalData.othercardid;
       console.log(othercardid)
-      if (othercardid != "") {
+      if (othercardid) {
         wx.redirectTo({
           url: '/pages/peerscards/peerscards?othercardid=' + othercardid,
         })

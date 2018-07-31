@@ -31,7 +31,7 @@ Page({
     var server = app.globalData.server;
     util.getMyData(openid).then(function (res) {
       console.log(res)
-      if (res == null) {
+      if (!res) {
         that.setData({
           notadd: true
         })

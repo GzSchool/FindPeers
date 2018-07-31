@@ -100,7 +100,7 @@ Page({
   },
   addcards: function (e) {
     var othercardid = app.globalData.othercardid;
-    console.log(othercardid !== "")
+    console.log(othercardid)
     if (e.detail.userInfo) {
       wx.navigateTo({
         url: '/pages/addcards/addcards',
@@ -171,7 +171,7 @@ Page({
   },
   saveToPhone: function () {
     var that = this
-    if (that.data.phone !== null) {
+    if (that.data.phone) {
       console.log(that.data.phone)
       wx.addPhoneContact({
         firstName: that.data.name,

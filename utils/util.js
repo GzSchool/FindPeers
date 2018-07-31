@@ -195,6 +195,20 @@ function getGroupCards(openId, groupId){
     })
   })
 }
+/*
+  手机号验证
+ */
+function testPhone(phone){
+  var reg = new RegExp('^(13[0-9]|14[579]|15[0-3,5-9]|16[6]|17[0135678]|18[0-9]|19[89])\\d{8}$');
+  return reg.test(phone)
+}
+/*
+  邮箱验证
+ */
+function testEmail(email){
+  var reg = new RegExp('^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.[a-zA-Z0-9]{2,6}$');
+  return reg.test(email)
+}
 module.exports = {
   formatTime: formatTime,
   formatNumber: formatNumber,
@@ -206,5 +220,7 @@ module.exports = {
   getCardsById: getCardsById,
   saveOrUpdate: saveOrUpdate,
   getUserGroupById: getUserGroupById,
-  getGroupCards: getGroupCards
+  getGroupCards: getGroupCards,
+  testPhone: testPhone,
+  testEmail: testEmail
 }

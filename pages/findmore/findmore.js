@@ -45,7 +45,7 @@ Page({
     var openid = app.globalData.openid;
     util.getMyData(openid).then(function (res) {               //用户查询自己信息
       console.log(res)
-      if (res == null) {
+      if (!res) {
         that.setData({
           notadd: true
         })
