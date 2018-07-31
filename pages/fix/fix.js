@@ -212,6 +212,11 @@ Page({
           'content-type': 'application/json'
         },
         success: function(res) {
+          wx.showToast({
+            title: '修改成功',
+            icon: 'success',
+            duration: 3000
+          });
           var back = that.data.back;
           console.log(back)
           if (back){

@@ -54,7 +54,7 @@ Page({
     // console.log(cardId)
     wx.navigateTo({
       // url: '/pages/peerscards/peerscards?cardId=' + cardId + '&isshow=true',
-      url: '/pages/otherpeers/otherpeers?cardId=' + cardId + '&isshow=true',
+      url: '/pages/otherpeers/otherpeers?cardId=' + cardId + '&isshow=true'
     })
   },
   onShow(){
