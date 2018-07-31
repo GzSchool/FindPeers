@@ -67,15 +67,14 @@ Page({
     })
     var openid = app.globalData.openid;
     var list = that.data.list
-    util.getMyPeers(openid).then(function (res) {             //获取当前保存的同行名片
+    util.getMyPeers(openid, 1, 20).then(function (res) {             //获取当前保存的同行名片
       console.log(res)
-      var length = res.data.data.length;
+      var length = res.data.data.result.length;
       for (var i = 0; i < length; i++) {
-        list.push(res.data.data[i]);
+        list.push(res.data.data.result[i]);
         that.setData({
           list: list
         });
-        console.log(list);
         that.setData({
           hidden: true
         });
@@ -125,9 +124,6 @@ Page({
     })
   },
   onShow: function () {
-    // wx.navigateTo({
-    //   url: '../first/first'
-    // })
     this.onLoad();
   }
 })

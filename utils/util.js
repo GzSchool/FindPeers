@@ -181,6 +181,7 @@ function getUserGroupById(openid) {
 /*
   当前用户的群里的信息
  */
+
 function getGroupCards(openId, groupId, pageNum, pageSize) {
   return new Promise(function(resolve) {
     wx.request({

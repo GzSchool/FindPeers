@@ -113,7 +113,11 @@ Page({
     var cardIds=[]
     cardIds.push(that.data.cardId)
     var groupId=that.data.groupId
+    // console.log(cardIds)
+    // console.log(groupId)
+    // console.log(openid)
     util.saveOrUpdate(openid,groupId,1,cardIds).then(function(res){
+      // console.log(res)
       wx.navigateBack({
         delta: 1
       })

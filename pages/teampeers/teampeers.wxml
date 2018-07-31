@@ -30,7 +30,7 @@
   <view class='crowd-title'>
     <view class='crowd-title-left'>
       <image class="select {{selectAll?'':'noselect'}}" bindtap='selectAll' src="{{selectAll?'../images/select.png':'../images/select_no.png'}}"></image>全选</view>
-    <view class='crowd-title-middle'>{{list.length}}张名片未保存</view>
+    <view class='crowd-title-middle'>{{listOfSave.length}}张名片未保存</view>
     <view class="crowd-title-right" wx:if='{{!hasSelect}}'>保存</view>
     <view class="crowd-title-right active" wx:if='{{hasSelect}}' bindtap='aaa'>保存</view>
   </view>
@@ -53,7 +53,7 @@
           <view class='mes-info' wx:if='{{!notadd}}'>{{item.userCity}}</view>
           <view class='mes-info' wx:if='{{!notadd}}'>{{item.userCompany}}</view>
         </view>
-        <view class='li-select' data-index='{{index}}' catchtap='selectOne'>
+        <view wx:if='{{item.saveFlag == 1}}' class='li-select' data-index='{{index}}' catchtap='selectOne'>
           <image class="select {{item.isselect?'':'noselect'}}" src="{{item.isselect?'../images/select.png':'../images/select_no.png'}}"></image>
         </view>
       </view>
