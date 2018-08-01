@@ -179,8 +179,8 @@ Page({
   save: function(e) {
     var server = app.globalData.server
     var that=this
-    if (isvalidatemobile(this.data.phone)[0]) {
-      app.showToast(isvalidatemobile(this.data.phone)[1])
+    if (!isvalidatemobile(this.data.phone)) {
+      app.showToast('请输入正确的手机号')
     } else if (!validateEmail(this.data.email)) {
       app.showToast('邮箱格式不正确')
     } else if (this.data.wechatnum == '') {

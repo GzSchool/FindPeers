@@ -212,9 +212,6 @@ Page({
     util.saveOrUpdate(openid, groupid, 2, activeList).then(function(res) {
       console.log(res)
       if (res.data.success && res.statusCode == 200) {
-        that.setData({
-          selectMyCard:false
-        })
         app.showToast('保存成功')
       }
     })

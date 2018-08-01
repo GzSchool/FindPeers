@@ -116,16 +116,16 @@ Page({
       this.data.company = e.detail.value
     }
   },
-  addidustry: function (e) {
-    if (e.detail.value == '') {
-      wx.showToast({
-        title: '行业信息不能为空',
-        icon: 'none'
-      })
-    } else {
-      this.data.idustry = e.detail.value
-    }
-  },
+  // addidustry: function (e) {
+  //   if (e.detail.value == '') {
+  //     wx.showToast({
+  //       title: '行业信息不能为空',
+  //       icon: 'none'
+  //     })
+  //   } else {
+  //     this.data.idustry = e.detail.value
+  //   }
+  // },
   addcity: function (e) {
     if (e.detail.value == '') {
       wx.showToast({
@@ -169,9 +169,9 @@ Page({
     } else {
       back = this.data.back
     }
-    if (isvalidatemobile(this.data.phone)[0]) {
+    if (!isvalidatemobile(this.data.phone)) {
       wx.showToast({
-        title: isvalidatemobile(this.data.phone)[1],
+        title: '请输入正确的手机号',
         icon: 'none'
       })
     } else if (!validateEmail(this.data.email)) {
