@@ -252,7 +252,7 @@ Page({
     var groupId = this.data.groupId;
     console.log(cardId)
     wx.navigateTo({
-      url: '/pages/otherpeers/otherpeers?cardId=' + cardId + '&groupId=' + groupId,
+      url: '/pages/otherpeers/otherpeers?cardId=' + cardId + '&groupId=' + groupId + '&back=true',
     })
   },
   inputSearch: function() {

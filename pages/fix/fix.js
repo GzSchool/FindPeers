@@ -37,6 +37,7 @@ Page({
     wx.showShareMenu({
       withShareTicket: true
     })
+    console.log(a.back)
     if(a.back){
       that.setData({
         back:true,
