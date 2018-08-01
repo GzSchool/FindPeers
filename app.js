@@ -4,6 +4,7 @@ const industry = require('/utils/industry.js')
 App({
 
   globalData: {
+    refreshFlag: false,
     industry: industry,           // 行业数据                     
     openid: '',                     //当前用户标识
     isshow: false,                 //是否能看別人信息
@@ -25,7 +26,7 @@ App({
     var server = that.globalData.server
     var othercardid = that.globalData.othercardid
     var url = that.globalData.urlOfLogin
-                                                                //要是有id 说明点击的别人分享的（只有两个 一是：群里点击的， 二是：别人分享的）
+    //要是有id 说明点击的别人分享的（只有两个 一是：群里点击的， 二是：别人分享的）
     if (othercardid) {
       that.globalData.othercardid=ops.cardId
       if (ops.scene == 1044) {                                            // 等于这个 就是群里点击的
@@ -41,7 +42,7 @@ App({
             var iv = res.iv;
           }
         })
-                                                            // 登录
+        // 登录
         util.Login(url).then(function (data) {
           console.log(data)
           if (data) {
@@ -95,10 +96,10 @@ App({
           })
         })
       }
-    } else {                                                //搜索小程序点击小程序的
-      console.log("333333333333333")
+    } else {             
       util.Login(url).then(function (data) {                // 登录
-        console.log(data)
+        // console.log(data)                                   //搜索小程序点击小程序的
+        // console.log('just login')
         if(data){
           that.globalData.openid = data
           var openid = that.globalData.openid

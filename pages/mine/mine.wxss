@@ -1,7 +1,7 @@
 /* pages/mine/mine.wxss */
 page {
   background-color: #f8f8f8;
-  padding-top: 10px;
+  padding-top: 10rpx;
   box-sizing: border-box;
 }
 
@@ -48,7 +48,7 @@ page {
 .find .about{
   flex: 1;
   padding-left: 20rpx;
-  font-size: 15px;
+  font-size: 28rpx;
 }
 .find .img1{
   width: 33rpx;

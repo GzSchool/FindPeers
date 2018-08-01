@@ -23,6 +23,8 @@ Page({
     key: " 微信号、城市、公司、行业等进行搜索"   //搜索框值
   },
   onLoad: function (a) {
+    // this.onLoad()
+    // app.onLaunch()
     var that = this;
     wx.getSystemInfo({                                        //获取屏幕高度给滚动条添加高度
       success: function (res) {
