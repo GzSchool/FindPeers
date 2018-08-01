@@ -205,12 +205,35 @@ Page({
     var othercardid = app.globalData.othercardid
     // console.log(othercardid)
     var groupid = that.data.groupId
+    var listOfSave = that.data.listOfSave;
     var id = that.data.id
     // console.log(id)
     // console.log(groupid)
     var userpeers = [];
+    list=[];
     util.saveOrUpdate(openid, groupid, 2, activeList).then(function(res) {
       console.log(res)
+      util.getGroupCards(openid, groupid, 1, 20).then(function (adc) {
+        var length = adc.data.data.result.length;
+        console.log(adc.data.data)
+        for (var i = 0; i < length; i++) {
+          adc.data.data.result[i].isselect = false
+          // res.data.data[i].index = i
+          list.push(adc.data.data.result[i]);
+          if (adc.data.data.result[i].saveFlag == 1) {
+            listOfSave.push(adc.data.data.result[i].id)
+          }
+        }
+        that.setData({
+          list: list,
+          listOfSave: listOfSave
+        });
+        console.log(that.data.list)
+        console.log(that.data.listOfSave)
+        that.setData({
+          hidden: true
+        });
+      })
       if (res.data.success && res.statusCode == 200) {
         app.showToast('保存成功')
       }
