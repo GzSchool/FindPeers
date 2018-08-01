@@ -97,44 +97,13 @@ Page({
     }
   },
   addnumber: function (e) {
-    if (e.detail.value == '') {
-      wx.showToast({
-        title: '微信号不能为空',
-        icon: 'none'
-      })
-    } else {
-      this.data.wechatnum = e.detail.value
-    }
+    this.data.wechatnum = e.detail.value
   },
   addcompany: function (e) {
-    if (e.detail.value == '') {
-      wx.showToast({
-        title: '公司名称不能为空',
-        icon: 'none'
-      })
-    } else {
-      this.data.company = e.detail.value
-    }
+    this.data.company = e.detail.value
   },
-  // addidustry: function (e) {
-  //   if (e.detail.value == '') {
-  //     wx.showToast({
-  //       title: '行业信息不能为空',
-  //       icon: 'none'
-  //     })
-  //   } else {
-  //     this.data.idustry = e.detail.value
-  //   }
-  // },
   addcity: function (e) {
-    if (e.detail.value == '') {
-      wx.showToast({
-        title: '城市信息不能为空',
-        icon: 'none'
-      })
-    } else {
-      this.data.city = e.detail.value
-    }
+    this.data.city = e.detail.value
   },
   addjob: function (e) {
     this.data.job = e.detail.value
