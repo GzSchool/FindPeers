@@ -15,6 +15,8 @@
     </view> 
   </view>
 </view>
+<view class='loadtips' wx:if='{{loading}}'>加载中...</view>
+<view class='loadtips' wx:if='{{loadAll}}'>已加载全部</view>
 <view class='noresult' wx:if='{{noresult&&list.length==0}}'>暂时没有找到相关信息</view>
 <!-- <view class="inputSearch">
   <view class="search1">

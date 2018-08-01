@@ -27,7 +27,7 @@ Page({
     isshow0: false,   //需求是否显示
     isshow1: false,   //资源是否显示
     isshow2: false,   //邮箱是否显示
-    itemList: ["需求", "资源", "邮箱"]  // 添加更多项
+    itemList: ["需求", "资源"]  // 添加更多项
   },
   onLoad: function (res) {
     var that = this
@@ -64,7 +64,7 @@ Page({
   addmore: function () {                                                
     var that = this
     wx.showActionSheet({
-      itemList: ["需求", "资源", "邮箱"],
+      itemList: ["需求", "资源"],
       success: function (res) {
         if (res.tapIndex == 0) {
           that.setData({
@@ -73,10 +73,6 @@ Page({
         } else if (res.tapIndex == 1) {
           that.setData({
             isshow1: true
-          })
-        } else {
-          that.setData({
-            isshow2: true
           })
         }
       }

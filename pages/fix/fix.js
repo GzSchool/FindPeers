@@ -101,7 +101,7 @@ Page({
   addmore: function() {
     var that = this
     wx.showActionSheet({
-      itemList: ["需求", "资源", "邮箱"],
+      itemList: ["需求", "资源"],
       success: function(res) {
         if (res.tapIndex == 0) {
           that.setData({
@@ -111,48 +111,29 @@ Page({
           that.setData({
             isshow1: true
           })
-        } else {
-          that.setData({
-            isshow2: true
-          })
         }
       }
     })
   },
-  addname: function(e) {
-    if (e.detail.value == '') {
-    } else {
-      this.setData({
-        name: e.detail.value
-      })
-    }
+  addname: function (e) {
+    this.setData({
+      name: e.detail.value
+    })
   },
-  addnumber: function(e) {
-    if (e.detail.value == '') {
-      app.showToast('微信号不能为空')
-    } else {
-      this.setData({
-        wechatnum: e.detail.value
-      })
-    }
+  addnumber: function (e) {
+    this.setData({
+      wechatnum: e.detail.value
+    })
   },
-  addcompany: function(e) {
-    if (e.detail.value == '') {
-      app.showToast('公司名称不能为空')
-    } else {
-      this.setData({
-        company: e.detail.value
-      })
-    }
+  addcompany: function (e) {
+    this.setData({
+      company: e.detail.value
+    })
   },
-  addcity: function(e) {
-    if (e.detail.value == null) {
-      app.showToast('城市信息不能为空')
-    } else {
-      this.setData({
-        city: e.detail.value
-      })
-    }
+  addcity: function (e) {
+    this.setData({
+      city: e.detail.value
+    })
   },
   addjob: function(e) {
     this.data.job = e.detail.value

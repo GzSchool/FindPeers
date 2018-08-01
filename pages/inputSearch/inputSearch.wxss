@@ -89,6 +89,13 @@ page{
   font-size: 30rpx;
   color: #606060;
 }
+.loadtips {
+  height: 70rpx;
+  line-height: 70rpx;
+  text-align: center;
+  font-size: 24rpx;
+  color: #949494;
+}
 /* page {
   display: block;
   min-height: 100%;
