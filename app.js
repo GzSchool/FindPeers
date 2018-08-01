@@ -13,6 +13,7 @@ App({
     urlOfLogin:'/user/userAuthor',               //登录接口
     urlOfAddOrUpdate: '/userCard/saveOrUpdate',  //添加或修改个人信息接口
     urlOfGetCardByOpenID: '/userCard/findOneByOpenId', //获取当前用户信息
+    industry:industry
   },
   onLaunch: function(ops) {
     var that = this

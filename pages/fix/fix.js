@@ -120,11 +120,19 @@ Page({
     })
   },
   addname: function(e) {
+    var that = this
     if (e.detail.value == '') {
-    } else {
-      this.setData({
-        name: e.detail.value
+      wx.getUserInfo({
+        success: function (a) {
+          console.log(a)
+          that.setData({
+            name: a.userInfo.nickName,
+            image: a.userInfo.avatarUrl
+          })
+        }
       })
+    } else {
+      that.data.name = e.detail.value
     }
   },
   addnumber: function(e) {
@@ -191,6 +199,20 @@ Page({
       app.showToast('行业信息不能为空')
     } else if (this.data.city == '') {
       app.showToast('城市信息不能为空')
+    } else if (this.data.name == '') {
+      wx.getUserInfo({
+        success: function (a) {
+          console.log(a)
+          this.data.name = a.userInfo.nickName;
+        }
+      })
+    } else if (this.data.image == '') {
+      wx.getUserInfo({
+        success: function (a) {
+          console.log(a)
+          this.data.image = a.userInfo.avatarUrl;
+        }
+      })
     } else {
       wx.request({
         method: 'GET',
