@@ -9,7 +9,7 @@ Page({
     othercardid: "", //分享的人的标识
     company: '',     //用户公司
     openid: '',      //用户标识
-    notadd: false,   //是否已添加信息
+    notadd: false,   //是否未添加信息
     idustry: '',     //用户行业
     city: '',        //用户城市
     email: '',       //用户邮箱
@@ -23,17 +23,18 @@ Page({
     key: " 微信号、城市、公司、行业等进行搜索"   //搜索框值
   },
   onLoad: function (a) {
-    // this.onLoad()
-    // app.onLaunch()
-    var that = this;
-    wx.getSystemInfo({                                        //获取屏幕高度给滚动条添加高度
-      success: function (res) {
-        console.info(res.windowHeight);
-        that.setData({
-          scrollHeight: res.windowHeight
-        });
+    if (app.globalData.openid && app.globalData.openid !== '') {
+      this.getData()
+    } else {
+      app.employIdCallback = employId => {
+        if (employId) {
+          this.getData()
+        }
       }
-    });
+    }
+  },
+  getData () {
+    var that = this;
     that.setData({
       notadd: app.globalData.notadd,
       server: app.globalData.server,
