@@ -21,7 +21,8 @@ Page({
     othercards:'',
     chooseSize: false,
     animationData: {},
-    isgroup:""
+    isgroup:"",                  //判断是否是在群里点击的
+    isSave:""                    //判断是否已保存这个名片
   },
   onShareAppMessage:function(){
     var server = that.data.server
@@ -78,16 +79,18 @@ Page({
     })
     console.log(ops)
     var that = this
-    that.data.server=app.globalData.server
-    that.data.isgroup=app.globalData.isgroup;
+    that.data.server=app.globalData.server;
     that.setData({
-      isshow: app.globalData.isshow
+      isshow: app.globalData.isshow,
+      isgroup:app.globalData.isgroup
     }) 
     var openid=app.globalData.openid
     var server = that.data.server
     var othercardid=app.globalData.othercardid;
-    that.cardId.push(othercardid)
+    that.data.cardId=[];
+    that.data.cardId.push(othercardid);
     util.getCardsById(othercardid).then(function (res) {
+      console.log(res)
       that.setData({
         name: res.data.data[0].username,
         wechatnum: res.data.data[0].userWechat,
@@ -98,6 +101,7 @@ Page({
         phone: res.data.data[0].userPhone,
         image: res.data.data[0].userImg,
       })
+      console.log(res.data.data[0].delFlag )
     })
   },
   addcards:function(e){
@@ -114,11 +118,12 @@ Page({
     var that=this
     var server = app.globalData.server;
     var othercardid=app.globalData.othercardid;
+    var groupId=app.globalData.groupid;
     var openid=app.globalData.openid;
     var cardId=that.data.cardId
-    util.saveOrUpdate(openid, groupId, 2, cardId).then(function (res) {
-      wx.navigateBack({
-        delta: 1
+    util.saveOrUpdate(openid, groupId, 1, cardId).then(function (res) {
+      wx.switchTab({
+        url: '/pages/findmore/findmore',
       })
     })
   },

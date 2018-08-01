@@ -45,7 +45,7 @@
   </view>
   <view class='letter'>同行信息</view>
   
-  <view class='mes-li' wx:for="{{list}}" wx:for-index="index" wx:for-item="item" data-id="{{item.id}}" wx:key="11" data-key='{{item.openId}}' bindtap='select'>
+  <view class='mes-li' wx:for="{{list}}" wx:for-index="index" wx:for-item="item" data-id="{{item.id}}" wx:key="11" data-key='{{item.openId}}' data-saveFlag='{{item.saveFlag}}' bindtap='select'>
     <view class='li-left'>
       <image src='{{item.userImg}}'></image>
     </view>

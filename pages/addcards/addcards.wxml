@@ -19,7 +19,7 @@
     <view class='main-li'>
       <view class='star'>*</view>
       <view class='title'><text>行</text><text>业:</text></view>
-      <input placeholder-class="phcolor" disabled='disabled' bindtap='chooseIn' placeholder='必填' type='text' value='{{idustry}}'></input>
+<input placeholder-class="phcolor" disabled='disabled' bindtap='chooseIn' placeholder='必填' type='text' value='{{idustry}}'></input>
       <image src='/pages/images/right.png' bindtap='chooseIn'></image>
     </view>
     <view class='main-li'>

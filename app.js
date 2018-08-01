@@ -4,21 +4,14 @@ const industry = require('/utils/industry.js')
 App({
 
   globalData: {
-    refreshFlag: false,
-    industry: industry,           // 行业数据                     
-    openid: '',                     //当前用户标识
-    isshow: false,                 //是否能看別人信息
-    notadd: true,                 //是否沒有添加個人信息
-    groupid: '',                  //群标识
-    mycardid: '',                    //自己的cardid 
     isgroup:false,               //是不是群
     othercardid: '',             //点击别人分享的别人的id
     canSee:"",                   //群名片里的自己的信息是不是已经分享
     login: '',                   //登陆标识
-    // server: 'http://localhost:8080',                 //服务器地址
+    // server: 'http://localhost:8080',          //服务器地址
     server: 'http://192.168.2.123:8080',
-    urlOfLogin:'/user/userAuthor',                    //登录接口
-    urlOfAddOrUpdate: '/userCard/saveOrUpdate',       //添加或修改个人信息接口
+    urlOfLogin:'/user/userAuthor',               //登录接口
+    urlOfAddOrUpdate: '/userCard/saveOrUpdate',  //添加或修改个人信息接口
     urlOfGetCardByOpenID: '/userCard/findOneByOpenId', //获取当前用户信息
   },
   onLaunch: function(ops) {
@@ -28,7 +21,7 @@ App({
     var url = that.globalData.urlOfLogin
     //要是有id 说明点击的别人分享的（只有两个 一是：群里点击的， 二是：别人分享的）
     if (othercardid) {
-      that.globalData.othercardid=ops.cardId
+      //that.globalData.othercardid=ops.cardId
       if (ops.scene == 1044) {                                            // 等于这个 就是群里点击的
         that.globalData.isgroup=true
         var shareTickets = ops.shareTicket;
@@ -71,6 +64,7 @@ App({
       } else {                                             //点击的个人的分享
         console.log("2222222222222")
         var that = this
+        that.globalData.isgroup=false
         var othercardid = that.globalData.othercardid
         util.Login(url).then(function (data) {                     // 登录
           console.log(data)

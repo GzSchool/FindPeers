@@ -219,6 +219,7 @@ Page({
             icon: 'success',
             duration: 3000
           });
+          app.showToast("修改成功");
           var back = that.data.back;
           console.log(back)
           if (back){

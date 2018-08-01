@@ -229,6 +229,7 @@ Page({
           var othercardid = app.globalData.othercardid;
           var openid = that.data.openid;
           var groupId = that.data.groupId;
+          app.showToast("保存成功");
           if (othercardid != "") {
             app.globalData.isshow = true
             app.globalData.notadd = false
