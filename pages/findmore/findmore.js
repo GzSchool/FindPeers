@@ -119,8 +119,9 @@ Page({
   select: function (a) {
     var otheropenid = a.currentTarget.dataset.key;
     var cardId = a.currentTarget.dataset.id;
+    var saveFlag = a.currentTarget.dataset.saveFlag;
     wx.navigateTo({
-      url: '/pages/otherpeers/otherpeers?cardId=' + cardId + '&groupId=' + "0",
+      url: '/pages/otherpeers/otherpeers?cardId=' + cardId + '&groupId=' + "0" + '&saveFlag=' + saveFlag,
     })
   },
   onShow: function () {

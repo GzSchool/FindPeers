@@ -32,6 +32,7 @@ Page({
     var groupid = app.globalData.groupid;
     var list=that.data.list;
     util.getUserGroupById(openid).then(function(res){
+      console.log(res)
       var length = res.data.data.length;
       for (var i = 0; i < length; i++) {
         // 处理时间截取字母T之前的年月日

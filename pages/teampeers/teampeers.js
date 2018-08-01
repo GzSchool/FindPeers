@@ -189,36 +189,6 @@ Page({
       })
     }, 200)
   },
-  checkboxChange: function(e) {
-    var that = this
-    console.log(e)
-    var id = that.data.id;
-    var listOfSave = that.data.listOfSave
-    var length1 = e.detail.value.length
-    var length2 = listOfSave.length
-    console.log(length1)
-    console.log(length2)
-    if (length1 >= length2) {
-      that.setData({
-        isAllChecked: false,
-        isChecked: false,
-        id: []
-      })
-
-
-    } else {
-      for (var i = 0; i < listOfSave.length; i++) {
-        id.push(listOfSave[i])
-        console.log(listOfSave[i])
-      }
-      that.setData({
-        isAllChecked: true,
-        isChecked: true,
-        id: id
-      })
-    }
-    console.log(id)
-  },
   aaa: function (e) {
     let activeList = []
     let list = this.data.list
@@ -242,6 +212,9 @@ Page({
     util.saveOrUpdate(openid, groupid, 2, activeList).then(function(res) {
       console.log(res)
       if (res.data.success && res.statusCode == 200) {
+        that.setData({
+          selectMyCard:false
+        })
         app.showToast('保存成功')
       }
     })
@@ -250,9 +223,10 @@ Page({
     console.log(e)
     var cardId = e.currentTarget.dataset.id;
     var groupId = this.data.groupId;
-    console.log(cardId)
+    var saveFlag = e.currentTarget.dataset.saveflag;
+    console.log(e.currentTarget.dataset.saveflag)
     wx.navigateTo({
-      url: '/pages/otherpeers/otherpeers?cardId=' + cardId + '&groupId=' + groupId + '&back=true',
+      url: '/pages/otherpeers/otherpeers?cardId=' + cardId + '&groupId=' + groupId + '&back=true' + '&saveFlag=' + saveFlag,
     })
   },
   inputSearch: function() {

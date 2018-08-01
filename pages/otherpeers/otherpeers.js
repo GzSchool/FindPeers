@@ -22,6 +22,7 @@ Page({
     image: "/pages/images/1.png",
     email: "",
     isshow: false,
+    isSave:""
   }, 
   onShareAppMessage: function () {
     var server = that.data.server
@@ -78,11 +79,23 @@ Page({
    */
   onLoad: function (ops) {
     var that = this
+    console.log(ops)
     that.setData({
       cardId:ops.cardId,
       notadd:app.globalData.notadd,
-      groupId: ops.groupId
+      groupId: ops.groupId,
     })
+    if(ops.saveFlag){
+      if(ops.saveFlag == 2){
+        that.setData({
+          isSave:true
+        })
+      }else{
+        that.setData({
+          isSave: false
+        })
+      }
+    }
     if(ops.back){
       that.setData({
         back:true
@@ -95,6 +108,7 @@ Page({
     var server=app.globalData.server;
     var cardId=that.data.cardId
     util.getCardsById(cardId).then(function(res){
+      console.log(res)
       that.setData({
         name: res.data.data[0].username,
         wechatnum: res.data.data[0].userWechat,
@@ -129,7 +143,7 @@ Page({
     util.saveOrUpdate(openid,groupId,1,cardIds).then(function(res){
       // console.log(res)
       if(back){
-        wx.navigateTo({
+        wx.redirectTo({
           url: '/pages/teampeers/teampeers?openid=' + openid + '&groupid=' + groupId,
         })
       }else{
@@ -238,7 +252,7 @@ Page({
     console.log(cardIds)
     util.saveOrUpdate(openid, groupId, 2, cardIds).then(function (res) {
       if (back) {
-        wx.navigateTo({
+        wx.redirectTo({
           url: '/pages/teampeers/teampeers?openid=' + openid + '&groupid=' + groupId,
         })
       } else {
