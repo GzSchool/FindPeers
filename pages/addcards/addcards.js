@@ -203,7 +203,7 @@ Page({
             app.globalData.isshow = true
             app.globalData.notadd = false
             console.log(openid)
-            wx.navigateTo({
+            wx.redirectTo({
               url: '/pages/peerscards/peerscards?othercardid=' + othercardid + '&isshow=true',
             })
           } else if (back) {

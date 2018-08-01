@@ -44,10 +44,12 @@ Page({
     }
   },
   find:function(a){
+    console.log(a)
     var openId=a.currentTarget.dataset.key;
     var cardId = a.currentTarget.dataset.id;
+    var saveFlag = a.currentTarget.dataset.saveflag;
     wx.navigateTo({
-      url: '/pages/otherpeers/otherpeers?cardId=' + cardId + '&isshow=true'
+      url: '/pages/otherpeers/otherpeers?cardId=' + cardId + '&isshow=true' + '&saveFlag=' + saveFlag
     })
   },
   onReachBottom () {
