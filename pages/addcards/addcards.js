@@ -79,6 +79,7 @@ Page({
     })
   },
   addname: function (e) {
+    var that = this
     if (e.detail.value == '') {
       wx.getUserInfo({
         success: function (a) {
@@ -89,7 +90,7 @@ Page({
         }
       })
     } else {
-      this.data.name = e.detail.value
+      that.data.name = e.detail.value
     }
   },
   addnumber: function (e) {
@@ -164,7 +165,21 @@ Page({
         title: '城市信息不能为空',
         icon: 'none'
       })
-    } else {
+    } else if (this.data.name == '') {
+      wx.getUserInfo({
+        success: function (a) {
+          console.log(a)
+          this.data.name = a.userInfo.nickName;
+        }
+      })
+    } else if (this.data.image == '') {
+      wx.getUserInfo({
+        success: function (a) {
+          console.log(a)
+          this.data.image = a.userInfo.avatarUrl;
+        }
+      })
+    }  else {
       wx.request({
         method: 'GET',
         data: {

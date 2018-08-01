@@ -1,17 +1,17 @@
 // pages/mycards/mycards.js
-import { validateEmail, isvalidatemobile} from '../../utils/validate.js'
+import { validateEmail, isvalidatemobile } from '../../utils/validate.js'
 var app = getApp();
 Page({
   data: {
     count: 0,
-    groupId:"",
+    groupId: "",
     name: "",
     other: '',
     wechatnum: "",
     company: "",
     idustry: "",
     job: '',
-    back:"",
+    back: "",
     server: "",
     id: '',
     city: "",
@@ -30,7 +30,7 @@ Page({
     showresource: false,
     showintroduction: false
   },
-  onLoad: function(a) {
+  onLoad: function (a) {
     var that = this
     console.log(a)
     that.data.server = app.globalData.server
@@ -38,10 +38,10 @@ Page({
       withShareTicket: true
     })
     console.log(a.back)
-    if(a.back){
+    if (a.back) {
       that.setData({
-        back:true,
-        groupId:a.groupId
+        back: true,
+        groupId: a.groupId
       })
     }
     that.data.openid = app.globalData.openid;
@@ -57,7 +57,7 @@ Page({
       header: {
         'content-type': 'application/json'
       },
-      success: function(b) {
+      success: function (b) {
         console.log(b)
         that.setData({
           name: b.data.data.username,
@@ -92,17 +92,17 @@ Page({
       }
     })
   },
-  viewThisCards: function() {
+  viewThisCards: function () {
     var openid = app.globalData.openid;
     wx.navigateTo({
       url: '/pages/viewThis/viewThis?openid=' + openid,
     })
   },
-  addmore: function() {
+  addmore: function () {
     var that = this
     wx.showActionSheet({
-      itemList: ["需求", "资源"],
-      success: function(res) {
+      itemList: ["需求", "资源", "邮箱"],
+      success: function (res) {
         if (res.tapIndex == 0) {
           that.setData({
             isshow0: true
@@ -111,55 +111,82 @@ Page({
           that.setData({
             isshow1: true
           })
+        } else {
+          that.setData({
+            isshow2: true
+          })
         }
       }
     })
   },
   addname: function (e) {
-    this.setData({
-      name: e.detail.value
-    })
+    var that = this
+    if (e.detail.value == '') {
+      wx.getUserInfo({
+        success: function (a) {
+          console.log(a)
+          that.setData({
+            name: a.userInfo.nickName,
+            image: a.userInfo.avatarUrl
+          })
+        }
+      })
+    } else {
+      that.data.name = e.detail.value
+    }
   },
   addnumber: function (e) {
-    this.setData({
-      wechatnum: e.detail.value
-    })
+    if (e.detail.value == '') {
+      app.showToast('微信号不能为空')
+    } else {
+      this.setData({
+        wechatnum: e.detail.value
+      })
+    }
   },
   addcompany: function (e) {
-    this.setData({
-      company: e.detail.value
-    })
+    if (e.detail.value == '') {
+      app.showToast('公司名称不能为空')
+    } else {
+      this.setData({
+        company: e.detail.value
+      })
+    }
   },
   addcity: function (e) {
-    this.setData({
-      city: e.detail.value
-    })
+    if (e.detail.value == null) {
+      app.showToast('城市信息不能为空')
+    } else {
+      this.setData({
+        city: e.detail.value
+      })
+    }
   },
-  addjob: function(e) {
+  addjob: function (e) {
     this.data.job = e.detail.value
   },
-  addphone: function(e) {
+  addphone: function (e) {
     this.data.phone = e.detail.value
   },
-  adddemand: function(e) {
+  adddemand: function (e) {
     this.data.demand = e.detail.value
   },
-  addresource: function(e) {
+  addresource: function (e) {
     this.data.resource = e.detail.value
   },
-  addemail: function(e) {
+  addemail: function (e) {
     this.data.email = e.detail.value
   },
-  introInput: function(e) {
+  introInput: function (e) {
     let i = e.detail.value.length
     this.data.introduction = e.detail.value
     this.setData({
       count: i
     })
   },
-  save: function(e) {
+  save: function (e) {
     var server = app.globalData.server
-    var that=this
+    var that = this
     if (!isvalidatemobile(this.data.phone)) {
       app.showToast('请输入正确的手机号')
     } else if (!validateEmail(this.data.email)) {
@@ -172,6 +199,20 @@ Page({
       app.showToast('行业信息不能为空')
     } else if (this.data.city == '') {
       app.showToast('城市信息不能为空')
+    } else if (this.data.name == '') {
+      wx.getUserInfo({
+        success: function (a) {
+          console.log(a)
+          this.data.name = a.userInfo.nickName;
+        }
+      })
+    } else if (this.data.image == '') {
+      wx.getUserInfo({
+        success: function (a) {
+          console.log(a)
+          this.data.image = a.userInfo.avatarUrl;
+        }
+      })
     } else {
       wx.request({
         method: 'GET',
@@ -194,7 +235,7 @@ Page({
         header: {
           'content-type': 'application/json'
         },
-        success: function(res) {
+        success: function (res) {
           wx.showToast({
             title: '修改成功',
             icon: 'success',
@@ -203,24 +244,24 @@ Page({
           app.showToast("修改成功");
           var back = that.data.back;
           console.log(back)
-          if (back){
+          if (back) {
             var openid = app.globalData.openid;
             var groupId = that.data.groupId
             console.log(groupId)
             wx.navigateTo({
               url: '/pages/teampeers/teampeers?groupid=' + groupId + '&openid=' + openid,
             })
-          }else{
+          } else {
             wx.switchTab({
               url: '/pages/findmore/findmore',
             })
-          }                   
+          }
         }
       })
     }
 
   },
-  getPhoneNumber: function(e) {
+  getPhoneNumber: function (e) {
     console.log(e.detail.errMsg)
     console.log(e.detail.iv)
     console.log(e.detail.encryptedData)
@@ -229,7 +270,7 @@ Page({
         title: '提示',
         showCancel: false,
         content: '未授权',
-        success: function(res) {
+        success: function (res) {
           console.log(res)
         }
       })
@@ -238,7 +279,7 @@ Page({
         title: '提示',
         showCancel: false,
         content: '同意授权',
-        success: function(res) {
+        success: function (res) {
           console.log(res)
         }
       })
