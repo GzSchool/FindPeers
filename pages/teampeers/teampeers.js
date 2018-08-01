@@ -219,6 +219,7 @@ Page({
   goPeers: function(e) {
     var cardId = e.currentTarget.dataset.id;
     var groupId = this.data.groupId;
+    var saveFlag = e.currentTarget.dataset.saveflag
     wx.navigateTo({
       url: '/pages/otherpeers/otherpeers?cardId=' + cardId + '&groupId=' + groupId + '&back=true' + '&saveFlag=' + saveFlag,
     })
