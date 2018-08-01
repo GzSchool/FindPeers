@@ -185,6 +185,7 @@ Page({
     var that = this
     console.log(app)
     var openid = app.globalData.openid;
+    var listOfSave = that.data.listOfSave
     var othercardid = app.globalData.othercardid
     var groupid = that.data.groupId
     var userpeers = [];
