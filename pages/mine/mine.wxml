@@ -5,7 +5,7 @@
     <view wx:if='{{industry}}' class="card-info">{{industry}}</view>
     <view wx:if='{{city}}' class="card-info">{{city}}</view>
     <view wx:if='{{company}}' class="card-info">{{company}}</view>
-    <image class="card-img" src="/pages/images/findpeers.png"></image>
+    <image class="card-img" src="/pages/images/logo.png"></image>
     <view class="card-help">微信扫一扫二维码</view>
   </view>
   <view class="find" bindtap='findUs'>

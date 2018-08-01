@@ -85,6 +85,7 @@ page{
 }
 .intro textarea {
   height: 85%;
+  width: 100%;
   overflow: auto;
   font-size: 28rpx;
 }
