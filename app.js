@@ -44,13 +44,14 @@ App({
         })
         // 登录
         util.Login(url).then(function (data) {
-          console.log(data)
           if (data) {
             that.globalData.openid = data
             var openid = that.globalData.openid
           }
           var openid = that.globalData.openid;                  //用用户标识访问数据库获取用户信息
-          util.getMyData(openid).then(function (res) {             
+          util.getMyData(openid).then(function (res) {  
+            console.log('登录返回值')  
+            // console.log(this.globalData.isshow)         
             console.log(res)
             if (res) {                                //判断是否返回 有返回值就是已经添加过信息
               that.globalData.isshow = true
@@ -98,15 +99,15 @@ App({
       }
     } else {             
       util.Login(url).then(function (data) {                // 登录
-        // console.log(data)                                   //搜索小程序点击小程序的
-        // console.log('just login')
-        if(data){
+        console.log(data)
+        if (data) {
           that.globalData.openid = data
           var openid = that.globalData.openid
+          // console.log(that.globalData.openid)
         }
         var openid = that.globalData.openid;                //用用户标识访问数据库获取用户信息
         util.getMyData(openid).then(function (res) {                               
-          console.log(res)  
+          console.log(res)
           if(res){
             that.globalData.notadd = false;
             that.globalData.isshow = true;
@@ -119,6 +120,9 @@ App({
             wx.switchTab({
               url: '/pages/findmore/findmore',
             })
+          }
+          if (that.employIdCallback) {
+            that.employIdCallback(res)
           }
         })
       })
