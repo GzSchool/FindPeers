@@ -52,7 +52,7 @@ Page({
     var listOfSave = that.data.listOfSave
     var openId = that.data.openid;
     var groupId = that.data.groupId;
-    util.getGroupCards(openId, groupId, 1, 20).then(function(res) {
+    util.getGroupCards(openId, groupId, 1, 200).then(function(res) {
       var length = res.data.data.result.length;
       console.log(res.data.data)
       for (var i = 0; i < length; i++) {
@@ -104,7 +104,6 @@ Page({
           wx.request({
             method: 'GET',
             url: server + '/userGroup/saveOrUpdate',
-
             data: {
               openId: openid,
               groupId: groupid
@@ -129,33 +128,18 @@ Page({
       url: '/pages/mycards/mycards?back=true' + '&groupId=' + groupId,
     })
   },
-  checkboxChange: function(a) {
-    if (a.type == "change") {
-
-    }
-    console.log(a)
-
-  },
-  check: function(a) {},
   chooseSize: function(e) {
-    // 用that取代this，防止不必要的情况发生
     var that = this;
-    // 创建一个动画实例
     var animation = wx.createAnimation({
-      // 动画持续时间
       duration: 500,
-      // 定义动画效果，当前是匀速
       timingFunction: 'linear'
     })
-    // 将该变量赋值给当前动画
     that.animation = animation
     // 先在y轴偏移，然后用step()完成一个动画
     animation.translateY(200).step()
-    // 用setData改变当前动画
     that.setData({
       // 通过export()方法导出数据
       animationData: animation.export(),
-      // 改变view里面的Wx：if
       chooseSize: true
     })
     // 设置setTimeout来改变y轴偏移量，实现有感觉的滑动
@@ -200,19 +184,12 @@ Page({
     console.log(activeList)
     var that = this
     console.log(app)
-    var server = app.globalData.server;
     var openid = app.globalData.openid;
     var othercardid = app.globalData.othercardid
-    // console.log(othercardid)
     var groupid = that.data.groupId
-    var listOfSave = that.data.listOfSave;
-    var id = that.data.id
-    // console.log(id)
-    // console.log(groupid)
     var userpeers = [];
     list=[];
     util.saveOrUpdate(openid, groupid, 2, activeList).then(function(res) {
-      console.log(res)
       util.getGroupCards(openid, groupid, 1, 20).then(function (adc) {
         var length = adc.data.data.result.length;
         console.log(adc.data.data)
@@ -240,11 +217,8 @@ Page({
     })
   },
   goPeers: function(e) {
-    console.log(e)
     var cardId = e.currentTarget.dataset.id;
     var groupId = this.data.groupId;
-    var saveFlag = e.currentTarget.dataset.saveflag;
-    console.log(e.currentTarget.dataset.saveflag)
     wx.navigateTo({
       url: '/pages/otherpeers/otherpeers?cardId=' + cardId + '&groupId=' + groupId + '&back=true' + '&saveFlag=' + saveFlag,
     })
@@ -258,8 +232,6 @@ Page({
     var othercardid = app.globalData.othercardid;
     var openid = app.globalData.openid;
     var groupId = this.data.groupId
-    console.log(groupId)
-    console.log(othercardid)
     if (e.detail.userInfo) {
       wx.redirectTo({
         url: '/pages/addcards/addcards?back=true' + '&groupId=' + groupId + '&openid=' + openid,
@@ -268,12 +240,10 @@ Page({
   },
   selectAll: function() {
     let val = this.data.selectAll
-    console.log(val)
     let list = this.data.list
     for (let i = 0; i < list.length; i++) {
       list[i].isselect = val ? false : true
     }
-    console.log(list)
     this.setData({
       selectAll: val ? false : true,
       hasSelect: val ? false : true,
