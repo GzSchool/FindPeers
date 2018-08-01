@@ -6,7 +6,7 @@
   </view>
 </view>
 <view class='list' bindscrolltolower="bindDownLoad" bindscroll="scroll" bindscrolltoupper="refresh">
-  <view class='item' wx:for="{{list}}" wx:for-index="index" wx:for-item="item" data-id="{{item.id}}" wx:key="11" data-key='{{item.openId}}' bindtap='find'>
+  <view class='item' wx:for="{{list}}" wx:for-index="index" wx:for-item="item" data-id="{{item.id}}" wx:key="11" data-key='{{item.openId}}' data-saveFlag='{{item.saveFlag}}' bindtap='find'>
     <view class='item-left'><image src='{{item.userImg}}'></image></view> 
     <view class='item-right'>
       <view class='name'>{{item.username}}<text>{{item.userIndustry}}</text></view>
