@@ -169,9 +169,9 @@ Page({
     } else {
       back = this.data.back
     }
-    if (isvalidatemobile(this.data.phone)[0]) {
+    if (!isvalidatemobile(this.data.phone)) {
       wx.showToast({
-        title: isvalidatemobile(this.data.phone)[1],
+        title: '请输入正确的手机号',
         icon: 'none'
       })
     } else if (!validateEmail(this.data.email)) {

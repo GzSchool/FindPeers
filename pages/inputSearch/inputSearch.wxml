@@ -15,6 +15,7 @@
     </view> 
   </view>
 </view>
+<view class='noresult' wx:if='{{noresult&&list.length==0}}'>暂时没有找到相关信息</view>
 <!-- <view class="inputSearch">
   <view class="search1">
     <image src='/pages/images/3.png' class="image" mode="aspectFit"></image>

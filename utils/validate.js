@@ -130,28 +130,30 @@ export function cardid(code) {
  * 判断手机号码是否正确
  */
 export function isvalidatemobile(phone) {
-  let list = [];
-  let result = true;
-  let msg = '';
-  var isPhone = /^0\d{2,3}-?\d{7,8}$/;
-  // 增加134 减|1349[0-9],增加181，增加145，增加17[678]
-  var isMob = /^((\+?86)|(\(\+86\)))?(13[0123456789][0-9]{8}|15[012356789][0-9]{8}|18[012356789][0-9]{8}|14[57][0-9]{8}|17[3678][0-9]{8})$/;
-  if (!validatenull(phone)) {
-    if (phone.length == 11) {
-      if (isPhone.test(phone)) {
-        msg = '手机号码格式不正确'
-      } else {
-        result = false
-      }
-    } else {
-      msg = '手机号码长度不为11位'
-    }
-  } else {
-    msg = '手机号码不能为空'
-  }
-  list.push(result)
-  list.push(msg)
-  return list
+  var reg = /^(((13[0-9]{1})|(14[0-9]{1})|(17[0-9]{1})|(15[0-3]{1})|(15[5-9]{1})|(18[0-9]{1}))+\d{8})$/
+  return reg.test(phone)
+  // let list = [];
+  // let result = true;
+  // let msg = '';
+  // var isPhone = /^0\d{2,3}-?\d{7,8}$/;
+  // // 增加134 减|1349[0-9],增加181，增加145，增加17[678]
+  // var isMob = /^((\+?86)|(\(\+86\)))?(13[0123456789][0-9]{8}|15[012356789][0-9]{8}|18[012356789][0-9]{8}|14[57][0-9]{8}|17[3678][0-9]{8})$/;
+  // if (!validatenull(phone)) {
+  //   if (phone.length == 11) {
+  //     if (isPhone.test(phone)) {
+  //       msg = '手机号码格式不正确'
+  //     } else {
+  //       result = false
+  //     }
+  //   } else {
+  //     msg = '手机号码长度不为11位'
+  //   }
+  // } else {
+  //   msg = '手机号码不能为空'
+  // }
+  // list.push(result)
+  // list.push(msg)
+  // return list
 }
 
 /**

@@ -5,59 +5,77 @@ Page({
   data: {
     list: [],
     cardId:"",
+    mes: '',        // 输入框内容
+    pageNum: 1,
+    pageSize: 10,
+    loadAll: false, // 是否已加载全部
     key: " 微信号、城市、公司、行业等进行搜索",
-    // hidden: true,
-    // server:"",
-    scrollTop: 0,
-    scrollHeight: 0,
+    noresult: false, // 是否显示无搜索结果
   },
   onLoad: function (options) {
-  // var that=this
-  // that.data.server=app.globalData.server
   },
   bindSearch:function(res){
     let key = res.detail.value;
-    console.log(key)
+    this.setData({
+      mes: key,
+      pageNum: 1,
+      loadAll: false
+    })
     let that = this;
-    wx.getSystemInfo({
-      success: function (res) {
-        console.info(res.windowHeight);
-        that.setData({
-          scrollHeight: res.windowHeight
-        });
-      }
-    });
-    var list=that.data.list
-    // var server = that.data.server;
-    list=[];
+    let list = []
+    let pageSize = this.data.pageSize
     if (key.length !== 0) {
-      util.searchByParam(key, 1, 20).then(function (src) {
-        console.log(src)
-        var length = src.data.data.result.length;
-        for (var i = 0; i < length; i++) {
-          list.push(src.data.data.result[i]);
+      util.searchByParam(key, 1, pageSize).then(function (res) {
+        console.log(res.data)
+        if (res.data.success) {
+          let len = res.data.data.result.length;
+          if (len == 0) {
+            that.setData({
+              noresult: true
+            });
+          } else {
+            list.push(...res.data.data.result)
+          }
+          that.setData({
+            list: list
+          });
         }
-        that.setData({
-          list: list
-        });
-        that.setData({
-          hidden: true
-        })
       })
     }
   },
   find:function(a){
-    console.log(a)
     var openId=a.currentTarget.dataset.key;
     var cardId = a.currentTarget.dataset.id;
-    // console.log(openId)
-    // console.log(cardId)
     wx.navigateTo({
-      // url: '/pages/peerscards/peerscards?cardId=' + cardId + '&isshow=true',
       url: '/pages/otherpeers/otherpeers?cardId=' + cardId + '&isshow=true'
     })
   },
-  onShow(){
-    this.onLoad();
+  onReachBottom () {
+    if (!this.data.loadAll) {
+      wx.showLoading({
+        title: '加载中',
+      })
+      this.data.pageNum = this.data.pageNum + 1;
+      let that = this
+      let list = this.data.list
+      util.searchByParam(this.data.mes, this.data.pageNum, this.data.pageSize).then(function (res) {
+        wx.hideLoading();
+        let len = res.data.data.result.length
+        if (len == 0) {
+          wx.showToast({
+            title: '已加载全部',
+            icon: 'success'
+          })
+          that.setData({
+            loadAll: true
+          })
+        } else {
+          list.push(...res.data.data.result)
+          that.setData({
+            list: list
+          })
+        }
+      })
+    }
   }
 })

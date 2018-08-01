@@ -82,6 +82,13 @@ page{
   font-size: 20rpx;
   padding-left: 20rpx;
 }
+.noresult {
+  text-align: center;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 30rpx;
+  color: #101010;
+}
 /* page {
   display: block;
   min-height: 100%;
