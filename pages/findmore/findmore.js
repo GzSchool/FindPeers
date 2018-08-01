@@ -27,7 +27,7 @@ Page({
       this.getData()
     } else {
       app.employIdCallback = employId => {
-        if (employId) {
+        if (employId || employId == null) {
           this.getData()
         }
       }

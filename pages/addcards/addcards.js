@@ -116,16 +116,6 @@ Page({
       this.data.company = e.detail.value
     }
   },
-  // addidustry: function (e) {
-  //   if (e.detail.value == '') {
-  //     wx.showToast({
-  //       title: '行业信息不能为空',
-  //       icon: 'none'
-  //     })
-  //   } else {
-  //     this.data.idustry = e.detail.value
-  //   }
-  // },
   addcity: function (e) {
     if (e.detail.value == '') {
       wx.showToast({
