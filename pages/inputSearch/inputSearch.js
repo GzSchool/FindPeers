@@ -8,7 +8,7 @@ Page({
     cardId:"",
     mes: '',        // 输入框内容
     pageNum: 1,
-    pageSize: 1,
+    pageSize: 10,
     loading: false, // 显示加载中
     loadAll: false, // 是否已加载全部
     noresult: false, // 是否显示无搜索结果

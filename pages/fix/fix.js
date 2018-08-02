@@ -1,7 +1,7 @@
 // pages/mycards/mycards.js
 import {
-  validateEmail,
-  isvalidatemobile
+  validateEmail_none,
+  isvalidatemobile_none
 } from '../../utils/validate.js'
 var app = getApp();
 Page({
@@ -202,27 +202,10 @@ Page({
     let phone = this.data.phone
     let email = this.data.email
     let name = this.data.name
-    if (phone !== '' && phone !== null) {
-      if (!isvalidatemobile(this.data.phone)) {
-        app.showToast('手机号格式不正确')
-      } 
-    } else if (email !== '' && email !== null) {
-      if (!validateEmail(this.data.email)) {
-        app.showToast('邮箱格式不正确')
-      }
-    } else if (name == '' || name == null) {
-      let that = this
-      app.showToast('将获取您的微信昵称')
-      wx.getUserInfo({
-        success: function (a) {
-          console.log(a)
-          that.setData({
-            name: a.userInfo.nickName,
-            image: a.userInfo.avatarUrl
-          })
-        }
-      })
-      // this.getData()
+    if (!isvalidatemobile_none(phone)) {
+      app.showToast('手机号格式不正确')
+    } else if (!validateEmail(this.data.email)) {
+      app.showToast('邮箱格式不正确')
     } else {
       this.getData()
     }
