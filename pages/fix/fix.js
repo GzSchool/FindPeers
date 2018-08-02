@@ -43,7 +43,7 @@ Page({
     isshow0: false,
     isshow1: false,
     isshow2: false,
-    image: "/pages/images/1.png",
+    image: "",
     prepare: '',
     showphone: false,
     showdemand: false,
@@ -121,12 +121,6 @@ Page({
       }
     })
   },
-  viewThisCards: function() {
-    var openid = app.globalData.openid;
-    wx.navigateTo({
-      url: '/pages/viewThis/viewThis?openid=' + openid,
-    })
-  },
   addmore: function() {
     var that = this
     wx.showActionSheet({
@@ -198,7 +192,7 @@ Page({
           console.log(a)
           that.setData({
             name: a.userInfo.nickName,
-            image: a.userInfo.avatarUrl
+             image: a.userInfo.avatarUrl
           })
           that.getData()
         },fail:function(){
@@ -262,7 +256,7 @@ Page({
           this.data.name = a.userInfo.nickName;
         }
       })
-    } else if (this.data.image == '') {
+    } else if (this.data.image == '' || this.data.image == null ) {
       wx.getUserInfo({
         success: function(a) {
           console.log(a)
@@ -286,7 +280,8 @@ Page({
           resources: this.data.resource,
           synopsis: this.data.introduction,
           userEmail: this.data.email,
-          prepare: this.data.prepare
+          prepare: this.data.prepare,
+          userImg:this.data.image
         },
         url: server + '/userCard/saveOrUpdate',
         header: {

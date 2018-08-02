@@ -30,6 +30,7 @@ Page({
     var server = app.globalData.server
     var that = this
     var otheropenId = that.data.otheropenId;
+    console.log(otheropenId)    
     return {
       title: '自定义转发标题',
       path: '/page/peerscards/peerscards?othercardid=' + that.data.id,
@@ -47,8 +48,11 @@ Page({
           success: function (res) {
             console.log(res)
             console.log(a)
+            console.log(otheropenId)
             var encryptedData = res.encryptedData;
             var iv = res.iv;
+            console.log(iv)
+            console.log(encryptedData)            
             wx.request({
               method: 'POST',
               url: server + '/userGroup/saveOrUpdate',
