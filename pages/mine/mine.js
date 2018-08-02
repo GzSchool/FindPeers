@@ -23,7 +23,7 @@ Page({
     var openid = app.globalData.openid
     console.log(openid)
     that.data.server=app.globalData.server;
-    var server = that.data.server
+    var server = app.globalData.server
     util.getMyData(openid).then(function (res) {
       console.log(res)
       if (res == null) {
@@ -51,6 +51,7 @@ Page({
   
   onShareAppMessage: function (a) {
     var that = this
+    var server = app.globalData.server
     wx.showShareMenu({
       withShareTicket: true
     })
@@ -80,6 +81,7 @@ Page({
               url: server+'/userGroup/saveOrUpdate',
 
               data: {
+                openId:app.globalData.openid,
                 encryptedData: encryptedData,
                 iv: iv
               },
