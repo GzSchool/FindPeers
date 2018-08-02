@@ -1,4 +1,5 @@
 // pages/addCards/addcards.js
+import pinyin from '../../utils/pinyin.js'
 import {
   validateEmail_none,
   isvalidatemobile_none
@@ -29,6 +30,7 @@ Page({
     isshow: '', //是否显示
     isshow0: false, //需求是否显示
     isshow1: false, //资源是否显示
+    formId: '',
     itemList: ["需求", "资源"] // 添加更多项
   },
   onLoad: function(res) {
@@ -81,6 +83,8 @@ Page({
     })
   },
   addname: function (e) {
+    this.data.prepare = pinyin.getCamelChars(e.detail.value).toUpperCase().substr(0, 1)
+    console.log(this.data.prepare)
     this.data.name = e.detail.value
   },
   addnumber: function(e) {
@@ -175,6 +179,8 @@ Page({
       app.showToast('手机号格式不正确')
     } else if (!validateEmail_none(this.data.email)) {
       app.showToast('邮箱格式不正确')
+    } else if (this.data.job == '') {
+      app.showToast('职务不能为空')
     } else if (this.data.wechatnum == "") {
       wx.showToast({
         title: '微信号不能为空',
@@ -225,7 +231,8 @@ Page({
           demand: this.data.demand,
           resources: this.data.resource,
           synopsis: this.data.introduction,
-          userEmail: this.data.email
+          userEmail: this.data.email,
+          formId: this.data.formId
         },
         url: server + '/userCard/saveOrUpdate',
         header: {
@@ -262,6 +269,27 @@ Page({
           }
         }
       })
+    }
+  },
+  submitInfo:function(e) {
+    this.setData({
+      formId: e.detail.formId
+    })
+    console.log(this.data.formId)
+    let that = this
+    if (this.data.name == '' || this.data.name == null) {
+      wx.getUserInfo({
+        success: function (a) {
+          console.log(a)
+          that.setData({
+            name: a.userInfo.nickName,
+            image: a.userInfo.avatarUrl
+          })
+          that.getData()
+        }
+      })
+    } else {
+      this.getData()
     }
   }
 })

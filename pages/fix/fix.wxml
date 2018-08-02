@@ -64,7 +64,7 @@
       <input placeholder-class="phcolor" maxlength='40' placeholder='必填' bindinput='addcity' type='text' value='{{city}}'></input>
     </view>
     <view class='main-li'>
-      <view class='star'></view>
+      <view class='star'>*</view>
       <view class='title'><text>职</text><text>务:</text></view>
       <input placeholder-class="phcolor" maxlength='40' placeholder='填写公司职务' bindinput='addjob' type='text' value='{{job}}'></input>
     </view>

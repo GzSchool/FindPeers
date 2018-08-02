@@ -185,13 +185,13 @@ Page({
     var that = this
     console.log(app)
     var openid = app.globalData.openid;
-    var listOfSave = that.data.listOfSave
+    var listOfSave = []
     var othercardid = app.globalData.othercardid
     var groupid = that.data.groupId
     var userpeers = [];
     list=[];
     util.saveOrUpdate(openid, groupid, 2, activeList).then(function(res) {
-      util.getGroupCards(openid, groupid, 1, 20).then(function (adc) {
+      util.getGroupCards(openid, groupid, 1, 50).then(function (adc) {
         var length = adc.data.data.result.length;
         console.log(adc.data.data)
         for (var i = 0; i < length; i++) {

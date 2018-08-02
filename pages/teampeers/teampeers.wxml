@@ -28,11 +28,11 @@
     </view>
   </view>
   <view class='crowd-title'>
-    <view class='crowd-title-left'>
+    <view class='crowd-title-left' wx:if='{{listOfSave.length!==0}}'>
       <image class="select {{selectAll?'':'noselect'}}" bindtap='selectAll' src="{{selectAll?'../images/select.png':'../images/select_no.png'}}"></image>全选</view>
     <view class='crowd-title-middle'>{{listOfSave.length}}张名片未保存</view>
-    <view class="crowd-title-right" wx:if='{{!hasSelect||listOfSave.length==0}}'>保存</view>
-    <view class="crowd-title-right active" wx:if='{{hasSelect&&listOfSave.length!==0}}' bindtap='aaa'>保存</view>
+    <view class="crowd-title-right" wx:if='{{!hasSelect&&listOfSave.length>0}}'>保存</view>
+    <view class="crowd-title-right active" wx:if='{{hasSelect&&listOfSave.length>0}}' bindtap='aaa'>保存</view>
   </view>
   <view class='mine-card'>
     <view class='mine-info'>

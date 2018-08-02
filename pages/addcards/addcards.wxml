@@ -1,4 +1,5 @@
 <!--pages/addCards/addcards.wxml-->
+<form bindsubmit="submitInfo" report-submit='true'>
 <view class='main'>
   <view class='main-ul'>
     <view class='main-li'>
@@ -28,7 +29,7 @@
       <input maxlength='40' placeholder-class="phcolor" placeholder='必填' bindinput='addcity' type='text' value='{{city}}'></input>
     </view>
     <view class='main-li'>
-      <view class='star'></view>
+      <view class='star'>*</view>
       <view class='title'><text>职</text><text>务:</text></view>
       <input maxlength='40' placeholder-class="phcolor" placeholder='填写公司职务' bindinput='addjob' type='text' value='{{job}}'></input>
     </view>
@@ -63,7 +64,9 @@
     <textarea maxlength='140' placeholder-class="phcolor" placeholder='请您填写自我介绍或公司简介' bindinput='introInput' type='text' value='{{introduction}}'></textarea>
   </view>
 </view>
-<view class='save-btn' bindtap='save'>保存</view>
+<!-- <view class='save-btn' bindtap='save'>保存</view> -->
+<button class='save-btn' form-type="submit">保存</button>
+</form>
 <!-- <view class="addCards">
   <view class="name">姓名：</view>
   <input class="addname line" bindblur='addname' focus='true' type='text' value='{{name}}' name="name"></input>

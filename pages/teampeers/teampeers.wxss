@@ -131,6 +131,10 @@ page{
   display: flex;
   align-items: center;
 }
+.crowd-title .crowd-title-middle {
+  text-align: center;
+  flex: 1;
+}
 .crowd-title .crowd-title-right {
   color: #606060;
 }

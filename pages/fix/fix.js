@@ -1,4 +1,5 @@
 // pages/mycards/mycards.js
+import pinyin from '../../utils/pinyin.js'
 import {
   validateEmail_none,
   isvalidatemobile_none
@@ -43,6 +44,7 @@ Page({
     isshow1: false,
     isshow2: false,
     image: "/pages/images/1.png",
+    prepare: '',
     showphone: false,
     showdemand: false,
     showresource: false,
@@ -146,7 +148,9 @@ Page({
       }
     })
   },
-  addname: function(e) {
+  addname: function (e) {
+    this.data.prepare = pinyin.getCamelChars(e.detail.value).toUpperCase().substr(0,1)
+    console.log(this.data.prepare)
     this.data.name = e.detail.value
   },
   addnumber: function (e) {
@@ -239,6 +243,8 @@ Page({
       app.showToast('手机号格式不正确')
     } else if (!validateEmail_none(this.data.email)) {
       app.showToast('邮箱格式不正确')
+    } else if (this.data.job == '') {
+      app.showToast('职务不能为空')
     } else if (this.data.wechatnum == '') {
       app.showToast('微信号不能为空')
     } else if (this.data.company == '') {
@@ -277,7 +283,8 @@ Page({
           demand: this.data.demand,
           resources: this.data.resource,
           synopsis: this.data.introduction,
-          userEmail: this.data.email
+          userEmail: this.data.email,
+          prepare: this.data.prepare
         },
         url: server + '/userCard/saveOrUpdate',
         header: {
