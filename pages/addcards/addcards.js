@@ -83,18 +83,7 @@ Page({
   },
   addname: function(e) {
     var that = this
-    if (e.detail.value == '') {
-      wx.getUserInfo({
-        success: function(a) {
-          that.setData({
-            name: a.userInfo.nickName,
-            image: a.userInfo.avatarUrl
-          })
-        }
-      })
-    } else {
-      that.data.name = e.detail.value
-    }
+    that.data.name = e.detail.value
   },
   addnumber: function(e) {
     this.data.wechatnum = e.detail.value
@@ -145,13 +134,13 @@ Page({
           icon: 'none'
         })
       }
-    } else if (this.data.email !== "" && this.data.email !== null){ 
-     if (!validateEmail(this.data.email)) {
-      wx.showToast({
-        title: '邮箱格式不正确',
-        icon: 'none'
-      })
-    }
+    } else if (this.data.email !== "" && this.data.email !== null) {
+      if (!validateEmail(this.data.email)) {
+        wx.showToast({
+          title: '邮箱格式不正确',
+          icon: 'none'
+        })
+      }
     } else if (this.data.wechatnum == "") {
       wx.showToast({
         title: '微信号不能为空',

@@ -124,19 +124,7 @@ Page({
   },
   addname: function(e) {
     var that = this
-    if (e.detail.value == '') {
-      wx.getUserInfo({
-        success: function(a) {
-          console.log(a)
-          that.setData({
-            name: a.userInfo.nickName,
-            image: a.userInfo.avatarUrl
-          })
-        }
-      })
-    } else {
-      that.data.name = e.detail.value
-    }
+    that.data.name = e.detail.value
   },
   addnumber: function(e) {
     if (e.detail.value == '') {
@@ -169,7 +157,16 @@ Page({
     this.data.job = e.detail.value
   },
   addphone: function(e) {
-    this.data.phone = e.detail.value
+    if (this.data.phone !== "" && this.data.phone !== null) {
+      if (!isvalidatemobile(this.data.phone)) {
+        wx.showToast({
+          title: '请输入正确的手机号',
+          icon: 'none'
+        })
+      }
+    } else {
+      this.data.phone = e.detail.value
+    }
   },
   adddemand: function(e) {
     this.data.demand = e.detail.value
@@ -178,7 +175,16 @@ Page({
     this.data.resource = e.detail.value
   },
   addemail: function(e) {
-    this.data.email = e.detail.value    
+    if (e.detail.value !== "" && e.detail.value !== null) {
+      if (!validateEmail(e.detail.value)) {
+        wx.showToast({
+          title: '邮箱格式不正确',
+          icon: 'none'
+        })
+      }
+    } else {
+      this.data.email = e.detail.value
+    }
   },
   introInput: function(e) {
     let i = e.detail.value.length
@@ -191,25 +197,69 @@ Page({
   save: function(e) {
     var server = app.globalData.server
     var that = this
-    if (e.detail.value !== "" || e.detail.value !== null) {
-      if (!validateEmail(e.detail.value)) {
-        wx.showToast({
-          title: '邮箱格式不正确',
-          icon: 'none'
-        })
-      } else {
-        if (this.data.phone !== "" || this.data.phone !== null) {
-          if (!isvalidatemobile(this.data.phone)) {
-            wx.showToast({
-              title: '请输入正确的手机号',
-              icon: 'none'
+    var server = app.globalData.server;
+    if (this.data.wechatnum == '') {
+      app.showToast('微信号不能为空')
+    } else if (this.data.company == '') {
+      app.showToast('公司名称不能为空')
+    } else if (this.data.idustry == '') {
+      app.showToast('行业信息不能为空')
+    } else if (this.data.city == '') {
+      app.showToast('城市信息不能为空')
+    } else if (this.data.name == '') {
+      wx.getUserInfo({
+        success: function(a) {
+          console.log(a)
+          this.data.name = a.userInfo.nickName;
+        }
+      })
+    } else {
+      wx.request({
+        method: 'POST',
+        data: {
+          id: this.data.id,
+          username: this.data.name,
+          openId: this.data.openid,
+          userWechat: this.data.wechatnum,
+          userCity: this.data.city,
+          userCompany: this.data.company,
+          userIndustry: this.data.idustry,
+          userPhone: this.data.phone,
+          userJob: this.data.job,
+          demand: this.data.demand,
+          resources: this.data.resource,
+          synopsis: this.data.introduction,
+          userEmail: this.data.email
+        },
+        url: server + '/userCard/saveOrUpdate',
+        header: {
+          'content-type': 'application/json'
+        },
+        success: function(res) {
+          wx.showToast({
+            title: '修改成功',
+            icon: 'success',
+            duration: 3000
+          });
+          app.showToast("修改成功");
+          var back = that.data.back;
+          console.log(back)
+          if (back) {
+            var openid = app.globalData.openid;
+            var groupId = that.data.groupId
+            console.log(groupId)
+            wx.navigateTo({
+              url: '/pages/teampeers/teampeers?groupid=' + groupId + '&openid=' + openid,
+            })
+          } else {
+            wx.switchTab({
+              url: '/pages/findmore/findmore',
             })
           }
-        }else{
-          
         }
-      }
+      })
     }
+
   },
   getPhoneNumber: function(e) {
     console.log(e.detail.errMsg)
@@ -240,7 +290,8 @@ Page({
       url: '../industry/industry',
     })
   },
-  getData:function(){
+  getData: function() {
+    var server = app.globalData.server;
     if (this.data.wechatnum == '') {
       app.showToast('微信号不能为空')
     } else if (this.data.company == '') {
@@ -251,14 +302,14 @@ Page({
       app.showToast('城市信息不能为空')
     } else if (this.data.name == '') {
       wx.getUserInfo({
-        success: function (a) {
+        success: function(a) {
           console.log(a)
           this.data.name = a.userInfo.nickName;
         }
       })
     } else if (this.data.image == '') {
       wx.getUserInfo({
-        success: function (a) {
+        success: function(a) {
           console.log(a)
           this.data.image = a.userInfo.avatarUrl;
         }
@@ -285,7 +336,7 @@ Page({
         header: {
           'content-type': 'application/json'
         },
-        success: function (res) {
+        success: function(res) {
           wx.showToast({
             title: '修改成功',
             icon: 'success',
