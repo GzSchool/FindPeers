@@ -101,23 +101,23 @@ Page({
       content: '确定分享到本群',
       success: function(r) {
         if (r.confirm) {
-          wx.request({
-            method: 'POST',
-            url: server + '/userGroup/saveOrUpdate',
-            data: {
-              openId: openid,
-              groupId: groupid
-            },
-            header: {
-              'content-type': 'application/json'
-            },
-            success: function(a) {
-              console.log(a)
+          // wx.request({
+          //   method: 'POST',
+          //   url: server + '/userGroup/saveOrUpdate',
+          //   data: {
+          //     openId: openid,
+          //     groupId: groupid
+          //   },
+          //   header: {
+          //     'content-type': 'application/json'
+          //   },
+          //   success: function(a) {
+          //     console.log(a)
               that.setData({
                 cansee: true
               })
-            }
-          })
+          //   }
+          // })
         }
       }
     })

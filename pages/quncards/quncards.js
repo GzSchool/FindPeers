@@ -29,6 +29,7 @@ Page({
     })
   },
   search: function (a) {
+    console.log(a)
     var openid = a.currentTarget.dataset.id;
     var groupid = a.currentTarget.dataset.key;
     wx.navigateTo({

@@ -49,34 +49,34 @@ App({
                 if (res) {                                         //判断是否返回 有返回值就是已经添加过信息
                   that.globalData.isshow = true
                   that.globalData.notadd = false
-                  wx.redirectTo({
+                  wx.navigateTo({
                     url: '/pages/peerscards/peerscards?isshow=true',
                   })
                 } else {
                   that.globalData.notadd = true
                   that.globalData.isshow = false
-                  wx.redirectTo({                                //说明没有添加过名片信息
+                  wx.navigateTo({                                //说明没有添加过名片信息
                     url: '/pages/peerscards/peerscards',
                   })
                 }
               })
-              wx.request({
-                method: 'POST',
-                url: server + '/userGroup/saveOrUpdate',
+              // wx.request({
+              //   method: 'POST',
+              //   url: server + '/userGroup/saveOrUpdate',
 
-                data: {
-                  openId: openid,
-                  encryptedData: encryptedData,
-                  iv: iv
-                },
+              //   data: {
+              //     openId: openid,
+              //     encryptedData: encryptedData,
+              //     iv: iv
+              //   },
 
-                header: {
-                  'content-type': 'application/json'
-                },
-                success: function (c) {
-                  console.log(c)
-                }
-              })
+              //   header: {
+              //     'content-type': 'application/json'
+              //   },
+              //   success: function (c) {
+              //     console.log(c)
+              //   }
+              // })
             })           
           }
         })        

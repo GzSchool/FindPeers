@@ -4,41 +4,20 @@
     <view class='tips'></view>
     <view>群列表</view>
   </view>
-  <!-- <scroll-view scroll-top="{{scrollTop}}" scroll-y="true" style="height:{{scrollHeight}}px;" class="list" bindscrolltolower="bindDownLoad" bindscroll="scroll" bindscrolltoupper="refresh"> -->
-    <view class='mes-ul' wx:if='{{list.length!==0}}'>
-      <view class='mes-li' wx:for="{{list}}" wx:for-index="index" wx:for-item="item" wx:key="11" data-key="{{item.groupId}}" data-id="{{item.openId}}" bindtap='search'>
-        <view class='li-left'>
-          <!-- <image src='{{item.pic_url}}'></image> -->
-          <image src='../images/logo.png'></image>
+  <view class='mes-ul' wx:if='{{list.length!==0}}'>
+    <view class='mes-li' wx:for="{{list}}" wx:for-index="index" wx:for-item="item" wx:key="11" data-key="{{item.groupId}}" data-id="{{item.openId}}" bindtap='search'>
+      <view class='li-left'>
+        <!-- <image src='{{item.pic_url}}'></image> -->
+        <image src='../images/logo.png'></image>
+      </view>
+      <view class='li-right'>
+        <view class='title'>
+          <view class='title-name'>
+          <open-data type="groupName" open-gid="{{item.groupId}}"></open-data></view>
+          <view class='title-time'>{{item.ctTime}}</view>
         </view>
-        <view class='li-right'>
-          <view class='title'>
-            <view class='title-name'>{{item.groupId}}</view>
-            <view class='title-time'>{{item.ctTime}}</view>
-          </view>
-          <view class='count'>未保存：{{item.delFlag}}张</view>
-        </view>
+        <view class='count'>未保存：{{item.delFlag}}张</view>
       </view>
     </view>
-  <!-- </scroll-view> -->
-</view>
-<!-- <view class="qun">
-  <view class="qunbiao">
-    <view class="shu"></view>
-    <view class="text">群列表</view>
-    <view class="line"></view>
   </view>
-  <scroll-view scroll-top="{{scrollTop}}" scroll-y="true" style="height:{{scrollHeight}}px;" class="list" bindscrolltolower="bindDownLoad" bindscroll="scroll" bindscrolltoupper="refresh">
-    <view class="item line" wx:for="{{list}}" wx:for-index="index" wx:for-item="item" wx:key="11" data-key="{{item.groupId}}" data-id="{{item.openId}}" bindtap='search'>-->
-
-<!--<image class="img" src="{{item.pic_url}}"></image>-->
-
-<!-- <view class="find">
-        <image class="url" src="/pages/images/1.png"></image>
-        <view class="name">{{item.groupId}}</view>
-        <view class="company">{{item.delFlag}}</view>
-      </view>
-    </view>
-  </scroll-view>
-
-</view> -->
+</view>

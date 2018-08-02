@@ -67,39 +67,3 @@
 <!-- <view class='save-btn' bindtap='save'>保存</view> -->
 <button class='save-btn' form-type="submit">保存</button>
 </form>
-<!-- <view class="addCards">
-  <view class="name">姓名：</view>
-  <input class="addname line" bindblur='addname' focus='true' type='text' value='{{name}}' name="name"></input>
-  <view class="number">微信号:</view>
-  <input class="addnumber line" bindblur='addnumber' focus='true' type='text' value='{{wechatnum}}' name="number"></input>
-  <view class="company">公司：</view>
-  <input class="addcompany line" bindblur='addcompany' focus='true' type='text' value='{{company}}' name="company"></input>
-  <view class="idustry">行业：</view>
-  <input class="addidustry line" bindblur='addidustry' focus='true' type='text' value='{{idustry}}' name="idustry"></input>
-  <image src="/pages/images/2.png" class="image" bindtap='chooseSize'></image>
-  <view class='maskLayer' wx:if="{{chooseSize}}" bindtap='hideModal'></view>
-  <view class='choose' wx:if="{{chooseSize}}" animation='{{animationData}}'>
-    <scroll-view scroll-y style="height: 19px;" bindscrolltoupper="upper" bindscrolltolower="lower" bindscroll="scroll" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}" class="section" wx:for="{{myJob}}" wx:key="11" wx:for-item="item">
-      <view class="picker" bindtap='select' data-value='{{item.value}}'>
-        {{item.value}}
-      </view>
-    </scroll-view>
-  </view>
-  <view class="city">城市：</view>
-  <input class="addcity line" bindblur='addcity' focus='true' type='text' value='{{city}}' name="city"></input>
-  <view class="job">职务：</view>
-  <input class="addjob line" bindblur='addjob' focus='true' type='text' value='{{job}}' name="job"></input>
-  <view class="phone">手机号：</view>
-  <input class="addphone line" bindblur='addphone' focus='true' type='number' value='{{phone}}' name="phone"></input>
-  <button class="getphone" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">微信获取</button>
-  <view class="demand {{isshow0?'map-block':'map-hide'}}">需求：</view>
-  <input class="addneed {{isshow0?'map-block':'map-hide'}} line" bindblur='adddemand' focus='true' type='text' value='{{demand}}' name="demand"></input>
-  <view class="resource {{isshow1?'map-block':'map-hide'}}">资源：</view>
-  <input class="addcan {{isshow1?'map-block':'map-hide'}} line" bindblur='addresource' focus='true' type='text' value='{{resource}}' name="resource"></input>
-  <view class="email {{isshow2?'map-block':'map-hide'}}">邮箱：</view>
-  <input class="addemail {{isshow2?'map-block':'map-hide'}} line" bindblur='addemail' focus='true' type='text' value='{{email}}'></input>
-  <button class="addmore" bindtap='addmore'>添加更多信息</button>
-  <view class="introduction"></view>
-  <textarea class="addtext line" bindblur='addintroduction' type='text' value='简介：{{introduction}}' type='text' name="introduction"></textarea>
-  <button class="save" bindtap='save'>保存</button>
-</view> -->

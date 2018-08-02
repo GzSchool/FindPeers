@@ -280,8 +280,8 @@ Page({
           resources: this.data.resource,
           synopsis: this.data.introduction,
           userEmail: this.data.email,
-          prepare: this.data.prepare,
-          userImg:this.data.image
+          userImg: this.data.image,
+          prepare: this.data.prepare
         },
         url: server + '/userCard/saveOrUpdate',
         header: {
