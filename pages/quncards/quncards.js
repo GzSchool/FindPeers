@@ -14,7 +14,9 @@ Page({
     var openid = app.globalData.openid;
     var groupid = app.globalData.groupid;
     var list = that.data.list;
+    list=[];
     util.getUserGroupById(openid).then(function (res) {
+      console.log(res)
       var len = res.data.data.length;
       for (var i = 0; i < len; i++) {
         // 处理时间截取字母T之前的年月日

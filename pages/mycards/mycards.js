@@ -61,7 +61,7 @@ Page({
   onShareAppMessage: function (a) {
     console.log("2222222222222333333333333333")
     var that=this
-    var server = that.data.server
+    var server = app.globalData.server;
     return {
       title: '自定义转发标题',
       path: '/page/mine/mine?othercardid=' + that.data.id,
@@ -87,6 +87,7 @@ Page({
               url: server+'/userGroup/saveOrUpdate',
 
               data: {
+                openId:app.globalData.openid,
                 encryptedData: encryptedData,
                 iv: iv
               },
@@ -95,6 +96,7 @@ Page({
                 'content-type': 'application/json'
               },
               success: function (c) {
+                console.log(c)
                 wx.switchTab({
                   url: '/pages/findmore/findmore',
                 })

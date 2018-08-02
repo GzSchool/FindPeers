@@ -8,6 +8,7 @@ Page({
    */
   data: {
     cardId:"",
+    id:"",
     notadd:"",
     back:"",
     name: "",
@@ -22,19 +23,22 @@ Page({
     image: "/pages/images/1.png",
     email: "",
     isshow: false,
-    isSave:""
+    isSave:"",
+    otheropenId:""
   }, 
-  onShareAppMessage: function () {
-    var server = that.data.server
+  onShareAppMessage: function (a) {
+    var server = app.globalData.server
     var that = this
+    var otheropenId = that.data.otheropenId;
     return {
       title: '自定义转发标题',
-      path: '/page/peerscards/peerscards?othercardid=' + that.data.cardId,
+      path: '/page/peerscards/peerscards?othercardid=' + that.data.id,
       success: function (res) {
         console.log("66666666666")
         console.log(res)
         console.log(a)
         var shareTickets = res.shareTickets;
+        console.log(res.shareTickets)        
         if (shareTickets.length == 0) {
           return false;
         }
@@ -48,8 +52,8 @@ Page({
             wx.request({
               method: 'POST',
               url: server + '/userGroup/saveOrUpdate',
-
               data: {
+                openId: otheropenId,
                 encryptedData: encryptedData,
                 iv: iv
               },
@@ -58,6 +62,7 @@ Page({
                 'content-type': 'application/json'
               },
               success: function (c) {
+                console.log(c)
                 wx.switchTab({
                   url: '/pages/findmore/findmore',
                 })
@@ -78,6 +83,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (ops) {
+    wx.showShareMenu({
+      withShareTicket: true
+    })
     var that = this
     console.log(ops)
     that.setData({
@@ -118,6 +126,8 @@ Page({
         email: res.data.data[0].userEmail,
         phone: res.data.data[0].userPhone,
         image: res.data.data[0].userImg,
+        otheropenId:res.data.data[0].openId,
+        id: res.data.data[0].id,
       })
     })
   },

@@ -44,13 +44,14 @@
     <view class='choose' wx:if="{{chooseSize}}" animation='{{animationData}}'>
       <button class="choose-in" open-type='share' bindtap='trans'>转发</button>
       <button class="choose-in" bindtap='saveToPhone'>保存到通讯录</button>
-      <button class="choose-in" wx:if='{{!isSave}}' bindtap='save'>保存到名片夹</button>
+      <!-- <button class="choose-in" wx:if='{{!isSave}}' bindtap='save'>保存到名片夹</button> -->
       <button class="choose-in" bindtap='hideModal'>取消</button>
     </view>
   </view>
 </view>
 <view class="footer">
   <button class="footer-btn write" wx:if='{{isSave}}' bindtap='remove'>删除同行信息</button>
+  <button class="footer-btn write" wx:if='{{!isSave}}'bindtap='save'>保存到名片夹</button>
   <button class="footer-btn write" wx:if='{{notadd}}' open-type='getUserInfo' bindgetuserinfo='addcards'>添加个人信息</button>
 </view>
 <!-- <view class="mycards">
