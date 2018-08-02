@@ -136,6 +136,16 @@ export function isvalidatemobile(phone) {
   }
   var reg = /^(((13[0-9]{1})|(14[0-9]{1})|(17[0-9]{1})|(15[0-3]{1})|(15[5-9]{1})|(18[0-9]{1}))+\d{8})$/
   return reg.test(phone)
+}
+// 手机号可空
+export function isvalidatemobile_none(phone) {
+  if (phone =='' || phone == null) {
+    return true
+  } else {
+    var reg = /^(((13[0-9]{1})|(14[0-9]{1})|(17[0-9]{1})|(15[0-3]{1})|(15[5-9]{1})|(18[0-9]{1}))+\d{8})$/
+    return reg.test(phone)
+  }
+}
   // let list = [];
   // let result = true;
   // let msg = '';
@@ -158,7 +168,6 @@ export function isvalidatemobile(phone) {
   // list.push(result)
   // list.push(msg)
   // return list
-}
 
 /**
  * validate email
@@ -171,6 +180,15 @@ export function validateEmail(email) {
   }
   const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
   return re.test(email)
+}
+// 邮箱可空
+export function validateEmail_none(email) {
+  if (email == '' || email == null) {
+    return true
+  } else {
+    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    return re.test(email)
+  }
 }
 /**
  * 判断姓名是否正确
