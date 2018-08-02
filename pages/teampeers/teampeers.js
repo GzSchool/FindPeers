@@ -102,7 +102,7 @@ Page({
       success: function(r) {
         if (r.confirm) {
           wx.request({
-            method: 'GET',
+            method: 'POST',
             url: server + '/userGroup/saveOrUpdate',
             data: {
               openId: openid,

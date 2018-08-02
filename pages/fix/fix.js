@@ -1,5 +1,8 @@
 // pages/mycards/mycards.js
-import { validateEmail, isvalidatemobile } from '../../utils/validate.js'
+import {
+  validateEmail,
+  isvalidatemobile
+} from '../../utils/validate.js'
 var app = getApp();
 Page({
   data: {
@@ -30,7 +33,7 @@ Page({
     showresource: false,
     showintroduction: false
   },
-  onLoad: function (a) {
+  onLoad: function(a) {
     var that = this
     console.log(a)
     that.data.server = app.globalData.server
@@ -57,7 +60,7 @@ Page({
       header: {
         'content-type': 'application/json'
       },
-      success: function (b) {
+      success: function(b) {
         console.log(b)
         that.setData({
           name: b.data.data.username,
@@ -92,17 +95,17 @@ Page({
       }
     })
   },
-  viewThisCards: function () {
+  viewThisCards: function() {
     var openid = app.globalData.openid;
     wx.navigateTo({
       url: '/pages/viewThis/viewThis?openid=' + openid,
     })
   },
-  addmore: function () {
+  addmore: function() {
     var that = this
     wx.showActionSheet({
       itemList: ["需求", "资源", "邮箱"],
-      success: function (res) {
+      success: function(res) {
         if (res.tapIndex == 0) {
           that.setData({
             isshow0: true
@@ -119,11 +122,11 @@ Page({
       }
     })
   },
-  addname: function (e) {
+  addname: function(e) {
     var that = this
     if (e.detail.value == '') {
       wx.getUserInfo({
-        success: function (a) {
+        success: function(a) {
           console.log(a)
           that.setData({
             name: a.userInfo.nickName,
@@ -135,7 +138,7 @@ Page({
       that.data.name = e.detail.value
     }
   },
-  addnumber: function (e) {
+  addnumber: function(e) {
     if (e.detail.value == '') {
       app.showToast('微信号不能为空')
     } else {
@@ -144,7 +147,7 @@ Page({
       })
     }
   },
-  addcompany: function (e) {
+  addcompany: function(e) {
     if (e.detail.value == '') {
       app.showToast('公司名称不能为空')
     } else {
@@ -153,7 +156,7 @@ Page({
       })
     }
   },
-  addcity: function (e) {
+  addcity: function(e) {
     if (e.detail.value == null) {
       app.showToast('城市信息不能为空')
     } else {
@@ -162,36 +165,83 @@ Page({
       })
     }
   },
-  addjob: function (e) {
+  addjob: function(e) {
     this.data.job = e.detail.value
   },
-  addphone: function (e) {
+  addphone: function(e) {
     this.data.phone = e.detail.value
   },
-  adddemand: function (e) {
+  adddemand: function(e) {
     this.data.demand = e.detail.value
   },
-  addresource: function (e) {
+  addresource: function(e) {
     this.data.resource = e.detail.value
   },
-  addemail: function (e) {
-    this.data.email = e.detail.value
+  addemail: function(e) {
+    this.data.email = e.detail.value    
   },
-  introInput: function (e) {
+  introInput: function(e) {
     let i = e.detail.value.length
     this.data.introduction = e.detail.value
     this.setData({
       count: i
     })
+
   },
-  save: function (e) {
+  save: function(e) {
     var server = app.globalData.server
     var that = this
-    if (!isvalidatemobile(this.data.phone)) {
-      app.showToast('请输入正确的手机号')
-    } else if (!validateEmail(this.data.email)) {
-      app.showToast('邮箱格式不正确')
-    } else if (this.data.wechatnum == '') {
+    if (e.detail.value !== "" || e.detail.value !== null) {
+      if (!validateEmail(e.detail.value)) {
+        wx.showToast({
+          title: '邮箱格式不正确',
+          icon: 'none'
+        })
+      } else {
+        if (this.data.phone !== "" || this.data.phone !== null) {
+          if (!isvalidatemobile(this.data.phone)) {
+            wx.showToast({
+              title: '请输入正确的手机号',
+              icon: 'none'
+            })
+          }
+        }else{
+          
+        }
+      }
+    }
+  },
+  getPhoneNumber: function(e) {
+    console.log(e.detail.errMsg)
+    console.log(e.detail.iv)
+    console.log(e.detail.encryptedData)
+    if (e.detail.errMsg == 'getPhoneNumber:fail user deny') {
+      wx.showModal({
+        title: '提示',
+        showCancel: false,
+        content: '未授权',
+        success: function(res) {
+          console.log(res)
+        }
+      })
+    } else {
+      wx.showModal({
+        title: '提示',
+        showCancel: false,
+        content: '同意授权',
+        success: function(res) {
+          console.log(res)
+        }
+      })
+    }
+  },
+  chooseIn() {
+    wx.navigateTo({
+      url: '../industry/industry',
+    })
+  },
+  getData:function(){
+    if (this.data.wechatnum == '') {
       app.showToast('微信号不能为空')
     } else if (this.data.company == '') {
       app.showToast('公司名称不能为空')
@@ -215,7 +265,7 @@ Page({
       })
     } else {
       wx.request({
-        method: 'GET',
+        method: 'POST',
         data: {
           id: this.data.id,
           username: this.data.name,
@@ -260,34 +310,5 @@ Page({
       })
     }
 
-  },
-  getPhoneNumber: function (e) {
-    console.log(e.detail.errMsg)
-    console.log(e.detail.iv)
-    console.log(e.detail.encryptedData)
-    if (e.detail.errMsg == 'getPhoneNumber:fail user deny') {
-      wx.showModal({
-        title: '提示',
-        showCancel: false,
-        content: '未授权',
-        success: function (res) {
-          console.log(res)
-        }
-      })
-    } else {
-      wx.showModal({
-        title: '提示',
-        showCancel: false,
-        content: '同意授权',
-        success: function (res) {
-          console.log(res)
-        }
-      })
-    }
-  },
-  chooseIn() {
-    wx.navigateTo({
-      url: '../industry/industry',
-    })
   }
 })
