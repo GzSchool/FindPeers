@@ -4,6 +4,7 @@ var util = require('../../utils/util.js');
 Page({
   data: {
     name: "",
+    id:"",
     adress: "",
     idustry:"",
     city:"",
@@ -52,6 +53,7 @@ Page({
           email: res.userEmail,
           phone: res.userPhone,
           image: res.userImg,
+          id:res.id
         })
       }
     })
@@ -62,7 +64,7 @@ Page({
     var server = that.data.server
     return {
       title: '自定义转发标题',
-      path: '/page/mine/mine',
+      path: '/page/mine/mine?othercardid=' + that.data.id,
       success: function (res) {
         console.log("66666666666")
         wx.switchTab({

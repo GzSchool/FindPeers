@@ -14,7 +14,8 @@ Page({
     server:"",
     company:"",
     img1:"/pages/images/about1.png",
-    img2:"/pages/images/right.png"
+    img2:"/pages/images/right.png",
+    id:""
   },
   onLoad:function(){
     
@@ -42,24 +43,28 @@ Page({
           emai: res.userEmail,
           phone: res.userPhone,
           image: res.userImg,
+          id:res.id
         })
       }
     })
   },
   
   onShareAppMessage: function (a) {
+    var that = this
     wx.showShareMenu({
       withShareTicket: true
     })
     console.log("2222222222222333333333333333") 
     return{
       title: '自定义转发标题',
-      path: '/page/mine/mine?otheropenid='+this.data.openid,
+      path: '/page/mine/mine?othercardid=' + that.data.id,
       success: function (res) {
+        console.log(that.data.id)         
         console.log("66666666666") 
         console.log(res)
         console.log(a)        
         var shareTickets = res.shareTickets;
+        console.log(shareTickets)
         if (shareTickets.length == 0) {
           return false;
         }
@@ -71,7 +76,7 @@ Page({
             var encryptedData = res.encryptedData;
             var iv = res.iv;
             wx.request({
-              method: 'GET',
+              method: 'POST',
               url: server+'/userGroup/saveOrUpdate',
 
               data: {
