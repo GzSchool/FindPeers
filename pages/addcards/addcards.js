@@ -80,20 +80,8 @@ Page({
       }
     })
   },
-  addname: function(e) {
-    var that = this
-    if (e.detail.value == '') {
-      wx.getUserInfo({
-        success: function(a) {
-          that.setData({
-            name: a.userInfo.nickName,
-            image: a.userInfo.avatarUrl
-          })
-        }
-      })
-    } else {
-      that.data.name = e.detail.value
-    }
+  addname: function (e) {
+    this.data.name = e.detail.value
   },
   addnumber: function(e) {
     this.data.wechatnum = e.detail.value
@@ -128,34 +116,21 @@ Page({
   },
   // 用户点击保存
   save: function () {
-    let phone = this.data.phone
-    let email = this.data.email
-    let name = this.data.name
-    console.log(isvalidatemobile_none(phone))
-    // if (phone !== '' && phone !== null) {
-    //   if (!isvalidatemobile(this.data.phone)) {
-    //     app.showToast('手机号格式不正确')
-    //   } 
-    // } else if (email !== '' && email !== null) {
-    //   if (!validateEmail(this.data.email)) {
-    //     app.showToast('邮箱格式不正确')
-    //   }
-    // } else if (name == '' || name == null) {
-    //   let that = this
-    //   app.showToast('将获取您的微信昵称')
-    //   wx.getUserInfo({
-    //     success: function (a) {
-    //       console.log(a)
-    //       that.setData({
-    //         name: a.userInfo.nickName,
-    //         image: a.userInfo.avatarUrl
-    //       })
-    //     }
-    //   })
-    //   // this.getData()
-    // } else {
-    //   this.getData()
-    // }
+    let that = this
+    if (this.data.name == '' || this.data.name == null) {
+      wx.getUserInfo({
+        success: function (a) {
+          console.log(a)
+          that.setData({
+            name: a.userInfo.nickName,
+            image: a.userInfo.avatarUrl
+          })
+          that.getData()
+        }
+      })
+    } else {
+      this.getData()
+    }
   },
   getPhoneNumber: function(e) { //用户点击微信获取手机
     console.log(e.detail.errMsg)
@@ -196,7 +171,11 @@ Page({
     } else {
       back = this.data.back
     }
-    if (this.data.wechatnum == "") {
+    if (!isvalidatemobile_none(this.data.phone)) {
+      app.showToast('手机号格式不正确')
+    } else if (!validateEmail_none(this.data.email)) {
+      app.showToast('邮箱格式不正确')
+    } else if (this.data.wechatnum == "") {
       wx.showToast({
         title: '微信号不能为空',
         icon: 'none'

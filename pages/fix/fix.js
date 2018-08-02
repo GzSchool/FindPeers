@@ -149,32 +149,20 @@ Page({
   addname: function(e) {
     this.data.name = e.detail.value
   },
-  addnumber: function(e) {
-    if (e.detail.value == '') {
-      app.showToast('微信号不能为空')
-    } else {
-      this.setData({
-        wechatnum: e.detail.value
-      })
-    }
+  addnumber: function (e) {
+    this.setData({
+      wechatnum: e.detail.value
+    })
   },
-  addcompany: function(e) {
-    if (e.detail.value == '') {
-      app.showToast('公司名称不能为空')
-    } else {
-      this.setData({
-        company: e.detail.value
-      })
-    }
+  addcompany: function (e) {
+    this.setData({
+      company: e.detail.value
+    })
   },
-  addcity: function(e) {
-    if (e.detail.value == null) {
-      app.showToast('城市信息不能为空')
-    } else {
-      this.setData({
-        city: e.detail.value
-      })
-    }
+  addcity: function (e) {
+    this.setData({
+      city: e.detail.value
+    })
   },
   addjob: function(e) {
     this.data.job = e.detail.value
@@ -198,14 +186,19 @@ Page({
       count: i
     })
   },
-  save: function() {
-    let phone = this.data.phone
-    let email = this.data.email
-    let name = this.data.name
-    if (!isvalidatemobile_none(phone)) {
-      app.showToast('手机号格式不正确')
-    } else if (!validateEmail(this.data.email)) {
-      app.showToast('邮箱格式不正确')
+  save: function () {
+    let that = this
+    if (this.data.name == '' || this.data.name == null) {
+      wx.getUserInfo({
+        success: function (a) {
+          console.log(a)
+          that.setData({
+            name: a.userInfo.nickName,
+            image: a.userInfo.avatarUrl
+          })
+          that.getData()
+        }
+      })
     } else {
       this.getData()
     }
@@ -242,7 +235,11 @@ Page({
   getData: function() {
     let server = this.data.server
     let that = this
-    if (this.data.wechatnum == '') {
+    if (!isvalidatemobile_none(this.data.phone)) {
+      app.showToast('手机号格式不正确')
+    } else if (!validateEmail_none(this.data.email)) {
+      app.showToast('邮箱格式不正确')
+    } else if (this.data.wechatnum == '') {
       app.showToast('微信号不能为空')
     } else if (this.data.company == '') {
       app.showToast('公司名称不能为空')
