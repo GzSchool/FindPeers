@@ -29,7 +29,6 @@ Page({
     isshow: '', //是否显示
     isshow0: false, //需求是否显示
     isshow1: false, //资源是否显示
-    isshow2: false, //邮箱是否显示
     itemList: ["需求", "资源"] // 添加更多项
   },
   onLoad: function(res) {
@@ -83,7 +82,18 @@ Page({
   },
   addname: function(e) {
     var that = this
-    that.data.name = e.detail.value
+    if (e.detail.value == '') {
+      wx.getUserInfo({
+        success: function(a) {
+          that.setData({
+            name: a.userInfo.nickName,
+            image: a.userInfo.avatarUrl
+          })
+        }
+      })
+    } else {
+      that.data.name = e.detail.value
+    }
   },
   addnumber: function(e) {
     this.data.wechatnum = e.detail.value
@@ -176,6 +186,8 @@ Page({
     } else {
       back = this.data.back
     }
+    if (this.data.wechatnum == "") {
+      wx.showToast({
         title: '微信号不能为空',
         icon: 'none'
       })

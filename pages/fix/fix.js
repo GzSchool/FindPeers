@@ -6,6 +6,21 @@ import {
 var app = getApp();
 Page({
   data: {
+    mineInfo: {
+      name: '',
+      wechatnum: '',
+      company: '',
+      idustry: '',
+      city: '',
+      email: '',
+      phone: '',
+      image: '',
+      demand: '',
+      resource: '',
+      introduction: '',
+      id: '',
+      job: ''
+    },
     count: 0,
     groupId: "",
     name: "",
@@ -63,6 +78,19 @@ Page({
       success: function(b) {
         console.log(b)
         that.setData({
+          mineInfo: {
+            name: b.data.data.username,
+            wechatnum: b.data.data.userWechat,
+            company: b.data.data.userCompany,
+            idustry: b.data.data.userIndustry,
+            city: b.data.data.userCity,
+            email: b.data.data.userEmail,
+            phone: b.data.data.userPhone,
+            image: b.data.data.userImg,
+            demand: b.data.data.demand,
+            resource: b.data.data.resources,
+            introduction: b.data.data.synopsis,
+          },
           name: b.data.data.username,
           wechatnum: b.data.data.userWechat,
           company: b.data.data.userCompany,
@@ -124,7 +152,19 @@ Page({
   },
   addname: function(e) {
     var that = this
-    that.data.name = e.detail.value
+    if (e.detail.value == '') {
+      wx.getUserInfo({
+        success: function(a) {
+          console.log(a)
+          that.setData({
+            name: a.userInfo.nickName,
+            image: a.userInfo.avatarUrl
+          })
+        }
+      })
+    } else {
+      that.data.name = e.detail.value
+    }
   },
   addnumber: function(e) {
     if (e.detail.value == '') {
@@ -157,16 +197,7 @@ Page({
     this.data.job = e.detail.value
   },
   addphone: function(e) {
-    if (this.data.phone !== "" && this.data.phone !== null) {
-      if (!isvalidatemobile(this.data.phone)) {
-        wx.showToast({
-          title: '请输入正确的手机号',
-          icon: 'none'
-        })
-      }
-    } else {
-      this.data.phone = e.detail.value
-    }
+    this.data.phone = e.detail.value
   },
   adddemand: function(e) {
     this.data.demand = e.detail.value
@@ -175,16 +206,7 @@ Page({
     this.data.resource = e.detail.value
   },
   addemail: function(e) {
-    if (e.detail.value !== "" && e.detail.value !== null) {
-      if (!validateEmail(e.detail.value)) {
-        wx.showToast({
-          title: '邮箱格式不正确',
-          icon: 'none'
-        })
-      }
-    } else {
-      this.data.email = e.detail.value
-    }
+    this.data.email = e.detail.value    
   },
   introInput: function(e) {
     let i = e.detail.value.length
@@ -193,7 +215,24 @@ Page({
       count: i
     })
   },
-      })
+  save: function() {
+    if (this.data.phone == '' || this.data.phone == null) {
+      this.getData()
+    } else {
+      if (!isvalidatemobile(this.data.phone)) {
+        app.showToast('手机号格式不正确')
+      } else {
+        this.getData()
+      }
+    }
+    if (this.data.email == '' || this.data == null) {
+      this.getData()
+    } else {
+      if (!validateEmail(this.data.email)) {
+        app.showToast('邮箱格式不正确')
+      } else {
+        this.getData()
+      }
     }
   },
   getPhoneNumber: function(e) {
@@ -225,8 +264,9 @@ Page({
       url: '../industry/industry',
     })
   },
-  getData: function() {
-    var server = app.globalData.server;
+  getData:function(){
+    let server = this.data.server
+    let that = this
     if (this.data.wechatnum == '') {
       app.showToast('微信号不能为空')
     } else if (this.data.company == '') {
@@ -237,14 +277,14 @@ Page({
       app.showToast('城市信息不能为空')
     } else if (this.data.name == '') {
       wx.getUserInfo({
-        success: function(a) {
+        success: function (a) {
           console.log(a)
           this.data.name = a.userInfo.nickName;
         }
       })
     } else if (this.data.image == '') {
       wx.getUserInfo({
-        success: function(a) {
+        success: function (a) {
           console.log(a)
           this.data.image = a.userInfo.avatarUrl;
         }
@@ -271,7 +311,7 @@ Page({
         header: {
           'content-type': 'application/json'
         },
-        success: function(res) {
+        success: function (res) {
           wx.showToast({
             title: '修改成功',
             icon: 'success',
