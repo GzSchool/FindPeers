@@ -26,11 +26,12 @@ export function validatAlphabets(str) {
   return reg.test(str)
 }
 /*验证pad还是pc*/
-export const vaildatePc = function () {
+export const vaildatePc = function() {
   const userAgentInfo = navigator.userAgent;
   const Agents = ["Android", "iPhone",
     "SymbianOS", "Windows Phone",
-    "iPad", "iPod"];
+    "iPad", "iPod"
+  ];
   let flag = true;
   for (var v = 0; v < Agents.length; v++) {
     if (userAgentInfo.indexOf(Agents[v]) > 0) {
@@ -130,6 +131,9 @@ export function cardid(code) {
  * 判断手机号码是否正确
  */
 export function isvalidatemobile(phone) {
+  if (phone == "" || phone == null) {
+    return true;
+  }
   var reg = /^(((13[0-9]{1})|(14[0-9]{1})|(17[0-9]{1})|(15[0-3]{1})|(15[5-9]{1})|(18[0-9]{1}))+\d{8})$/
   return reg.test(phone)
   // let list = [];
@@ -162,6 +166,9 @@ export function isvalidatemobile(phone) {
  * @returns {boolean}
  */
 export function validateEmail(email) {
+  if (email == "" || email == null) {
+    return true;
+  }
   const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
   return re.test(email)
 }

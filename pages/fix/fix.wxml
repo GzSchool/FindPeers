@@ -2,10 +2,10 @@
 <view class='main'>
   <view class='main-top'>
     <view class='top-left'>
-      <view class='info name'>{{name}}</view>
-      <view class='info'>{{idustry}}</view>
-      <view class='info'>{{city}}</view>
-      <view class='info'>{{company}}</view>
+      <view class='info name'>{{mineInfo.name}}</view>
+      <view class='info'>{{mineInfo.idustry}}</view>
+      <view class='info'>{{mineInfo.city}}</view>
+      <view class='info'>{{mineInfo.company}}</view>
     </view>
     <view class='top-right'>
       <image src='{{image}}'></image>
@@ -13,17 +13,17 @@
   </view>
   <view class='main-down'>
     <view class='down-left'>
-      <view class='contact-info'>
+      <view class='contact-info' wx:if='{{phone}}'>
         <view class='info-left'>
           <image src='../images/phone.png' style='width:17rpx;height:25rpx;'></image>
         </view>
-      {{phone}}</view>
+      {{mineInfo.phone}}</view>
       <view class='contact-info'>
         <view class='info-left'>
           <image src='../images/wechat.png' style='width:26rpx;height:21rpx;'></image>
         </view>
-        {{wechatnum}}</view>
-      <view class='contact-info'>
+        {{mineInfo.wechatnum}}</view>
+      <view class='contact-info' wx:if='{{email}}'>
         <view class='info-left'>
           <image src='../images/email.png' style='width:24rpx;height:16rpx;'></image>
         </view>
@@ -71,13 +71,13 @@
     <view class='main-li'>
       <view class='star'></view>
       <view class='title'><text>手</text><text>机</text><text>号:</text></view>
-      <input placeholder-class="phcolor" maxlength='11' placeholder='填写可见同行手机号' bindconfirm='addphone' type='number' value='{{phone}}'></input>
+      <input placeholder-class="phcolor" maxlength='11' placeholder='填写可见同行手机号' bindinput='addphone' type='number' value='{{phone}}'></input>
       <button style='padding:0;' class='wx-get' open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">微信获取</button>
     </view>
     <view class='main-li'>
       <view class='star'></view>
       <view class='title'><text>邮</text><text>箱:</text></view>
-      <input placeholder-class="phcolor" maxlength='40' placeholder='邮箱' bindconfirm='addemail' type='text' value='{{email}}'></input>
+      <input placeholder-class="phcolor" maxlength='40' placeholder='邮箱' bindinput='addemail' type='text' value='{{email}}'></input>
     </view>
     <view class='main-li' wx:if='{{isshow0}}'>
       <view class='star'></view>
