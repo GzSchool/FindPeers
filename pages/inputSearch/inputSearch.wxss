@@ -71,6 +71,20 @@ page{
   /* height: 44rpx; */
   line-height: 44rpx;
 }
+.list .item .item-right .info.shade {
+  height: 44rpx;
+  color: #FE0000;
+  font-size: 20rpx;
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
+.list .item .item-right .info.shade .shade-in {
+  height: 28rpx;
+  width: 306rpx;
+  line-height: 28rpx;
+  background-color: #E6E6E6;
+}
 .list .item .item-right .name {
   color: #505050;
   font-size: 28rpx;

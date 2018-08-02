@@ -104,7 +104,7 @@ Page({
   addmore: function() {
     var that = this
     wx.showActionSheet({
-      itemList: ["需求", "资源", "邮箱"],
+      itemList: ["需求", "资源"],
       success: function(res) {
         if (res.tapIndex == 0) {
           that.setData({
@@ -186,28 +186,24 @@ Page({
     this.setData({
       count: i
     })
-
   },
-  save: function(e) {
-    var server = app.globalData.server
-    var that = this
-    if (e.detail.value !== "" || e.detail.value !== null) {
-      if (!validateEmail(e.detail.value)) {
-        wx.showToast({
-          title: '邮箱格式不正确',
-          icon: 'none'
-        })
+  save: function() {
+    if (this.data.phone == '' || this.data.phone == null) {
+      this.getData()
+    } else {
+      if (!isvalidatemobile(this.data.phone)) {
+        app.showToast('手机号格式不正确')
       } else {
-        if (this.data.phone !== "" || this.data.phone !== null) {
-          if (!isvalidatemobile(this.data.phone)) {
-            wx.showToast({
-              title: '请输入正确的手机号',
-              icon: 'none'
-            })
-          }
-        }else{
-          
-        }
+        this.getData()
+      }
+    }
+    if (this.data.email == '' || this.data == null) {
+      this.getData()
+    } else {
+      if (!validateEmail(this.data.email)) {
+        app.showToast('邮箱格式不正确')
+      } else {
+        this.getData()
       }
     }
   },
@@ -309,6 +305,5 @@ Page({
         }
       })
     }
-
   }
 })

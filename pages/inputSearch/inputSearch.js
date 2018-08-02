@@ -3,6 +3,7 @@ var app=getApp()
 var util = require('../../utils/util.js');
 Page({
   data: {
+    notadd: true,
     list: [],
     cardId:"",
     mes: '',        // 输入框内容
@@ -14,6 +15,12 @@ Page({
     key: " 微信号、城市、公司、行业等进行搜索",
   },
   onLoad: function (options) {
+    this.setData({
+      notadd: app.globalData.notadd
+    })
+  },
+  onShow: function () {
+    this.onLoad()
   },
   bindSearch:function(res){
     let key = res.detail.value;
