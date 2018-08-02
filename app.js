@@ -10,8 +10,8 @@ App({
     othercardid: '',             //点击别人分享的别人的id
     canSee:"",                   //群名片里的自己的信息是不是已经分享
     login: '',                   //登陆标识
-    // server: 'http://192.168.2.123:8080',
-    server: 'http://123.206.64.219:8766',
+    //server: 'http://192.168.2.123:8080',
+     server: 'http://123.206.64.219:8766',
     urlOfLogin:'/user/userAuthor',               //登录接口
     urlOfAddOrUpdate: '/userCard/saveOrUpdate',  //添加或修改个人信息接口
     urlOfGetCardByOpenID: '/userCard/findOneByOpenId', //获取当前用户信息
@@ -36,34 +36,50 @@ App({
             console.log()
             var encryptedData = res.encryptedData;
             var iv = res.iv;
-          }
-        })
-        // 登录
-        util.Login(url).then(function (data) {
-          if (data) {
-            that.globalData.openid = data
-            var openid = that.globalData.openid
-          }
-          var openid = that.globalData.openid;                  //用用户标识访问数据库获取用户信息
-          util.getMyData(openid).then(function (res) {  
-            console.log('登录返回值')  
-            // console.log(this.globalData.isshow)         
-            console.log(res)
-            if (res) {                                //判断是否返回 有返回值就是已经添加过信息
-              that.globalData.isshow = true
-              that.globalData.notadd = false
-              wx.redirectTo({
-                url: '/pages/peerscards/peerscards?isshow=true',
+            util.Login(url).then(function (data) {                    // 登录
+              if (data) {
+                that.globalData.openid = data
+                var openid = that.globalData.openid
+              }
+              var openid = that.globalData.openid;                  //用用户标识访问数据库获取用户信息
+              util.getMyData(openid).then(function (res) {
+                console.log('登录返回值')
+                // console.log(this.globalData.isshow)         
+                console.log(res)
+                if (res) {                                         //判断是否返回 有返回值就是已经添加过信息
+                  that.globalData.isshow = true
+                  that.globalData.notadd = false
+                  wx.redirectTo({
+                    url: '/pages/peerscards/peerscards?isshow=true',
+                  })
+                } else {
+                  that.globalData.notadd = true
+                  that.globalData.isshow = false
+                  wx.redirectTo({                                //说明没有添加过名片信息
+                    url: '/pages/peerscards/peerscards',
+                  })
+                }
               })
-            } else {
-              that.globalData.notadd = true
-              that.globalData.isshow = false
-              wx.redirectTo({                                //说明没有添加过名片信息
-                url: '/pages/peerscards/peerscards',
+              wx.request({
+                method: 'POST',
+                url: server + '/userGroup/saveOrUpdate',
+
+                data: {
+                  openId: openid,
+                  encryptedData: encryptedData,
+                  iv: iv
+                },
+
+                header: {
+                  'content-type': 'application/json'
+                },
+                success: function (c) {
+                  console.log(c)
+                }
               })
-            }
-          })
-        })
+            })           
+          }
+        })        
       } else {                                             //点击的个人的分享
         console.log("2222222222222")
         var that = this

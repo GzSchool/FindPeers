@@ -18,15 +18,17 @@ Page({
     image:"/pages/images/1.png",
     email:"",
     isshow:false,
+    otheropenId:"",
     othercards:'',
     chooseSize: false,
     animationData: {},
     isgroup:"",                  //判断是否是在群里点击的
     isSave:""                    //判断是否已保存这个名片
   },
-  onShareAppMessage:function(){
-    var server = that.data.server
+  onShareAppMessage:function(a){
+    var server = app.globalData.server;
     var that=this
+    var otheropenId = that.data.otheropenId;
     return {
       title: '自定义转发标题',
       path: '/page/peerscards/peerscards?othercardid='+that.data.cardId,
@@ -46,10 +48,11 @@ Page({
             var encryptedData = res.encryptedData;
             var iv = res.iv;
             wx.request({
-              method: 'GET',
+              method: 'POST',
               url: server+'/userGroup/saveOrUpdate',
 
               data: {
+                openId: otheropenId,
                 encryptedData: encryptedData,
                 iv: iv
               },
@@ -100,6 +103,7 @@ Page({
         email: res.data.data[0].userEmail,
         phone: res.data.data[0].userPhone,
         image: res.data.data[0].userImg,
+        otheropenId: res.data.data[0].openId,
       })
       console.log(res.data.data[0].delFlag )
     })

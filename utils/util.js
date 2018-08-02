@@ -1,6 +1,6 @@
 //服务器地址
-// var server = 'http://192.168.2.123:8080'
-var server = "http://123.206.64.219:8766"
+//var server = 'http://192.168.2.123:8080'
+ var server = "http://123.206.64.219:8766"
 const formatTime = date => {
   const year = date.getFullYear()
   const month = date.getMonth() + 1
@@ -200,6 +200,36 @@ function getGroupCards(openId, groupId, pageNum, pageSize) {
       },
       success: function(b) {
         resolve(b)
+      }
+    })
+  })
+}
+function getOpenGid(shareTickets,openid){
+  return new Promise(function (resole){
+    wx.getShareInfo({
+      shareTicket: shareTickets[0],
+      success: function (res) {
+        console.log(res)
+        console.log(a)
+        var encryptedData = res.encryptedData;
+        var iv = res.iv;
+        wx.request({
+          method: 'POST',
+          url: server + '/userGroup/saveOrUpdate',
+
+          data: {
+            openId: app.globalData.openid,
+            encryptedData: encryptedData,
+            iv: iv
+          },
+
+          header: {
+            'content-type': 'application/json'
+          },
+          success: function (c) {
+            console.log(c)
+          }
+        })
       }
     })
   })

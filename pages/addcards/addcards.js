@@ -119,11 +119,11 @@ Page({
     })
   },
   // 用户点击保存
-  save: function () {
+  save: function() {
     let that = this
     if (this.data.name == '' || this.data.name == null) {
       wx.getUserInfo({
-        success: function (a) {
+        success: function(a) {
           console.log(a)
           that.setData({
             name: a.userInfo.nickName,
@@ -133,7 +133,7 @@ Page({
         }
       })
     } else {
-      this.getData()
+      that.getData()
     }
   },
   getPhoneNumber: function(e) { //用户点击微信获取手机
@@ -165,7 +165,7 @@ Page({
       url: '../industry/industry',
     })
   },
-  getData () {
+  getData() {
     var that = this
     var othercardid = app.globalData.othercardid
     var server = this.data.server
@@ -203,14 +203,14 @@ Page({
       })
     } else if (this.data.name == '') {
       wx.getUserInfo({
-        success: function (a) {
+        success: function(a) {
           console.log(a)
           this.data.name = a.userInfo.nickName;
         }
       })
     } else if (this.data.image == '') {
       wx.getUserInfo({
-        success: function (a) {
+        success: function(a) {
           console.log(a)
           this.data.image = a.userInfo.avatarUrl;
         }
@@ -238,7 +238,7 @@ Page({
         header: {
           'content-type': 'application/json'
         },
-        success: function (res) {
+        success: function(res) {
           app.globalData.notadd = false
           console.log(res)
           var openid = app.globalData.openid;

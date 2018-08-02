@@ -95,7 +95,7 @@ Page({
     var that = this
     var openid = this.data.openid
     var groupid = this.data.groupid
-    var server = that.data.server
+    var server = app.globalData.server;
     wx.showModal({
       title: '分享到本群',
       content: '确定分享到本群',

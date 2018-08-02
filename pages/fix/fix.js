@@ -153,17 +153,17 @@ Page({
     console.log(this.data.prepare)
     this.data.name = e.detail.value
   },
-  addnumber: function (e) {
+  addnumber: function(e) {
     this.setData({
       wechatnum: e.detail.value
     })
   },
-  addcompany: function (e) {
+  addcompany: function(e) {
     this.setData({
       company: e.detail.value
     })
   },
-  addcity: function (e) {
+  addcity: function(e) {
     this.setData({
       city: e.detail.value
     })
@@ -190,21 +190,23 @@ Page({
       count: i
     })
   },
-  save: function () {
+  save: function() {
     let that = this
     if (this.data.name == '' || this.data.name == null) {
       wx.getUserInfo({
-        success: function (a) {
+        success: function(a) {
           console.log(a)
           that.setData({
             name: a.userInfo.nickName,
             image: a.userInfo.avatarUrl
           })
           that.getData()
+        },fail:function(){
+          app.showToast("姓名不能为空")
         }
       })
     } else {
-      this.getData()
+      that.getData()
     }
   },
   getPhoneNumber: function(e) {
