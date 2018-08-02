@@ -20,6 +20,7 @@ Page({
     
     var that=this
     var openid = app.globalData.openid
+    console.log(openid)
     that.data.server=app.globalData.server;
     var server = that.data.server
     util.getMyData(openid).then(function (res) {

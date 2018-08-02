@@ -1,35 +1,38 @@
 // pages/addCards/addcards.js
-import { validateEmail, isvalidatemobile } from '../../utils/validate.js'
+import {
+  validateEmail,
+  isvalidatemobile
+} from '../../utils/validate.js'
 var app = getApp();
 Page({
   data: {
-    count: 0,        //简介字数
-    openid: "",      //用户标识
-    othercardid:"",  //分享的人的标识
-    groupId:"",      //群id
-    userId: 0,       //用户id
-    name: "",        //用户名字
-    other: '',                                                      
-    wechatnum: "",    //用户填写的微信号
-    image:"",         //用户的微信头像
-    company: "",      //用户填写的公司名称
-    idustry: "",      //用户选择的行业
-    job:'',           //用户填写的职务 
-    city: "",         //用户填写的城市
-    phone: "",        //用户手机号
-    server:"",        //服务器地址
-    demand: "",       //用户填写的需求
+    count: 0, //简介字数
+    openid: "", //用户标识
+    othercardid: "", //分享的人的标识
+    groupId: "", //群id
+    userId: 0, //用户id
+    name: "", //用户名字
+    other: '',
+    wechatnum: "", //用户填写的微信号
+    image: "", //用户的微信头像
+    company: "", //用户填写的公司名称
+    idustry: "", //用户选择的行业
+    job: '', //用户填写的职务 
+    city: "", //用户填写的城市
+    phone: "", //用户手机号
+    server: "", //服务器地址
+    demand: "", //用户填写的需求
     introduction: "", //用户简介
-    resource: "",     //用户资源
-    email: "",        //用户邮箱
-    back:"",          //是否返回
-    isshow:'',        //是否显示
-    isshow0: false,   //需求是否显示
-    isshow1: false,   //资源是否显示
-    isshow2: false,   //邮箱是否显示
-    itemList: ["需求", "资源"]  // 添加更多项
+    resource: "", //用户资源
+    email: "", //用户邮箱
+    back: "", //是否返回
+    isshow: '', //是否显示
+    isshow0: false, //需求是否显示
+    isshow1: false, //资源是否显示
+    isshow2: false, //邮箱是否显示
+    itemList: ["需求", "资源"] // 添加更多项
   },
-  onLoad: function (res) {
+  onLoad: function(res) {
     var that = this
     that.data.server = app.globalData.server;
     that.data.openid = app.globalData.openid;
@@ -53,7 +56,7 @@ Page({
     console.log(openid)
     console.log(that.data.groupId)
     wx.getUserInfo({
-      success: function (a) {
+      success: function(a) {
         that.setData({
           image: a.userInfo.avatarUrl
         })
@@ -61,11 +64,11 @@ Page({
     })
   },
   // 用户点击添加更多
-  addmore: function () {                                                
+  addmore: function() {
     var that = this
     wx.showActionSheet({
       itemList: ["需求", "资源"],
-      success: function (res) {
+      success: function(res) {
         if (res.tapIndex == 0) {
           that.setData({
             isshow0: true
@@ -78,11 +81,11 @@ Page({
       }
     })
   },
-  addname: function (e) {
+  addname: function(e) {
     var that = this
     if (e.detail.value == '') {
       wx.getUserInfo({
-        success: function (a) {
+        success: function(a) {
           that.setData({
             name: a.userInfo.nickName,
             image: a.userInfo.avatarUrl
@@ -93,28 +96,28 @@ Page({
       that.data.name = e.detail.value
     }
   },
-  addnumber: function (e) {
+  addnumber: function(e) {
     this.data.wechatnum = e.detail.value
   },
-  addcompany: function (e) {
+  addcompany: function(e) {
     this.data.company = e.detail.value
   },
-  addcity: function (e) {
+  addcity: function(e) {
     this.data.city = e.detail.value
   },
-  addjob: function (e) {
+  addjob: function(e) {
     this.data.job = e.detail.value
   },
-  addphone: function (e) {
+  addphone: function(e) {
     this.data.phone = e.detail.value
   },
-  adddemand: function (e) {
+  adddemand: function(e) {
     this.data.demand = e.detail.value
   },
-  addresource: function (e) {
+  addresource: function(e) {
     this.data.resource = e.detail.value
   },
-  addemail: function (e) {
+  addemail: function(e) {
     this.data.email = e.detail.value
   },
   introInput(e) {
@@ -125,7 +128,7 @@ Page({
     })
   },
   // 用户点击保存
-  save: function (e) {                                                              
+  save: function(e) {
     var that = this
     var othercardid = app.globalData.othercardid
     var server = this.data.server
@@ -135,16 +138,20 @@ Page({
     } else {
       back = this.data.back
     }
-    if (!isvalidatemobile(this.data.phone)) {
-      wx.showToast({
-        title: '请输入正确的手机号',
-        icon: 'none'
-      })
-    } else if (!validateEmail(this.data.email)) {
+    if (this.data.phone !== "" && this.data.phone !== null) {
+      if (!isvalidatemobile(this.data.phone)) {
+        wx.showToast({
+          title: '请输入正确的手机号',
+          icon: 'none'
+        })
+      }
+    } else if (this.data.email !== "" && this.data.email !== null){ 
+     if (!validateEmail(this.data.email)) {
       wx.showToast({
         title: '邮箱格式不正确',
         icon: 'none'
       })
+    }
     } else if (this.data.wechatnum == "") {
       wx.showToast({
         title: '微信号不能为空',
@@ -167,21 +174,21 @@ Page({
       })
     } else if (this.data.name == '') {
       wx.getUserInfo({
-        success: function (a) {
+        success: function(a) {
           console.log(a)
           this.data.name = a.userInfo.nickName;
         }
       })
     } else if (this.data.image == '') {
       wx.getUserInfo({
-        success: function (a) {
+        success: function(a) {
           console.log(a)
           this.data.image = a.userInfo.avatarUrl;
         }
       })
-    }  else {
+    } else {
       wx.request({
-        method: 'GET',
+        method: 'POST',
         data: {
           username: this.data.name,
           openId: app.globalData.openid,
@@ -201,7 +208,7 @@ Page({
         header: {
           'content-type': 'application/json'
         },
-        success: function (res) {
+        success: function(res) {
           app.globalData.notadd = false
           console.log(res)
           var openid = app.globalData.openid;
@@ -234,7 +241,7 @@ Page({
       })
     }
   },
-  getPhoneNumber: function (e) {                                                        //用户点击微信获取手机
+  getPhoneNumber: function(e) { //用户点击微信获取手机
     console.log(e.detail.errMsg)
     console.log(e.detail.iv)
     console.log(e.detail.encryptedData)
@@ -243,7 +250,7 @@ Page({
         title: '提示',
         showCancel: false,
         content: '未授权',
-        success: function (res) {
+        success: function(res) {
           console.log(res)
         }
       })
@@ -252,7 +259,7 @@ Page({
         title: '提示',
         showCancel: false,
         content: '同意授权',
-        success: function (res) {
+        success: function(res) {
           console.log(res)
         }
       })

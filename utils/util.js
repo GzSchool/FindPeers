@@ -1,6 +1,6 @@
 //服务器地址
-// var server = "http://localhost:8080"
-var server = 'http://192.168.2.123:8080'
+ var server = "http://123.206.64.219:8766"
+//var server = 'http://192.168.2.123:8080'
 const formatTime = date => {
   const year = date.getFullYear()
   const month = date.getMonth() + 1
@@ -49,6 +49,7 @@ function Login(url) {
   用户的openid向数据库获取信息，判断是不是再数据库里添加过数据
 */
 function getMyData(openid) {
+  console.log("1111111")
   return new Promise(function(resolve) {
     wx.request({
       method: 'GET',
@@ -60,6 +61,7 @@ function getMyData(openid) {
         'content-type': 'application/json'
       },
       success: function(d) {
+        console.log(d)
         resolve(d.data.data);
       }
     })

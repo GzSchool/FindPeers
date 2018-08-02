@@ -2,14 +2,16 @@
 var util=require('/utils/util.js');
 const industry = require('/utils/industry.js')
 App({
-
   globalData: {
+    notadd:false,
+    isshow:"",
+    openid:"",
     isgroup:false,               //是不是群
     othercardid: '',             //点击别人分享的别人的id
     canSee:"",                   //群名片里的自己的信息是不是已经分享
     login: '',                   //登陆标识
-    // server: 'http://localhost:8080',          //服务器地址
-    server: 'http://192.168.2.123:8080',
+   //  server: 'http://localhost:8080',          //服务器地址
+   server: 'http://123.206.64.219:8766',
     urlOfLogin:'/user/userAuthor',               //登录接口
     urlOfAddOrUpdate: '/userCard/saveOrUpdate',  //添加或修改个人信息接口
     urlOfGetCardByOpenID: '/userCard/findOneByOpenId', //获取当前用户信息
@@ -69,9 +71,9 @@ App({
         var othercardid = that.globalData.othercardid
         util.Login(url).then(function (data) {                     // 登录
           console.log(data)
-          if (data) {
+           if (data) {
             that.globalData.openid = data
-            var openid = that.globalData.openid
+             var openid = that.globalData.openid
           }
           var openid = that.globalData.openid;                      //用用户标识访问数据库获取用户信息
           util.getMyData(openid).then(function (res) {                          
@@ -98,10 +100,13 @@ App({
         if (data) {
           that.globalData.openid = data
           var openid = that.globalData.openid
-          // console.log(that.globalData.openid)
+          console.log(that.globalData.openid)
         }
-        var openid = that.globalData.openid;                //用用户标识访问数据库获取用户信息
-        util.getMyData(openid).then(function (res) {                               
+        var openid = that.globalData.openid;              //用用户标识访问数据库获取用户信息
+      var openid = that.globalData.openid;
+      console.log(openid)
+        util.getMyData(openid).then(function (res) {
+          console.log(openid)                                         
           console.log(res)
           if(res){
             that.globalData.notadd = false;

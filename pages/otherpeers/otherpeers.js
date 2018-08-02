@@ -46,7 +46,7 @@ Page({
             var encryptedData = res.encryptedData;
             var iv = res.iv;
             wx.request({
-              method: 'GET',
+              method: 'POST',
               url: server + '/userGroup/saveOrUpdate',
 
               data: {
@@ -249,8 +249,10 @@ Page({
     var back = that.data.back
     console.log(length)
     cardIds.push(that.data.cardId)
+    console.log(openid + "" + groupId + "" + cardIds)
     console.log(cardIds)
     util.saveOrUpdate(openid, groupId, 2, cardIds).then(function (res) {
+      console.log(res)
       if (back) {
         wx.redirectTo({
           url: '/pages/teampeers/teampeers?openid=' + openid + '&groupid=' + groupId,

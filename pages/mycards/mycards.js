@@ -81,7 +81,7 @@ Page({
             var encryptedData = res.encryptedData;
             var iv = res.iv;
             wx.request({
-              method: 'GET',
+              method: 'POST',
               url: server+'/userGroup/saveOrUpdate',
 
               data: {

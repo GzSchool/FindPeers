@@ -23,6 +23,8 @@ Page({
     key: " 微信号、城市、公司、行业等进行搜索"   //搜索框值
   },
   onLoad: function (a) {
+    console.log(a)
+    console.log(app.globalData.notadd)    
     if (app.globalData.openid && app.globalData.openid !== '') {
       this.getData()
     } else {
@@ -98,7 +100,7 @@ Page({
   peerscards: function () {
     var cardId = currentTarget.dataset.id;
     wx.navigateTo({
-      url: '/pages/othercards/othercards?cardId=' + cardId + '&groupId=0',
+      url: '/pages/othercards/othercards?cardId=' + cardId + '&groupId=0&saveFlg=2',
     })
   },
   addcards: function (e) {
@@ -122,9 +124,9 @@ Page({
   select: function (a) {
     var otheropenid = a.currentTarget.dataset.key;
     var cardId = a.currentTarget.dataset.id;
-    var saveFlag = a.currentTarget.dataset.saveFlag;
+    var saveFlag = a.currentTarget.dataset.saveflag;
     wx.navigateTo({
-      url: '/pages/otherpeers/otherpeers?cardId=' + cardId + '&groupId=' + "0" + '&saveFlag=' + saveFlag,
+      url: '/pages/otherpeers/otherpeers?cardId=' + cardId + '&groupId=0&saveFlag=2',
     })
   },
   onShow: function () {
