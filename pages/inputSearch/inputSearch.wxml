@@ -34,19 +34,3 @@
   <image src='../images/none.png'></image>
   <view>没有找到你想要的同行信息</view>
 </view>
-<!-- <view class="inputSearch">
-  <view class="search1">
-    <image src='/pages/images/3.png' class="image" mode="aspectFit"></image>
-  </view>
-  <input class="search" bindblur='bindSearch' placeholder-style='font-size:12px;' placeholder='{{key}}'></input>
-</view>
-<view class="list" bindscrolltolower="bindDownLoad" bindscroll="scroll" bindscrolltoupper="refresh">
-  
-    <view class="item line" wx:for="{{list}}" wx:for-index="index" wx:for-item="item" data-id="{{item.id}}" wx:key="11" data-key='{{item.openId}}' bindtap='find'>
-        <image class="url" src="/pages/images/1.png"></image>
-        <view class="name">{{item.username}}</view>
-        <view class="industry">{{item.userIndustry}}</view>
-        <view class="city">{{item.userCity}}</view>
-        <view class="company">{{item.userCompany}}</view>
-    </view>
-</view> -->

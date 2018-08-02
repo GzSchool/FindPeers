@@ -43,7 +43,7 @@ Page({
     isshow0: false,
     isshow1: false,
     isshow2: false,
-    image: "/pages/images/1.png",
+    image: "",
     prepare: '',
     showphone: false,
     showdemand: false,
@@ -286,6 +286,7 @@ Page({
           resources: this.data.resource,
           synopsis: this.data.introduction,
           userEmail: this.data.email,
+          userImg: this.data.image,
           prepare: this.data.prepare
         },
         url: server + '/userCard/saveOrUpdate',

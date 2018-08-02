@@ -23,21 +23,3 @@
   </view>
 </view>
 <button class='btn' open-type='contact' bindtap='touch'>联系客服</button>
-<!-- <view class="company">
-  <view class="company1">
-    <image class="image" src="/pages/images/findpeers.png"></image>
-    <view class="company-team">找同行团队</view>
-    <view class="company-name">北京格致文化传媒有限公司</view>
-  </view>
-  <view class="company2">
-  <text class="email">邮箱：465564546@45.com</text>
-  <text class="adress">地址：北京市海淀</text>
-  <text class="about">关于：“找同行”是一款群共享同行信息平台，仅在微信群里使用同行信息管理的微信小程序，是由北京格致文化传媒有限公司独立开发运营。</text>
-  </view>
-  <contact-button
-  type="default-light" 
-  size="27"
-  session-from="weapp" class="touch">联系客服</contact-button>
-</view> -->
-  <!--<button class="touch" bindtap='touch'>联系客服
-  </button>-->
