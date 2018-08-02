@@ -2,6 +2,7 @@
 Page{
   background-color: #f8f8f8;
   padding-top: 20rpx;
+  padding-bottom: 30rpx;
   box-sizing: border-box;
 }
 .main{
@@ -65,18 +66,16 @@ Page{
   width: 36rpx;
   height: 36rpx;
 }
-.footer {
-  margin-top: 20rpx;
-  margin-bottom: 30rpx;
-  margin: 20rpx auto 30rpx;
-  font-size: 34rpx;
-  border-radius: 10rpx;
+.save-btn {
+  margin: 20rpx auto 0;
+  width: 670rpx;
   height: 80rpx;
   line-height: 80rpx;
   background-color: #2C7FE7;
-  color: #ffffff;
-  width: 670rpx;
   text-align: center;
+  font-size: 34rpx;
+  color: #ffffff;
+  border-radius: 10rpx;
 }
 /* 表单 */
 .main-content{

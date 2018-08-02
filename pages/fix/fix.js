@@ -104,7 +104,7 @@ Page({
   addmore: function() {
     var that = this
     wx.showActionSheet({
-      itemList: ["需求", "资源", "邮箱"],
+      itemList: ["需求", "资源"],
       success: function(res) {
         if (res.tapIndex == 0) {
           that.setData({
@@ -192,74 +192,9 @@ Page({
     this.setData({
       count: i
     })
-
   },
-  save: function(e) {
-    var server = app.globalData.server
-    var that = this
-    var server = app.globalData.server;
-    if (this.data.wechatnum == '') {
-      app.showToast('微信号不能为空')
-    } else if (this.data.company == '') {
-      app.showToast('公司名称不能为空')
-    } else if (this.data.idustry == '') {
-      app.showToast('行业信息不能为空')
-    } else if (this.data.city == '') {
-      app.showToast('城市信息不能为空')
-    } else if (this.data.name == '') {
-      wx.getUserInfo({
-        success: function(a) {
-          console.log(a)
-          this.data.name = a.userInfo.nickName;
-        }
-      })
-    } else {
-      wx.request({
-        method: 'POST',
-        data: {
-          id: this.data.id,
-          username: this.data.name,
-          openId: this.data.openid,
-          userWechat: this.data.wechatnum,
-          userCity: this.data.city,
-          userCompany: this.data.company,
-          userIndustry: this.data.idustry,
-          userPhone: this.data.phone,
-          userJob: this.data.job,
-          demand: this.data.demand,
-          resources: this.data.resource,
-          synopsis: this.data.introduction,
-          userEmail: this.data.email
-        },
-        url: server + '/userCard/saveOrUpdate',
-        header: {
-          'content-type': 'application/json'
-        },
-        success: function(res) {
-          wx.showToast({
-            title: '修改成功',
-            icon: 'success',
-            duration: 3000
-          });
-          app.showToast("修改成功");
-          var back = that.data.back;
-          console.log(back)
-          if (back) {
-            var openid = app.globalData.openid;
-            var groupId = that.data.groupId
-            console.log(groupId)
-            wx.navigateTo({
-              url: '/pages/teampeers/teampeers?groupid=' + groupId + '&openid=' + openid,
-            })
-          } else {
-            wx.switchTab({
-              url: '/pages/findmore/findmore',
-            })
-          }
-        }
       })
     }
-
   },
   getPhoneNumber: function(e) {
     console.log(e.detail.errMsg)
@@ -360,6 +295,5 @@ Page({
         }
       })
     }
-
   }
 })

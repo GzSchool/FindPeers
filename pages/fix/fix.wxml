@@ -100,7 +100,7 @@
   </view>
 </view>
 
-<view class="footer" bindtap='save'>保存</view>
+<view class="save-btn" bindtap='save'>保存</view>
 <!-- <view class="mycards1">
     <text class="name1">{{name}}</text>
     <text class="idustry1">{{idustry}}</text>

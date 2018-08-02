@@ -118,6 +118,55 @@ Page({
   },
   // 用户点击保存
   save: function(e) {
+    if (this.data.phone == '' || this.data.phone == null) {
+      this.getData()
+    } else {
+      if (!isvalidatemobile(this.data.phone)) {
+        app.showToast('手机号格式不正确')
+      } else {
+        this.getData()
+      }
+    }
+    if (this.data.email == '' || this.data == null) {
+      this.getData()
+    } else {
+      if (!validateEmail(this.data.email)) {
+        app.showToast('邮箱格式不正确')
+      } else {
+        this.getData()
+      }
+    }
+  },
+  getPhoneNumber: function(e) { //用户点击微信获取手机
+    console.log(e.detail.errMsg)
+    console.log(e.detail.iv)
+    console.log(e.detail.encryptedData)
+    if (e.detail.errMsg == 'getPhoneNumber:fail user deny') {
+      wx.showModal({
+        title: '提示',
+        showCancel: false,
+        content: '未授权',
+        success: function(res) {
+          console.log(res)
+        }
+      })
+    } else {
+      wx.showModal({
+        title: '提示',
+        showCancel: false,
+        content: '同意授权',
+        success: function(res) {
+          console.log(res)
+        }
+      })
+    }
+  },
+  chooseIn() {
+    wx.navigateTo({
+      url: '../industry/industry',
+    })
+  },
+  getData () {
     var that = this
     var othercardid = app.globalData.othercardid
     var server = this.data.server
@@ -127,22 +176,6 @@ Page({
     } else {
       back = this.data.back
     }
-    if (this.data.phone !== "" && this.data.phone !== null) {
-      if (!isvalidatemobile(this.data.phone)) {
-        wx.showToast({
-          title: '请输入正确的手机号',
-          icon: 'none'
-        })
-      }
-    } else if (this.data.email !== "" && this.data.email !== null) {
-      if (!validateEmail(this.data.email)) {
-        wx.showToast({
-          title: '邮箱格式不正确',
-          icon: 'none'
-        })
-      }
-    } else if (this.data.wechatnum == "") {
-      wx.showToast({
         title: '微信号不能为空',
         icon: 'none'
       })
@@ -163,14 +196,14 @@ Page({
       })
     } else if (this.data.name == '') {
       wx.getUserInfo({
-        success: function(a) {
+        success: function (a) {
           console.log(a)
           this.data.name = a.userInfo.nickName;
         }
       })
     } else if (this.data.image == '') {
       wx.getUserInfo({
-        success: function(a) {
+        success: function (a) {
           console.log(a)
           this.data.image = a.userInfo.avatarUrl;
         }
@@ -197,7 +230,7 @@ Page({
         header: {
           'content-type': 'application/json'
         },
-        success: function(res) {
+        success: function (res) {
           app.globalData.notadd = false
           console.log(res)
           var openid = app.globalData.openid;
@@ -229,34 +262,5 @@ Page({
         }
       })
     }
-  },
-  getPhoneNumber: function(e) { //用户点击微信获取手机
-    console.log(e.detail.errMsg)
-    console.log(e.detail.iv)
-    console.log(e.detail.encryptedData)
-    if (e.detail.errMsg == 'getPhoneNumber:fail user deny') {
-      wx.showModal({
-        title: '提示',
-        showCancel: false,
-        content: '未授权',
-        success: function(res) {
-          console.log(res)
-        }
-      })
-    } else {
-      wx.showModal({
-        title: '提示',
-        showCancel: false,
-        content: '同意授权',
-        success: function(res) {
-          console.log(res)
-        }
-      })
-    }
-  },
-  chooseIn() {
-    wx.navigateTo({
-      url: '../industry/industry',
-    })
   }
 })
