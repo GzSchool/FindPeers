@@ -84,17 +84,25 @@ page{
 }
 .noresult {
   text-align: center;
-  height: 150rpx;
-  line-height: 150rpx;
   font-size: 30rpx;
-  color: #606060;
+  color: #636363;
+  margin-top: 300rpx;
+}
+.noresult image{
+  width: 194rpx;
+  height: 120rpx;
+  margin-bottom: 47rpx;
 }
 .loadtips {
   height: 70rpx;
-  line-height: 70rpx;
+  /* line-height: 70rpx; */
   text-align: center;
   font-size: 24rpx;
   color: #949494;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
 }
 /* page {
   display: block;

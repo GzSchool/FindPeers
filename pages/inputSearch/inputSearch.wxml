@@ -2,10 +2,10 @@
 <view class='search'>
   <view class='search-in'>
     <image src='/pages/images/3.png' mode="aspectFit"></image>
-    <input focus='true' selection-start='1' placeholder='{{key}}' bindinput='bindSearch' placeholder-style='font-size:26rpx;color:#ccc;'></input>
+    <input focus='true' selection-start='1' placeholder='{{key}}' bindinput='bindSearch' placeholder-style='font-size:26rpx;color:#ccc;' type='text'></input>
   </view>
 </view>
-<view class='list' bindscrolltolower="bindDownLoad" bindscroll="scroll" bindscrolltoupper="refresh">
+<view class='list'>
   <view class='item' wx:for="{{list}}" wx:for-index="index" wx:for-item="item" data-id="{{item.id}}" wx:key="11" data-key='{{item.openId}}' data-saveFlag='{{item.saveFlag}}' bindtap='find'>
     <view class='item-left'><image src='{{item.userImg}}'></image></view> 
     <view class='item-right'>
@@ -15,9 +15,12 @@
     </view> 
   </view>
 </view>
-<view class='loadtips' wx:if='{{loading}}'>加载中...</view>
-<view class='loadtips' wx:if='{{loadAll}}'>已加载全部</view>
-<view class='noresult' wx:if='{{noresult&&list.length==0}}'>暂时没有找到相关信息</view>
+<view class='loadtips' wx:if='{{loading}}'><view class='weui-loading'></view> 加载中...</view>
+<view class='loadtips' wx:if='{{loadAll}}'><view class='tips-in'>已加载全部</view></view>
+<view class='noresult' wx:if='{{noresult&&list.length==0}}'>
+  <image src='../images/none.png'></image>
+  <view>没有找到你想要的同行信息</view>
+</view>
 <!-- <view class="inputSearch">
   <view class="search1">
     <image src='/pages/images/3.png' class="image" mode="aspectFit"></image>
