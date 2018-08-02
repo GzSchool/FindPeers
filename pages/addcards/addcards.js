@@ -29,7 +29,6 @@ Page({
     isshow: '', //是否显示
     isshow0: false, //需求是否显示
     isshow1: false, //资源是否显示
-    isshow2: false, //邮箱是否显示
     itemList: ["需求", "资源"] // 添加更多项
   },
   onLoad: function(res) {
@@ -128,24 +127,33 @@ Page({
     })
   },
   // 用户点击保存
-  save: function(e) {
-    if (this.data.phone == '' || this.data.phone == null) {
-      this.getData()
-    } else {
+  save: function () {
+    let phone = this.data.phone
+    let email = this.data.email
+    let name = this.data.name
+    if (phone !== '' && phone !== null) {
       if (!isvalidatemobile(this.data.phone)) {
         app.showToast('手机号格式不正确')
-      } else {
-        this.getData()
       }
-    }
-    if (this.data.email == '' || this.data == null) {
-      this.getData()
-    } else {
+    } else if (email !== '' && email !== null) {
       if (!validateEmail(this.data.email)) {
         app.showToast('邮箱格式不正确')
-      } else {
-        this.getData()
       }
+    } else if (name == '' || name == null) {
+      let that = this
+      app.showToast('将获取您的微信昵称')
+      wx.getUserInfo({
+        success: function (a) {
+          console.log(a)
+          that.setData({
+            name: a.userInfo.nickName,
+            image: a.userInfo.avatarUrl
+          })
+        }
+      })
+      // this.getData()
+    } else {
+      this.getData()
     }
   },
   getPhoneNumber: function(e) { //用户点击微信获取手机

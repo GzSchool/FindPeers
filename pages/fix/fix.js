@@ -6,6 +6,21 @@ import {
 var app = getApp();
 Page({
   data: {
+    mineInfo: {
+      name: '',
+      wechatnum: '',
+      company: '',
+      idustry: '',
+      city: '',
+      email: '',
+      phone: '',
+      image: '',
+      demand: '',
+      resource: '',
+      introduction: '',
+      id: '',
+      job: ''
+    },
     count: 0,
     groupId: "",
     name: "",
@@ -63,6 +78,15 @@ Page({
       success: function(b) {
         console.log(b)
         that.setData({
+          mineInfo: {
+            name: b.data.data.username,
+            idustry: b.data.data.userIndustry,
+            city: b.data.data.userCity,
+            company: b.data.data.userCompany,
+            phone: b.data.data.userPhone,
+            wechatnum: b.data.data.userWechat,
+            email: b.data.data.userEmail
+          },
           name: b.data.data.username,
           wechatnum: b.data.data.userWechat,
           company: b.data.data.userCompany,
@@ -123,20 +147,7 @@ Page({
     })
   },
   addname: function(e) {
-    var that = this
-    if (e.detail.value == '') {
-      wx.getUserInfo({
-        success: function(a) {
-          console.log(a)
-          that.setData({
-            name: a.userInfo.nickName,
-            image: a.userInfo.avatarUrl
-          })
-        }
-      })
-    } else {
-      that.data.name = e.detail.value
-    }
+    this.data.name = e.detail.value
   },
   addnumber: function(e) {
     if (e.detail.value == '') {
@@ -178,7 +189,7 @@ Page({
     this.data.resource = e.detail.value
   },
   addemail: function(e) {
-    this.data.email = e.detail.value    
+    this.data.email = e.detail.value
   },
   introInput: function(e) {
     let i = e.detail.value.length
@@ -188,23 +199,32 @@ Page({
     })
   },
   save: function() {
-    if (this.data.phone == '' || this.data.phone == null) {
-      this.getData()
-    } else {
+    let phone = this.data.phone
+    let email = this.data.email
+    let name = this.data.name
+    if (phone !== '' && phone !== null) {
       if (!isvalidatemobile(this.data.phone)) {
         app.showToast('手机号格式不正确')
-      } else {
-        this.getData()
-      }
-    }
-    if (this.data.email == '' || this.data == null) {
-      this.getData()
-    } else {
+      } 
+    } else if (email !== '' && email !== null) {
       if (!validateEmail(this.data.email)) {
         app.showToast('邮箱格式不正确')
-      } else {
-        this.getData()
       }
+    } else if (name == '' || name == null) {
+      let that = this
+      app.showToast('将获取您的微信昵称')
+      wx.getUserInfo({
+        success: function (a) {
+          console.log(a)
+          that.setData({
+            name: a.userInfo.nickName,
+            image: a.userInfo.avatarUrl
+          })
+        }
+      })
+      // this.getData()
+    } else {
+      this.getData()
     }
   },
   getPhoneNumber: function(e) {
@@ -236,7 +256,9 @@ Page({
       url: '../industry/industry',
     })
   },
-  getData:function(){
+  getData: function() {
+    let server = this.data.server
+    let that = this
     if (this.data.wechatnum == '') {
       app.showToast('微信号不能为空')
     } else if (this.data.company == '') {
@@ -247,14 +269,14 @@ Page({
       app.showToast('城市信息不能为空')
     } else if (this.data.name == '') {
       wx.getUserInfo({
-        success: function (a) {
+        success: function(a) {
           console.log(a)
           this.data.name = a.userInfo.nickName;
         }
       })
     } else if (this.data.image == '') {
       wx.getUserInfo({
-        success: function (a) {
+        success: function(a) {
           console.log(a)
           this.data.image = a.userInfo.avatarUrl;
         }
@@ -281,12 +303,12 @@ Page({
         header: {
           'content-type': 'application/json'
         },
-        success: function (res) {
-          wx.showToast({
-            title: '修改成功',
-            icon: 'success',
-            duration: 3000
-          });
+        success: function(res) {
+          // wx.showToast({
+          //   title: '修改成功',
+          //   icon: 'success',
+          //   duration: 3000
+          // });
           app.showToast("修改成功");
           var back = that.data.back;
           console.log(back)
