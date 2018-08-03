@@ -58,7 +58,7 @@ page{
 .list .item .item-left image{
   width: 120rpx;
   height: 120rpx;
-  background-color: #53adff;
+  background-color: #f8f8f8;
   border-radius: 20rpx;
 }
 .list .item .item-right {

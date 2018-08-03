@@ -125,14 +125,18 @@ Page({
   save: function() {
     let that = this
     if (this.data.name == '' || this.data.name == null) {
+      // console.log(pinyin.getFullChars('dkdddkjkjjk').toUpperCase())
       wx.getUserInfo({
         success: function(a) {
-          console.log(a)
           that.setData({
             name: a.userInfo.nickName,
-            image: a.userInfo.avatarUrl
+            image: a.userInfo.avatarUrl,
+            prepare: pinyin.getFullChars(a.userInfo.nickName).toUpperCase()
           })
+          console.log(that.data.prepare)
           that.getData()
+        }, fail: function () {
+          app.showToast("姓名不能为空")
         }
       })
     } else {
