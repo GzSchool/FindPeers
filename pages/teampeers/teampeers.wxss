@@ -41,6 +41,12 @@ page{
 .mine-card{
   padding-left: 40rpx;
 }
+.mine-card-bb{
+  border-bottom: 1rpx solid #D9D8D9;
+}
+.mine-card-bb .mine-info .mes-li:last-child{
+  border-bottom: none;
+}
 .mine-card .mine-info{
   background-color: #ffffff;
 }
@@ -56,7 +62,7 @@ page{
   margin-right: 40rpx;
   width: 120rpx;
   height: 120rpx;
-  background-color: #53adff;
+  background-color: #f8f8f8;
   border-radius: 20rpx;
 }
 .mine-card .mine-info .mes-li .li-right {
@@ -82,6 +88,7 @@ page{
 .mine-card .mine-info .mes-li .li-right .mes-info.shade {
   color: #FE0000;
   font-size: 20rpx;
+  height: 44rpx;
   text-align: center;
   display: flex;
   align-items: center;
@@ -201,7 +208,7 @@ page{
   margin-right: 40rpx;
   width: 120rpx;
   height: 120rpx;
-  background-color: #53adff;
+  background-color: #f8f8f8;
   border-radius: 20rpx;
 }
 .popup .popup-content .mes-li .li-right {

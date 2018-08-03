@@ -34,7 +34,7 @@
     <view class="crowd-title-right" wx:if='{{!hasSelect&&listOfSave.length>0}}'>保存</view>
     <view class="crowd-title-right active" wx:if='{{hasSelect&&listOfSave.length>0}}' bindtap='aaa'>保存</view>
   </view>
-  <view class='mine-card'>
+  <view class='mine-card mine-card-bb'>
     <view class='mine-info'>
       <view class='mes-li' wx:for="{{list}}" wx:for-item="item" data-index='{{index}}' wx:key="11" data-id='{{item.id}}' data-saveFlag='{{item.saveFlag}}' bindtap='goPeers'>
         <view class='li-left'>
