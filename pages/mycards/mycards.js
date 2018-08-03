@@ -15,7 +15,7 @@ Page({
     wechatnum: "",
     email:"",
     groupId:"",
-    image:"/pages/images/1.png",
+    image:"",
     showphone:false,
     showdemand:false,
     showresource:false,

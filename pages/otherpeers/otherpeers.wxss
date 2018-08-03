@@ -44,7 +44,7 @@ Page{
   height: 160rpx;
 }
 .main .main-top .top-right image{
-  background-color: #53adff;
+  background-color: #f8f8f8;
   width: 160rpx;
   height: 160rpx;
   border-radius: 20rpx;
