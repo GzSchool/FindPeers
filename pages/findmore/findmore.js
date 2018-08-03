@@ -20,9 +20,21 @@ Page({
     hidden: true,     
     scrollTop: 0,    //滚动菜单
     scrollHeight: 0, //滚动菜单高度 
-    key: " 微信号、城市、公司、行业等进行搜索"   //搜索框值
+    key: " 微信号、城市、公司、行业等进行搜索",   //搜索框值
+    list_letter: ['A', 'B', 'C', 'R'],
+    list_con: [
+      { "letter": "A", "data": [{ "id": "v7", "cityName": "安徽" }] }, 
+      { "letter": "B", "data": [{ "id": "v10", "cityName": "巴中" }, { "id": "v4", "cityName": "包头" }, { "id": "v1", "cityName": "北京" }]},
+      { "letter": "Q", "data": [{ "id": "v7", "cityName": "晴天" }] }, 
+      { "letter": "S", "data": [{ "id": "v7", "cityName": "山东" }] }, 
+    ],
+    list_id: 'S'
   },
   onLoad: function (a) {
+    for (let i = 0; i < this.data.list_con.length; i ++) {
+      console.log(this.data.list_con[i].letter)
+    }
+    console.log(this.data.list_con)
     console.log(a)
     console.log(app.globalData.notadd)    
     if (app.globalData.openid && app.globalData.openid !== '') {
@@ -131,5 +143,11 @@ Page({
   },
   onShow: function () {
     this.onLoad();
+  },
+  letterClick (e) {
+    this.setData({
+      list_id: e.target.dataset.item
+    });
+    console.log(this.data.list_id)
   }
 })

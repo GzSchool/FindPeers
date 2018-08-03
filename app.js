@@ -10,7 +10,7 @@ App({
     othercardid: '',             //点击别人分享的别人的id
     canSee:"",                   //群名片里的自己的信息是不是已经分享
     login: '',                   //登陆标识
-    //server: 'http://192.168.2.123:8080',
+    // server: 'http://192.168.2.123:8080',
      server: 'http://123.206.64.219:8766',
     urlOfLogin:'/user/userAuthor',               //登录接口
     urlOfAddOrUpdate: '/userCard/saveOrUpdate',  //添加或修改个人信息接口

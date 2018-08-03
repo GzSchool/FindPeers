@@ -83,7 +83,7 @@ Page({
     })
   },
   addname: function (e) {
-    this.data.prepare = pinyin.getCamelChars(e.detail.value).toUpperCase().substr(0, 1)
+    this.data.prepare = pinyin.getFullChars(e.detail.value).toUpperCase()
     console.log(this.data.prepare)
     this.data.name = e.detail.value
   },
@@ -232,6 +232,7 @@ Page({
           resources: this.data.resource,
           synopsis: this.data.introduction,
           userEmail: this.data.email,
+          prepare: this.data.prepare,
           formId: this.data.formId
         },
         url: server + '/userCard/saveOrUpdate',

@@ -1,4 +1,6 @@
 <!--pages/findmore/findmore.wxml-->
+
+  <scroll-view scroll-y style='width:100%;height:100%;' scroll-with-animation scroll-into-view='{{list_id}}'>
 <view class='search' bindtap='bindtrans'>
   <view class='search-in'>
     <image src='/pages/images/3.png' mode="aspectFit"></image>
@@ -18,7 +20,9 @@
         <image src='{{image}}'></image>
       </view>
       <view class='li-right'>
-        <view class='mes-name'>{{name}}<text>{{idustry}}</text></view>
+        <view class='mes-name'>{{name}}
+          <text>{{idustry}}</text>
+        </view>
         <view class='mes-info'>{{city}}</view>
         <view class='mes-info'>{{company}}</view>
       </view>
@@ -38,19 +42,23 @@
       <image src='../images/logo.png'></image>
     </view>
     <view class='li-right'>
-      <view class='mes-name'>找同行团队<text>教育行业</text></view>
+      <view class='mes-name'>找同行团队
+        <text>教育行业</text>
+      </view>
       <view class='mes-info'>北京市海淀区</view>
       <view class='mes-info'>北京格致文化传播有限公司</view>
     </view>
   </view>
   <view class='letter'>同行信息</view>
-  
+
   <view class='mes-li' wx:for="{{list}}" wx:for-index="index" wx:for-item="item" data-id="{{item.id}}" wx:key="11" data-key='{{item.openId}}' data-saveFlag='{{item.saveFlag}}' bindtap='select'>
     <view class='li-left'>
       <image src='{{item.userImg}}'></image>
     </view>
     <view class='li-right'>
-      <view class='mes-name'>{{item.username}}<text>{{item.userIndustry}}</text></view>
+      <view class='mes-name'>{{item.username}}
+        <text>{{item.userIndustry}}</text>
+      </view>
       <view class='mes-info'>{{item.userCity}}</view>
       <view class='mes-info'>{{item.userCompany}}</view>
     </view>
@@ -58,5 +66,22 @@
   <view class='mes-link'>
     <image src='/pages/images/3.png'></image>
     <view class='link-item'>Z</view>
+    <!-- <view class='link-item' wx:for='{{list_con}}' data-item='{{item.letter}}' bindtap='letterClick'>{{item.letter}}</view> -->
   </view>
+  <!-- <view wx:for='{{list_con}}'>
+    <view class='letter' id='{{item.letter}}'>{{item.letter}}</view>
+    <view class='mes-li' wx:for='{{item.data}}'>
+      <view class='li-left'>
+        <image src='{{item.userImg}}'></image>
+      </view>
+      <view class='li-right'>
+        <view class='mes-name'>{{item.cityName}}
+          <text>{{item.cityName}}</text>
+        </view>
+        <view class='mes-info'>{{item.cityName}}</view>
+        <view class='mes-info'>{{item.cityName}}</view>
+      </view>
+    </view>
+  </view> -->
 </view>
+  </scroll-view>

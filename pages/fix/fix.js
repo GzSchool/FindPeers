@@ -9,18 +9,12 @@ Page({
   data: {
     mineInfo: {
       name: '',
-      wechatnum: '',
-      company: '',
       idustry: '',
       city: '',
-      email: '',
+      company: '',
       phone: '',
-      image: '',
-      demand: '',
-      resource: '',
-      introduction: '',
-      id: '',
-      job: ''
+      wechatnum: '',
+      email: ''
     },
     count: 0,
     groupId: "",
@@ -149,7 +143,7 @@ Page({
     })
   },
   addname: function (e) {
-    this.data.prepare = pinyin.getCamelChars(e.detail.value).toUpperCase().substr(0,1)
+    this.data.prepare = pinyin.getFullChars(e.detail.value).toUpperCase()
     console.log(this.data.prepare)
     this.data.name = e.detail.value
   },
