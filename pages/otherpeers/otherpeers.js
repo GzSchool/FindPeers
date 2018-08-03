@@ -23,7 +23,6 @@ Page({
     image: "/pages/images/1.png",
     email: "",
     isshow: false,
-    isSave: "",
     otheropenId: ""
   },
   onShareAppMessage: function(a) {

@@ -24,6 +24,7 @@ Page({
   },
   bindSearch:function(res){
     let key = res.detail.value;
+    var openid = app.globalData.openid
     this.setData({
       mes: key,
       pageNum: 1,
@@ -33,7 +34,8 @@ Page({
     let list = []
     let pageSize = this.data.pageSize
     if (key.length !== 0) {
-      util.searchByParam(key, 1, pageSize).then(function (res) {
+      console.log(openid)
+      util.searchByParam(key, openid).then(function (res) {
         console.log(res.data)
         if (res.data.success) {
           let len = res.data.data.result.length;
@@ -59,31 +61,5 @@ Page({
     wx.navigateTo({
       url: '/pages/otherpeers/otherpeers?cardId=' + cardId + '&isshow=true' + '&saveFlag=' + saveFlag + '&groupId=0'
     })
-  },
-  onReachBottom () {
-    if (!this.data.loadAll) {
-      this.data.pageNum = this.data.pageNum + 1;
-      let that = this
-      that.setData({
-        loading: true
-      })
-      let list = this.data.list
-      util.searchByParam(this.data.mes, this.data.pageNum, this.data.pageSize).then(function (res) {
-        that.setData({
-          loading: false
-        })
-        let len = res.data.data.result.length
-        if (len == 0) {
-          that.setData({
-            loadAll: true
-          })
-        } else {
-          list.push(...res.data.data.result)
-          that.setData({
-            list: list
-          })
-        }
-      })
-    }
   }
 })

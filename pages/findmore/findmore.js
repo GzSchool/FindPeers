@@ -23,7 +23,6 @@ Page({
     key: " 微信号、城市、公司、行业等进行搜索"   //搜索框值
   },
   onLoad: function (a) {
-    console.log(a)
     console.log(app.globalData.notadd)    
     if (app.globalData.openid && app.globalData.openid !== '') {
       this.getData()

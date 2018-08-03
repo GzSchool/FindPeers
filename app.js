@@ -7,11 +7,11 @@ App({
     isshow:"",
     openid:"",
     isgroup:false,               //是不是群
-    othercardid: '2',             //点击别人分享的别人的id
+    othercardid: '',             //点击别人分享的别人的id
     canSee:"",                   //群名片里的自己的信息是不是已经分享
     login: '',                   //登陆标识
     //server: 'http://192.168.2.123:8080',
-     server: 'http://123.206.64.219:8766',
+    server: 'http://123.206.64.219:8766',
     urlOfLogin:'/user/userAuthor',               //登录接口
     urlOfAddOrUpdate: '/userCard/saveOrUpdate',  //添加或修改个人信息接口
     urlOfGetCardByOpenID: '/userCard/findOneByOpenId', //获取当前用户信息
@@ -24,7 +24,7 @@ App({
     var url = that.globalData.urlOfLogin
     //要是有id 说明点击的别人分享的（只有两个 一是：群里点击的， 二是：别人分享的）
     if (othercardid) {
-      //that.globalData.othercardid=ops.cardId
+      //that.globalData.othercardid=ops.othercardid
       if (ops.scene == 1044) {                                            // 等于这个 就是群里点击的
         that.globalData.isgroup=true
         var shareTickets = ops.shareTicket;
@@ -43,8 +43,12 @@ App({
               }
               var openid = that.globalData.openid;                  //用用户标识访问数据库获取用户信息
               var othercardid = that.globalData.othercardid;
+              console.log(that.globalData.openid)
+              console.log(encryptedData)
+              console.log(iv)              
               util.getCardsById(othercardid).then(function (res) {
                 console.log(res)
+                console.log(res.data.data[0].openId)
                 wx.request({
                   method: 'POST',
                   url: server + '/userGroup/saveOrUpdate',
@@ -82,24 +86,6 @@ App({
                   })
                 }
               })
-              
-              // wx.request({
-              //   method: 'POST',
-              //   url: server + '/userGroup/saveOrUpdate',
-
-              //   data: {
-              //     openId: openid,
-              //     encryptedData: encryptedData,
-              //     iv: iv
-              //   },
-
-              //   header: {
-              //     'content-type': 'application/json'
-              //   },
-              //   success: function (c) {
-              //     console.log(c)
-              //   }
-              // })
             })           
           }
         })        

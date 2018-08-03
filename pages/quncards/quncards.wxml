@@ -5,7 +5,7 @@
     <view>群列表</view>
   </view>
   <view class='mes-ul' wx:if='{{list.length!==0}}'>
-    <view class='mes-li' wx:for="{{list}}" wx:for-index="index" wx:for-item="item" wx:key="11" data-key="{{item.groupId}}" data-id="{{item.openId}}" bindtap='search'>
+    <view class='mes-li' wx:for="{{list}}" wx:for-index="index" wx:for-item="item" wx:key="11" data-key="{{item.groupId}}" data-id="{{item.openId}}" open-name='{{groupName}}' bindtap='search'>
       <view class='li-left'>
         <!-- <image src='{{item.pic_url}}'></image> -->
         <image src='../images/logo.png'></image>
@@ -13,7 +13,8 @@
       <view class='li-right'>
         <view class='title'>
           <view class='title-name'>
-          <open-data type="groupName" open-gid="{{item.groupId}}"></open-data></view>
+          <open-data type="groupName" open-gid="{{item.groupId}}"></open-data>
+          </view>
           <view class='title-time'>{{item.ctTime}}</view>
         </view>
         <view class='count'>未保存：{{item.delFlag}}张</view>

@@ -12,6 +12,7 @@ Page({
     idustry: "",
     server:"",
     company: "",
+    notadd:"",
     cardId:[],
     phone: "",
     wechatnum: "",
@@ -86,7 +87,8 @@ Page({
     that.data.server=app.globalData.server;
     that.setData({
       isshow: app.globalData.isshow,
-      isgroup:app.globalData.isgroup
+      isgroup:app.globalData.isgroup,
+      notadd:app.globalData.notadd
     }) 
     var openid=app.globalData.openid
     var server = that.data.server
@@ -106,6 +108,15 @@ Page({
         image: res.data.data[0].userImg,
         otheropenId: res.data.data[0].openId,
       })
+      if (res.data.data[0].delFlag == 2){
+        that.setData({
+          isSave:false
+        })
+      }else{
+        that.setData({
+          isSave: true
+        })
+      }
       console.log(res.data.data[0].delFlag )
     })
   },
@@ -126,7 +137,13 @@ Page({
     var groupId=app.globalData.groupid;
     var openid=app.globalData.openid;
     var cardId=that.data.cardId
+    console.log(openid)
+    console.log(groupId)
+    console.log(cardId)
     util.saveOrUpdate(openid, groupId, 1, cardId).then(function (res) {
+      that.setData({
+        isSave:false
+      })
       wx.switchTab({
         url: '/pages/findmore/findmore',
       })
@@ -229,6 +246,9 @@ Page({
     var cardId=that.data.cardId
     console.log(cardId)
     util.saveOrUpdate(openid, groupId, 2, cardId).then(function (res) {
+      that.setData({
+        isSave: true
+      })
       wx.navigateBack({
         delta: 1
       })

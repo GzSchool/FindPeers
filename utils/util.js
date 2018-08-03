@@ -94,15 +94,14 @@ function getMyPeers(openid, pageNum, pageSize) {
 /*
   从用户输入的字段从数据里模糊搜索
 */
-function searchByParam(key, pageNum, pageSize) {
+function searchByParam(key, openid) {
   return new Promise(function(resolve) {
     wx.request({
       method: 'GET',
-      url: server + '/userCard/findAllByParam',
+      url: server + '/userCard/findAllByPeerAndParam',
       data: {
         param: key,
-        pageNum: pageNum,
-        pageSize: pageSize
+        openId:openid
       },
       header: {
         'content-type': 'application/json'
@@ -169,6 +168,7 @@ function getUserGroupById(openid) {
       url: server + '/userGroup/findUserGroupByParam',
       data: {
         openId: openid,
+        // prepare:1,
       },
       header: {
         'content-type': 'application/json'
@@ -204,7 +204,7 @@ function getGroupCards(openId, groupId, pageNum, pageSize) {
     })
   })
 }
-function getOpenGid(shareTickets,openid,otherOpenId){
+function getOpenGid( openid, otherOpenId, shareTickets){
   return new Promise(function (resole){
     wx.getShareInfo({
       shareTicket: shareTickets[0],
