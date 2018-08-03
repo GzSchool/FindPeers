@@ -194,6 +194,7 @@ Page({
         }
       })
     } else {
+      
       that.getData()
     }
   },

@@ -1,6 +1,6 @@
 //服务器地址
 // var server = 'http://192.168.2.123:8080'
- var server = "http://123.206.64.219:8766"
+ var server = "http://123.206.64.219"
 const formatTime = date => {
   const year = date.getFullYear()
   const month = date.getMonth() + 1
@@ -168,7 +168,7 @@ function getUserGroupById(openid) {
       url: server + '/userGroup/findUserGroupByParam',
       data: {
         openId: openid,
-        // prepare:1,
+        prepare:1,
       },
       header: {
         'content-type': 'application/json'

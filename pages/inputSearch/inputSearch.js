@@ -38,13 +38,13 @@ Page({
       util.searchByParam(key, openid).then(function (res) {
         console.log(res.data)
         if (res.data.success) {
-          let len = res.data.data.result.length;
+          let len = res.data.data.length;
           if (len == 0) {
             that.setData({
               noresult: true
             });
           } else {
-            list.push(...res.data.data.result)
+            list.push(...res.data.data)
           }
           that.setData({
             list: list
