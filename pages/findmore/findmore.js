@@ -19,18 +19,31 @@ Page({
     list: [],        //存储收到的同行信息
     hidden: true,     
     scrollTop: 0,    //滚动菜单
-    scrollHeight: 0, //滚动菜单高度 
+    screenHeight: '', //滚动菜单高度 
     key: " 微信号、城市、公司、行业等进行搜索",   //搜索框值
     list_letter: ['A', 'B', 'C', 'R'],
     list_con: [
       { "letter": "A", "data": [{ "id": "v7", "cityName": "安徽" }] }, 
       { "letter": "B", "data": [{ "id": "v10", "cityName": "巴中" }, { "id": "v4", "cityName": "包头" }, { "id": "v1", "cityName": "北京" }]},
+      { "letter": "C", "data": [{ "id": "v7", "cityName": "安徽" }] }, 
+      { "letter": "D", "data": [{ "id": "v7", "cityName": "安徽" }] }, 
+      { "letter": "E", "data": [{ "id": "v7", "cityName": "安徽" }] }, 
+      { "letter": "F", "data": [{ "id": "v7", "cityName": "安徽" }] }, 
       { "letter": "Q", "data": [{ "id": "v7", "cityName": "晴天" }] }, 
       { "letter": "S", "data": [{ "id": "v7", "cityName": "山东" }] }, 
     ],
-    list_id: 'S'
+    list_id: ''
   },
   onLoad: function (a) {
+    let that = this
+    wx.getSystemInfo({
+      success: function(res) {
+        console.log(res)
+        that.setData({
+          screenHeight: res.windowHeight
+        })
+      },
+    })
     for (let i = 0; i < this.data.list_con.length; i ++) {
       console.log(this.data.list_con[i].letter)
     }
@@ -53,9 +66,6 @@ Page({
       notadd: app.globalData.notadd,
       server: app.globalData.server,
       othercardid: app.globalData.othercardid
-    })
-    that.setData({
-      list: []
     })
     var notadd = app.globalData.notadd;
     that.data.openid = app.globalData.openid;
@@ -85,16 +95,12 @@ Page({
     var openid = app.globalData.openid;
     var list = that.data.list
     util.getMyPeers(openid, 1, 20).then(function (res) {             //获取当前保存的同行名片
-      console.log(res)
-      var length = res.data.data.result.length;
-      for (var i = 0; i < length; i++) {
-        list.push(res.data.data.result[i]);
+      let val = JSON.stringify(res.data.data.result) == JSON.stringify(that.data.list)
+      if (!val) {
+        var length = res.data.data.result.length;
         that.setData({
-          list: list
-        });
-        that.setData({
-          hidden: true
-        });
+          list: res.data.data.result
+        })
       }
     });
   },

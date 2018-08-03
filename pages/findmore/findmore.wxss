@@ -1,6 +1,7 @@
 /* pages/findmore/findmore.wxss */
 page{
   background-color: #f8f8f8;
+  height: 100%;
 }
 .search{
   padding: 13rpx 40rpx 16rpx;
@@ -66,7 +67,7 @@ page{
   margin-right: 40rpx;
   width: 120rpx;
   height: 120rpx;
-  background-color: #53adff;
+  background-color: #f8f8f8;
   border-radius: 20rpx;
 }
 .mine-card .mine-info .mes-li .li-right .mes-name{
@@ -100,7 +101,6 @@ page{
   text-align: center;
 }
 .mes-list{
-  /* height: 1000rpx; */
   position: relative;
 }
 .mes-link{
@@ -108,18 +108,19 @@ page{
   right: 8rpx;
   top: 0rpx;
 }
-.mes-list .mes-link image {
+.mes-link image {
   width: 20rpx;
   height: 20rpx;
   margin-bottom: 4rpx;
 }
-.mes-list .mes-link .link-item{
+.mes-link .link-item{
   text-align: center;
-  width: 19rpx;
+  width: 29rpx;
   font-size: 20rpx;
   color: #a0a0a0;
   height: 30rpx;
   line-height: 30rpx;
+  padding-left: 5rpx;
 }
 .mes-list .letter{
   padding-left: 40rpx;
@@ -139,7 +140,7 @@ page{
   margin-right: 40rpx;
   width: 120rpx;
   height: 120rpx;
-  background-color: #53adff;
+  background-color: #f8f8f8;
   border-radius: 20rpx;
 }
 .mes-list .mes-li .li-right .mes-name{

@@ -50,9 +50,10 @@
   </view>
 </view>
 <view class="footer">
-  <button class="footer-btn back" bindtap='back'>查看同行信息</button>
-  <button class="footer-btn back"  wx:if='{{isgroup}}' bindtap='toTeamPeers'>查看本群名片</button>
-  <button class="footer-btn write" wx:if="{{!isSave}}" bindtap='save'>保存到名片夹</button>  
+  <button class="footer-btn" bindtap='back'>查看同行信息</button>
+  <button class="footer-btn"  wx:if='{{isgroup}}' bindtap='toTeamPeers'>查看本群名片</button>
+  <button class="footer-btn" wx:if="{{!isSave}}" bindtap='save'>保存到名片夹</button>  
+  <button class="footer-btn {{isshow?'map-hide':''}}" wx:if='{{!isshow}}' open-type='getUserInfo' bindgetuserinfo='addcards'>添加个人信息</button>
   <button class="footer-btn write {{isshow?'':'map-hide'}}" wx:if='{{isSave}}' bindtap='remove'>删除同行信息</button>
-  <button class="footer-btn write {{isshow?'map-hide':''}}" wx:if='{{!isshow}}' open-type='getUserInfo' bindgetuserinfo='addcards'>添加个人信息</button>
 </view>
+

@@ -16,21 +16,21 @@
   </view>
   <view class='main-down'>
     <view class='down-left'>
-      <view class='contact-info'>
+      <view class='contact-info' wx:if='{{phone}}'>
         <view class='info-left'>
           <image src='../images/phone.png' style='width:17rpx;height:25rpx;'></image>
         </view>
         <view class='info-right shades' wx:if='{{notadd}}'>需添加信息才可查看</view>
         <view class='info-right' wx:if='{{!notadd}}'>{{phone}}</view>
       </view>
-      <view class='contact-info'>
+      <view class='contact-info' wx:if='{{wechatnum}}'>
         <view class='info-left'>
           <image src='../images/wechat.png' style='width:26rpx;height:21rpx;'></image>
         </view>
         <view class='info-right shades' wx:if='{{notadd}}'>需添加信息才可查看</view>
         <view class='info-right' wx:if='{{!notadd}}'>{{wechatnum}}</view>
       </view>
-      <view class='contact-info'>
+      <view class='contact-info' wx:if='{{email}}'>
         <view class='info-left'>
           <image src='../images/email.png' style='width:24rpx;height:16rpx;'></image>
         </view>
@@ -50,9 +50,9 @@
   </view>
 </view>
 <view class="footer">
+  <button class="footer-btn" wx:if='{{notadd}}' open-type='getUserInfo' bindgetuserinfo='addcards'>添加个人信息</button>
+  <button class="footer-btn" wx:if='{{!isSave}}'bindtap='save'>保存到名片夹</button>
   <button class="footer-btn write" wx:if='{{isSave}}' bindtap='remove'>删除同行信息</button>
-  <button class="footer-btn write" wx:if='{{!isSave}}'bindtap='save'>保存到名片夹</button>
-  <button class="footer-btn write" wx:if='{{notadd}}' open-type='getUserInfo' bindgetuserinfo='addcards'>添加个人信息</button>
 </view>
 <!-- <view class="mycards">
   <view class="mycards1">

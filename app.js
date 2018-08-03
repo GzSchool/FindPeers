@@ -7,7 +7,7 @@ App({
     isshow:"",
     openid:"",
     isgroup:false,               //是不是群
-    othercardid: '2',             //点击别人分享的别人的id
+    othercardid: '',             //点击别人分享的别人的id
     canSee:"",                   //群名片里的自己的信息是不是已经分享
     login: '',                   //登陆标识
     // server: 'http://192.168.2.123:8080',

@@ -101,6 +101,11 @@ Page{
   color: #ffffff;
   margin: 0 auto 20rpx;
 }
+.footer .footer-btn.write{
+  background-color: #ffffff;
+  color: #2C7FE7;
+  border: 1rpx solid #2C7FE7;
+}
 
 .maskLayer {
   background-color: #000000;
