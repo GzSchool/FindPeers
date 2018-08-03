@@ -12,7 +12,8 @@
       </view>
       <view class='li-right'>
         <view class='title'>
-          <view class='title-name'>{{item.groupId}}</view>
+          <view class='title-name'>
+          <open-data type="groupName" open-gid="{{item.groupId}}"></open-data></view>
           <view class='title-time'>{{item.ctTime}}</view>
         </view>
         <view class='count'>未保存：{{item.delFlag}}张</view>

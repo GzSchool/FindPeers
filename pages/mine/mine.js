@@ -57,7 +57,7 @@ Page({
     })
     console.log("2222222222222333333333333333") 
     return{
-      title: '自定义转发标题',
+      title: '我的同行信息',
       path: '/page/mine/mine?othercardid=' + that.data.id,
       success: function (res) {
         console.log(that.data.id)         
@@ -82,6 +82,7 @@ Page({
 
               data: {
                 openId:app.globalData.openid,
+                otherOpenId: app.globalData.openid,
                 encryptedData: encryptedData,
                 iv: iv
               },

@@ -1,0 +1,66 @@
+<!--pages/first/first.wxml-->
+<view class='main'>
+  <view class='main-top'>
+    <view class='top-left'>
+      <view class='info name'>{{name}}</view>
+      <view class='info'>{{job}}</view>
+      <view class='info'>{{adress}}</view>
+      <view class='info'>{{company}}</view>
+    </view>
+    <view class='top-right'>
+      <image src=''></image>
+    </view>
+  </view>
+  <view class='main-down'>
+    <view class='down-left'>
+      <view class='contact-info'>
+        <view class='info-left'>
+          <image src='../images/phone.png' style='width:17rpx;height:25rpx;'></image>
+        </view>
+      {{telephone}}</view>
+      <view class='contact-info'>
+        <view class='info-left'>
+          <image src='../images/wechat.png' style='width:26rpx;height:21rpx;'></image>
+        </view>
+        {{weChatNumber}}</view>
+      <view class='contact-info'>
+        <view class='info-left'>
+          <image src='../images/email.png' style='width:24rpx;height:16rpx;'></image>
+        </view>
+        {{email}}</view>
+    </view>
+    <view class='down-right'>
+      <image src='../images/set.png' bindtap='viewThisCards'></image>
+    </view>
+    <!-- <view class='down-left'>
+      <view class='contact-info'>{{telephone}}</view>
+      <view class='contact-info'>{{weChatNumber}}</view>
+      <view class='contact-info'>{{email}}</view>
+    </view>
+    <view class='down-right'>
+      <image src='../images/set.png'></image>
+    </view> -->
+  </view>
+</view>
+<view class="footer">
+    <button class="footer-btn btn-1">进入我的名片夹</button>
+    <button class="footer-btn btn-2" bindtap='viewThisCards'>名片夹已有，查看更多本群名片夹</button>
+</view>
+<!-- <view class="container">
+  <view class="continer-view">
+    <view class="continer-name">{{name}}</view>
+    <view class="continer-job">{{job}}</view>
+    <view class="continer-company">{{company}}</view>
+    <button class="set">设置</button>
+  </view>
+  <view class="continer-area">
+    <view class="continer-telephone">{{telephone}}</view>
+    <view class="continer-weChat">{{weChatNumber}}</view>
+    <view class="continer-email">{{email}}</view>
+    <view class="continer-adress">{{adress}}</view>
+  </view>
+  <view class="continer-button">
+    <button class="continer-mine">进入我的名片夹</button>
+    <button class="continer-others" bindtap='viewThisCards'>名片夹已有，查看更多本群名片夹</button>
+  </view>
+</view> -->

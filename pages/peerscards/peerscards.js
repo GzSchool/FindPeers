@@ -30,7 +30,7 @@ Page({
     var that=this
     var otheropenId = that.data.otheropenId;
     return {
-      title: '自定义转发标题',
+      title: '同行信息',
       path: '/page/peerscards/peerscards?othercardid='+that.data.cardId,
       success: function (res) {
         console.log("66666666666")
@@ -52,7 +52,8 @@ Page({
               url: server+'/userGroup/saveOrUpdate',
 
               data: {
-                openId: otheropenId,
+                openId: app.globalData.openId,
+                otherOpenId: otheropenId,                
                 encryptedData: encryptedData,
                 iv: iv
               },
@@ -239,7 +240,8 @@ Page({
     //   url: '/pages/findmore/findmore',
     // })
   },
-  toTeamPeers:function(){
+  toTeamPeers:function(e){
+    console.log(e)
     var groupId=app.globalData.groupid;
     var openid=app.globalData.openid;
     wx.navigateTo({

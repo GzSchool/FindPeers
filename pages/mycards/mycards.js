@@ -63,7 +63,7 @@ Page({
     var that=this
     var server = app.globalData.server;
     return {
-      title: '自定义转发标题',
+      title: '我的名片信息',
       path: '/page/mine/mine?othercardid=' + that.data.id,
       success: function (res) {
         console.log("66666666666")
@@ -88,6 +88,7 @@ Page({
 
               data: {
                 openId:app.globalData.openid,
+                otherOpenId: app.globalData.openid,                
                 encryptedData: encryptedData,
                 iv: iv
               },

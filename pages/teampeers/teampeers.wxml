@@ -6,7 +6,7 @@
   </view>
 </view>
 <view class='main'>
-  <view class='mine-title'>{{qunname}}</view>
+  <view class='mine-title'><open-data type="groupName" open-gid="{{groupId}}"></open-data></view>
   <view class='mine-card'>
     <view class='mine-info'>
       <button class='btn' wx:if='{{notadd}}' open-type="getUserInfo" bindgetuserinfo='addcards'>添加我的信息</button>

@@ -115,12 +115,6 @@ Page({
       }
     })
   },
-  viewThisCards: function() {
-    var openid = app.globalData.openid;
-    wx.navigateTo({
-      url: '/pages/viewThis/viewThis?openid=' + openid,
-    })
-  },
   addmore: function() {
     var that = this
     wx.showActionSheet({
@@ -192,7 +186,7 @@ Page({
           console.log(a)
           that.setData({
             name: a.userInfo.nickName,
-            image: a.userInfo.avatarUrl
+             image: a.userInfo.avatarUrl
           })
           that.getData()
         },fail:function(){
@@ -256,7 +250,7 @@ Page({
           this.data.name = a.userInfo.nickName;
         }
       })
-    } else if (this.data.image == '') {
+    } else if (this.data.image == '' || this.data.image == null ) {
       wx.getUserInfo({
         success: function(a) {
           console.log(a)

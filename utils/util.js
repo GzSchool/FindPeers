@@ -204,7 +204,7 @@ function getGroupCards(openId, groupId, pageNum, pageSize) {
     })
   })
 }
-function getOpenGid(shareTickets,openid){
+function getOpenGid(shareTickets,openid,otherOpenId){
   return new Promise(function (resole){
     wx.getShareInfo({
       shareTicket: shareTickets[0],
@@ -219,6 +219,7 @@ function getOpenGid(shareTickets,openid){
 
           data: {
             openId: app.globalData.openid,
+            otherOpenId: otherOpenId,
             encryptedData: encryptedData,
             iv: iv
           },

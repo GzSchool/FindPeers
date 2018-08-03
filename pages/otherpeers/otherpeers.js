@@ -7,15 +7,15 @@ Page({
    * 页面的初始数据
    */
   data: {
-    cardId:"",
-    id:"",
-    notadd:"",
-    back:"",
+    cardId: "",
+    id: "",
+    notadd: "",
+    back: "",
     name: "",
-    issave:"",
+    issave: "",
     city: "",
     idustry: "",
-    groupId:'',
+    groupId: '',
     server: "",
     company: "",
     phone: "",
@@ -23,37 +23,44 @@ Page({
     image: "/pages/images/1.png",
     email: "",
     isshow: false,
-    isSave:"",
-    otheropenId:""
-  }, 
-  onShareAppMessage: function (a) {
+    isSave: "",
+    otheropenId: ""
+  },
+  onShareAppMessage: function(a) {
     var server = app.globalData.server
     var that = this
     var otheropenId = that.data.otheropenId;
+    var openId = app.globalData.openid;
+    console.log(otheropenId)
     return {
-      title: '自定义转发标题',
+      title: '同行信息',
       path: '/page/peerscards/peerscards?othercardid=' + that.data.id,
-      success: function (res) {
+      success: function(res) {
         console.log("66666666666")
         console.log(res)
         console.log(a)
         var shareTickets = res.shareTickets;
-        console.log(res.shareTickets)        
+        console.log(res.shareTickets)
         if (shareTickets.length == 0) {
           return false;
         }
         wx.getShareInfo({
           shareTicket: shareTickets[0],
-          success: function (res) {
+          success: function(res) {
             console.log(res)
             console.log(a)
+            console.log(otheropenId)
             var encryptedData = res.encryptedData;
             var iv = res.iv;
+            console.log(iv)
+            console.log(encryptedData)
+            console.log(openId)
             wx.request({
               method: 'POST',
               url: server + '/userGroup/saveOrUpdate',
               data: {
-                openId: otheropenId,
+                openId: openId,
+                otherOpenId: otheropenId,
                 encryptedData: encryptedData,
                 iv: iv
               },
@@ -61,7 +68,7 @@ Page({
               header: {
                 'content-type': 'application/json'
               },
-              success: function (c) {
+              success: function(c) {
                 console.log(c)
                 wx.switchTab({
                   url: '/pages/findmore/findmore',
@@ -71,7 +78,7 @@ Page({
           }
         })
       },
-      fail: function (res) {
+      fail: function(res) {
         console.log(a)
         console.log(res)
         // 转发失败
@@ -82,40 +89,40 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (ops) {
+  onLoad: function(ops) {
     wx.showShareMenu({
       withShareTicket: true
     })
     var that = this
     console.log(ops)
     that.setData({
-      cardId:ops.cardId,
-      notadd:app.globalData.notadd,
+      cardId: ops.cardId,
+      notadd: app.globalData.notadd,
       groupId: ops.groupId,
     })
-    if(ops.saveFlag){
-      if(ops.saveFlag == 2){
+    if (ops.saveFlag) {
+      if (ops.saveFlag == 2) {
         that.setData({
-          isSave:true
+          isSave: true
         })
-      }else{
+      } else {
         that.setData({
           isSave: false
         })
       }
     }
-    if(ops.back){
+    if (ops.back) {
       that.setData({
-        back:true
+        back: true
       })
-    }else{
+    } else {
       that.setData({
         back: false
       })
     }
-    var server=app.globalData.server;
-    var cardId=that.data.cardId
-    util.getCardsById(cardId).then(function(res){
+    var server = app.globalData.server;
+    var cardId = that.data.cardId
+    util.getCardsById(cardId).then(function(res) {
       console.log(res)
       that.setData({
         name: res.data.data[0].username,
@@ -126,12 +133,12 @@ Page({
         email: res.data.data[0].userEmail,
         phone: res.data.data[0].userPhone,
         image: res.data.data[0].userImg,
-        otheropenId:res.data.data[0].openId,
+        otheropenId: res.data.data[0].openId,
         id: res.data.data[0].id,
       })
     })
   },
-  addcards: function (e) {
+  addcards: function(e) {
     var othercardid = app.globalData.othercardid;
     console.log(othercardid)
     if (e.detail.userInfo) {
@@ -140,32 +147,32 @@ Page({
       })
     }
   },
-  remove: function () {
+  remove: function() {
     var that = this
     var openid = app.globalData.openid;
-    var cardIds=[]
+    var cardIds = []
     cardIds.push(that.data.cardId)
-    var groupId=that.data.groupId
+    var groupId = that.data.groupId
     var back = that.data.back;
     // console.log(cardIds)
     // console.log(groupId)
     // console.log(openid)
-    util.saveOrUpdate(openid,groupId,1,cardIds).then(function(res){
+    util.saveOrUpdate(openid, groupId, 1, cardIds).then(function(res) {
       // console.log(res)
-      if(back){
+      if (back) {
         wx.redirectTo({
           url: '/pages/teampeers/teampeers?openid=' + openid + '&groupid=' + groupId,
         })
-      }else{
+      } else {
         wx.switchTab({
           url: '/pages/findmore/findmore',
         })
       }
-      
+
     })
-   
+
   },
-  chooseSize: function (e) {
+  chooseSize: function(e) {
     // 用that取代this，防止不必要的情况发生
     var that = this;
     // 创建一个动画实例
@@ -187,14 +194,14 @@ Page({
       chooseSize: true
     })
     // 设置setTimeout来改变y轴偏移量，实现有感觉的滑动
-    setTimeout(function () {
+    setTimeout(function() {
       animation.translateY(0).step()
       that.setData({
         animationData: animation.export()
       })
     }, 200)
   },
-  hideModal: function (e) {
+  hideModal: function(e) {
     var that = this;
     var animation = wx.createAnimation({
       duration: 1000,
@@ -206,7 +213,7 @@ Page({
       animationData: animation.export()
 
     })
-    setTimeout(function () {
+    setTimeout(function() {
       animation.translateY(0).step()
       that.setData({
         animationData: animation.export(),
@@ -214,18 +221,19 @@ Page({
       })
     }, 200)
   },
-  saveToPhone: function () {
+  saveToPhone: function() {
     var that = this
     if (that.data.phone) {
       console.log(that.data.phone)
       wx.addPhoneContact({
         firstName: that.data.name,
         mobilePhoneNumber: that.data.phone,
-        success: function (a) {
+        success: function(a) {
           wx.navigateBack({
             delta: 1
           })
-        }, fail: function (p) {
+        },
+        fail: function(p) {
           console.log(p)
           that.hideModal();
         }
@@ -235,25 +243,26 @@ Page({
         title: '温馨提示',
         content: '该同行名片手机号为空',
         confirmText: '知道了',
-        success: function (res) {
+        success: function(res) {
           that.hideModal();
           that.setData({
             showModal2: false
           });
-        }, fail: function (p) {
+        },
+        fail: function(p) {
           console.log(p)
           that.hideModal();
         }
       })
     }
   },
-  save: function () {
+  save: function() {
     var that = this
     var server = app.globalData.server;
     var openid = app.globalData.openid;
     var othercardid = app.globalData.othercardid
     var cardId = that.data.cardId
-    var groupId=that.data.groupId
+    var groupId = that.data.groupId
     var cardIds = []
     var length = cardId.length;
     var back = that.data.back
@@ -261,7 +270,7 @@ Page({
     cardIds.push(that.data.cardId)
     console.log(openid + "" + groupId + "" + cardIds)
     console.log(cardIds)
-    util.saveOrUpdate(openid, groupId, 2, cardIds).then(function (res) {
+    util.saveOrUpdate(openid, groupId, 2, cardIds).then(function(res) {
       console.log(res)
       if (back) {
         wx.redirectTo({
