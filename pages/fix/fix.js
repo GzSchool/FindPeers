@@ -42,7 +42,9 @@ Page({
     showphone: false,
     showdemand: false,
     showresource: false,
-    showintroduction: false
+    showintroduction: false,
+    region: '',
+    customItem: ''
   },
   onLoad: function(a) {
     var that = this
@@ -306,5 +308,10 @@ Page({
         }
       })
     }
+  },
+  cityChange  (e) {
+    this.setData({
+      city: e.detail.value.join('')
+    })
   }
 })

@@ -31,7 +31,10 @@ Page({
     isshow0: false, //需求是否显示
     isshow1: false, //资源是否显示
     formId: '',
-    itemList: ["需求", "资源"] // 添加更多项
+    itemList: ["需求", "资源"], // 添加更多项
+    saveLoading: false,
+    region: '',
+    customItem: ''
   },
   onLoad: function(res) {
     var that = this
@@ -216,6 +219,7 @@ Page({
         }
       })
     } else {
+      that.data.saveLoading = true
       wx.request({
         method: 'POST',
         data: {
@@ -240,6 +244,7 @@ Page({
           'content-type': 'application/json'
         },
         success: function(res) {
+          that.data.saveLoading = true
           app.globalData.notadd = false
           console.log(res)
           var openid = app.globalData.openid;
@@ -292,5 +297,10 @@ Page({
     } else {
       this.getData()
     }
+  },
+  cityChange(e) {
+    this.setData({
+      city: e.detail.value.join('')
+    })
   }
 })
