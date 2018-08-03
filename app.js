@@ -7,7 +7,7 @@ App({
     isshow:"",
     openid:"",
     isgroup:false,               //是不是群
-    othercardid: '',             //点击别人分享的别人的id
+    othercardid: '2',             //点击别人分享的别人的id
     canSee:"",                   //群名片里的自己的信息是不是已经分享
     login: '',                   //登陆标识
     //server: 'http://192.168.2.123:8080',
@@ -42,6 +42,28 @@ App({
                 var openid = that.globalData.openid
               }
               var openid = that.globalData.openid;                  //用用户标识访问数据库获取用户信息
+              var othercardid = that.globalData.othercardid;
+              util.getCardsById(othercardid).then(function (res) {
+                console.log(res)
+                wx.request({
+                  method: 'POST',
+                  url: server + '/userGroup/saveOrUpdate',
+
+                  data: {
+                    openId: that.globalData.openid,
+                    otherOpenId: res.data.data[0].openId,
+                    encryptedData: encryptedData,
+                    iv: iv
+                  },
+
+                  header: {
+                    'content-type': 'application/json'
+                  },
+                  success: function (c) {
+                    console.log(c)
+                  }
+                })
+              })
               util.getMyData(openid).then(function (res) {
                 console.log('登录返回值')
                 // console.log(this.globalData.isshow)         
@@ -60,6 +82,7 @@ App({
                   })
                 }
               })
+              
               // wx.request({
               //   method: 'POST',
               //   url: server + '/userGroup/saveOrUpdate',
