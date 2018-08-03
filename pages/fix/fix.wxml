@@ -17,7 +17,7 @@
         <view class='info-left'>
           <image src='../images/phone.png' style='width:17rpx;height:25rpx;'></image>
         </view>
-      {{mineInfo.phone}}</view>
+        {{mineInfo.phone}}</view>
       <view class='contact-info'>
         <view class='info-left'>
           <image src='../images/wechat.png' style='width:26rpx;height:21rpx;'></image>
@@ -39,54 +39,89 @@
   <view class='main-ul'>
     <view class='main-li'>
       <view class='star'></view>
-      <view class='title'> <text>姓</text><text>名:</text></view>
-      <input placeholder-class="phcolor" placeholder='姓名' bindinput='addname' type='text' value='{{name}}'  maxlength='8'></input>
+      <view class='title'>
+        <text>姓</text>
+        <text>名:</text>
+      </view>
+      <input placeholder-class="phcolor" placeholder='姓名' bindinput='addname' type='text' value='{{name}}' maxlength='8'></input>
     </view>
     <view class='main-li'>
       <view class='star'>*</view>
-      <view class='title'><text>微</text><text>信</text><text>号:</text></view>
+      <view class='title'>
+        <text>微</text>
+        <text>信</text>
+        <text>号:</text>
+      </view>
       <input placeholder-class="phcolor" placeholder='必填' bindinput='addnumber' type='text' value='{{wechatnum}}' maxlength='20'></input>
     </view>
     <view class='main-li'>
       <view class='star'>*</view>
-      <view class='title'><text>公</text><text>司:</text></view>
+      <view class='title'>
+        <text>公</text>
+        <text>司:</text>
+      </view>
       <input placeholder-class="phcolor" placeholder='必填' bindinput='addcompany' type='text' value='{{company}}' maxlength='40'></input>
     </view>
     <view class='main-li'>
       <view class='star'>*</view>
-      <view class='title'><text>行</text><text>业:</text></view>
-      <input placeholder-class="phcolor" disabled='disabled' bindtap='chooseIn' placeholder='必填' value='{{idustry}}' ></input>
+      <view class='title'>
+        <text>行</text>
+        <text>业:</text>
+      </view>
+      <input placeholder-class="phcolor" disabled='disabled' bindtap='chooseIn' placeholder='必填' value='{{idustry}}'></input>
       <image src='/pages/images/right.png' bindtap='chooseIn'></image>
     </view>
+    <picker mode='region' bindchange="cityChange" value='{{region}}' custom-item="{{customItem}}">
+      <view class='main-li'>
+        <view class='star'>*</view>
+        <view class='title'>
+          <text>城</text>
+          <text>市:</text>
+        </view>
+        <input disabled='disabled' placeholder-class="phcolor" maxlength='40' placeholder='必填' bindinput='addcity' type='text' value='{{city}}'></input>
+      </view>
+    </picker>
+
     <view class='main-li'>
       <view class='star'>*</view>
-      <view class='title'><text>城</text><text>市:</text></view>
-      <input placeholder-class="phcolor" maxlength='40' placeholder='必填' bindinput='addcity' type='text' value='{{city}}'></input>
-    </view>
-    <view class='main-li'>
-      <view class='star'>*</view>
-      <view class='title'><text>职</text><text>务:</text></view>
+      <view class='title'>
+        <text>职</text>
+        <text>务:</text>
+      </view>
       <input placeholder-class="phcolor" maxlength='40' placeholder='填写公司职务' bindinput='addjob' type='text' value='{{job}}'></input>
     </view>
     <view class='main-li'>
       <view class='star'></view>
-      <view class='title'><text>手</text><text>机</text><text>号:</text></view>
+      <view class='title'>
+        <text>手</text>
+        <text>机</text>
+        <text>号:</text>
+      </view>
       <input placeholder-class="phcolor" maxlength='11' placeholder='填写可见同行手机号' bindinput='addphone' type='number' value='{{phone}}'></input>
       <button style='padding:0;' class='wx-get' open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">微信获取</button>
     </view>
     <view class='main-li'>
       <view class='star'></view>
-      <view class='title'><text>邮</text><text>箱:</text></view>
+      <view class='title'>
+        <text>邮</text>
+        <text>箱:</text>
+      </view>
       <input placeholder-class="phcolor" maxlength='40' placeholder='邮箱' bindinput='addemail' type='text' value='{{email}}'></input>
     </view>
     <view class='main-li' wx:if='{{isshow0}}'>
       <view class='star'></view>
-      <view class='title'><text>需</text><text>求:</text></view>
+      <view class='title'>
+        <text>需</text>
+        <text>求:</text>
+      </view>
       <input placeholder-class="phcolor" placeholder='需求' bindinput='adddemand' type='text' value='{{demand}}' maxlength='40'></input>
     </view>
     <view class='main-li' wx:if='{{isshow1}}'>
       <view class='star'></view>
-      <view class='title'><text>资</text><text>源:</text></view>
+      <view class='title'>
+        <text>资</text>
+        <text>源:</text>
+      </view>
       <input placeholder-class="phcolor" placeholder='资源' bindinput='addresource' type='text' value='{{resource}}' maxlength='40'></input>
     </view>
   </view>

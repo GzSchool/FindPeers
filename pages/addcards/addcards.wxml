@@ -23,11 +23,13 @@
 <input placeholder-class="phcolor" disabled='disabled' bindtap='chooseIn' placeholder='必填' type='text' value='{{idustry}}'></input>
       <image src='/pages/images/right.png' bindtap='chooseIn'></image>
     </view>
+    <picker mode='region' bindchange="cityChange" value='{{region}}' custom-item="{{customItem}}">
     <view class='main-li'>
       <view class='star'>*</view>
       <view class='title'><text>城</text><text>市:</text></view>
-      <input maxlength='40' placeholder-class="phcolor" placeholder='必填' bindinput='addcity' type='text' value='{{city}}'></input>
+      <input disabled='disabled' maxlength='40' placeholder-class="phcolor" placeholder='必填' bindinput='addcity' type='text' value='{{city}}'></input>
     </view>
+    </picker>
     <view class='main-li'>
       <view class='star'>*</view>
       <view class='title'><text>职</text><text>务:</text></view>
@@ -65,5 +67,6 @@
   </view>
 </view>
 <!-- <view class='save-btn' bindtap='save'>保存</view> -->
-<button class='save-btn' form-type="submit">保存</button>
+<button class='save-btn' form-type="submit" wx:if='{{!saveLoading}}'>保存</button>
+<button class='weui-button save-btn' wx:if='{{saveLoading}}'><view class='weui-loading'></view>保存</button>
 </form>
