@@ -98,8 +98,8 @@ Page({
               },
               success: function (c) {
                 console.log(c)
-                wx.switchTab({
-                  url: '/pages/findmore/findmore',
+                wx.navigateTo({
+                  url: '/pages/mycards/mycards',
                 })
               }
             })

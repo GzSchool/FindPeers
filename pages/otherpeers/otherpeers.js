@@ -70,7 +70,7 @@ Page({
               success: function(c) {
                 console.log(c)
                 wx.switchTab({
-                  url: '/pages/findmore/findmore',
+                  url: '/pages/otherpeers/otherpeers',
                 })
               }
             })
