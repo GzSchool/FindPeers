@@ -14,7 +14,7 @@
       <image src='{{image}}'></image>
     </view>
   </view>
-  <view class='main-down'>
+  <view class='main-down' wx:if='{{!shareIng}}'>
     <view class='down-left'>
       <view class='contact-info' wx:if='{{phone}}'>
         <view class='info-left'>
@@ -54,34 +54,4 @@
   <button class="footer-btn" wx:if='{{notadd}}' open-type='getUserInfo' bindgetuserinfo='addcards'>添加个人信息</button>
   <view class="write" wx:if='{{isSave}}' bindtap='remove'>删除同行信息</view>
 </view>
-<!-- <view class="mycards">
-  <view class="mycards1">
-    <text class="name">{{name}}</text>
-    <text class="idustry">{{idustry}}</text>
-    <text class="adress">{{city}}</text>
-    <text class="adress {{notadd?'':'map-hide'}} hide ">需填写信息才可查看</text>
-    <text class="company">{{company}}</text>
-    <text class="company hide {{notadd?'':'map-hide'}}">需填写信息才可查看</text>
-    <image class="image" src="{{image}}">{{image}}</image>
-    <image class="img1" src="/pages/images/phone.png"></image>
-    <text class="phone ">{{phone}}</text>
-    <text class="phone hide {{notadd?'':'map-hide'}}">需填写信息才可查看</text>
-    <image class="img2" src="/pages/images/wechat.png"></image>
-    <text class="wechatnum">{{wechatnum}}</text>
-    <text class="wechatnum hide {{notadd?'':'map-hide'}}">需填写信息才可查看</text>
-    <image class="img3" src="/pages/images/email.png"></image>
-    <text class="email">{{email}}</text>
-    <view class="{{notadd?'map-hide':''}}" bindtap='chooseSize'>
-      <image src="/pages/images/set.png" class="set"></image>
-    </view>
-    <view class='maskLayer' wx:if="{{chooseSize}}" bindtap='hideModal'></view>
-    <view class='choose' wx:if="{{chooseSize}}" animation='{{animationData}}'>
-      <button class="trans" open-type='share' bindtap='trans'>转发</button>
-      <button class="saveToPhone" bindtap='saveToPhone'>保存到通讯录</button>
-      <button class="save" bindtap='save'>保存到名片夹</button>
-      <button class="goback" bindtap='hideModal'>取消</button>
-    </view>
-  </view>
-  <button class="write {{notadd?'map-hide':''}}" bindtap='remove'>删除同行信息</button>
-  <button class="write {{notadd?'':'map-hide'}}" open-type='getUserInfo' bindgetuserinfo='addcards'>添加个人信息</button>
-</view> -->
+

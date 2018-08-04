@@ -89,10 +89,12 @@ Page({
       console.log(val)
       if (!val) {
         let letter = [];
+        let con = [];
         var length = res.data.data.length;
         for (let i = 0; i < length; i ++) {
           // console.log(res.data.data[i].prepare.slice(0, 1))
           letter.push(res.data.data[i].prepare.slice(0, 1))
+          
         }
         console.log(letter)
         that.setData({
