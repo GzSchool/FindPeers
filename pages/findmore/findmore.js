@@ -89,16 +89,14 @@ Page({
     })
     var openid = app.globalData.openid;
     var list = that.data.list
-    console.log(openid)
-    util.getMyPeers(openid).then(function (res) {                         //获取当前保存的同行名片
+    util.getMyPeers(openid, 1, 20).then(function (res) {             //获取当前保存的同行名片
       console.log('我的同行列表')
-      console.log(res.data.data.prepare)
-      let val = JSON.stringify(res.data.data.prepare) == JSON.stringify(that.data.list)
-      console.log(val)      
+      console.log(res.data.data)
+      let val = JSON.stringify(res.data.data.result) == JSON.stringify(that.data.list)
       if (!val) {
-        var length = res.data.data.length;
+        var length = res.data.data.result.length;
         that.setData({
-          list: res.data.data
+          list: res.data.data.result
         })
       }
     });
