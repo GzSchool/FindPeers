@@ -174,25 +174,13 @@ Page({
     } else if (this.data.job == '') {
       app.showToast('职务不能为空')
     } else if (this.data.wechatnum == "") {
-      wx.showToast({
-        title: '微信号不能为空',
-        icon: 'none'
-      })
+      app.showToast('微信号不能为空')
     } else if (this.data.company == "") {
-      wx.showToast({
-        title: '公司名称不能为空',
-        icon: 'none'
-      })
+      app.showToast('公司名称不能为空')
     } else if (this.data.idustry == "") {
-      wx.showToast({
-        title: '行业信息不能为空',
-        icon: 'none'
-      })
+      app.showToast('行业信息不能为空')
     } else if (this.data.city == "") {
-      wx.showToast({
-        title: '城市信息不能为空',
-        icon: 'none'
-      })
+      app.showToast('城市信息不能为空')
     } else if (this.data.name == '') {
       wx.getUserInfo({
         success: function(a) {

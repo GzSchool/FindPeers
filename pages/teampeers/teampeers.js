@@ -24,7 +24,7 @@ Page({
     phone: "",
     wechatnum: "",
     emai: "",
-    image: "/pages/images/1.png",
+    image: "",
     chooseSize: "",
     animationData: {},
     selectAll: false,
