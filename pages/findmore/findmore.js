@@ -38,16 +38,11 @@ Page({
     let that = this
     wx.getSystemInfo({
       success: function(res) {
-        console.log(res)
         that.setData({
           screenHeight: res.windowHeight
         })
       },
     })
-    for (let i = 0; i < this.data.list_con.length; i ++) {
-      console.log(this.data.list_con[i].letter)
-    }
-    console.log(this.data.list_con)
     console.log(a)
     console.log(app.globalData.notadd)    
     if (app.globalData.openid && app.globalData.openid !== '') {
@@ -94,12 +89,16 @@ Page({
     })
     var openid = app.globalData.openid;
     var list = that.data.list
-    util.getMyPeers(openid, 1, 20).then(function (res) {             //获取当前保存的同行名片
-      let val = JSON.stringify(res.data.data.result) == JSON.stringify(that.data.list)
+    console.log(openid)
+    util.getMyPeers(openid).then(function (res) {                         //获取当前保存的同行名片
+      console.log('我的同行列表')
+      console.log(res.data.data.prepare)
+      let val = JSON.stringify(res.data.data.prepare) == JSON.stringify(that.data.list)
+      console.log(val)      
       if (!val) {
-        var length = res.data.data.result.length;
+        var length = res.data.data.length;
         that.setData({
-          list: res.data.data.result
+          list: res.data.data
         })
       }
     });

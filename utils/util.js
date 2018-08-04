@@ -71,20 +71,19 @@ function getMyData(openid) {
 /*
   从数据库获取这个用户已经保存的同行信息
 */
-function getMyPeers(openid, pageNum, pageSize) {
+function getMyPeers(openid) {
   return new Promise(function(resolve) {
     wx.request({
       method: 'GET',
-      url: server + '/userPeer/findAllByOpenId',
+      url: server + '/userPeer/findAllPeerByOpenId',
       data: {
-        openId: openid,
-        pageNum: pageNum,
-        pageSize: pageSize
+        openId: openid
       },
       header: {
         'content-type': 'application/json'
       },
       success: function(res) {
+        console.log(res)
         resolve(res)
       }
     })

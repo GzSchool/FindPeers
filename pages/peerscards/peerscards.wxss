@@ -8,6 +8,7 @@ Page{
   box-sizing: border-box;
   background-color: #ffffff;
   padding: 29rpx 40rpx;
+  box-shadow: 0rpx 2rpx 10rpx #eeeeee;
 }
 .main .main-top {
   display: flex;
@@ -102,7 +103,7 @@ Page{
 .footer .footer-btn.white {
   background-color: #ffffff;
   color: #2C7FE7;
-  border: 1rpx solid #2C7FE7;
+  border: 1px solid #2C7FE7;
 }
 .maskLayer {
   background-color: #000000;

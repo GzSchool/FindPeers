@@ -33,6 +33,7 @@ Page({
     let that = this;
     let list = []
     let pageSize = this.data.pageSize
+    console.log(key.length)
     if (key.length !== 0) {
       console.log(openid)
       util.searchByParam(key, openid).then(function (res) {
@@ -51,6 +52,10 @@ Page({
           });
         }
       })
+    }else{
+      that.setData({
+        list: []
+      });
     }
   },
   find:function(a){

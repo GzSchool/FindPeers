@@ -10,6 +10,7 @@ Page{
   box-sizing: border-box;
   background-color: #ffffff;
   padding: 29rpx 40rpx;
+  box-shadow: 0rpx 2rpx 10rpx #eeeeee;
 }
 .main .main-top {
   display: flex;
@@ -100,17 +101,19 @@ Page{
   background-color: #2C7FE7;
   color: #ffffff;
   margin: 0 auto 20rpx;
+  text-align: center;
 }
 .footer .write{
   background-color: #ffffff;
   color: #2C7FE7;
-  border: 1rpx solid #2C7FE7;
+  border: 1px solid #2C7FE7;
   font-size: 34rpx;
-  width: 670rpx;
+  width: 669rpx;
   border-radius: 10rpx;
   height: 80rpx;
   line-height: 80rpx;
   margin: 0 auto 20rpx;
+  text-align: center;
 }
 
 .maskLayer {

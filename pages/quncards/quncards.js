@@ -15,6 +15,7 @@ Page({
     var groupid = app.globalData.groupid;
     var list = that.data.list;
     list=[];
+    console.log(openid)
     util.getUserGroupById(openid).then(function (res) {
       console.log(res)
       var len = res.data.data.length;

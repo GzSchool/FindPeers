@@ -55,5 +55,6 @@
   <button class="footer-btn" wx:if="{{!isSave&&!notadd}}" bindtap='save'>保存到名片夹</button> 
   <button class="footer-btn {{isshow?'map-hide':''}}" wx:if='{{!isshow}}' open-type='getUserInfo' bindgetuserinfo='addcards'>添加个人信息</button>
   <!-- <button class="footer-btn white {{isshow?'':'map-hide'}}" wx:if='{{isSave}}' bindtap='remove'>删除同行信息</button> -->
+
 </view>
 
