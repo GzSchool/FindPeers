@@ -1,6 +1,6 @@
 //服务器地址
 // var server = 'http://192.168.2.123:8080'
- var server = "http://123.206.64.219"
+ var server = "https://www.eqxuan.cn"
 const formatTime = date => {
   const year = date.getFullYear()
   const month = date.getMonth() + 1

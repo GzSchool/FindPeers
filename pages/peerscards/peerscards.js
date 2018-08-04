@@ -64,7 +64,7 @@ Page({
               },
               success: function (c) {
                 wx.switchTab({
-                  url: '/pages/findmore/findmore',
+                  url: '/pages/peerscards/peerscards',
                 })
               }
             })

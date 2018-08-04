@@ -87,7 +87,6 @@ Page({
       console.log(that.data.list)
       let val = JSON.stringify(res.data.data) == JSON.stringify(that.data.list)
       console.log(val)
-      if (!val) {
         let letter = [];
         let con = [];
         var length = res.data.data.length;
@@ -101,7 +100,7 @@ Page({
           list: res.data.data,
           list_letter: letter
         })
-      }
+      
     });
   },
   trans: function () {
