@@ -94,9 +94,6 @@ Page({
               },
               success: function (c) {
                 console.log(c)
-                wx.navigateTo({
-                  url: '/pages/mycards/mycards',
-                })
               }
             })
           }

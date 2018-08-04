@@ -63,9 +63,9 @@ Page({
                 'content-type': 'application/json'
               },
               success: function (c) {
-                wx.navigateTo({
-                  url: '/pages/peerscards/peerscards',
-                })
+                // wx.navigateTo({
+                //   url: '/pages/peerscards/peerscards',
+                // })
               }
             })
           }
