@@ -30,6 +30,8 @@ Page({
     var that = this
     var otheropenId = that.data.otheropenId;
     var openId = app.globalData.openid;
+    var back = that.data.back;
+    var groupId = that.data.groupId;
     console.log(otheropenId)
     return {
       title: '同行信息',
@@ -69,9 +71,16 @@ Page({
               },
               success: function(c) {
                 console.log(c)
-                wx.switchTab({
-                  url: '/pages/otherpeers/otherpeers',
-                })
+                that.hideModal();
+                // if (back) {
+                //   wx.navigateTo({
+                //     url: '/pages/teampeers/teampeers?openid=' + openId + '&groupid=' + groupId,
+                //   })
+                // } else {
+                //   wx.navigateTo({
+                //     url: '/pages/otherpeers/otherpeers',
+                //   })
+                // }
               }
             })
           }
@@ -154,8 +163,8 @@ Page({
     var groupId = that.data.groupId
     var back = that.data.back;
     console.log(cardIds)
-     console.log(groupId)
-     console.log(openid)
+    console.log(groupId)
+    console.log(openid)
     util.saveOrUpdate(openid, groupId, 1, cardIds).then(function(res) {
       console.log(res)
       if (back) {

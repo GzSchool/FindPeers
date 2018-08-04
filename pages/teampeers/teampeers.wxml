@@ -2,7 +2,7 @@
 <view class='search' bindtap='inputSearch'>
   <view class='search-in'>
     <image src='/pages/images/3.png' mode="aspectFit"></image>
-    <input placeholder='{{key}}' placeholder-style='font-size:26rpx;color:#ccc;'></input>
+    <input disabled='false' placeholder='{{key}}' placeholder-style='font-size:26rpx;color:#ccc;'></input>
   </view>
 </view>
 <view class='main'>
@@ -32,7 +32,7 @@
       <image class="select {{selectAll?'':'noselect'}}" src="{{selectAll?'../images/select.png':'../images/select_no.png'}}"></image>全选</view>
     <view class='crowd-title-middle'>{{listOfSave.length}}张名片未保存</view>
     <view class="crowd-title-right" wx:if='{{!hasSelect&&listOfSave.length>0}}'>保存</view>
-    <view class="crowd-title-right active" wx:if='{{hasSelect&&listOfSave.length>0}}' bindtap='aaa'>保存</view>
+    <view class="crowd-title-right active" wx:if='{{hasSelect&&listOfSave.length>0&&click}}' bindtap='aaa'>保存</view>
   </view>
   <view class='mine-card mine-card-bb'>
     <view class='mine-info'>

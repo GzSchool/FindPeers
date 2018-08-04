@@ -34,7 +34,6 @@ Page({
         })
       },
     })
-    console.log(a)
     console.log(app.globalData.notadd)
     if (app.globalData.openid && app.globalData.openid !== '') {
       this.getData()
