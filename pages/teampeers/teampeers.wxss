@@ -1,12 +1,15 @@
 /* pages/teampeers/teampeers.wxss */
-page{
+
+page {
   background-color: #f8f8f8;
 }
-.search{
+
+.search {
   padding: 13rpx 40rpx 16rpx;
 }
-.search .search-in{
-  background-color: #ffffff;
+
+.search .search-in {
+  background-color: #fff;
   border-radius: 6rpx;
   height: 60rpx;
   line-height: 60rpx;
@@ -14,11 +17,13 @@ page{
   align-items: center;
   padding-left: 83rpx;
 }
+
 .search .search-in image {
   width: 24rpx;
   height: 24rpx;
   margin-right: 12rpx;
 }
+
 .search .search-in input {
   flex: 1;
   font-size: 26rpx;
@@ -26,103 +31,120 @@ page{
   height: 100%;
   line-height: 100%;
 }
+
 .main {
-  background-color: #ffffff;
+  background-color: #fff;
 }
+
 .main .mine-title {
   height: 70rpx;
   line-height: 70rpx;
   color: #323232;
   font-size: 30rpx;
   text-align: center;
-  border-bottom: 1rpx solid #D9D8D9;
-}
-.mine-card{
-  padding-left: 40rpx;
-}
-.mine-card-bb{
-  border-bottom: 1rpx solid #D9D8D9;
-}
-.mine-card-bb .mine-info .mes-li:last-child{
-  border-bottom: none;
-}
-.mine-card .mine-info{
-  background-color: #ffffff;
+  border-bottom: 1rpx solid #d9d8d9;
 }
 
-.mine-card .mine-info .mes-li{
+.mine-card {
+  padding-left: 40rpx;
+}
+
+.mine-card-bb {
+  border-bottom: 1rpx solid #d9d8d9;
+}
+
+.mine-card-bb .mine-info .mes-li:last-child {
+  border-bottom: none;
+}
+
+.mine-card .mine-info {
+  background-color: #fff;
+}
+
+.mine-card .mine-info .mes-li {
   display: flex;
   align-items: center;
   padding: 19rpx 0 19rpx;
-  background-color: #ffffff;
-  border-bottom: 1rpx solid #D9D8D9;
+  background-color: #fff;
+  border-bottom: 1rpx solid #d9d8d9;
 }
-.mine-card .mine-info .mes-li .li-left image{
+
+.mine-card .mine-info .mes-li .li-left image {
   margin-right: 40rpx;
   width: 120rpx;
   height: 120rpx;
   background-color: #f8f8f8;
   border-radius: 20rpx;
 }
+
 .mine-card .mine-info .mes-li .li-right {
   flex: 1;
 }
-.mine-card .mine-info .mes-li .li-right .mes-name{
+
+.mine-card .mine-info .mes-li .li-right .mes-name {
   /* height: 48rpx; */
   line-height: 48rpx;
   color: #505050;
   font-size: 28rpx;
 }
-.mine-card .mine-info .mes-li .li-right .mes-name text{
+
+.mine-card .mine-info .mes-li .li-right .mes-name text {
   font-size: 20rpx;
   color: #606060;
   padding-left: 29rpx;
 }
-.mine-card .mine-info .mes-li .li-right .mes-info{
+
+.mine-card .mine-info .mes-li .li-right .mes-info {
   color: #606060;
   /* height: 44rpx; */
   line-height: 44rpx;
   font-size: 24rpx;
 }
+
 .mine-card .mine-info .mes-li .li-right .mes-info.shade {
-  color: #FE0000;
+  color: #fe0000;
   font-size: 20rpx;
   height: 44rpx;
   text-align: center;
   display: flex;
   align-items: center;
 }
+
 .mine-card .mine-info .mes-li .li-right .mes-info.shade .shade-in {
   height: 28rpx;
   width: 306rpx;
   line-height: 28rpx;
-  background-color: #E6E6E6;
+  background-color: #e6e6e6;
 }
+
 .mine-card .mine-info .mes-li .li-share {
   align-self: flex-start;
   padding: 18rpx 40rpx;
 }
+
 .mine-card .mine-info .mes-li .li-select {
   align-self: center;
   padding: 22rpx 40rpx;
 }
+
 .mine-card .mine-info .mes-li .li-share image {
   width: 25rpx;
   height: 27rpx;
 }
 
-.mine-card .mine-info .btn{
+.mine-card .mine-info .btn {
   width: 240rpx;
   height: 60rpx;
   line-height: 58rpx;
-  color: #2C7FE7;
+  color: #2c7fe7;
   font-size: 30rpx;
-  border: 1px solid #2C7FE7;
-  background-color: #ffffff;
-  margin:57rpx auto 53rpx;
+  border: 1px solid #2c7fe7;
+  background-color: #fff;
+  margin: 57rpx auto 53rpx;
   border-radius: 10rpx;
   text-align: center;
 }
+
 .crowd-title {
   height: 60rpx;
   line-height: 60rpx;
@@ -133,21 +155,27 @@ page{
   justify-content: space-between;
   color: #606060;
 }
+
 .crowd-title .crowd-title-left {
   display: flex;
   align-items: center;
 }
+
 .crowd-title .crowd-title-middle {
   text-align: center;
   flex: 1;
 }
+
 .crowd-title .crowd-title-right {
   color: #606060;
 }
+
 .crowd-title .crowd-title-right.active {
-  color: #2C7FE7;
+  color: #2c7fe7;
 }
+
 /* checkbox */
+
 .select {
   width: 32rpx;
   height: 32rpx;
@@ -155,13 +183,19 @@ page{
   /* background-color: #2C7FE7; */
   margin-right: 4rpx;
 }
+
 /* .select.noselect { */
-  /* border: 1rpx solid #D9D8D9; */
-  /* background-color: pink; */
+
+/* border: 1rpx solid #D9D8D9; */
+
+/* background-color: pink; */
+
 /* } */
+
 /* 弹出层 */
+
 .maskLayer {
-  background-color: #000000;
+  background-color: #000;
   opacity: 0.75;
   top: 0px;
   left: 0px;
@@ -171,14 +205,16 @@ page{
   position: fixed;
   z-index: 99;
 }
+
 .popup {
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
   z-index: 999;
-  background-color: #ffffff;
+  background-color: #fff;
 }
+
 .popup .popup-title {
   height: 90rpx;
   line-height: 90rpx;
@@ -187,68 +223,80 @@ page{
   font-size: 32rpx;
   position: relative;
 }
+
 .popup .popup-title .popup-close {
   padding: 10rpx 40rpx;
   position: absolute;
   right: 0;
   top: 0;
 }
+
 .popup .popup-title .popup-close image {
   width: 34rpx;
   height: 34rpx;
 }
-.popup .popup-content .mes-li{
+
+.popup .popup-content .mes-li {
   display: flex;
   align-items: center;
   padding: 19rpx 0 19rpx;
-  background-color: #ffffff;
+  background-color: #fff;
 }
-.popup .popup-content .mes-li .li-left image{
+
+.popup .popup-content .mes-li .li-left image {
   margin-right: 40rpx;
   width: 120rpx;
   height: 120rpx;
   background-color: #f8f8f8;
   border-radius: 20rpx;
 }
+
 .popup .popup-content .mes-li .li-right {
   flex: 1;
 }
-.popup .popup-content .mes-li .li-right .mes-name{
+
+.popup .popup-content .mes-li .li-right .mes-name {
   height: 48rpx;
   line-height: 48rpx;
   color: #505050;
   font-size: 28rpx;
 }
-.popup .popup-content .mes-li .li-right .mes-name text{
+
+.popup .popup-content .mes-li .li-right .mes-name text {
   font-size: 20rpx;
   color: #606060;
   padding-left: 29rpx;
 }
-.popup .popup-content .mes-li .li-right .mes-info{
+
+.popup .popup-content .mes-li .li-right .mes-info {
   color: #606060;
   height: 44rpx;
   line-height: 44rpx;
   font-size: 24rpx;
 }
+
 .popup .popup-content .mes-li .mine-card-select {
   align-self: center;
   padding: 22rpx 58rpx 22rpx 40rpx;
 }
+
 .popup .popup-content .mes-li .mine-card-select image {
   width: 32rpx;
   height: 32rpx;
 }
+
 .popup .popup-btn {
   width: 670rpx;
   height: 80rpx;
   line-height: 80rpx;
   background-color: #83bafe;
   text-align: center;
-  color: #ffffff;
+  color: #fff;
   border-radius: 10rpx;
   margin: 300rpx auto 30rpx;
   font-size: 34rpx;
 }
+
 .popup .popup-btn.active {
-  background-color: #2C7FE7;
+  background-color: #2c7fe7;
 }
