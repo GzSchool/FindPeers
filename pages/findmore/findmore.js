@@ -83,28 +83,9 @@ Page({
     console.log(openid)
     util.getMyPeers(openid).then(function (res) {                         //获取当前保存的同行名片
       console.log('我的同行列表')
-      // console.log(res.data.data)
-      // console.log(that.data.list)
+      console.log(res.data.data)
       let val = JSON.stringify(res.data.data) == JSON.stringify(that.data.list)
-      // console.log(val)
-      console.log(Array)
       let letter = [];
-      letter.distinct = function () {
-        var arr = this,
-          result = [],
-          i,
-          j,
-          len = arr.length;
-        for (i = 0; i < len; i++) {
-          for (j = i + 1; j < len; j++) {
-            if (arr[i] === arr[j]) {
-              j = ++i;
-            }
-          }
-          result.push(arr[i]);
-        }
-        return result;
-      }
       let con = [];
       var length = res.data.data.length;
       for (let i = 0; i < length; i++) {
@@ -112,13 +93,11 @@ Page({
         letter.push(res.data.data[i].prepare.slice(0, 1))
 
       }
-      letter.distinct()
       console.log(letter)
       that.setData({
         list: res.data.data,
         list_letter: letter
       })
-
     });
   },
   trans: function () {
@@ -166,11 +145,17 @@ Page({
   },
   onShow: function () {
     this.onLoad();
+    let con = []
+    let cons = [{letter: '', data: []}]
+    console.log(con)
   },
   letterClick(e) {
     this.setData({
       list_id: e.target.dataset.item
     });
     console.log(this.data.list_id)
+  },
+  dedupe:function (array) {
+    return Array.from(new Set(array))
   }
 })
