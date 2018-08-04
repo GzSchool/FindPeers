@@ -92,7 +92,7 @@ Page({
     console.log(openid)
     util.getMyPeers(openid).then(function (res) {                         //获取当前保存的同行名片
       console.log('我的同行列表')
-      console.log(res.data.data.prepare)
+      console.log(res.data.data)
       let val = JSON.stringify(res.data.data.prepare) == JSON.stringify(that.data.list)
       console.log(val)      
       if (!val) {

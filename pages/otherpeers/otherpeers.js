@@ -153,11 +153,11 @@ Page({
     cardIds.push(that.data.cardId)
     var groupId = that.data.groupId
     var back = that.data.back;
-    // console.log(cardIds)
-    // console.log(groupId)
-    // console.log(openid)
+    console.log(cardIds)
+     console.log(groupId)
+     console.log(openid)
     util.saveOrUpdate(openid, groupId, 1, cardIds).then(function(res) {
-      // console.log(res)
+      console.log(res)
       if (back) {
         wx.redirectTo({
           url: '/pages/teampeers/teampeers?openid=' + openid + '&groupid=' + groupId,
