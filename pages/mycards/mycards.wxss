@@ -8,6 +8,7 @@ Page{
   box-sizing: border-box;
   background-color: #ffffff;
   padding: 29rpx 40rpx;
+  box-shadow: 0rpx 2rpx 10rpx #eeeeee;
 }
 .main .main-top {
   display: flex;

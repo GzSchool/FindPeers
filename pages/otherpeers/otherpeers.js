@@ -20,10 +20,11 @@ Page({
     company: "",
     phone: "",
     wechatnum: "",
-    image: "/pages/images/1.png",
+    image: "",
     email: "",
     isshow: false,
-    otheropenId: ""
+    otheropenId: "",
+    shareIng: false // 分享中
   },
   onShareAppMessage: function(a) {
     var server = app.globalData.server

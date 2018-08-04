@@ -81,7 +81,7 @@
     <view class='mes-link'>
       <image src='/pages/images/3.png'></image>
       <view class='link-item'>Z</view>
-      <!-- <view class='link-item' wx:for='{{list_con}}' data-item='{{item.letter}}' catchtap='letterClick'>{{item.letter}}</view> -->
+      <!-- <view class='link-item' wx:for='{{list_letter}}' data-item='{{item}}' catchtap='letterClick'>{{item}}</view> -->
     </view>
 
   </view>
