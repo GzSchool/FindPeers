@@ -40,7 +40,7 @@
     <view class='down-right' wx:if='{{!notadd && !chooseSize}}' bindtap='chooseSize'>
       <image src='../images/set.png'></image>
     </view>
-    <!-- <view class='maskLayer' wx:if="{{chooseSize}}" bindtap='hideModal'></view> -->
+    <view class='maskLayer' wx:if="{{chooseSize}}" bindtap='hideModal'></view>
     <view class='choose' wx:if="{{chooseSize}}" animation='{{animationData}}'>
       <button class="choose-in" open-type='share' bindtap='trans'>转发</button>
       <button class="choose-in" bindtap='saveToPhone'>保存到通讯录</button>
