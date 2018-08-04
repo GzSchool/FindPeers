@@ -207,23 +207,7 @@ Page({
     console.log(e.detail.iv)
     console.log(e.detail.encryptedData)
     if (e.detail.errMsg == 'getPhoneNumber:fail user deny') {
-      wx.showModal({
-        title: '提示',
-        showCancel: false,
-        content: '未授权',
-        success: function(res) {
-          console.log(res)
-        }
-      })
     } else {
-      wx.showModal({
-        title: '提示',
-        showCancel: false,
-        content: '同意授权',
-        success: function(res) {
-          console.log(res)
-        }
-      })
     }
   },
   chooseIn() {
@@ -287,11 +271,6 @@ Page({
           'content-type': 'application/json'
         },
         success: function(res) {
-          // wx.showToast({
-          //   title: '修改成功',
-          //   icon: 'success',
-          //   duration: 3000
-          // });
           app.showToast("修改成功");
           var back = that.data.back;
           console.log(back)

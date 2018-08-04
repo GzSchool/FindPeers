@@ -144,28 +144,13 @@ Page({
     }
   },
   getPhoneNumber: function(e) { //用户点击微信获取手机
+    console.log(e)
     console.log(e.detail.errMsg)
     console.log(e.detail.iv)
     console.log(e.detail.encryptedData)
-    if (e.detail.errMsg == 'getPhoneNumber:fail user deny') {
-      wx.showModal({
-        title: '提示',
-        showCancel: false,
-        content: '未授权',
-        success: function(res) {
-          console.log(res)
-        }
-      })
-    } else {
-      wx.showModal({
-        title: '提示',
-        showCancel: false,
-        content: '同意授权',
-        success: function(res) {
-          console.log(res)
-        }
-      })
-    }
+    // if (e.detail.errMsg == 'getPhoneNumber:fail user deny') {
+    // } else {
+    // }
   },
   chooseIn() {
     wx.navigateTo({
