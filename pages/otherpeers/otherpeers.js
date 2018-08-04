@@ -23,8 +23,7 @@ Page({
     image: "",
     email: "",
     isshow: false,
-    otheropenId: "",
-    shareIng: false // 分享中
+    otheropenId: ""
   },
   onShareAppMessage: function(a) {
     var server = app.globalData.server
