@@ -63,7 +63,7 @@ Page({
                 'content-type': 'application/json'
               },
               success: function (c) {
-                wx.switchTab({
+                wx.navigateTo({
                   url: '/pages/peerscards/peerscards',
                 })
               }

@@ -34,7 +34,6 @@ Page({
         })
       },
     })
-    console.log(a)
     console.log(app.globalData.notadd)
     if (app.globalData.openid && app.globalData.openid !== '') {
       this.getData()
@@ -83,7 +82,7 @@ Page({
     console.log(openid)
     util.getMyPeers(openid).then(function (res) {                         //获取当前保存的同行名片
       console.log('我的同行列表')
-      // console.log(res.data.data)
+      console.log(res.data.data)
       // console.log(that.data.list)
       let val = JSON.stringify(res.data.data) == JSON.stringify(that.data.list)
       // console.log(val)

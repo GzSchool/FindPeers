@@ -30,6 +30,7 @@ Page({
     selectAll: false,
     hasSelect: false,
     selectMyCard: true, //分享弹出层选中自己
+    click:true
   },
 
   /**
@@ -174,6 +175,9 @@ Page({
     }, 200)
   },
   aaa: function (e) {
+    this.setData({
+      hasSelect:false
+    })
     let activeList = []
     let list = this.data.list
     for (let i = 0; i< list.length; i ++) {
@@ -222,7 +226,7 @@ Page({
     var groupId = this.data.groupId;
     var saveFlag = e.currentTarget.dataset.saveflag
     wx.navigateTo({
-      url: '/pages/otherpeers/otherpeers?cardId=' + cardId + '&groupId=' + groupId + '&back=true' + '&saveFlag=' + saveFlag,
+      url: '/pages/otherpeers/otherpeers?cardId=' + cardId + '&groupId=' + groupId + '&back=true&saveFlag=' + saveFlag,
     })
   },
   inputSearch: function() {

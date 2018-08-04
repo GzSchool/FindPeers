@@ -66,10 +66,6 @@ Page({
       title: '我的名片信息',
       path: '/page/mine/mine?othercardid=' + that.data.id,
       success: function (res) {
-        console.log("66666666666")
-        wx.switchTab({
-          url: '/pages/findmore/findmore',
-        })
         console.log(res)
         var shareTickets = res.shareTickets;
         if (shareTickets.length == 0) {
@@ -107,9 +103,7 @@ Page({
         })
       },
       fail: function (res) {
-        console.log(a)
         console.log(res)
-        // 转发失败
       }
     }
   },
