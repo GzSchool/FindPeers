@@ -106,9 +106,16 @@ page{
   position: relative;
 }
 .mes-link{
-  position: absolute;
-  right: 8rpx;
+  position: fixed;
+  height: 100%; 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  right: 0rpx;
   top: 0rpx;
+  width: 35rpx;
+  text-align: center;
+  padding: 0 8rpx;
 }
 .mes-link image {
   width: 20rpx;
@@ -117,12 +124,10 @@ page{
 }
 .mes-link .link-item{
   text-align: center;
-  width: 29rpx;
   font-size: 20rpx;
   color: #a0a0a0;
   height: 30rpx;
   line-height: 30rpx;
-  padding-left: 5rpx;
 }
 .mes-list .letter{
   padding-left: 40rpx;

@@ -83,6 +83,5 @@
       <image src='/pages/images/3.png'></image>
       <view class='link-item' wx:for='{{list_letter}}' wx:key='1' data-item='{{item}}' catchtap='letterClick'>{{item}}</view>
     </view>
-
   </view>
 </scroll-view>
