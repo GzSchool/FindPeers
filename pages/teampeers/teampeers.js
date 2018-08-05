@@ -53,15 +53,26 @@ Page({
     var listOfSave = that.data.listOfSave
     var openId = that.data.openid;
     var groupId = that.data.groupId;
+    let arr = []
     util.getGroupCards(openId, groupId, 1, 10000).then(function(res) {
+      // arr = res.data.data.result
       var length = res.data.data.result.length;
       console.log(res.data.data)
-      for (var i = 0; i < length; i++) {
-        res.data.data.result[i].isselect = false
-        // res.data.data[i].index = i
-        list.push(res.data.data.result[i]);
-        if (res.data.data.result[i].saveFlag == 1) {
-          listOfSave.push(res.data.data.result[i].id)
+      for (var m = 0; m < length; m ++) {
+        if (res.data.data.result[m].saveFlag !==  2) {
+          arr.push(res.data.data.result[m])
+        }
+      }
+      for (var n = 0; n < length; n++) {
+        if (res.data.data.result[n].saveFlag == 2) {
+          arr.push(res.data.data.result[n])
+        }
+      }
+      for (var i = 0; i < arr.length; i++) {
+        arr[i].isselect = false
+        list.push(arr[i]);
+        if (arr[i].saveFlag == 1) {
+          listOfSave.push(arr[i].id)
         }
       }
       that.setData({

@@ -125,10 +125,17 @@ page{
 }
 .mes-link .link-item{
   text-align: center;
+  width: 20rpx;
   font-size: 20rpx;
   color: #a0a0a0;
-  height: 30rpx;
-  line-height: 30rpx;
+  height: 20rpx;
+  line-height: 20rpx;
+  margin: 5rpx 0;
+}
+.mes-link .link-item:active{
+  /* color: #2c7fe7; */
+  background-color:#2c7fe7;
+  border-radius: 50%;
 }
 .mes-list .letter{
   padding-left: 40rpx;
@@ -167,4 +174,17 @@ page{
   /* height: 44rpx; */
   line-height: 44rpx;
   font-size: 24rpx;
+}
+.to-top {
+  width: 56rpx;
+  height: 48rpx;
+  border-radius: 50%;
+  position: fixed;
+  right: 40rpx;
+  bottom: 60rpx;
+  z-index: 99;
+}
+.to-top image{
+  width: 56rpx;
+  height: 48rpx;
 }

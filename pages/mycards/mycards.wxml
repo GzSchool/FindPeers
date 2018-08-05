@@ -27,7 +27,26 @@
         <view class='info-left'>
           <image src='../images/email.png' style='width:24rpx;height:16rpx;'></image>
         </view>
-        {{email}}</view>
+        {{email}}
+      </view>
+      <view class='contact-info' wx:if="{{demand}}">
+        <view class='info-left'>
+          <image src='../images/info_demand.png' style='width:24rpx;height:24rpx;'></image>
+        </view>
+        {{demand}}
+      </view>
+      <view class='contact-info' wx:if="{{resources}}">
+        <view class='info-left'>
+          <image src='../images/info_resource.png' style='width:24rpx;height:24rpx;'></image>
+        </view>
+        {{resources}}
+      </view>
+      <view class='contact-info' wx:if="{{synopsis}}">
+        <view class='info-left'>
+          <image src='../images/info_intro.png' style='width:22rpx;height:24rpx;'></image>
+        </view>
+        {{synopsis}}
+      </view>
     </view>
     <view class='down-right'>
       <image src='../images/fix.png' bindtap='viewThisCards'></image>

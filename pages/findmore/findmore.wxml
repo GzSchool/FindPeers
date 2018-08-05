@@ -1,5 +1,5 @@
 <!--pages/findmore/findmore.wxml-->
-<scroll-view scroll-y style='width:100%;height:{{screenHeight}}px;' scroll-with-animation scroll-into-view='{{list_id}}'>
+<scroll-view scroll-y style='width:100%;height:{{screenHeight}}px;' scroll-top='{{topNum}}' scroll-with-animation scroll-into-view='{{list_id}}' bindscroll="scrolltoupper">
   <view class='search' bindtap='bindtrans'>
     <view class='search-in'>
       <image src='/pages/images/3.png' mode="aspectFit"></image>
@@ -81,6 +81,9 @@
     </view>
   </view>
 </scroll-view>
+<view class='to-top' wx:if='{{floorstatus}}' bindtap='goTop'>
+  <image src='../images/to_top.png'></image>
+</view>
     <view class='mes-link' wx:if='{{list_letter.length!==0}}'>
       <image src='/pages/images/3.png'></image>
       <view class='link-item' wx:for='{{list_letter}}' wx:key='1' data-item='{{item}}' catchtap='letterClick'>{{item}}</view>

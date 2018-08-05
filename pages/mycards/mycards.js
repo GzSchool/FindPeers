@@ -16,6 +16,9 @@ Page({
     email:"",
     groupId:"",
     image:"",
+    demand: '',//需求
+    resources: '',//资源
+    synopsis: '',//简介
     showphone:false,
     showdemand:false,
     showresource:false,
@@ -53,7 +56,10 @@ Page({
           email: res.userEmail,
           phone: res.userPhone,
           image: res.userImg,
-          id:res.id
+          id:res.id,
+          demand: res.demand,//需求
+          resources: res.resources,//资源
+          synopsis: res.synopsis,//简介
         })
       }
     })

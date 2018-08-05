@@ -24,7 +24,9 @@ Page({
     key: " 微信号、城市、公司、行业等进行搜索",   //搜索框值
     list_letter: [],
     list_con: [],
-    list_id: ''
+    list_id: '',
+    floorstatus: false, // 回到顶部
+    topNum: 0
   },
   onLoad: function (a) {
     let that = this
@@ -170,5 +172,23 @@ Page({
   },
   dedupe:function (array) {
     return Array.from(new Set(array))
+  },
+  // 获取滚动条当前位置
+  scrolltoupper: function (e) {
+    console.log(e.detail.scrollTop)
+    if (e.detail.scrollTop > 1000) {
+      this.setData({
+        floorstatus: true
+      });
+    } else {
+      this.setData({
+        floorstatus: false
+      });
+    }
+  },
+  goTop() {
+    this.setData({
+      topNum: 0
+    })
   }
 })
