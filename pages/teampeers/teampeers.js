@@ -53,7 +53,7 @@ Page({
     var listOfSave = that.data.listOfSave
     var openId = that.data.openid;
     var groupId = that.data.groupId;
-    util.getGroupCards(openId, groupId, 1, 200).then(function(res) {
+    util.getGroupCards(openId, groupId, 1, 10000).then(function(res) {
       var length = res.data.data.result.length;
       console.log(res.data.data)
       for (var i = 0; i < length; i++) {

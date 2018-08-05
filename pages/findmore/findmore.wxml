@@ -1,5 +1,5 @@
 <!--pages/findmore/findmore.wxml-->
-<scroll-view scroll-y style='width:100%;height:{{screenHeight*2}}rpx;' scroll-with-animation scroll-into-view='{{list_id}}'>
+<scroll-view scroll-y style='width:100%;height:{{screenHeight}}px;' scroll-with-animation scroll-into-view='{{list_id}}'>
   <view class='search' bindtap='bindtrans'>
     <view class='search-in'>
       <image src='/pages/images/3.png' mode="aspectFit"></image>
@@ -36,7 +36,7 @@
   </view>
   <view class='mes-list'>
     <view class='mes-list-left'>
-      <view class='letter'>Z</view>
+      <!-- <view class='letter'>Z</view> -->
       <view class='mes-li' bindtap='trans'>
         <view class='li-left'>
           <image src='../images/logo.png'></image>
@@ -50,7 +50,7 @@
         </view>
       </view>
       <!-- <view class='letter'>同行信息</view> -->
-      <view class='mes-li' wx:for="{{list}}" wx:for-index="index" wx:for-item="item" data-id="{{item.id}}" wx:key="11" data-key='{{item.openId}}' data-saveFlag='{{item.saveFlag}}' bindtap='select'>
+      <!-- <view class='mes-li' wx:for="{{list}}" wx:for-index="index" wx:for-item="item" data-id="{{item.id}}" wx:key="11" data-key='{{item.openId}}' data-saveFlag='{{item.saveFlag}}' bindtap='select'>
         <view class='li-left'>
           <image src='{{item.userImg}}'></image>
         </view>
@@ -61,27 +61,27 @@
           <view class='mes-info'>{{item.userCity}}</view>
           <view class='mes-info'>{{item.userCompany}}</view>
         </view>
-      </view>
-      <!-- <view wx:for='{{list_con}}'>
+      </view> -->
+      <view wx:for='{{list_con}}' wx:key='1'>
         <view class='letter' id='{{item.letter}}'>{{item.letter}}</view>
-        <view class='mes-li' wx:for='{{item.data}}'>
+        <view class='mes-li' wx:for='{{item.data}}'  wx:for-index="index" wx:for-item="item" data-id="{{item.id}}" wx:key="11" data-key='{{item.openId}}' data-saveFlag='{{item.saveFlag}}' bindtap='select'>
           <view class='li-left'>
             <image src='{{item.userImg}}'></image>
           </view>
           <view class='li-right'>
-            <view class='mes-name'>{{item.cityName}}
-              <text>{{item.cityName}}</text>
+            <view class='mes-name'>{{item.username}}
+              <text>{{item.userIndustry}}</text>
             </view>
-            <view class='mes-info'>{{item.cityName}}</view>
-            <view class='mes-info'>{{item.cityName}}</view>
+            <view class='mes-info'>{{item.userCity}}</view>
+            <view class='mes-info'>{{item.userCompany}}</view>
           </view>
         </view>
-      </view> -->
+      </view>
+
     </view>
     <view class='mes-link'>
       <image src='/pages/images/3.png'></image>
-      <view class='link-item'>Z</view>
-      <!-- <view class='link-item' wx:for='{{list_letter}}' data-item='{{item}}' catchtap='letterClick'>{{item}}</view> -->
+      <view class='link-item' wx:for='{{list_letter}}' wx:key='1' data-item='{{item}}' catchtap='letterClick'>{{item}}</view>
     </view>
 
   </view>

@@ -2,7 +2,8 @@
 import pinyin from '../../utils/pinyin.js'
 import {
   validateEmail_none,
-  isvalidatemobile_none
+  isvalidatemobile_none,
+  validateUpperCase     // 大写字母
 } from '../../utils/validate.js'
 var app = getApp();
 Page({
@@ -86,8 +87,13 @@ Page({
     })
   },
   addname: function (e) {
-    this.data.prepare = pinyin.getFullChars(e.detail.value).toUpperCase()
-    console.log(this.data.prepare)
+    let prepare = pinyin.getFullChars(e.detail.value).toUpperCase()
+    let begin_letter = pinyin.getFullChars(e.detail.value).toUpperCase().slice(0, 1)
+    if(!validateUpperCase(begin_letter)){
+      prepare = '#' + prepare
+    }
+    console.log(prepare)
+    this.data.prepare = prepare
     this.data.name = e.detail.value
   },
   addnumber: function(e) {

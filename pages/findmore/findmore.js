@@ -88,15 +88,25 @@ Page({
       let con = [];
       var length = res.data.data.length;
       for (let i = 0; i < length; i++) {
-        // console.log(res.data.data[i].prepare.slice(0, 1))
         letter.push(res.data.data[i].prepare.slice(0, 1))
-
       }
-      console.log(letter)
+      letter = that.dedupe(letter)
+      // console.log(letter)
+      letter.forEach(function (a, b) {
+        con[b] = { letter: a, data: [] }
+        res.data.data.forEach(function (c, d) {
+          if (a == c.prepare.slice(0, 1)) {
+            con[b].data.push(c)
+          }
+        })
+      })
+      // console.log(letter)
       that.setData({
         list: res.data.data,
-        list_letter: letter
+        list_letter: letter,
+        list_con: con,
       })
+      // console.log(that.data.list_con)
     });
   },
   trans: function () {

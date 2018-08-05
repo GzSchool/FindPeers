@@ -52,7 +52,7 @@ Page({
           });
         }
       })
-    }else{
+    } else {
       that.setData({
         list: []
       });

@@ -37,6 +37,7 @@ page{
 .mine-card.res-card{
   margin-bottom: 0;
   padding-bottom: 0;
+  border-bottom: 1rpx solid #D9D8D9;
 }
 .mine-card .card-title{
   height: 69rpx;
