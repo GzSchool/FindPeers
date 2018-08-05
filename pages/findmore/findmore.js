@@ -1,5 +1,6 @@
 // pages/findmore/findmore.js
 var app = getApp();
+import { validateUpperCase } from '../../utils/validate.js'
 var util = require('../../utils/util.js');
 Page({
   data: {
@@ -89,7 +90,10 @@ Page({
       var length = res.data.data.length;
       for (let i = 0; i < length; i++) {
         letter.push(res.data.data[i].prepare.slice(0, 1))
+        // if (validateUpperCase(res.data.data[i].prepare.slice(0, 1))) {
+        // }
       }
+      // letter.push('#')
       letter = that.dedupe(letter)
       // console.log(letter)
       letter.forEach(function (a, b) {

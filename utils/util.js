@@ -113,6 +113,29 @@ function searchByParam(key, openid) {
 }
 
 /*
+  从用户输入的字段从数据里模糊搜索 当前群内用户信息
+*/
+function searchInGroup(key, openid, groupid) {
+  return new Promise(function (resolve) {
+    wx.request({
+      method: 'GET',
+      url: server + '/userGroup/findAllGroupCardByParam',
+      data: {
+        param: key,
+        openId: openid,
+        groupId: groupid
+      },
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (src) {
+        resolve(src)
+      }
+    })
+  })
+}
+
+/*
   用用户的id 获取用户信息
 */
 function getCardsById(cardId) {
@@ -256,6 +279,7 @@ module.exports = {
   getMyData: getMyData,
   getMyPeers: getMyPeers,
   searchByParam: searchByParam,
+  searchInGroup: searchInGroup,
   getCardsById: getCardsById,
   saveOrUpdate: saveOrUpdate,
   getUserGroupById: getUserGroupById,

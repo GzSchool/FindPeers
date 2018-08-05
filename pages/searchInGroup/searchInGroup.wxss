@@ -1,0 +1,121 @@
+/* pages/searchInGroup/searchInGroup.wxss */
+/* pages/inputSearch/inputSearch.wxss */
+page{
+  background-color: #f8f8f8;
+  padding-top: 89rpx;
+  box-sizing: border-box;
+}
+.search{
+  background-color: #f8f8f8;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 13rpx 40rpx 16rpx;
+  /* border-bottom: 1px solid #D9D8D9; */
+  box-shadow: 0 1px 1px #fafafa;
+}
+.search .search-in{
+  background-color: #ffffff;
+  border-radius: 6rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  display: flex;
+  align-items: center;
+  padding-left: 83rpx;
+}
+.search .search-in image{
+  width: 24rpx;
+  height: 24rpx;
+  margin-right: 12rpx;
+}
+.search .search-in input {
+  flex: 1;
+  font-size: 26rpx;
+  color: #101010;
+  height: 100%;
+  line-height: 100%;
+}
+.list {
+  background-color: #ffffff;
+  padding-left: 40rpx;
+  border-bottom: 1rpx solid #D9D8D9;
+}
+.list .item:last-child {
+  border-bottom: none;
+}
+.list .item {
+  padding: 30rpx 0;
+  border-bottom: 1rpx solid #D9D8D9;
+  display: flex;
+  align-items: center;
+}
+.list .item .item-left {
+  width: 120rpx;
+  height: 120rpx;
+  /* margin: 30rpx 40rpx 30rpx 0; */
+  margin-right: 40rpx;
+}
+.list .item .item-left image{
+  width: 120rpx;
+  height: 120rpx;
+  background-color: #f8f8f8;
+  border-radius: 20rpx;
+}
+.list .item .item-right {
+  flex: 1;
+  padding-right: 10rpx;
+}
+.list .item .item-right .info {
+  color: #606060;
+  font-size: 24rpx;
+  /* height: 44rpx; */
+  line-height: 44rpx;
+}
+.list .item .item-right .info.shade {
+  height: 44rpx;
+  color: #FE0000;
+  font-size: 20rpx;
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
+.list .item .item-right .info.shade .shade-in {
+  height: 28rpx;
+  width: 306rpx;
+  line-height: 28rpx;
+  background-color: #E6E6E6;
+}
+.list .item .item-right .name {
+  color: #505050;
+  font-size: 28rpx;
+  height: 58rpx;
+  line-height: 58rpx;
+}
+.list .item .item-right .name text {
+  color: #606060;
+  font-size: 20rpx;
+  padding-left: 20rpx;
+}
+.noresult {
+  text-align: center;
+  font-size: 30rpx;
+  color: #636363;
+  margin-top: 300rpx;
+}
+.noresult image{
+  width: 194rpx;
+  height: 120rpx;
+  margin-bottom: 47rpx;
+}
+.loadtips {
+  height: 70rpx;
+  /* line-height: 70rpx; */
+  text-align: center;
+  font-size: 24rpx;
+  color: #949494;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}

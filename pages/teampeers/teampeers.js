@@ -230,8 +230,12 @@ Page({
     })
   },
   inputSearch: function() {
+    // wx.navigateTo({
+    //   url: '/pages/inputSearch/inputSearch',
+    // })
+    var groupid = this.data.groupId
     wx.navigateTo({
-      url: '/pages/inputSearch/inputSearch',
+      url: '/pages/searchInGroup/searchInGroup?groupid=' + groupid,
     })
   },
   addcards: function(e) {

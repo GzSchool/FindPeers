@@ -13,7 +13,8 @@
     "pages/fix/fix",
     "pages/teampeers/teampeers",
     "pages/industry/industry",
-    "pages/findUs/findUs"
+    "pages/findUs/findUs",
+    "pages/searchInGroup/searchInGroup"
   ],
   "window": {
     "backgroundTextStyle": "light",
