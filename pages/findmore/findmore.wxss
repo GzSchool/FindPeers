@@ -106,6 +106,7 @@ page{
   position: relative;
 }
 .mes-link{
+  z-index: 999;
   position: fixed;
   height: 100%; 
   display: flex;
