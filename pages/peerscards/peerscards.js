@@ -33,7 +33,7 @@ Page({
     var otheropenId = that.data.otheropenId;
     return {
       title: '同行信息',
-      path: '/pages/peerscards/peerscards?othercardid='+that.data.cardId,
+      path: '/pages/peerscards/peerscards?othercardid=' + that.data.othercardid,
       success: function (res) {
         console.log("66666666666")
         console.log(res)
