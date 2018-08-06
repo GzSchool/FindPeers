@@ -206,17 +206,17 @@ function getUserGroupById(openid) {
   当前用户的群里的信息
  */
 
-function getGroupCards(openId, groupId) {
+function getGroupCards(openId, groupId, pageNum, pageSize) {
   return new Promise(function(resolve) {
     wx.request({
       method: 'GET',
-      // url: server + '/userGroup/findGroupCards',
-      url: server + '/userGroup/findCardsNoPage',
+      url: server + '/userGroup/findGroupCards',
+      // url: server + '/userGroup/findCardsNoPage',
       data: {
         openId: openId,
         groupId: groupId,
-        // pageNum: pageNum,
-        // pageSize: pageSize
+        pageNum: pageNum,
+        pageSize: pageSize
       },
       header: {
         'content-type': 'application/json'
