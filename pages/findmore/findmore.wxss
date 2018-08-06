@@ -196,17 +196,17 @@ page{
   font-size: 24rpx;
 }
 .to-top {
-  width: 56rpx;
-  height: 48rpx;
-  border-radius: 50%;
+  width: 68rpx;
+  height: 68rpx;
+  /* border-radius: 50%; */
   position: fixed;
   right: 40rpx;
-  bottom: 60rpx;
+  bottom: 30rpx;
   z-index: 99;
 }
 .to-top image{
-  width: 56rpx;
-  height: 48rpx;
+  width: 68rpx;
+  height: 68rpx;
 }
 .letter_toast {
   position:fixed;

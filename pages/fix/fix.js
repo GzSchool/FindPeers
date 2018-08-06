@@ -328,6 +328,8 @@ Page({
         }
       })
     } else {
+      console.log('====')
+      console.log(this.data.prepare)
       wx.request({
         method: 'POST',
         data: {

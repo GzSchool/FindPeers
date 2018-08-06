@@ -143,6 +143,4 @@ Page({
       shareing: false
     })
   }
-  
- 
 })
