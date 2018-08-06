@@ -11,11 +11,13 @@ Page({
     name:"",
     industry:"",
     city:"",
+    userJob:"",
     server:"",
     company:"",
     img1:"/pages/images/about1.png",
     img2:"/pages/images/right.png",
-    id:""
+    id:"",
+    image: ['/pages/images/findpeer.png']
   },
   onLoad:function(){
     wx.showShareMenu({
@@ -39,6 +41,7 @@ Page({
         that.setData({
           name: res.username,
           wechatnum: res.userWechat,
+          userJob:res.userJob,
           company: res.userCompany,
           idustry: res.userIndustry,
           city: res.userCity,
@@ -112,5 +115,11 @@ Page({
     wx.navigateTo({
       url: '../findUs/findUs',
     })
+  },
+  viewImage:function(e){
+    // wx.previewImage({
+    //   current: '/pages/images/findpeer.png', // 当前显示图片的http链接
+    //   urls: image // 需要预览的图片http链接列表
+    // })
   }
 })

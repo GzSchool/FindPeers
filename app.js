@@ -7,7 +7,7 @@ App({
     isshow:"",
     openid:"",
     isgroup:false,               //是不是群
-    othercardid: '',             //点击别人分享的别人的id
+    othercardid: '40025',             //点击别人分享的别人的id
     canSee:"",                   //群名片里的自己的信息是不是已经分享
     login: '',                   //登陆标识
     // server: 'http://192.168.2.123:8080',
@@ -15,16 +15,18 @@ App({
     urlOfLogin:'/user/userAuthor',               //登录接口
     urlOfAddOrUpdate: '/userCard/saveOrUpdate',  //添加或修改个人信息接口
     urlOfGetCardByOpenID: '/userCard/findOneByOpenId', //获取当前用户信息
-    industry:industry
+    industry:industry,
+    groupId:"",
+    checkSave:""
   },
   onLaunch: function(ops) {
     var that = this
     var server = that.globalData.server
-    // var othercardid = that.globalData.othercardid
+     var othercardid = that.globalData.othercardid
     var url = that.globalData.urlOfLogin
     //要是有id 说明点击的别人分享的（只有两个 一是：群里点击的， 二是：别人分享的）
-    if (ops.othercardid) {
-      that.globalData.othercardid = ops.othercardid;
+    if (othercardid) {
+      // that.globalData.othercardid = ops.othercardid;
       var othercardid = ops.othercardid;
       if (ops.scene == 1044) {                                            // 等于这个 就是群里点击的
         that.globalData.isgroup=true
@@ -34,7 +36,7 @@ App({
           shareTicket: shareTickets,
           success: function(res) {
             console.log(res)
-            console.log()
+            console.log(othercardid)
             var encryptedData = res.encryptedData;
             var iv = res.iv;
             util.Login(url).then(function (data) {                    // 登录
@@ -44,6 +46,15 @@ App({
               }
               var openid = that.globalData.openid;                  //用用户标识访问数据库获取用户信息
               var othercardid = that.globalData.othercardid;
+              console.log(othercardid)
+              util.checkSave(openid,othercardid).then(function(a){
+                console.log(a)
+                if (a.data.data) {
+                  that.globalData.checkSave = true
+                } else {
+                  that.globalData.checkSave = true
+                }
+              })
               util.getCardsById(othercardid).then(function (res) {
                 console.log(res)
                 wx.request({
@@ -62,6 +73,7 @@ App({
                   },
                   success: function (c) {
                     console.log(c)
+                    that.globalData.groupId=c.data.data.groupId
                   }
                 })
               })
@@ -73,13 +85,13 @@ App({
                   that.globalData.isshow = true
                   that.globalData.notadd = false
                   wx.navigateTo({
-                    url: '/pages/peerscards/peerscards?isshow=true',
+                    url: '/pages/peerscards/peerscards?isshow=true&groupId=' + that.globalData.groupId,
                   })
                 } else {
                   that.globalData.notadd = true
                   that.globalData.isshow = false
                   wx.navigateTo({                                //说明没有添加过名片信息
-                    url: '/pages/peerscards/peerscards',
+                    url: '/pages/peerscards/peerscards?groupId=' + that.globalData.groupId,
                   })
                 }
               })
@@ -116,6 +128,13 @@ App({
              var openid = that.globalData.openid
           }
           var openid = that.globalData.openid;                      //用用户标识访问数据库获取用户信息
+          util.checkSave(openid, othercardid).then(function (a) {
+            if(a.data.data){
+              that.globalData.checkSave=true
+            }else{
+              that.globalData.checkSave = true
+            }
+          })
           util.getMyData(openid).then(function (res) {                          
             console.log(res)
             if (res) {

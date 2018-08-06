@@ -227,6 +227,24 @@ function getGroupCards(openId, groupId, pageNum, pageSize) {
     })
   })
 }
+function checkSave(openId, othercardid){
+  return new Promise(function(resolve){
+    wx.request({
+      method: 'GET',
+      url: server + '/userPeer/checkSave',
+      data: {
+        openId: openId,
+        cardId: othercardid,
+      },
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (b) {
+        resolve(b)
+      }
+    })
+  })
+}
 function getOpenGid( openid, otherOpenId, shareTickets){
   return new Promise(function (resole){
     wx.getShareInfo({
@@ -286,5 +304,6 @@ module.exports = {
   getUserGroupById: getUserGroupById,
   getGroupCards: getGroupCards,
   testPhone: testPhone,
-  testEmail: testEmail
+  testEmail: testEmail,
+  checkSave: checkSave
 }

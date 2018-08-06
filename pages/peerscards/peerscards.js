@@ -12,6 +12,7 @@ Page({
     idustry: "",
     server:"",
     company: "",
+    groupId:"",
     notadd:"",
     cardId:[],
     phone: "",
@@ -25,7 +26,8 @@ Page({
     chooseSize: false,
     animationData: {},
     isgroup:"",                  //判断是否是在群里点击的
-    isSave:""                    //判断是否已保存这个名片
+    isSave:"",                    //判断是否已保存这个名片
+    checkSave:""             //检验是不是保存了这个名片
   },
   onShareAppMessage:function(a){
     var server = app.globalData.server;
@@ -80,17 +82,28 @@ Page({
     }
   },
   onLoad:function(ops){
+    var that = this
     wx.showShareMenu({
       withShareTicket:true
     })
+    if(ops.groupId){
+      that.setData({
+        groupId:ops.groupId
+      })
+    }else{
+      that.setData({
+        groupId: 0
+      })
+    }
     console.log(ops)
-    var that = this
     that.data.server=app.globalData.server;
     that.setData({
       isshow: app.globalData.isshow,
       isgroup:app.globalData.isgroup,
-      notadd:app.globalData.notadd
+      notadd:app.globalData.notadd,
+      checkSave:app.globalData.checkSave
     }) 
+    console.log(app.globalData.checkSave)
     var openid=app.globalData.openid
     var server = that.data.server
     var othercardid=app.globalData.othercardid;
@@ -110,7 +123,7 @@ Page({
         otheropenId: res.data.data[0].openId,
         userJob: res.data.data[0].userJob
       })
-      if (res.data.data[0].delFlag == 2){
+      if (res.data.data[0].delFlag == 1){
         that.setData({
           isSave:false
         })
@@ -136,7 +149,7 @@ Page({
     var that=this
     var server = app.globalData.server;
     var othercardid=app.globalData.othercardid;
-    var groupId=app.globalData.groupid;
+    var groupId = that.data.groupId;
     var openid=app.globalData.openid;
     var cardId=that.data.cardId
     console.log(openid)
@@ -244,6 +257,7 @@ Page({
     var that=this
     var server=app.globalData.server;
     var openid=app.globalData.openid;
+    var groupId = that.data.groupId;
     var othercardid=app.globalData.othercardid
     var cardId=that.data.cardId
     console.log(cardId)
@@ -264,7 +278,7 @@ Page({
   },
   toTeamPeers:function(e){
     console.log(e)
-    var groupId=app.globalData.groupid;
+    var groupId = that.data.groupId;
     var openid=app.globalData.openid;
     wx.navigateTo({
       url: '/pages/teampeers/teampeers?openid='+openid+'&groupid='+groupId,
