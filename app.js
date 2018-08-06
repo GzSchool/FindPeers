@@ -17,12 +17,11 @@ App({
     urlOfGetCardByOpenID: '/userCard/findOneByOpenId', //获取当前用户信息
     industry:industry,
     groupId:"",
-    checkSave:""
+    checkSave:"",
   },
   onLaunch: function(ops) {
     var that = this
     var server = that.globalData.server
-    //  var othercardid = that.globalData.othercardid
     var url = that.globalData.urlOfLogin
     //要是有id 说明点击的别人分享的（只有两个 一是：群里点击的， 二是：别人分享的）
     if (ops.othercardid) {
@@ -36,7 +35,6 @@ App({
           shareTicket: shareTickets,
           success: function(res) {
             console.log(res)
-            console.log()
             var encryptedData = res.encryptedData;
             var iv = res.iv;
             util.Login(url).then(function (data) {                    // 登录
@@ -51,18 +49,23 @@ App({
                 if (a.data.data) {
                   that.globalData.checkSave = true
                 } else {
-                  that.globalData.checkSave = true
+                  that.globalData.checkSave = false
                 }
               })
-              util.getCardsById(othercardid).then(function (res) {
+              var othercardid = that.globalData.othercardid;              
+              util.getCardsById(othercardid).then(function (card) {
                 console.log(res)
+                console.log(that.globalData.openid)
+                console.log(card.data.data[0].openId)
+                console.log(encryptedData)
+                console.log(iv)
                 wx.request({
                   method: 'POST',
                   url: server + '/userGroup/saveOrUpdate',
 
                   data: {
                     openId: that.globalData.openid,
-                    otherOpenId: res.data.data[0].openId,
+                    otherOpenId: card.data.data[0].openId,
                     encryptedData: encryptedData,
                     iv: iv
                   },
@@ -76,20 +79,25 @@ App({
                 })
               })
               util.getMyData(openid).then(function (res) {
-                console.log('登录返回值')
                 // console.log(this.globalData.isshow)         
                 console.log(res)
                 if (res) {                                         //判断是否返回 有返回值就是已经添加过信息
                   that.globalData.isshow = true
                   that.globalData.notadd = false
+                  // wx.navigateTo({
+                  //   url: '/pages/peerscards/peerscards?isshow=true&groupId=' + that.globalData.groupId,
+                  // })
                   wx.navigateTo({
-                    url: '/pages/peerscards/peerscards?isshow=true&groupId=' + that.globalData.groupId,
+                    url: '/pages/peerscards/peerscards?isshow=true',
                   })
                 } else {
                   that.globalData.notadd = true
                   that.globalData.isshow = false
-                  wx.navigateTo({                                //说明没有添加过名片信息
-                    url: '/pages/peerscards/peerscards?groupId=' + that.globalData.groupId,
+                  // wx.navigateTo({                                //说明没有添加过名片信息
+                  //   url: '/pages/peerscards/peerscards?groupId=' + that.globalData.groupId,
+                  // })
+                  wx.navigateTo({
+                    url: '/pages/peerscards/peerscards?isshow=true',
                   })
                 }
               })
@@ -130,7 +138,7 @@ App({
             if(a.data.data){
               that.globalData.checkSave=true
             }else{
-              that.globalData.checkSave = true
+              that.globalData.checkSave = false
             }
           })
           util.getMyData(openid).then(function (res) {                          

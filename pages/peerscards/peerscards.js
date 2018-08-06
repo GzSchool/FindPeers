@@ -265,9 +265,12 @@ Page({
       that.setData({
         isSave: true
       })
-      wx.navigateBack({
-        delta: 1
+      wx.switchTab({
+        url: '/pages/findmore/findmore',
       })
+      // wx.navigateBack({
+      //   delta: 1
+      // })
     })
   },
   backToFind:function(){

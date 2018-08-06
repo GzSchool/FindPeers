@@ -227,6 +227,9 @@ function getGroupCards(openId, groupId, pageNum, pageSize) {
     })
   })
 }
+/*
+  当前用户点击的名片是否已被用户保存
+ */
 function checkSave(openId, othercardid){
   return new Promise(function(resolve){
     wx.request({
@@ -245,6 +248,9 @@ function checkSave(openId, othercardid){
     })
   })
 }
+/*
+  
+ */
 function getOpenGid( openid, otherOpenId, shareTickets){
   return new Promise(function (resole){
     wx.getShareInfo({

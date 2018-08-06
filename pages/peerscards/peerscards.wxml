@@ -12,13 +12,13 @@
     </view> -->
     <view class='top-left'>
       <view class='info name'>{{name}}</view>
-      <view class='info shade' wx:if='{{!isshow}}'>需添加信息才可查看</view>
+      <!-- <view class='info shade' wx:if='{{!isshow}}'>需添加信息才可查看</view> -->
       <view class='info' wx:if='{{isshow}}'>{{userJob}}</view>
-      <view class='info shade' wx:if='{{!isshow}}'>需添加信息才可查看</view>
+      <!-- <view class='info shade' wx:if='{{!isshow}}'>需添加信息才可查看</view> -->
       <view class='info' wx:if='{{isshow}}'>{{idustry}}</view>
-      <view class='info shade' wx:if='{{!isshow}}'>需添加信息才可查看</view>
+      <!-- <view class='info shade' wx:if='{{!isshow}}'>需添加信息才可查看</view> -->
       <view class='info' wx:if='{{isshow}}'>{{city}}</view>
-      <view class='info shade' wx:if='{{!isshow}}'>需添加信息才可查看</view>
+      <!-- <view class='info shade' wx:if='{{!isshow}}'>需添加信息才可查看</view> -->
       <view class='info' wx:if='{{isshow}}'>{{company}}</view>
     </view>
     <view class='top-right'>
