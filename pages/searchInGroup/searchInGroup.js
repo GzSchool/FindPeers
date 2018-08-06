@@ -89,14 +89,17 @@ Page({
       mes: key,
       pageNum: 1,
       loadAll: false,
-      searching: true,
-      noresult: false
+      noresult: false,
+      searching: false
     })
     let that = this;
     let list = []
     let pageSize = this.data.pageSize
     console.log(key.length)
-    if (key.length !== 0) {
+    if (key) {
+      this.setData({
+        searching: true
+      })
       console.log(openid)
       util.searchInGroup(key, openid, groupid).then(function (res) {
         console.log(res.data)

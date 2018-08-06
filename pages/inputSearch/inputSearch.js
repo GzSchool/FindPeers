@@ -85,7 +85,7 @@ Page({
       mes: key,
       pageNum: 1,
       loadAll: false,
-      searching: true,
+      searching: false,
       noresult: false
     })
     let that = this;
@@ -93,6 +93,9 @@ Page({
     let pageSize = this.data.pageSize
     console.log(key.length)
     if (key) {
+      this.setData({
+        searching: true
+      })
       console.log(openid)
       util.searchByParam(key, openid).then(function (res) {
         console.log(res.data)
