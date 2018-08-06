@@ -98,7 +98,7 @@
         <text>号:</text>
       </view>
       <input placeholder-class="phcolor" maxlength='11' placeholder='填写可见同行手机号' bindinput='addphone' type='number' value='{{phone}}'></input>
-      <button style='padding:0;' class='wx-get' open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">微信获取</button>
+      <!-- <button style='padding:0;' class='wx-get' open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">微信获取</button> -->
     </view>
     <view class='main-li'>
       <view class='star'></view>
