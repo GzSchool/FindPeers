@@ -105,19 +105,19 @@ Page({
     var openId = that.data.openid;
     var groupId = that.data.groupId;
     let arr = []
-    util.getGroupCards(openId, groupId).then(function(res) {
-      // arr = res.data.data.result
+    util.getGroupCards(openId, groupId,1,20).then(function(res) {
+      arr = res.data.data.result
       console.log(res.data)
-      var length = res.data.data.length;
+      var length = res.data.data.result.length;
       console.log(res.data.data)
       for (var m = 0; m < length; m ++) {
-        if (res.data.data[m].saveFlag !==  2) {
-          arr.push(res.data.data[m])
+        if (res.data.data.result[m].saveFlag !==  2) {
+          arr.push(res.data.data.result[m])
         }
       }
       for (var n = 0; n < length; n++) {
-        if (res.data.data[n].saveFlag == 2) {
-          arr.push(res.data.data[n])
+        if (res.data.data.result[n].saveFlag == 2) {
+          arr.push(res.data.data.result[n])
         }
       }
       for (var i = 0; i < arr.length; i++) {
