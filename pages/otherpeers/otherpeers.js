@@ -22,6 +22,10 @@ Page({
     wechatnum: "",
     image: "",
     email: "",
+    userJob: '',
+    demand: '', // 需求
+    resources: '', // 资源
+    synopsis: '', // 简介
     isshow: false,
     otheropenId: ""
   },
@@ -143,6 +147,10 @@ Page({
         image: res.data.data[0].userImg,
         otheropenId: res.data.data[0].openId,
         id: res.data.data[0].id,
+        demand: res.data.data[0].demand, // 需求
+        resources: res.data.data[0].resources, // 资源
+        synopsis: res.data.data[0].synopsis,  // 简介
+        userJob: res.data.data[0].userJob  // 职位
       })
     })
   },

@@ -2,12 +2,25 @@
 <!--pages/peerscards/peerscards.wxml-->
 <view class='main'>
   <view class='main-top'>
-    <view class='top-left'>
+    <!-- <view class='top-left'>
       <view class='info name'>{{name}}</view>
+      <view class='info' wx:if='{{!notadd}}'>{{userJob}}</view>
+      <view class='info shade' wx:if='{{notadd}}'>需添加信息才可查看</view>
       <view class='info'>{{idustry}}</view>
       <view class='info shade' wx:if='{{notadd}}'>需添加信息才可查看</view>
       <view class='info' wx:if='{{!notadd}}'>{{city}}</view>
       <view class='info shade' wx:if='{{notadd}}' style='margin-top:20rpx;'>需添加信息才可查看</view>
+      <view class='info' wx:if='{{!notadd}}'>{{company}}</view>
+    </view> -->
+    <view class='top-left'>
+      <view class='info name'>{{name}}</view>
+      <view class='info shade' wx:if='{{notadd}}'>需添加信息才可查看</view>
+      <view class='info' wx:if='{{!notadd}}'>{{userJob}}</view>
+      <view class='info shade' wx:if='{{notadd}}'>需添加信息才可查看</view>
+      <view class='info' wx:if='{{!notadd}}'>{{idustry}}</view>
+      <view class='info shade' wx:if='{{notadd}}'>需添加信息才可查看</view>
+      <view class='info' wx:if='{{!notadd}}'>{{city}}</view>
+      <view class='info shade' wx:if='{{notadd}}'>需添加信息才可查看</view>
       <view class='info' wx:if='{{!notadd}}'>{{company}}</view>
     </view>
     <view class='top-right'>
@@ -35,6 +48,24 @@
           <image src='../images/email.png' style='width:24rpx;height:16rpx;'></image>
         </view>
         <view class='info-right'>{{email}}</view>
+      </view>
+      <view class='contact-info' wx:if='{{demand}}'>
+        <view class='info-left'>
+          <image src='../images/info_demand.png' style='width:24rpx;height:24rpx;'></image>
+        </view>
+        <view class='info-right'>{{demand}}</view>
+      </view>
+      <view class='contact-info' wx:if='{{resources}}'>
+        <view class='info-left'>
+          <image src='../images/info_resource.png' style='width:24rpx;height:24rpx;'></image>
+        </view>
+        <view class='info-right'>{{resources}}</view>
+      </view>
+      <view class='contact-info' wx:if='{{synopsis}}'>
+        <view class='info-left'>
+          <image src='../images/info_intro.png' style='width:22rpx;height:24rpx;'></image>
+        </view>
+        <view class='info-right'>{{synopsis}}</view>
       </view>
     </view>
     <view class='down-right' wx:if='{{!notadd && !chooseSize}}' bindtap='chooseSize'>

@@ -30,16 +30,16 @@ Page({
     selectAll: false,
     hasSelect: false,
     selectMyCard: true, //分享弹出层选中自己
-    click: true
+    click:true
   },
-  onShareAppMessage: function(a) {
+  onShareAppMessage: function (a) {               //转发
     var server = app.globalData.server;
     var that = this
     var otheropenId = that.data.otheropenId;
     return {
       title: '找同行',
       path: '/pages/findmore/findmore',
-      success: function(res) {
+      success: function (res) {
         console.log("66666666666")
         console.log(res)
         console.log(a)
@@ -49,7 +49,7 @@ Page({
         }
         wx.getShareInfo({
           shareTicket: shareTickets[0],
-          success: function(res) {
+          success: function (res) {
             console.log(res)
             console.log(a)
             var encryptedData = res.encryptedData;
@@ -68,7 +68,7 @@ Page({
               header: {
                 'content-type': 'application/json'
               },
-              success: function(c) {
+              success: function (c) {
                 // wx.navigateTo({
                 //   url: '/pages/peerscards/peerscards',
                 // })
@@ -77,7 +77,7 @@ Page({
           }
         })
       },
-      fail: function(res) {
+      fail: function (res) {
         console.log(a)
         console.log(res)
         // 转发失败
@@ -85,10 +85,10 @@ Page({
     }
   },
   onLoad: function(ops) {
+    console.log(ops)
     wx.showShareMenu({
       withShareTicket: true
     })
-    console.log(ops)
     var that = this
     that.setData({
       server: app.globalData.server,
@@ -105,18 +105,19 @@ Page({
     var openId = that.data.openid;
     var groupId = that.data.groupId;
     let arr = []
-    util.getGroupCards(openId, groupId, 1, 10000).then(function(res) {
+    util.getGroupCards(openId, groupId).then(function(res) {
       // arr = res.data.data.result
-      var length = res.data.data.result.length;
+      console.log(res.data)
+      var length = res.data.data.length;
       console.log(res.data.data)
-      for (var m = 0; m < length; m++) {
-        if (res.data.data.result[m].saveFlag !== 2) {
-          arr.push(res.data.data.result[m])
+      for (var m = 0; m < length; m ++) {
+        if (res.data.data[m].saveFlag !==  2) {
+          arr.push(res.data.data[m])
         }
       }
       for (var n = 0; n < length; n++) {
-        if (res.data.data.result[n].saveFlag == 2) {
-          arr.push(res.data.data.result[n])
+        if (res.data.data[n].saveFlag == 2) {
+          arr.push(res.data.data[n])
         }
       }
       for (var i = 0; i < arr.length; i++) {
@@ -176,9 +177,9 @@ Page({
           //   },
           //   success: function(a) {
           //     console.log(a)
-          that.setData({
-            cansee: true
-          })
+              that.setData({
+                cansee: true
+              })
           //   }
           // })
         }
@@ -236,13 +237,13 @@ Page({
       })
     }, 200)
   },
-  aaa: function(e) {
+  aaa: function (e) {
     this.setData({
-      hasSelect: false
+      hasSelect:false
     })
     let activeList = []
     let list = this.data.list
-    for (let i = 0; i < list.length; i++) {
+    for (let i = 0; i< list.length; i ++) {
       if (list[i].isselect == true) {
         activeList.push(list[i].id)
       }
@@ -255,9 +256,9 @@ Page({
     var othercardid = app.globalData.othercardid
     var groupid = that.data.groupId
     var userpeers = [];
-    list = [];
+    list=[];
     util.saveOrUpdate(openid, groupid, 2, activeList).then(function(res) {
-      util.getGroupCards(openid, groupid, 1, 50).then(function(adc) {
+      util.getGroupCards(openid, groupid, 1, 50).then(function (adc) {
         var length = adc.data.data.result.length;
         console.log(adc.data.data)
         for (var i = 0; i < length; i++) {

@@ -135,6 +135,7 @@ page{
 .mes-link .link-item:active{
   /* color: #2c7fe7; */
   background-color:#2c7fe7;
+  color: #ffffff;
   border-radius: 50%;
 }
 .mes-list .letter{

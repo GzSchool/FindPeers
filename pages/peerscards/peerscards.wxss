@@ -75,6 +75,7 @@ Page{
 }
 .main .main-down .down-left{
   flex: 1;
+  overflow:hidden;
 }
 .main .main-down .down-right {
   width: 54rpx;
