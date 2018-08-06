@@ -31,7 +31,7 @@ Page({
 
               data: {
                 openId: app.globalData.openId,
-                openId: app.globalData.openId,
+                otherOpenId: app.globalData.openId,
                 encryptedData: encryptedData,
                 iv: iv
               },
@@ -55,7 +55,8 @@ Page({
       }
     }
   },
-  touch: function() {
+  touch: function(e) {
+    console.log(e)
     var that = this
     that.data.server = app.globalData.server;
   },
