@@ -7,7 +7,7 @@ App({
     isshow:"",
     openid:"",
     isgroup:false,               //是不是群
-    othercardid: '40025',             //点击别人分享的别人的id
+    othercardid: '',             //点击别人分享的别人的id
     canSee:"",                   //群名片里的自己的信息是不是已经分享
     login: '',                   //登陆标识
     // server: 'http://192.168.2.123:8080',
@@ -36,7 +36,7 @@ App({
           shareTicket: shareTickets,
           success: function(res) {
             console.log(res)
-            console.log(othercardid)
+            console.log()
             var encryptedData = res.encryptedData;
             var iv = res.iv;
             util.Login(url).then(function (data) {                    // 登录
@@ -46,7 +46,6 @@ App({
               }
               var openid = that.globalData.openid;                  //用用户标识访问数据库获取用户信息
               var othercardid = that.globalData.othercardid;
-              console.log(othercardid)
               util.checkSave(openid,othercardid).then(function(a){
                 console.log(a)
                 if (a.data.data) {
@@ -73,7 +72,6 @@ App({
                   },
                   success: function (c) {
                     console.log(c)
-                    that.globalData.groupId=c.data.data.groupId
                   }
                 })
               })
