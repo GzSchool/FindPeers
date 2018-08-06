@@ -3,6 +3,7 @@
   <view class='main-top'>
     <view class='top-left'>
       <view class='info name'>{{name}}</view>
+      <view class='info'>{{userJob}}</view>
       <view class='info'>{{idustry}}</view>
       <view class='info'>{{city}}</view>
       <view class='info'>{{company}}</view>

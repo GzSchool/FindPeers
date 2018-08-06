@@ -14,6 +14,7 @@ Page({
     server:"",
     wechatnum: "",
     email:"",
+    userJob: '',
     groupId:"",
     image:"",
     demand: '',//需求
@@ -60,6 +61,7 @@ Page({
           demand: res.demand,//需求
           resources: res.resources,//资源
           synopsis: res.synopsis,//简介
+          userJob: res.userJob // 职位
         })
       }
     })

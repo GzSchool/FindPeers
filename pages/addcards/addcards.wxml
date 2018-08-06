@@ -10,12 +10,12 @@
     <view class='main-li'>
       <view class='star'>*</view>
       <view class='title'><text>微</text><text>信</text><text>号:</text></view>
-      <input maxlength='20' placeholder-class="phcolor" placeholder='必填' bindinput='addnumber' type='text' value='{{wechatnum}}' name="number"></input>
+      <input maxlength='25' placeholder-class="phcolor" placeholder='必填' bindinput='addnumber' type='text' value='{{wechatnum}}' name="number"></input>
     </view>
     <view class='main-li'>
       <view class='star'>*</view>
       <view class='title'><text>公</text><text>司:</text></view>
-      <input maxlength='40' placeholder-class="phcolor" placeholder='必填' bindinput='addcompany' type='text' value='{{company}}' name="company"></input>
+      <input maxlength='25' placeholder-class="phcolor" placeholder='必填' bindinput='addcompany' type='text' value='{{company}}' name="company"></input>
     </view>
     <view class='main-li'>
       <view class='star'>*</view>
@@ -33,7 +33,7 @@
     <view class='main-li'>
       <view class='star'>*</view>
       <view class='title'><text>职</text><text>务:</text></view>
-      <input maxlength='40' placeholder-class="phcolor" placeholder='填写公司职务' bindinput='addjob' type='text' value='{{job}}'></input>
+      <input maxlength='20' placeholder-class="phcolor" placeholder='填写公司职务' bindinput='addjob' type='text' value='{{job}}'></input>
     </view>
     <view class='main-li'>
       <view class='star'></view>

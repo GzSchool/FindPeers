@@ -18,6 +18,7 @@ Page({
     wechatnum: "",
     image:"/pages/images/1.png",
     email:"",
+    userJob: '',
     isshow:false,
     otheropenId:"",
     othercards:'',
@@ -107,6 +108,7 @@ Page({
         phone: res.data.data[0].userPhone,
         image: res.data.data[0].userImg,
         otheropenId: res.data.data[0].openId,
+        userJob: res.data.data[0].userJob
       })
       if (res.data.data[0].delFlag == 2){
         that.setData({

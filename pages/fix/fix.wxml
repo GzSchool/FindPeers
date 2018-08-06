@@ -60,7 +60,7 @@
         <text>公</text>
         <text>司:</text>
       </view>
-      <input placeholder-class="phcolor" placeholder='必填' bindinput='addcompany' type='text' value='{{company}}' maxlength='40'></input>
+      <input placeholder-class="phcolor" placeholder='必填' bindinput='addcompany' type='text' value='{{company}}' maxlength='25'></input>
     </view>
     <view class='main-li'>
       <view class='star'>*</view>
@@ -88,7 +88,7 @@
         <text>职</text>
         <text>务:</text>
       </view>
-      <input placeholder-class="phcolor" maxlength='40' placeholder='填写公司职务' bindinput='addjob' type='text' value='{{job}}'></input>
+      <input placeholder-class="phcolor" maxlength='25' placeholder='填写公司职务' bindinput='addjob' type='text' value='{{job}}'></input>
     </view>
     <view class='main-li'>
       <view class='star'></view>

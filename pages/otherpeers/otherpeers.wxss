@@ -21,7 +21,7 @@ Page{
 .main .main-top .top-left .info{
   color: #606060;
   font-size: 26rpx;
-  height: 46rpx;
+  /* height: 46rpx; */
   line-height: 46rpx;
 }
 .main .main-top .top-left .info.shade {
@@ -58,14 +58,21 @@ Page{
 .main .main-down .down-left .contact-info{
   font-size: 26rpx;
   color: #606060;
-  height: 48rpx;
+  /* height: 48rpx; */
   line-height: 48rpx;
   display: flex;
   align-items: center;
+  word-wrap:break-word;
 }
 .main .main-down .down-left .contact-info .info-left {
-  width: 32rpx;
+  min-width: 34rpx;
+  text-align: left;
+  align-self: flex-start;
 }
+/* .main .main-down .down-left .contact-info .info-right{
+  flex: 1;
+  word-wrap:break-word;
+} */
 .main .main-down .down-left .contact-info .info-right.shades {
   background-color: #E6E6E6;
   color: #FE0000;
@@ -77,6 +84,7 @@ Page{
 }
 .main .main-down .down-left{
   flex: 1;
+  overflow:hidden;
 }
 .main .main-down .down-right {
   width: 54rpx;
