@@ -9,6 +9,7 @@ page {
   padding-top: 20rpx;
   background-color: #ffffff;
   text-align: center;
+  box-shadow: 0rpx 2rpx 10rpx #eeeeee;
 }
 .card .card-info.card-name{
   height: 70rpx;
@@ -44,6 +45,7 @@ page {
   margin-top: 20rpx;
   display: flex;
   align-items: center;
+  box-shadow: 0rpx 2rpx 10rpx #eeeeee; 
 }
 .find .about{
   flex: 1;

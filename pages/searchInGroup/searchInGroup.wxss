@@ -119,3 +119,15 @@ page{
   justify-content: center;
   width: 100%;
 }
+.searching {
+  margin-top: 50rpx;
+  height: 70rpx;
+  text-align: center;
+  font-size: 24rpx;
+  color: #949494;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+

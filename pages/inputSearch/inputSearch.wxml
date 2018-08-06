@@ -25,8 +25,8 @@
     </view>
   </view>
 </view>
-<view class='loadtips' wx:if='{{loading}}'>
-  <view class='weui-loading'></view> 加载中...</view>
+<!-- <view class='loadtips' wx:if='{{loading}}'>
+  <view class='weui-loading'></view> 加载中...</view> -->
 <view class='loadtips' wx:if='{{loadAll}}'>
   <view class='tips-in'>已加载全部</view>
 </view>
@@ -34,3 +34,5 @@
   <image src='../images/none.png'></image>
   <view>没有找到你想要的同行信息</view>
 </view>
+<view class='searching' wx:if='{{searching}}'>
+<view class='weui-loading'></view> 加载中...</view>

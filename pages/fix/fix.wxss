@@ -83,13 +83,13 @@ Page{
   background-color: #ffffff;
   width: 710rpx;
   margin: 20rpx auto 20rpx;
-  padding: 0 20rpx 20rpx;
+  padding: 0 20rpx 40rpx;
 }
 .main-ul .main-li{
   border-bottom: 1rpx solid #D9D8D9;
-  height: 66rpx;
+  height: 94rpx;
   /* line-height: 66rpx; */
-  font-size: 28rpx;
+  font-size: 30rpx;
   color: #505050;
   display: flex;
   align-items: center;
@@ -165,7 +165,7 @@ Page{
 }
 .phcolor {
   color: #CCCCCC;
-  font-size: 25rpx;
+  font-size: 30rpx;
   height: 63rpx;
   line-height: 63rpx;
 }

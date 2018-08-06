@@ -6,7 +6,7 @@ page{
 }
 .main {
   border-top: 1rpx solid #D9D8D9;
-  border-bottom: 1rpx solid #D9D8D9;
+  /* border-bottom: 1rpx solid #D9D8D9; */
   background-color: #ffffff;
   display: flex;
   font-size: 26rpx;
@@ -38,9 +38,9 @@ page{
   background-color: #ffffff;
   
 }
-.main .main-nav .main-nav-li:last-child {
+/* .main .main-nav .main-nav-li:last-child {
   border-bottom: none;
-}
+} */
 .main .main-content {
   flex: 1;
   overflow: auto;

@@ -14,7 +14,8 @@ Page({
     loadAll: false, // 是否已加载全部
     noresult: false, // 是否显示无搜索结果
     key: " 微信号、城市、公司、行业等进行搜索",
-    groupid: ''
+    groupid: '',
+    searching: false
   },
   onShareAppMessage: function (a) {
     var server = app.globalData.server;
@@ -87,7 +88,9 @@ Page({
     this.setData({
       mes: key,
       pageNum: 1,
-      loadAll: false
+      loadAll: false,
+      searching: true,
+      noresult: false
     })
     let that = this;
     let list = []
@@ -107,13 +110,15 @@ Page({
             list.push(...res.data.data)
           }
           that.setData({
-            list: list
+            list: list,
+            searching: false
           });
         }
       })
     } else {
       that.setData({
-        list: []
+        list: [],
+        searching: false
       });
     }
   },

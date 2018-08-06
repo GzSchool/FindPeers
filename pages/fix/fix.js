@@ -153,7 +153,8 @@ Page({
           resource: b.data.data.resources,
           introduction: b.data.data.synopsis,
           id: b.data.data.id,
-          job: b.data.data.userJob
+          job: b.data.data.userJob,
+          count: b.data.data.synopsis.length, // 简介长度
         })
         if (that.data.demand !== '') {
           that.setData({
