@@ -18,7 +18,9 @@ Page({
     id:""
   },
   onLoad:function(){
-    
+    wx.showShareMenu({
+      withShareTicket: true
+    })
     var that=this
     var openid = app.globalData.openid
     console.log(openid)
@@ -48,7 +50,6 @@ Page({
       }
     })
   },
-  
   onShareAppMessage: function (a) {
     var that = this
     var server = app.globalData.server
@@ -58,7 +59,7 @@ Page({
     console.log("2222222222222333333333333333") 
     return{
       title: '我的同行信息',
-      path: '/page/mine/mine?othercardid=' + that.data.id,
+      path: '/pages/peerscards/peerscards?othercardid=' + that.data.id,
       success: function (res) {
         console.log(that.data.id)         
         console.log("66666666666") 

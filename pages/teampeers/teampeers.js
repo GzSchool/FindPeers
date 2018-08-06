@@ -30,13 +30,64 @@ Page({
     selectAll: false,
     hasSelect: false,
     selectMyCard: true, //分享弹出层选中自己
-    click:true
+    click: true
   },
+  onShareAppMessage: function(a) {
+    var server = app.globalData.server;
+    var that = this
+    var otheropenId = that.data.otheropenId;
+    return {
+      title: '找同行',
+      path: '/pages/findmore/findmore',
+      success: function(res) {
+        console.log("66666666666")
+        console.log(res)
+        console.log(a)
+        var shareTickets = res.shareTickets;
+        if (shareTickets.length == 0) {
+          return false;
+        }
+        wx.getShareInfo({
+          shareTicket: shareTickets[0],
+          success: function(res) {
+            console.log(res)
+            console.log(a)
+            var encryptedData = res.encryptedData;
+            var iv = res.iv;
+            wx.request({
+              method: 'POST',
+              url: server + '/userGroup/saveOrUpdate',
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
+              data: {
+                openId: app.globalData.openId,
+                openId: app.globalData.openId,
+                encryptedData: encryptedData,
+                iv: iv
+              },
+
+              header: {
+                'content-type': 'application/json'
+              },
+              success: function(c) {
+                // wx.navigateTo({
+                //   url: '/pages/peerscards/peerscards',
+                // })
+              }
+            })
+          }
+        })
+      },
+      fail: function(res) {
+        console.log(a)
+        console.log(res)
+        // 转发失败
+      }
+    }
+  },
   onLoad: function(ops) {
+    wx.showShareMenu({
+      withShareTicket: true
+    })
     console.log(ops)
     var that = this
     that.setData({
@@ -58,8 +109,8 @@ Page({
       // arr = res.data.data.result
       var length = res.data.data.result.length;
       console.log(res.data.data)
-      for (var m = 0; m < length; m ++) {
-        if (res.data.data.result[m].saveFlag !==  2) {
+      for (var m = 0; m < length; m++) {
+        if (res.data.data.result[m].saveFlag !== 2) {
           arr.push(res.data.data.result[m])
         }
       }
@@ -125,9 +176,9 @@ Page({
           //   },
           //   success: function(a) {
           //     console.log(a)
-              that.setData({
-                cansee: true
-              })
+          that.setData({
+            cansee: true
+          })
           //   }
           // })
         }
@@ -185,13 +236,13 @@ Page({
       })
     }, 200)
   },
-  aaa: function (e) {
+  aaa: function(e) {
     this.setData({
-      hasSelect:false
+      hasSelect: false
     })
     let activeList = []
     let list = this.data.list
-    for (let i = 0; i< list.length; i ++) {
+    for (let i = 0; i < list.length; i++) {
       if (list[i].isselect == true) {
         activeList.push(list[i].id)
       }
@@ -204,9 +255,9 @@ Page({
     var othercardid = app.globalData.othercardid
     var groupid = that.data.groupId
     var userpeers = [];
-    list=[];
+    list = [];
     util.saveOrUpdate(openid, groupid, 2, activeList).then(function(res) {
-      util.getGroupCards(openid, groupid, 1, 50).then(function (adc) {
+      util.getGroupCards(openid, groupid, 1, 50).then(function(adc) {
         var length = adc.data.data.result.length;
         console.log(adc.data.data)
         for (var i = 0; i < length; i++) {

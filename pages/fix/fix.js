@@ -47,9 +47,64 @@ Page({
     region: '',
     customItem: ''
   },
+  onShareAppMessage: function (a) {
+    var server = app.globalData.server;
+    var that = this
+    var otheropenId = that.data.otheropenId;
+    return {
+      title: '找同行',
+      path: '/pages/findmore/findmore',
+      success: function (res) {
+        console.log("66666666666")
+        console.log(res)
+        console.log(a)
+        var shareTickets = res.shareTickets;
+        if (shareTickets.length == 0) {
+          return false;
+        }
+        wx.getShareInfo({
+          shareTicket: shareTickets[0],
+          success: function (res) {
+            console.log(res)
+            console.log(a)
+            var encryptedData = res.encryptedData;
+            var iv = res.iv;
+            wx.request({
+              method: 'POST',
+              url: server + '/userGroup/saveOrUpdate',
+
+              data: {
+                openId: app.globalData.openId,
+                openId: app.globalData.openId,
+                encryptedData: encryptedData,
+                iv: iv
+              },
+
+              header: {
+                'content-type': 'application/json'
+              },
+              success: function (c) {
+                // wx.navigateTo({
+                //   url: '/pages/peerscards/peerscards',
+                // })
+              }
+            })
+          }
+        })
+      },
+      fail: function (res) {
+        console.log(a)
+        console.log(res)
+        // 转发失败
+      }
+    }
+  },
   onLoad: function(a) {
     var that = this
     console.log(a)
+    wx.showShareMenu({
+      withShareTicket: true
+    })
     that.data.server = app.globalData.server
     wx.showShareMenu({
       withShareTicket: true
@@ -212,6 +267,25 @@ Page({
     console.log(e.detail.errMsg)
     console.log(e.detail.iv)
     console.log(e.detail.encryptedData)
+    wx.login({                    //微信获取手机号需要code解密      
+      success: function (res) {
+        if (res.code) {
+          console.log(res.code)
+          // wx.request({
+          //   method: 'POST',
+          //   data: {
+          //     code: e.detail.code,
+          //     iv: e.detail.iv,
+          //     encryptedData: e.detail.encryptedData
+          //   },
+          //   url: server + '/userCard/saveOrUpdate',
+          //   header: {
+          //     'content-type': 'application/json'
+          //   },
+          // })
+        }
+      }
+    })
     if (e.detail.errMsg == 'getPhoneNumber:fail user deny') {
     } else {
     }

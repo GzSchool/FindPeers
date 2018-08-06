@@ -20,7 +20,7 @@ Page({
     email:"",
     isshow:false,
     otheropenId:"",
-    othercards:'',
+    othercardid:'',
     chooseSize: false,
     animationData: {},
     isgroup:"",                  //判断是否是在群里点击的
@@ -32,7 +32,7 @@ Page({
     var otheropenId = that.data.otheropenId;
     return {
       title: '同行信息',
-      path: '/page/peerscards/peerscards?othercardid='+that.data.cardId,
+      path: '/pages/peerscards/peerscards?othercardid='+that.data.cardId,
       success: function (res) {
         console.log("66666666666")
         console.log(res)
@@ -213,9 +213,9 @@ Page({
         success: function (a) {
           that.hideModal();
           console.log("保存成功")
-          wx.switchTab({
-            url: '/pages/findmore/findmore',
-          })
+          // wx.switchTab({
+          //   url: '/pages/findmore/findmore',
+          // })
         },fail:function(p){
           console.log(p)
           that.hideModal();

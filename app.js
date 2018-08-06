@@ -20,11 +20,12 @@ App({
   onLaunch: function(ops) {
     var that = this
     var server = that.globalData.server
-    var othercardid = that.globalData.othercardid
+    // var othercardid = that.globalData.othercardid
     var url = that.globalData.urlOfLogin
     //要是有id 说明点击的别人分享的（只有两个 一是：群里点击的， 二是：别人分享的）
-    if (othercardid) {
-      //that.globalData.othercardid=ops.cardId
+    if (ops.othercardid) {
+      that.globalData.othercardid = ops.othercardid;
+      var othercardid = ops.othercardid;
       if (ops.scene == 1044) {                                            // 等于这个 就是群里点击的
         that.globalData.isgroup=true
         var shareTickets = ops.shareTicket;
@@ -120,13 +121,13 @@ App({
             if (res) {
               that.globalData.isshow = true
               that.globalData.notadd = false
-              wx.redirectTo({
+              wx.navigateTo({
                 url: '/pages/peerscards/peerscards?othercardid=' + othercardid + '&isshow=true',
               })
             } else {
               that.globalData.notadd = true
               that.globalData.isshow = false
-              wx.redirectTo({
+              wx.navigateTo({
                 url: '/pages/peerscards/peerscards',
               })
             }

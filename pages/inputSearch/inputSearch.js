@@ -14,7 +14,62 @@ Page({
     noresult: false, // 是否显示无搜索结果
     key: " 微信号、城市、公司、行业等进行搜索",
   },
+  onShareAppMessage: function (a) {
+    var server = app.globalData.server;
+    var that = this
+    var otheropenId = that.data.otheropenId;
+    return {
+      title: '找同行',
+      path: '/pages/findmore/findmore',
+      success: function (res) {
+        console.log("66666666666")
+        console.log(res)
+        console.log(a)
+        var shareTickets = res.shareTickets;
+        if (shareTickets.length == 0) {
+          return false;
+        }
+        wx.getShareInfo({
+          shareTicket: shareTickets[0],
+          success: function (res) {
+            console.log(res)
+            console.log(a)
+            var encryptedData = res.encryptedData;
+            var iv = res.iv;
+            wx.request({
+              method: 'POST',
+              url: server + '/userGroup/saveOrUpdate',
+
+              data: {
+                openId: app.globalData.openId,
+                openId: app.globalData.openId,
+                encryptedData: encryptedData,
+                iv: iv
+              },
+
+              header: {
+                'content-type': 'application/json'
+              },
+              success: function (c) {
+                // wx.navigateTo({
+                //   url: '/pages/peerscards/peerscards',
+                // })
+              }
+            })
+          }
+        })
+      },
+      fail: function (res) {
+        console.log(a)
+        console.log(res)
+        // 转发失败
+      }
+    }
+  },
   onLoad: function (options) {
+    wx.showShareMenu({
+      withShareTicket: true
+    })
     this.setData({
       notadd: app.globalData.notadd
     })

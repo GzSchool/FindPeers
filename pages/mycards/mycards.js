@@ -70,7 +70,7 @@ Page({
     var server = app.globalData.server;
     return {
       title: '我的名片信息',
-      path: '/page/mine/mine?othercardid=' + that.data.id,
+      path: '/pages/peerscards/peerscards?othercardid=' + that.data.id,
       success: function (res) {
         console.log(res)
         var shareTickets = res.shareTickets;

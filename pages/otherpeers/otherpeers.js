@@ -35,7 +35,7 @@ Page({
     console.log(otheropenId)
     return {
       title: '同行信息',
-      path: '/page/peerscards/peerscards?othercardid=' + that.data.id,
+      path: '/pages/peerscards/peerscards?othercardid=' + that.data.id,
       success: function(res) {
         console.log("66666666666")
         console.log(res)
@@ -237,9 +237,8 @@ Page({
         firstName: that.data.name,
         mobilePhoneNumber: that.data.phone,
         success: function(a) {
-          wx.navigateBack({
-            delta: 1
-          })
+         console.log(a);
+         that.hideModal();
         },
         fail: function(p) {
           console.log(p)
