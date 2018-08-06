@@ -132,11 +132,30 @@ page{
   line-height: 20rpx;
   margin: 5rpx 0;
 }
-.mes-link .link-item:active{
-  /* color: #2c7fe7; */
+/* .mes-link .link-item .bg_water {
+  position: absolute;
+  top: 0;
+  right: 88rpx;
+  width: 107rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+  background-size: 100% 100%;
+  font-size: 34rpx;
+  color: #ffffff;
+  text-align: center;
+  display: none;
+} */
+/* .mes-link .link-item .bg_water image {
+  width: 107rpx;
+  height: 90rpx;
+} */
+.mes-link .link-item:active {
   background-color:#2c7fe7;
   color: #ffffff;
   border-radius: 50%;
+}
+.mes-link .link-item:active .letter_toast {
+  display: block;
 }
 .mes-list .letter{
   padding-left: 40rpx;
@@ -188,4 +207,20 @@ page{
 .to-top image{
   width: 56rpx;
   height: 48rpx;
+}
+.letter_toast {
+  position:fixed;
+  z-index:5000;
+  width:100rpx;
+  height:100rpx;
+  font-size: 46rpx;
+  line-height: 100rpx;
+  top:180px;
+  left:50%;
+  transform: translateX(-50%);
+  background:rgba(17, 17, 17, 0.7);
+  text-align:center;
+  border-radius:5px;
+  color:#FFFFFF;
+  display: none;
 }
