@@ -12,7 +12,7 @@
       <image src='{{image}}'></image>
     </view>
   </view>
-  <view class='main-down'>
+  <view class='main-down' wx:if='{{!shareing}}'>
     <view class='down-left'>
       <view class='contact-info' wx:if="{{phone}}">
         <view class='info-left'>

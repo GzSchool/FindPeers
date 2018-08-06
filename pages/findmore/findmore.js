@@ -137,7 +137,6 @@ Page({
     })
     var openid = app.globalData.openid;
     var list = that.data.list
-    console.log(openid)
     util.getMyPeers(openid).then(function (res) {                         //获取当前保存的同行名片
       console.log('我的同行列表')
       console.log(res.data.data)
@@ -152,7 +151,6 @@ Page({
       }
       // letter.push('#')
       letter = that.dedupe(letter)
-      // console.log(letter)
       letter.forEach(function (a, b) {
         con[b] = { letter: a, data: [] }
         res.data.data.forEach(function (c, d) {
@@ -161,13 +159,11 @@ Page({
           }
         })
       })
-      // console.log(letter)
       that.setData({
         list: res.data.data,
         list_letter: letter,
         list_con: con,
       })
-      // console.log(that.data.list_con)
     });
   },
   trans: function () {
@@ -189,7 +185,6 @@ Page({
   },
   addcards: function (e) {
     var othercardid = app.globalData.othercardid;
-    console.log(othercardid !== "")
     if (e.detail.userInfo) {
       wx.navigateTo({
         url: '/pages/addcards/addcards',
@@ -215,22 +210,17 @@ Page({
   },
   onShow: function () {
     this.onLoad();
-    let con = []
-    let cons = [{letter: '', data: []}]
-    console.log(con)
   },
   letterClick(e) {
     this.setData({
       list_id: e.target.dataset.item
     });
-    console.log(this.data.list_id)
   },
   dedupe:function (array) {
     return Array.from(new Set(array))
   },
   // 获取滚动条当前位置
   scrolltoupper: function (e) {
-    console.log(e.detail.scrollTop)
     if (e.detail.scrollTop > 1000) {
       this.setData({
         floorstatus: true

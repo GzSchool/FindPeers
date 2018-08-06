@@ -104,22 +104,21 @@ Page({
     var listOfSave = that.data.listOfSave
     var openId = that.data.openid;
     var groupId = that.data.groupId;
-    let arr = []
-    util.getGroupCards(openId, groupId,1,20).then(function(res) {
-      arr = res.data.data.result
-      console.log(res.data)
+    util.getGroupCards(openId, groupId,1,1000).then(function(res) {
+      let arr = res.data.data.result
+      console.log('---')
+      console.log(arr)
       var length = res.data.data.result.length;
-      console.log(res.data.data)
-      for (var m = 0; m < length; m ++) {
-        if (res.data.data.result[m].saveFlag !==  2) {
-          arr.push(res.data.data.result[m])
-        }
-      }
-      for (var n = 0; n < length; n++) {
-        if (res.data.data.result[n].saveFlag == 2) {
-          arr.push(res.data.data.result[n])
-        }
-      }
+      // for (var m = 0; m < length; m ++) {
+      //   if (res.data.data.result[m].saveFlag !== 2) {
+      //     arr.push(res.data.data.result[m])
+      //   }
+      // }
+      // for (var n = 0; n < length; n++) {
+      //   if (res.data.data.result[n].saveFlag == 2) {
+      //     arr.push(res.data.data.result[n])
+      //   }
+      // }
       for (var i = 0; i < arr.length; i++) {
         arr[i].isselect = false
         list.push(arr[i]);
@@ -130,10 +129,6 @@ Page({
       that.setData({
         list: list,
         listOfSave: listOfSave
-      });
-      console.log(that.data.listOfSave)
-      that.setData({
-        hidden: true
       });
     })
     util.getMyData(openId).then(function(res) {
@@ -242,28 +237,25 @@ Page({
       hasSelect:false
     })
     let activeList = []
-    let list = this.data.list
-    for (let i = 0; i< list.length; i ++) {
-      if (list[i].isselect == true) {
-        activeList.push(list[i].id)
+    let mes = this.data.list
+    for (let i = 0; i < mes.length; i ++) {
+      if (mes[i].isselect == true) {
+        activeList.push(mes[i].id)
       }
     }
     console.log(activeList)
     var that = this
-    console.log(app)
     var openid = app.globalData.openid;
     var listOfSave = []
     var othercardid = app.globalData.othercardid
     var groupid = that.data.groupId
     var userpeers = [];
-    list=[];
+    let list=[];
     util.saveOrUpdate(openid, groupid, 2, activeList).then(function(res) {
-      util.getGroupCards(openid, groupid, 1, 50).then(function (adc) {
+      util.getGroupCards(openid, groupid, 1, 1000).then(function (adc) {
         var length = adc.data.data.result.length;
-        console.log(adc.data.data)
         for (var i = 0; i < length; i++) {
           adc.data.data.result[i].isselect = false
-          // res.data.data[i].index = i
           list.push(adc.data.data.result[i]);
           if (adc.data.data.result[i].saveFlag == 1) {
             listOfSave.push(adc.data.data.result[i].id)
@@ -272,11 +264,6 @@ Page({
         that.setData({
           list: list,
           listOfSave: listOfSave
-        });
-        console.log(that.data.list)
-        console.log(that.data.listOfSave)
-        that.setData({
-          hidden: true
         });
       })
       if (res.data.success && res.statusCode == 200) {

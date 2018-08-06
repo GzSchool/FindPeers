@@ -2,7 +2,7 @@
 <view class='main'>
   <view class='main-top'>
     <view class='img'>
-      <image src='/pages/images/findpeers.png'></image>
+      <image src='/pages/images/gz_logo.png'></image>
     </view>
     <view class='name'>找同行团队</view>
     <view class='name'>北京格致文化传播有限公司</view>

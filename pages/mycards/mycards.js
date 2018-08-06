@@ -23,7 +23,8 @@ Page({
     showphone:false,
     showdemand:false,
     showresource:false,
-    showintroduction:false
+    showintroduction:false,
+    shareing: false
   },
   onLoad:function(a){
     wx.showShareMenu({
@@ -130,7 +131,18 @@ Page({
     wx.switchTab({
       url: '/pages/findmore/findmore',
     })
+  },
+  toMyPeers () {
+    console.log('分享')
+    this.setData({
+      shareing: true
+    })
+  },
+  onShow:function(){
+    this.setData({
+      shareing: false
+    })
   }
-
+  
  
 })
