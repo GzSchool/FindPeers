@@ -27,14 +27,14 @@
   </view>
   <view class='main-down'>
     <view class='down-left' wx:if='{{!chooseSize}}'>
-      <view class='contact-info'>
+      <view class='contact-info' wx:if='{{phone}}'>
         <view class='info-left'>
           <image src='../images/phone.png' style='width:17rpx;height:25rpx;'></image>
         </view>
-        <view class='info-right shades' wx:if='{{!isshow}}'>需添加信息才可查看</view>
-        <view class='info-right' wx:if='{{isshow}}'>{{phone}}</view>
+        <view class='info-right shades' wx:if='{{!isshow||!addPhone}}'>需添加信息才可查看</view>
+        <view class='info-right' wx:if='{{isshow&&addPhone}}'>{{phone}}</view>
       </view>
-      <view class='contact-info'>
+      <view class='contact-info' wx:if='{{wechatnum}}'>
         <view class='info-left'>
           <image src='../images/wechat.png' style='width:26rpx;height:21rpx;'></image>
         </view>

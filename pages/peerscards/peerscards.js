@@ -28,7 +28,8 @@ Page({
     animationData: {},
     isgroup: "", //判断是否是在群里点击的
     isSave: "", //判断是否已保存这个名片
-    checkSave: "" //检验是不是保存了这个名片
+    checkSave: "", //检验是不是保存了这个名片
+    addPhone: false,//判断是否添加了手机号
   },
   onShareAppMessage: function(a) {
     var server = app.globalData.server;
@@ -102,14 +103,24 @@ Page({
         groupId: 0
       })
     }
+    if(app.globalData.isgroup){
+      that.setData({
+        addPhone: app.globalData.addPhone
+      })
+    }else{
+      that.setData({
+        addPhone: true
+      })
+    }
+    console.log(!app.globalData.isshow||!that.data.addPhone)        
     that.setData({
       isshow: app.globalData.isshow,
       isgroup: app.globalData.isgroup,
       notadd: app.globalData.notadd,
       checkSave: app.globalData.checkSave,
       othercardid:app.globalData.othercardid
-    })
-    if(that.data.othercardid){}
+    })     
+    console.log(!that.data.isshow||!that.data.addPhone)            
     var othercardid = app.globalData.othercardid;
     util.getCardsById(othercardid).then(function (res) {
       console.log(res)
@@ -126,6 +137,8 @@ Page({
         userJob: res.data.data[0].userJob,
         id:res.data.data[0].id
       })
+      console.log(!that.data.isshow || !that.data.addPhone)            
+      
     })
   },
   addcards: function(e) {

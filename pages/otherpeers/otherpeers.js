@@ -27,7 +27,8 @@ Page({
     resources: '', // 资源
     synopsis: '', // 简介
     isshow: false,
-    otheropenId: ""
+    otheropenId: "",
+    addPhone:""
   },
   onShareAppMessage: function(a) {
     var server = app.globalData.server
@@ -108,6 +109,7 @@ Page({
     var that = this
     console.log(ops)
     that.setData({
+      addPhone:app.globalData.addPhone,
       cardId: ops.cardId,
       notadd: app.globalData.notadd,
       groupId: ops.groupId,
