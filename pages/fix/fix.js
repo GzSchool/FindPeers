@@ -47,61 +47,58 @@ Page({
     region: '',
     customItem: ''
   },
-  onShareAppMessage: function (a) {
-    var server = app.globalData.server;
-    var that = this
-    var otheropenId = that.data.otheropenId;
-    return {
-      title: '找同行',
-      path: '/pages/findmore/findmore',
-      success: function (res) {
-        console.log("66666666666")
-        console.log(res)
-        console.log(a)
-        var shareTickets = res.shareTickets;
-        if (shareTickets.length == 0) {
-          return false;
-        }
-        wx.getShareInfo({
-          shareTicket: shareTickets[0],
-          success: function (res) {
-            console.log(res)
-            console.log(a)
-            var encryptedData = res.encryptedData;
-            var iv = res.iv;
-            wx.request({
-              method: 'POST',
-              url: server + '/userGroup/saveOrUpdate',
-
-              data: {
-                openId: app.globalData.openId,
-                otherOpenId: app.globalData.openId,
-                encryptedData: encryptedData,
-                iv: iv
-              },
-
-              header: {
-                'content-type': 'application/json'
-              },
-              success: function (c) {
-                // wx.navigateTo({
-                //   url: '/pages/peerscards/peerscards',
-                // })
-              }
-            })
-          }
-        })
-      },
-      fail: function (res) {
-        console.log(a)
-        console.log(res)
-        // 转发失败
-      }
-    }
-  },
   onLoad: function(a) {
     var that = this
     console.log(a)
+    wx.getStorage({
+      key: 'userInfo',
+      success: function (res) {
+        console.log(res)
+        that.setData({
+          mineInfo: {
+            name: res.data.username,
+            idustry: res.data.userIndustry,
+            city: res.data.userCity,
+            company: res.data.userCompany,
+            phone: res.data.userPhone,
+            wechatnum: res.data.userWechat,
+            email: res.data.userEmail
+          },
+          name: res.data.username,
+          wechatnum: res.data.userWechat,
+          company: res.data.userCompany,
+          idustry: res.data.userIndustry,
+          city: res.data.userCity,
+          email: res.data.userEmail,
+          phone: res.data.userPhone,
+          image: res.data.userImg,
+          demand: res.data.demand,
+          resource: res.data.resources,
+          introduction: res.data.synopsis,
+          id: res.data.id,
+          job: res.data.userJob,
+          count: res.data.synopsis.length, // 简介长度
+        })
+        if (that.data.demand !== '') {
+          that.setData({
+            isshow0: true
+          })
+        }
+        if (that.data.resource !== '') {
+          that.setData({
+            isshow1: true
+          })
+        }
+        if (that.data.email !== '') {
+          that.setData({
+            isshow2: true
+          })
+        }
+      },
+      fail: function (res) {
+        that.getMyData()
+      }
+    })
     wx.showShareMenu({
       withShareTicket: true
     })
@@ -116,6 +113,10 @@ Page({
         groupId: a.groupId
       })
     }
+  },
+  // 获取个人信息，缓存获取失败时调用
+  getMyData() {
+    let that = this
     that.data.openid = app.globalData.openid;
     var openid = that.data.openid;
     console.log(openid)
@@ -129,7 +130,7 @@ Page({
       header: {
         'content-type': 'application/json'
       },
-      success: function(b) {
+      success: function (b) {
         console.log(b)
         that.setData({
           mineInfo: {
@@ -381,5 +382,58 @@ Page({
     this.setData({
       city: e.detail.value.join('')
     })
+  },
+  // 分享信息
+  onShareAppMessage: function (a) {
+    var server = app.globalData.server;
+    var that = this
+    var otheropenId = that.data.otheropenId;
+    return {
+      title: '找同行',
+      path: '/pages/findmore/findmore',
+      success: function (res) {
+        console.log("66666666666")
+        console.log(res)
+        console.log(a)
+        var shareTickets = res.shareTickets;
+        if (shareTickets.length == 0) {
+          return false;
+        }
+        wx.getShareInfo({
+          shareTicket: shareTickets[0],
+          success: function (res) {
+            console.log(res)
+            console.log(a)
+            var encryptedData = res.encryptedData;
+            var iv = res.iv;
+            wx.request({
+              method: 'POST',
+              url: server + '/userGroup/saveOrUpdate',
+
+              data: {
+                openId: app.globalData.openId,
+                otherOpenId: app.globalData.openId,
+                encryptedData: encryptedData,
+                iv: iv
+              },
+
+              header: {
+                'content-type': 'application/json'
+              },
+              success: function (c) {
+                // wx.navigateTo({
+                //   url: '/pages/peerscards/peerscards',
+                // })
+              }
+            })
+          }
+        })
+      },
+      fail: function (res) {
+        console.log(a)
+        console.log(res)
+        // 转发失败
+      }
+    }
   }
 })
