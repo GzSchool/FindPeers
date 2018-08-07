@@ -64,6 +64,7 @@ Page({
     
   },
   getData() {
+    let that = this
     var openid = app.globalData.openid;
     util.getMyData(openid).then(function (res) {
       console.log(res)

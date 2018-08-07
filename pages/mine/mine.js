@@ -11,7 +11,6 @@ Page({
     industry:"",     //用户行业
     city:"",         //用户城市
     userJob:"",      //用户职务
-    server:"",       //服务器地址
     company:"",      //用户公司
     img1:"/pages/images/about1.png",  
     img2:"/pages/images/right.png",
@@ -24,9 +23,28 @@ Page({
       withShareTicket: true
     })
     var that=this
+    wx.getStorage({
+      key: 'userInfo',
+      success: function (res) {
+        console.log(res)
+        that.setData({
+          name: res.data.username,
+          userJob: res.data.userJob,
+          company: res.data.userCompany,
+          idustry: res.data.userIndustry,
+          city: res.data.userCity,
+          image: res.data.userImg,
+          id: res.data.id
+        })
+      },
+      fail: function (res) {
+        that.getData()
+      }
+    })
+  },
+  getData() {
+    let that = this
     var openid = app.globalData.openid
-    that.data.server=app.globalData.server;
-    var server = app.globalData.server
     //获取用户个人信息
     util.getMyData(openid).then(function (res) {
       if (res == null) {
@@ -39,12 +57,12 @@ Page({
         app.globalData.isshow = true
         that.setData({
           name: res.username,
-          userJob:res.userJob,
+          userJob: res.userJob,
           company: res.userCompany,
           idustry: res.userIndustry,
           city: res.userCity,
           image: res.userImg,
-          id:res.id
+          id: res.id
         })
       }
     })
@@ -52,7 +70,6 @@ Page({
   //分享
   onShareAppMessage: function (a) {
     var that = this
-    var server = app.globalData.server;
     var openId = app.globalData.openid;
     var otherOpenId = app.globalData.openid;
     var id = that.data.id;
