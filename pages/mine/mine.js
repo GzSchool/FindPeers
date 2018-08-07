@@ -75,11 +75,14 @@ Page({
         }
         wx.getShareInfo({
           shareTicket: shareTickets[0],
-          success: function (res) {
-            console.log(res)
-            console.log(a)            
-            var encryptedData = res.encryptedData;
-            var iv = res.iv;
+          success: function (b) {
+            console.log(app.globalData.openid,)
+            console.log(app.globalData.openid)
+            console.log(b)                        
+            var encryptedData = b.encryptedData;
+            var iv = b.iv;
+            console.log(encryptedData)
+            console.log(iv)
             wx.request({
               method: 'POST',
               url: server+'/userGroup/saveOrUpdate',

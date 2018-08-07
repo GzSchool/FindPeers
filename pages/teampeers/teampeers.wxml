@@ -45,10 +45,10 @@
             <text>{{item.userIndustry}}</text>
           </view>
           <view class='mes-info shade' wx:if='{{notadd}}'>
-            <view class='shade-in'>需填写信息才可查看</view>
+            <!-- <view class='shade-in'>需填写信息才可查看</view> -->
           </view>
           <view class='mes-info shade' wx:if='{{notadd}}'>
-            <view class='shade-in'>需填写信息才可查看</view>
+            <!-- <view class='shade-in'>需填写信息才可查看</view> -->
           </view>
           <view class='mes-info' wx:if='{{!notadd}}'>{{item.userCity}}</view>
           <view class='mes-info' wx:if='{{!notadd}}'>{{item.userCompany}}</view>
