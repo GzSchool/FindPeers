@@ -34,7 +34,15 @@
 		},
 		"miniprogram": {
 			"current": 0,
-			"list": []
+			"list": [
+				{
+					"id": -1,
+					"name": "首页",
+					"pathName": "pages/findmore/findmore",
+					"query": "",
+					"scene": "1001"
+				}
+			]
 		}
 	}
 }

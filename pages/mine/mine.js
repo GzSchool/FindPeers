@@ -56,6 +56,9 @@ Page({
     var openId = app.globalData.openid;
     var otherOpenId = app.globalData.openid;
     var id = that.data.id;
+    console.log(openId)
+    console.log(otherOpenId)
+    console.log(id)
     util.shareToQunOrPersonal(openId, otherOpenId, id).then(function(e){
       console.log(e)
     })

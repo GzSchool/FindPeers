@@ -281,12 +281,10 @@ function getOpenGid( openid, otherOpenId, shareTickets){
 /**
  * 分享（除了几个特殊页面以外的）
  */
-function sharePage(openId, otherOpenId){
+function sharePage(openId, otherOpenId, res){
   return new Promise(function(resolve){
-  return {
-    title: '找同行',
-    path: '/pages/findmore/findmore',
-    success: function (res) {
+  
+      console.log(res)
       var shareTickets = res.shareTickets;
       if (shareTickets.length == 0) {
         return false;
@@ -311,16 +309,12 @@ function sharePage(openId, otherOpenId){
               'content-type': 'application/json'
             },
             success: function (c) {
+              console.log(c)
               resolve(c)
             }
           })
         }
       })
-    },
-    fail: function (res) {
-      // 转发失败
-    }
-  }
   })
 }
 /**

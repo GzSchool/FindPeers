@@ -7,35 +7,41 @@ Page({
    * 页面的初始数据
    */
   data: {
-    name: "",
-    city: "",
-    idustry: "",
-    server: "",
-    company: "",
-    groupId: "",
-    notadd: "",
-    cardId: [],
-    id:"",
-    phone: "",
-    wechatnum: "",
-    image: "",
-    email: "",
-    userJob: '',
-    isshow: false,
-    otheropenId: "",
-    othercardid: '',
-    chooseSize: false,
-    animationData: {},
-    isgroup: "", //判断是否是在群里点击的
-    isSave: "", //判断是否已保存这个名片
-    checkSave: "", //检验是不是保存了这个名片
-    userInfo: {}, // 用户信息
-    addPhone: false,//判断是否添加了手机号
+    name: "",         //用户名字
+    city: "",         //用户城市
+    idustry: "",      //用户行业
+    server: "",       //服务器地址
+    company: "",      //用户公司
+    groupId: "",      //群组ID
+    notadd: "",       //用户是否添加信息
+    cardId: [],       //名片ID数组
+    id:"",            //名片ID
+    phone: "",        //用户手机号
+    wechatnum: "",    //用户微信号
+    image: "",        //用户头像
+    email: "",        //用户邮箱
+    userJob: '',      //用户职务
+    isshow: false,    //是否显示信息
+    otheropenId: "",  //别人的用户标识
+    othercardid: '',  //别人的名片ID
+    chooseSize: false,//选择动画
+    animationData: {},//动画
+    isgroup: "",      //判断是否是在群里点击的
+    isSave: "",       //判断是否已保存这个名片
+    checkSave: "",    //检验是不是保存了这个名片
+    userInfo: {},     // 用户信息
+    addPhone: false,  //判断是否添加了手机号
   },
+  //分享
   onShareAppMessage: function(a) {
     var server = app.globalData.server;
     var that = this
     var otheropenId = that.data.otheropenId;
+    var openId = app.globalData.openid;
+    var id = that.data.othercardid;
+    // util.shareToQunOrPersonal(openId, otheropenId, id).then(function(e){
+    //   console.log(e)
+    // })
     return {
       title: '同行信息',
       path: '/pages/peerscards/peerscards?othercardid=' + that.data.othercardid,
