@@ -39,16 +39,10 @@ Page({
     var otheropenId = that.data.otheropenId;
     var openId = app.globalData.openid;
     var id = that.data.othercardid;
-    // util.shareToQunOrPersonal(openId, otheropenId, id).then(function(e){
-    //   console.log(e)
-    // })
     return {
       title: '同行信息',
       path: '/pages/peerscards/peerscards?othercardid=' + that.data.othercardid,
       success: function(res) {
-        console.log("66666666666")
-        console.log(res)
-        console.log(a)
         var shareTickets = res.shareTickets;
         if (shareTickets.length == 0) {
           return false;
@@ -56,47 +50,37 @@ Page({
         wx.getShareInfo({
           shareTicket: shareTickets[0],
           success: function(res) {
-            console.log(res)
-            console.log(a)
             var encryptedData = res.encryptedData;
             var iv = res.iv;
             wx.request({
               method: 'POST',
               url: server + '/userGroup/saveOrUpdate',
-
               data: {
                 openId: app.globalData.openId,
                 otherOpenId: otheropenId,
                 encryptedData: encryptedData,
                 iv: iv
               },
-
               header: {
                 'content-type': 'application/json'
               },
               success: function(c) {
-                // wx.navigateTo({
-                //   url: '/pages/peerscards/peerscards',
-                // })
               }
             })
           }
         })
       },
       fail: function(res) {
-        console.log(a)
-        console.log(res)
         // 转发失败
       }
     }
   },
+  //页面加载
   onLoad: function(ops) {
-    console.log(ops)
     var that = this 
     wx.getStorage({
       key: 'userInfo',
       success: function (res) {
-        console.log(res)
         that.setData({
           userInfo: res.data
         })
@@ -108,7 +92,6 @@ Page({
     wx.showShareMenu({
       withShareTicket: true
     })
-    console.log(ops)
     that.data.server = app.globalData.server;
     if (ops.groupId) {
       that.setData({
@@ -128,7 +111,6 @@ Page({
         addPhone: true
       })
     }
-    console.log(!app.globalData.isshow||!that.data.addPhone)        
     that.setData({
       isshow: app.globalData.isshow,
       isgroup: app.globalData.isgroup,
@@ -136,10 +118,8 @@ Page({
       checkSave: app.globalData.checkSave,
       othercardid:app.globalData.othercardid
     })     
-    console.log(!that.data.isshow||!that.data.addPhone)            
     var othercardid = app.globalData.othercardid;
     util.getCardsById(othercardid).then(function (res) {
-      console.log(res)
       that.setData({
         name: res.data.data[0].username,
         wechatnum: res.data.data[0].userWechat,
@@ -153,8 +133,6 @@ Page({
         userJob: res.data.data[0].userJob,
         id:res.data.data[0].id
       })
-      console.log(!that.data.isshow || !that.data.addPhone)            
-      
     })
   },
   addcards: function(e) {
@@ -174,9 +152,6 @@ Page({
     var groupId = that.data.groupId;
     var openid = app.globalData.openid;
     var cardId = that.data.cardId
-    console.log(openid)
-    console.log(groupId)
-    console.log(cardId)
     util.saveOrUpdate(openid, groupId, 1, cardId).then(function(res) {
       that.setData({
         isSave: false
@@ -243,19 +218,13 @@ Page({
   saveToPhone: function() {
     var that = this
     if (that.data.phone) {
-      console.log(that.data.phone)
       wx.addPhoneContact({
         firstName: that.data.name,
         mobilePhoneNumber: that.data.phone,
         success: function(a) {
           that.hideModal();
-          console.log("保存成功")
-          // wx.switchTab({
-          //   url: '/pages/findmore/findmore',
-          // })
         },
         fail: function(p) {
-          console.log(p)
           that.hideModal();
         }
       })
@@ -271,7 +240,6 @@ Page({
           });
         },
         fail: function(p) {
-          console.log(p)
           that.hideModal();
         }
       })
@@ -285,10 +253,8 @@ Page({
     var othercardid = app.globalData.othercardid
     var cardId = that.data.cardId
     cardId.push(othercardid)
-    console.log(cardId)
     let saveName = this.data.userInfo.username
     let formId = e.detail.formId
-    console.log(e.detail.formId)
     util.saveOrUpdate(openid, groupId, 2, cardId, saveName, formId).then(function(res) {
       that.setData({
         isSave: true
@@ -308,7 +274,6 @@ Page({
     // })
   },
   toTeamPeers: function(e) {
-    console.log(e)
     var that =this
     var groupId = that.data.groupId;
     var openid = app.globalData.openid;

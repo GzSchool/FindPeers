@@ -70,15 +70,50 @@ Page({
   //分享
   onShareAppMessage: function (a) {
     var that = this
-    var openId = app.globalData.openid;
-    var otherOpenId = app.globalData.openid;
-    var id = that.data.id;
-    console.log(openId)
-    console.log(otherOpenId)
-    console.log(id)
-    util.shareToQunOrPersonal(openId, otherOpenId, id).then(function(e){
-      console.log(e)
+    var server = app.globalData.server
+    wx.showShareMenu({
+      withShareTicket: true
     })
+    return {
+      title: '我的同行信息',
+      path: '/pages/peerscards/peerscards?othercardid=' + that.data.id,
+      success: function (res) {
+        var shareTickets = res.shareTickets;
+        console.log(shareTickets)
+        if (shareTickets.length == 0) {
+          return false;
+        }
+        wx.getShareInfo({
+          shareTicket: shareTickets[0],
+          success: function (b) {
+            var encryptedData = b.encryptedData;
+            var iv = b.iv;
+            wx.request({
+              method: 'POST',
+              url: server + '/userGroup/saveOrUpdate',
+
+              data: {
+                openId: app.globalData.openid,
+                otherOpenId: app.globalData.openid,
+                encryptedData: encryptedData,
+                iv: iv
+              },
+
+              header: {
+                'content-type': 'application/json'
+              },
+              success: function (c) {
+                console.log(c)
+                
+              }
+            })
+          }
+        })
+      },
+      fail: function (res) {
+        // 转发失败
+      }
+    }
   },
   //点击如何找到
   findUs () {

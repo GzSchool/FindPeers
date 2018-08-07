@@ -16,8 +16,6 @@ Page({
       path: '/pages/findmore/findmore',
       success: function (res) {
         console.log("66666666666")
-        console.log(res)
-        console.log(a)
         var shareTickets = res.shareTickets;
         if (shareTickets.length == 0) {
           return false;
@@ -25,8 +23,6 @@ Page({
         wx.getShareInfo({
           shareTicket: shareTickets[0],
           success: function (res) {
-            console.log(res)
-            console.log(a)
             var encryptedData = res.encryptedData;
             var iv = res.iv;
             wx.request({
@@ -44,17 +40,13 @@ Page({
                 'content-type': 'application/json'
               },
               success: function (c) {
-                // wx.navigateTo({
-                //   url: '/pages/peerscards/peerscards',
-                // })
+                
               }
             })
           }
         })
       },
       fail: function (res) {
-        console.log(a)
-        console.log(res)
         // 转发失败
       }
     }
