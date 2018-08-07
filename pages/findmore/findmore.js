@@ -86,6 +86,39 @@ Page({
       withShareTicket: true
     })
     let that = this
+    var url = app.globalData.urlOfLogin
+    util.Login(url).then(function (data) {                // 登录
+      console.log(data)
+      if (data) {
+        app.globalData.openid = data
+        var openid = app.globalData.openid
+        console.log(app.globalData.openid)
+      }
+      var openid = app.globalData.openid;              //用用户标识访问数据库获取用户信息
+      var openid = app.globalData.openid;
+      console.log(openid)
+      util.getMyData(openid).then(function (res) {
+        console.log(openid)
+        console.log(res)
+        if (res) {
+          app.globalData.notadd = false;
+          app.globalData.isshow = true;
+          // wx.switchTab({
+          //   url: '/pages/findmore/findmore',
+          // })
+        } else {
+          app.globalData.notadd = true;
+          app.globalData.isshow = false;
+          // wx.switchTab({
+          //   url: '/pages/findmore/findmore',
+          // })
+        }
+        if (that.employIdCallback) {
+          that.employIdCallback(res)
+        }
+      })
+    })
+    
     wx.getSystemInfo({
       success: function (res) {
         that.setData({
@@ -114,6 +147,7 @@ Page({
     var notadd = app.globalData.notadd;
     that.data.openid = app.globalData.openid;
     var openid = app.globalData.openid;
+    console.log(openid)
     util.getMyData(openid).then(function (res) {               //用户查询自己信息
       console.log(res)
       if (!res) {
