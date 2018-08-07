@@ -25,7 +25,8 @@ Page({
     isshow: false,
     otheropenId: "",
     searching: false,
-    userInfo: {} // 用户信息
+    userInfo: {}, // 用户信息
+    addPhone:""
   },
   onShareAppMessage: function(a) {
     var server = app.globalData.server
@@ -116,6 +117,7 @@ Page({
     })
     console.log(ops)
     that.setData({
+      addPhone:app.globalData.addPhone,
       cardId: ops.cardId,
       notadd: app.globalData.notadd,
       groupId: ops.groupId,

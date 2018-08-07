@@ -35,7 +35,8 @@ Page({
     itemList: ["需求", "资源"], // 添加更多项
     saveLoading: false,
     region: '',
-    customItem: ''
+    customItem: '',
+    addPhone:""
   },
   onShareAppMessage: function (a) {               //转发
     var server = app.globalData.server;
@@ -308,6 +309,11 @@ Page({
           that.data.saveLoading = true
           app.globalData.notadd = false
           console.log(res)
+          if(that.data.phone){
+            app.globalData.addPhone = true
+          }else{
+            app.globalData.addPhone = false
+          }
           var openid = app.globalData.openid;
           console.log(openid)
           var othercardid = app.globalData.othercardid;

@@ -33,8 +33,8 @@
         <view class='info-left'>
           <image src='../images/phone.png' style='width:17rpx;height:25rpx;'></image>
         </view>
-        <view class='info-right shades' wx:if='{{notadd}}'>需添加信息才可查看</view>
-        <view class='info-right' wx:if='{{!notadd}}'>{{phone}}</view>
+        <view class='info-right shades' wx:if='{{notadd||!addPhone}}'>需添加信息才可查看</view>
+        <view class='info-right' wx:if='{{!notadd&&addPhone}}'>{{phone}}</view>
       </view>
       <view class='contact-info' wx:if='{{wechatnum}}'>
         <view class='info-left'>

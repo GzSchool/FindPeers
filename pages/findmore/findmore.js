@@ -101,6 +101,11 @@ Page({
         console.log(openid)
         console.log(res)
         if (res) {
+          if (res.userPhone) {
+            app.globalData.addPhone = true
+          } else {
+            app.globalData.addPhone = false
+          }
           app.globalData.notadd = false;
           app.globalData.isshow = true;
           wx.getStorage({
@@ -124,6 +129,7 @@ Page({
           //   url: '/pages/findmore/findmore',
           // })
         } else {
+          app.globalData.addPhone = false
           app.globalData.notadd = true;
           app.globalData.isshow = false;
           // wx.switchTab({

@@ -259,8 +259,7 @@ Page({
           app.showToast("姓名不能为空")
         }
       })
-    } else {
-      
+    } else {      
       that.getData()
     }
   },
@@ -356,6 +355,11 @@ Page({
         success: function(res) {
           app.showToast("修改成功");
           var back = that.data.back;
+          if (that.data.phone) {
+            app.globalData.addPhone = true
+          } else {
+            app.globalData.addPhone = false
+          }
           console.log(back)
           if (back) {
             var openid = app.globalData.openid;

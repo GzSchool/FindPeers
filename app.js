@@ -18,6 +18,7 @@ App({
     industry:industry,
     groupId:"",
     checkSave:"",
+    addPhone:""
   },
   onShow: function(ops) {
     console.log(ops)
@@ -93,6 +94,11 @@ App({
                 console.log(res)
                 var groupId = that.globalData.groupId
                 if (res) {                                         //判断是否返回 有返回值就是已经添加过信息
+                  if (res.userPhone) {
+                    that.globalData.addPhone = true
+                  } else {
+                    that.globalData.addPhone = false
+                  }
                   that.globalData.isshow = true
                   that.globalData.notadd = false
                   wx.navigateTo({
@@ -102,6 +108,7 @@ App({
                   //   url: '/pages/peerscards/peerscards?isshow=true',
                   // })
                 } else {
+                  that.globalData.addPhone = false
                   that.globalData.notadd = true
                   that.globalData.isshow = false
                   wx.navigateTo({                                //说明没有添加过名片信息
@@ -136,8 +143,18 @@ App({
           })
           util.getMyData(openid).then(function (res) {                          
             console.log(res)
+            if(res){
+              that.globalData.notadd = false              
+            if (res.userPhone) {
+              that.globalData.addPhone = true
+            } else {
+              that.globalData.addPhone = false
+            }
+            }else{
+              that.globalData.addPhone = false
+              that.globalData.notadd = true              
+            }
             that.globalData.isshow = true
-            that.globalData.notadd = true
             wx.navigateTo({
               url: '/pages/peerscards/peerscards?othercardid=' + othercardid + '&isshow=true',
              })
@@ -172,12 +189,18 @@ App({
           console.log(openid)                                         
           console.log(res)
           if(res){
+            if(res.userPhone){
+              that.globalData.addPhone=true
+            }else{
+              that.globalData.addPhone = false
+            }
             that.globalData.notadd = false;
             that.globalData.isshow = true;
             wx.switchTab({
               url: '/pages/findmore/findmore',
             })
           }else{
+            that.globalData.addPhone = false            
             that.globalData.notadd = true;
             that.globalData.isshow = false;            
             wx.switchTab({
