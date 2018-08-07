@@ -33,12 +33,12 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
+			"current": 1,
 			"list": [
 				{
 					"id": 0,
 					"name": "0",
-					"pathName": "pages/peerscards/peerscards",
+					"pathName": "pages/findmore/findmore",
 					"query": "othercardid=40303",
 					"scene": "1044",
 					"shareInfo": {
@@ -50,8 +50,8 @@
 				{
 					"id": 1,
 					"name": "0",
-					"pathName": "pages/mine/mine",
-					"query": "",
+					"pathName": "pages/findmore/findmore",
+					"query": "othercardid=40302",
 					"scene": "1044",
 					"shareInfo": {
 						"groupName": "测试模拟群0",

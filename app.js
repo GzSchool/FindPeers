@@ -136,19 +136,24 @@ App({
           })
           util.getMyData(openid).then(function (res) {                          
             console.log(res)
-            if (res) {
-              that.globalData.isshow = true
-              that.globalData.notadd = false
-              wx.navigateTo({
-                url: '/pages/peerscards/peerscards?othercardid=' + othercardid + '&isshow=true',
-              })
-            } else {
-              that.globalData.notadd = true
-              that.globalData.isshow = false
-              wx.navigateTo({
-                url: '/pages/peerscards/peerscards',
-              })
-            }
+            that.globalData.isshow = true
+            that.globalData.notadd = true
+            wx.navigateTo({
+              url: '/pages/peerscards/peerscards?othercardid=' + othercardid + '&isshow=true',
+             })
+            // if (res) {
+            //   that.globalData.isshow = true
+            //   that.globalData.notadd = false
+            //   wx.navigateTo({
+            //     url: '/pages/peerscards/peerscards?othercardid=' + othercardid + '&isshow=true',
+            //   })
+            // } else {
+            //   that.globalData.notadd = true
+            //   that.globalData.isshow = false
+            //   wx.navigateTo({
+            //     url: '/pages/peerscards/peerscards',
+            //   })
+            // }
           })
         })
       }

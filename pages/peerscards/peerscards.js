@@ -15,6 +15,7 @@ Page({
     groupId: "",
     notadd: "",
     cardId: [],
+    id:"",
     phone: "",
     wechatnum: "",
     image: "",
@@ -108,6 +109,7 @@ Page({
       checkSave: app.globalData.checkSave,
       othercardid:app.globalData.othercardid
     })
+    if(that.data.othercardid){}
     var othercardid = app.globalData.othercardid;
     util.getCardsById(othercardid).then(function (res) {
       console.log(res)
@@ -121,7 +123,8 @@ Page({
         phone: res.data.data[0].userPhone,
         image: res.data.data[0].userImg,
         otheropenId: res.data.data[0].openId,
-        userJob: res.data.data[0].userJob
+        userJob: res.data.data[0].userJob,
+        id:res.data.data[0].id
       })
     })
   },
@@ -252,6 +255,7 @@ Page({
     var groupId = that.data.groupId;
     var othercardid = app.globalData.othercardid
     var cardId = that.data.cardId
+    cardId.push(othercardid)
     console.log(cardId)
     util.saveOrUpdate(openid, groupId, 2, cardId).then(function(res) {
       that.setData({
@@ -273,6 +277,7 @@ Page({
   },
   toTeamPeers: function(e) {
     console.log(e)
+    var that =this
     var groupId = that.data.groupId;
     var openid = app.globalData.openid;
     wx.navigateTo({
