@@ -83,6 +83,145 @@ Page({
   },
   onLoad:function(ops){
     var that = this
+    if(ops.othercardid){
+      app.globalData.othercardid = ops.othercardid;
+      that.othercardid = ops.othercardid;
+      var othercardid = ops.othercardid;
+      if (ops.scene == 1044) {                                            // 等于这个 就是群里点击的
+        app.globalData.isgroup=true
+        that.data.isgroup = true;
+        var shareTickets = ops.shareTicket;
+        console.log(ops.shareTicket)                                      //群里点击的回带shareTickets可以用这个获取groupid
+        wx.getShareInfo({
+          shareTicket: shareTickets,
+          success: function(res) {
+            console.log(res)
+            var encryptedData = res.encryptedData;
+            var iv = res.iv;
+            util.Login(url).then(function (data) {                    // 登录
+              if (data) {
+                app.globalData.openid = data
+                var openid = app.globalData.openid
+              }
+              var openid = app.globalData.openid;                  //用用户标识访问数据库获取用户信息
+              var othercardid = app.globalData.othercardid;
+              util.getMyData(openid).then(function (res) {
+                if(res){
+                  app.globalData.isshow = true
+                  app.globalData.notadd = false
+                  that.data.isshow = true
+                  that.data.notadd = false
+                }else{
+                  app.globalData.isshow = false
+                  app.globalData.notadd = true
+                  that.data.isshow = false
+                  that.data.notadd = true
+                }
+              })
+              util.checkSave(openid,othercardid).then(function(a){
+                console.log(a)
+                if (a.data.data) {
+                  app.globalData.checkSave = true
+                  that.data.checkSave = true
+                } else {
+                  app.globalData.checkSave = false
+                  that.data.checkSave = false
+                }
+              })
+              var othercardid = app.globalData.othercardid;              
+              util.getCardsById(othercardid).then(function (card) {
+                console.log(res)
+                that.setData({
+                  name: res.data.data[0].username,
+                  wechatnum: res.data.data[0].userWechat,
+                  company: res.data.data[0].userCompany,
+                  idustry: res.data.data[0].userIndustry,
+                  city: res.data.data[0].userCity,
+                  email: res.data.data[0].userEmail,
+                  phone: res.data.data[0].userPhone,
+                  image: res.data.data[0].userImg,
+                  otheropenId: res.data.data[0].openId,
+                  userJob: res.data.data[0].userJob
+                })
+                console.log(app.globalData.openid)
+                console.log(card.data.data[0].openId)
+                console.log(encryptedData)
+                console.log(iv)
+                wx.request({
+                  method: 'POST',
+                  url: server + '/userGroup/saveOrUpdate',
+
+                  data: {
+                    openId: app.globalData.openid,
+                    otherOpenId: card.data.data[0].openId,
+                    encryptedData: encryptedData,
+                    iv: iv
+                  },
+
+                  header: {
+                    'content-type': 'application/json'
+                  },
+                  success: function (c) {
+                    console.log(c)
+                  }
+                })
+              })
+            })           
+          }
+        })        
+      } else {                                             //点击的个人的分享
+        app.globalData.isgroup=false
+        var othercardid = ops.othercardid
+        util.Login(url).then(function (data) {                     // 登录
+          console.log(data)
+           if (data) {
+             app.globalData.openid = data
+             var openid = app.globalData.openid
+          }
+          var openid = app.globalData.openid;                      //用用户标识访问数据库获取用户信息
+          util.checkSave(openid, othercardid).then(function (a) {
+            if(a.data.data){
+              app.globalData.checkSave=true
+              that.data.checkSave = true
+            }else{
+              app.globalData.checkSave = false
+              that.data.checkSave = false              
+            }
+          })
+          util.getMyData(openid).then(function (res) {                          
+            console.log(res)
+            if (res) {
+              app.globalData.isshow = true
+              app.globalData.notadd = false
+              that.data.isshow = true
+              that.data.notadd = false
+              
+            } else {
+              app.globalData.notadd = true
+              app.globalData.isshow = false
+              that.data.notadd = true
+              that.data.isshow = false
+
+            }
+            util.getCardsById(othercardid).then(function (card) {
+              console.log(res)
+              that.setData({
+                name: res.data.data[0].username,
+                wechatnum: res.data.data[0].userWechat,
+                company: res.data.data[0].userCompany,
+                idustry: res.data.data[0].userIndustry,
+                city: res.data.data[0].userCity,
+                email: res.data.data[0].userEmail,
+                phone: res.data.data[0].userPhone,
+                image: res.data.data[0].userImg,
+                otheropenId: res.data.data[0].openId,
+                userJob: res.data.data[0].userJob
+              })
+            })
+          })
+        })
+      }
+    } 
     wx.showShareMenu({
       withShareTicket:true
     })
@@ -103,37 +242,37 @@ Page({
       notadd:app.globalData.notadd,
       checkSave:app.globalData.checkSave
     }) 
-    console.log(app.globalData.checkSave)
-    var openid=app.globalData.openid
-    var server = that.data.server
-    var othercardid=app.globalData.othercardid;
-    that.data.cardId=[];
-    that.data.cardId.push(othercardid);
-    util.getCardsById(othercardid).then(function (res) {
-      console.log(res)
-      that.setData({
-        name: res.data.data[0].username,
-        wechatnum: res.data.data[0].userWechat,
-        company: res.data.data[0].userCompany,
-        idustry: res.data.data[0].userIndustry,
-        city: res.data.data[0].userCity,
-        email: res.data.data[0].userEmail,
-        phone: res.data.data[0].userPhone,
-        image: res.data.data[0].userImg,
-        otheropenId: res.data.data[0].openId,
-        userJob: res.data.data[0].userJob
-      })
-      if (res.data.data[0].delFlag == 1){
-        that.setData({
-          isSave:false
-        })
-      }else{
-        that.setData({
-          isSave: true
-        })
-      }
-      console.log(res.data.data[0].delFlag )
-    })
+    // console.log(app.globalData.checkSave)
+    // var openid=app.globalData.openid
+    // var server = that.data.server
+    // var othercardid=app.globalData.othercardid;
+    // that.data.cardId=[];
+    // that.data.cardId.push(othercardid);
+    // util.getCardsById(othercardid).then(function (res) {
+    //   console.log(res)
+    //   that.setData({
+    //     name: res.data.data[0].username,
+    //     wechatnum: res.data.data[0].userWechat,
+    //     company: res.data.data[0].userCompany,
+    //     idustry: res.data.data[0].userIndustry,
+    //     city: res.data.data[0].userCity,
+    //     email: res.data.data[0].userEmail,
+    //     phone: res.data.data[0].userPhone,
+    //     image: res.data.data[0].userImg,
+    //     otheropenId: res.data.data[0].openId,
+    //     userJob: res.data.data[0].userJob
+    //   })
+    //   if (res.data.data[0].delFlag == 1){
+    //     that.setData({
+    //       isSave:false
+    //     })
+    //   }else{
+    //     that.setData({
+    //       isSave: true
+    //     })
+    //   }
+    //   console.log(res.data.data[0].delFlag )
+    // })
   },
   addcards:function(e){
     var that=this
