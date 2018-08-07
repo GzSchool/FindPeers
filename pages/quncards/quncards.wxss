@@ -38,7 +38,7 @@ page {
   width: 120rpx;
   height: 120rpx;
   margin: 30rpx 38rpx 30rpx 0;
-  background-color: #f8f8f8;
+  background-color: #eeeeee;
   border-radius: 4rpx;
 }
 .main .mes-ul .mes-li .li-left image {
