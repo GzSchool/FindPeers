@@ -1,5 +1,5 @@
 <!--pages/addCards/addcards.wxml-->
-<form bindsubmit="submitInfo" report-submit='true'>
+<form bindsubmit="save" report-submit='true'>
 <view class='main'>
   <view class='main-ul'>
     <view class='main-li'>

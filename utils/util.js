@@ -159,7 +159,7 @@ function getCardsById(cardId) {
 /*
   保存同行信息跟删除同行信息 saveFlag=1时删除 saveFlag=2时是保存
 */
-function saveOrUpdate(openId, groupId, saveFlag, cardIds) {
+function saveOrUpdate(openId, groupId, saveFlag, cardIds, saveName, formId) {
   return new Promise(function(resolve) {
     wx.request({
       method: 'POST',
@@ -168,7 +168,9 @@ function saveOrUpdate(openId, groupId, saveFlag, cardIds) {
         openId: openId,
         cardIds: cardIds,
         saveFlag: saveFlag,
-        groupId: groupId
+        groupId: groupId,
+        saveName: saveName, // 操作者名字
+        formId: formId      // formid用于推送提示
       },
       header: {
         'content-type': 'application/json'
@@ -211,7 +213,7 @@ function getGroupCards(openId, groupId, pageNum, pageSize) {
     wx.request({
       method: 'GET',
       url: server + '/userGroup/findGroupCards',
-      // url: server + '/userGroup/findCardsNoPage',
+      // url: server + '/userGroup/findCardsNoPage', //没有分页
       data: {
         openId: openId,
         groupId: groupId,

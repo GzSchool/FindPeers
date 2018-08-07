@@ -38,8 +38,8 @@ page {
   width: 120rpx;
   height: 120rpx;
   margin: 30rpx 38rpx 30rpx 0;
-  background-color: #eeeeee;
-  border-radius: 4rpx;
+  background-color: #e6e6e6;
+  border-radius: 10rpx;
 }
 .main .mes-ul .mes-li .li-left image {
   width: 120rpx;

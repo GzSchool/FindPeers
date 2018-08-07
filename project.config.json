@@ -33,7 +33,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 1,
+			"current": 3,
 			"list": [
 				{
 					"id": 0,
@@ -70,6 +70,12 @@
 						"shareName": "gPDjBJEVRWgbCurSVVy45s_YMjjJSKZItb_so_5WXrg@cr4dev",
 						"shareKey": "bkX6JEP4zKyVftKo9eurxTU07qerNQjoH7Tw_55Rgbw_MvZ-tFV5NJQj2C13vxpZeBMRj14T4G5Q1obhy2t4uQ~~"
 					}
+				},
+				{
+					"id": -1,
+					"name": "10",
+					"pathName": "pages/findmore/findmore",
+					"query": "othercardid=30303"
 				}
 			]
 		}

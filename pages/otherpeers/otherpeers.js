@@ -2,10 +2,6 @@
 var app = getApp();
 var util = require('../../utils/util.js');
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
     cardId: "",
     id: "",
@@ -27,7 +23,9 @@ Page({
     resources: '', // 资源
     synopsis: '', // 简介
     isshow: false,
-    otheropenId: ""
+    otheropenId: "",
+    searching: false,
+    userInfo: {} // 用户信息
   },
   onShareAppMessage: function(a) {
     var server = app.globalData.server
@@ -106,6 +104,16 @@ Page({
       withShareTicket: true
     })
     var that = this
+    // 获取缓存中用户信息
+    wx.getStorage({
+      key: 'userInfo',
+      success: function (res) {
+        console.log(res)
+        that.setData({
+          userInfo: res.data
+        })
+      }
+    })
     console.log(ops)
     that.setData({
       cardId: ops.cardId,
@@ -271,7 +279,10 @@ Page({
       })
     }
   },
-  save: function() {
+  /**
+   * 保存其他用户名片夹 formId推送提示
+   */
+  save: function(e) {
     var that = this
     var server = app.globalData.server;
     var openid = app.globalData.openid;
@@ -285,7 +296,12 @@ Page({
     cardIds.push(that.data.cardId)
     console.log(openid + "" + groupId + "" + cardIds)
     console.log(cardIds)
-    util.saveOrUpdate(openid, groupId, 2, cardIds).then(function(res) {
+    let saveName = this.data.userInfo.username
+    console.log('++++')
+    console.log(saveName)
+    let formId = e.detail.formId
+    console.log(e.detail)
+    util.saveOrUpdate(openid, groupId, 2, cardIds, saveName, formId).then(function(res) {
       console.log(res)
       if (back) {
         wx.redirectTo({

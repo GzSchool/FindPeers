@@ -28,7 +28,8 @@ Page({
     animationData: {},
     isgroup: "", //判断是否是在群里点击的
     isSave: "", //判断是否已保存这个名片
-    checkSave: "" //检验是不是保存了这个名片
+    checkSave: "", //检验是不是保存了这个名片
+    userInfo: {}, // 用户信息
   },
   onShareAppMessage: function(a) {
     var server = app.globalData.server;
@@ -85,6 +86,15 @@ Page({
   onLoad: function(ops) {
     console.log(ops)
     var that = this 
+    wx.getStorage({
+      key: 'userInfo',
+      success: function (res) {
+        console.log(res)
+        that.setData({
+          userInfo: res.data
+        })
+      }
+    })
     if(ops.othercardid){
       that.data.othercardid = ops.othercardid
     }
@@ -248,7 +258,7 @@ Page({
       })
     }
   },
-  save: function() {
+  save: function(e) {
     var that = this
     var server = app.globalData.server;
     var openid = app.globalData.openid;
@@ -257,7 +267,10 @@ Page({
     var cardId = that.data.cardId
     cardId.push(othercardid)
     console.log(cardId)
-    util.saveOrUpdate(openid, groupId, 2, cardId).then(function(res) {
+    let saveName = this.data.userInfo.username
+    let formId = e.detail.formId
+    console.log(e.detail.formId)
+    util.saveOrUpdate(openid, groupId, 2, cardId, saveName, formId).then(function(res) {
       that.setData({
         isSave: true
       })

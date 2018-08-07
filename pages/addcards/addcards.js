@@ -183,10 +183,13 @@ Page({
     })
   },
   // 用户点击保存
-  save: function() {
+  save: function(e) {
+    this.setData({
+      formId: e.detail.formId
+    })
+    console.log(this.data.formId)
     let that = this
     if (this.data.name == '' || this.data.name == null) {
-      // console.log(pinyin.getFullChars('dkdddkjkjjk').toUpperCase())
       wx.getUserInfo({
         success: function(a) {
           that.setData({
@@ -276,7 +279,6 @@ Page({
         }
       })
     } else {
-      console.log('-----')
       console.log(this.data.prepare)
       that.data.saveLoading = true
       wx.request({
@@ -336,30 +338,32 @@ Page({
       })
     }
   },
-  submitInfo:function(e) {
-    this.setData({
-      formId: e.detail.formId
-    })
-    console.log(this.data.formId)
-    let that = this
-    if (this.data.name == '' || this.data.name == null) {
-      wx.getUserInfo({
-        success: function (a) {
-          console.log(a)
-          that.setData({
-            name: a.userInfo.nickName,
-            image: a.userInfo.avatarUrl
-          })
-          that.getData()
-        }
-      })
-    } else {
-      this.getData()
-    }
-  },
   cityChange(e) {
     this.setData({
       city: e.detail.value.join('')
     })
   }
 })
+
+  // ,
+  // submitInfo: function(e) {
+  //   this.setData({
+  //     formId: e.detail.formId
+  //   })
+  //   console.log(this.data.formId)
+  //   let that = this
+  //   if (this.data.name == '' || this.data.name == null) {
+  //     wx.getUserInfo({
+  //       success: function (a) {
+  //         console.log(a)
+  //         that.setData({
+  //           name: a.userInfo.nickName,
+  //           image: a.userInfo.avatarUrl
+  //         })
+  //         that.getData()
+  //       }
+  //     })
+  //   } else {
+  //     this.getData()
+  //   }
+  // }

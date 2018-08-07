@@ -146,11 +146,11 @@ page {
 }
 
 .crowd-title {
-  height: 60rpx;
-  line-height: 60rpx;
+  height: 68rpx;
+  line-height: 68rpx;
   display: flex;
   align-items: center;
-  font-size: 26rpx;
+  font-size: 28rpx;
   padding: 0 40rpx;
   justify-content: space-between;
   color: #606060;
@@ -160,6 +160,9 @@ page {
   display: flex;
   align-items: center;
 }
+.crowd-title .crowd-title-left image {
+  margin-right: 8rpx;
+}
 
 .crowd-title .crowd-title-middle {
   text-align: center;
@@ -168,10 +171,19 @@ page {
 
 .crowd-title .crowd-title-right {
   color: #606060;
+  width: 60rpx;
+  text-align: center;
 }
 
 .crowd-title .crowd-title-right.active {
   color: #2c7fe7;
+  background-color: transparent;
+  font-size: 28rpx;
+  width: 60rpx;
+  padding: 0;
+  text-align: center;
+  height: 60rpx;
+  line-height: 60rpx;
 }
 
 /* checkbox */
@@ -300,3 +312,15 @@ page {
 .popup .popup-btn.active {
   background-color: #2c7fe7;
 }
+.searching {
+  margin-top: 120rpx;
+  height: 70rpx;
+  text-align: center;
+  font-size: 24rpx;
+  color: #949494;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
