@@ -24,21 +24,47 @@ Page({
     showdemand:false,
     showresource:false,
     showintroduction:false,
-    shareing: false
+    // shareing: false
   },
   onLoad:function(a){
     wx.showShareMenu({
       withShareTicket: true
     })
     console.log(a)
-    var that=this
+    var that = this
+    wx.getStorage({
+      key: 'userInfo',
+      success: function (res) {
+        console.log(res)
+        that.setData({
+          name: res.data.username,
+          wechatnum: res.data.userWechat,
+          company: res.data.userCompany,
+          idustry: res.data.userIndustry,
+          city: res.data.userCity,
+          email: res.data.userEmail,
+          phone: res.data.userPhone,
+          image: res.data.userImg,
+          id: res.data.id,
+          demand: res.data.demand,//需求
+          resources: res.data.resources,//资源
+          synopsis: res.data.synopsis,//简介
+          userJob: res.data.userJob // 职位
+        })
+      },
+      fail: function (res) {
+        that.getData()
+      }
+    })
     console.log(a.back)
     if(a.back){
-      that.data.back=true,
-      that.data.groupId=a.groupId
+      that.data.back = true,
+      that.data.groupId = a.groupId
     }
+    
+  },
+  getData() {
     var openid = app.globalData.openid;
-    var server = app.globalData.server;
     util.getMyData(openid).then(function (res) {
       console.log(res)
       if (!res) {
@@ -58,7 +84,7 @@ Page({
           email: res.userEmail,
           phone: res.userPhone,
           image: res.userImg,
-          id:res.id,
+          id: res.id,
           demand: res.demand,//需求
           resources: res.resources,//资源
           synopsis: res.synopsis,//简介
@@ -118,14 +144,13 @@ Page({
     var groupId= this.data.groupId;
     if(this.data.back){
       wx.navigateTo({
-        url: '/pages/fix/fix?back=true' + '&groupId=' + groupId + '&openid=' + openid,
+        url: '/pages/fix/fix?back=true&groupId=' + groupId + '&openid=' + openid,
       })
     }else{
       wx.navigateTo({
         url: '/pages/fix/fix',
       })
     }
-    
   },
   goFindmore:function(a){
     wx.switchTab({
@@ -133,14 +158,14 @@ Page({
     })
   },
   toMyPeers () {
-    console.log('分享')
-    this.setData({
-      shareing: true
-    })
+    // console.log('分享')
+    // this.setData({
+    //   shareing: true
+    // })
   },
   onShow:function(){
-    this.setData({
-      shareing: false
-    })
+    // this.setData({
+    //   shareing: false
+    // })
   }
 })

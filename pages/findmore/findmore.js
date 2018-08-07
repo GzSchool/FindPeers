@@ -5,114 +5,85 @@ var util = require('../../utils/util.js');
 Page({
   data: {
     name: '',        //用户名字
-    job: '',         //用户职务 
     wechatnum: '',   //用户微信号
-    othercardid: "", //分享的人的标识
     company: '',     //用户公司
-    openid: '',      //用户标识
-    notadd: false,   //是否未添加信息
     idustry: '',     //用户行业
     city: '',        //用户城市
     email: '',       //用户邮箱
     phone: '',       //用户手机号
     image: '',       //用户头像
-    server: "",      //服务器地址
+    job: '',         //用户职务 
+    othercardid: "", //分享的人的标识
+    openid: '',      //用户标识
+    notadd: false,   //是否未添加信息
     list: [],        //存储收到的同行信息
-    list_length: 0,
-    hidden: true,
-    scrollTop: 0,    //滚动菜单
+    list_length: 0,  // 一共保存多少张
+    scrollTop: 0,     //滚动菜单
     screenHeight: '', //滚动菜单高度 
-    key: " 微信号、城市、公司、行业等进行搜索",   //搜索框值
-    list_letter: [],
-    list_con: [],
-    list_id: '',
+    list_con: [],    // 同行数据列表
+    topNum: 0,       // 距离顶部高度
+    list_id: '',     // 锚点
+    list_letter: [],    // 锚点列表
     floorstatus: false, // 回到顶部
-    topNum: 0
   },
-  onShareAppMessage: function (a) {
-    var server = app.globalData.server;
-    var that = this
-    var otheropenId = that.data.otheropenId;
-    return {
-      title: '找同行',
-      path: '/pages/findmore/findmore',
+  onLoad: function (a) {
+    let that = this
+    wx.getStorage({
+      key: 'userInfo',
       success: function (res) {
-        console.log("66666666666")
         console.log(res)
-        console.log(a)
-        var shareTickets = res.shareTickets;
-        if (shareTickets.length == 0) {
-          return false;
-        }
-        wx.getShareInfo({
-          shareTicket: shareTickets[0],
-          success: function (res) {
-            console.log(res)
-            console.log(a)
-            var encryptedData = res.encryptedData;
-            var iv = res.iv;
-            wx.request({
-              method: 'POST',
-              url: server + '/userGroup/saveOrUpdate',
-
-              data: {
-                openId: app.globalData.openId,
-                otherOpenId: app.globalData.openId,
-                encryptedData: encryptedData,
-                iv: iv
-              },
-
-              header: {
-                'content-type': 'application/json'
-              },
-              success: function (c) {
-                // wx.navigateTo({
-                //   url: '/pages/peerscards/peerscards',
-                // })
-              }
-            })
-          }
+        that.setData({
+          name: res.data.username,
+          wechatnum: res.data.userWechat,
+          company: res.data.userCompany,
+          idustry: res.data.userIndustry,
+          city: res.data.userCity,
+          email: res.data.userEmail,
+          phone: res.data.userPhone,
+          image: res.data.userImg,
         })
       },
       fail: function (res) {
-        console.log(a)
         console.log(res)
-        // 转发失败
       }
-    }
-  },
-  onLoad: function (a) {
+    })
+    wx.getStorage({
+      key: 'list_con',
+      success: function(res) {
+        console.log(res)
+        that.setData({
+          list_con: res.data
+        })
+      }
+    })
+    wx.getStorage({
+      key: 'list_letter',
+      success: function (res) {
+        console.log(res)
+        that.setData({
+          list_letter: res.data
+        })
+      },
+    })
     wx.showShareMenu({
       withShareTicket: true
     })
-    let that = this
     var url = app.globalData.urlOfLogin
-    util.Login(url).then(function (data) {                // 登录
-      console.log(data)
+    // 登录获取openid
+    util.Login(url).then(function (data) { 
       if (data) {
         app.globalData.openid = data
-        var openid = app.globalData.openid
-        console.log(app.globalData.openid)
       }
-      var openid = app.globalData.openid;              //用用户标识访问数据库获取用户信息
-      var openid = app.globalData.openid;
-      console.log(openid)
+      var openid = app.globalData.openid;  
+      // 使用用户标识访问数据库获取用户信息
       util.getMyData(openid).then(function (res) {
-        console.log(openid)
-        console.log(res)
         if (res) {
-          if (res.userPhone) {
-            app.globalData.addPhone = true
-          } else {
-            app.globalData.addPhone = false
-          }
+          res.userPhone?app.globalData.addPhone = true:app.globalData.addPhone = false
           app.globalData.notadd = false;
           app.globalData.isshow = true;
           wx.getStorage({
             key: 'userInfo',
             success: function (args) {
-              console.log('+++')
-              console.log(args)
               wx.setStorage({
                 key: 'userInfo',
                 data: res,
@@ -125,16 +96,25 @@ Page({
               })
             }
           })
-          // wx.switchTab({
-          //   url: '/pages/findmore/findmore',
-          // })
+          that.setData({
+            name: res.username,
+            wechatnum: res.userWechat,
+            company: res.userCompany,
+            idustry: res.userIndustry,
+            city: res.userCity,
+            email: res.userEmail,
+            phone: res.userPhone,
+            image: res.userImg,
+          })
         } else {
+          // 登录失败清空本地缓存
+          wx.clearStorage()
           app.globalData.addPhone = false
           app.globalData.notadd = true;
           app.globalData.isshow = false;
-          // wx.switchTab({
-          //   url: '/pages/findmore/findmore',
-          // })
+          that.setData({
+            notadd: true
+          })
         }
         if (that.employIdCallback) {
           that.employIdCallback(res)
@@ -162,45 +142,18 @@ Page({
       }
     }
   },
+  // 获取同行数据
   getData() {
     var that = this;
     that.setData({
       notadd: app.globalData.notadd,
-      server: app.globalData.server,
-      othercardid: app.globalData.othercardid
-    })
-    var notadd = app.globalData.notadd;
-    that.data.openid = app.globalData.openid;
-    var openid = app.globalData.openid;
-    console.log(openid)
-    util.getMyData(openid).then(function (res) {               //用户查询自己信息
-      console.log(res)
-      if (!res) {
-        that.setData({
-          notadd: true
-        })
-        app.globalData.notadd = true
-      } else {
-        app.globalData.notadd = false
-        app.globalData.isshow = true
-        that.setData({
-          name: res.username,
-          wechatnum: res.userWechat,
-          company: res.userCompany,
-          idustry: res.userIndustry,
-          city: res.userCity,
-          email: res.userEmail,
-          phone: res.userPhone,
-          image: res.userImg,
-        })
-      }
+      othercardid: app.globalData.othercardid,
+      openid: app.globalData.openid
     })
     var openid = app.globalData.openid;
-    var list = that.data.list
-    util.getMyPeers(openid).then(function (res) {                         //获取当前保存的同行名片
-      console.log('我的同行列表')
-      console.log(res.data.data)
-      let val = JSON.stringify(res.data.data) == JSON.stringify(that.data.list)
+    // 获取当前保存的同行名片
+    util.getMyPeers(openid).then(function (res) { 
+      // let val = JSON.stringify(res.data.data) == JSON.stringify(that.data.list)
       let letter = [];
       let con = [];
       var length = res.data.data.length;
@@ -235,33 +188,37 @@ Page({
           con[len-1].data.push(c)
         }
       })
-      console.log(con[len-1])
       that.setData({
         list: res.data.data,
         list_letter: letter,
         list_con: con,
       })
+      wx.setStorage({
+        key: 'list_con',
+        data: that.data.list_con,
+      })
+      wx.setStorage({
+        key: 'list_letter',
+        data: that.data.list_letter,
+      })
     });
   },
+  // 企业详情
   trans: function () {
     wx.navigateTo({
       url: '/pages/company/company',
     })
   },
+  // 查看我的名片
   mycards: function () {
     var openid = app.globalData.openid
     wx.navigateTo({
       url: '/pages/mycards/mycards?openid=' + openid,
     })
   },
-  peerscards: function () {
-    var cardId = currentTarget.dataset.id;
-    wx.navigateTo({
-      url: '/pages/othercards/othercards?cardId=' + cardId + '&groupId=0&saveFlg=2',
-    })
-  },
+  // 添加个人信息按钮
   addcards: function (e) {
-    var othercardid = app.globalData.othercardid;
+    // var othercardid = app.globalData.othercardid;
     if (e.detail.userInfo) {
       wx.navigateTo({
         url: '/pages/addcards/addcards',
@@ -272,15 +229,17 @@ Page({
       })
     }
   },
+  // 搜索页面
   bindtrans: function () {
     wx.navigateTo({
       url: '/pages/inputSearch/inputSearch',
     })
   },
+  // 查看名片详情
   select: function (a) {
-    var otheropenid = a.currentTarget.dataset.key;
+    // var otheropenid = a.currentTarget.dataset.key;
+    // var saveFlag = a.currentTarget.dataset.saveflag;
     var cardId = a.currentTarget.dataset.id;
-    var saveFlag = a.currentTarget.dataset.saveflag;
     wx.navigateTo({
       url: '/pages/otherpeers/otherpeers?cardId=' + cardId + '&groupId=0&saveFlag=2',
     })
@@ -288,11 +247,7 @@ Page({
   onShow: function () {
     this.onLoad();
   },
-  letterClick(e) {
-    this.setData({
-      list_id: e.target.dataset.item
-    });
-  },
+  // es6数组去重方法
   dedupe:function (array) {
     return Array.from(new Set(array))
   },
@@ -308,9 +263,67 @@ Page({
       });
     }
   },
+  // 点击锚点
+  letterClick(e) {
+    this.setData({
+      list_id: e.target.dataset.item
+    });
+  },
+  // 点击返回顶部
   goTop() {
     this.setData({
       topNum: 0
     })
+  },
+  // 分享
+  onShareAppMessage: function (a) {
+    var server = app.globalData.server;
+    var that = this
+    var otheropenId = that.data.otheropenId;
+    return {
+      title: '找同行',
+      path: '/pages/findmore/findmore',
+      success: function (res) {
+        console.log("66666666666")
+        console.log(res)
+        console.log(a)
+        var shareTickets = res.shareTickets;
+        if (shareTickets.length == 0) {
+          return false;
+        }
+        wx.getShareInfo({
+          shareTicket: shareTickets[0],
+          success: function (res) {
+            console.log(res)
+            console.log(a)
+            var encryptedData = res.encryptedData;
+            var iv = res.iv;
+            wx.request({
+              method: 'POST',
+              url: server + '/userGroup/saveOrUpdate',
+              data: {
+                openId: app.globalData.openId,
+                otherOpenId: app.globalData.openId,
+                encryptedData: encryptedData,
+                iv: iv
+              },
+              header: {
+                'content-type': 'application/json'
+              },
+              success: function (c) {
+                // wx.navigateTo({
+                //   url: '/pages/peerscards/peerscards',
+                // })
+              }
+            })
+          }
+        })
+      },
+      fail: function (res) {
+        // 转发失败
+        console.log(a)
+        console.log(res)
+      }
+    }
   }
 })
