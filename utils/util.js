@@ -1,6 +1,7 @@
 //服务器地址
 // var server = 'http://192.168.2.123:8080'
  var server = "https://www.eqxuan.cn"
+ var app = getApp();
 const formatTime = date => {
   const year = date.getFullYear()
   const month = date.getMonth() + 1
@@ -36,7 +37,6 @@ function Login(url) {
               'content-type': 'application/json'
             },
             success: function(a) { //后台获取openid
-              console.log(a)
               resove(a.data.data.openId)
             }
           })
@@ -49,7 +49,6 @@ function Login(url) {
   用户的openid向数据库获取信息，判断是不是再数据库里添加过数据
 */
 function getMyData(openid) {
-  console.log("1111111")
   return new Promise(function(resolve) {
     wx.request({
       method: 'GET',
@@ -61,7 +60,6 @@ function getMyData(openid) {
         'content-type': 'application/json'
       },
       success: function(d) {
-        console.log(d)
         resolve(d.data.data);
       }
     })
@@ -83,7 +81,6 @@ function getMyPeers(openid) {
         'content-type': 'application/json'
       },
       success: function(res) {
-        console.log(res)
         resolve(res)
       }
     })
@@ -258,8 +255,6 @@ function getOpenGid( openid, otherOpenId, shareTickets){
     wx.getShareInfo({
       shareTicket: shareTickets[0],
       success: function (res) {
-        console.log(res)
-        console.log(a)
         var encryptedData = res.encryptedData;
         var iv = res.iv;
         wx.request({
@@ -277,11 +272,105 @@ function getOpenGid( openid, otherOpenId, shareTickets){
             'content-type': 'application/json'
           },
           success: function (c) {
-            console.log(c)
           }
         })
       }
     })
+  })
+}
+/**
+ * 分享（除了几个特殊页面以外的）
+ */
+function sharePage(openId, otherOpenId){
+  return new Promise(function(resolve){
+  return {
+    title: '找同行',
+    path: '/pages/findmore/findmore',
+    success: function (res) {
+      var shareTickets = res.shareTickets;
+      if (shareTickets.length == 0) {
+        return false;
+      }
+      wx.getShareInfo({
+        shareTicket: shareTickets[0],
+        success: function (res) {
+          var encryptedData = res.encryptedData;
+          var iv = res.iv;
+          wx.request({
+            method: 'POST',
+            url: server + '/userGroup/saveOrUpdate',
+
+            data: {
+              openId: openId,
+              otherOpenId: otherOpenId,
+              encryptedData: encryptedData,
+              iv: iv
+            },
+
+            header: {
+              'content-type': 'application/json'
+            },
+            success: function (c) {
+              resolve(c)
+            }
+          })
+        }
+      })
+    },
+    fail: function (res) {
+      // 转发失败
+    }
+  }
+  })
+}
+/**
+ * 分享转发（几个包含信息的页面）
+ */
+function shareToQunOrPersonal(openId, otherOpenId, id){
+  return new Promise (function(resolve){
+    wx.showShareMenu({
+      withShareTicket: true
+    })
+    console.log("2222222222222333333333333333")
+    return {
+      title: '我的同行信息',
+      path: '/pages/peerscards/peerscards?othercardid=' + id,
+      success: function (res) {
+        var shareTickets = res.shareTickets;
+        console.log(shareTickets)
+        if (shareTickets.length == 0) {
+          return false;
+        }
+        wx.getShareInfo({
+          shareTicket: shareTickets[0],
+          success: function (b) {
+            var encryptedData = b.encryptedData;
+            var iv = b.iv;
+            wx.request({
+              method: 'POST',
+              url: server + '/userGroup/saveOrUpdate',
+
+              data: {
+                openId: openId,
+                otherOpenId: otherOpenId,
+                encryptedData: encryptedData,
+                iv: iv
+              },
+
+              header: {
+                'content-type': 'application/json'
+              },
+              success: function (c) {
+                resolve(c)
+              }
+            })
+          }
+        })
+      },
+      fail: function (res) {
+        // 转发失败
+      }
+    }
   })
 }
 /*
@@ -313,5 +402,7 @@ module.exports = {
   getGroupCards: getGroupCards,
   testPhone: testPhone,
   testEmail: testEmail,
-  checkSave: checkSave
+  checkSave: checkSave,
+  sharePage: sharePage,
+  shareToQunOrPersonal: shareToQunOrPersonal
 }
