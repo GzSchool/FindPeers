@@ -34,15 +34,7 @@
 		},
 		"miniprogram": {
 			"current": 0,
-			"list": [
-				{
-					"id": 0,
-					"name": "0",
-					"pathName": "pages/findmore/findmore",
-					"query": "othercardid=40303",
-					"scene": "1001"
-				}
-			]
+			"list": []
 		}
 	}
 }
