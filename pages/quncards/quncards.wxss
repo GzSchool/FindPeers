@@ -38,13 +38,46 @@ page {
   width: 120rpx;
   height: 120rpx;
   margin: 30rpx 38rpx 30rpx 0;
+  background-color: #f8f8f8;
+  border-radius: 4rpx;
 }
 .main .mes-ul .mes-li .li-left image {
   width: 120rpx;
   height: 120rpx;
-  border-radius: 20rpx;
-  background-color: #53adff;
+  /* border-radius: 20rpx; */
 }
+.main .mes-ul .mes-li .li-left.join{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap-reverse;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+.main .mes-ul .mes-li .li-left.join .join-1{
+  width: 60rpx;
+  height: 60rpx;
+}
+.main .mes-ul .mes-li .li-left.join .join-4{
+  width: 50rpx;
+  height: 50rpx;
+  margin: 5rpx;
+}
+/* .main .mes-ul .mes-li .li-left.join .join-4 image{
+  width: 50rpx;
+  height: 50rpx;
+} */
+.main .mes-ul .mes-li .li-left.join .join-9{
+  width: 34rpx;
+  height: 34rpx;
+  margin: 2rpx 2rpx;
+}
+/* .main .mes-ul .mes-li .li-left.join .join-9 image{
+  width: 100%;
+  height: 100%;
+  position: relative;
+  top: 0;
+} */
 .main .mes-ul .mes-li .li-right {
   flex: 1;
   padding-right: 40rpx;

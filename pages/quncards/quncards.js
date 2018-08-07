@@ -3,7 +3,8 @@ var util = require('../../utils/util.js');
 var app = getApp()
 Page({
   data: {
-    list: []
+    list: [],
+    imgList: []
   },
   onShareAppMessage: function (a) {
     var server = app.globalData.server;

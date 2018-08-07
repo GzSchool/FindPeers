@@ -100,6 +100,8 @@ Page({
       util.searchByParam(key, openid).then(function (res) {
         console.log(res.data)
         if (res.data.success) {
+          console.log('-----')
+          console.log(key)
           let len = res.data.data.length;
           if (len == 0) {
             that.setData({
