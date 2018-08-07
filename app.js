@@ -7,7 +7,7 @@ App({
     isshow:"",
     openid:"",
     isgroup:false,               //是不是群
-    othercardid: '40302',             //点击别人分享的别人的id
+    othercardid: '',             //点击别人分享的别人的id
     canSee:"",                   //群名片里的自己的信息是不是已经分享
     login: '',                   //登陆标识
     // server: 'http://192.168.2.123:8080',
@@ -19,148 +19,145 @@ App({
     groupId:"",
     checkSave:"",
   },
-  onLaunch: function(ops) {
+  onShow: function(ops) {
+    console.log(ops)
     var that = this
     var server = that.globalData.server
     var url = that.globalData.urlOfLogin
-    var othercardid = that.globalData.othercardid
-    //要是有id 说明点击的别人分享的（只有两个 一是：群里点击的， 二是：别人分享的）
-    // if (othercardid) {
-    //   // that.globalData.othercardid = ops.othercardid;
-    //   // var othercardid = ops.othercardid;
-    //   if (ops.scene == 1044) {                                            // 等于这个 就是群里点击的
-    //     that.globalData.isgroup=true
-    //     var shareTickets = ops.shareTicket;
-    //     console.log(ops.shareTicket)                                      //群里点击的回带shareTickets可以用这个获取groupid
-    //     wx.getShareInfo({
-    //       shareTicket: shareTickets,
-    //       success: function(res) {
-    //         console.log(res)
-    //         var encryptedData = res.encryptedData;
-    //         var iv = res.iv;
-    //         util.Login(url).then(function (data) {                    // 登录
-    //           if (data) {
-    //             that.globalData.openid = data
-    //             var openid = that.globalData.openid
-    //           }
-    //           var openid = that.globalData.openid;                  //用用户标识访问数据库获取用户信息
-    //           var othercardid = that.globalData.othercardid;
-    //           util.checkSave(openid,othercardid).then(function(a){
-    //             console.log(a)
-    //             if (a.data.data) {
-    //               that.globalData.checkSave = true
-    //             } else {
-    //               that.globalData.checkSave = false
-    //             }
-    //           })
-    //           var othercardid = that.globalData.othercardid;              
-    //           util.getCardsById(othercardid).then(function (card) {
-    //             console.log(res)
-    //             console.log(that.globalData.openid)
-    //             console.log(card.data.data[0].openId)
-    //             console.log(encryptedData)
-    //             console.log(iv)
-    //             wx.request({
-    //               method: 'POST',
-    //               url: server + '/userGroup/saveOrUpdate',
+    // var othercardid = that.globalData.othercardid
+    // 要是有id 说明点击的别人分享的（只有两个 一是：群里点击的， 二是：别人分享的）
+    if (ops.query.othercardid) {
+      that.globalData.othercardid = ops.query.othercardid;
+      var othercardid = ops.query.othercardid;
+      if (ops.scene == 1044) {                                            // 等于这个 就是群里点击的
+        that.globalData.isgroup=true
+        var shareTickets = ops.shareTicket;
+        console.log(ops.shareTicket)                                      //群里点击的回带shareTickets可以用这个获取groupid
+        wx.getShareInfo({
+          shareTicket: shareTickets,
+          success: function(res) {
+            console.log(res)
+            var encryptedData = res.encryptedData;
+            var iv = res.iv;
+            util.Login(url).then(function (data) {                    // 登录
+              if (data) {
+                that.globalData.openid = data
+                var openid = that.globalData.openid
+              }
+              var openid = that.globalData.openid;                  //用用户标识访问数据库获取用户信息
+              var othercardid = that.globalData.othercardid;
+              util.checkSave(openid,othercardid).then(function(a){
+                console.log(a)
+                if (a.data.data) {
+                  that.globalData.checkSave = true
+                } else {
+                  that.globalData.checkSave = false
+                }
+              })
+              var othercardid = that.globalData.othercardid;              
+              util.getCardsById(othercardid).then(function (card) {
+                console.log(res)
+                console.log(that.globalData.openid)
+                console.log(card.data.data[0].openId)
+                console.log(encryptedData)
+                console.log(iv)
+                wx.request({
+                  method: 'POST',
+                  url: server + '/userGroup/saveOrUpdate',
 
-    //               data: {
-    //                 openId: that.globalData.openid,
-    //                 otherOpenId: card.data.data[0].openId,
-    //                 encryptedData: encryptedData,
-    //                 iv: iv
-    //               },
+                  data: {
+                    openId: that.globalData.openid,
+                    otherOpenId: card.data.data[0].openId,
+                    encryptedData: encryptedData,
+                    iv: iv
+                  },
 
-    //               header: {
-    //                 'content-type': 'application/json'
-    //               },
-    //               success: function (c) {
-    //                 console.log(c)
-    //               }
-    //             })
-    //           })
-    //           util.getMyData(openid).then(function (res) {
-    //             // console.log(this.globalData.isshow)         
-    //             console.log(res)
-    //             if (res) {                                         //判断是否返回 有返回值就是已经添加过信息
-    //               that.globalData.isshow = true
-    //               that.globalData.notadd = false
-    //               // wx.navigateTo({
-    //               //   url: '/pages/peerscards/peerscards?isshow=true&groupId=' + that.globalData.groupId,
-    //               // })
-    //               wx.navigateTo({
-    //                 url: '/pages/peerscards/peerscards?isshow=true',
-    //               })
-    //             } else {
-    //               that.globalData.notadd = true
-    //               that.globalData.isshow = false
-    //               // wx.navigateTo({                                //说明没有添加过名片信息
-    //               //   url: '/pages/peerscards/peerscards?groupId=' + that.globalData.groupId,
-    //               // })
-    //               wx.navigateTo({
-    //                 url: '/pages/peerscards/peerscards?isshow=true',
-    //               })
-    //             }
-    //           })
-              
-    //           // wx.request({
-    //           //   method: 'POST',
-    //           //   url: server + '/userGroup/saveOrUpdate',
-
-    //           //   data: {
-    //           //     openId: openid,
-    //           //     encryptedData: encryptedData,
-    //           //     iv: iv
-    //           //   },
-
-    //           //   header: {
-    //           //     'content-type': 'application/json'
-    //           //   },
-    //           //   success: function (c) {
-    //           //     console.log(c)
-    //           //   }
-    //           // })
-    //         })           
-    //       }
-    //     })        
-    //   } else {                                             //点击的个人的分享
-    //     console.log("2222222222222")
-    //     var that = this
-    //     that.globalData.isgroup=false
-    //     var othercardid = that.globalData.othercardid
-    //     util.Login(url).then(function (data) {                     // 登录
-    //       console.log(data)
-    //        if (data) {
-    //         that.globalData.openid = data
-    //          var openid = that.globalData.openid
-    //       }
-    //       var openid = that.globalData.openid;                      //用用户标识访问数据库获取用户信息
-    //       util.checkSave(openid, othercardid).then(function (a) {
-    //         if(a.data.data){
-    //           that.globalData.checkSave=true
-    //         }else{
-    //           that.globalData.checkSave = false
-    //         }
-    //       })
-    //       util.getMyData(openid).then(function (res) {                          
-    //         console.log(res)
-    //         if (res) {
-    //           that.globalData.isshow = true
-    //           that.globalData.notadd = false
-    //           wx.navigateTo({
-    //             url: '/pages/peerscards/peerscards?othercardid=' + othercardid + '&isshow=true',
-    //           })
-    //         } else {
-    //           that.globalData.notadd = true
-    //           that.globalData.isshow = false
-    //           wx.navigateTo({
-    //             url: '/pages/peerscards/peerscards',
-    //           })
-    //         }
-    //       })
-    //     })
-    //   }
-    // } else {             
+                  header: {
+                    'content-type': 'application/json'
+                  },
+                  success: function (c) {
+                    console.log(that.globalData.openid)
+                    console.log(card.data.data[0].openId)
+                    console.log(encryptedData)
+                    console.log(iv)
+                    console.log(c)
+                    if(c.data.data){
+                      that.globalData.groupId = c.data.data
+                    }
+                    
+                  }
+                })
+              })
+              util.getMyData(openid).then(function (res) {
+                // console.log(this.globalData.isshow)         
+                console.log(res)
+                var groupId = that.globalData.groupId
+                if (res) {                                         //判断是否返回 有返回值就是已经添加过信息
+                  that.globalData.isshow = true
+                  that.globalData.notadd = false
+                  wx.navigateTo({
+                    url: '/pages/peerscards/peerscards?isshow=true&groupId=' + that.globalData.groupId,
+                  })
+                  // wx.navigateTo({
+                  //   url: '/pages/peerscards/peerscards?isshow=true',
+                  // })
+                } else {
+                  that.globalData.notadd = true
+                  that.globalData.isshow = false
+                  wx.navigateTo({                                //说明没有添加过名片信息
+                    url: '/pages/peerscards/peerscards?groupId=' + that.globalData.groupId,
+                  })
+                  // wx.navigateTo({
+                  //   url: '/pages/peerscards/peerscards?isshow=true',
+                  // })
+                }
+              })
+            })           
+          }
+        })        
+      } else {                                             //点击的个人的分享
+        console.log("2222222222222")
+        var that = this
+        that.globalData.isgroup=false
+        var othercardid = that.globalData.othercardid
+        util.Login(url).then(function (data) {                     // 登录
+          console.log(data)
+           if (data) {
+            that.globalData.openid = data
+             var openid = that.globalData.openid
+          }
+          var openid = that.globalData.openid;                      //用用户标识访问数据库获取用户信息
+          util.checkSave(openid, othercardid).then(function (a) {
+            if(a.data.data){
+              that.globalData.checkSave=true
+            }else{
+              that.globalData.checkSave = false
+            }
+          })
+          util.getMyData(openid).then(function (res) {                          
+            console.log(res)
+            that.globalData.isshow = true
+            that.globalData.notadd = true
+            wx.navigateTo({
+              url: '/pages/peerscards/peerscards?othercardid=' + othercardid + '&isshow=true',
+             })
+            // if (res) {
+            //   that.globalData.isshow = true
+            //   that.globalData.notadd = false
+            //   wx.navigateTo({
+            //     url: '/pages/peerscards/peerscards?othercardid=' + othercardid + '&isshow=true',
+            //   })
+            // } else {
+            //   that.globalData.notadd = true
+            //   that.globalData.isshow = false
+            //   wx.navigateTo({
+            //     url: '/pages/peerscards/peerscards',
+            //   })
+            // }
+          })
+        })
+      }
+    } else {             
       util.Login(url).then(function (data) {                // 登录
         console.log(data)
         if (data) {
@@ -192,7 +189,7 @@ App({
           }
         })
       })
-    // }
+    }
     // 热更新
     const updateManager = wx.getUpdateManager()
     updateManager.onCheckForUpdate(function (res) {

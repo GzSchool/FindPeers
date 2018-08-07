@@ -38,8 +38,8 @@
 				{
 					"id": 0,
 					"name": "0",
-					"pathName": "",
-					"query": "",
+					"pathName": "pages/findmore/findmore",
+					"query": "othercardid=40303",
 					"scene": "1044",
 					"shareInfo": {
 						"groupName": "测试模拟群0",
@@ -50,13 +50,25 @@
 				{
 					"id": 1,
 					"name": "0",
-					"pathName": "pages/mine/mine",
-					"query": "",
+					"pathName": "pages/findmore/findmore",
+					"query": "othercardid=40302",
 					"scene": "1044",
 					"shareInfo": {
 						"groupName": "测试模拟群0",
 						"shareName": "gPDjBJEVRWgbCurSVVy45s_YMjjJSKZItb_so_5WXrg@cr4dev",
 						"shareKey": "P0TO3HKYzdmT3mYXeq5jqAkFpiDtoNUxGsCge5sCgM5oMWdRbuHi7d8hKdlsfpUTBekzakQi6F8MqXtfdWvsJw~~"
+					}
+				},
+				{
+					"id": -1,
+					"name": "0",
+					"pathName": "pages/peerscards/peerscards",
+					"query": "othercardid=40250",
+					"scene": "1044",
+					"shareInfo": {
+						"groupName": "测试模拟群0",
+						"shareName": "gPDjBJEVRWgbCurSVVy45s_YMjjJSKZItb_so_5WXrg@cr4dev",
+						"shareKey": "bkX6JEP4zKyVftKo9eurxTU07qerNQjoH7Tw_55Rgbw_MvZ-tFV5NJQj2C13vxpZeBMRj14T4G5Q1obhy2t4uQ~~"
 					}
 				}
 			]
