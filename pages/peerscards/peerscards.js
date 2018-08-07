@@ -17,7 +17,7 @@ Page({
     cardId:[],
     phone: "",
     wechatnum: "",
-    image:"/pages/images/1.png",
+    image:"",
     email:"",
     userJob: '',
     isshow:false,

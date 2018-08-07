@@ -18,6 +18,7 @@ Page({
     image: '',       //用户头像
     server: "",      //服务器地址
     list: [],        //存储收到的同行信息
+    list_length: 0,
     hidden: true,
     scrollTop: 0,    //滚动菜单
     screenHeight: '', //滚动菜单高度 
@@ -144,13 +145,24 @@ Page({
       let letter = [];
       let con = [];
       var length = res.data.data.length;
-      for (let i = 0; i < length; i++) {
-        letter.push(res.data.data[i].prepare.slice(0, 1))
-        // if (validateUpperCase(res.data.data[i].prepare.slice(0, 1))) {
-        // }
+      if (length) {
+        that.setData({
+          list_length: length
+        })
       }
-      // letter.push('#')
+      for (let i = 0; i < length; i++) {
+        // letter.push(res.data.data[i].prepare.slice(0, 1))
+        if (res.data.data[i].prepare && validateUpperCase(res.data.data[i].prepare.slice(0, 1))) {
+          letter.push(res.data.data[i].prepare.slice(0, 1))
+        }
+      }
+      for (let i = 0; i < length; i++) {
+        if (res.data.data[i].prepare == null || !validateUpperCase(res.data.data[i].prepare.slice(0, 1))) {
+          letter.push('xx')
+        }
+      }
       letter = that.dedupe(letter)
+      let len = letter.length;
       letter.forEach(function (a, b) {
         con[b] = { letter: a, data: [] }
         res.data.data.forEach(function (c, d) {
@@ -159,6 +171,12 @@ Page({
           }
         })
       })
+      res.data.data.forEach(function (c, d) {
+        if (!validateUpperCase(c.prepare.slice(0, 1))) {
+          con[len-1].data.push(c)
+        }
+      })
+      console.log(con[len-1])
       that.setData({
         list: res.data.data,
         list_letter: letter,

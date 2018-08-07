@@ -2,7 +2,7 @@
 <view class='search'>
   <view class='search-in'>
     <image src='/pages/images/3.png' mode="aspectFit"></image>
-    <input focus='true' selection-start='1' placeholder='{{key}}' bindinput='bindSearch' placeholder-style='font-size:26rpx;color:#ccc;' type='text'></input>
+    <input focus='true' placeholder='{{key}}' bindinput='bindSearch' placeholder-style='font-size:26rpx;color:#ccc;' type='text'></input>
   </view>
 </view>
 <view class='list'>

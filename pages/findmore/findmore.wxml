@@ -63,7 +63,7 @@
         </view>
       </view> -->
       <view wx:for='{{list_con}}' wx:key='1'>
-        <view class='letter' id='{{item.letter}}'>{{item.letter}}</view>
+        <view class='letter' id='{{item.letter}}'>{{item.letter=='xx'?'#':item.letter}}</view>
         <view class='mes-li' wx:for='{{item.data}}' wx:for-index="index" wx:for-item="item" data-id="{{item.id}}" wx:key="11" data-key='{{item.openId}}' data-saveFlag='{{item.saveFlag}}' bindtap='select'>
           <view class='li-left'>
             <image src='{{item.userImg}}'></image>
@@ -77,7 +77,7 @@
           </view>
         </view>
       </view>
-
+      <view class='list_length'>共{{list_length}}张</view>
     </view>
   </view>
 </scroll-view>
@@ -86,6 +86,6 @@
 </view>
 <view class='mes-link' wx:if='{{list_letter.length!==0}}'>
   <image src='/pages/images/3.png'></image>
-  <view class='link-item' wx:for='{{list_letter}}' wx:key='1' data-item='{{item}}' catchtap='letterClick'>{{item}}<view class='letter_toast'>{{item}}</view></view>
+  <view class='link-item' wx:for='{{list_letter}}' wx:key='1' data-item='{{item}}' catchtap='letterClick'>{{item=='xx'?'#':item}}<view class='letter_toast'>{{item=='xx'?'#':item}}</view></view>
   
 </view>
