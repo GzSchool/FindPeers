@@ -108,6 +108,23 @@ Page({
           }
           app.globalData.notadd = false;
           app.globalData.isshow = true;
+          wx.getStorage({
+            key: 'userInfo',
+            success: function (args) {
+              console.log('+++')
+              console.log(args)
+              wx.setStorage({
+                key: 'userInfo',
+                data: res,
+              })
+            },
+            fail: function (args) {
+              wx.setStorage({
+                key: 'userInfo',
+                data: res
+              })
+            }
+          })
           // wx.switchTab({
           //   url: '/pages/findmore/findmore',
           // })
@@ -124,15 +141,17 @@ Page({
         }
       })
     })
-    
-    wx.getSystemInfo({
-      success: function (res) {
-        that.setData({
-          screenHeight: res.windowHeight
-        })
-      },
-    })
-    console.log(app.globalData.notadd)
+    // 获取屏幕高度 scrollview
+    if (this.data.screenHeight == '') {
+      wx.getSystemInfo({
+        success: function (res) {
+          that.setData({
+            screenHeight: res.windowHeight
+          })
+        },
+      })
+    }
+    // 等待app.onlaunch执行完之后加载页面
     if (app.globalData.openid && app.globalData.openid !== '') {
       this.getData()
     } else {

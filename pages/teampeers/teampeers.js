@@ -12,8 +12,6 @@ Page({
     isAdd: "",
     canSee: "",
     listOfSave: [],
-    isChecked: "",
-    isAllChecked: "",
     job: "",
     qunname: "格致文化",
     server: "",
@@ -30,7 +28,8 @@ Page({
     selectAll: false,
     hasSelect: false,
     selectMyCard: true, //分享弹出层选中自己
-    click:true
+    click: true,
+    formId: '',
   },
   onShareAppMessage: function (a) {               //转发
     var server = app.globalData.server;
@@ -96,7 +95,8 @@ Page({
       groupId: ops.groupid,
       notadd: app.globalData.notadd,
       canSee: app.globalData.canSee,
-      list: []
+      list: [],
+      searching: true
     })
     console.log(that.data.notadd)
     var list = that.data.list;
@@ -128,7 +128,8 @@ Page({
       }
       that.setData({
         list: list,
-        listOfSave: listOfSave
+        listOfSave: listOfSave,
+        searching: false
       });
     })
     util.getMyData(openId).then(function(res) {
@@ -232,9 +233,10 @@ Page({
       })
     }, 200)
   },
-  aaa: function (e) {
+  save: function (e) {
     this.setData({
-      hasSelect:false
+      hasSelect:false,
+      formId: e.detail.formId
     })
     let activeList = []
     let mes = this.data.list
@@ -251,7 +253,9 @@ Page({
     var groupid = that.data.groupId
     var userpeers = [];
     let list=[];
-    util.saveOrUpdate(openid, groupid, 2, activeList).then(function(res) {
+    let formId = this.data.formId
+    let saveName = this.data.saveName
+    util.saveOrUpdate(openid, groupid, 2, activeList, saveName, formId).then(function(res) {
       util.getGroupCards(openid, groupid, 1, 1000).then(function (adc) {
         var length = adc.data.data.result.length;
         for (var i = 0; i < length; i++) {
