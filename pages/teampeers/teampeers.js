@@ -3,88 +3,37 @@ var app = getApp()
 var util = require('../../utils/util.js');
 Page({
   data: {
-    openid: "",
-    groupId: "",
-    list: [],
-    name: "",
-    id: [],
-    notadd: "",
-    isAdd: "",
-    canSee: "",
-    listOfSave: [],
-    job: "",
-    qunname: "格致文化",
-    server: "",
-    city: "",
-    key: " 微信号、城市、公司、行业等进行搜索",
-    industry: "",
-    company: "",
-    phone: "",
-    wechatnum: "",
-    emai: "",
-    image: "",
-    chooseSize: "",
-    animationData: {},
-    selectAll: false,
-    hasSelect: false,
-    selectMyCard: true, //分享弹出层选中自己
-    click: true,
-    formId: '',
+    openid: "",               //用户标识
+    name: "",                 //用户名字
+    city: "",                 //用户城市
+    industry: "",             //用户行业
+    company: "",              //用户公司  
+    image: "",                //用户头像
+    groupId: "",              //群组ID
+    list: [],                 //存群里用户列表
+    notadd: "",               //判断用户是否已添加信息
+    listOfSave: [],           //当前用户未保存的
+    qunname: "",              //群名字
+    server: "",               //服务器地址
+    key: " 微信号、城市、公司、行业等进行搜索", //搜索
+    chooseSize: "",           //动画
+    animationData: {},        //动画
+    selectAll: false,         //选择全部
+    hasSelect: false,         //单个选择
+    selectMyCard: true,       //分享弹出层选中自己
+    click: true,              //点击
+    formId: '',               //表单ID
   },
   onShareAppMessage: function (a) {               //转发
-    var server = app.globalData.server;
     var that = this
-    var otheropenId = that.data.otheropenId;
-    return {
-      title: '找同行',
-      path: '/pages/findmore/findmore',
-      success: function (res) {
-        console.log("66666666666")
-        console.log(res)
-        console.log(a)
-        var shareTickets = res.shareTickets;
-        if (shareTickets.length == 0) {
-          return false;
-        }
-        wx.getShareInfo({
-          shareTicket: shareTickets[0],
-          success: function (res) {
-            console.log(res)
-            console.log(a)
-            var encryptedData = res.encryptedData;
-            var iv = res.iv;
-            wx.request({
-              method: 'POST',
-              url: server + '/userGroup/saveOrUpdate',
-
-              data: {
-                openId: app.globalData.openId,
-                otherOpenId: app.globalData.openId,
-                encryptedData: encryptedData,
-                iv: iv
-              },
-
-              header: {
-                'content-type': 'application/json'
-              },
-              success: function (c) {
-                // wx.navigateTo({
-                //   url: '/pages/peerscards/peerscards',
-                // })
-              }
-            })
-          }
-        })
-      },
-      fail: function (res) {
-        console.log(a)
-        console.log(res)
-        // 转发失败
-      }
-    }
+    var openId = app.globalData.openid;
+    var otherOpenId = app.globalData.openid;
+    util.sharePage(openId, otherOpenId).then(function (e) {
+      console.log(e);
+    });
   },
+  //页面初始化（只加载一次）
   onLoad: function(ops) {
-    console.log(ops)
     wx.showShareMenu({
       withShareTicket: true
     })
@@ -94,31 +43,19 @@ Page({
       openid: ops.openid,
       groupId: ops.groupid,
       notadd: app.globalData.notadd,
-      canSee: app.globalData.canSee,
       list: [],
       searching: true
-    })
-    console.log(that.data.notadd)
+    }) 
+
     var list = that.data.list;
     var server = that.data.server
     var listOfSave = that.data.listOfSave
     var openId = that.data.openid;
     var groupId = that.data.groupId;
+    //获取群里用户
     util.getGroupCards(openId, groupId,1,1000).then(function(res) {
       let arr = res.data.data.result
-      console.log('---')
-      console.log(arr)
       var length = res.data.data.result.length;
-      // for (var m = 0; m < length; m ++) {
-      //   if (res.data.data.result[m].saveFlag !== 2) {
-      //     arr.push(res.data.data.result[m])
-      //   }
-      // }
-      // for (var n = 0; n < length; n++) {
-      //   if (res.data.data.result[n].saveFlag == 2) {
-      //     arr.push(res.data.data.result[n])
-      //   }
-      // }
       for (var i = 0; i < arr.length; i++) {
         arr[i].isselect = false
         list.push(arr[i]);
@@ -132,25 +69,20 @@ Page({
         searching: false
       });
     })
+    //获取用户个人信息
     util.getMyData(openId).then(function(res) {
       if (res) {
         that.setData({
-          canSee: false,
           name: res.username,
-          wechatnum: res.userWechat,
           company: res.userCompany,
-          job: res.userJob,
           industry: res.userIndustry,
           city: res.userCity,
-          email: res.userEmail,
-          phone: res.userPhone,
           image: res.userImg,
         })
-      } else {
-        that.data.canSee = true
       }
     })
   },
+  //个人分享
   share: function() {
     var that = this
     var openid = this.data.openid
@@ -160,34 +92,22 @@ Page({
       title: '分享到本群',
       content: '确定分享到本群',
       success: function(r) {
-        if (r.confirm) {
-          // wx.request({
-          //   method: 'POST',
-          //   url: server + '/userGroup/saveOrUpdate',
-          //   data: {
-          //     openId: openid,
-          //     groupId: groupid
-          //   },
-          //   header: {
-          //     'content-type': 'application/json'
-          //   },
-          //   success: function(a) {
-          //     console.log(a)
-              that.setData({
-                cansee: true
-              })
-          //   }
-          // })
-        }
+        // if (r.confirm) {
+          
+        // }
       }
     })
   },
+
+  //点击个人信息
   mycards: function() {
     var groupId = this.data.groupId;
     wx.navigateTo({
       url: '/pages/mycards/mycards?back=true' + '&groupId=' + groupId,
     })
   },
+
+  //动画弹出
   chooseSize: function(e) {
     var that = this;
     var animation = wx.createAnimation({
@@ -212,6 +132,8 @@ Page({
       app.globalData.canSee = true
     }, 200)
   },
+
+  //动画隐藏
   hideModal: function(e) {
     var that = this;
     var animation = wx.createAnimation({
@@ -233,28 +155,30 @@ Page({
       })
     }, 200)
   },
+
+  //保存用户名片
   save: function (e) {
-    this.setData({
-      hasSelect:false,
+    var that = this
+    that.setData({
+      hasSelect: false,
       formId: e.detail.formId
     })
-    let activeList = []
-    let mes = this.data.list
-    for (let i = 0; i < mes.length; i ++) {
-      if (mes[i].isselect == true) {
-        activeList.push(mes[i].id)
-      }
-    }
-    console.log(activeList)
-    var that = this
     var openid = app.globalData.openid;
     var listOfSave = []
     var othercardid = app.globalData.othercardid
     var groupid = that.data.groupId
     var userpeers = [];
-    let list=[];
-    let formId = this.data.formId
-    let saveName = this.data.saveName
+    let list = [];
+    let saveName = this.data.saveName;
+    let activeList = [];
+    let mes = that.data.list;
+    let formId = that.data.formId;    
+    for (let i = 0; i < mes.length; i ++) {
+      if (mes[i].isselect == true) {
+        activeList.push(mes[i].id)
+      }
+    }  
+    //保存用户  
     util.saveOrUpdate(openid, groupid, 2, activeList, saveName, formId).then(function(res) {
       util.getGroupCards(openid, groupid, 1, 1000).then(function (adc) {
         var length = adc.data.data.result.length;
@@ -275,6 +199,7 @@ Page({
       }
     })
   },
+  //点击用户名片
   goPeers: function(e) {
     var cardId = e.currentTarget.dataset.id;
     var groupId = this.data.groupId;
@@ -283,25 +208,24 @@ Page({
       url: '/pages/otherpeers/otherpeers?cardId=' + cardId + '&groupId=' + groupId + '&back=true&saveFlag=' + saveFlag,
     })
   },
+  //搜索群里用户名片
   inputSearch: function() {
-    // wx.navigateTo({
-    //   url: '/pages/inputSearch/inputSearch',
-    // })
     var groupid = this.data.groupId
     wx.navigateTo({
       url: '/pages/searchInGroup/searchInGroup?groupid=' + groupid,
     })
   },
+  //当前用户添加信息
   addcards: function(e) {
-    var othercardid = app.globalData.othercardid;
     var openid = app.globalData.openid;
     var groupId = this.data.groupId
     if (e.detail.userInfo) {
       wx.redirectTo({
-        url: '/pages/addcards/addcards?back=true' + '&groupId=' + groupId + '&openid=' + openid,
+        url: '/pages/addcards/addcards?back=true&groupId=' + groupId + '&openid=' + openid,
       })
     }
   },
+  //全选
   selectAll: function() {
     let val = this.data.selectAll
     let list = this.data.list
@@ -314,6 +238,7 @@ Page({
       list: list
     })
   },
+  //单选
   selectOne: function(e) {
     let i = e.currentTarget.dataset.index
     console.log(e)
@@ -345,6 +270,7 @@ Page({
       })
     }
   },
+  //选择本人名片
   selectMyCards() {
     let val = this.data.selectMyCard
     this.setData({

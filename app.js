@@ -17,8 +17,8 @@ App({
     urlOfGetCardByOpenID: '/userCard/findOneByOpenId', //获取当前用户信息
     industry:industry,
     groupId:"",
-    checkSave:"",
-    addPhone:""
+    checkSave:"",                //判断当前用户是否已保存其他用户
+    addPhone:"",                 //判断是否已添加手机号
   },
   onShow: function(ops) {
     console.log(ops)
@@ -158,19 +158,6 @@ App({
             wx.navigateTo({
               url: '/pages/peerscards/peerscards?othercardid=' + othercardid + '&isshow=true',
              })
-            // if (res) {
-            //   that.globalData.isshow = true
-            //   that.globalData.notadd = false
-            //   wx.navigateTo({
-            //     url: '/pages/peerscards/peerscards?othercardid=' + othercardid + '&isshow=true',
-            //   })
-            // } else {
-            //   that.globalData.notadd = true
-            //   that.globalData.isshow = false
-            //   wx.navigateTo({
-            //     url: '/pages/peerscards/peerscards',
-            //   })
-            // }
           })
         })
       }

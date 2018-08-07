@@ -4,84 +4,43 @@ var app = getApp()
 var util = require('../../utils/util.js');
 Page({
   data: {
-    notadd: true,
-    list: [],
-    cardId: "",
-    mes: '',        // 输入框内容
-    pageNum: 1,
-    pageSize: 10,
+    notadd: true, //判断是否已添加信息
     loading: false, // 显示加载中
     loadAll: false, // 是否已加载全部
     noresult: false, // 是否显示无搜索结果
+    searching: false,
+    list: [],
+    mes: '', // 输入框内容
+    pageNum: 1, //当前页数
+    pageSize: 10, //显示数量
     key: " 微信号、城市、公司、行业等进行搜索",
     groupid: '',
-    searching: false
   },
-  onShareAppMessage: function (a) {
-    var server = app.globalData.server;
+  //页面转发
+  onShareAppMessage: function(a) {
     var that = this
-    var otheropenId = that.data.otheropenId;
-    return {
-      title: '找同行',
-      path: '/pages/findmore/findmore',
-      success: function (res) {
-        console.log("66666666666")
-        console.log(res)
-        console.log(a)
-        var shareTickets = res.shareTickets;
-        if (shareTickets.length == 0) {
-          return false;
-        }
-        wx.getShareInfo({
-          shareTicket: shareTickets[0],
-          success: function (res) {
-            console.log(res)
-            console.log(a)
-            var encryptedData = res.encryptedData;
-            var iv = res.iv;
-            wx.request({
-              method: 'POST',
-              url: server + '/userGroup/saveOrUpdate',
-
-              data: {
-                openId: app.globalData.openId,
-                otherOpenId: app.globalData.openId,
-                encryptedData: encryptedData,
-                iv: iv
-              },
-
-              header: {
-                'content-type': 'application/json'
-              },
-              success: function (c) {
-                // wx.navigateTo({
-                //   url: '/pages/peerscards/peerscards',
-                // })
-              }
-            })
-          }
-        })
-      },
-      fail: function (res) {
-        console.log(a)
-        console.log(res)
-        // 转发失败
-      }
-    }
+    var openId = app.globalData.openid;
+    var otherOpenId = app.globalData.openid;
+    console.log(openId)
+    console.log(otherOpenId)
+    util.sharePage(openId, otherOpenId).then(function(e) {
+      console.log(e);
+    });
   },
-  onLoad: function (options) {
+  //页面加载
+  onLoad: function(options) {
     let val = this.options.groupid
     this.setData({
       notadd: app.globalData.notadd,
       groupid: val
     })
-    // console.log('---')
-    console.log(this.options.groupid)
   },
-  onShow: function () {
+  //刷新页面（每次进页面都会刷新）
+  onShow: function() {
     this.onLoad()
   },
-  bindSearch: function (res) {
+  //搜索同行
+  bindSearch: function(res) {
     let key = res.detail.value;
     var openid = app.globalData.openid
     let groupid = this.data.groupid
@@ -95,14 +54,11 @@ Page({
     let that = this;
     let list = []
     let pageSize = this.data.pageSize
-    console.log(key.length)
     if (key) {
       this.setData({
         searching: true
       })
-      console.log(openid)
-      util.searchInGroup(key, openid, groupid).then(function (res) {
-        console.log(res.data)
+      util.searchInGroup(key, openid, groupid).then(function(res) {
         if (res.data.success) {
           let len = res.data.data.length;
           if (len == 0) {
@@ -125,13 +81,13 @@ Page({
       });
     }
   },
-  find: function (a) {
-    console.log(a)
+  //点击同行信息
+  find: function(a) {
     var openId = a.currentTarget.dataset.key;
     var cardId = a.currentTarget.dataset.id;
     var saveFlag = a.currentTarget.dataset.saveflag;
     wx.navigateTo({
-      url: '/pages/otherpeers/otherpeers?cardId=' + cardId + '&isshow=true' + '&saveFlag=' + saveFlag + '&groupId=0'
+      url: '/pages/otherpeers/otherpeers?cardId=' + cardId + '&isshow=true&saveFlag=' + saveFlag + '&groupId=0'
     })
   }
 })

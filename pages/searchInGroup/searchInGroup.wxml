@@ -1,5 +1,4 @@
 <!--pages/searchInGroup/searchInGroup.wxml-->
-<!--pages/inputSearch/inputSearch.wxml-->
 <view class='search'>
   <view class='search-in'>
     <image src='/pages/images/3.png' mode="aspectFit"></image>
