@@ -92,122 +92,6 @@ App({
     //                   that.globalData.groupId = c.data.data
     //                 }
                     
-<<<<<<< HEAD
-                  }
-                })
-              })
-              // 用用户标识访问数据库获取用户信息
-              util.getMyData(openid).then(function (res) {
-                // console.log(this.globalData.isshow)         
-                console.log(res)
-                var groupId = that.globalData.groupId
-                if (res) {                                         //判断是否返回 有返回值就是已经添加过信息
-                  if (res.userPhone) {
-                    that.globalData.addPhone = true
-                  } else {
-                    that.globalData.addPhone = false
-                  }
-                  that.globalData.isshow = true
-                  that.globalData.notadd = false
-                  wx.navigateTo({
-                    url: '/pages/peerscards/peerscards?isshow=true&groupId=' + that.globalData.groupId,
-                  })
-                  // wx.navigateTo({
-                  //   url: '/pages/peerscards/peerscards?isshow=true',
-                  // })
-                } else {
-                  that.globalData.addPhone = false
-                  that.globalData.notadd = true
-                  that.globalData.isshow = false
-                  wx.navigateTo({                                //说明没有添加过名片信息
-                    url: '/pages/peerscards/peerscards?groupId=' + that.globalData.groupId,
-                  })
-                  // wx.navigateTo({
-                  //   url: '/pages/peerscards/peerscards?isshow=true',
-                  // })
-                }
-              })
-            })           
-          }
-        })        
-      } else {                                             //点击的个人的分享
-        var that = this
-        that.globalData.isgroup=false
-        var othercardid = that.globalData.othercardid
-        util.Login(url).then(function (data) {                     // 登录
-          console.log(data)
-           if (data) {
-            that.globalData.openid = data
-             var openid = that.globalData.openid
-          }
-          var openid = that.globalData.openid;                      //用用户标识访问数据库获取用户信息
-          util.checkSave(openid, othercardid).then(function (a) {
-            if(a.data.data){
-              that.globalData.checkSave=true
-            }else{
-              that.globalData.checkSave = false
-            }
-          })
-          util.getMyData(openid).then(function (res) {                          
-            console.log(res)
-            if(res){
-              that.globalData.notadd = false              
-            if (res.userPhone) {
-              that.globalData.addPhone = true
-            } else {
-              that.globalData.addPhone = false
-            }
-            }else{
-              that.globalData.addPhone = false
-              that.globalData.notadd = true              
-            }
-            that.globalData.isshow = true
-            wx.navigateTo({
-              url: '/pages/peerscards/peerscards?othercardid=' + othercardid + '&isshow=true',
-             })
-          })
-        })
-      }
-    } else {             
-      util.Login(url).then(function (data) {                // 登录
-        console.log(data)
-        if (data) {
-          that.globalData.openid = data
-          var openid = that.globalData.openid
-          console.log(that.globalData.openid)
-        }
-        var openid = that.globalData.openid;              //用用户标识访问数据库获取用户信息
-      var openid = that.globalData.openid;
-      console.log(openid)
-        util.getMyData(openid).then(function (res) {
-          console.log(openid)                                         
-          console.log(res)
-          if(res){
-            if(res.userPhone){
-              that.globalData.addPhone=true
-            }else{
-              that.globalData.addPhone = false
-            }
-            that.globalData.notadd = false;
-            that.globalData.isshow = true;
-            wx.switchTab({
-              url: '/pages/findmore/findmore',
-            })
-          }else{
-            that.globalData.addPhone = false            
-            that.globalData.notadd = true;
-            that.globalData.isshow = false;            
-            wx.switchTab({
-              url: '/pages/findmore/findmore',
-            })
-          }
-          if (that.employIdCallback) {
-            that.employIdCallback(res)
-          }
-        })
-      })
-    }
-=======
     //               }
     //             })
     //           })
@@ -323,7 +207,6 @@ App({
     //     })
     //   })
     // }
->>>>>>> a8520d10eccd1b7ae211e25c51886d607de492fb
     // 热更新
     const updateManager = wx.getUpdateManager()
     updateManager.onCheckForUpdate(function (res) {
