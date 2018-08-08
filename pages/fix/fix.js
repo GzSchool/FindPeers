@@ -8,27 +8,26 @@ import {
 var app = getApp();
 Page({
   data: {
-    mineInfo: {
-      name: '',
-      idustry: '',
-      city: '',
-      company: '',
-      phone: '',
-      wechatnum: '',
-      email: ''
+    mineInfo: {                //缓存  
+      name: '',                //用户名字
+      idustry: '',             //用户行业
+      city: '',                //用户城市
+      company: '',             //用户公司
+      phone: '',               //用户手机号
+      wechatnum: '',           //用户微信号
+      email: ''                //用户邮箱
     },
-    count: 0,
-    groupId: "",
-    name: "",
-    other: '',
-    wechatnum: "",
-    company: "",
-    idustry: "",
-    job: '',
-    back: "",
-    server: "",
-    id: '',
-    city: "",
+    count: 0,                  //简介长度
+    groupId: "",               //群组ID
+    name: "",                  //用户名字
+    wechatnum: "",             //用户微信号
+    company: "",               //用户公司
+    idustry: "",               //用户行业
+    job: '',                   //用户职务
+    back: "",                  //判断是否是从群里点击的
+    server: "",                //服务器地址
+    id: '',                    //用户名片ID
+    city: "",                  //
     phone: "",
     demand: "",
     introduction: "",
