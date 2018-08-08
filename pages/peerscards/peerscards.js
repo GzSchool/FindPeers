@@ -82,7 +82,15 @@ Page({
       key: 'userInfo',
       success: function (res) {
         that.setData({
-          userInfo: res.data
+          userInfo: res.data,
+          // addPhone: res.data.userPhone?true:false,
+          notadd: false
+        })
+      },
+      fail: function () {
+        that.setData({
+          addPhone: false,
+          notadd: true
         })
       }
     })

@@ -30,23 +30,28 @@ App({
     if (ops.query.othercardid) {
       that.globalData.othercardid = ops.query.othercardid;
       var othercardid = ops.query.othercardid;
-      if (ops.scene == 1044) {                                            // 等于这个 就是群里点击的
+      // 等于这个 就是群里点击的
+      if (ops.scene == 1044) {
         that.globalData.isgroup=true
+        // 群里点击的回带shareTickets可以用这个获取groupid
         var shareTickets = ops.shareTicket;
-        console.log(ops.shareTicket)                                      //群里点击的回带shareTickets可以用这个获取groupid
+        console.log('+++___++++')
+        console.log(ops.shareTicket)                                      
         wx.getShareInfo({
           shareTicket: shareTickets,
-          success: function(res) {
+          success: function (res) {
             console.log(res)
             var encryptedData = res.encryptedData;
             var iv = res.iv;
-            util.Login(url).then(function (data) {                    // 登录
+            // 登录
+            util.Login(url).then(function (data) {                    
               if (data) {
                 that.globalData.openid = data
                 var openid = that.globalData.openid
               }
-              var openid = that.globalData.openid;                  //用用户标识访问数据库获取用户信息
+              var openid = that.globalData.openid;                  
               var othercardid = that.globalData.othercardid;
+              // 检查是否保存
               util.checkSave(openid,othercardid).then(function(a){
                 console.log(a)
                 if (a.data.data) {
@@ -55,7 +60,8 @@ App({
                   that.globalData.checkSave = false
                 }
               })
-              var othercardid = that.globalData.othercardid;              
+              var othercardid = that.globalData.othercardid; 
+              // 获取GID             
               util.getCardsById(othercardid).then(function (card) {
                 console.log(res)
                 console.log(that.globalData.openid)
@@ -89,6 +95,7 @@ App({
                   }
                 })
               })
+              // 用用户标识访问数据库获取用户信息
               util.getMyData(openid).then(function (res) {
                 // console.log(this.globalData.isshow)         
                 console.log(res)
