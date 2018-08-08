@@ -33,33 +33,8 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 1,
-			"list": [
-				{
-					"id": 0,
-					"name": "1",
-					"pathName": "pages/findmore/findmore",
-					"query": "othercardid=40300",
-					"scene": "1044",
-					"shareInfo": {
-						"groupName": "测试模拟群0",
-						"shareName": "gPDjBJEVRWgbCurSVVy45s_YMjjJSKZItb_so_5WXrg@cr4dev",
-						"shareKey": "kdQXTFBwB60S3Zq4E15Xqb0bnJd36T4lcSU8QWGRqNMhnd_-Bjr1YOEsFcADtnGm6zG-5J_HtqhZTIvAuUPeGw~~"
-					}
-				},
-				{
-					"id": 1,
-					"name": "21",
-					"pathName": "pages/peerscards/peerscards",
-					"query": "othercardid=30303",
-					"scene": "1044",
-					"shareInfo": {
-						"groupName": "测试模拟群1",
-						"shareName": "rQPFFiMMgPDbwQwWmW3amhU2LpYCGfvcXil3yqg1Gt4@cr4dev",
-						"shareKey": "7Ta7hPp8QX--6kzkBfsWlY4nKoKh1XDgNhCIg1kDDv4NEMi4KaSkjEE2uh3f3LPBx3M5gD8Hf8bHUMMamkSeEw~~"
-					}
-				}
-			]
+			"current": 0,
+			"list": []
 		}
 	}
 }

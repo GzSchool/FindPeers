@@ -21,12 +21,13 @@ Page({
     synopsis: '',           //简介
     // shareing: false
   },
+  //页面加载
   onLoad:function(a){
     wx.showShareMenu({
       withShareTicket: true
     })
     console.log(a)
-    var that = this
+    let that = this
     wx.getStorage({
       key: 'userInfo',
       success: function (res) {
@@ -58,9 +59,10 @@ Page({
     }
     
   },
+  //获取用户信息
   getData() {
     let that = this
-    var openid = app.globalData.openid;
+    let openid = app.globalData.openid;
     util.getMyData(openid).then(function (res) {
       console.log(res)
       if (!res) {
@@ -89,45 +91,18 @@ Page({
       }
     })
   },
+  //转发分享
   onShareAppMessage: function (a) {
-    console.log("2222222222222333333333333333")
-    var that=this
-    var server = app.globalData.server;
+    let that=this
     return {
       title: '我的名片信息',
       path: '/pages/peerscards/peerscards?othercardid=' + that.data.id,
       success: function (res) {
-        console.log(res)
-        var shareTickets = res.shareTickets;
-        if (shareTickets.length == 0) {
-          return false;
-        }
-        wx.getShareInfo({
-          shareTicket: shareTickets[0],
-          success: function (res) {
-            console.log(res)
-            console.log(a)
-            var encryptedData = res.encryptedData;
-            var iv = res.iv;
-            wx.request({
-              method: 'POST',
-              url: server+'/userGroup/saveOrUpdate',
-
-              data: {
-                openId:app.globalData.openid,
-                otherOpenId: app.globalData.openid,                
-                encryptedData: encryptedData,
-                iv: iv
-              },
-
-              header: {
-                'content-type': 'application/json'
-              },
-              success: function (c) {
-                console.log(c)
-              }
-            })
-          }
+        let openid = app.globalData.openid;
+        let otherOpneId = app.globalData.openid;
+        let id = that.data.id;
+        util.shareToQunOrPersonal(openid, otherOpneId, res).then(function (e) {
+          console.log(e)
         })
       },
       fail: function (res) {
@@ -135,9 +110,10 @@ Page({
       }
     }
   },
+  //修改名片
   viewThisCards:function(){
-    var openid = app.globalData.openid;
-    var groupId= this.data.groupId;
+    let openid = app.globalData.openid;
+    let groupId= this.data.groupId;
     if(this.data.back){
       wx.navigateTo({
         url: '/pages/fix/fix?back=true&groupId=' + groupId + '&openid=' + openid,
@@ -147,17 +123,6 @@ Page({
         url: '/pages/fix/fix',
       })
     }
-  },
-  goFindmore:function(a){
-    wx.switchTab({
-      url: '/pages/findmore/findmore',
-    })
-  },
-  toMyPeers () {
-    // console.log('分享')
-    // this.setData({
-    //   shareing: true
-    // })
   },
   onShow:function(){
     // this.setData({

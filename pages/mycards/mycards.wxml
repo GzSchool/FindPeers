@@ -55,5 +55,5 @@
   </view>
 </view>
 <view class="footer">
-    <button class="footer-btn" open-type='share' bindtap='toMyPeers'>发送本张名片</button>
+    <button class="footer-btn" open-type='share'>发送本张名片</button>
 </view>
