@@ -32,51 +32,11 @@ Page({
     userInfo: {},     // 用户信息
     addPhone: false,  //判断是否添加了手机号
   },
-  //分享
-  onShareAppMessage: function(a) {
-    var server = app.globalData.server;
-    var that = this
-    var otheropenId = that.data.otheropenId;
-    var openId = app.globalData.openid;
-    var id = that.data.othercardid;
-    return {
-      title: '同行信息',
-      path: '/pages/findmore/findmore?othercardid=' + that.data.othercardid,
-      success: function(res) {
-        var shareTickets = res.shareTickets;
-        if (shareTickets.length == 0) {
-          return false;
-        }
-        wx.getShareInfo({
-          shareTicket: shareTickets[0],
-          success: function(res) {
-            var encryptedData = res.encryptedData;
-            var iv = res.iv;
-            wx.request({
-              method: 'POST',
-              url: server + '/userGroup/saveOrUpdate',
-              data: {
-                openId: app.globalData.openId,
-                otherOpenId: otheropenId,
-                encryptedData: encryptedData,
-                iv: iv
-              },
-              header: {
-                'content-type': 'application/json'
-              },
-              success: function(c) {
-              }
-            })
-          }
-        })
-      },
-      fail: function(res) {
-        // 转发失败
-      }
-    }
-  },
   //页面加载
-  onLoad: function(ops) {
+  onLoad: function (ops) {
+    wx.showShareMenu({
+      withShareTicket: true
+    })
     var that = this 
     wx.getStorage({
       key: 'userInfo',
@@ -94,12 +54,159 @@ Page({
         })
       }
     })
-    if(ops.othercardid){
+    // if(ops.othercardid){
+    //   that.data.othercardid = ops.othercardid
+    // }
+    // from app.js
+    console.log(ops)
+    // var that = this
+    var server = app.globalData.server
+    var url = app.globalData.urlOfLogin
+    // var othercardid = that.globalData.othercardid
+    // 要是有id 说明点击的别人分享的（只有两个 一是：群里点击的， 二是：别人分享的）
+    if (ops.othercardid) {
       that.data.othercardid = ops.othercardid
+      app.globalData.othercardid = ops.othercardid;
+      var othercardid = ops.othercardid;
+      // 等于这个 就是群里点击的
+      if (ops.scene == 1044) {
+        app.globalData.isgroup = true
+        // 群里点击的回带shareTickets可以用这个获取groupid
+        var shareTickets = ops.shareTicket;
+        console.log('+++___++++')
+        console.log(ops.shareTicket)
+        wx.getShareInfo({
+          shareTicket: shareTickets,
+          success: function (res) {
+            console.log(res)
+            var encryptedData = res.encryptedData;
+            var iv = res.iv;
+            // 登录
+            util.Login(url).then(function (data) {
+              if (data) {
+                app.globalData.openid = data
+                var openid = app.globalData.openid
+              }
+              var openid = app.globalData.openid;
+              var othercardid = app.globalData.othercardid;
+              // 检查是否保存
+              util.checkSave(openid, othercardid).then(function (a) {
+                console.log(a)
+                if (a.data.data) {
+                  app.globalData.checkSave = true
+                } else {
+                  app.globalData.checkSave = false
+                }
+              })
+              var othercardid = app.globalData.othercardid;
+              // 获取GID             
+              util.getCardsById(othercardid).then(function (card) {
+                console.log(res)
+                console.log(app.globalData.openid)
+                console.log(card.data.data[0].openId)
+                console.log(encryptedData)
+                console.log(iv)
+                wx.request({
+                  method: 'POST',
+                  url: server + '/userGroup/saveOrUpdate',
+
+                  data: {
+                    openId: app.globalData.openid,
+                    otherOpenId: card.data.data[0].openId,
+                    encryptedData: encryptedData,
+                    iv: iv
+                  },
+
+                  header: {
+                    'content-type': 'application/json'
+                  },
+                  success: function (c) {
+                    console.log(app.globalData.openid)
+                    console.log(card.data.data[0].openId)
+                    console.log(encryptedData)
+                    console.log(iv)
+                    console.log(c)
+                    if (c.data.data) {
+                      app.globalData.groupId = c.data.data
+                    }
+
+                  }
+                })
+              })
+              // 用用户标识访问数据库获取用户信息
+              util.getMyData(openid).then(function (res) {
+                // console.log(this.globalData.isshow)         
+                console.log(res)
+                var groupId = app.globalData.groupId
+                if (res) {                                         //判断是否返回 有返回值就是已经添加过信息
+                  if (res.userPhone) {
+                    app.globalData.addPhone = true
+                  } else {
+                    app.globalData.addPhone = false
+                  }
+                  app.globalData.isshow = true
+                  app.globalData.notadd = false
+                  wx.navigateTo({
+                    url: '/pages/peerscards/peerscards?isshow=true&groupId=' + app.globalData.groupId,
+                  })
+                  // wx.navigateTo({
+                  //   url: '/pages/peerscards/peerscards?isshow=true',
+                  // })
+                } else {
+                  app.globalData.addPhone = false
+                  app.globalData.notadd = true
+                  app.globalData.isshow = false
+                  wx.navigateTo({                                //说明没有添加过名片信息
+                    url: '/pages/peerscards/peerscards?groupId=' + app.globalData.groupId,
+                  })
+                  // wx.navigateTo({
+                  //   url: '/pages/peerscards/peerscards?isshow=true',
+                  // })
+                }
+              })
+            })
+          }
+        })
+      } else {                                             //点击的个人的分享
+        console.log("2222222222222")
+        var that = this
+        app.globalData.isgroup = false
+        var othercardid = app.globalData.othercardid
+        util.Login(url).then(function (data) {                     // 登录
+          console.log(data)
+          if (data) {
+            app.globalData.openid = data
+            var openid = app.globalData.openid
+          }
+          var openid = app.globalData.openid;                      //用用户标识访问数据库获取用户信息
+          util.checkSave(openid, othercardid).then(function (a) {
+            if (a.data.data) {
+              app.globalData.checkSave = true
+            } else {
+              app.globalData.checkSave = false
+            }
+          })
+          util.getMyData(openid).then(function (res) {
+            console.log(res)
+            if (res) {
+              app.globalData.notadd = false
+              if (res.userPhone) {
+                app.globalData.addPhone = true
+              } else {
+                app.globalData.addPhone = false
+              }
+            } else {
+              app.globalData.addPhone = false
+              app.globalData.notadd = true
+            }
+            app.globalData.isshow = true
+            // wx.navigateTo({
+            //   url: '/pages/peerscards/peerscards?othercardid=' + othercardid + '&isshow=true',
+            // })
+          })
+        })
+      }
     }
-    wx.showShareMenu({
-      withShareTicket: true
-    })
     that.data.server = app.globalData.server;
     if (ops.groupId) {
       that.setData({
@@ -294,5 +401,48 @@ Page({
     wx.navigateTo({
       url: '/pages/teampeers/teampeers?openid=' + openid + '&groupid=' + groupId,
     })
+  },
+  //分享
+  onShareAppMessage: function (a) {
+    var server = app.globalData.server;
+    var that = this
+    var otheropenId = that.data.otheropenId;
+    var openId = app.globalData.openid;
+    var id = that.data.othercardid;
+    return {
+      title: '同行信息',
+      path: '/pages/peerscards/peerscards?othercardid=' + that.data.othercardid,
+      success: function (res) {
+        var shareTickets = res.shareTickets;
+        if (shareTickets.length == 0) {
+          return false;
+        }
+        wx.getShareInfo({
+          shareTicket: shareTickets[0],
+          success: function (res) {
+            var encryptedData = res.encryptedData;
+            var iv = res.iv;
+            wx.request({
+              method: 'POST',
+              url: server + '/userGroup/saveOrUpdate',
+              data: {
+                openId: app.globalData.openId,
+                otherOpenId: otheropenId,
+                encryptedData: encryptedData,
+                iv: iv
+              },
+              header: {
+                'content-type': 'application/json'
+              },
+              success: function (c) {
+              }
+            })
+          }
+        })
+      },
+      fail: function (res) {
+        // 转发失败
+      }
+    }
   }
 })
