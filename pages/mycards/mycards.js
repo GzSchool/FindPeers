@@ -91,25 +91,6 @@ Page({
       }
     })
   },
-  //转发分享
-  onShareAppMessage: function (a) {
-    let that=this
-    return {
-      title: '我的名片信息',
-      path: '/pages/peerscards/peerscards?othercardid=' + that.data.id,
-      success: function (res) {
-        let openid = app.globalData.openid;
-        let otherOpneId = app.globalData.openid;
-        let id = that.data.id;
-        util.shareToQunOrPersonal(openid, otherOpneId, res).then(function (e) {
-          console.log(e)
-        })
-      },
-      fail: function (res) {
-        console.log(res)
-      }
-    }
-  },
   //修改名片
   viewThisCards:function(){
     let openid = app.globalData.openid;
@@ -128,5 +109,24 @@ Page({
     // this.setData({
     //   shareing: false
     // })
+  },
+  //转发分享
+  onShareAppMessage: function (a) {
+    let that = this
+    return {
+      title: '我的名片信息',
+      path: '/pages/peerscards/peerscards?othercardid=' + that.data.id,
+      success: function (res) {
+        let openid = app.globalData.openid;
+        let otherOpneId = app.globalData.openid;
+        let id = that.data.id;
+        util.shareToQunOrPersonal(openid, otherOpneId, res).then(function (e) {
+          console.log(e)
+        })
+      },
+      fail: function (res) {
+        console.log(res)
+      }
+    }
   }
 })

@@ -3,39 +3,18 @@ var app=getApp()
 var util = require('../../utils/util.js');
 Page({
   data: {
-    notadd: true,
-    list: [],
-    cardId:"",
-    mes: '',        // 输入框内容
-    pageNum: 1,
-    pageSize: 10,
-    loading: false, // 显示加载中
-    loadAll: false, // 是否已加载全部
-    noresult: false, // 是否显示无搜索结果
+    notadd: true,     //判断是否已添加信息
+    list: [],         //显示列表
+    mes: '',          // 输入框内容
+    pageNum: 1,       //当前页面
+    pageSize: 10,     //当前页显示数
+    loading: false,   // 显示加载中
+    loadAll: false,   // 是否已加载全部
+    noresult: false,  // 是否显示无搜索结果
     key: " 微信号、城市、公司、行业等进行搜索",
-    searching: false,
+    searching: false, 
   },
-  onShareAppMessage: function (a) {
-    var server = app.globalData.server;
-    var that = this
-    var otheropenId = that.data.otheropenId;
-    return {
-      title: '找同行',
-      path: '/pages/findmore/findmore',
-      success: function (res) {
-        let openId = app.globalData.openid;
-        let otherOpenId = app.globalData.openid;
-        util.sharePage(openId, otherOpenId, res).then(function (e) {
-          console.log(e)
-        })
-      },
-      fail: function (res) {
-        console.log(a)
-        console.log(res)
-        // 转发失败
-      }
-    }
-  },
+  //页面加载
   onLoad: function (options) {
     wx.showShareMenu({
       withShareTicket: true
@@ -44,11 +23,13 @@ Page({
       notadd: app.globalData.notadd
     })
   },
+  //刷新页面
   onShow: function () {
     this.onLoad()
   },
+  //搜索
   bindSearch:function(res){
-    let key = res.detail.value;
+    let key = res.detail.value;         //用户输入的内容
     var openid = app.globalData.openid
     this.setData({
       mes: key,
@@ -60,17 +41,12 @@ Page({
     let that = this;
     let list = []
     let pageSize = this.data.pageSize
-    console.log(key.length)
     if (key) {
       this.setData({
         searching: true
       })
-      console.log(openid)
       util.searchByParam(key, openid).then(function (res) {
-        console.log(res.data)
         if (res.data.success) {
-          console.log('-----')
-          console.log(key)
           let len = res.data.data.length;
           if (len == 0) {
             that.setData({
@@ -92,13 +68,32 @@ Page({
       });
     }
   },
+  //点击搜索到的同行
   find:function(a){
-    console.log(a)
-    var openId=a.currentTarget.dataset.key;
-    var cardId = a.currentTarget.dataset.id;
-    var saveFlag = a.currentTarget.dataset.saveflag;
+    var openId=a.currentTarget.dataset.key;             //同行的openid
+    var cardId = a.currentTarget.dataset.id;            //同行名片ID
+    var saveFlag = a.currentTarget.dataset.saveflag;    //当前用户是否保存同行
     wx.navigateTo({
       url: '/pages/otherpeers/otherpeers?cardId=' + cardId + '&isshow=true' + '&saveFlag=' + saveFlag + '&groupId=0'
     })
+  },
+  //转发分享
+  onShareAppMessage: function (a) {
+    var that = this
+    return {
+      title: '找同行',
+      path: '/pages/findmore/findmore',
+      success: function (res) {
+        let openId = app.globalData.openid;
+        let otherOpenId = app.globalData.openid;
+        util.sharePage(openId, otherOpenId, res).then(function (e) {
+          console.log(e)
+        })
+      },
+      fail: function (res) {
+        console.log(res)
+        // 转发失败
+      }
+    }
   }
 })

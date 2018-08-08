@@ -3,57 +3,30 @@ var app = getApp();
 var util = require('../../utils/util.js');
 Page({
   data: {
-    cardId: "",
-    id: "",
-    notadd: "",
-    back: "",
-    name: "",
-    issave: "",
-    city: "",
-    idustry: "",
-    groupId: '',
-    server: "",
-    company: "",
-    phone: "",
-    wechatnum: "",
-    image: "",
-    email: "",
-    userJob: '',
-    demand: '', // 需求
-    resources: '', // 资源
-    synopsis: '', // 简介
-    isshow: false,
-    otheropenId: "",
-    searching: false,
-    userInfo: {}, // 用户信息
-    addPhone:""
+    cardId: "",          //名片ID
+    id: "",              //名片ID
+    notadd: "",          //判断用户是否已添加信息
+    back: "",            //判断是否是从群里点击的
+    name: "",            //用户名字
+    issave: "",          //判断用户是否以保存这个名片
+    city: "",            //用户城市
+    idustry: "",         //用户行业
+    groupId: '',         //群组ID
+    server: "",          //服务器地址
+    company: "",         //用户公司
+    phone: "",           //用户手机号
+    wechatnum: "",       //用户微信号
+    image: "",           //用户头像
+    email: "",           //用户邮箱
+    userJob: '',         //用户职务
+    demand: '',          // 需求
+    resources: '',       // 资源
+    synopsis: '',        // 简介
+    otheropenId: "",     //同行标识
+    searching: false, 
+    userInfo: {},        // 用户信息
+    addPhone:""          //判断用户是否已添加手机号
   },
-  onShareAppMessage: function(a) {
-    var server = app.globalData.server
-    var that = this
-    var otheropenId = that.data.otheropenId;
-    var openId = app.globalData.openid;
-    var back = that.data.back;
-    var groupId = that.data.groupId;
-    console.log(otheropenId)
-    return {
-      title: '同行信息',
-      path: '/pages/peerscards/peerscards?othercardid=' + that.data.id,
-      success: function(res) {
-        let openId = app.globalData.openid;
-        let otherOpenId = app.globalData.openid;
-        util.sharePage(openId, otherOpenId, res).then(function (e) {
-          console.log(e)
-        })
-      },
-      fail: function(res) {
-        console.log(a)
-        console.log(res)
-        // 转发失败
-      }
-    }
-  },
-
   /**
    * 生命周期函数--监听页面加载
    */
@@ -61,18 +34,16 @@ Page({
     wx.showShareMenu({
       withShareTicket: true
     })
-    var that = this
+    let that = this
     // 获取缓存中用户信息
     wx.getStorage({
       key: 'userInfo',
       success: function (res) {
-        console.log(res)
         that.setData({
           userInfo: res.data
         })
       }
     })
-    console.log(ops)
     that.setData({
       addPhone:app.globalData.addPhone,
       cardId: ops.cardId,
@@ -99,10 +70,9 @@ Page({
         back: false
       })
     }
-    var server = app.globalData.server;
-    var cardId = that.data.cardId
+    let server = app.globalData.server;
+    let cardId = that.data.cardId
     util.getCardsById(cardId).then(function(res) {
-      console.log(res)
       that.setData({
         name: res.data.data[0].username,
         wechatnum: res.data.data[0].userWechat,
@@ -114,34 +84,30 @@ Page({
         image: res.data.data[0].userImg,
         otheropenId: res.data.data[0].openId,
         id: res.data.data[0].id,
-        demand: res.data.data[0].demand, // 需求
+        demand: res.data.data[0].demand,       // 需求
         resources: res.data.data[0].resources, // 资源
-        synopsis: res.data.data[0].synopsis,  // 简介
-        userJob: res.data.data[0].userJob  // 职位
+        synopsis: res.data.data[0].synopsis,   // 简介
+        userJob: res.data.data[0].userJob      // 职位
       })
     })
   },
+  //添加信息按钮
   addcards: function(e) {
-    var othercardid = app.globalData.othercardid;
-    console.log(othercardid)
     if (e.detail.userInfo) {
       wx.navigateTo({
         url: '/pages/addcards/addcards',
       })
     }
   },
+  //删除同行信息
   remove: function() {
-    var that = this
-    var openid = app.globalData.openid;
-    var cardIds = []
+    let that = this
+    let openid = app.globalData.openid;
+    let cardIds = []
     cardIds.push(that.data.cardId)
-    var groupId = that.data.groupId
-    var back = that.data.back;
-    console.log(cardIds)
-    console.log(groupId)
-    console.log(openid)
+    let groupId = that.data.groupId
+    let back = that.data.back;
     util.saveOrUpdate(openid, groupId, 1, cardIds).then(function(res) {
-      console.log(res)
       if (back) {
         wx.redirectTo({
           url: '/pages/teampeers/teampeers?openid=' + openid + '&groupid=' + groupId,
@@ -155,6 +121,7 @@ Page({
     })
 
   },
+  //点击设置图标动画
   chooseSize: function(e) {
     // 用that取代this，防止不必要的情况发生
     var that = this;
@@ -204,19 +171,17 @@ Page({
       })
     }, 200)
   },
+  //点击保存到通讯录
   saveToPhone: function() {
-    var that = this
+    let that = this
     if (that.data.phone) {
-      console.log(that.data.phone)
       wx.addPhoneContact({
         firstName: that.data.name,
         mobilePhoneNumber: that.data.phone,
         success: function(a) {
-         console.log(a);
          that.hideModal();
         },
         fail: function(p) {
-          console.log(p)
           that.hideModal();
         }
       })
@@ -232,7 +197,6 @@ Page({
           });
         },
         fail: function(p) {
-          console.log(p)
           that.hideModal();
         }
       })
@@ -245,21 +209,12 @@ Page({
     var that = this
     var server = app.globalData.server;
     var openid = app.globalData.openid;
-    var othercardid = app.globalData.othercardid
-    var cardId = that.data.cardId
     var groupId = that.data.groupId
     var cardIds = []
-    var length = cardId.length;
     var back = that.data.back
-    console.log(length)
     cardIds.push(that.data.cardId)
-    console.log(openid + "" + groupId + "" + cardIds)
-    console.log(cardIds)
     let saveName = this.data.userInfo.username
-    console.log('++++')
-    console.log(saveName)
     let formId = e.detail.formId
-    console.log(e.detail)
     util.saveOrUpdate(openid, groupId, 2, cardIds, saveName, formId).then(function(res) {
       console.log(res)
       if (back) {
@@ -272,5 +227,24 @@ Page({
         })
       }
     })
+  },
+  //分享转发
+  onShareAppMessage: function (a) {
+    var that = this
+    return {
+      title: '同行信息',
+      path: '/pages/peerscards/peerscards?othercardid=' + that.data.id,
+      success: function (res) {
+        let openId = app.globalData.openid;
+        let otherOpenId = that.data.otheropenId;
+        util.sharePage(openId, otherOpenId, res).then(function (e) {
+          console.log(e)
+        })
+      },
+      fail: function (res) {
+        console.log(res)
+        // 转发失败
+      }
+    }
   }
 })
