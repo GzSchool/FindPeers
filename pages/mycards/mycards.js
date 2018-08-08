@@ -3,27 +3,22 @@ var app=getApp();
 var util = require('../../utils/util.js');
 Page({
   data: {
-    name: "",
-    id:"",
-    adress: "",
-    idustry:"",
-    city:"",
-    back:"",
-    company:"",
-    phone: "",
-    server:"",
-    wechatnum: "",
-    email:"",
-    userJob: '',
-    groupId:"",
-    image:"",
-    demand: '',//需求
-    resources: '',//资源
-    synopsis: '',//简介
-    showphone:false,
-    showdemand:false,
-    showresource:false,
-    showintroduction:false,
+    name: "",               //用户名字
+    id:"",                  //名片ID
+    idustry:"",             //用户行业
+    city:"",                //用户城市
+    back:"",                //是否返回
+    company:"",             //用户公司
+    phone: "",              //用户手机号
+    server:"",              //服务器地址
+    wechatnum: "",          //用户微信号
+    email:"",               //用户邮箱
+    userJob: '',            //用户职务
+    groupId:"",             //群组ID
+    image:"",               //用户头像
+    demand: '',             //需求     
+    resources: '',          //资源
+    synopsis: '',           //简介
     // shareing: false
   },
   onLoad:function(a){
@@ -46,10 +41,10 @@ Page({
           phone: res.data.userPhone,
           image: res.data.userImg,
           id: res.data.id,
-          demand: res.data.demand,//需求
+          demand: res.data.demand,      //需求
           resources: res.data.resources,//资源
-          synopsis: res.data.synopsis,//简介
-          userJob: res.data.userJob // 职位
+          synopsis: res.data.synopsis,  //简介
+          userJob: res.data.userJob     // 职位
         })
       },
       fail: function (res) {
@@ -86,10 +81,10 @@ Page({
           phone: res.userPhone,
           image: res.userImg,
           id: res.id,
-          demand: res.demand,//需求
+          demand: res.demand,      //需求
           resources: res.resources,//资源
-          synopsis: res.synopsis,//简介
-          userJob: res.userJob // 职位
+          synopsis: res.synopsis,  //简介
+          userJob: res.userJob     // 职位
         })
       }
     })
@@ -100,7 +95,7 @@ Page({
     var server = app.globalData.server;
     return {
       title: '我的名片信息',
-      path: '/pages/peerscards/peerscards?othercardid=' + that.data.id,
+      path: '/pages/findmore/findmore?othercardid=' + that.data.id,
       success: function (res) {
         console.log(res)
         var shareTickets = res.shareTickets;

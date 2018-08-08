@@ -41,7 +41,7 @@ Page({
     var id = that.data.othercardid;
     return {
       title: '同行信息',
-      path: '/pages/peerscards/peerscards?othercardid=' + that.data.othercardid,
+      path: '/pages/findmore/findmore?othercardid=' + that.data.othercardid,
       success: function(res) {
         var shareTickets = res.shareTickets;
         if (shareTickets.length == 0) {
