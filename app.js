@@ -3,28 +3,20 @@ var util=require('/utils/util.js');
 const industry = require('/utils/industry.js')
 App({
   globalData: {
+    appOPS: '',     // app.js路由参数
     notadd:false,
-    isshow:"",
-    openid:"",
-    isgroup:false,               //是不是群
-    othercardid: '',             //点击别人分享的别人的id
-    canSee:"",                   //群名片里的自己的信息是不是已经分享
-    login: '',                   //登陆标识
-    // server: 'http://192.168.2.123:8080',
+    isshow: '',
+    openid: '',
+    addPhone: '',       //判断是否已添加手机号
+    othercardid: '',    //点击别人分享的别人的id
+    industry: industry, // 行业数据
     server: 'https://www.eqxuan.cn',
-    urlOfLogin:'/user/userAuthor',               //登录接口
+    urlOfLogin:'/user/userAuthor',           //登录接口
     urlOfAddOrUpdate: '/userCard/saveOrUpdate',  //添加或修改个人信息接口
     urlOfGetCardByOpenID: '/userCard/findOneByOpenId', //获取当前用户信息
-    industry:industry,
-    groupId:"",
-    checkSave:"",                //判断当前用户是否已保存其他用户
-    addPhone:"",                 //判断是否已添加手机号
-    appOPS: '',     // app.js路由参数
   },
   onLaunch: function(ops) {
     this.globalData.appOPS = ops
-    console.log('app.onlaunch ops')
-    console.log(ops)
     // 登录
     var that = this
     let url = that.globalData.urlOfLogin

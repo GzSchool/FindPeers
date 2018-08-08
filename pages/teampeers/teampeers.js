@@ -66,6 +66,7 @@ Page({
     var groupId = that.data.groupId;
     //获取群里用户
     util.getGroupCards(openId, groupId,1,1000).then(function(res) {
+      console.log(res)
       let arr = res.data.data.result
       var length = res.data.data.result.length;
       for (var i = 0; i < arr.length; i++) {
@@ -138,10 +139,8 @@ Page({
     setTimeout(function() {
       animation.translateY(0).step()
       that.setData({
-        animationData: animation.export(),
-        canSee: true
+        animationData: animation.export()
       })
-      app.globalData.canSee = true
     }, 200)
   },
 
@@ -162,8 +161,7 @@ Page({
       animation.translateY(0).step()
       that.setData({
         animationData: animation.export(),
-        chooseSize: false,
-        cansee: true
+        chooseSize: false
       })
     }, 200)
   },
@@ -177,7 +175,6 @@ Page({
     })
     var openid = app.globalData.openid;
     var listOfSave = []
-    var othercardid = app.globalData.othercardid
     var groupid = that.data.groupId
     var userpeers = [];
     let list = [];

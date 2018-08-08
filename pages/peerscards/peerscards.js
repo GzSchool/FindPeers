@@ -8,8 +8,7 @@ Page({
     idustry: "",      //用户行业
     server: "",       //服务器地址
     company: "",      //用户公司
-    groupId: 0,      //群组ID
-    notadd: false,       //用户是否添加信息
+    groupId: 0,       //群组ID
     cardId: [],       //名片ID数组
     id:"",            //名片ID
     phone: "",        //用户手机号
@@ -17,22 +16,19 @@ Page({
     image: "",        //用户头像
     email: "",        //用户邮箱
     userJob: '',      //用户职务
-    isshow: true,    //是否显示信息
     otheropenId: "",  //别人的用户标识
     othercardid: '',  //别人的名片ID
     chooseSize: false,//选择动画
     animationData: {},//动画
-    isgroup: "",      //判断是否是在群里点击的
-    isSave: "",       //判断是否已保存这个名片
-    checkSave: true,    //检验是不是保存了这个名片
-    userInfo: {},     // 用户信息
-    addPhone: false,  //判断是否添加了手机号
+    userInfo: {},     // 缓存获取用户信息 - 用户提交formid时拿到用户名
     appOPS: app.globalData.appOPS,
+    addPhone: false,  //判断是否添加了手机号
+    checkSave: true,    //检验是不是保存了这个名片
+    isgroup: '',      //判断是否是在群里点击的
+    notadd: false,       //用户是否添加信息
   },
   //页面加载
   onLoad: function (ops) {
-    console.log('---peerscard--')
-    console.log(ops)
     wx.showShareMenu({
       withShareTicket: true
     })
@@ -76,9 +72,9 @@ Page({
       })
       // 等于 1044 是群里点击的
       if (that.data.appOPS.scene == 1044) {
-        app.globalData.isgroup = true
         that.setData({
-          isgroup: true
+          isgroup: true,
+          addPhone: app.globalData.addPhone
         })
         // 群里点击的回带shareTickets可以用这个获取groupid
         var shareTickets = this.data.appOPS.shareTicket;
@@ -119,7 +115,6 @@ Page({
                   success: function (c) {
                     console.log(c)
                     if (c.data.data) {
-                      app.globalData.groupId = c.data.data
                       that.setData({
                         groupId: c.data.data
                       })
@@ -133,7 +128,10 @@ Page({
       // 点击的个人的分享
       } else {
         console.log("点击个人的分享")
-        app.globalData.isgroup = false
+        that.setData({
+          isgroup: false,
+          addPhone: true
+        })
         // 登录
         util.Login(url).then(function (data) { 
           if (data) {
@@ -147,22 +145,6 @@ Page({
         })
       }
     }
-    if(app.globalData.isgroup){
-      that.setData({
-        addPhone: app.globalData.addPhone
-      })
-    }else{
-      that.setData({
-        addPhone: true
-      })
-    }
-    // that.setData({
-    //   isshow: app.globalData.isshow,
-    //   isgroup: app.globalData.isgroup,
-    //   notadd: app.globalData.notadd,
-    //   checkSave: app.globalData.checkSave,
-    //   othercardid:app.globalData.othercardid
-    // })
   },
   getMyData(openid) {
     var that = this
@@ -184,9 +166,8 @@ Page({
           notadd: true
         })
       }
-      app.globalData.isshow = true
       that.setData({
-        isshow: true
+        notadd: false
       })
     })
   },
@@ -195,12 +176,10 @@ Page({
     let that = this
     util.checkSave(openid, otherid).then(function (a) {
       if (a.data.data) {
-        app.globalData.checkSave = true
         that.setData({
           checkSave: true
         })
       } else {
-        app.globalData.checkSave = false
         that.setData({
           checkSave: false
         })
@@ -210,7 +189,6 @@ Page({
   addcards: function(e) {
     var that = this
     var openid = app.globalData.openid;
-    var isshow = app.globalData.isshow;
     if (e.detail.userInfo) {
       wx.navigateTo({
         url: '/pages/addcards/addcards',
@@ -225,9 +203,6 @@ Page({
     var openid = app.globalData.openid;
     var cardId = that.data.cardId
     util.saveOrUpdate(openid, groupId, 1, cardId).then(function(res) {
-      that.setData({
-        isSave: false
-      })
       wx.switchTab({
         url: '/pages/findmore/findmore',
       })
@@ -330,26 +305,15 @@ Page({
     console.log(openid)
     console.log(groupId)
     console.log(cardId)
-    console.log(saveName)
-    console.log(formId)
     util.saveOrUpdate(openid, groupId, 2, cardId, saveName, formId).then(function(res) {
-      console.log(res)      
-      that.setData({
-        isSave: true
-      })
+      console.log(res) 
       wx.switchTab({
         url: '/pages/findmore/findmore',
       })
-      // wx.navigateBack({
-      //   delta: 1
-      // })
     })
   },
   backToFind: function() {
     this.hideModal()
-    // wx.switchTab({
-    //   url: '/pages/findmore/findmore',
-    // })
   },
   toTeamPeers: function(e) {
     var that =this
@@ -401,8 +365,5 @@ Page({
         // 转发失败
       }
     }
-  },
-  onShow:function () {
-    // this.onLoad()
   }
 })

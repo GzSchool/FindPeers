@@ -5,13 +5,13 @@
     <view class='top-left'>
       <view class='info name'>{{name}}</view>
       <!-- <view class='info shade' wx:if='{{!isshow}}'>需添加信息才可查看</view> -->
-      <view class='info' wx:if='{{isshow}}'>{{userJob}}</view>
+      <view class='info'>{{userJob}}</view>
       <!-- <view class='info shade' wx:if='{{!isshow}}'>需添加信息才可查看</view> -->
-      <view class='info' wx:if='{{isshow}}'>{{idustry}}</view>
+      <view class='info'>{{idustry}}</view>
       <!-- <view class='info shade' wx:if='{{!isshow}}'>需添加信息才可查看</view> -->
-      <view class='info' wx:if='{{isshow}}'>{{city}}</view>
+      <view class='info'>{{city}}</view>
       <!-- <view class='info shade' wx:if='{{!isshow}}'>需添加信息才可查看</view> -->
-      <view class='info' wx:if='{{isshow}}'>{{company}}</view>
+      <view class='info'>{{company}}</view>
     </view>
     <view class='top-right'>
       <image src='{{image}}'></image>
@@ -23,15 +23,15 @@
         <view class='info-left'>
           <image src='../images/phone.png' style='width:17rpx;height:25rpx;'></image>
         </view>
-        <view class='info-right shades' wx:if='{{!isshow||!addPhone}}'>需添加信息才可查看</view>
-        <view class='info-right' wx:if='{{isshow&&addPhone}}'>{{phone}}</view>
+        <view class='info-right shades' wx:if='{{notadd||!addPhone}}'>需添加信息才可查看</view>
+        <view class='info-right' wx:if='{{!notadd&&addPhone}}'>{{phone}}</view>
       </view>
       <view class='contact-info' wx:if='{{wechatnum}}'>
         <view class='info-left'>
           <image src='../images/wechat.png' style='width:26rpx;height:21rpx;'></image>
         </view>
-        <view class='info-right shades' wx:if='{{!isshow}}'>需添加信息才可查看</view>
-        <view class='info-right' wx:if='{{isshow}}'>{{wechatnum}}</view>
+        <view class='info-right shades' wx:if='{{notadd}}'>需添加信息才可查看</view>
+        <view class='info-right' wx:if='{{!notadd}}'>{{wechatnum}}</view>
       </view>
       <view class='contact-info' wx:if='{{email}}'>
         <view class='info-left'>
@@ -58,7 +58,7 @@
         <view class='info-right'>{{synopsis}}</view>
       </view>
     </view>
-    <view class='down-right' wx:if='{{isshow && !chooseSize}}' bindtap='chooseSize'>
+    <view class='down-right' wx:if='{{!notadd && !chooseSize}}' bindtap='chooseSize'>
       <image src='../images/set.png'></image>
     </view>
     <view class='maskLayer' wx:if="{{chooseSize}}" bindtap='hideModal'></view>

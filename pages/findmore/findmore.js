@@ -13,7 +13,6 @@ Page({
     phone: '',       //用户手机号
     image: '',       //用户头像
     job: '',         //用户职务 
-    othercardid: "", //分享的人的标识
     openid: '',      //用户标识
     notadd: false,   //是否未添加信息
     list: [],        //存储收到的同行信息
@@ -152,7 +151,6 @@ Page({
     var that = this;
     that.setData({
       notadd: app.globalData.notadd,
-      othercardid: app.globalData.othercardid,
       openid: app.globalData.openid
     })
     var openid = app.globalData.openid;
@@ -237,7 +235,6 @@ Page({
   },
   // 添加个人信息按钮
   addcards: function (e) {
-    // var othercardid = app.globalData.othercardid;
     if (e.detail.userInfo) {
       wx.navigateTo({
         url: '/pages/addcards/addcards',
