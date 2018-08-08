@@ -72,6 +72,7 @@ Page({
   },
   //页面初始化（只加载一次）
   onLoad: function(ops) {
+    console.log(ops)
     wx.showShareMenu({
       withShareTicket: true
     })
