@@ -19,8 +19,12 @@ App({
     groupId:"",
     checkSave:"",                //判断当前用户是否已保存其他用户
     addPhone:"",                 //判断是否已添加手机号
+    appOPS: '',
   },
-  onShow: function(ops) {
+  onLaunch: function(ops) {
+    this.globalData.appOPS = ops
+    console.log('app.onlaunch ops')
+    console.log(ops)
     // console.log(ops)
     // var that = this
     // var server = that.globalData.server

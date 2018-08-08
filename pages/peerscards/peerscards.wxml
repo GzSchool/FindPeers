@@ -2,14 +2,6 @@
 
 <view class='main'>
   <view class='main-top'>
-    <!-- <view class='top-left'>
-      <view class='info name'>{{name}}</view>
-      <view class='info'>{{idustry}}</view>
-      <view class='info shade' wx:if='{{!isshow}}'>需添加信息才可查看</view>
-      <view class='info' wx:if='{{isshow}}'>{{city}}</view>
-      <view class='info shade' wx:if='{{!isshow}}' style='margin-top:20rpx;'>需添加信息才可查看</view>
-      <view class='info' wx:if='{{isshow}}'>{{company}}</view>
-    </view> -->
     <view class='top-left'>
       <view class='info name'>{{name}}</view>
       <!-- <view class='info shade' wx:if='{{!isshow}}'>需添加信息才可查看</view> -->
@@ -82,7 +74,7 @@
   <form bindsubmit="save" report-submit='true'>
     <button class="footer-btn" wx:if="{{!checkSave&&!notadd}}" form-type="submit">保存到名片夹</button>
   </form> 
-  <!-- <button class="footer-btn" bindtap='back'>进入我的同行信息</button> -->
+  <button class="footer-btn" bindtap='back'>进入我的同行信息</button>
   <button class="footer-find"  wx:if='{{isgroup}}' bindtap='toTeamPeers'>查看本群名片</button>
   <button class="footer-btn" wx:if='{{notadd}}' open-type='getUserInfo' bindgetuserinfo='addcards'>添加个人信息</button>
   <!-- <button class="footer-btn white {{isshow?'':'map-hide'}}" wx:if='{{isSave}}' bindtap='remove'>删除同行信息</button> -->

@@ -208,7 +208,7 @@ Page({
     var groupid = that.data.groupId
     var userpeers = [];
     let list = [];
-    let saveName = this.data.saveName;
+    let saveName = this.data.name;
     let activeList = [];
     let mes = that.data.list;
     let formId = that.data.formId;    
@@ -217,6 +217,7 @@ Page({
         activeList.push(mes[i].id)
       }
     }  
+    console.log(saveName, formId)
     //保存用户  
     util.saveOrUpdate(openid, groupid, 2, activeList, saveName, formId).then(function(res) {
       util.getGroupCards(openid, groupid, 1, 1000).then(function (adc) {
