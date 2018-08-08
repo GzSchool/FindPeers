@@ -19,14 +19,18 @@ App({
     groupId:"",
     checkSave:"",                //判断当前用户是否已保存其他用户
     addPhone:"",                 //判断是否已添加手机号
+    appOPS: '',
   },
-  onShow: function(ops) {
+  onLaunch: function(ops) {
+    this.globalData.appOPS = ops
+    console.log('app.onlaunch ops')
     console.log(ops)
+    // console.log(ops)
     // var that = this
     // var server = that.globalData.server
     // var url = that.globalData.urlOfLogin
-    // // var othercardid = that.globalData.othercardid
-    // // 要是有id 说明点击的别人分享的（只有两个 一是：群里点击的， 二是：别人分享的）
+    // var othercardid = that.globalData.othercardid
+    // 要是有id 说明点击的别人分享的（只有两个 一是：群里点击的， 二是：别人分享的）
     // if (ops.query.othercardid) {
     //   that.globalData.othercardid = ops.query.othercardid;
     //   var othercardid = ops.query.othercardid;
@@ -130,6 +134,7 @@ App({
     //       }
     //     })        
     //   } else {                                             //点击的个人的分享
+    //     console.log("2222222222222")
     //     var that = this
     //     that.globalData.isgroup=false
     //     var othercardid = that.globalData.othercardid
@@ -204,7 +209,7 @@ App({
     //         that.employIdCallback(res)
     //       }
     //     })
-    //    })
+    //   })
     // }
     // 热更新
     const updateManager = wx.getUpdateManager()
