@@ -255,7 +255,13 @@ Page({
     cardId.push(othercardid)
     let saveName = this.data.userInfo.username
     let formId = e.detail.formId
+    console.log(openid)
+    console.log(groupId)
+    console.log(cardId)
+    console.log(saveName)
+    console.log(formId)
     util.saveOrUpdate(openid, groupId, 2, cardId, saveName, formId).then(function(res) {
+      console.log(res)      
       that.setData({
         isSave: true
       })

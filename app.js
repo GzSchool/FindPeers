@@ -31,6 +31,7 @@ App({
       that.globalData.othercardid = ops.query.othercardid;
       var othercardid = ops.query.othercardid;
       if (ops.scene == 1044) {                                            // 等于这个 就是群里点击的
+        console.log("qunquqnuqnquqn")
         that.globalData.isgroup=true
         var shareTickets = ops.shareTicket;
         console.log(ops.shareTicket)                                      //群里点击的回带shareTickets可以用这个获取groupid
