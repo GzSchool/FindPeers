@@ -13,7 +13,6 @@ Page({
     list: [],                 //存群里用户列表
     notadd: "",               //判断用户是否已添加信息
     listOfSave: [],           //当前用户未保存的
-    qunname: "",              //群名字
     server: "",               //服务器地址
     key: " 微信号、城市、公司、行业等进行搜索", //搜索
     chooseSize: "",           //动画
@@ -24,28 +23,8 @@ Page({
     click: true,              //点击
     formId: '',               //表单ID
   },
-  //转发分享
-  onShareAppMessage: function (a) {               //转发
-    let that = this
-    let otheropenId = that.data.otheropenId;
-    return {
-      title: '找同行',
-      path: '/pages/findmore/findmore',
-      success: function (res) {
-        let openId = app.globalData.openid;
-        let otherOpenId = app.globalData.openid;
-        util.sharePage(openId, otherOpenId, res).then(function (e) {
-          console.log(e)
-        })
-      },
-      fail: function (res) {
-        // 转发失败
-      }
-    }
-  },
   //页面初始化（只加载一次）
   onLoad: function(ops) {
-    console.log(ops)
     wx.showShareMenu({
       withShareTicket: true
     })
@@ -139,7 +118,6 @@ Page({
     setTimeout(function() {
       animation.translateY(0).step()
       that.setData({
-        animationData: animation.export()
       })
     }, 200)
   },
@@ -187,7 +165,6 @@ Page({
         activeList.push(mes[i].id)
       }
     }  
-    console.log(saveName, formId)
     //保存用户  
     util.saveOrUpdate(openid, groupid, 2, activeList, saveName, formId).then(function(res) {
       util.getGroupCards(openid, groupid, 1, 1000).then(function (adc) {
@@ -251,7 +228,6 @@ Page({
   //单选
   selectOne: function(e) {
     let i = e.currentTarget.dataset.index
-    console.log(e)
     let list = this.data.list
     list[i].isselect = list[i].isselect ? false : true
     this.setData({
@@ -286,5 +262,24 @@ Page({
     this.setData({
       selectMyCard: val ? false : true
     })
+  },
+  //转发分享
+  onShareAppMessage: function (a) {               //转发
+    let that = this
+    let otheropenId = that.data.otheropenId;
+    return {
+      title: '找同行',
+      path: '/pages/findmore/findmore',
+      success: function (res) {
+        let openId = app.globalData.openid;
+        let otherOpenId = app.globalData.openid;
+        util.sharePage(openId, otherOpenId, res).then(function (e) {
+          console.log(e)
+        })
+      },
+      fail: function (res) {
+        // 转发失败
+      }
+    }
   }
 })

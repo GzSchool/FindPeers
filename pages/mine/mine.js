@@ -70,20 +70,12 @@ Page({
   //分享
   onShareAppMessage: function (a) {
     let that = this
-    let server = app.globalData.server
-    wx.showShareMenu({
-      withShareTicket: true
-    })
     return {
       title: '我的同行信息',
       path: '/pages/peerscards/peerscards?othercardid=' + that.data.id,
       success: function (res) {
         let openid = app.globalData.openid;
         let otherOpneId = app.globalData.openid;
-        let id = that.data.id;
-        console.log(openid)
-        console.log(otherOpneId)
-        console.log(id)
         util.shareToQunOrPersonal(openid, otherOpneId ,res).then(function(e){
           console.log(e)
         })

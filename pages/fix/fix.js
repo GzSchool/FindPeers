@@ -17,7 +17,7 @@ Page({
       wechatnum: '',           //用户微信号
       email: ''                //用户邮箱
     },
-    openid:"",
+    openid:"",                 //用户标识
     count: 0,                  //简介长度
     groupId: "",               //群组ID
     name: "",                  //用户名字
@@ -35,25 +35,24 @@ Page({
     resource: "",              //资源
     email: "",                 //邮箱
     isshow: '',                //是否显示数据
-    isshow0: false,            //
-    isshow1: false,
-    isshow2: false,
-    image: "",
-    prepare: '',
-    showphone: false,
-    showdemand: false,
-    showresource: false,
-    showintroduction: false,
+    isshow0: false,            //是否显示需求
+    isshow1: false,            //是否显示资源
+    image: "",                 //用户头像
+    prepare: '',               //用户名字拼音
     region: '',
     customItem: ''
   },
+  //页面加载
   onLoad: function(a) {
     var that = this
+    wx.showShareMenu({
+      withShareTicket: true
+    })
     that.data.openid = app.globalData.openid;
+    //缓存
     wx.getStorage({
       key: 'userInfo',
       success: function (res) {
-        console.log(res)
         that.setData({
           mineInfo: {
             name: res.data.username,
@@ -89,24 +88,12 @@ Page({
             isshow1: true
           })
         }
-        if (that.data.email !== '') {
-          that.setData({
-            isshow2: true
-          })
-        }
       },
       fail: function (res) {
         that.getMyData()
       }
     })
-    wx.showShareMenu({
-      withShareTicket: true
-    })
-    that.data.server = app.globalData.server
-    wx.showShareMenu({
-      withShareTicket: true
-    })
-    console.log(a.back)
+    //是否从群里点击的
     if (a.back) {
       that.setData({
         back: true,
@@ -118,10 +105,8 @@ Page({
   getMyData() {
     let that = this
     that.data.openid = app.globalData.openid;
-    console.log(openid)
     var openid = that.data.openid;
-    console.log(openid)
-    var server = that.data.server
+    var server = app.globalData.server
     wx.request({
       method: 'GET',
       url: server + '/userCard/findOneByOpenId',
@@ -132,7 +117,6 @@ Page({
         'content-type': 'application/json'
       },
       success: function (b) {
-        console.log(b)
         that.setData({
           mineInfo: {
             name: b.data.data.username,
@@ -168,14 +152,10 @@ Page({
             isshow1: true
           })
         }
-        if (that.data.email !== '') {
-          that.setData({
-            isshow2: true
-          })
-        }
       }
     })
   },
+  //点击添加更多
   addmore: function() {
     var that = this
     wx.showActionSheet({
@@ -185,58 +165,63 @@ Page({
           that.setData({
             isshow0: true
           })
-        } else if (res.tapIndex == 1) {
+        } else{
           that.setData({
             isshow1: true
-          })
-        } else {
-          that.setData({
-            isshow2: true
           })
         }
       }
     })
   },
+  //填写名字
   addname: function (e) {
     let prepare = pinyin.getFullChars(e.detail.value).toUpperCase()
     let begin_letter = pinyin.getFullChars(e.detail.value).toUpperCase().slice(0, 1)
     if(!validateUpperCase(begin_letter)){
       prepare = '#' + prepare
     }
-    console.log(prepare)
     this.data.prepare = prepare
     this.data.name = e.detail.value
   },
+  //填写微信号
   addnumber: function(e) {
     this.setData({
       wechatnum: e.detail.value
     })
   },
+  //填写公司
   addcompany: function(e) {
     this.setData({
       company: e.detail.value
     })
   },
+  //填写城市
   addcity: function(e) {
     this.setData({
       city: e.detail.value
     })
   },
+  //填写职务
   addjob: function(e) {
     this.data.job = e.detail.value
   },
+  //填写手机号
   addphone: function(e) {
     this.data.phone = e.detail.value
   },
+  //填写需求
   adddemand: function(e) {
     this.data.demand = e.detail.value
   },
+  //填写资源
   addresource: function(e) {
     this.data.resource = e.detail.value
   },
+  //填写邮箱
   addemail: function(e) {
     this.data.email = e.detail.value
   },
+  //填写简介
   introInput: function(e) {
     let i = e.detail.value.length
     this.data.introduction = e.detail.value
@@ -244,10 +229,11 @@ Page({
       count: i
     })
   },
+  //点击保存按钮
   save: function() {
     let that = this
+    //名字是空的时候获取微信名字
     if (this.data.name == '' || this.data.name == null) {
-      // console.log(pinyin.getFullChars('dkdddkjkjjk').toUpperCase())
       wx.getUserInfo({
         success: function(a) {
           that.setData({
@@ -255,7 +241,6 @@ Page({
             image: a.userInfo.avatarUrl,
             prepare: pinyin.getFullChars(a.userInfo.nickName).toUpperCase()
           })
-          console.log(that.data.prepare)
           that.getData()
         },fail:function(){
           app.showToast("姓名不能为空")
@@ -265,14 +250,11 @@ Page({
       that.getData()
     }
   },
+  //点击获取手机号
   getPhoneNumber: function(e) {
-    console.log(e.detail.errMsg)
-    console.log(e.detail.iv)
-    console.log(e.detail.encryptedData)
     wx.login({                    //微信获取手机号需要code解密      
       success: function (res) {
         if (res.code) {
-          console.log(res.code)
           // wx.request({
           //   method: 'POST',
           //   data: {
@@ -292,13 +274,15 @@ Page({
     } else {
     }
   },
+  //设置行业
   chooseIn() {
     wx.navigateTo({
       url: '../industry/industry',
     })
   },
+  //保存时调用
   getData: function() {
-    let server = this.data.server
+    let server = app.globalData.server
     let that = this
     if (!isvalidatemobile_none(this.data.phone)) {
       app.showToast('手机号格式不正确')
@@ -317,20 +301,16 @@ Page({
     } else if (this.data.name == '') {
       wx.getUserInfo({
         success: function(a) {
-          console.log(a)
           this.data.name = a.userInfo.nickName;
         }
       })
     } else if (this.data.image == '' || this.data.image == null ) {
       wx.getUserInfo({
         success: function(a) {
-          console.log(a)
           this.data.image = a.userInfo.avatarUrl;
         }
       })
     } else {
-      console.log('====')
-      console.log(this.data.openid)
       wx.request({
         method: 'POST',
         data: {
@@ -355,19 +335,18 @@ Page({
           'content-type': 'application/json'
         },
         success: function(res) {
-          console.log(res)
           app.showToast("修改成功");
-          var back = that.data.back;
+          //要是添加了手机号，就可以查看其他人的手机号
           if (that.data.phone) {
             app.globalData.addPhone = true
           } else {
             app.globalData.addPhone = false
           }
-          console.log(back)
+          //是否是从群里点击的
+          var back = that.data.back;
           if (back) {
-            var openid = app.globalData.openid;
-            var groupId = that.data.groupId
-            console.log(groupId)
+            let openid = app.globalData.openid;
+            let groupId = that.data.groupId;
             wx.navigateTo({
               url: '/pages/teampeers/teampeers?groupid=' + groupId + '&openid=' + openid,
             })
@@ -380,6 +359,7 @@ Page({
       })
     }
   },
+  //选择城市
   cityChange  (e) {
     this.setData({
       city: e.detail.value.join('')
@@ -387,9 +367,7 @@ Page({
   },
   // 分享信息
   onShareAppMessage: function (a) {
-    var server = app.globalData.server;
     var that = this
-    var otheropenId = that.data.otheropenId;
     return {
       title: '找同行',
       path: '/pages/findmore/findmore',
@@ -401,7 +379,6 @@ Page({
         })
       },
       fail: function (res) {
-        console.log(a)
         console.log(res)
         // 转发失败
       }

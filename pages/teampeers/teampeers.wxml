@@ -47,14 +47,16 @@
           <view class='mes-name'>{{item.username}}
             <text>{{item.userIndustry}}</text>
           </view>
-          <view class='mes-info shade' wx:if='{{notadd}}'>
-            <!-- <view class='shade-in'>需填写信息才可查看</view> -->
-          </view>
-          <view class='mes-info shade' wx:if='{{notadd}}'>
-            <!-- <view class='shade-in'>需填写信息才可查看</view> -->
-          </view>
-          <view class='mes-info' wx:if='{{!notadd}}'>{{item.userCity}}</view>
-          <view class='mes-info' wx:if='{{!notadd}}'>{{item.userCompany}}</view>
+          <!-- <view class='mes-info shade' wx:if='{{notadd}}'>
+            <view class='shade-in'>需填写信息才可查看</view>
+          </view> -->
+          <!-- <view class='mes-info shade' wx:if='{{notadd}}'>
+            <view class='shade-in'>需填写信息才可查看</view>
+          </view> -->
+          <!-- <view class='mes-info' wx:if='{{!notadd}}'>{{item.userCity}}</view> -->
+          <view class='mes-info'>{{item.userCity}}</view>
+          <!-- <view class='mes-info' wx:if='{{!notadd}}'>{{item.userCompany}}</view> -->
+          <view class='mes-info'>{{item.userCompany}}</view>
         </view>
         <view wx:if='{{item.saveFlag == 1}}' class='li-select' data-index='{{index}}' catchtap='selectOne'>
           <image class="select {{item.isselect?'':'noselect'}}" src="{{item.isselect?'../images/select.png':'../images/select_no.png'}}"></image>

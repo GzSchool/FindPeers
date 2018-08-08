@@ -9,7 +9,6 @@ Page({
   },
   //转发分享
   onShareAppMessage: function (a) {               
-    var server = app.globalData.server;
     var that = this
     return {
       title: '找同行',
@@ -22,7 +21,6 @@ Page({
         })
       },
       fail: function (res) {
-        console.log(a)
         console.log(res)
         // 转发失败
       }

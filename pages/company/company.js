@@ -3,11 +3,20 @@ var app = getApp()
 Page({
   data: {
   },
-  //转发分享
-  onShareAppMessage: function (a) {               
-    var server = app.globalData.server;
+  onLoad: function (ops) {
+    wx.showShareMenu({
+      withShareTicket: true
+    })
+  },
+  //联系客服
+  touch: function(e) {
+    console.log(e)
     var that = this
-    var otheropenId = that.data.otheropenId;
+    that.data.server = app.globalData.server;
+  },
+  //转发分享
+  onShareAppMessage: function (a) {
+    var that = this
     return {
       title: '找同行',
       path: '/pages/findmore/findmore',
@@ -19,20 +28,9 @@ Page({
         })
       },
       fail: function (res) {
-        console.log(a)
         console.log(res)
         // 转发失败
       }
     }
-  },
-  touch: function(e) {
-    console.log(e)
-    var that = this
-    that.data.server = app.globalData.server;
-  },
-  onLoad:function(ops){
-    wx.showShareMenu({
-      withShareTicket: true
-    })
   }
 })
