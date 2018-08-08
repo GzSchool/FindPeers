@@ -31,6 +31,8 @@ Page({
   },
   //页面加载
   onLoad: function (ops) {
+    console.log('---peerscard--')
+    console.log(ops)
     wx.showShareMenu({
       withShareTicket: true
     })
