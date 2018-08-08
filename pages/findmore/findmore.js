@@ -158,6 +158,20 @@ Page({
     var openid = app.globalData.openid;
     // 获取当前保存的同行名片
     util.getMyPeers(openid).then(function (res) { 
+      if (res.data.data.length == 0 || !res.data.data.length) {
+        wx.removeStorage({
+          key: 'list_con',
+          success: function (res) {
+            console.log(res.data)
+          }
+        })
+        wx.removeStorage({
+          key: 'list_letter',
+          success: function (res) {
+            console.log(res.data)
+          }
+        })
+      }
       // let val = JSON.stringify(res.data.data) == JSON.stringify(that.data.list)
       let letter = [];
       let con = [];
