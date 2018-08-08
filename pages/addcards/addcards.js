@@ -3,39 +3,39 @@ import pinyin from '../../utils/pinyin.js'
 import {
   validateEmail_none,
   isvalidatemobile_none,
-  validateUpperCase     // 大写字母
+  validateUpperCase // 大写字母
 } from '../../utils/validate.js'
 var app = getApp();
 Page({
   data: {
-    count: 0,         //简介字数
-    openid: "",       //用户标识
-    othercardid: "",  //分享的人的标识
-    groupId: "",      //群id
-    userId: 0,        //用户id
-    name: "",         //用户名字
-    wechatnum: "",    //用户填写的微信号
-    image: "",        //用户的微信头像
-    company: "",      //用户填写的公司名称
-    idustry: "",      //用户选择的行业
-    job: '',          //用户填写的职务 
-    city: "",         //用户填写的城市
-    phone: "",        //用户手机号
-    server: "",       //服务器地址
-    demand: "",       //用户填写的需求
+    count: 0, //简介字数
+    openid: "", //用户标识
+    othercardid: "", //分享的人的标识
+    groupId: "", //群id
+    userId: 0, //用户id
+    name: "", //用户名字
+    wechatnum: "", //用户填写的微信号
+    image: "", //用户的微信头像
+    company: "", //用户填写的公司名称
+    idustry: "", //用户选择的行业
+    job: '', //用户填写的职务 
+    city: "", //用户填写的城市
+    phone: "", //用户手机号
+    server: "", //服务器地址
+    demand: "", //用户填写的需求
     introduction: "", //用户简介
-    resource: "",     //用户资源
-    email: "",        //用户邮箱
-    back: "",         //是否返回
-    isshow: '',       //是否显示
-    isshow0: false,   //需求是否显示
-    isshow1: false,   //资源是否显示
+    resource: "", //用户资源
+    email: "", //用户邮箱
+    back: "", //是否返回
+    isshow: '', //是否显示
+    isshow0: false, //需求是否显示
+    isshow1: false, //资源是否显示
     formId: '',
     itemList: ["需求", "资源"], // 添加更多项
     saveLoading: false,
     region: '',
     customItem: '',
-    addPhone:""
+    addPhone: ""
   },
   onLoad: function(res) {
     wx.showShareMenu({
@@ -89,10 +89,10 @@ Page({
       }
     })
   },
-  addname: function (e) {
+  addname: function(e) {
     let prepare = pinyin.getFullChars(e.detail.value).toUpperCase()
     let begin_letter = pinyin.getFullChars(e.detail.value).toUpperCase().slice(0, 1)
-    if(!validateUpperCase(begin_letter)){
+    if (!validateUpperCase(begin_letter)) {
       prepare = '#' + prepare
     }
     console.log(prepare)
@@ -147,7 +147,8 @@ Page({
           })
           console.log(that.data.prepare)
           that.getData()
-        }, fail: function () {
+        },
+        fail: function() {
           app.showToast("姓名不能为空")
         }
       })
@@ -155,14 +156,14 @@ Page({
       that.getData()
     }
   },
-  getPhoneNumber: function(e) {            //用户点击微信获取手机
+  getPhoneNumber: function(e) { //用户点击微信获取手机
     console.log(e)
     console.log(e.detail.errMsg)
     console.log(e.detail.iv)
     console.log(e.detail.encryptedData)
-    wx.login({                    //微信获取手机号需要code解密      
-      success:function(res){
-        if(res.code){
+    wx.login({ //微信获取手机号需要code解密      
+      success: function(res) {
+        if (res.code) {
           console.log(res.code)
           // wx.request({
           //   method: 'POST',
@@ -256,9 +257,9 @@ Page({
           that.data.saveLoading = true
           app.globalData.notadd = false
           console.log(res)
-          if(that.data.phone){
+          if (that.data.phone) {
             app.globalData.addPhone = true
-          }else{
+          } else {
             app.globalData.addPhone = false
           }
           var openid = app.globalData.openid;
@@ -297,21 +298,21 @@ Page({
     })
   },
   //转发
-  onShareAppMessage: function (a) {               
+  onShareAppMessage: function(a) {
     var server = app.globalData.server;
     var that = this
     var otheropenId = that.data.otheropenId;
     return {
       title: '找同行',
       path: '/pages/findmore/findmore',
-      success: function (res) {
+      success: function(res) {
         let openId = app.globalData.openid;
         let otherOpenId = app.globalData.openid;
-        util.sharePage(openId, otherOpenId, res).then(function (e) {
+        util.sharePage(openId, otherOpenId, res).then(function(e) {
           console.log(e)
         })
       },
-      fail: function (res) {
+      fail: function(res) {
         console.log(a)
         console.log(res)
         // 转发失败
@@ -320,25 +321,25 @@ Page({
   }
 })
 
-  // ,
-  // submitInfo: function(e) {
-  //   this.setData({
-  //     formId: e.detail.formId
-  //   })
-  //   console.log(this.data.formId)
-  //   let that = this
-  //   if (this.data.name == '' || this.data.name == null) {
-  //     wx.getUserInfo({
-  //       success: function (a) {
-  //         console.log(a)
-  //         that.setData({
-  //           name: a.userInfo.nickName,
-  //           image: a.userInfo.avatarUrl
-  //         })
-  //         that.getData()
-  //       }
-  //     })
-  //   } else {
-  //     this.getData()
-  //   }
-  // }
+// ,
+// submitInfo: function(e) {
+//   this.setData({
+//     formId: e.detail.formId
+//   })
+//   console.log(this.data.formId)
+//   let that = this
+//   if (this.data.name == '' || this.data.name == null) {
+//     wx.getUserInfo({
+//       success: function (a) {
+//         console.log(a)
+//         that.setData({
+//           name: a.userInfo.nickName,
+//           image: a.userInfo.avatarUrl
+//         })
+//         that.getData()
+//       }
+//     })
+//   } else {
+//     this.getData()
+//   }
+// }
