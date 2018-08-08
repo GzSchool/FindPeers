@@ -32,6 +32,8 @@ Page({
       key: 'userInfo',
       success: function (res) {
         console.log(res)
+        if(res.data){
+          app.globalData.notadd = false
         that.setData({
           name: res.data.username,
           wechatnum: res.data.userWechat,
@@ -42,6 +44,9 @@ Page({
           phone: res.data.userPhone,
           image: res.data.userImg,
         })
+        }else{
+          app.globalData.notadd = true
+        }
       },
       fail: function (res) {
         console.log(res)

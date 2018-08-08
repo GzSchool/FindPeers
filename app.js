@@ -130,7 +130,6 @@ App({
           }
         })        
       } else {                                             //点击的个人的分享
-        console.log("2222222222222")
         var that = this
         that.globalData.isgroup=false
         var othercardid = that.globalData.othercardid

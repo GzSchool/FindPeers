@@ -38,7 +38,7 @@ Page({
     console.log(otheropenId)
     return {
       title: '同行信息',
-      path: '/pages/findmore/findmore?othercardid=' + that.data.id,
+      path: '/pages/peerscards/peerscards?othercardid=' + that.data.id,
       success: function(res) {
         console.log("66666666666")
         console.log(res)

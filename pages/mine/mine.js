@@ -76,7 +76,7 @@ Page({
     })
     return {
       title: '我的同行信息',
-      path: '/pages/findmore/findmore?othercardid=' + that.data.id,
+      path: '/pages/peerscards/peerscards?othercardid=' + that.data.id,
       success: function (res) {
         var shareTickets = res.shareTickets;
         console.log(shareTickets)
