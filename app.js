@@ -5,7 +5,6 @@ App({
   globalData: {
     appOPS: '',     // app.js路由参数
     notadd:false,
-    isshow: '',
     openid: '',
     addPhone: '',       //判断是否已添加手机号
     othercardid: '',    //点击别人分享的别人的id
@@ -35,11 +34,9 @@ App({
             that.globalData.addPhone = false
           }
           that.globalData.notadd = false;
-          that.globalData.isshow = true;
         } else {
           that.globalData.addPhone = false
           that.globalData.notadd = true;
-          that.globalData.isshow = false;
         }
         if (that.employIdCallback) {
           that.employIdCallback(res)

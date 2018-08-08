@@ -47,14 +47,13 @@ Page({
     let openid = app.globalData.openid
     //获取用户个人信息
     util.getMyData(openid).then(function (res) {
-      if (res == null) {
+      if (!res) {
         that.setData({
           notadd: true
         })
         app.globalData.notadd = true
       } else {
         app.globalData.notadd = false
-        app.globalData.isshow = true
         that.setData({
           name: res.username,
           userJob: res.userJob,

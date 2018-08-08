@@ -72,7 +72,6 @@ Page({
         app.globalData.notadd = true
       } else {
         app.globalData.notadd = false
-        app.globalData.isshow = true
         that.setData({
           name: res.username,
           wechatnum: res.userWechat,
