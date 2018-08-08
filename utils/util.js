@@ -283,7 +283,6 @@ function getOpenGid( openid, otherOpenId, shareTickets){
  */
 function sharePage(openId, otherOpenId, res){
   return new Promise(function(resolve){
-  
       console.log(res)
       var shareTickets = res.shareTickets;
       if (shareTickets.length == 0) {
@@ -320,16 +319,8 @@ function sharePage(openId, otherOpenId, res){
 /**
  * 分享转发（几个包含信息的页面）
  */
-function shareToQunOrPersonal(openId, otherOpenId, id){
+function shareToQunOrPersonal(openId, otherOpenId , res){
   return new Promise (function(resolve){
-    wx.showShareMenu({
-      withShareTicket: true
-    })
-    console.log("2222222222222333333333333333")
-    return {
-      title: '我的同行信息',
-      path: '/pages/peerscards/peerscards?othercardid=' + id,
-      success: function (res) {
         var shareTickets = res.shareTickets;
         console.log(shareTickets)
         if (shareTickets.length == 0) {
@@ -338,6 +329,7 @@ function shareToQunOrPersonal(openId, otherOpenId, id){
         wx.getShareInfo({
           shareTicket: shareTickets[0],
           success: function (b) {
+            console.log(b)
             var encryptedData = b.encryptedData;
             var iv = b.iv;
             wx.request({
@@ -355,16 +347,12 @@ function shareToQunOrPersonal(openId, otherOpenId, id){
                 'content-type': 'application/json'
               },
               success: function (c) {
+                console.log(c)
                 resolve(c)
               }
             })
           }
         })
-      },
-      fail: function (res) {
-        // 转发失败
-      }
-    }
   })
 }
 /*

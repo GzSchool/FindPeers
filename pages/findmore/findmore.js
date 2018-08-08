@@ -32,6 +32,8 @@ Page({
       key: 'userInfo',
       success: function (res) {
         console.log(res)
+        if(res.data){
+          app.globalData.notadd = false
         that.setData({
           name: res.data.username,
           wechatnum: res.data.userWechat,
@@ -42,6 +44,9 @@ Page({
           phone: res.data.userPhone,
           image: res.data.userImg,
         })
+        }else{
+          app.globalData.notadd = true
+        }
       },
       fail: function (res) {
         console.log(res)
@@ -276,7 +281,7 @@ Page({
     })
   },
   // 分享
-  onShareAppMessage: function (a) {
+  onShareAppMessage: function (a) {               //转发
     var server = app.globalData.server;
     var that = this
     var otheropenId = that.data.otheropenId;
@@ -284,45 +289,16 @@ Page({
       title: '找同行',
       path: '/pages/findmore/findmore',
       success: function (res) {
-        console.log("66666666666")
-        console.log(res)
-        console.log(a)
-        var shareTickets = res.shareTickets;
-        if (shareTickets.length == 0) {
-          return false;
-        }
-        wx.getShareInfo({
-          shareTicket: shareTickets[0],
-          success: function (res) {
-            console.log(res)
-            console.log(a)
-            var encryptedData = res.encryptedData;
-            var iv = res.iv;
-            wx.request({
-              method: 'POST',
-              url: server + '/userGroup/saveOrUpdate',
-              data: {
-                openId: app.globalData.openId,
-                otherOpenId: app.globalData.openId,
-                encryptedData: encryptedData,
-                iv: iv
-              },
-              header: {
-                'content-type': 'application/json'
-              },
-              success: function (c) {
-                // wx.navigateTo({
-                //   url: '/pages/peerscards/peerscards',
-                // })
-              }
-            })
-          }
+        let openId = app.globalData.openid;
+        let otherOpenId = app.globalData.openid;
+        util.sharePage(openId, otherOpenId, res).then(function (e) {
+          console.log(e)
         })
       },
       fail: function (res) {
-        // 转发失败
         console.log(a)
         console.log(res)
+        // 转发失败
       }
     }
   }

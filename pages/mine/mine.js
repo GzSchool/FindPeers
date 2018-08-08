@@ -22,7 +22,7 @@ Page({
     wx.showShareMenu({
       withShareTicket: true
     })
-    var that=this
+    let that=this
     wx.getStorage({
       key: 'userInfo',
       success: function (res) {
@@ -44,7 +44,7 @@ Page({
   },
   getData() {
     let that = this
-    var openid = app.globalData.openid
+    let openid = app.globalData.openid
     //获取用户个人信息
     util.getMyData(openid).then(function (res) {
       if (res == null) {
@@ -69,50 +69,25 @@ Page({
   },
   //分享
   onShareAppMessage: function (a) {
-    var that = this
-    var server = app.globalData.server
+    let that = this
+    let server = app.globalData.server
     wx.showShareMenu({
       withShareTicket: true
     })
     return {
       title: '我的同行信息',
-      path: '/pages/findmore/findmore?othercardid=' + that.data.id,
+      path: '/pages/peerscards/peerscards?othercardid=' + that.data.id,
       success: function (res) {
-        var shareTickets = res.shareTickets;
-        console.log(shareTickets)
-        if (shareTickets.length == 0) {
-          return false;
-        }
-        wx.getShareInfo({
-          shareTicket: shareTickets[0],
-          success: function (b) {
-            var encryptedData = b.encryptedData;
-            var iv = b.iv;
-            wx.request({
-              method: 'POST',
-              url: server + '/userGroup/saveOrUpdate',
-
-              data: {
-                openId: app.globalData.openid,
-                otherOpenId: app.globalData.openid,
-                encryptedData: encryptedData,
-                iv: iv
-              },
-
-              header: {
-                'content-type': 'application/json'
-              },
-              success: function (c) {
-                console.log(c)
-                
-              }
-            })
-          }
+        let openid = app.globalData.openid;
+        let otherOpneId = app.globalData.openid;
+        let id = that.data.id;
+        console.log(openid)
+        console.log(otherOpneId)
+        console.log(id)
+        util.shareToQunOrPersonal(openid, otherOpneId ,res).then(function(e){
+          console.log(e)
         })
-      },
-      fail: function (res) {
-        // 转发失败
-      }
+    }
     }
   },
   //点击如何找到

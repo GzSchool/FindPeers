@@ -38,55 +38,12 @@ Page({
     console.log(otheropenId)
     return {
       title: '同行信息',
-      path: '/pages/findmore/findmore?othercardid=' + that.data.id,
+      path: '/pages/peerscards/peerscards?othercardid=' + that.data.id,
       success: function(res) {
-        console.log("66666666666")
-        console.log(res)
-        console.log(a)
-        var shareTickets = res.shareTickets;
-        console.log(res.shareTickets)
-        if (shareTickets.length == 0) {
-          return false;
-        }
-        wx.getShareInfo({
-          shareTicket: shareTickets[0],
-          success: function(res) {
-            console.log(res)
-            console.log(a)
-            console.log(otheropenId)
-            var encryptedData = res.encryptedData;
-            var iv = res.iv;
-            console.log(iv)
-            console.log(encryptedData)
-            console.log(openId)
-            wx.request({
-              method: 'POST',
-              url: server + '/userGroup/saveOrUpdate',
-              data: {
-                openId: openId,
-                otherOpenId: otheropenId,
-                encryptedData: encryptedData,
-                iv: iv
-              },
-
-              header: {
-                'content-type': 'application/json'
-              },
-              success: function(c) {
-                console.log(c)
-                that.hideModal();
-                // if (back) {
-                //   wx.navigateTo({
-                //     url: '/pages/teampeers/teampeers?openid=' + openId + '&groupid=' + groupId,
-                //   })
-                // } else {
-                //   wx.navigateTo({
-                //     url: '/pages/otherpeers/otherpeers',
-                //   })
-                // }
-              }
-            })
-          }
+        let openId = app.globalData.openid;
+        let otherOpenId = app.globalData.openid;
+        util.sharePage(openId, otherOpenId, res).then(function (e) {
+          console.log(e)
         })
       },
       fail: function(res) {

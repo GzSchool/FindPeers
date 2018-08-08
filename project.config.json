@@ -34,20 +34,7 @@
 		},
 		"miniprogram": {
 			"current": 0,
-			"list": [
-				{
-					"id": 0,
-					"name": "1",
-					"pathName": "pages/findmore/findmore",
-					"query": "othercardid=40300",
-					"scene": "1044",
-					"shareInfo": {
-						"groupName": "测试模拟群0",
-						"shareName": "gPDjBJEVRWgbCurSVVy45s_YMjjJSKZItb_so_5WXrg@cr4dev",
-						"shareKey": "kdQXTFBwB60S3Zq4E15Xqb0bnJd36T4lcSU8QWGRqNMhnd_-Bjr1YOEsFcADtnGm6zG-5J_HtqhZTIvAuUPeGw~~"
-					}
-				}
-			]
+			"list": []
 		}
 	}
 }
