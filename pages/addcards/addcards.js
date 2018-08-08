@@ -28,7 +28,6 @@ Page({
     resource: "", //用户资源
     email: "", //用户邮箱
     back: "", //是否返回
-    isshow: '', //是否显示
     isshow0: false, //需求是否显示
     isshow1: false, //资源是否显示
     formId: '',
@@ -45,10 +44,8 @@ Page({
     var that = this
     that.data.server = app.globalData.server;
     that.data.openid = app.globalData.openid;
-    that.data.isshow = app.globalData.isshow;
     that.data.othercardid = app.globalData.othercardid;
     var openid = that.data.openid;
-    var isshow = that.data.isshow;
     if (res.back) {
       that.setData({
         back: true,
@@ -269,16 +266,13 @@ Page({
           var groupId = that.data.groupId;
           app.showToast("保存成功");
           if (othercardid != "") {
-            app.globalData.isshow = true
             app.globalData.notadd = false
-            console.log(openid)
+            //  + '&notadd=false'
             wx.redirectTo({
-              url: '/pages/peerscards/peerscards?othercardid=' + othercardid + '&isshow=true',
+              url: '/pages/peerscards/peerscards?othercardid=' + othercardid,
             })
           } else if (back) {
             app.globalData.notadd = false;
-            console.log(openid);
-            console.log(groupId);
             wx.redirectTo({
               url: '/pages/teampeers/teampeers?openid=' + openid + '&groupid=' + groupId,
             })

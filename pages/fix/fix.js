@@ -34,7 +34,6 @@ Page({
     introduction: "",          //简介
     resource: "",              //资源
     email: "",                 //邮箱
-    isshow: '',                //是否显示数据
     isshow0: false,            //是否显示需求
     isshow1: false,            //是否显示资源
     image: "",                 //用户头像

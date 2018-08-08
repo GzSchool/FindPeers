@@ -84,7 +84,6 @@ Page({
         if (res) {
           res.userPhone?app.globalData.addPhone = true:app.globalData.addPhone = false
           app.globalData.notadd = false;
-          app.globalData.isshow = true;
           wx.getStorage({
             key: 'userInfo',
             success: function (args) {
@@ -115,7 +114,6 @@ Page({
           wx.clearStorage()
           app.globalData.addPhone = false
           app.globalData.notadd = true;
-          app.globalData.isshow = false;
           that.setData({
             notadd: true
           })

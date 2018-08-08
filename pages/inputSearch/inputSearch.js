@@ -74,7 +74,7 @@ Page({
     var cardId = a.currentTarget.dataset.id;            //同行名片ID
     var saveFlag = a.currentTarget.dataset.saveflag;    //当前用户是否保存同行
     wx.navigateTo({
-      url: '/pages/otherpeers/otherpeers?cardId=' + cardId + '&isshow=true' + '&saveFlag=' + saveFlag + '&groupId=0'
+      url: '/pages/otherpeers/otherpeers?cardId=' + cardId + '&saveFlag=' + saveFlag + '&groupId=0'
     })
   },
   //转发分享

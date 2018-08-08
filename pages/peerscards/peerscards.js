@@ -365,5 +365,9 @@ Page({
         // 转发失败
       }
     }
+  },
+  onShow:function (ops) {
+    // 场景为新用户从群内点进别人名片，添加个人名片后返回
+    this.data.notadd = app.globalData.notadd
   }
 })

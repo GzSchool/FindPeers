@@ -96,7 +96,7 @@ Page({
     var cardId = a.currentTarget.dataset.id;
     var saveFlag = a.currentTarget.dataset.saveflag;
     wx.navigateTo({
-      url: '/pages/otherpeers/otherpeers?cardId=' + cardId + '&isshow=true&saveFlag=' + saveFlag + '&groupId=0'
+      url: '/pages/otherpeers/otherpeers?cardId=' + cardId + '&saveFlag=' + saveFlag + '&groupId=0'
     })
   }
 })
