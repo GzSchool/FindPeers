@@ -17,6 +17,7 @@ Page({
       wechatnum: '',           //用户微信号
       email: ''                //用户邮箱
     },
+    openid:"",
     count: 0,                  //简介长度
     groupId: "",               //群组ID
     name: "",                  //用户名字
@@ -27,14 +28,14 @@ Page({
     back: "",                  //判断是否是从群里点击的
     server: "",                //服务器地址
     id: '',                    //用户名片ID
-    city: "",                  //
-    phone: "",
-    demand: "",
-    introduction: "",
-    resource: "",
-    email: "",
-    isshow: '',
-    isshow0: false,
+    city: "",                  //用户城市
+    phone: "",                 //用户手机号
+    demand: "",                //需求
+    introduction: "",          //简介
+    resource: "",              //资源
+    email: "",                 //邮箱
+    isshow: '',                //是否显示数据
+    isshow0: false,            //
     isshow1: false,
     isshow2: false,
     image: "",
@@ -48,7 +49,7 @@ Page({
   },
   onLoad: function(a) {
     var that = this
-    console.log(a)
+    that.data.openid = app.globalData.openid;
     wx.getStorage({
       key: 'userInfo',
       success: function (res) {
@@ -117,6 +118,7 @@ Page({
   getMyData() {
     let that = this
     that.data.openid = app.globalData.openid;
+    console.log(openid)
     var openid = that.data.openid;
     console.log(openid)
     var server = that.data.server
@@ -328,7 +330,7 @@ Page({
       })
     } else {
       console.log('====')
-      console.log(this.data.prepare)
+      console.log(this.data.openid)
       wx.request({
         method: 'POST',
         data: {
@@ -353,6 +355,7 @@ Page({
           'content-type': 'application/json'
         },
         success: function(res) {
+          console.log(res)
           app.showToast("修改成功");
           var back = that.data.back;
           if (that.data.phone) {
