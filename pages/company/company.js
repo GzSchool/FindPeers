@@ -3,7 +3,8 @@ var app = getApp()
 Page({
   data: {
   },
-  onShareAppMessage: function (a) {               //转发
+  //转发分享
+  onShareAppMessage: function (a) {               
     var server = app.globalData.server;
     var that = this
     var otheropenId = that.data.otheropenId;
