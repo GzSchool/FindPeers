@@ -16,6 +16,9 @@ App({
   },
   onLaunch: function(ops) {
     this.globalData.appOPS = ops
+    // wx.showTabBarRedDot({
+    //   index: 1,
+    // })
     // 登录
     var that = this
     let url = that.globalData.urlOfLogin

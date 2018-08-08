@@ -56,6 +56,7 @@ Page({
       })
       // 获取 othercardid 用户信息
       util.getCardsById(that.data.othercardid).then(function (res) {
+        console.log(res)
         that.setData({
           name: res.data.data[0].username,
           wechatnum: res.data.data[0].userWechat,
@@ -69,13 +70,14 @@ Page({
           userJob: res.data.data[0].userJob,
           id: res.data.data[0].id
         })
+        
       })
       // 等于 1044 是群里点击的
       if (that.data.appOPS.scene == 1044) {
-        that.setData({
-          isgroup: true,
-          addPhone: app.globalData.addPhone
-        })
+        // that.setData({
+        //   isgroup: true,
+        //   addPhone: app.globalData.addPhone
+        // })
         // 群里点击的回带shareTickets可以用这个获取groupid
         var shareTickets = this.data.appOPS.shareTicket;
         wx.getShareInfo({
@@ -100,6 +102,10 @@ Page({
                 console.log(card.data.data[0].openId)
                 console.log(encryptedData)
                 console.log(iv)
+                that.setData({
+                  isgroup: true,
+                  addPhone: app.globalData.addPhone
+                })
                 wx.request({
                   method: 'POST',
                   url: server + '/userGroup/saveOrUpdate',
@@ -176,6 +182,10 @@ Page({
     let that = this
     util.checkSave(openid, otherid).then(function (a) {
       if (a.data.data) {
+        that.setData({
+          checkSave: true
+        })
+      }else if(openid == that.data.otheropenId){
         that.setData({
           checkSave: true
         })

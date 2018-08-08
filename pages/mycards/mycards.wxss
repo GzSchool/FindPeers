@@ -84,5 +84,6 @@ Page{
   line-height: 80rpx;
   background-color: #2C7FE7;
   color: #ffffff;
-  margin: 0 auto;
+  margin: 0 auto 10rpx;
+  text-align: center;
 }
