@@ -1,53 +1,56 @@
 // pages/findmore/findmore.js
+import pinyin from '../../utils/pinyin.js'
 var app = getApp();
-import { validateUpperCase } from '../../utils/validate.js'
+import {
+  validateUpperCase
+} from '../../utils/validate.js'
 var util = require('../../utils/util.js');
 Page({
   data: {
-    name: '',        //用户名字
-    wechatnum: '',   //用户微信号
-    company: '',     //用户公司
-    idustry: '',     //用户行业
-    city: '',        //用户城市
-    email: '',       //用户邮箱
-    phone: '',       //用户手机号
-    image: '',       //用户头像
-    job: '',         //用户职务 
-    openid: '',      //用户标识
-    notadd: false,   //是否未添加信息
-    list: [],        //存储收到的同行信息
-    list_length: 0,  // 一共保存多少张
-    scrollTop: 0,     //滚动菜单
+    name: '', //用户名字
+    wechatnum: '', //用户微信号
+    company: '', //用户公司
+    idustry: '', //用户行业
+    city: '', //用户城市
+    email: '', //用户邮箱
+    phone: '', //用户手机号
+    image: '', //用户头像
+    job: '', //用户职务 
+    openid: '', //用户标识
+    notadd: false, //是否未添加信息
+    list: [], //存储收到的同行信息
+    list_length: 0, // 一共保存多少张
+    scrollTop: 0, //滚动菜单
     screenHeight: '', //滚动菜单高度 
-    list_con: [],    // 同行数据列表
-    topNum: 0,       // 距离顶部高度
-    list_id: '',     // 锚点
-    list_letter: [],    // 锚点列表
+    list_con: [], // 同行数据列表
+    topNum: 0, // 距离顶部高度
+    list_id: '', // 锚点
+    list_letter: [], // 锚点列表
     floorstatus: false, // 回到顶部
   },
-  onLoad: function (a) {
+  onLoad: function(a) {
     let that = this
     wx.getStorage({
       key: 'userInfo',
-      success: function (res) {
+      success: function(res) {
         console.log(res)
-        if(res.data){
+        if (res.data) {
           app.globalData.notadd = false
-        that.setData({
-          name: res.data.username,
-          wechatnum: res.data.userWechat,
-          company: res.data.userCompany,
-          idustry: res.data.userIndustry,
-          city: res.data.userCity,
-          email: res.data.userEmail,
-          phone: res.data.userPhone,
-          image: res.data.userImg,
-        })
-        }else{
+          that.setData({
+            name: res.data.username,
+            wechatnum: res.data.userWechat,
+            company: res.data.userCompany,
+            idustry: res.data.userIndustry,
+            city: res.data.userCity,
+            email: res.data.userEmail,
+            phone: res.data.userPhone,
+            image: res.data.userImg,
+          })
+        } else {
           app.globalData.notadd = true
         }
       },
-      fail: function (res) {
+      fail: function(res) {
         console.log(res)
       }
     })
@@ -62,7 +65,7 @@ Page({
     })
     wx.getStorage({
       key: 'list_letter',
-      success: function (res) {
+      success: function(res) {
         console.log(res)
         that.setData({
           list_letter: res.data
@@ -74,25 +77,25 @@ Page({
     })
     var url = app.globalData.urlOfLogin
     // 登录获取openid
-    util.Login(url).then(function (data) { 
+    util.Login(url).then(function(data) {
       if (data) {
         app.globalData.openid = data
       }
-      var openid = app.globalData.openid;  
+      var openid = app.globalData.openid;
       // 使用用户标识访问数据库获取用户信息
-      util.getMyData(openid).then(function (res) {
+      util.getMyData(openid).then(function(res) {
         if (res) {
-          res.userPhone?app.globalData.addPhone = true:app.globalData.addPhone = false
+          res.userPhone ? app.globalData.addPhone = true : app.globalData.addPhone = false
           app.globalData.notadd = false;
           wx.getStorage({
             key: 'userInfo',
-            success: function (args) {
+            success: function(args) {
               wx.setStorage({
                 key: 'userInfo',
                 data: res,
               })
             },
-            fail: function (args) {
+            fail: function(args) {
               wx.setStorage({
                 key: 'userInfo',
                 data: res
@@ -126,7 +129,7 @@ Page({
     // 获取屏幕高度 scrollview
     if (this.data.screenHeight == '') {
       wx.getSystemInfo({
-        success: function (res) {
+        success: function(res) {
           that.setData({
             screenHeight: res.windowHeight
           })
@@ -153,17 +156,24 @@ Page({
     })
     var openid = app.globalData.openid;
     // 获取当前保存的同行名片
-    util.getMyPeers(openid).then(function (res) { 
+    util.getMyPeers(openid).then(function(res) {
+      // console.log(res.data.data)
+      // let arr = []
+      // for(var n = 0; n < res.data.data.length; n ++) {
+      //   arr.push(pinyin.getFullChars(res.data.data[n].username).toUpperCase())
+      // }
+      // console.log(arr.sort())
+      // 获取数据为空时清空同行列表缓存
       if (res.data.data.length == 0 || !res.data.data.length) {
         wx.removeStorage({
           key: 'list_con',
-          success: function (res) {
+          success: function(res) {
             console.log(res.data)
           }
         })
         wx.removeStorage({
           key: 'list_letter',
-          success: function (res) {
+          success: function(res) {
             console.log(res.data)
           }
         })
@@ -177,30 +187,37 @@ Page({
           list_length: length
         })
       }
+      // 如果是大写字母则push进letter
       for (let i = 0; i < length; i++) {
-        // letter.push(res.data.data[i].prepare.slice(0, 1))
         if (res.data.data[i].prepare && validateUpperCase(res.data.data[i].prepare.slice(0, 1))) {
           letter.push(res.data.data[i].prepare.slice(0, 1))
         }
       }
+      // 如果是空或null
       for (let i = 0; i < length; i++) {
         if (res.data.data[i].prepare == null || !validateUpperCase(res.data.data[i].prepare.slice(0, 1))) {
+          if (validateUpperCase(pinyin.getFullChars(res.data.data[i].username).toUpperCase().slice(0, 1))) {
+            console.log(pinyin.getFullChars(res.data.data[i].username).toUpperCase().slice(0, 1))
+          }
           letter.push('xx')
         }
       }
       letter = that.dedupe(letter)
       let len = letter.length;
-      letter.forEach(function (a, b) {
-        con[b] = { letter: a, data: [] }
-        res.data.data.forEach(function (c, d) {
+      letter.forEach(function(a, b) {
+        con[b] = {
+          letter: a,
+          data: []
+        }
+        res.data.data.forEach(function(c, d) {
           if (a == c.prepare.slice(0, 1)) {
             con[b].data.push(c)
           }
         })
       })
-      res.data.data.forEach(function (c, d) {
+      res.data.data.forEach(function(c, d) {
         if (!validateUpperCase(c.prepare.slice(0, 1))) {
-          con[len-1].data.push(c)
+          con[len - 1].data.push(c)
         }
       })
       that.setData({
@@ -219,20 +236,20 @@ Page({
     });
   },
   // 企业详情
-  trans: function () {
+  trans: function() {
     wx.navigateTo({
       url: '/pages/company/company',
     })
   },
   // 查看我的名片
-  mycards: function () {
+  mycards: function() {
     var openid = app.globalData.openid
     wx.navigateTo({
       url: '/pages/mycards/mycards?openid=' + openid,
     })
   },
   // 添加个人信息按钮
-  addcards: function (e) {
+  addcards: function(e) {
     if (e.detail.userInfo) {
       wx.navigateTo({
         url: '/pages/addcards/addcards',
@@ -244,13 +261,13 @@ Page({
     }
   },
   // 搜索页面
-  bindtrans: function () {
+  bindtrans: function() {
     wx.navigateTo({
       url: '/pages/inputSearch/inputSearch',
     })
   },
   // 查看名片详情
-  select: function (a) {
+  select: function(a) {
     // var otheropenid = a.currentTarget.dataset.key;
     // var saveFlag = a.currentTarget.dataset.saveflag;
     var cardId = a.currentTarget.dataset.id;
@@ -258,15 +275,15 @@ Page({
       url: '/pages/otherpeers/otherpeers?cardId=' + cardId + '&groupId=0&saveFlag=2',
     })
   },
-  onShow: function () {
+  onShow: function() {
     this.onLoad();
   },
   // es6数组去重方法
-  dedupe:function (array) {
+  dedupe: function(array) {
     return Array.from(new Set(array))
   },
   // 获取滚动条当前位置
-  scrolltoupper: function (e) {
+  scrolltoupper: function(e) {
     if (e.detail.scrollTop > 1000) {
       this.setData({
         floorstatus: true
@@ -290,21 +307,21 @@ Page({
     })
   },
   // 分享
-  onShareAppMessage: function (a) {               //转发
+  onShareAppMessage: function(a) { //转发
     var server = app.globalData.server;
     var that = this
     var otheropenId = that.data.otheropenId;
     return {
       title: '找同行',
       path: '/pages/findmore/findmore',
-      success: function (res) {
+      success: function(res) {
         let openId = app.globalData.openid;
         let otherOpenId = app.globalData.openid;
-        util.sharePage(openId, otherOpenId, res).then(function (e) {
+        util.sharePage(openId, otherOpenId, res).then(function(e) {
           console.log(e)
         })
       },
-      fail: function (res) {
+      fail: function(res) {
         console.log(a)
         console.log(res)
         // 转发失败

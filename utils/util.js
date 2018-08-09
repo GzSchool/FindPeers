@@ -248,7 +248,7 @@ function checkSave(openId, othercardid){
   })
 }
 /*
-  
+  分享
  */
 function getOpenGid( openid, otherOpenId, shareTickets){
   return new Promise(function (resole){
@@ -260,7 +260,6 @@ function getOpenGid( openid, otherOpenId, shareTickets){
         wx.request({
           method: 'POST',
           url: server + '/userGroup/saveOrUpdate',
-
           data: {
             openId: app.globalData.openid,
             otherOpenId: otherOpenId,

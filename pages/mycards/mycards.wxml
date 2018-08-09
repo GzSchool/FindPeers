@@ -56,5 +56,5 @@
 </view>
 <view class="footer">
     <button class="footer-btn" open-type='share'>发送本张名片</button>
-    <button class="footer-btn" bindtap='viewThisCards'>修改本张名片</button>
+    <button class="footer-btn white" bindtap='viewThisCards'>修改本张名片</button>
 </view>

@@ -87,3 +87,8 @@ Page{
   margin: 0 auto 10rpx;
   text-align: center;
 }
+.footer .footer-btn.white {
+  background-color: #fff;
+  color: #2c7fe7;
+  border: 1px solid #2c7fe7;
+}

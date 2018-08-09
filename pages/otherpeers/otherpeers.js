@@ -73,6 +73,7 @@ Page({
     let server = app.globalData.server;
     let cardId = that.data.cardId
     util.getCardsById(cardId).then(function(res) {
+      console.log(res.data.data[0])
       that.setData({
         name: res.data.data[0].username,
         wechatnum: res.data.data[0].userWechat,
