@@ -281,5 +281,20 @@ Page({
         // 转发失败
       }
     }
+  },
+  onShow:function(e){
+    let that = this
+    let openId = app.globalData.openid;
+    util.getMyData(openId).then(function (res) {
+      if (res) {
+        that.setData({
+          name: res.username,
+          company: res.userCompany,
+          industry: res.userIndustry,
+          city: res.userCity,
+          image: res.userImg,
+        })
+      }
+    })
   }
 })
