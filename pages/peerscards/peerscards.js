@@ -55,6 +55,18 @@ Page({
         othercardid: ops.othercardid
       })
       // 获取 othercardid 用户信息
+      console.log(that.data.appOPS)
+      if(that.data.appOPS.scene == 1044){
+        that.setData({
+          isgroup: true,
+          addPhone:app.globalData.addPhone
+        })
+      }else{
+        that.setData({
+          isgroup: false,
+          addPhone:true
+        })
+      }
       util.getCardsById(that.data.othercardid).then(function (res) {
         console.log(res)
         that.setData({
@@ -103,10 +115,6 @@ Page({
                 console.log(encryptedData)
                 console.log(app.globalData.openid)
                 console.log(iv)
-                that.setData({
-                  isgroup: true,
-                  addPhone: app.globalData.addPhone
-                })
                 wx.request({
                   method: 'POST',
                   url: server + '/userGroup/saveOrUpdate',
@@ -155,23 +163,30 @@ Page({
   },
   getMyData(openid) {
     var that = this
-    var openid = app.globalData.openid;
     util.getMyData(openid).then(function (res) {
+      console.log(res)
       if (res) {
         app.globalData.notadd = false
         that.setData({
           notadd: false
         })
         if (res.userPhone) {
+          that.setData({
+            addPhone: true
+          })
           app.globalData.addPhone = true
         } else {
+          that.setData({
+            addPhone: false
+          })
           app.globalData.addPhone = false
         }
       } else {
         app.globalData.addPhone = false
         app.globalData.notadd = true
         that.setData({
-          notadd: true
+          notadd: true,
+          addPhone: false
         })
       }
       that.setData({

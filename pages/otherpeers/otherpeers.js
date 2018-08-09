@@ -110,7 +110,7 @@ Page({
     let back = that.data.back;
     util.saveOrUpdate(openid, groupId, 1, cardIds).then(function(res) {
       if (back) {
-        wx.redirectTo({
+        wx.navigateTo({
           url: '/pages/teampeers/teampeers?openid=' + openid + '&groupid=' + groupId,
         })
       } else {

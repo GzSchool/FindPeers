@@ -346,9 +346,12 @@ Page({
           if (back) {
             let openid = app.globalData.openid;
             let groupId = that.data.groupId;
-            wx.navigateTo({
-              url: '/pages/teampeers/teampeers?groupid=' + groupId + '&openid=' + openid,
-            })
+           wx.navigateBack({
+             delta:2
+           })
+            // wx.navigateTo({
+            //   url: '/pages/teampeers/teampeers?groupid=' + groupId + '&openid=' + openid,
+            // })
           } else {
             wx.switchTab({
               url: '/pages/findmore/findmore',
