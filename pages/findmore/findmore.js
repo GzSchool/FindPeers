@@ -35,7 +35,7 @@ Page({
       success: function(res) {
         console.log(res)
         if (res.data) {
-          app.globalData.notadd = false
+          // app.globalData.notadd = false
           that.setData({
             name: res.data.username,
             wechatnum: res.data.userWechat,
@@ -47,7 +47,7 @@ Page({
             image: res.data.userImg,
           })
         } else {
-          app.globalData.notadd = true
+          // app.globalData.notadd = true
         }
       },
       fail: function(res) {
@@ -80,6 +80,7 @@ Page({
     util.Login(url).then(function(data) {
       if (data) {
         app.globalData.openid = data
+        // wx.setStorageSync('openid', app.globalData.openid);
       }
       var openid = app.globalData.openid;
       // 使用用户标识访问数据库获取用户信息
@@ -87,20 +88,9 @@ Page({
         if (res) {
           res.userPhone ? app.globalData.addPhone = true : app.globalData.addPhone = false
           app.globalData.notadd = false;
-          wx.getStorage({
+          wx.setStorage({
             key: 'userInfo',
-            success: function(args) {
-              wx.setStorage({
-                key: 'userInfo',
-                data: res,
-              })
-            },
-            fail: function(args) {
-              wx.setStorage({
-                key: 'userInfo',
-                data: res
-              })
-            }
+            data: res,
           })
           that.setData({
             name: res.username,
@@ -121,9 +111,7 @@ Page({
             notadd: true
           })
         }
-        if (that.employIdCallback) {
-          that.employIdCallback(res)
-        }
+        that.getData()
       })
     })
     // 获取屏幕高度 scrollview
@@ -133,22 +121,13 @@ Page({
           that.setData({
             screenHeight: res.windowHeight
           })
-        },
-      })
-    }
-    // 等待app.onlaunch执行完之后加载页面
-    if (app.globalData.openid && app.globalData.openid !== '') {
-      this.getData()
-    } else {
-      app.employIdCallback = employId => {
-        if (employId || employId == null) {
-          this.getData()
         }
-      }
+      })
     }
   },
   // 获取同行数据
   getData() {
+    console.log('getData')
     var that = this;
     that.setData({
       notadd: app.globalData.notadd,
@@ -272,7 +251,7 @@ Page({
     })
   },
   onShow: function() {
-    this.onLoad();
+    this.onLoad()
   },
   // es6数组去重方法
   dedupe: function(array) {
@@ -303,7 +282,7 @@ Page({
     })
   },
   // 分享
-  onShareAppMessage: function(a) { //转发
+  onShareAppMessage: function(a) {
     var server = app.globalData.server;
     var that = this
     var otheropenId = that.data.otheropenId;
@@ -320,7 +299,6 @@ Page({
       fail: function(res) {
         console.log(a)
         console.log(res)
-        // 转发失败
       }
     }
   }

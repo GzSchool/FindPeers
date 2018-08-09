@@ -1,4 +1,7 @@
 <!--pages/fix/fix.wxml-->
+<view class=''>
+  <view class='main_card_'></view>
+</view>
 <view class='main'>
   <view class='main-top'>
     <view class='top-left'>

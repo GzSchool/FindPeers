@@ -16,36 +16,13 @@ App({
   },
   onLaunch: function(ops) {
     this.globalData.appOPS = ops
+    var openid = wx.getStorageSync('openid');
+    if (!openid) {
+      this.login()
+    }
     // wx.showTabBarRedDot({
     //   index: 1,
     // })
-    // 登录
-    var that = this
-    let url = that.globalData.urlOfLogin
-    util.Login(url).then(function (data) {
-      if (data) {
-        that.globalData.openid = data
-        var openid = that.globalData.openid
-      }
-      // 用用户标识访问数据库获取用户信息
-      var openid = that.globalData.openid;  
-      util.getMyData(openid).then(function (res) {
-        if (res) {
-          if (res.userPhone) {
-            that.globalData.addPhone = true
-          } else {
-            that.globalData.addPhone = false
-          }
-          that.globalData.notadd = false;
-        } else {
-          that.globalData.addPhone = false
-          that.globalData.notadd = true;
-        }
-        if (that.employIdCallback) {
-          that.employIdCallback(res)
-        }
-      })
-    })
     // 热更新
     const updateManager = wx.getUpdateManager()
     updateManager.onCheckForUpdate(function (res) {
@@ -77,6 +54,39 @@ App({
     wx.showToast({
       title: title,
       icon: 'none'
+    })
+  },
+  // 登录获取openid
+  login() {
+    let that = this
+    let url = this.globalData.urlOfLogin
+    util.Login(url).then(function (data) {
+      if (data) {
+        that.globalData.openid = data
+        wx.setStorageSync('openid', that.globalData.openid);
+        that.getUserData(data)
+      } else {
+        wx.clearStorage()
+      }
+    })
+  },
+  // 使用用户标识访问数据库获取用户信息
+  getUserData(openid) {
+    let that = this
+    util.getMyData(openid).then(function (res) {
+      if (res) {
+        res.userPhone ? that.globalData.addPhone = true : that.globalData.addPhone = false
+        that.globalData.notadd = false;
+        wx.setStorage({
+          key: 'userInfo',
+          data: res
+        })
+      } else {
+        // 登录失败清空本地缓存
+        wx.clearStorage()
+        that.globalData.addPhone = false
+        that.globalData.notadd = true;
+      }
     })
   }
 })

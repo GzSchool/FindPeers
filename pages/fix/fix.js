@@ -48,7 +48,7 @@ Page({
       withShareTicket: true
     })
     that.data.openid = app.globalData.openid;
-    //缓存
+    // 缓存
     wx.getStorage({
       key: 'userInfo',
       success: function (res) {
@@ -335,12 +335,7 @@ Page({
         },
         success: function(res) {
           app.showToast("修改成功");
-          //要是添加了手机号，就可以查看其他人的手机号
-          if (that.data.phone) {
-            app.globalData.addPhone = true
-          } else {
-            app.globalData.addPhone = false
-          }
+          app.getUserData(app.globalData.openid)
           //是否是从群里点击的
           var back = that.data.back;
           if (back) {
