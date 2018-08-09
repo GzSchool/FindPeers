@@ -34,20 +34,7 @@
 		},
 		"miniprogram": {
 			"current": 0,
-			"list": [
-				{
-					"id": 0,
-					"name": "21",
-					"pathName": "pages/peerscards/peerscards",
-					"query": "othercardid=30303",
-					"scene": "1044",
-					"shareInfo": {
-						"groupName": "测试模拟群4",
-						"shareName": "rQPFFiMMgPDbwQwWmW3amrpL_zxS7qjw_ciK-n8dQ0s@cr4dev",
-						"shareKey": "u8Cy6zGPmc-oVr0FS0rD3MefVoLzokb0elVsm7JbmJinAqEYA78NWOEVq51pCWelWkICqGJTC37wlzz4g1QC_A~~"
-					}
-				}
-			]
+			"list": []
 		}
 	}
 }

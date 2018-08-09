@@ -38,10 +38,11 @@ Page({
   },
   //页面加载
   onLoad: function(options) {
+    console.log(options)
     let val = this.options.groupid
     this.setData({
       notadd: app.globalData.notadd,
-      groupid: val
+      groupid: val,
     })
   },
   //刷新页面（每次进页面都会刷新）
@@ -95,8 +96,9 @@ Page({
     var openId = a.currentTarget.dataset.key;
     var cardId = a.currentTarget.dataset.id;
     var saveFlag = a.currentTarget.dataset.saveflag;
+    console.log(this.data.groupid)
     wx.navigateTo({
-      url: '/pages/otherpeers/otherpeers?cardId=' + cardId + '&saveFlag=' + saveFlag + '&groupId=0'
+      url: '/pages/otherpeers/otherpeers?cardId=' + cardId + '&saveFlag=' + saveFlag + '&groupId=' + this.data.groupid + '&back=true'
     })
   }
 })
