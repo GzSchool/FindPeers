@@ -101,6 +101,7 @@ Page({
               util.getCardsById(that.data.othercardid).then(function (card) {
                 console.log(card.data.data[0].openId)
                 console.log(encryptedData)
+                console.log(app.globalData.openid)
                 console.log(iv)
                 that.setData({
                   isgroup: true,
@@ -154,6 +155,7 @@ Page({
   },
   getMyData(openid) {
     var that = this
+    var openid = app.globalData.openid;
     util.getMyData(openid).then(function (res) {
       if (res) {
         app.globalData.notadd = false
@@ -329,6 +331,8 @@ Page({
     var that =this
     var groupId = that.data.groupId;
     var openid = app.globalData.openid;
+    console.log(openid)
+    console.log(app.globalData.notadd)
     wx.navigateTo({
       url: '/pages/teampeers/teampeers?openid=' + openid + '&groupid=' + groupId,
     })
