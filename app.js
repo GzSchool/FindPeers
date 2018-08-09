@@ -14,12 +14,14 @@ App({
     urlOfAddOrUpdate: '/userCard/saveOrUpdate',  //添加或修改个人信息接口
     urlOfGetCardByOpenID: '/userCard/findOneByOpenId', //获取当前用户信息
   },
-  onLaunch: function(ops) {
+  onLaunch: function (ops) {
     this.globalData.appOPS = ops
+    console.log(ops)
     var openid = wx.getStorageSync('openid');
-    if (!openid) {
-      this.login()
-    }
+    this.login()
+    // if (!openid) {
+    //   this.login()
+    // }
     // wx.showTabBarRedDot({
     //   index: 1,
     // })
@@ -49,6 +51,10 @@ App({
         showCancel: false
       })
     })
+  },
+  onShow: function(ops) {
+    this.globalData.appOPS = ops
+    console.log(ops)
   },
   showToast(title) {
     wx.showToast({

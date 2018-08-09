@@ -116,6 +116,7 @@ Page({
         'content-type': 'application/json'
       },
       success: function (b) {
+        console.log(b.data.data)
         that.setData({
           mineInfo: {
             name: b.data.data.username,

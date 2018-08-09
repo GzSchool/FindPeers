@@ -6,7 +6,7 @@ Page({
     name: "",         //用户名字
     city: "",         //用户城市
     idustry: "",      //用户行业
-    server: "",       //服务器地址
+    server: app.globalData.server,       //服务器地址
     company: "",      //用户公司
     groupId: 0,       //群组ID
     cardId: [],       //名片ID数组
@@ -29,11 +29,8 @@ Page({
   },
   //页面加载
   onLoad: function (ops) {
-    wx.showShareMenu({
-      withShareTicket: true
-    })
     let that = this
-    that.data.server = app.globalData.server;
+
     wx.getStorage({
       key: 'userInfo',
       success: function (res) {
@@ -41,6 +38,12 @@ Page({
         that.setData({
           userInfo: res.data
         })
+        if(res.data.userPhone) {
+          app.globalData.addPhone = true
+          that.setData({
+            addPhone: true
+          })
+        }
       },
       fail: function () {
       }
@@ -160,6 +163,9 @@ Page({
         })
       }
     }
+    wx.showShareMenu({
+      withShareTicket: true
+    })
   },
   getMyData(openid) {
     var that = this
