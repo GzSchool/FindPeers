@@ -157,12 +157,6 @@ Page({
     var openid = app.globalData.openid;
     // 获取当前保存的同行名片
     util.getMyPeers(openid).then(function(res) {
-      // console.log(res.data.data)
-      // let arr = []
-      // for(var n = 0; n < res.data.data.length; n ++) {
-      //   arr.push(pinyin.getFullChars(res.data.data[n].username).toUpperCase())
-      // }
-      // console.log(arr.sort())
       // 获取数据为空时清空同行列表缓存
       if (res.data.data.length == 0 || !res.data.data.length) {
         wx.removeStorage({
@@ -178,7 +172,6 @@ Page({
           }
         })
       }
-      // let val = JSON.stringify(res.data.data) == JSON.stringify(that.data.list)
       let letter = [];
       let con = [];
       var length = res.data.data.length;
@@ -189,19 +182,22 @@ Page({
       }
       // 如果是大写字母则push进letter
       for (let i = 0; i < length; i++) {
+        // 如果prepare为空
+        if (!res.data.data[i].prepare) {
+          res.data.data[i].prepare = pinyin.getFullChars(res.data.data[i].username).toUpperCase()
+        }
         if (res.data.data[i].prepare && validateUpperCase(res.data.data[i].prepare.slice(0, 1))) {
           letter.push(res.data.data[i].prepare.slice(0, 1))
         }
       }
-      // 如果是空或null
+      letter.sort()
+      // 如果是非大写字母
       for (let i = 0; i < length; i++) {
         if (res.data.data[i].prepare == null || !validateUpperCase(res.data.data[i].prepare.slice(0, 1))) {
-          if (validateUpperCase(pinyin.getFullChars(res.data.data[i].username).toUpperCase().slice(0, 1))) {
-            console.log(pinyin.getFullChars(res.data.data[i].username).toUpperCase().slice(0, 1))
-          }
-          letter.push('xx')
+          letter.push('zz')
         }
       }
+      // 去重
       letter = that.dedupe(letter)
       let len = letter.length;
       letter.forEach(function(a, b) {

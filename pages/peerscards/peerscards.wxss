@@ -161,6 +161,7 @@ Page {
 }
 
 .choose .choose-in {
+  background-color: #ffffff;
   height: 90rpx;
   line-height: 90rpx;
   border-bottom: 1rpx solid #d8d8d8;
