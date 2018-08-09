@@ -4,7 +4,8 @@
    Page({
      data: {
        list: [],
-       imgList: []
+       imgList: [],
+       searching: false
      },
      //页面加载
      onLoad: function(a) {
@@ -15,6 +16,10 @@
        var openid = app.globalData.openid;
        var list = that.data.list;
        list = [];
+       that.setData({
+         searching: true
+       })
+       console.log(that.data.searching)
        util.getUserGroupById(openid).then(function(res) {
          var len = res.data.data.length;
          for (var i = 0; i < len; i++) {
@@ -28,7 +33,8 @@
           //  }
          }
          that.setData({
-           list: list
+           list: list,
+           searching: false
          });
        })
      },

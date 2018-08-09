@@ -35,4 +35,4 @@
   <view>没有找到你想要的同行信息</view>
 </view>
 <view class='searching' wx:if='{{searching}}'>
-<view class='weui-loading'></view> 加载中...</view>
+<view class='weui-loading'></view> 加载中···</view>

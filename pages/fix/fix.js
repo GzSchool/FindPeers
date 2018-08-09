@@ -232,6 +232,12 @@ Page({
   //点击保存按钮
   save: function() {
     let that = this
+    let prepare = pinyin.getFullChars(that.data.name).toUpperCase()
+    let begin_letter = pinyin.getFullChars(that.data.name).toUpperCase().slice(0, 1)
+    if (!validateUpperCase(begin_letter)) {
+      prepare = '#' + prepare
+    }
+    this.data.prepare = prepare
     //名字是空的时候获取微信名字
     if (this.data.name == '' || this.data.name == null) {
       wx.getUserInfo({
@@ -311,6 +317,7 @@ Page({
         }
       })
     } else {
+      console.log(this.data.prepare)
       wx.request({
         method: 'POST',
         data: {
