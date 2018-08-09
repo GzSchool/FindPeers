@@ -66,7 +66,7 @@
   </view>
 </view>
   <view class='searching' wx:if='{{searching}}'>
-    <view class='weui-loading'></view> 加载中...
+    <view class='weui-loading'></view> 加载中···
   </view>
 <view class='maskLayer' wx:if="{{chooseSize}}" bindtap='hideModal' catchtouchmove="preventD"></view>
 <!-- <view class='choose' wx:if="{{chooseSize}}" animation='{{animationData}}'>

@@ -52,7 +52,7 @@ App({
       })
     })
   },
-  onShow: function(ops) {
+  onShow: function (ops) {
     this.globalData.appOPS = ops
     console.log(ops)
   },

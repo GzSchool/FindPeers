@@ -99,3 +99,15 @@ page {
   font-size: 24rpx;
   color: #A8A8A8;
 }
+.searching {
+  margin-top: 120rpx;
+  height: 70rpx;
+  text-align: center;
+  font-size: 24rpx;
+  color: #949494;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+

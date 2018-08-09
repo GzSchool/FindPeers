@@ -150,64 +150,65 @@ Page({
             console.log(res.data)
           }
         })
-      }
-      let letter = [];
-      let con = [];
-      var length = res.data.data.length;
-      if (length) {
-        that.setData({
-          list_length: length
+      } else {
+        let letter = [];
+        let con = [];
+        var length = res.data.data.length;
+        if (length) {
+          that.setData({
+            list_length: length
+          })
+        }
+        // 如果是大写字母则push进letter
+        for (let i = 0; i < length; i++) {
+          // 如果prepare为空
+          if (!res.data.data[i].prepare) {
+            res.data.data[i].prepare = pinyin.getFullChars(res.data.data[i].username).toUpperCase()
+          }
+          if (res.data.data[i].prepare && validateUpperCase(res.data.data[i].prepare.slice(0, 1))) {
+            letter.push(res.data.data[i].prepare.slice(0, 1))
+          }
+        }
+        letter.sort()
+        // 如果是非大写字母
+        for (let i = 0; i < length; i++) {
+          if (res.data.data[i].prepare == null || !validateUpperCase(res.data.data[i].prepare.slice(0, 1))) {
+            letter.push('zz')
+          }
+        }
+        // 去重
+        letter = that.dedupe(letter)
+        let len = letter.length;
+        letter.forEach(function (a, b) {
+          con[b] = {
+            letter: a,
+            data: []
+          }
+          res.data.data.forEach(function (c, d) {
+            if (a == c.prepare.slice(0, 1)) {
+              con[b].data.push(c)
+            }
+          })
         })
-      }
-      // 如果是大写字母则push进letter
-      for (let i = 0; i < length; i++) {
-        // 如果prepare为空
-        if (!res.data.data[i].prepare) {
-          res.data.data[i].prepare = pinyin.getFullChars(res.data.data[i].username).toUpperCase()
-        }
-        if (res.data.data[i].prepare && validateUpperCase(res.data.data[i].prepare.slice(0, 1))) {
-          letter.push(res.data.data[i].prepare.slice(0, 1))
-        }
-      }
-      letter.sort()
-      // 如果是非大写字母
-      for (let i = 0; i < length; i++) {
-        if (res.data.data[i].prepare == null || !validateUpperCase(res.data.data[i].prepare.slice(0, 1))) {
-          letter.push('zz')
-        }
-      }
-      // 去重
-      letter = that.dedupe(letter)
-      let len = letter.length;
-      letter.forEach(function(a, b) {
-        con[b] = {
-          letter: a,
-          data: []
-        }
-        res.data.data.forEach(function(c, d) {
-          if (a == c.prepare.slice(0, 1)) {
-            con[b].data.push(c)
+        res.data.data.forEach(function (c, d) {
+          if (!validateUpperCase(c.prepare.slice(0, 1))) {
+            con[len - 1].data.push(c)
           }
         })
-      })
-      res.data.data.forEach(function(c, d) {
-        if (!validateUpperCase(c.prepare.slice(0, 1))) {
-          con[len - 1].data.push(c)
-        }
-      })
-      that.setData({
-        list: res.data.data,
-        list_letter: letter,
-        list_con: con,
-      })
-      wx.setStorage({
-        key: 'list_con',
-        data: that.data.list_con,
-      })
-      wx.setStorage({
-        key: 'list_letter',
-        data: that.data.list_letter,
-      })
+        that.setData({
+          list: res.data.data,
+          list_letter: letter,
+          list_con: con,
+        })
+        wx.setStorage({
+          key: 'list_con',
+          data: that.data.list_con,
+        })
+        wx.setStorage({
+          key: 'list_letter',
+          data: that.data.list_letter,
+        })
+      }
     });
   },
   // 企业详情

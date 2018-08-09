@@ -30,7 +30,6 @@ Page({
   //页面加载
   onLoad: function (ops) {
     let that = this
-
     wx.getStorage({
       key: 'userInfo',
       success: function (res) {
@@ -403,6 +402,9 @@ Page({
   },
   onShow:function (ops) {
     // 场景为新用户从群内点进别人名片，添加个人名片后返回
-    this.data.notadd = app.globalData.notadd
+    // this.data.notadd = app.globalData.notadd
+    // var ops = {othercardid: app.globalData.othercardid}
+    // this.onLoad(ops)
+    
   }
 })
