@@ -15,7 +15,8 @@ Page({
     img1:"/pages/images/about1.png",  
     img2:"/pages/images/right.png",
     id:"",           //名片ID
-    image: ['/pages/images/findpeer.png'] //小程序码
+    image: ['/pages/images/findpeer.png'], //小程序码
+    QRCode:"",       //小程序二维码
   },
   //页面加载
   onLoad:function(){
