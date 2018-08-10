@@ -79,41 +79,49 @@ Page({
     var url = app.globalData.urlOfLogin
     // 登录获取openid
     util.Login(url).then(function(data) {
+      console.log(data)
       if (data) {
         app.globalData.openid = data
         // wx.setStorageSync('openid', app.globalData.openid);
+        var openid = app.globalData.openid;
+        util.getMyData(data).then(function(res) {
+          if (res) {
+            res.userPhone ? app.globalData.addPhone = true : app.globalData.addPhone = false
+            app.globalData.notadd = false;
+            wx.setStorage({
+              key: 'userInfo',
+              data: res,
+            })
+            that.setData({
+              name: res.username,
+              wechatnum: res.userWechat,
+              company: res.userCompany,
+              idustry: res.userIndustry,
+              city: res.userCity,
+              email: res.userEmail,
+              phone: res.userPhone,
+              image: res.userImg,
+            })
+          } else {
+            // 登录失败清空本地缓存
+            wx.clearStorage()
+            app.globalData.addPhone = false
+            app.globalData.notadd = true;
+            that.setData({
+              notadd: true
+            })
+          }
+          that.getData()
+        })
+      } else {
+        wx.clearStorage()
+        app.globalData.addPhone = false
+        app.globalData.notadd = true;
+        that.setData({
+          notadd: true
+        })
       }
-      var openid = app.globalData.openid;
-      // 使用用户标识访问数据库获取用户信息
-      util.getMyData(openid).then(function(res) {
-        if (res) {
-          res.userPhone ? app.globalData.addPhone = true : app.globalData.addPhone = false
-          app.globalData.notadd = false;
-          wx.setStorage({
-            key: 'userInfo',
-            data: res,
-          })
-          that.setData({
-            name: res.username,
-            wechatnum: res.userWechat,
-            company: res.userCompany,
-            idustry: res.userIndustry,
-            city: res.userCity,
-            email: res.userEmail,
-            phone: res.userPhone,
-            image: res.userImg,
-          })
-        } else {
-          // 登录失败清空本地缓存
-          wx.clearStorage()
-          app.globalData.addPhone = false
-          app.globalData.notadd = true;
-          that.setData({
-            notadd: true
-          })
-        }
-        that.getData()
-      })
+      // 使用用户标识访问数据库获取用户信息      
     })
     // 获取屏幕高度 scrollview
     if (this.data.screenHeight == '') {
@@ -180,18 +188,18 @@ Page({
         // 去重
         letter = that.dedupe(letter)
         let len = letter.length;
-        letter.forEach(function (a, b) {
+        letter.forEach(function(a, b) {
           con[b] = {
             letter: a,
             data: []
           }
-          res.data.data.forEach(function (c, d) {
+          res.data.data.forEach(function(c, d) {
             if (a == c.prepare.slice(0, 1)) {
               con[b].data.push(c)
             }
           })
         })
-        res.data.data.forEach(function (c, d) {
+        res.data.data.forEach(function(c, d) {
           if (!validateUpperCase(c.prepare.slice(0, 1))) {
             con[len - 1].data.push(c)
           }
