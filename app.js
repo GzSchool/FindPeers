@@ -15,8 +15,8 @@ App({
     urlOfGetCardByOpenID: '/userCard/findOneByOpenId', //获取当前用户信息
   },
   onLaunch: function (ops) {
-    this.globalData.appOPS = ops
-    console.log(ops)
+    // this.globalData.appOPS = ops
+    // console.log(ops)
     var openid = wx.getStorageSync('openid');
     this.login()
     // if (!openid) {
@@ -54,7 +54,9 @@ App({
   },
   onShow: function (ops) {
     this.globalData.appOPS = ops
-    console.log(ops)
+  },
+  onHide: function () {
+    this.globalData.appOPS = ''
   },
   showToast(title) {
     wx.showToast({

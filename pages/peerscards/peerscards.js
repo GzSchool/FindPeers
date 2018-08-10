@@ -21,7 +21,7 @@ Page({
     chooseSize: false,//选择动画
     animationData: {},//动画
     userInfo: {},     // 缓存获取用户信息 - 用户提交formid时拿到用户名
-    appOPS: app.globalData.appOPS,
+    appOPS: '',
     addPhone: false,  //判断是否添加了手机号
     checkSave: true,    //检验是不是保存了这个名片
     isgroup: '',      //判断是否是在群里点击的
@@ -54,8 +54,10 @@ Page({
     if (ops.othercardid) {
       app.globalData.othercardid = ops.othercardid;
       that.setData({
-        othercardid: ops.othercardid
+        othercardid: ops.othercardid,
+        appOPS: app.globalData.appOPS
       })
+      // app.showToast(JSON.stringify(this.data.appOPS.scene))
       // 获取 othercardid 用户信息
       console.log(that.data.appOPS)
       if(that.data.appOPS.scene == 1044){
@@ -348,14 +350,16 @@ Page({
     this.hideModal()
   },
   toTeamPeers: function(e) {
-    var that =this
-    var groupId = that.data.groupId;
-    var openid = app.globalData.openid;
-    console.log(openid)
-    console.log(app.globalData.notadd)
-    wx.navigateTo({
-      url: '/pages/teampeers/teampeers?openid=' + openid + '&groupid=' + groupId,
-    })
+    if (this.data.groupId) {
+      var that = this
+      var groupId = that.data.groupId;
+      var openid = app.globalData.openid;
+      console.log(openid)
+      console.log(app.globalData.notadd)
+      wx.navigateTo({
+        url: '/pages/teampeers/teampeers?openid=' + openid + '&groupid=' + groupId,
+      })
+    }
   },
   //分享
   onShareAppMessage: function (a) {
@@ -401,6 +405,7 @@ Page({
     }
   },
   onShow:function (ops) {
+    // app.showToast('show')
     // 场景为新用户从群内点进别人名片，添加个人名片后返回
     // this.data.notadd = app.globalData.notadd
     // var ops = {othercardid: app.globalData.othercardid}
