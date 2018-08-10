@@ -45,6 +45,10 @@ Page({
         }
       },
       fail: function () {
+        app.globalData.notadd = true
+        that.setData({
+          notadd: true
+        })
       }
     })
     // 拷贝自 app.js
@@ -171,6 +175,7 @@ Page({
   getMyData(openid) {
     var that = this
     util.getMyData(openid).then(function (res) {
+      console.log('mydata')
       console.log(res)
       if (res) {
         app.globalData.notadd = false
@@ -196,9 +201,6 @@ Page({
           addPhone: false
         })
       }
-      that.setData({
-        notadd: false
-      })
     })
   },
   // 检查保存

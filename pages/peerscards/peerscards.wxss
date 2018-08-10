@@ -78,13 +78,13 @@ Page {
 }
 
 .main .main-down .down-left .contact-info .info-right.shades {
-  background-color: #e6e6e6;
+  /* background-color: #e6e6e6; */
   color: #fe0000;
   font-size: 20rpx;
   height: 28rpx;
   line-height: 28rpx;
   width: 306rpx;
-  text-align: center;
+  /* text-align: center; */
 }
 
 .main .main-down .down-left {

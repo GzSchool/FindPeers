@@ -74,13 +74,13 @@ Page{
   word-wrap:break-word;
 } */
 .main .main-down .down-left .contact-info .info-right.shades {
-  background-color: #E6E6E6;
+  /* background-color: #E6E6E6; */
   color: #FE0000;
   font-size: 20rpx;
   height: 28rpx;
   line-height: 28rpx;
   width: 306rpx;
-  text-align: center;
+  /* text-align: center; */
 }
 .main .main-down .down-left{
   flex: 1;

@@ -37,7 +37,6 @@ Page({
       list: [],
       searching: true
     }) 
-
     var list = that.data.list;
     var server = that.data.server
     var listOfSave = that.data.listOfSave
@@ -146,45 +145,49 @@ Page({
 
   //保存用户名片
   save: function (e) {
-    var that = this
-    that.setData({
-      hasSelect: false,
-      formId: e.detail.formId
-    })
-    var openid = app.globalData.openid;
-    var listOfSave = []
-    var groupid = that.data.groupId
-    var userpeers = [];
-    let list = [];
-    let saveName = this.data.name;
-    let activeList = [];
-    let mes = that.data.list;
-    let formId = that.data.formId;    
-    for (let i = 0; i < mes.length; i ++) {
-      if (mes[i].isselect == true) {
-        activeList.push(mes[i].id)
-      }
-    }  
-    //保存用户  
-    util.saveOrUpdate(openid, groupid, 2, activeList, saveName, formId).then(function(res) {
-      util.getGroupCards(openid, groupid, 1, 1000).then(function (adc) {
-        var length = adc.data.data.result.length;
-        for (var i = 0; i < length; i++) {
-          adc.data.data.result[i].isselect = false
-          list.push(adc.data.data.result[i]);
-          if (adc.data.data.result[i].saveFlag == 1) {
-            listOfSave.push(adc.data.data.result[i].id)
-          }
-        }
-        that.setData({
-          list: list,
-          listOfSave: listOfSave
-        });
+    if (app.globalData.notadd) {
+      app.showToast('请先添加个人信息')
+    } else {
+      var that = this
+      that.setData({
+        hasSelect: false,
+        formId: e.detail.formId
       })
-      if (res.data.success && res.statusCode == 200) {
-        app.showToast('保存成功')
+      var openid = app.globalData.openid;
+      var listOfSave = []
+      var groupid = that.data.groupId
+      var userpeers = [];
+      let list = [];
+      let saveName = this.data.name;
+      let activeList = [];
+      let mes = that.data.list;
+      let formId = that.data.formId;
+      for (let i = 0; i < mes.length; i++) {
+        if (mes[i].isselect == true) {
+          activeList.push(mes[i].id)
+        }
       }
-    })
+      //保存用户  
+      util.saveOrUpdate(openid, groupid, 2, activeList, saveName, formId).then(function (res) {
+        util.getGroupCards(openid, groupid, 1, 1000).then(function (adc) {
+          var length = adc.data.data.result.length;
+          for (var i = 0; i < length; i++) {
+            adc.data.data.result[i].isselect = false
+            list.push(adc.data.data.result[i]);
+            if (adc.data.data.result[i].saveFlag == 1) {
+              listOfSave.push(adc.data.data.result[i].id)
+            }
+          }
+          that.setData({
+            list: list,
+            listOfSave: listOfSave
+          });
+        })
+        if (res.data.success && res.statusCode == 200) {
+          app.showToast('保存成功')
+        }
+      })
+    }
   },
   //点击用户名片
   goPeers: function(e) {

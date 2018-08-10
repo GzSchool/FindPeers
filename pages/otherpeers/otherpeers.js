@@ -207,27 +207,32 @@ Page({
    * 保存其他用户名片夹 formId推送提示
    */
   save: function(e) {
-    var that = this
-    var server = app.globalData.server;
-    var openid = app.globalData.openid;
-    var groupId = that.data.groupId
-    var cardIds = []
-    var back = that.data.back
-    cardIds.push(that.data.cardId)
-    let saveName = this.data.userInfo.username
-    let formId = e.detail.formId
-    util.saveOrUpdate(openid, groupId, 2, cardIds, saveName, formId).then(function(res) {
-      console.log(res)
-      if (back) {
-        wx.redirectTo({
-          url: '/pages/teampeers/teampeers?openid=' + openid + '&groupid=' + groupId,
-        })
-      } else {
-        wx.switchTab({
-          url: '/pages/findmore/findmore',
-        })
-      }
-    })
+    if (app.globalData.notadd) {
+      app.showToast('请先添加个人信息')
+    }else {
+      var that = this
+      var server = app.globalData.server;
+      var openid = app.globalData.openid;
+      var groupId = that.data.groupId
+      var cardIds = []
+      var back = that.data.back
+      cardIds.push(that.data.cardId)
+      let saveName = this.data.userInfo.username
+      let formId = e.detail.formId
+      util.saveOrUpdate(openid, groupId, 2, cardIds, saveName, formId).then(function (res) {
+        console.log(res)
+        if (back) {
+          wx.redirectTo({
+            url: '/pages/teampeers/teampeers?openid=' + openid + '&groupid=' + groupId,
+          })
+        } else {
+          wx.switchTab({
+            url: '/pages/findmore/findmore',
+          })
+        }
+      })
+    }
+    
   },
   //分享转发
   onShareAppMessage: function (a) {

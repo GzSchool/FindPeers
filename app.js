@@ -4,7 +4,7 @@ const industry = require('/utils/industry.js')
 App({
   globalData: {
     appOPS: '',     // app.js路由参数
-    notadd:false,
+    notadd: false,
     QRCode:"",
     openid: '',
     addPhone: '',       //判断是否已添加手机号
