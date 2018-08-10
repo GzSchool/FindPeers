@@ -5,6 +5,7 @@ App({
   globalData: {
     appOPS: '',     // app.js路由参数
     notadd:false,
+    QRCode:"",
     openid: '',
     addPhone: '',       //判断是否已添加手机号
     othercardid: '',    //点击别人分享的别人的id

@@ -29,6 +29,7 @@ Page({
     floorstatus: false, // 回到顶部
   },
   onLoad: function(a) {
+    console.log(a)
     let that = this
     wx.getStorage({
       key: 'userInfo',

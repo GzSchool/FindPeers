@@ -35,7 +35,8 @@ Page({
     saveLoading: false,
     region: '',
     customItem: '',
-    addPhone: ""
+    addPhone: "",
+    QRCode:"",    //小程序二维码
   },
   onLoad: function(res) {
     wx.showShareMenu({
