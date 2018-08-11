@@ -1,5 +1,197 @@
 <!--pages/addCards/addcards.wxml-->
 <form bindsubmit="save" report-submit='true'>
+<view class='main-card'>
+  <view class='main-card-1 main-card-box' wx:if='{{cardType==1}}'>
+    <view class='card-mark'><view class='mark'></view></view>
+    <view class='card-top'>
+      <view class='mes-name over-flow-hide'>{{name}}</view>
+      <view class='mes-job over-flow-hide'>{{job}}</view>
+    </view>
+    <view class='card-down'>
+      <view class='card-down-left'>
+        <view class='img-box'>
+          <image src='{{image}}'></image>
+        </view>
+      </view>
+      <view class='card-down-right'>
+        <view class='card-mes over-flow-hide'>地址：{{city}}</view>
+        <view class='card-mes over-flow-hide'>公司：{{company}}</view>
+        <view class='card-mes over-flow-hide'>电话：{{phone}}</view>
+        <view class='card-mes over-flow-hide'>微信：{{wechatnum}}</view>
+        <view class='card-mes over-flow-hide'>邮箱：{{email}}</view>
+      </view>
+    </view>
+  </view>
+  <view class='main-card-2 main-card-box' wx:if='{{cardType==2}}'>
+    <image class='bg-card' src='../images/card/card_2/bg_card_2.png'></image>
+    <view class='card-layer'>
+      <view class='card-top'>
+        <view class='card-top-left'>
+          <view class='info-name over-flow-hide'>{{name}}</view>
+          <view class='info-job over-flow-hide'>{{job}}</view>
+        </view>
+        <view class='card-top-right'>
+          <view class='img-box'>
+            <image src='{{image}}'></image>
+          </view>
+        </view>
+      </view>
+      <view class='card-down'>
+        <view class='card-mes'>
+          <image src='../images/card/card_2/mes_addr_2.png' style='width:26rpx;height:26rpx;'></image><text>{{city}}</text></view>
+        <view class='card-mes'>
+          <image src='../images/card/card_2/mes_comp_2.png' style='width:26rpx;height:26rpx;'></image><text class='over-flow-hide'>{{company}}</text></view>
+        <view class='card-mes'>
+          <image src='../images/card/card_2/mes_phone_2.png' style='width:26rpx;height:26rpx;'></image><text>{{phone}}</text></view>
+        <view class='card-mes'>
+          <image src='../images/card/card_2/mes_wechat_2.png' style='width:26rpx;height:26rpx;'></image><text class='over-flow-hide'>{{wechatnum}}</text></view>
+        <view class='card-mes'>
+          <image src='../images/card/card_2/mes_email_2.png' style='width:26rpx;height:26rpx;'></image><text class='over-flow-hide'>{{email}}</text></view>
+      </view>
+    </view>
+  </view>
+  <view class='main-card-3 main-card-box' wx:if='{{cardType==3}}'>
+    <view class='card-top'>
+      <view class='card-top-left'>
+        <view class='card-name'>{{name}}</view>
+        <view class='card-info'>{{job}}</view>
+        <view class='card-info'>{{city}}</view>
+        <view class='card-info'>{{company}}</view>
+      </view>
+      <view class='card-top-right'>
+        <view class='img-box'>
+          <image src='{{image}}'></image>
+        </view>
+      </view>
+    </view>
+    <view class='card-middle'>
+      <image src='../images/card/card_1.png'></image>
+    </view>
+    <view class='card-down'>
+      <view class='card-mes'>
+        <image src='../images/card/mes_phone.png' style='width:26rpx;height:26rpx;'></image>{{phone}}</view>
+      <view class='card-mes'>
+        <image src='../images/card/mes_wechat.png' style='width:26rpx;height:21rpx;'></image>{{wechatnum}}</view>
+      <view class='card-mes'>
+        <image src='../images/card/mes_email.png' style='width:26rpx;height:17rpx;'></image>{{email}}</view>
+    </view>
+  </view>
+  <view class='main-card-4 main-card-box' wx:if='{{cardType==4}}'>
+    <image class='bg-card' src='../images/card/card_4/bg_card_4.png'></image>
+    <view class='card-layer'>
+      <view class='card-top'>
+        <view class='card-top-left'>
+          <view class='mes-name over-flow-hide'>{{name}}</view>
+          <view class='mes-job over-flow-hide'>{{job}}</view>
+        </view>
+        <view class='card-top-right'>
+          <view class='img-box'>
+            <image src='{{image}}'></image>
+          </view>
+        </view>
+      </view>
+      <view class='card-down'>
+        <view class='card-mes'>
+          <view class='mes-icon'>
+            <image src='../images/card/card_4/mes_addr_4.png' style='width:20rpx;height:26rpx;'></image>
+          </view>
+          <text class='over-flow-hide'>{{city}}</text>
+        </view>
+        <view class='card-mes over-flow-hide'>
+          <view class='mes-icon'>
+            <image src='../images/card/card_4/mes_comp_4.png' style='width:25rpx;height:24rpx;'></image>
+          </view>
+          <text class='over-flow-hide'>{{company}}</text>
+        </view>
+        <view class='card-mes'>
+          <view class='mes-icon'>
+            <image src='../images/card/card_4/mes_phone_4.png' style='width:26rpx;height:26rpx;'></image>
+          </view>
+          {{phone}}
+        </view>
+        <view class='card-mes'>
+          <view class='mes-icon'>
+            <image src='../images/card/card_4/mes_wechat_4.png' style='width:25rpx;height:20rpx;'></image>
+          </view>
+          {{wechatnum}}
+        </view>
+        <view class='card-mes'>
+          <view class='mes-icon'>
+            <image src='../images/card/card_4/mes_email_4.png' style='width:26rpx;height:17rpx;'></image>
+          </view>
+          {{email}}
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='main-card-5 main-card-box' wx:if='{{cardType==5}}'>
+    <image class='bg-card' src='../images/card/card_5/bg_card_5.png'></image>
+    <view class='card-layer'>
+      <view class='card-top'>
+        <view class='mes-name over-flow-hide'>{{name}}</view>
+        <view class='mes-job over-flow-hide'>{{job}}</view>
+      </view>
+      <view class='card-down'>
+        <view class='card-down-left'>
+          <view class='img-box'>
+            <image src='{{image}}'></image>
+          </view>
+        </view>
+        <view class='card-down-right'>
+          <view class='card-mes'>
+            <view class='mes-icon'>
+              <image src='../images/card/card_5/mes_addr_5.png'></image>
+            </view>
+            <text class='over-flow-hide'>{{city}}</text>
+          </view>
+          <view class='card-mes'>
+            <view class='mes-icon'>
+              <image src='../images/card/card_5/mes_comp_5.png'></image>
+            </view>
+            <text class='over-flow-hide'>{{company}}</text>
+          </view>
+          <view class='card-mes'>
+            <view class='mes-icon'>
+              <image src='../images/card/card_5/mes_phone_5.png'></image>
+            </view>
+            <text class='over-flow-hide'>{{phone}}</text>
+          </view>
+          <view class='card-mes'>
+            <view class='mes-icon'>
+              <image src='../images/card/card_5/mes_wechat_5.png'></image>
+            </view>
+            <text class='over-flow-hide'>{{wechatnum}}</text>
+          </view>
+          <view class='card-mes'>
+            <view class='mes-icon'>
+              <image src='../images/card/card_5/mes_email_5.png'></image>
+            </view>
+            <text class='over-flow-hide'>{{email}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<view class='choose-card'>
+  <scroll-view scroll-x>
+    <view class='choose-card-in' data-idx='1' bindtap='chooseCard'>
+      <image src='../images/card/choose_1.png'></image>
+    </view>
+    <view class='choose-card-in' data-idx='2' bindtap='chooseCard'>
+      <image src='../images/card/choose_2.png'></image>
+    </view>
+    <view class='choose-card-in' data-idx='3' bindtap='chooseCard'>
+      <image src='../images/card/choose_3.png'></image>
+    </view>
+    <view class='choose-card-in' data-idx='4' bindtap='chooseCard'>
+      <image src='../images/card/choose_4.png'></image>
+    </view>
+    <view class='choose-card-in' data-idx='5' bindtap='chooseCard'>
+      <image src='../images/card/choose_5.png'></image>
+    </view>
+  </scroll-view>
+</view>
 <view class='main'>
   <view class='main-ul'>
     <view class='main-li'>

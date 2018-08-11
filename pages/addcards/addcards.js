@@ -8,6 +8,7 @@ import {
 var app = getApp();
 Page({
   data: {
+    cardType: 1,
     count: 0, //简介字数
     openid: "", //用户标识
     othercardid: "", //分享的人的标识
@@ -96,22 +97,34 @@ Page({
     }
     console.log(prepare)
     this.data.prepare = prepare
-    this.data.name = e.detail.value
+    this.setData({
+      name: e.detail.value
+    })
   },
   addnumber: function(e) {
-    this.data.wechatnum = e.detail.value
+    this.setData({
+      wechatnum: e.detail.value
+    })
   },
   addcompany: function(e) {
-    this.data.company = e.detail.value
+    this.setData({
+      company: e.detail.value
+    })
   },
   addcity: function(e) {
-    this.data.city = e.detail.value
+    this.setData({
+      city: e.detail.value
+    })
   },
   addjob: function(e) {
-    this.data.job = e.detail.value
+    this.setData({
+      job: e.detail.value
+    })
   },
   addphone: function(e) {
-    this.data.phone = e.detail.value
+    this.setData({
+      phone: e.detail.value
+    })
   },
   adddemand: function(e) {
     this.data.demand = e.detail.value
@@ -120,7 +133,9 @@ Page({
     this.data.resource = e.detail.value
   },
   addemail: function(e) {
-    this.data.email = e.detail.value
+    this.setData({
+      email: e.detail.value
+    })
   },
   introInput(e) {
     this.data.introduction = e.detail.value
@@ -246,7 +261,8 @@ Page({
           synopsis: this.data.introduction,
           userEmail: this.data.email,
           prepare: this.data.prepare,
-          formId: this.data.formId
+          formId: this.data.formId,
+          cardType: this.data.cardType
         },
         url: server + '/userCard/saveOrUpdate',
         header: {
@@ -320,6 +336,12 @@ Page({
         // 转发失败
       }
     }
+  },
+  chooseCard: function (e) {
+    let id = e.currentTarget.dataset.idx
+    this.setData({
+      cardType: id
+    })
   }
 })
 
