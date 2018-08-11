@@ -29,6 +29,9 @@ Page({
     floorstatus: false, // 回到顶部
   },
   onLoad: function(a) {
+    // wx.navigateTo({
+    //   url: '../fix/fix',
+    // })
     console.log(a)
     let that = this
     wx.getStorage({

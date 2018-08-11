@@ -1,0 +1,290 @@
+.main-card {
+  background-color: #ffffff;
+  padding: 30rpx 40rpx;
+}
+.main-card .main-card-box {
+  position: relative;
+  background-color: #FAFAFA;
+  width: 670rpx;
+  height: 410rpx;
+  border-radius: 24rpx;
+  border: 1rpx solid #f1f1f1;
+  box-shadow: 2rpx 2rpx 15rpx #e4e4e4;
+}
+.main-card .bg-card {
+  width: 670rpx;
+  height: 410rpx;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+.main-card .card-layer {
+  position: absolute;
+  z-index: 1;
+  width: 670rpx;
+  height: 410rpx;
+}
+.main-card .img-box {
+  width: 120rpx;
+  height: 120rpx;
+  background-color: #e4e4e4;
+  border-radius: 15rpx;
+}
+.main-card .img-box image {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 15rpx;
+}
+.over-flow-hide {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+/* 卡片1 */
+.main-card .main-card-1 .card-mark {
+  margin-top: 20rpx;
+}
+.main-card .main-card-1 .card-mark .mark {
+  width: 40rpx;
+  height: 38rpx;
+  background-color: #CECECE;
+}
+.main-card .main-card-1 .card-top {
+  padding-left: 37rpx;
+  padding-top: 13rpx;
+}
+.main-card .main-card-1 .card-top .mes-name {
+  font-size: 34rpx;
+  color: #505050;
+  height: 44rpx;
+  line-height: 44rpx;
+}
+.main-card .main-card-1 .card-top .mes-job {
+  font-size: 24rpx;
+  color: #323232;
+  height: 30rpx;
+  line-height: 30rpx;
+}
+.main-card .main-card-1 .card-down {
+  padding-top: 15rpx;
+  padding-left: 37rpx;
+  display: flex;
+}
+.main-card .main-card-1 .card-down .card-down-left {
+  padding-right: 80rpx;
+}
+.main-card .main-card-1 .card-down .card-down-right {
+  border-left: 1rpx solid #CECECE;
+  height: 202rpx;
+  font-size: 24rpx;
+  color: #323232;
+}
+.main-card .main-card-1 .card-down .card-down-right .card-mes {
+  height: 40rpx;
+  line-height: 40rpx;
+  padding-left: 30rpx;
+  padding-right: 4rpx;
+  width: 430rpx;
+}
+/* 卡片2 */
+.main-card .main-card-2 .card-top {
+  display: flex;
+  height: 154rpx;
+}
+.main-card .main-card-2 .card-top .card-top-left {
+  width: 500rpx;
+  padding-left: 54rpx;
+  padding-top: 26rpx;
+}
+.main-card .main-card-2 .card-top .card-top-left .info-name {
+  font-size: 38rpx;
+  color: #505050;
+  height: 57rpx;
+  line-height: 57rpx;
+}
+.main-card .main-card-2 .card-top .card-top-left .info-job {
+  font-size: 28rpx;
+  color: #323232;
+  height: 36rpx;
+  line-height: 36rpx;
+}
+.main-card .main-card-2 .card-top .card-top-right {
+  width: 170rpx;
+  height: 154rpx;
+  padding-top: 34rpx;
+  padding-left: 10rpx;
+}
+.main-card .main-card-2 .card-down .card-mes {
+  height: 46rpx;
+  line-height: 46rpx;
+  display: flex;
+  align-items: center;
+  font-size: 26rpx;
+  color: #323232;
+  padding-left: 54rpx;
+  width: 640rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.main-card .main-card-2 .card-down .card-mes image {
+  min-width: 26rpx;
+  min-height: 26rpx;
+  margin-right: 15rpx;
+}
+/* 卡片3 */
+.main-card .main-card-3 .card-top{
+  height: 226rpx;
+  display: flex;
+}
+.main-card .main-card-3 .card-top .card-top-left{
+  width: 500rpx;
+  padding-left: 30rpx;
+  padding-top: 10rpx;
+}
+.main-card .main-card-3 .card-top .card-top-left .card-name {
+  height: 77rpx;
+  line-height: 77rpx;
+  font-size: 38rpx;
+  color: #505050;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.main-card .main-card-3 .card-top .card-top-left .card-info{
+  height: 44rpx;
+  line-height: 44rpx;
+  font-size: 28rpx;
+  color: #606060;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.main-card .main-card-3 .card-top .card-top-right{
+  min-width: 170rpx;
+  background-color: transparent;
+  padding: 40rpx 25rpx 0;
+}
+.main-card .main-card-3 .card-middle {
+  height: 26rpx;
+  width: 100%;
+  display: flex;
+}
+.main-card .main-card-3 .card-middle image {
+  height: 26rpx;
+  width: 100%;
+}
+.main-card .main-card-3 .card-down {
+  padding-top: 13rpx;
+  padding-left: 32rpx;
+}
+.main-card .main-card-3 .card-down .card-mes {
+  height: 42rpx;
+  line-height: 42rpx;
+  font-size: 26rpx;
+  color: #606060;
+  display: flex;
+  align-items: center;
+}
+.main-card .main-card-3 .card-down .card-mes image{
+  margin-right: 15rpx;
+}
+/* 卡片4 */
+.main-card .main-card-4 .card-top {
+  display: flex;
+  height: 170rpx;
+}
+.main-card .main-card-4 .card-top .card-top-left {
+  width: 500rpx;
+  padding-left: 83rpx;
+  padding-top: 28rpx;
+  flex: 1;
+}
+.main-card .main-card-4 .card-top .card-top-left .mes-name {
+  font-size: 38rpx;
+  color: #505050;
+  height: 52rpx;
+  line-height: 52rpx;
+}
+.main-card .main-card-4 .card-top .card-top-left .mes-job {
+  font-size: 28rpx;
+  color: #323232;
+  height: 38rpx;
+  line-height: 38rpx;
+}
+.main-card .main-card-4 .card-top .card-top-right {
+  width: 170rpx;
+  padding-top: 34rpx;
+  padding-left: 12rpx;
+}
+.main-card .main-card-4 .card-down {
+  height: 230rpx;
+  padding-left: 83rpx;
+}
+.main-card .main-card-4 .card-down .card-mes {
+  height: 44rpx;
+  line-height: 44rpx;
+  font-size: 22rpx;
+  color: #323232;
+  display: flex;
+}
+.main-card .main-card-4 .card-down .card-mes .mes-icon {
+  min-width: 28rpx;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10rpx;
+}
+/* 卡片5 */
+.main-card .main-card-5 .card-top {
+  height: 114rpx;
+  width: 100%;
+  padding: 32rpx 10rpx 0 29rpx;
+}
+.main-card .main-card-5 .card-top .mes-name {
+  font-size: 38rpx;
+  color: #505050;
+  height: 47rpx;
+  left: 47rpx;
+}
+.main-card .main-card-5 .card-top .mes-job {
+  font-size: 26rpx;
+  color: #323232;
+  height: 35rpx;
+  line-height: 35rpx;
+}
+.main-card .main-card-5 .card-down {
+  display: flex;
+  width: 100%;
+  padding-top: 12rpx;
+  padding-left: 31rpx;
+}
+.main-card .main-card-5 .card-down .card-down-left {
+  padding-right: 76rpx;
+  padding-top: 6rpx;
+}
+.main-card .main-card-5 .card-down .card-down-right {
+  width: 442rpx;
+  padding-right: 10rpx;
+}
+.main-card .main-card-5 .card-down .card-down-right .card-mes {
+  width: 100%;
+  height: 36rpx;
+  line-height: 36rpx;
+  font-size: 22rpx;
+  color: #323232;
+  display: flex;
+}
+.main-card .main-card-5 .card-down .card-down-right .card-mes .mes-icon {
+  width: 28rpx;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  margin-right: 12rpx;
+}
+.main-card .main-card-5 .card-down .card-down-right .card-mes .mes-icon image {
+  width: 26rpx;
+  height: 26rpx;
+}

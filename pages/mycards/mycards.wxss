@@ -2,10 +2,39 @@
 Page{
   width: 100%;
   background-color: #f8f8f8;
-  padding-top: 20rpx;
   box-sizing: border-box;
+  padding-bottom: 240rpx;
 }
-.main{
+
+.content {
+  background-color: #ffffff;
+  margin-top: 25rpx;
+  font-size: 30rpx;
+  color: #606060;
+  line-height: 52rpx;
+}
+.content .con-li {
+  display: flex;
+}
+.content .con-li .con-li-left {
+  min-width: 96rpx;
+  height: 100%;
+  padding-left: 30rpx;
+  padding-top: 22rpx;
+}
+.content .con-li .con-li-left .img-box{
+  height: 52rpx;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+}
+.content .con-li .con-li-right {
+  flex: 1;
+  border-bottom: 1rpx solid #D8D8D8;
+  padding: 22rpx 32rpx 22rpx 0;
+}
+/* .main{
   box-sizing: border-box;
   background-color: #ffffff;
   padding: 29rpx 40rpx;
@@ -20,13 +49,11 @@ Page{
 .main .main-top .top-left .info{
   color: #606060;
   font-size: 26rpx;
-  /* height: 46rpx; */
   line-height: 46rpx;
 }
 .main .main-top .top-left .info.name{
   font-size: 30rpx;
   color: #505050;
-  /* height: 64rpx; */
   line-height: 64rpx;
 }
 .main .main-top .top-right{
@@ -47,7 +74,6 @@ Page{
 .main .main-down .down-left .contact-info{
   font-size: 26rpx;
   color: #606060;
-  /* height: 48rpx; */
   line-height: 48rpx;
   display: flex;
   align-items: center;
@@ -70,9 +96,9 @@ Page{
 .main .main-down .down-right image{
   width: 36rpx;
   height: 36rpx;
-}
+} */
 .footer {
-  position: absolute;
+  position: fixed;
   bottom: 30rpx;
   width: 100%;
 }

@@ -15,8 +15,10 @@ Page({
       company: '',             //用户公司
       phone: '',               //用户手机号
       wechatnum: '',           //用户微信号
-      email: ''                //用户邮箱
+      email: '',                //用户邮箱
+      userJob: ''
     },
+    cardType: '',
     openid:"",                 //用户标识
     count: 0,                  //简介长度
     groupId: "",               //群组ID
@@ -60,7 +62,8 @@ Page({
             company: res.data.userCompany,
             phone: res.data.userPhone,
             wechatnum: res.data.userWechat,
-            email: res.data.userEmail
+            email: res.data.userEmail,
+            userJob: res.data.userJob
           },
           name: res.data.username,
           wechatnum: res.data.userWechat,
@@ -76,6 +79,7 @@ Page({
           id: res.data.id,
           job: res.data.userJob,
           count: res.data.synopsis.length, // 简介长度
+          cardType: res.data.cardType
         })
         if (that.data.demand !== '') {
           that.setData({
@@ -125,7 +129,8 @@ Page({
             company: b.data.data.userCompany,
             phone: b.data.data.userPhone,
             wechatnum: b.data.data.userWechat,
-            email: b.data.data.userEmail
+            email: b.data.data.userEmail,
+            userJob: b.data.data.userJob
           },
           name: b.data.data.username,
           wechatnum: b.data.data.userWechat,
@@ -141,6 +146,7 @@ Page({
           id: b.data.data.id,
           job: b.data.data.userJob,
           count: b.data.data.synopsis.length, // 简介长度
+          cardType: b.data.data.cardType
         })
         if (that.data.demand !== '') {
           that.setData({
@@ -335,7 +341,8 @@ Page({
           synopsis: this.data.introduction,
           userEmail: this.data.email,
           userImg: this.data.image,
-          prepare: this.data.prepare
+          prepare: this.data.prepare,
+          cardType: this.data.cardType
         },
         url: server + '/userCard/saveOrUpdate',
         header: {
@@ -388,5 +395,11 @@ Page({
         // 转发失败
       }
     }
+  },
+  chooseCard:function(e) {
+    let id = e.currentTarget.dataset.idx
+    this.setData({
+      cardType: id
+    })
   }
 })

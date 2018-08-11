@@ -3,6 +3,16 @@ var app=getApp();
 var util = require('../../utils/util.js');
 Page({
   data: {
+    mineInfo: {                //缓存  
+      name: '',                //用户名字
+      idustry: '',             //用户行业
+      city: '',                //用户城市
+      company: '',             //用户公司
+      phone: '',               //用户手机号
+      wechatnum: '',           //用户微信号
+      email: '',                //用户邮箱
+      userJob: ''
+    },
     name: "",               //用户名字
     id:"",                  //名片ID
     idustry:"",             //用户行业
@@ -19,6 +29,7 @@ Page({
     demand: '',             //需求     
     resources: '',          //资源
     synopsis: '',           //简介
+    cardType: ''
     // shareing: false
   },
   //页面加载
@@ -45,7 +56,18 @@ Page({
           demand: res.data.demand,      //需求
           resources: res.data.resources,//资源
           synopsis: res.data.synopsis,  //简介
-          userJob: res.data.userJob     // 职位
+          userJob: res.data.userJob,     // 职位
+          cardType: res.data.cardType,
+          mineInfo: {
+            name: res.data.username,
+            idustry: res.data.userIndustry,
+            city: res.data.userCity,
+            company: res.data.userCompany,
+            phone: res.data.userPhone,
+            wechatnum: res.data.userWechat,
+            email: res.data.userEmail,
+            userJob: res.data.userJob
+          }
         })
       },
       fail: function (res) {
@@ -85,7 +107,18 @@ Page({
           demand: res.demand,      //需求
           resources: res.resources,//资源
           synopsis: res.synopsis,  //简介
-          userJob: res.userJob     // 职位
+          userJob: res.userJob,     // 职位
+          cardType: res.cardType,
+          mineInfo: {
+            name: res.username,
+            idustry: res.userIndustry,
+            city: res.userCity,
+            company: res.userCompany,
+            phone: res.userPhone,
+            wechatnum: res.userWechat,
+            email: res.userEmail,
+            userJob: res.userJob
+          }
         })
       }
     })

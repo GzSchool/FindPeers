@@ -1,11 +1,37 @@
 /* pages/fix/fix.wxss */
 Page{
   background-color: #f8f8f8;
-  padding-top: 20rpx;
+  /* padding-top: 20rpx; */
   padding-bottom: 30rpx;
   box-sizing: border-box;
 }
-.main{
+
+/* 选择卡片类型 */
+.choose-card {
+  width: 710rpx;
+  margin-left: 20rpx;
+  display: flex;
+  white-space: nowrap;
+}
+.choose-card .choose-card-in {
+  display: inline-block;
+  min-width: 128rpx;
+  width: 150rpx;
+  height: 92rpx;
+  background-color: #ccc;
+  border-radius: 6rpx;
+  margin: 30rpx 30rpx 30rpx 0;
+}
+.choose-card .choose-card-in:last-child {
+  margin-right: 0;
+}
+.choose-card .choose-card-in image{
+  border: 1rpx solid #d5d5d5;
+  width: 150rpx;
+  height: 92rpx;
+  border-radius: 6rpx;
+}
+/* .main{
   box-sizing: border-box;
   background-color: #ffffff;
   padding: 29rpx 40rpx;
@@ -19,7 +45,6 @@ Page{
 .main .main-top .top-left .info{
   color: #606060;
   font-size: 26rpx;
-  /* height: 46rpx; */
   line-height: 46rpx;
 }
 .main .main-top .top-left .info.name{
@@ -46,7 +71,6 @@ Page{
 .main .main-down .down-left .contact-info{
   font-size: 26rpx;
   color: #606060;
-  /* height: 48rpx; */
   line-height: 48rpx;
   display: flex;
   align-items: center;
@@ -65,7 +89,7 @@ Page{
 .main .main-down .down-right image {
   width: 36rpx;
   height: 36rpx;
-}
+} */
 .save-btn {
   margin: 20rpx auto 0;
   width: 670rpx;
@@ -82,7 +106,7 @@ Page{
   box-sizing: border-box;
   background-color: #ffffff;
   width: 710rpx;
-  margin: 20rpx auto 20rpx;
+  margin: 0 auto 20rpx;
   padding: 0 20rpx 40rpx;
 }
 .main-ul .main-li{
