@@ -58,24 +58,24 @@ Page({
         console.log(res)
       }
     })
-    wx.getStorage({
-      key: 'list_con',
-      success: function(res) {
-        console.log(res)
-        that.setData({
-          list_con: res.data
-        })
-      }
-    })
-    wx.getStorage({
-      key: 'list_letter',
-      success: function(res) {
-        console.log(res)
-        that.setData({
-          list_letter: res.data
-        })
-      },
-    })
+    // wx.getStorage({
+    //   key: 'list_con',
+    //   success: function(res) {
+    //     console.log(res)
+    //     that.setData({
+    //       list_con: res.data
+    //     })
+    //   }
+    // })
+    // wx.getStorage({
+    //   key: 'list_letter',
+    //   success: function(res) {
+    //     console.log(res)
+    //     that.setData({
+    //       list_letter: res.data
+    //     })
+    //   },
+    // })
     wx.showShareMenu({
       withShareTicket: true
     })
@@ -141,24 +141,29 @@ Page({
     // 获取当前保存的同行名片
     util.getMyPeers(openid).then(function(res) {
       // 获取数据为空时清空同行列表缓存
-      if (res.data.data.length == 0 || !res.data.data.length) {
-        wx.removeStorage({
-          key: 'list_con',
-          success: function(res) {
-            console.log(res.data)
-          }
-        })
-        wx.removeStorage({
-          key: 'list_letter',
-          success: function(res) {
-            console.log(res.data)
-          }
-        })
-      } else {
+      // if (res.data.data.length == 0 || !res.data.data.length) {
+      //   wx.removeStorage({
+      //     key: 'list_con',
+      //     success: function(res) {
+      //       console.log(res.data)
+      //     }
+      //   })
+      //   wx.removeStorage({
+      //     key: 'list_letter',
+      //     success: function(res) {
+      //       console.log(res.data)
+      //     }
+      //   })
+      // } else {
         let letter = [];
         let con = [];
         var length = res.data.data.length;
         if (length) {
+          that.setData({
+            list_length: length
+          })
+          console.log(length)
+        }else{
           that.setData({
             list_length: length
           })
@@ -204,15 +209,16 @@ Page({
           list_letter: letter,
           list_con: con,
         })
-        wx.setStorage({
-          key: 'list_con',
-          data: that.data.list_con,
-        })
-        wx.setStorage({
-          key: 'list_letter',
-          data: that.data.list_letter,
-        })
-      }
+        console.log(that.data.list)
+        // wx.setStorage({
+        //   key: 'list_con',
+        //   data: that.data.list_con,
+        // })
+        // wx.setStorage({
+        //   key: 'list_letter',
+        //   data: that.data.list_letter,
+        // })
+      // }
     });
   },
   // 企业详情

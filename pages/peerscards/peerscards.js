@@ -396,6 +396,7 @@ Page({
                 'content-type': 'application/json'
               },
               success: function (c) {
+                that.hideModal();
               }
             })
           }
@@ -411,7 +412,6 @@ Page({
     // 场景为新用户从群内点进别人名片，添加个人名片后返回
     // this.data.notadd = app.globalData.notadd
     // var ops = {othercardid: app.globalData.othercardid}
-    // this.onLoad(ops)
-    
+    // this.onLoad(ops)    
   }
 })

@@ -249,6 +249,7 @@ Page({
       },
       fail: function (res) {
         console.log(res)
+        that.hideModal();
         // 转发失败
       }
     }
