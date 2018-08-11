@@ -288,10 +288,16 @@ Page({
       })
     }
   },
+  //城市选择
   cityChange(e) {
+    let dedupeCity = this.dedupe(e.detail.value)
     this.setData({
-      city: e.detail.value.join('')
+      city: dedupeCity.join('')
     })
+  },
+  //es6去重
+  dedupe: function (array) {
+    return Array.from(new Set(array))
   },
   //转发
   onShareAppMessage: function(a) {
