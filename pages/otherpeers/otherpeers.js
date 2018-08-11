@@ -25,7 +25,7 @@ Page({
     otheropenId: "",     //同行标识
     searching: false, 
     userInfo: {},        // 用户信息
-    addPhone:""          //判断用户是否已添加手机号
+    addPhone:"" ,         //判断用户是否已添加手机号
   },
   /**
    * 生命周期函数--监听页面加载

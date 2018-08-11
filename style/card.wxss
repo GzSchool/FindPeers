@@ -41,6 +41,13 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+.shades{
+  color: #FE0000;
+  font-size: 20rpx;
+  height: 28rpx;
+  line-height: 28rpx;
+  width: 306rpx;
+}
 /* 卡片1 */
 .main-card .main-card-1 .card-mark {
   margin-top: 20rpx;
@@ -287,4 +294,33 @@
 .main-card .main-card-5 .card-down .card-down-right .card-mes .mes-icon image {
   width: 26rpx;
   height: 26rpx;
+}
+
+.content {
+  background-color: #ffffff;
+  margin-top: 25rpx;
+  font-size: 30rpx;
+  color: #606060;
+  line-height: 52rpx;
+}
+.content .con-li {
+  display: flex;
+}
+.content .con-li .con-li-left {
+  min-width: 96rpx;
+  height: 100%;
+  padding-left: 30rpx;
+  padding-top: 22rpx;
+}
+.content .con-li .con-li-left .img-box{
+  height: 52rpx;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+}
+.content .con-li .con-li-right {
+  flex: 1;
+  border-bottom: 1rpx solid #D8D8D8;
+  padding: 22rpx 32rpx 22rpx 0;
 }
