@@ -349,3 +349,31 @@
   border-bottom: 1rpx solid #D8D8D8;
   padding: 22rpx 32rpx 22rpx 0;
 }
+.card-set {
+  position: fixed;
+  z-index: 300;
+  right: 20rpx;
+  bottom: 255rpx;
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  background-color: #ffffff;
+  border: 1rpx solid #D8D8D8;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 15rpx;
+}
+.card-set .card-set-icon {
+  width: 42rpx;
+  height: 42rpx;
+  margin-bottom: 4rpx;
+}
+.card-set .card-set-icon image {
+  width: 42rpx;
+  height: 42rpx;
+}
+.card-set .set-text {
+  color: #B3B3B3;
+  font-size: 20rpx;
+}

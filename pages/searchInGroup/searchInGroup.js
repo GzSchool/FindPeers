@@ -73,10 +73,15 @@ Page({
           let len = res.data.data.length;
           if (len == 0) {
             that.setData({
-              noresult: true
+              noresult: true,
+              list: []
             });
           } else {
-            list.push(...res.data.data)
+            // list.push(...res.data.data)
+            list = res.data.data
+            that.setData({
+              list: res.data.data.slice(0, 10)
+            })
           }
           that.setData({
             list: list,
