@@ -15,12 +15,8 @@ Page({
     listOfSave: [],           //当前用户未保存的
     server: "",               //服务器地址
     key: " 微信号、城市、公司、行业等进行搜索", //搜索
-    chooseSize: "",           //动画
-    animationData: {},        //动画
     selectAll: false,         //选择全部
     hasSelect: false,         //单个选择
-    selectMyCard: true,       //分享弹出层选中自己
-    click: true,              //点击
     formId: '',               //表单ID
   },
   //页面初始化（只加载一次）
@@ -37,28 +33,28 @@ Page({
       list: [],
       searching: true
     }) 
-    var list = that.data.list;
-    var server = that.data.server
-    var listOfSave = that.data.listOfSave
+    var list = [];
+    var listOfSave = []
     var openId = that.data.openid;
     var groupId = that.data.groupId;
     //获取群里用户
-    util.getGroupCards(openId, groupId,1,1000).then(function(res) {
-      console.log(res)
-      let arr = res.data.data.result
+    util.getGroupCards(openId, groupId,1,600).then(function(res) {
+      console.log(res.data.data)
       var length = res.data.data.result.length;
-      for (var i = 0; i < arr.length; i++) {
-        arr[i].isselect = false
-        list.push(arr[i]);
-        if (arr[i].saveFlag == 1) {
-          listOfSave.push(arr[i].id)
+      that.setData({
+        list: res.data.data.result.slice(0, 10)
+      });
+      for (var i = 0; i < length; i++) {
+        res.data.data.result[i].isselect = false
+        if (res.data.data.result[i].saveFlag == 1) {
+          listOfSave.push(res.data.data.result[i].id)
         }
       }
       that.setData({
-        list: list,
+        list: res.data.data.result,
         listOfSave: listOfSave,
         searching: false
-      });
+      })
     })
     //获取用户个人信息
     util.getMyData(openId).then(function(res) {
@@ -89,7 +85,6 @@ Page({
       }
     })
   },
-
   //点击个人信息
   mycards: function() {
     var groupId = this.data.groupId;
@@ -97,52 +92,6 @@ Page({
       url: '/pages/mycards/mycards?back=true' + '&groupId=' + groupId,
     })
   },
-
-  //动画弹出
-  chooseSize: function(e) {
-    var that = this;
-    var animation = wx.createAnimation({
-      duration: 500,
-      timingFunction: 'linear'
-    })
-    that.animation = animation
-    // 先在y轴偏移，然后用step()完成一个动画
-    animation.translateY(200).step()
-    that.setData({
-      // 通过export()方法导出数据
-      animationData: animation.export(),
-      chooseSize: true
-    })
-    // 设置setTimeout来改变y轴偏移量，实现有感觉的滑动
-    setTimeout(function() {
-      animation.translateY(0).step()
-      that.setData({
-      })
-    }, 200)
-  },
-
-  //动画隐藏
-  hideModal: function(e) {
-    var that = this;
-    var animation = wx.createAnimation({
-      duration: 1000,
-      timingFunction: 'linear'
-    })
-    that.animation = animation
-    animation.translateY(200).step()
-    that.setData({
-      animationData: animation.export()
-
-    })
-    setTimeout(function() {
-      animation.translateY(0).step()
-      that.setData({
-        animationData: animation.export(),
-        chooseSize: false
-      })
-    }, 200)
-  },
-
   //保存用户名片
   save: function (e) {
     if (app.globalData.notadd) {
@@ -154,22 +103,24 @@ Page({
         formId: e.detail.formId
       })
       var openid = app.globalData.openid;
-      var listOfSave = []
       var groupid = that.data.groupId
-      var userpeers = [];
       let list = [];
-      let saveName = this.data.name;
+      var listOfSave = [];
       let activeList = [];
-      let mes = that.data.list;
       let formId = that.data.formId;
+      let saveName = this.data.name;
+      let mes = that.data.list;
       for (let i = 0; i < mes.length; i++) {
         if (mes[i].isselect == true) {
           activeList.push(mes[i].id)
         }
       }
       //保存用户  
+      wx.showLoading({
+        title: '保存中...',
+      })
       util.saveOrUpdate(openid, groupid, 2, activeList, saveName, formId).then(function (res) {
-        util.getGroupCards(openid, groupid, 1, 1000).then(function (adc) {
+        util.getGroupCards(openid, groupid, 1, 600).then(function (adc) {
           var length = adc.data.data.result.length;
           for (var i = 0; i < length; i++) {
             adc.data.data.result[i].isselect = false
@@ -183,6 +134,7 @@ Page({
             listOfSave: listOfSave
           });
         })
+        wx.hideLoading()
         if (res.data.success && res.statusCode == 200) {
           app.showToast('保存成功')
         }
@@ -259,13 +211,6 @@ Page({
       })
     }
   },
-  //选择本人名片
-  selectMyCards() {
-    let val = this.data.selectMyCard
-    this.setData({
-      selectMyCard: val ? false : true
-    })
-  },
   //转发分享
   onShareAppMessage: function (a) {               //转发
     let that = this
@@ -287,6 +232,18 @@ Page({
   },
   onShow:function(e){
     let that = this
+    wx.getStorage({
+      key: 'userInfo',
+      success: function(res) {
+        that.setData({
+          name: res.data.username,
+          company: res.data.userCompany,
+          industry: res.data.userIndustry,
+          city: res.data.userCity,
+          image: res.data.userImg,
+        })
+      },
+    })
     let openId = app.globalData.openid;
     util.getMyData(openId).then(function (res) {
       if (res) {

@@ -21,9 +21,9 @@
           <view class='mes-info'>{{city}}</view>
           <view class='mes-info'>{{company}}</view>
         </view>
-        <view class='li-share' catchtap='chooseSize' wx:if='{{false}}'>
+        <!-- <view class='li-share' catchtap='chooseSize' wx:if='{{false}}'>
           <image src='../images/share.png'></image>
-        </view>
+        </view> -->
       </view>
     </view>
   </view>
@@ -34,7 +34,7 @@
     <view class="crowd-title-right" wx:if='{{!hasSelect&&listOfSave.length>0}}'>保存</view>
     <!-- <view class="crowd-title-right active" wx:if='{{hasSelect&&listOfSave.length>0&&click}}' bindtap='aaa'>保存</view> -->
     <form bindsubmit="save" report-submit='true'>
-      <button form-type="submit" class="crowd-title-right active" wx:if='{{hasSelect&&listOfSave.length>0&&click}}'>保存</button>
+      <button form-type="submit" class="crowd-title-right active" wx:if='{{hasSelect&&listOfSave.length>0}}'>保存</button>
     </form>
   </view>
   <view class='mine-card mine-card-bb'>
@@ -47,15 +47,7 @@
           <view class='mes-name'>{{item.username}}
             <text>{{item.userIndustry}}</text>
           </view>
-          <!-- <view class='mes-info shade' wx:if='{{notadd}}'>
-            <view class='shade-in'>需填写信息才可查看</view>
-          </view> -->
-          <!-- <view class='mes-info shade' wx:if='{{notadd}}'>
-            <view class='shade-in'>需填写信息才可查看</view>
-          </view> -->
-          <!-- <view class='mes-info' wx:if='{{!notadd}}'>{{item.userCity}}</view> -->
           <view class='mes-info'>{{item.userCity}}</view>
-          <!-- <view class='mes-info' wx:if='{{!notadd}}'>{{item.userCompany}}</view> -->
           <view class='mes-info'>{{item.userCompany}}</view>
         </view>
         <view wx:if='{{item.saveFlag == 1}}' class='li-select' data-index='{{index}}' catchtap='selectOne'>
@@ -68,19 +60,7 @@
   <view class='searching' wx:if='{{searching}}'>
     <view class='weui-loading'></view> 加载中···
   </view>
-<view class='maskLayer' wx:if="{{chooseSize}}" bindtap='hideModal' catchtouchmove="preventD"></view>
-<!-- <view class='choose' wx:if="{{chooseSize}}" animation='{{animationData}}'>
-  <view class="sada">
-    <view class="share line">分享到本群</view>
-    <image class="close" src="/pages/images/close.png" bindtap='hideModal'></image>
-    <checkbox class="checkshare"></checkbox>
-    <image class="imgshare" src="/pages/images/1.png"></image>
-    <view class="nameshare">朝木力格</view>
-    <view class="industryshare">互联网</view>
-    <view class="companyshare">北京格致文化传媒有限公司</view>
-    <button class="sureshare" bindtap='hideModal'>确认</button>
-  </view>
-</view> -->
+<!-- <view class='maskLayer' wx:if="{{chooseSize}}" bindtap='hideModal' catchtouchmove="preventD"></view>
 <view class='popup' wx:if="{{chooseSize}}" animation='{{animationData}}'>
   <view class='popup-title'>
     <view>分享到本微信群</view>
@@ -107,4 +87,4 @@
   </view>
   <view class="popup-btn" wx:if='{{!selectMyCard}}'>确定</view>
   <view class="popup-btn active" wx:if='{{selectMyCard}}' bindtap='hideModal'>确定</view>
-</view>
+</view> -->

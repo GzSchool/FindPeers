@@ -18,11 +18,10 @@ Page({
     job: '', //用户职务 
     openid: '', //用户标识
     notadd: false, //是否未添加信息
-    list: [], //存储收到的同行信息
-    list_length: 0, // 一共保存多少张
     scrollTop: 0, //滚动菜单
     screenHeight: '', //滚动菜单高度 
     list_con: [], // 同行数据列表
+    list_length: 0, // 一共保存多少张
     topNum: 0, // 距离顶部高度
     list_id: '', // 锚点
     list_letter: [], // 锚点列表
@@ -58,24 +57,6 @@ Page({
         console.log(res)
       }
     })
-    // wx.getStorage({
-    //   key: 'list_con',
-    //   success: function(res) {
-    //     console.log(res)
-    //     that.setData({
-    //       list_con: res.data
-    //     })
-    //   }
-    // })
-    // wx.getStorage({
-    //   key: 'list_letter',
-    //   success: function(res) {
-    //     console.log(res)
-    //     that.setData({
-    //       list_letter: res.data
-    //     })
-    //   },
-    // })
     wx.showShareMenu({
       withShareTicket: true
     })
@@ -139,86 +120,64 @@ Page({
     })
     var openid = app.globalData.openid;
     // 获取当前保存的同行名片
-    util.getMyPeers(openid).then(function(res) {
-      // 获取数据为空时清空同行列表缓存
-      // if (res.data.data.length == 0 || !res.data.data.length) {
-      //   wx.removeStorage({
-      //     key: 'list_con',
-      //     success: function(res) {
-      //       console.log(res.data)
-      //     }
-      //   })
-      //   wx.removeStorage({
-      //     key: 'list_letter',
-      //     success: function(res) {
-      //       console.log(res.data)
-      //     }
-      //   })
-      // } else {
-        let letter = [];
-        let con = [];
-        var length = res.data.data.length;
-        if (length) {
-          that.setData({
-            list_length: length
-          })
-          console.log(length)
-        }else{
-          that.setData({
-            list_length: length
-          })
-        }
-        // 如果是大写字母则push进letter
-        for (let i = 0; i < length; i++) {
-          // 如果prepare为空
-          if (!res.data.data[i].prepare) {
-            res.data.data[i].prepare = pinyin.getFullChars(res.data.data[i].username).toUpperCase()
-          }
-          if (res.data.data[i].prepare && validateUpperCase(res.data.data[i].prepare.slice(0, 1))) {
-            letter.push(res.data.data[i].prepare.slice(0, 1))
-          }
-        }
-        letter.sort()
-        // 如果是非大写字母
-        for (let i = 0; i < length; i++) {
-          if (res.data.data[i].prepare == null || !validateUpperCase(res.data.data[i].prepare.slice(0, 1))) {
-            letter.push('zz')
-          }
-        }
-        // 去重
-        letter = that.dedupe(letter)
-        let len = letter.length;
-        letter.forEach(function (a, b) {
-          con[b] = {
-            letter: a,
-            data: []
-          }
-          res.data.data.forEach(function (c, d) {
-            if (a == c.prepare.slice(0, 1)) {
-              con[b].data.push(c)
-            }
-          })
-        })
-        res.data.data.forEach(function (c, d) {
-          if (!validateUpperCase(c.prepare.slice(0, 1))) {
-            con[len - 1].data.push(c)
-          }
-        })
+    util.getMyPeers(openid).then(function (res) {
+      console.log(res.data.data)
+      let letter = [];
+      let con = [];
+      var length = res.data.data.length;
+      if (length) {
         that.setData({
-          list: res.data.data,
-          list_letter: letter,
-          list_con: con,
+          list_length: length
         })
-        console.log(that.data.list)
-        // wx.setStorage({
-        //   key: 'list_con',
-        //   data: that.data.list_con,
-        // })
-        // wx.setStorage({
-        //   key: 'list_letter',
-        //   data: that.data.list_letter,
-        // })
-      // }
+      }
+      // 如果是大写字母则push进letter
+      for (let i = 0; i < length; i++) {
+        // 如果prepare为空
+        if (!res.data.data[i].prepare) {
+          res.data.data[i].prepare = pinyin.getFullChars(res.data.data[i].username).toUpperCase()
+        }
+        if (res.data.data[i].prepare && validateUpperCase(res.data.data[i].prepare.slice(0, 1))) {
+          letter.push(res.data.data[i].prepare.slice(0, 1))
+        }
+      }
+      letter.sort()
+      // 如果存在非大写字母
+      for (let i = 0; i < length; i++) {
+        if (res.data.data[i].prepare == null || !validateUpperCase(res.data.data[i].prepare.slice(0, 1))) {
+          letter.push('zz')
+        }
+      }
+      // 去重
+      letter = that.dedupe(letter)
+      let len = letter.length;
+      letter.forEach(function (a, b) {
+        con[b] = {
+          letter: a,
+          data: []
+        }
+        res.data.data.forEach(function (c, d) {
+          if (a == c.prepare.slice(0, 1)) {
+            con[b].data.push(c)
+          }
+        })
+      })
+      res.data.data.forEach(function (c, d) {
+        if (!validateUpperCase(c.prepare.slice(0, 1))) {
+          con[len - 1].data.push(c)
+        }
+      })
+      // console.log(that.spliceList(con, 80))
+      that.setData({
+        list_con: that.spliceList(con, 10),
+        list_letter: letter,
+      })
+      that.setData({
+        list_con: that.spliceList(con, 80)
+      })
+      that.setData({
+        list_con: con,
+      })
+      // console.log(that.data.list_con)
     });
   },
   // 企业详情
@@ -291,6 +250,24 @@ Page({
     this.setData({
       topNum: 0
     })
+  },
+  // 分割同行列表数据，避免数据量大时页面加载时间过长
+  spliceList(con, num) {
+    let j = 0
+    let k = 0
+    let m = 0
+    let list = []
+    for (j; j < con.length; j++) {
+      list[j] = { letter: con[j].letter, data: [] }
+      for (k; k < con[j].data.length; k++) {
+        m++
+        if (m <= num) {
+          list[j].data.push(con[j].data[k])
+        } else {
+          return list;
+        }
+      }
+    }
   },
   // 分享
   onShareAppMessage: function(a) {
