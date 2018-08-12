@@ -33,7 +33,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
+			"current": 1,
 			"list": [
 				{
 					"id": 0,
@@ -41,6 +41,18 @@
 					"pathName": "pages/peerscards/peerscards",
 					"query": "othercardid=1201001",
 					"scene": "1011"
+				},
+				{
+					"id": -1,
+					"name": "21",
+					"pathName": "pages/otherpeers/otherpeers",
+					"query": "othercardid=1201001",
+					"scene": "1044",
+					"shareInfo": {
+						"groupName": "测试模拟群4",
+						"shareName": "rQPFFiMMgPDbwQwWmW3amrpL_zxS7qjw_ciK-n8dQ0s@cr4dev",
+						"shareKey": "APWrArrPCyfOLGWlgodnW3UnltfqqUfbOrlU0akr_VqNcKSJongZvTXZbXuyVj6HH2GhhRpzHceWV3L8TJzNcQ~~"
+					}
 				}
 			]
 		}
