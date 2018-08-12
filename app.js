@@ -7,6 +7,7 @@ App({
     notadd: false,
     QRCode:"",
     openid: '',
+    userImg:"",         //用户头像
     addPhone: '',       //判断是否已添加手机号
     othercardid: '',    //点击别人分享的别人的id
     industry: industry, // 行业数据
@@ -86,6 +87,7 @@ App({
       if (res) {
         res.userPhone ? that.globalData.addPhone = true : that.globalData.addPhone = false
         that.globalData.notadd = false;
+        that.globalData.userImg = res.userImg;
         wx.setStorage({
           key: 'userInfo',
           data: res

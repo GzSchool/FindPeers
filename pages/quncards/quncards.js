@@ -42,6 +42,9 @@
      search: function(a) {
        var openid = a.currentTarget.dataset.id;
        var groupid = a.currentTarget.dataset.key;
+       wx.hideTabBarRedDot({
+         index: 1,
+       })
        wx.navigateTo({
          url: '/pages/teampeers/teampeers?openid=' + openid + '&groupid=' + groupid,
        })

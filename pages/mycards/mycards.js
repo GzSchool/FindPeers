@@ -24,12 +24,14 @@ Page({
     wechatnum: "",          //用户微信号
     email:"",               //用户邮箱
     userJob: '',            //用户职务
+    homepage:"www.chaomu.com",            //用户个人主页
+    companyWeb:"www.gezhiwenhua.com",          //公司官网   
     groupId:"",             //群组ID
     image:"",               //用户头像
     demand: '',             //需求     
     resources: '',          //资源
     synopsis: '',           //简介
-    cardType: ''
+    cardType: 1
     // shareing: false
   },
   //页面加载
@@ -57,6 +59,8 @@ Page({
           resources: res.data.resources,//资源
           synopsis: res.data.synopsis,  //简介
           userJob: res.data.userJob,     // 职位
+          homepage:res.data.homePage,    //个人主页
+          companyWeb:res.data.companyPage, //公司主页
           cardType: res.data.cardType,
           mineInfo: {
             name: res.data.username,
@@ -108,6 +112,8 @@ Page({
           resources: res.resources,//资源
           synopsis: res.synopsis,  //简介
           userJob: res.userJob,     // 职位
+          homepage: res.homePage,    //个人主页
+          companyWeb: res.companyPage, //公司主页
           cardType: res.cardType,
           mineInfo: {
             name: res.username,
@@ -136,6 +142,17 @@ Page({
         url: '/pages/fix/fix',
       })
     }
+  },
+  copy:function(e){
+    console.log(e)
+    var num = e.currentTarget.dataset.num;
+    wx.setClipboardData({
+      data: num,
+      icon:'none',
+      success:function(a){
+        console.log(a)
+      }
+    })
   },
   onShow:function(){
     // this.setData({

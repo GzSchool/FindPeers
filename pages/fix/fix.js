@@ -3,45 +3,50 @@ import pinyin from '../../utils/pinyin.js'
 import {
   validateEmail_none,
   isvalidatemobile_none,
-  validateUpperCase     // 大写字母
+  validateUpperCase // 大写字母
 } from '../../utils/validate.js'
+var util = require('../../utils/util.js');
 var app = getApp();
 Page({
   data: {
-    mineInfo: {                //缓存  
-      name: '',                //用户名字
-      idustry: '',             //用户行业
-      city: '',                //用户城市
-      company: '',             //用户公司
-      phone: '',               //用户手机号
-      wechatnum: '',           //用户微信号
-      email: '',                //用户邮箱
+    mineInfo: { //缓存  
+      name: '', //用户名字
+      idustry: '', //用户行业
+      city: '', //用户城市
+      company: '', //用户公司
+      phone: '', //用户手机号
+      wechatnum: '', //用户微信号
+      email: '', //用户邮箱
       userJob: ''
     },
     cardType: '',
-    openid:"",                 //用户标识
-    count: 0,                  //简介长度
-    groupId: "",               //群组ID
-    name: "",                  //用户名字
-    wechatnum: "",             //用户微信号
-    company: "",               //用户公司
-    idustry: "",               //用户行业
-    job: '',                   //用户职务
-    back: "",                  //判断是否是从群里点击的
-    server: "",                //服务器地址
-    id: '',                    //用户名片ID
-    city: "",                  //用户城市
-    phone: "",                 //用户手机号
-    demand: "",                //需求
-    introduction: "",          //简介
-    resource: "",              //资源
-    email: "",                 //邮箱
-    isshow0: false,            //是否显示需求
-    isshow1: false,            //是否显示资源
-    image: "",                 //用户头像
-    prepare: '',               //用户名字拼音
+    openid: "", //用户标识
+    count: 0, //简介长度
+    groupId: "", //群组ID
+    name: "", //用户名字
+    wechatnum: "", //用户微信号
+    company: "", //用户公司
+    idustry: "", //用户行业
+    job: '', //用户职务
+    back: "", //判断是否是从群里点击的
+    server: "", //服务器地址
+    id: '', //用户名片ID
+    city: "", //用户城市
+    phone: "", //用户手机号
+    demand: "", //需求
+    introduction: "", //简介
+    resource: "", //资源
+    email: "", //邮箱
+    homepage: "", //个人主页
+    companyWeb: "", //公司官网
+    isshow0: false, //是否显示需求
+    isshow1: false, //是否显示资源
+    isshow2: false, //是否显示个人主页
+    isshow3: false, //是否显示公司官网
+    image: "", //用户头像
+    prepare: '', //用户名字拼音
     region: '',
-    customItem: ''
+    customItem: '',
   },
   //页面加载
   onLoad: function(a) {
@@ -53,7 +58,7 @@ Page({
     // 缓存
     wx.getStorage({
       key: 'userInfo',
-      success: function (res) {
+      success: function(res) {
         that.setData({
           mineInfo: {
             name: res.data.username,
@@ -75,6 +80,8 @@ Page({
           image: res.data.userImg,
           demand: res.data.demand,
           resource: res.data.resources,
+          homepage:res.data.homePage,
+          companyWeb:res.data.companyPage,
           introduction: res.data.synopsis,
           id: res.data.id,
           job: res.data.userJob,
@@ -86,13 +93,24 @@ Page({
             isshow0: true
           })
         }
-        if (that.data.resource !== '') {
+        if (that.data.resources !== '') {
           that.setData({
             isshow1: true
           })
         }
+        console.log(that.data.homepage !== '')
+        if (that.data.homepage !== '') {
+          that.setData({
+            isshow2: true
+          })
+        }
+        if (that.data.companyWeb !== '') {
+          that.setData({
+            isshow3: true
+          })
+        }
       },
-      fail: function (res) {
+      fail: function(res) {
         that.getMyData()
       }
     })
@@ -119,7 +137,7 @@ Page({
       header: {
         'content-type': 'application/json'
       },
-      success: function (b) {
+      success: function(b) {
         console.log(b.data.data)
         that.setData({
           mineInfo: {
@@ -143,6 +161,8 @@ Page({
           demand: b.data.data.demand,
           resource: b.data.data.resources,
           introduction: b.data.data.synopsis,
+          homepage: b.data.data.homePage,
+          companyWeb: b.data.data.companyPage,
           id: b.data.data.id,
           job: b.data.data.userJob,
           count: b.data.data.synopsis.length, // 简介长度
@@ -158,6 +178,16 @@ Page({
             isshow1: true
           })
         }
+        if (that.data.homepage !== '') {
+          that.setData({
+            isshow2: true
+          })
+        }
+        if (that.data.companyWeb !== '') {
+          that.setData({
+            isshow3: true
+          })
+        }
       }
     })
   },
@@ -165,13 +195,21 @@ Page({
   addmore: function() {
     var that = this
     wx.showActionSheet({
-      itemList: ["需求", "资源"],
+      itemList: ["个人主页", "公司官网", "需求", "资源"],
       success: function(res) {
         if (res.tapIndex == 0) {
           that.setData({
+            isshow2: true
+          })
+        } else if (res.tapIndex == 1) {
+          that.setData({
+            isshow3: true
+          })
+        } else if (res.tapIndex == 2) {
+          that.setData({
             isshow0: true
           })
-        } else{
+        } else {
           that.setData({
             isshow1: true
           })
@@ -180,10 +218,10 @@ Page({
     })
   },
   //填写名字
-  addname: function (e) {
+  addname: function(e) {
     let prepare = pinyin.getFullChars(e.detail.value).toUpperCase()
     let begin_letter = pinyin.getFullChars(e.detail.value).toUpperCase().slice(0, 1)
-    if(!validateUpperCase(begin_letter)){
+    if (!validateUpperCase(begin_letter)) {
       prepare = '#' + prepare
     }
     this.data.prepare = prepare
@@ -227,6 +265,15 @@ Page({
   addemail: function(e) {
     this.data.email = e.detail.value
   },
+  //添加个人主页
+  addHomepage: function(e) {
+    this.data.homepage = e.detail.value
+
+  },
+  //添加公司官网
+  addCompanyWeb: function(e) {
+    this.data.companyWeb = e.detail.value
+  },
   //填写简介
   introInput: function(e) {
     let i = e.detail.value.length
@@ -254,18 +301,19 @@ Page({
             prepare: pinyin.getFullChars(a.userInfo.nickName).toUpperCase()
           })
           that.getData()
-        },fail:function(){
+        },
+        fail: function() {
           app.showToast("姓名不能为空")
         }
       })
-    } else {      
+    } else {
       that.getData()
     }
   },
   //点击获取手机号
   getPhoneNumber: function(e) {
-    wx.login({                    //微信获取手机号需要code解密      
-      success: function (res) {
+    wx.login({ //微信获取手机号需要code解密      
+      success: function(res) {
         if (res.code) {
           // wx.request({
           //   method: 'POST',
@@ -282,9 +330,7 @@ Page({
         }
       }
     })
-    if (e.detail.errMsg == 'getPhoneNumber:fail user deny') {
-    } else {
-    }
+    if (e.detail.errMsg == 'getPhoneNumber:fail user deny') {} else {}
   },
   //设置行业
   chooseIn() {
@@ -316,7 +362,7 @@ Page({
           this.data.name = a.userInfo.nickName;
         }
       })
-    } else if (this.data.image == '' || this.data.image == null ) {
+    } else if (this.data.image == '' || this.data.image == null) {
       wx.getUserInfo({
         success: function(a) {
           this.data.image = a.userInfo.avatarUrl;
@@ -338,6 +384,8 @@ Page({
           userJob: this.data.job,
           demand: this.data.demand,
           resources: this.data.resource,
+          homePage:this.data.homepage,
+          companyPage:this.data.companyWeb,
           synopsis: this.data.introduction,
           userEmail: this.data.email,
           userImg: this.data.image,
@@ -356,9 +404,9 @@ Page({
           if (back) {
             let openid = app.globalData.openid;
             let groupId = that.data.groupId;
-           wx.navigateBack({
-             delta:2
-           })
+            wx.navigateBack({
+              delta: 2
+            })
             // wx.navigateTo({
             //   url: '/pages/teampeers/teampeers?groupid=' + groupId + '&openid=' + openid,
             // })
@@ -372,36 +420,36 @@ Page({
     }
   },
   //选择城市
-  cityChange  (e) {
+  cityChange(e) {
     let dedupeCity = this.dedupe(e.detail.value)
     this.setData({
       city: dedupeCity.join('')
     })
   },
   //es6去重
-  dedupe: function (array) {
+  dedupe: function(array) {
     return Array.from(new Set(array))
   },
   // 分享信息
-  onShareAppMessage: function (a) {
+  onShareAppMessage: function(a) {
     var that = this
     return {
       title: '找同行',
       path: '/pages/findmore/findmore',
-      success: function (res) {
+      success: function(res) {
         let openId = app.globalData.openid;
         let otherOpenId = app.globalData.openid;
-        util.sharePage(openId, otherOpenId, res).then(function (e) {
+        util.sharePage(openId, otherOpenId, res).then(function(e) {
           console.log(e)
         })
       },
-      fail: function (res) {
+      fail: function(res) {
         console.log(res)
         // 转发失败
       }
     }
   },
-  chooseCard:function(e) {
+  chooseCard: function(e) {
     let id = e.currentTarget.dataset.idx
     this.setData({
       cardType: id
