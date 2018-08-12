@@ -1,16 +1,272 @@
 <!--pages/peerscards/peerscards.wxml-->
-
-<view class='main'>
+<view class='main-card'>
+  <view class='main-card-1 main-card-box' wx:if='{{cardType==1}}'>
+    <view class='card-mark'>
+      <view class='mark'></view>
+    </view>
+    <view class='card-top'>
+      <view class='mes-name over-flow-hide'>{{name}}</view>
+      <view class='mes-job over-flow-hide'>{{userJob}}</view>
+    </view>
+    <view class='card-down'>
+      <view class='card-down-left'>
+        <view class='img-box'>
+          <image src='{{image}}'></image>
+        </view>
+      </view>
+      <view class='card-down-right'>
+        <view class='card-mes over-flow-hide'>地址：{{city}}</view>
+        <view class='card-mes over-flow-hide'>公司：{{company}}</view>
+        <view class='card-mes over-flow-hide' wx:if="{{!notadd&&addPhone}}" bindtap='copy' data-num='{{phone}}'>电话：{{phone}}</view>
+        <view class='card-mes over-flow-hide' wx:if='{{notadd||!addPhone}}'>电话：<text class="shades">需添加信息才可查看</text></view>
+        <view class='card-mes over-flow-hide' wx:if="{{wechatnum&&!notadd}}">微信：{{wechatnum}}</view>
+        <view class='info-right shades' wx:if='{{notadd}}'>微信：<text class="shades">需添加信息才可查看</text></view>
+        <view class='card-mes over-flow-hide' wx:if="{{email}}">邮箱：{{email}}</view>
+      </view>
+    </view>
+  </view>
+  <view class='main-card-2 main-card-box' wx:if='{{cardType==2}}'>
+    <image class='bg-card' src='../images/card/card_2/bg_card_2.png'></image>
+    <view class='card-layer'>
+      <view class='card-top'>
+        <view class='card-top-left'>
+          <view class='info-name over-flow-hide'>{{name}}</view>
+          <view class='info-job over-flow-hide'>{{userJob}}</view>
+        </view>
+        <view class='card-top-right'>
+          <view class='img-box'>
+            <image src='{{image}}'></image>
+          </view>
+        </view>
+      </view>
+      <view class='card-down'>
+        <view class='card-mes'>
+          <image src='../images/card/card_2/mes_addr_2.png' style='width:26rpx;height:26rpx;'></image>
+          <text>{{city}}</text>
+        </view>
+        <view class='card-mes'>
+          <image src='../images/card/card_2/mes_comp_2.png' style='width:26rpx;height:26rpx;'></image>
+          <text class='over-flow-hide'>{{company}}</text>
+        </view>
+        <view class='card-mes' wx:if='phone'>
+          <image src='../images/card/card_2/mes_phone_2.png' style='width:26rpx;height:26rpx;'></image>
+          <text wx:if='{{!notadd&&addPhone}}'>{{phone}}</text>
+          <text class="shades" wx:if="{{notadd||!addPhone}}">需添加信息才可查看</text>
+        </view>
+        <view class='card-mes' wx:if='{{wechatnum}}'>
+          <image src='../images/card/card_2/mes_wechat_2.png' style='width:26rpx;height:26rpx;'></image>
+          <text class='over-flow-hide' wx:if="{{!notadd}}">{{wechatnum}}</text>
+          <text class='over-flow-hide shades' wx:if="{{notadd}}">需添加信息才可查看</text>
+        </view>
+        <view class='card-mes' wx:if="{{email}}">
+          <image src='../images/card/card_2/mes_email_2.png' style='width:26rpx;height:26rpx;'></image>
+          <text class='over-flow-hide'>{{email}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='main-card-3 main-card-box' wx:if='{{cardType==3}}'>
+    <view class='card-top'>
+      <view class='card-top-left'>
+        <view class='card-name'>{{name}}</view>
+        <view class='card-info'>{{userJob}}</view>
+        <view class='card-info'>{{city}}</view>
+        <view class='card-info'>{{company}}</view>
+      </view>
+      <view class='card-top-right'>
+        <view class='img-box'>
+          <image src='{{image}}'></image>
+        </view>
+      </view>
+    </view>
+    <view class='card-middle'>
+      <image src='../images/card/card_1.png'></image>
+    </view>
+    <view class='card-down'>
+      <view class='card-mes' wx:if='{{mineInfo.phone}}'>
+        <image src='../images/card/mes_phone.png' style='width:26rpx;height:26rpx;'></image>
+        <text wx:if='{{!notadd&&addPhone}}'>{{phone}}</text>
+        <text class="shades" wx:if="{{notadd||!addPhone}}">需添加信息才可查看</text>
+      </view>
+      <view class='card-mes'>
+        <image src='../images/card/mes_wechat.png' style='width:26rpx;height:21rpx;'></image>
+        <text wx:if="{{!notadd}}">{{wechatnum}}</text>
+        <text class='shades' wx:if="{{notadd}}">需添加信息才可查看</text>
+      </view>
+      <view class='card-mes' wx:if='{{mineInfo.email}}'>
+        <image src='../images/card/mes_email.png' style='width:26rpx;height:17rpx;'></image>
+        <text>{{email}}</text>
+      </view>
+    </view>
+  </view>
+  <view class='main-card-4 main-card-box' wx:if='{{cardType==4}}'>
+    <image class='bg-card' src='../images/card/card_4/bg_card_4.png'></image>
+    <view class='card-layer'>
+      <view class='card-top'>
+        <view class='card-top-left'>
+          <view class='mes-name over-flow-hide'>{{name}}</view>
+          <view class='mes-job over-flow-hide'>{{userJob}}</view>
+        </view>
+        <view class='card-top-right'>
+          <view class='img-box'>
+            <image src='{{image}}'></image>
+          </view>
+        </view>
+      </view>
+      <view class='card-down'>
+        <view class='card-mes'>
+          <view class='mes-icon'>
+            <image src='../images/card/card_4/mes_addr_4.png' style='width:20rpx;height:26rpx;'></image>
+          </view>
+          <text class='over-flow-hide'>{{city}}</text>
+        </view>
+        <view class='card-mes over-flow-hide'>
+          <view class='mes-icon'>
+            <image src='../images/card/card_4/mes_comp_4.png' style='width:25rpx;height:24rpx;'></image>
+          </view>
+          <text class='over-flow-hide'>{{company}}</text>
+        </view>
+        <view class='card-mes' wx:if='{{phone}}'>
+          <view class='mes-icon'>
+            <image src='../images/card/card_4/mes_phone_4.png' style='width:26rpx;height:26rpx;'></image>
+          </view>
+          <text wx:if='{{!notadd&&addPhone}}'>{{phone}}</text>
+          <text class="shades" wx:if="{{notadd||!addPhone}}">需添加信息才可查看</text>
+        </view>
+        <view class='card-mes'>
+          <view class='mes-icon'>
+            <image src='../images/card/card_4/mes_wechat_4.png' style='width:25rpx;height:20rpx;'></image>
+          </view>
+          <text wx:if="{{!notadd}}">{{wechatnum}}</text>
+          <text class='shades' wx:if="{{notadd}}">需添加信息才可查看</text>
+        </view>
+        <view class='card-mes' wx:if='{{email}}'>
+          <view class='mes-icon'>
+            <image src='../images/card/card_4/mes_email_4.png' style='width:26rpx;height:17rpx;'></image>
+          </view>
+          {{email}}
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='main-card-5 main-card-box' wx:if='{{cardType==5}}'>
+    <image class='bg-card' src='../images/card/card_5/bg_card_5.png'></image>
+    <view class='card-layer'>
+      <view class='card-top'>
+        <view class='mes-name over-flow-hide'>{{name}}</view>
+        <view class='mes-job over-flow-hide'>{{userJob}}</view>
+      </view>
+      <view class='card-down'>
+        <view class='card-down-left'>
+          <view class='img-box'>
+            <image src='{{image}}'></image>
+          </view>
+        </view>
+        <view class='card-down-right'>
+          <view class='card-mes'>
+            <view class='mes-icon'>
+              <image src='../images/card/card_5/mes_addr_5.png'></image>
+            </view>
+            <text class='over-flow-hide'>{{city}}</text>
+          </view>
+          <view class='card-mes'>
+            <view class='mes-icon'>
+              <image src='../images/card/card_5/mes_comp_5.png'></image>
+            </view>
+            <text class='over-flow-hide'>{{company}}</text>
+          </view>
+          <view class='card-mes' wx:if='{{phone}}'>
+            <view class='mes-icon'>
+              <image src='../images/card/card_5/mes_phone_5.png'></image>
+            </view>
+            <text wx:if='{{!notadd&&addPhone}}'>{{phone}}</text>
+            <text class="shades" wx:if="{{notadd||!addPhone}}">需添加信息才可查看</text>
+          </view>
+          <view class='card-mes'>
+            <view class='mes-icon'>
+              <image src='../images/card/card_5/mes_wechat_5.png'></image>
+            </view>
+            <text class='over-flow-hide' wx:if="{{!notadd}}">{{wechatnum}}</text>
+            <text class='over-flow-hide shades' wx:if="{{notadd}}">需添加信息才可查看</text>
+          </view>
+          <view class='card-mes' wx:if='{{email}}'>
+            <view class='mes-icon'>
+              <image src='../images/card/card_5/mes_email_5.png'></image>
+            </view>
+            <text class='over-flow-hide'>{{email}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<view class='content'>
+  <view class='con-li'>
+    <view class='con-li-left'>
+      <view class='img-box'>
+        <image src='../images/card/mes_industry.png' style='width:36rpx;height:32rpx'></image>
+      </view>
+    </view>
+    <view class='con-li-right'>{{idustry}}</view>
+  </view>
+  <view class='con-li'>
+    <view class='con-li-left'>
+      <view class='img-box'>
+        <image src='../images/card/mes_company.png' style='width:36rpx;height:33rpx'></image>
+      </view>
+    </view>
+    <view class='con-li-right'>{{company}}</view>
+  </view>
+  <view class='con-li' wx:if="{{homepage}}">
+    <view class='con-li-left'>
+      <view class='img-box'>
+        <image src='../images/card/homepage.png' style='width:36rpx;height:33rpx'></image>
+      </view>
+    </view>
+    <view class='con-li-right'>{{homepage}}</view>
+  </view>
+  <view class='con-li' wx:if="{{companyWeb}}">
+    <view class='con-li-left'>
+      <view class='img-box'>
+        <image src='../images/card/companyWeb.png' style='width:36rpx;height:33rpx'></image>
+      </view>
+    </view>
+    <view class='con-li-right'>{{companyWeb}}</view>
+  </view>
+  <view class='con-li' wx:if='{{demand}}'>
+    <view class='con-li-left'>
+      <view class='img-box'>
+        <image src='../images/card/mes_need.png' style='width:36rpx;height:36rpx'></image>
+      </view>
+    </view>
+    <view class='con-li-right'>{{demand}}</view>
+  </view>
+  <view class='con-li' wx:if='{{resources}}'>
+    <view class='con-li-left'>
+      <view class='img-box'>
+        <image src='../images/card/mes_res.png' style='width:36rpx;height:35rpx'></image>
+      </view>
+    </view>
+    <view class='con-li-right' style='border-bottom:none'>{{resources}}</view>
+  </view>
+</view>
+<view class='content' wx:if='{{synopsis}}'>
+  <view class='con-li'>
+    <view class='con-li-left'>
+      <view class='img-box'>
+        <image src='../images/card/mes_intro.png' style='width:32rpx;height:36rpx'></image>
+      </view>
+    </view>
+    <view class='con-li-right' style='border-bottom:none'>{{synopsis}}</view>
+  </view>
+</view>
+<!-- <view class='main'>
   <view class='main-top'>
     <view class='top-left'>
       <view class='info name'>{{name}}</view>
-      <!-- <view class='info shade' wx:if='{{notadd}}'>需添加信息才可查看</view> -->
       <view class='info'>{{userJob}}</view>
-      <!-- <view class='info shade' wx:if='{{notadd}}'>需添加信息才可查看</view> -->
       <view class='info'>{{idustry}}</view>
-      <!-- <view class='info shade' wx:if='{{notadd}}'>需添加信息才可查看</view> -->
       <view class='info'>{{city}}</view>
-      <!-- <view class='info shade' wx:if='{{notadd}}'>需添加信息才可查看</view> -->
       <view class='info'>{{company}}</view>
     </view>
     <view class='top-right'>
@@ -65,11 +321,10 @@
     <view class='choose' wx:if="{{chooseSize}}" animation='{{animationData}}'>
       <button class="choose-in" open-type='share' bindtap='trans'>转发</button>
       <button class="choose-in" bindtap='saveToPhone'>保存到通讯录</button>
-      <!-- <button class="choose-in" wx:if="{{!isSave}}" bindtap='save'>保存到名片夹</button> -->
       <button class="choose-in" bindtap='backToFind'>取消</button>
     </view>
   </view>
-</view>
+</view> -->
 <view class="footer">
   <form bindsubmit="save" report-submit='true'>
     <button class="footer-btn" wx:if="{{!checkSave&&!notadd}}" form-type="submit">保存到名片夹</button>

@@ -30,7 +30,7 @@ Page({
   },
   onLoad: function(a) {
     // wx.navigateTo({
-    //   url: '../fix/fix',
+    //   url: '../addcards/addcards',
     // })
     console.log(a)
     let that = this

@@ -43,10 +43,35 @@
 }
 .shades{
   color: #FE0000;
-  font-size: 20rpx;
-  height: 28rpx;
-  line-height: 28rpx;
+  /* font-size: 20rpx; */
+  /* height: 28rpx; */
+  /* line-height: 28rpx; */
   width: 306rpx;
+}
+/* 选择卡片类型 */
+.choose-card {
+  width: 710rpx;
+  margin-left: 20rpx;
+  display: flex;
+  white-space: nowrap;
+}
+.choose-card .choose-card-in {
+  display: inline-block;
+  min-width: 128rpx;
+  width: 150rpx;
+  height: 92rpx;
+  background-color: #ccc;
+  border-radius: 6rpx;
+  margin: 30rpx 30rpx 30rpx 0;
+}
+.choose-card .choose-card-in:last-child {
+  margin-right: 0;
+}
+.choose-card .choose-card-in image{
+  border: 1rpx solid #d5d5d5;
+  width: 150rpx;
+  height: 92rpx;
+  border-radius: 6rpx;
 }
 /* 卡片1 */
 .main-card .main-card-1 .card-mark {

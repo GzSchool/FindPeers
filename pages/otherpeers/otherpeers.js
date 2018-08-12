@@ -26,6 +26,7 @@ Page({
     searching: false, 
     userInfo: {},        // 用户信息
     addPhone:"" ,         //判断用户是否已添加手机号
+    cardType:"",         //卡片样式ID
   },
   /**
    * 生命周期函数--监听页面加载
@@ -88,7 +89,8 @@ Page({
         demand: res.data.data[0].demand,       // 需求
         resources: res.data.data[0].resources, // 资源
         synopsis: res.data.data[0].synopsis,   // 简介
-        userJob: res.data.data[0].userJob      // 职位
+        userJob: res.data.data[0].userJob,      // 职位
+        cardType: res.data.data[0].cardType,
       })
     })
   },

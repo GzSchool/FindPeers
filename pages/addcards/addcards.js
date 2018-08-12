@@ -8,6 +8,7 @@ import {
 var app = getApp();
 Page({
   data: {
+    cardType: 1,
     count: 0, //简介字数
     openid: "", //用户标识
     othercardid: "", //分享的人的标识
@@ -26,12 +27,16 @@ Page({
     introduction: "", //用户简介
     resource: "", //用户资源
     email: "", //用户邮箱
+    homepage:"",//个人主页
+    companyWeb:"",//公司官网
     back: "", //是否返回
     isshow: '', //是否显示
     isshow0: false, //需求是否显示
     isshow1: false, //资源是否显示
+    isshow2:false,  //个人主页是否显示
+    isshow3:false, //公司官网是否显示
     formId: '',
-    itemList: ["需求", "资源"], // 添加更多项
+    itemList: ["需求", "资源","个人主页","公司官网"], // 添加更多项
     saveLoading: false,
     region: '',
     customItem: '',
@@ -74,7 +79,7 @@ Page({
   addmore: function() {
     var that = this
     wx.showActionSheet({
-      itemList: ["需求", "资源"],
+      itemList: ["需求", "资源", "个人主页", "公司官网"],
       success: function(res) {
         if (res.tapIndex == 0) {
           that.setData({
@@ -83,6 +88,14 @@ Page({
         } else if (res.tapIndex == 1) {
           that.setData({
             isshow1: true
+          })
+        } else if (res.tapIndex == 2) {
+          that.setData({
+            isshow2: true
+          })
+        } else if (res.tapIndex == 3) {
+          that.setData({
+            isshow3: true
           })
         }
       }
@@ -96,22 +109,34 @@ Page({
     }
     console.log(prepare)
     this.data.prepare = prepare
-    this.data.name = e.detail.value
+    this.setData({
+      name: e.detail.value
+    })
   },
   addnumber: function(e) {
-    this.data.wechatnum = e.detail.value
+    this.setData({
+      wechatnum: e.detail.value
+    })
   },
   addcompany: function(e) {
-    this.data.company = e.detail.value
+    this.setData({
+      company: e.detail.value
+    })
   },
   addcity: function(e) {
-    this.data.city = e.detail.value
+    this.setData({
+      city: e.detail.value
+    })
   },
   addjob: function(e) {
-    this.data.job = e.detail.value
+    this.setData({
+      job: e.detail.value
+    })
   },
   addphone: function(e) {
-    this.data.phone = e.detail.value
+    this.setData({
+      phone: e.detail.value
+    })
   },
   adddemand: function(e) {
     this.data.demand = e.detail.value
@@ -120,7 +145,19 @@ Page({
     this.data.resource = e.detail.value
   },
   addemail: function(e) {
-    this.data.email = e.detail.value
+    this.setData({
+      email: e.detail.value
+    })
+  },
+  addHomepage:function(e){
+    this.setData({
+      homepage: e.detail.value
+    })
+  },
+  addCompanyWeb: function (e) {
+    this.setData({
+      companyWeb: e.detail.value
+    })
   },
   introInput(e) {
     this.data.introduction = e.detail.value
@@ -245,8 +282,11 @@ Page({
           resources: this.data.resource,
           synopsis: this.data.introduction,
           userEmail: this.data.email,
+          homePage:this.data.homepage,
+          companyPage:this.data.companyWeb,
           prepare: this.data.prepare,
-          formId: this.data.formId
+          formId: this.data.formId,
+          cardType: this.data.cardType
         },
         url: server + '/userCard/saveOrUpdate',
         header: {
@@ -320,6 +360,12 @@ Page({
         // 转发失败
       }
     }
+  },
+  chooseCard: function (e) {
+    let id = e.currentTarget.dataset.idx
+    this.setData({
+      cardType: id
+    })
   }
 })
 

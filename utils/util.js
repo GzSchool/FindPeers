@@ -1,7 +1,7 @@
 //服务器地址
 // var server = 'http://192.168.2.123:8080'
- var server = "https://www.eqxuan.cn"
- var app = getApp();
+var server = "https://www.eqxuan.cn"
+var app = getApp();
 const formatTime = date => {
   const year = date.getFullYear()
   const month = date.getMonth() + 1
@@ -97,7 +97,7 @@ function searchByParam(key, openid) {
       url: server + '/userCard/findAllByPeerAndParam',
       data: {
         param: key,
-        openId:openid
+        openId: openid
       },
       header: {
         'content-type': 'application/json'
@@ -113,7 +113,7 @@ function searchByParam(key, openid) {
   从用户输入的字段从数据里模糊搜索 当前群内用户信息
 */
 function searchInGroup(key, openid, groupid) {
-  return new Promise(function (resolve) {
+  return new Promise(function(resolve) {
     wx.request({
       method: 'GET',
       url: server + '/userGroup/findAllGroupCardByParam',
@@ -125,7 +125,7 @@ function searchInGroup(key, openid, groupid) {
       header: {
         'content-type': 'application/json'
       },
-      success: function (src) {
+      success: function(src) {
         resolve(src)
       }
     })
@@ -167,7 +167,7 @@ function saveOrUpdate(openId, groupId, saveFlag, cardIds, saveName, formId) {
         saveFlag: saveFlag,
         groupId: groupId,
         saveName: saveName, // 操作者名字
-        formId: formId      // formid用于推送提示
+        formId: formId // formid用于推送提示
       },
       header: {
         'content-type': 'application/json'
@@ -189,7 +189,7 @@ function getUserGroupById(openid) {
       url: server + '/userGroup/findUserGroupByParam',
       data: {
         openId: openid,
-        prepare:1,
+        prepare: 1,
       },
       header: {
         'content-type': 'application/json'
@@ -229,8 +229,8 @@ function getGroupCards(openId, groupId, pageNum, pageSize) {
 /*
   当前用户点击的名片是否已被用户保存
  */
-function checkSave(openId, othercardid){
-  return new Promise(function(resolve){
+function checkSave(openId, othercardid) {
+  return new Promise(function(resolve) {
     wx.request({
       method: 'GET',
       url: server + '/userPeer/checkSave',
@@ -241,7 +241,7 @@ function checkSave(openId, othercardid){
       header: {
         'content-type': 'application/json'
       },
-      success: function (b) {
+      success: function(b) {
         resolve(b)
       }
     })
@@ -250,11 +250,11 @@ function checkSave(openId, othercardid){
 /*
   分享
  */
-function getOpenGid( openid, otherOpenId, shareTickets){
-  return new Promise(function (resole){
+function getOpenGid(openid, otherOpenId, shareTickets) {
+  return new Promise(function(resole) {
     wx.getShareInfo({
       shareTicket: shareTickets[0],
-      success: function (res) {
+      success: function(res) {
         var encryptedData = res.encryptedData;
         var iv = res.iv;
         wx.request({
@@ -270,8 +270,7 @@ function getOpenGid( openid, otherOpenId, shareTickets){
           header: {
             'content-type': 'application/json'
           },
-          success: function (c) {
-          }
+          success: function(c) {}
         })
       }
     })
@@ -280,78 +279,78 @@ function getOpenGid( openid, otherOpenId, shareTickets){
 /**
  * 分享（除了几个特殊页面以外的）
  */
-function sharePage(openId, otherOpenId, res){
-  return new Promise(function(resolve){
-      console.log(res)
-      var shareTickets = res.shareTickets;
-      if (shareTickets.length == 0) {
-        return false;
+function sharePage(openId, otherOpenId, res) {
+  return new Promise(function(resolve) {
+    console.log(res)
+    var shareTickets = res.shareTickets;
+    if (shareTickets.length == 0) {
+      return false;
+    }
+    wx.getShareInfo({
+      shareTicket: shareTickets[0],
+      success: function(res) {
+        var encryptedData = res.encryptedData;
+        var iv = res.iv;
+        wx.request({
+          method: 'POST',
+          url: server + '/userGroup/saveOrUpdate',
+
+          data: {
+            openId: openId,
+            otherOpenId: otherOpenId,
+            encryptedData: encryptedData,
+            iv: iv
+          },
+
+          header: {
+            'content-type': 'application/json'
+          },
+          success: function(c) {
+            console.log(c)
+            resolve(c)
+          }
+        })
       }
-      wx.getShareInfo({
-        shareTicket: shareTickets[0],
-        success: function (res) {
-          var encryptedData = res.encryptedData;
-          var iv = res.iv;
-          wx.request({
-            method: 'POST',
-            url: server + '/userGroup/saveOrUpdate',
-
-            data: {
-              openId: openId,
-              otherOpenId: otherOpenId,
-              encryptedData: encryptedData,
-              iv: iv
-            },
-
-            header: {
-              'content-type': 'application/json'
-            },
-            success: function (c) {
-              console.log(c)
-              resolve(c)
-            }
-          })
-        }
-      })
+    })
   })
 }
 /**
  * 分享转发（几个包含信息的页面）
  */
-function shareToQunOrPersonal(openId, otherOpenId , res){
-  return new Promise (function(resolve){
-        var shareTickets = res.shareTickets;
-        console.log(shareTickets)
-        if (shareTickets.length == 0) {
-          return false;
-        }
-        wx.getShareInfo({
-          shareTicket: shareTickets[0],
-          success: function (b) {
-            console.log(b)
-            var encryptedData = b.encryptedData;
-            var iv = b.iv;
-            wx.request({
-              method: 'POST',
-              url: server + '/userGroup/saveOrUpdate',
+function shareToQunOrPersonal(openId, otherOpenId, res) {
+  return new Promise(function(resolve) {
+    var shareTickets = res.shareTickets;
+    console.log(shareTickets)
+    if (shareTickets.length == 0) {
+      return false;
+    }
+    wx.getShareInfo({
+      shareTicket: shareTickets[0],
+      success: function(b) {
+        console.log(b)
+        var encryptedData = b.encryptedData;
+        var iv = b.iv;
+        wx.request({
+          method: 'POST',
+          url: server + '/userGroup/saveOrUpdate',
 
-              data: {
-                openId: openId,
-                otherOpenId: otherOpenId,
-                encryptedData: encryptedData,
-                iv: iv
-              },
+          data: {
+            openId: openId,
+            otherOpenId: otherOpenId,
+            encryptedData: encryptedData,
+            iv: iv
+          },
 
-              header: {
-                'content-type': 'application/json'
-              },
-              success: function (c) {
-                console.log(c)
-                resolve(c)
-              }
-            })
+          header: {
+            'content-type': 'application/json'
+          },
+          success: function(c) {
+            console.log(c)
+            resolve(c)
           }
         })
+      }
+    })
   })
 }
 /*
@@ -367,6 +366,19 @@ function testPhone(phone) {
 function testEmail(email) {
   var reg = new RegExp('^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.[a-zA-Z0-9]{2,6}$');
   return reg.test(email)
+}
+/**
+ * 网址验证
+ */
+function IsURL(str_url) {
+  var strRegex = "/^((https|http|ftp|rtsp|mms)?://)?(([0-9a-z_!~*'().&=+$%-]+: )?[0-9a-z_!~*'().&=+$%-]+@)?(([0-9]{1,3}\.){3}[0-9]{1,3}|([0-9a-z_!~*'()-]+\.)*([0-9a-z][0-9a-z-]{0,61})?[0-9a-z]\.[a-z]{2,6})(:[0-9]{1,4})?((/?)|(/[0-9a-z_!~*'().;?:@&=+$,%#-]+)+/?)$/";
+  var re = new RegExp(strRegex);
+  console.log(re.test(str_url))
+  if (re.test(str_url)) {
+    return (true);
+  } else {
+    return (false);
+  }
 }
 module.exports = {
   formatTime: formatTime,
@@ -385,5 +397,6 @@ module.exports = {
   testEmail: testEmail,
   checkSave: checkSave,
   sharePage: sharePage,
-  shareToQunOrPersonal: shareToQunOrPersonal
+  shareToQunOrPersonal: shareToQunOrPersonal,
+  IsURL: IsURL
 }

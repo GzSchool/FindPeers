@@ -15,8 +15,9 @@ Page({
     img1:"/pages/images/about1.png",  
     img2:"/pages/images/right.png",
     id:"",           //名片ID
-    image: ['/pages/images/findpeer.png'], //小程序码
+    image:"", //小程序码
     QRCode:"",       //小程序二维码
+    userImg:"",      //用户头像
   },
   //页面加载
   onLoad:function(){
@@ -34,7 +35,7 @@ Page({
           company: res.data.userCompany,
           idustry: res.data.userIndustry,
           city: res.data.userCity,
-          image: res.data.userImg,
+          userImg: res.data.userImg,
           id: res.data.id
         })
       },
@@ -61,7 +62,7 @@ Page({
           company: res.userCompany,
           idustry: res.userIndustry,
           city: res.userCity,
-          image: res.userImg,
+          userImg: res.userImg,
           id: res.id
         })
       }
