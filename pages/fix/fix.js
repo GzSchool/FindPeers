@@ -93,12 +93,11 @@ Page({
             isshow0: true
           })
         }
-        if (that.data.resources !== '') {
+        if (that.data.resource !== '') {
           that.setData({
             isshow1: true
           })
         }
-        console.log(that.data.homepage !== '')
         if (that.data.homepage !== '') {
           that.setData({
             isshow2: true
