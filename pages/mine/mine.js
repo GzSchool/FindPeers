@@ -24,6 +24,7 @@ Page({
     this.setData({
       QRCode: app.globalData.QRCode
     })
+    console.log(this.data.QRCode)
     wx.showShareMenu({
       withShareTicket: true
     })

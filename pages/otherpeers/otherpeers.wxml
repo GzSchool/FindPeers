@@ -341,10 +341,10 @@
     </view>
 <view class="footer">
   <form bindsubmit="save" report-submit='true'>
-    <button class="footer-btn" wx:if='{{!isSave&&!notadd}}' form-type="submit">保存到名片夹</button>
+    <button class="footer-btn" plain='false' wx:if='{{!isSave&&!notadd}}' form-type="submit">保存到名片夹</button>
   </form>
-  <button class="footer-btn" wx:if='{{notadd}}' open-type='getUserInfo' bindgetuserinfo='addcards'>添加个人信息</button>
-  <view class="write" wx:if='{{isSave}}' bindtap='remove'>删除同行信息</view>
+  <button class="footer-btn" plain='false' wx:if='{{notadd}}' open-type='getUserInfo' bindgetuserinfo='addcards'>添加个人信息</button>
+  <button class="write" plain='false' wx:if='{{isSave}}' bindtap='remove'>删除同行信息</button>
 </view>
 <view class='card-set' wx:if='{{!notadd && !chooseSize}}' bindtap='chooseSize'>
   <view class='card-set-icon'><image src='../images/card/card_set.png'></image></view>

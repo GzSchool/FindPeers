@@ -119,6 +119,8 @@ Page {
   background-color: #2c7fe7;
   color: #fff;
   margin: 0 auto 20rpx;
+  
+  
 }
 
 .footer .footer-find {
