@@ -63,17 +63,20 @@ Page({
     let server = app.globalData.server
     let url = app.globalData.urlOfLogin
     // 要是有id 说明点击的别人分享的（只有两个 一是：群里点击的， 二是：别人分享的）
-    if (ops.othercardid) {
+    if (ops.othercardid || ops.scene) {
       app.globalData.othercardid = ops.othercardid;
       that.setData({
         othercardid: ops.othercardid,
         appOPS: app.globalData.appOPS
       })
+      if (ops.scene) {
+        app.globalData.othercardid = ops.scene;
+        that.setData({
+          othercardid: ops.scene
+        })
+      }
       // 获取 othercardid 用户信息
       if (app.globalData.openid) {
-
-        console.log(app.globalData.openid)
-        console.log(that.data.othercardid)
         that.getPeerInfo(app.globalData.openid, that.data.othercardid)
       }
       if(that.data.appOPS.scene == 1044){
