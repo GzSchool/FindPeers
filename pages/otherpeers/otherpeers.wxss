@@ -119,6 +119,7 @@ Page {
   position: fixed;
   bottom: 30rpx;
   width: 100%;
+  z-index: 30;
 }
 
 .footer .footer-btn {

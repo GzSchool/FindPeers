@@ -106,6 +106,7 @@ Page {
 
 .footer {
   position: fixed;
+  z-index: 30;
   bottom: 30rpx;
   width: 100%;
 }
@@ -119,8 +120,7 @@ Page {
   background-color: #2c7fe7;
   color: #fff;
   margin: 0 auto 20rpx;
-  
-  
+  opacity: 1;
 }
 
 .footer .footer-find {
