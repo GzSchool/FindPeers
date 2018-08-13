@@ -20,10 +20,10 @@ App({
     // this.globalData.appOPS = ops
     // console.log(ops)
     var openid = wx.getStorageSync('openid');
+    if (openid) {
+      this.globalData.openid = openid
+    }
     this.login()
-    // if (!openid) {
-    //   this.login()
-    // }
     // wx.showTabBarRedDot({
     //   index: 1,
     // })

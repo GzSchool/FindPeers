@@ -174,19 +174,19 @@
 </view>
 <view class='choose-card'>
   <scroll-view scroll-x>
-    <view class='choose-card-in' data-idx='1' bindtap='chooseCard'>
+    <view class='choose-card-in {{cardType==1?"active":""}}' data-idx='1' bindtap='chooseCard'>
       <image src='../images/card/choose_1.png'></image>
     </view>
-    <view class='choose-card-in' data-idx='2' bindtap='chooseCard'>
+    <view class='choose-card-in {{cardType==2?"active":""}}' data-idx='2' bindtap='chooseCard'>
       <image src='../images/card/choose_2.png'></image>
     </view>
-    <view class='choose-card-in' data-idx='3' bindtap='chooseCard'>
+    <view class='choose-card-in {{cardType==3?"active":""}}' data-idx='3' bindtap='chooseCard'>
       <image src='../images/card/choose_3.png'></image>
     </view>
-    <view class='choose-card-in' data-idx='4' bindtap='chooseCard'>
+    <view class='choose-card-in {{cardType==4?"active":""}}' data-idx='4' bindtap='chooseCard'>
       <image src='../images/card/choose_4.png'></image>
     </view>
-    <view class='choose-card-in' data-idx='5' bindtap='chooseCard'>
+    <view class='choose-card-in {{cardType==5?"active":""}}' data-idx='5' bindtap='chooseCard'>
       <image src='../images/card/choose_5.png'></image>
     </view>
   </scroll-view>

@@ -27,6 +27,7 @@ Page({
     isgroup: '',      //判断是否是在群里点击的
     notadd: false,       //用户是否添加信息
     cardType:"",      //名片类型
+    remark: ''
   },
   //页面加载
   onLoad: function (ops) {
@@ -62,9 +63,10 @@ Page({
         othercardid: ops.othercardid,
         appOPS: app.globalData.appOPS
       })
-      // app.showToast(JSON.stringify(this.data.appOPS.scene))
       // 获取 othercardid 用户信息
-      console.log(that.data.appOPS)
+      if (app.globalData.openid) {
+        that.getPeerInfo(app.globalData.openid, that.data.othercardid)
+      }
       if(that.data.appOPS.scene == 1044){
         that.setData({
           isgroup: true,
@@ -75,31 +77,9 @@ Page({
           isgroup: false,
           addPhone:true
         })
-      }
-      util.getCardsById(that.data.othercardid).then(function (res) {
-        console.log(res)
-        that.setData({
-          name: res.data.data[0].username,
-          wechatnum: res.data.data[0].userWechat,
-          company: res.data.data[0].userCompany,
-          idustry: res.data.data[0].userIndustry,
-          city: res.data.data[0].userCity,
-          email: res.data.data[0].userEmail,
-          phone: res.data.data[0].userPhone,
-          image: res.data.data[0].userImg,
-          otheropenId: res.data.data[0].openId,
-          userJob: res.data.data[0].userJob,
-          id: res.data.data[0].id,
-          cardType: res.data.data[0].cardType
-        })
-        
-      })
+      } 
       // 等于 1044 是群里点击的
       if (that.data.appOPS.scene == 1044) {
-        // that.setData({
-        //   isgroup: true,
-        //   addPhone: app.globalData.addPhone
-        // })
         // 群里点击的回带shareTickets可以用这个获取groupid
         var shareTickets = this.data.appOPS.shareTicket;
         wx.getShareInfo({
@@ -108,17 +88,13 @@ Page({
             console.log(res)
             var encryptedData = res.encryptedData;
             var iv = res.iv;
-            // 登录
-            util.Login(url).then(function (data) {
-              if (data) {
-                app.globalData.openid = data
-                var openid = app.globalData.openid
-              }
+            if (app.globalData.openid) {
               var openid = app.globalData.openid;
               // 用户标识访问数据库获取用户信息
               that.getMyData(openid)
               // 检查是否保存
               that.checkedSave(openid, that.data.othercardid)
+              that.getPeerInfo(openid, that.data.othercardid)
               // 获取GID           
               util.getCardsById(that.data.othercardid).then(function (card) {
                 console.log(card.data.data[0].openId)
@@ -147,7 +123,49 @@ Page({
                   }
                 })
               })
-            })
+            } else {
+              // 登录
+              util.Login(url).then(function (data) {
+                if (data) {
+                  app.globalData.openid = data
+                  var openid = app.globalData.openid
+                }
+                var openid = app.globalData.openid;
+                // 用户标识访问数据库获取用户信息
+                that.getMyData(openid)
+                // 检查是否保存
+                that.checkedSave(openid, that.data.othercardid)
+                that.getPeerInfo(openid, that.data.othercardid)
+                // 获取GID           
+                util.getCardsById(that.data.othercardid).then(function (card) {
+                  console.log(card.data.data[0].openId)
+                  console.log(encryptedData)
+                  console.log(app.globalData.openid)
+                  console.log(iv)
+                  wx.request({
+                    method: 'POST',
+                    url: server + '/userGroup/saveOrUpdate',
+                    data: {
+                      openId: app.globalData.openid,
+                      otherOpenId: card.data.data[0].openId,
+                      encryptedData: encryptedData,
+                      iv: iv
+                    },
+                    header: {
+                      'content-type': 'application/json'
+                    },
+                    success: function (c) {
+                      console.log(c)
+                      if (c.data.data) {
+                        that.setData({
+                          groupId: c.data.data
+                        })
+                      }
+                    }
+                  })
+                })
+              })
+            }
           }
         })
       // 点击的个人的分享
@@ -166,6 +184,7 @@ Page({
           var openid = app.globalData.openid;  
           // 检查保存
           that.checkedSave(openid, that.data.othercardid)
+          that.getPeerInfo(openid, that.data.othercardid)
           that.getMyData(openid)
         })
       }
@@ -222,6 +241,27 @@ Page({
           checkSave: false
         })
       }
+    })
+  },
+  // 获取同行名片信息
+  getPeerInfo(openId, otherId) {
+    let that = this
+    util.getPeerInfo(openId, otherId).then(function (res) {
+      that.setData({
+        name: res.data.data.username,
+        wechatnum: res.data.data.userWechat,
+        company: res.data.data.userCompany,
+        idustry: res.data.data.userIndustry,
+        city: res.data.data.userCity,
+        email: res.data.data.userEmail,
+        phone: res.data.data.userPhone,
+        image: res.data.data.userImg,
+        otheropenId: res.data.data.openId,
+        userJob: res.data.data.userJob,
+        id: res.data.data.id,
+        cardType: res.data.data.cardType,
+        remark: res.data.data.remark?res.data.data.remark:''
+      })
     })
   },
   addcards: function(e) {
@@ -415,5 +455,13 @@ Page({
     // this.data.notadd = app.globalData.notadd
     // var ops = {othercardid: app.globalData.othercardid}
     // this.onLoad(ops)    
+  },
+  addRemark: function (e) {
+    let openId = app.globalData.openid
+    let cardId = this.data.othercardid
+    let remark = e.detail.value
+    util.addRemark(openId, cardId, remark).then(function (res) {
+      console.log(res.data)
+    })
   }
 })

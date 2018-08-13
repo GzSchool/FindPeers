@@ -105,25 +105,19 @@
         <view class='card-mes' wx:if='{{mineInfo.phone}}'>
           <view class='mes-icon'>
             <image src='../images/card/card_4/mes_phone_4.png' style='width:26rpx;height:26rpx;'></image>
-          </view><text selectable='true'>
-          {{mineInfo.phone}}
-          </text>
+          </view><text selectable='true'>{{mineInfo.phone}}</text>
         </view>
         <view class='card-mes'>
           <view class='mes-icon'>
             <image src='../images/card/card_4/mes_wechat_4.png' style='width:25rpx;height:20rpx;'></image>
           </view>
-          <text selectable='true'>
-          {{mineInfo.wechatnum}}
-          </text>
+          <text selectable='true'>{{mineInfo.wechatnum}}</text>
         </view>
         <view class='card-mes' wx:if='{{mineInfo.email}}'>
           <view class='mes-icon'>
             <image src='../images/card/card_4/mes_email_4.png' style='width:26rpx;height:17rpx;'></image>
           </view>
-          <text selectable='true'>
-          {{mineInfo.email}}
-          </text>
+          <text selectable='true'>{{mineInfo.email}}</text>
         </view>
       </view>
     </view>

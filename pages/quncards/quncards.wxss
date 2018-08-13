@@ -40,6 +40,16 @@ page {
   margin: 30rpx 38rpx 30rpx 0;
   background-color: #e6e6e6;
   border-radius: 10rpx;
+  position: relative;
+}
+.main .mes-ul .mes-li .li-left .red-dot {
+  width: 20rpx;
+  height: 20rpx;
+  background-color: #E94F42;
+  border-radius: 50%;
+  position: absolute;
+  right: -4rpx;
+  top: -4rpx;
 }
 .main .mes-ul .mes-li .li-left image {
   width: 120rpx;

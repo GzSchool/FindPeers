@@ -61,17 +61,23 @@
   width: 150rpx;
   height: 92rpx;
   background-color: #ccc;
-  border-radius: 6rpx;
-  margin: 30rpx 30rpx 30rpx 0;
+  border-radius: 8rpx;
+  margin: 30rpx 20rpx 30rpx 8rpx;
+}
+.choose-card .choose-card-in.active {
+  box-shadow: 2rpx 2rpx 15rpx #aeaeae;
+}
+.choose-card .choose-card-in.active image{
+  border: 1rpx solid transparent;
 }
 .choose-card .choose-card-in:last-child {
-  margin-right: 0;
+  margin-right: 8rpx;
 }
 .choose-card .choose-card-in image{
-  border: 1rpx solid #d5d5d5;
+  border-radius: 8rpx;
+  border: 1rpx solid #eaeaea;
   width: 150rpx;
   height: 92rpx;
-  border-radius: 6rpx;
 }
 /* 卡片1 */
 .main-card .main-card-1 .card-mark {
@@ -359,6 +365,35 @@
   width: 34rpx;
   height: 42rpx;
 }
+.card-remark {
+  height: 96rpx;
+  line-height: 96rpx;
+  background-color: #ffffff;
+  margin-top: 25rpx;
+  display: flex;
+  align-items: center;
+  font-size: 30rpx;
+  color: #606060;
+}
+.card-remark .card-remark-icon {
+  width: 96rpx;
+  height: 35rpx;
+  display: flex;
+  padding-left: 30rpx;
+  justify-content: center;
+}
+.card-remark .card-remark-icon image {
+  width: 36rpx;
+  height: 35rpx;
+}
+.card-remark .input-box{
+  flex: 1;
+  padding-right: 10rpx;
+}
+/* .card-remark .card-remark .input-box input {
+  width: 100%;
+  flex: 1;
+} */
 .card-set {
   position: fixed;
   z-index: 300;
@@ -386,4 +421,7 @@
 .card-set .set-text {
   color: #B3B3B3;
   font-size: 20rpx;
+}
+.pholder {
+  color: #CCCCCC;
 }
