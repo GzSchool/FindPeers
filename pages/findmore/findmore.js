@@ -177,7 +177,7 @@ Page({
       that.setData({
         list_con: con,
       })
-      // console.log(that.data.list_con)
+      console.log(that.data.list_con)
     });
   },
   // 企业详情

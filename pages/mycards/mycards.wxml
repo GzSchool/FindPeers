@@ -15,9 +15,9 @@
       <view class='card-down-right'>
         <view class='card-mes over-flow-hide'>地址：{{mineInfo.city}}</view>
         <view class='card-mes over-flow-hide'>公司：{{mineInfo.company}}</view>
-        <view class='card-mes over-flow-hide' wx:if="{{mineInfo.phone}}" bindtap='copy' data-num='{{mineInfo.phone}}'>电话：{{mineInfo.phone}}</view>
-        <view class='card-mes over-flow-hide' wx:if="{{mineInfo.wechatnum}}">微信：{{mineInfo.wechatnum}}</view>
-        <view class='card-mes over-flow-hide' wx:if="{{mineInfo.email}}">邮箱：{{mineInfo.email}}</view>
+        <view class='card-mes over-flow-hide' wx:if="{{mineInfo.phone}}"><text selectable='true'>电话：{{mineInfo.phone}}</text></view>
+        <view class='card-mes over-flow-hide' wx:if="{{mineInfo.wechatnum}}">微信：<text selectable='true'>{{mineInfo.wechatnum}}</text></view>
+        <view class='card-mes over-flow-hide' wx:if="{{mineInfo.email}}">邮箱：<text selectable='true'>{{mineInfo.email}}</text></view>
       </view>
     </view>
   </view>
@@ -41,11 +41,11 @@
         <view class='card-mes'>
           <image src='../images/card/card_2/mes_comp_2.png' style='width:26rpx;height:26rpx;'></image><text class='over-flow-hide'>{{mineInfo.company}}</text></view>
         <view class='card-mes' wx:if='{{mineInfo.phone}}'>
-          <image src='../images/card/card_2/mes_phone_2.png' style='width:26rpx;height:26rpx;'></image><text>{{mineInfo.phone}}</text></view>
+          <image src='../images/card/card_2/mes_phone_2.png' style='width:26rpx;height:26rpx;'></image><text selectable='true'>{{mineInfo.phone}}</text></view>
         <view class='card-mes' wx:if='{{mineInfo.wechatnum}}'>
-          <image src='../images/card/card_2/mes_wechat_2.png' style='width:26rpx;height:26rpx;'></image><text class='over-flow-hide'>{{mineInfo.wechatnum}}</text></view>
+          <image src='../images/card/card_2/mes_wechat_2.png' style='width:26rpx;height:26rpx;'></image><text class='over-flow-hide' selectable='true'>{{mineInfo.wechatnum}}</text></view>
         <view class='card-mes' wx:if="{{mineInfo.email}}">
-          <image src='../images/card/card_2/mes_email_2.png' style='width:26rpx;height:26rpx;'></image><text class='over-flow-hide'>{{mineInfo.email}}</text></view>
+          <image src='../images/card/card_2/mes_email_2.png' style='width:26rpx;height:26rpx;'></image><text class='over-flow-hide' selectable='true'>{{mineInfo.email}}</text></view>
       </view>
     </view>
   </view>
@@ -68,11 +68,11 @@
     </view>
     <view class='card-down'>
       <view class='card-mes' wx:if='{{mineInfo.phone}}'>
-        <image src='../images/card/mes_phone.png' style='width:26rpx;height:26rpx;'></image><text>{{mineInfo.phone}}</text></view>
+        <image src='../images/card/mes_phone.png' style='width:26rpx;height:26rpx;'></image><text selectable='true'>{{mineInfo.phone}}</text></view>
       <view class='card-mes' >
-        <image src='../images/card/mes_wechat.png' style='width:26rpx;height:21rpx;'></image><text>{{mineInfo.wechatnum}}</text></view>
+        <image src='../images/card/mes_wechat.png' style='width:26rpx;height:21rpx;'></image><text selectable='true'>{{mineInfo.wechatnum}}</text></view>
       <view class='card-mes' wx:if='{{mineInfo.email}}'>
-        <image src='../images/card/mes_email.png' style='width:26rpx;height:17rpx;'></image><text>{{mineInfo.email}}</text></view>
+        <image src='../images/card/mes_email.png' style='width:26rpx;height:17rpx;'></image><text selectable='true'>{{mineInfo.email}}</text></view>
     </view>
   </view>
   <view class='main-card-4 main-card-box' wx:if='{{cardType==4}}'>
@@ -105,20 +105,25 @@
         <view class='card-mes' wx:if='{{mineInfo.phone}}'>
           <view class='mes-icon'>
             <image src='../images/card/card_4/mes_phone_4.png' style='width:26rpx;height:26rpx;'></image>
-          </view>
+          </view><text selectable='true'>
           {{mineInfo.phone}}
+          </text>
         </view>
         <view class='card-mes'>
           <view class='mes-icon'>
             <image src='../images/card/card_4/mes_wechat_4.png' style='width:25rpx;height:20rpx;'></image>
           </view>
+          <text selectable='true'>
           {{mineInfo.wechatnum}}
+          </text>
         </view>
         <view class='card-mes' wx:if='{{mineInfo.email}}'>
           <view class='mes-icon'>
             <image src='../images/card/card_4/mes_email_4.png' style='width:26rpx;height:17rpx;'></image>
           </view>
+          <text selectable='true'>
           {{mineInfo.email}}
+          </text>
         </view>
       </view>
     </view>
@@ -153,19 +158,19 @@
             <view class='mes-icon'>
               <image src='../images/card/card_5/mes_phone_5.png'></image>
             </view>
-            <text class='over-flow-hide'>{{mineInfo.phone}}</text>
+            <text class='over-flow-hide' selectable='true'>{{mineInfo.phone}}</text>
           </view>
           <view class='card-mes'>
             <view class='mes-icon'>
               <image src='../images/card/card_5/mes_wechat_5.png'></image>
             </view>
-            <text class='over-flow-hide'>{{mineInfo.wechatnum}}</text>
+            <text class='over-flow-hide' selectable='true'>{{mineInfo.wechatnum}}</text>
           </view>
           <view class='card-mes' wx:if='{{mineInfo.email}}'>
             <view class='mes-icon'>
               <image src='../images/card/card_5/mes_email_5.png'></image>
             </view>
-            <text class='over-flow-hide'>{{mineInfo.email}}</text>
+            <text class='over-flow-hide' selectable='true'>{{mineInfo.email}}</text>
           </view>
         </view>
       </view>
@@ -192,7 +197,8 @@
       <view class='img-box'><image src='../images/card/homepage.png' style='width:36rpx;height:33rpx'></image>
       </view>
     </view>
-    <view class='con-li-right'>{{homepage}}</view>
+    <view class='con-li-right'>{{homepage}}sdsadaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</view>
+    <view class="con-li-copy"><image src="/pages/images/card/copy.png"></image></view>    
   </view>
   <view class='con-li' wx:if="{{companyWeb}}">
     <view class='con-li-left'>
