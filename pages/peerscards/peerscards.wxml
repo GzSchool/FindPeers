@@ -337,10 +337,9 @@
   <form bindsubmit="save" report-submit='true'>
     <button class="footer-btn" wx:if="{{!checkSave&&!notadd}}" form-type="submit">保存到名片夹</button>
   </form> 
-  <button class="{{isgroup?'footer-btn':'footer-find'}}" wx:if='{{checkSave||!isgroup}}'  bindtap='back'>进入我的同行信息</button>
+  <button class="{{isgroup?'footer-btn':'footer-find'}}" wx:if='{{checkSave||!isgroup}}' bindtap='back'>进入我的同行信息</button>
   <button class="footer-btn" wx:if='{{notadd}}' open-type='getUserInfo' bindgetuserinfo='addcards'>添加个人信息</button>
-  <button class="footer-find" wx:if='{{isgroup}}' bindtap='toTeamPeers'>查看本群名片</button>
-
+  <button class="footer-find"  wx:if='{{isgroup}}' bindtap='toTeamPeers'>查看本群名片</button>
 </view>
 
 <view class='card-set' wx:if='{{!notadd && !chooseSize}}' bindtap='chooseSize'>

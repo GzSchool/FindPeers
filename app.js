@@ -90,7 +90,7 @@ App({
         })
         let userPhotoUrl = res.userImg;
         let page = "pages/peerscards/peerscards";
-        let scene = "othercardid=" + res.id;
+        let scene = res.id;
         util.makeWxQrCode(userPhotoUrl, scene, page, openid).then(function (res) {
           console.log(res)
           that.globalData.QRCode=("https://www.eqxuan.cn/" + openid + ".png")
