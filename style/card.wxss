@@ -350,6 +350,10 @@
   text-align: center;
   justify-content: center;
 }
+.content .con-li .con-li-left .img-box image{
+  width: 36rpx;
+  height: 36rpx;
+}
 .content .con-li .con-li-right {
   flex: 1;
   border-bottom: 1rpx solid #D8D8D8;

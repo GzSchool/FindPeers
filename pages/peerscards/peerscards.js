@@ -71,6 +71,9 @@ Page({
       })
       // 获取 othercardid 用户信息
       if (app.globalData.openid) {
+
+        console.log(app.globalData.openid)
+        console.log(that.data.othercardid)
         that.getPeerInfo(app.globalData.openid, that.data.othercardid)
       }
       if(that.data.appOPS.scene == 1044){
@@ -100,6 +103,8 @@ Page({
               that.getMyData(openid)
               // 检查是否保存
               that.checkedSave(openid, that.data.othercardid)
+              console.log(openid)
+              console.log(that.data.othercardid)
               that.getPeerInfo(openid, that.data.othercardid)
               // 获取GID           
               util.getCardsById(that.data.othercardid).then(function (card) {
@@ -141,6 +146,8 @@ Page({
                 that.getMyData(openid)
                 // 检查是否保存
                 that.checkedSave(openid, that.data.othercardid)
+                console.log(openid)
+                console.log(that.data.othercardid)
                 that.getPeerInfo(openid, that.data.othercardid)
                 // 获取GID           
                 util.getCardsById(that.data.othercardid).then(function (card) {
@@ -252,7 +259,10 @@ Page({
   // 获取同行名片信息
   getPeerInfo(openId, otherId) {
     let that = this
+    console.log(openId)
+    console.log(otherId)    
     util.getPeerInfo(openId, otherId).then(function (res) {
+      console.log(res)
       that.setData({
         name: res.data.data.username,
         wechatnum: res.data.data.userWechat,

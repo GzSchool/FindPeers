@@ -188,7 +188,7 @@
   </view>
   <view class='con-li' wx:if="{{homepage}}">
     <view class='con-li-left'>
-      <view class='img-box'><image src='../images/card/homepage.png' style='width:36rpx;height:33rpx'></image>
+      <view class='img-box'><image src='../images/card/homepage.png' style='width:36rpx;height:36rpx'></image>
       </view>
     </view>
     <view class='con-li-right1'>
@@ -198,7 +198,7 @@
   </view>
   <view class='con-li' wx:if="{{companyWeb}}">
     <view class='con-li-left'>
-      <view class='img-box'><image src='../images/card/companyWeb.png' style='width:36rpx;height:33rpx'></image>
+      <view class='img-box'><image src='../images/card/companyWeb.png' style='width:36rpx;height:36rpx'></image>
       </view>
     </view>
     <view class='con-li-right'><text selectable='true'>{{companyWeb}}</text></view>
