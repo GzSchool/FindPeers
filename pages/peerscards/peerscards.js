@@ -36,6 +36,7 @@ Page({
   },
   //页面加载
   onLoad: function (ops) {
+    console.log(ops)
     let that = this
     wx.getStorage({
       key: 'userInfo',
@@ -83,29 +84,6 @@ Page({
           addPhone:true
         })
       }
-      util.getCardsById(that.data.othercardid).then(function (res) {
-        console.log(res)
-        that.setData({
-          name: res.data.data[0].username,
-          wechatnum: res.data.data[0].userWechat,
-          company: res.data.data[0].userCompany,
-          idustry: res.data.data[0].userIndustry,
-          city: res.data.data[0].userCity,
-          email: res.data.data[0].userEmail,
-          phone: res.data.data[0].userPhone,
-          image: res.data.data[0].userImg,
-          otheropenId: res.data.data[0].openId,
-          userJob: res.data.data[0].userJob,
-          id: res.data.data[0].id,
-          cardType: res.data.data[0].cardType,
-          homepage: res.data.data[0].homePage,
-          companyWeb: res.data.data[0].companyPage,
-          synopsis: res.data.data[0].synopsis,
-          resources: res.data.data[0].resources,
-          demand: res.data.data[0].demand
-        })
-        
-      })
       // 等于 1044 是群里点击的
       if (that.data.appOPS.scene == 1044) {
         // 群里点击的回带shareTickets可以用这个获取groupid
@@ -125,7 +103,7 @@ Page({
               that.getPeerInfo(openid, that.data.othercardid)
               // 获取GID           
               util.getCardsById(that.data.othercardid).then(function (card) {
-                console.log(card.data.data[0].openId)
+                console.log(card.data.data.openId)
                 console.log(encryptedData)
                 console.log(app.globalData.openid)
                 console.log(iv)
@@ -134,7 +112,7 @@ Page({
                   url: server + '/userGroup/saveOrUpdate',
                   data: {
                     openId: app.globalData.openid,
-                    otherOpenId: card.data.data[0].openId,
+                    otherOpenId: card.data.data.openId,
                     encryptedData: encryptedData,
                     iv: iv
                   },
@@ -166,7 +144,7 @@ Page({
                 that.getPeerInfo(openid, that.data.othercardid)
                 // 获取GID           
                 util.getCardsById(that.data.othercardid).then(function (card) {
-                  console.log(card.data.data[0].openId)
+                  console.log(card.data.data.openId)
                   console.log(encryptedData)
                   console.log(app.globalData.openid)
                   console.log(iv)
@@ -175,7 +153,7 @@ Page({
                     url: server + '/userGroup/saveOrUpdate',
                     data: {
                       openId: app.globalData.openid,
-                      otherOpenId: card.data.data[0].openId,
+                      otherOpenId: card.data.data.openId,
                       encryptedData: encryptedData,
                       iv: iv
                     },
@@ -284,6 +262,8 @@ Page({
         email: res.data.data.userEmail,
         phone: res.data.data.userPhone,
         image: res.data.data.userImg,
+        homepage: res.data.data.homePage,
+        companyWeb: res.data.data.companyPage,
         otheropenId: res.data.data.openId,
         userJob: res.data.data.userJob,
         id: res.data.data.id,
@@ -460,32 +440,10 @@ Page({
       title: '同行信息',
       path: '/pages/peerscards/peerscards?othercardid=' + that.data.othercardid,
       success: function (res) {
-        var shareTickets = res.shareTickets;
-        if (shareTickets.length == 0) {
-          return false;
-        }
-        wx.getShareInfo({
-          shareTicket: shareTickets[0],
-          success: function (res) {
-            var encryptedData = res.encryptedData;
-            var iv = res.iv;
-            wx.request({
-              method: 'POST',
-              url: server + '/userGroup/saveOrUpdate',
-              data: {
-                openId: app.globalData.openId,
-                otherOpenId: otheropenId,
-                encryptedData: encryptedData,
-                iv: iv
-              },
-              header: {
-                'content-type': 'application/json'
-              },
-              success: function (c) {
-                that.hideModal();
-              }
-            })
-          }
+        let openId = app.globalData.openid;
+        let otherOpenId = that.data.otheropenId;
+        util.sharePage(openId, otherOpenId, res).then(function (e) {
+          console.log(e)
         })
       },
       fail: function (res) {
