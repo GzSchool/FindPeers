@@ -15,7 +15,7 @@ Page({
     img1:"/pages/images/about1.png",  
     img2:"/pages/images/right.png",
     id:"",           //名片ID
-    image:"/pages/images/findpeer.png",        //小程序码
+    image:"",        //小程序码
     QRCode:"",       //小程序二维码
     userImg:"",      //用户头像
   },
@@ -41,7 +41,16 @@ Page({
         let userPhotoUrl = that.data.userImg;
         let openId = app.globalData.openid;
         let page = "pages/peerscards/peerscard";
-        let scene = "othercardid" + that.data.id;
+        let scene = "othercardid=" + that.data.id;
+        console.log(userPhotoUrl)
+        console.log(openId)
+        console.log(page)
+        console.log(scene)
+        util.makeWxQrCode(userPhotoUrl, scene, page, openId).then(function (res) {
+          that.setData({
+            QRCode: "https://wx.eqxuan.cn" + res.data.data
+          })
+        })
       },
       fail: function (res) {
         that.getData()
@@ -59,6 +68,18 @@ Page({
         })
         app.globalData.notadd = true
       } else {
+        let userPhotoUrl = res.userImg;
+        let page = "pages/peerscards/peerscard";
+        let scene = "othercardid" + that.data.id;
+        console.log(userPhotoUrl)
+        console.log(openid)
+        console.log(page)
+        console.log(scene)
+        util.makeWxQrCode(userPhotoUrl, scene, page, openid).then(function (res) {
+          that.setData({
+            QRCode: "https://wx.eqxuan.cn" +  res.data.data
+          })
+        })
         app.globalData.notadd = false
         that.setData({
           name: res.username,

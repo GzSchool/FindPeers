@@ -386,7 +386,7 @@ function IsURL(str_url) {
 function makeWxQrCode(userPhotoUrl, scene, page, openId){
   return new Promise(function(resolve){
     wx.request({
-      method: 'POST',      
+      method: 'GET',      
       url: server + '/user/makeWxQrCode',
       data: {
         userPhotoUrl: userPhotoUrl,
