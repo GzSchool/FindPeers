@@ -4,17 +4,17 @@ var app = getApp()
 var util = require('../../utils/util.js');
 Page({
   data: {
-    notadd: true, //判断是否已添加信息
+    notadd: app.globalData.notadd, //判断是否已添加信息
     loading: false, // 显示加载中
     loadAll: false, // 是否已加载全部
     noresult: false, // 是否显示无搜索结果
-    searching: false,
+    searching: false, // 搜索中
     list: [],
     mes: '', // 输入框内容
-    pageNum: 1, //当前页数
-    pageSize: 10, //显示数量
     key: " 微信号、城市、公司、行业等进行搜索",
     groupid: '',
+    // pageNum: 1, //当前页数
+    // pageSize: 10, //显示数量
   },
   //页面转发
   onShareAppMessage: function (a) {
@@ -38,7 +38,6 @@ Page({
   },
   //页面加载
   onLoad: function(options) {
-    console.log(options)
     let val = this.options.groupid
     this.setData({
       notadd: app.globalData.notadd,
@@ -56,14 +55,14 @@ Page({
     let groupid = this.data.groupid
     this.setData({
       mes: key,
-      pageNum: 1,
       loadAll: false,
       noresult: false,
-      searching: false
+      searching: false,
+      // pageNum: 1,
     })
     let that = this;
     let list = []
-    let pageSize = this.data.pageSize
+    // let pageSize = this.data.pageSize
     if (key) {
       this.setData({
         searching: true

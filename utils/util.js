@@ -354,6 +354,28 @@ function shareToQunOrPersonal(openId, otherOpenId, res) {
   })
 }
 /*
+  为同行信息添加备注
+*/
+function addRemark(openId, cardId, remark) {
+  return new Promise(function (resolve) {
+    wx.request({
+      method: 'GET',
+      url: server + '/userPeer/addRemark',
+      data: {
+        openId: openId,
+        cardId: cardId,
+        remark: remark
+      },
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        resolve(res)
+      }
+    })
+  })
+}
+/*
   手机号验证
  */
 function testPhone(phone) {
