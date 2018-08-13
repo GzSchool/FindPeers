@@ -22,6 +22,11 @@ Page({
     animationData: {},//动画
     userInfo: {},     // 缓存获取用户信息 - 用户提交formid时拿到用户名
     appOPS: '',
+    homepage:"",
+    compayWeb:"",
+    demand:"",
+    resources:"",
+    synopsis:"",
     addPhone: false,  //判断是否添加了手机号
     checkSave: true,    //检验是不是保存了这个名片
     isgroup: '',      //判断是否是在群里点击的
@@ -90,7 +95,12 @@ Page({
           otheropenId: res.data.data[0].openId,
           userJob: res.data.data[0].userJob,
           id: res.data.data[0].id,
-          cardType: res.data.data[0].cardType
+          cardType: res.data.data[0].cardType,
+          homepage: res.data.data[0].homePage,
+          companyWeb: res.data.data[0].companyPage,
+          synopsis: res.data.data[0].synopsis,
+          resources: res.data.data[0].resources,
+          demand: res.data.data[0].demand
         })
         
       })
@@ -364,6 +374,22 @@ Page({
         url: '/pages/teampeers/teampeers?openid=' + openid + '&groupid=' + groupId,
       })
     }
+  },
+  copy: function (e) {
+    console.log(e)
+    var num = e.currentTarget.dataset.num;
+    wx.setClipboardData({
+      data: num,
+      success: function (a) {
+        app.showToast('复制成功');
+        console.log(a)
+        // wx.getClipboardData({
+        //   success:function(res){
+        //     console.log(res)
+        //   }
+        // })
+      }
+    })
   },
   //分享
   onShareAppMessage: function (a) {

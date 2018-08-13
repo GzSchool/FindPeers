@@ -236,6 +236,22 @@ Page({
     }
     
   },
+  copy: function (e) {
+    console.log(e)
+    var num = e.currentTarget.dataset.num;
+    wx.setClipboardData({
+      data: num,
+      success: function (a) {
+        app.showToast('复制成功');
+        console.log(a)
+        // wx.getClipboardData({
+        //   success:function(res){
+        //     console.log(res)
+        //   }
+        // })
+      }
+    })
+  },
   //分享转发
   onShareAppMessage: function (a) {
     var that = this

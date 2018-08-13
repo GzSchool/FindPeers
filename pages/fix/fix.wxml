@@ -288,7 +288,7 @@
         <text>主</text>
         <text>页:</text>
       </view>
-      <input placeholder-class="phcolor" placeholder='个人主页' bindinput='addHomepage' type='text' value='{{homepage}}' maxlength='40'></input>
+      <input placeholder-class="phcolor" placeholder='个人主页或公众号' bindinput='addHomepage' type='text' value='{{homepage}}' maxlength='40'></input>
     </view>
     <view class='main-li' wx:if='{{isshow3}}'>
       <view class='star'></view>

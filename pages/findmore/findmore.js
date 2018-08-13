@@ -77,6 +77,15 @@ Page({
             key: 'userInfo',
             data: res,
           })
+          if(!app.globalData.QRCode){
+          let userPhotoUrl = res.userImg;
+          let page = "pages/peerscards/peerscards";
+          let scene = "othercardid=" + res.id;
+          util.makeWxQrCode(userPhotoUrl, scene, page, openid).then(function (res) {
+            console.log(res)
+            app.globalData.QRCode = ("https://www.eqxuan.cn/" + openid + ".png")
+          })
+          }
           that.setData({
             name: res.username,
             wechatnum: res.userWechat,
