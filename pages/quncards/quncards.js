@@ -4,7 +4,6 @@
    Page({
      data: {
        list: [],
-       imgList: [],
        searching: false
      },
      //页面加载
@@ -15,17 +14,15 @@
        var that = this;
        var openid = app.globalData.openid;
        var list = that.data.list;
-       list = [];
        that.setData({
          searching: true
        })
-       console.log(that.data.searching)
        util.getUserGroupById(openid).then(function(res) {
+         console.log(res.data.data)
          var len = res.data.data.length;
          for (var i = 0; i < len; i++) {
            // 处理时间截取字母T之前的年月日
            res.data.data[i].ctTime = res.data.data[i].ctTime.split('T')[0];
-           list.push(res.data.data[i]);
           //  if (res.data.data[i].saveFalse > 0) {
           //    wx.showTabBarRedDot({
           //      index: 1,
@@ -33,7 +30,7 @@
           //  }
          }
          that.setData({
-           list: list,
+           list: res.data.data,
            searching: false
          });
        })
