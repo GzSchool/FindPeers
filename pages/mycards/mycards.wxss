@@ -100,6 +100,7 @@ Page{
 .footer {
   position: fixed;
   bottom: 30rpx;
+  z-index: 30;
   width: 100%;
 }
 .footer .footer-btn {
