@@ -16,6 +16,8 @@ Page({
     company: "",         //用户公司
     phone: "",           //用户手机号
     wechatnum: "",       //用户微信号
+    homepage: "",
+    compayWeb: "",
     image: "",           //用户头像
     email: "",           //用户邮箱
     userJob: '',         //用户职务
@@ -84,6 +86,8 @@ Page({
         email: res.data.data[0].userEmail,
         phone: res.data.data[0].userPhone,
         image: res.data.data[0].userImg,
+        homepage: res.data.data[0].homePage,
+        companyWeb: res.data.data[0].companyPage,
         otheropenId: res.data.data[0].openId,
         id: res.data.data[0].id,
         demand: res.data.data[0].demand,       // 需求
