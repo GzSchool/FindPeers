@@ -83,7 +83,7 @@
       <image src='../images/card/card_1.png'></image>
     </view>
     <view class='card-down'>
-      <view class='card-mes' wx:if='{{mineInfo.phone}}'>
+      <view class='card-mes' wx:if='{{phone}}'>
         <image src='../images/card/mes_phone.png' style='width:26rpx;height:26rpx;'></image>
         <text wx:if='{{!notadd&&addPhone}}'>{{phone}}</text>
         <text class="shades" wx:if="{{notadd||!addPhone}}">需添加信息才可查看</text>
@@ -93,7 +93,7 @@
         <text wx:if="{{!notadd}}">{{wechatnum}}</text>
         <text class='shades' wx:if="{{notadd}}">需添加信息才可查看</text>
       </view>
-      <view class='card-mes' wx:if='{{mineInfo.email}}'>
+      <view class='card-mes' wx:if='{{email}}'>
         <image src='../images/card/mes_email.png' style='width:26rpx;height:17rpx;'></image>
         <text>{{email}}</text>
       </view>

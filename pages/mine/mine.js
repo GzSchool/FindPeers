@@ -38,6 +38,10 @@ Page({
           userImg: res.data.userImg,
           id: res.data.id
         })
+        let userPhotoUrl = that.data.userImg;
+        let openId = app.globalData.openid;
+        let page = "pages/peerscards/peerscard";
+        let scene = "othercardid" + that.data.id;
       },
       fail: function (res) {
         that.getData()
@@ -66,6 +70,11 @@ Page({
           id: res.id
         })
       }
+    })
+  },
+  makeWxQrCode(){
+    util.makeWxQrCode().then(function(res){
+      console.log(res)
     })
   },
   //分享

@@ -380,6 +380,29 @@ function IsURL(str_url) {
     return (false);
   }
 }
+/**
+ * 小程序二维码
+ */
+function makeWxQrCode(userPhotoUrl, scene, page, openId){
+  return new Promise(function(resolve){
+    wx.request({
+      method: 'POST',      
+      url: server + '/user/makeWxQrCode',
+      data: {
+        userPhotoUrl: userPhotoUrl,
+        scene: scene,
+        page: page,
+        openId: openId,
+      },
+      header: {
+        'content-type': 'application/json'
+      },
+      success:function(res){
+        resolve(res)
+      }
+    })
+  })
+}
 module.exports = {
   formatTime: formatTime,
   formatNumber: formatNumber,
@@ -398,5 +421,6 @@ module.exports = {
   checkSave: checkSave,
   sharePage: sharePage,
   shareToQunOrPersonal: shareToQunOrPersonal,
-  IsURL: IsURL
+  IsURL: IsURL,
+  makeWxQrCode:makeWxQrCode
 }

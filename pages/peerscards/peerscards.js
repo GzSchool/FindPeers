@@ -26,6 +26,7 @@ Page({
     checkSave: true,    //检验是不是保存了这个名片
     isgroup: '',      //判断是否是在群里点击的
     notadd: false,       //用户是否添加信息
+    cardType:"",      //名片类型
   },
   //页面加载
   onLoad: function (ops) {
@@ -88,7 +89,8 @@ Page({
           image: res.data.data[0].userImg,
           otheropenId: res.data.data[0].openId,
           userJob: res.data.data[0].userJob,
-          id: res.data.data[0].id
+          id: res.data.data[0].id,
+          cardType: res.data.data[0].cardType
         })
         
       })
