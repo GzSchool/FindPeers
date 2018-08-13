@@ -231,6 +231,8 @@ Page({
   },
   onShow: function() {
     this.onLoad()
+    // 查询是否设置红点
+    app.queryRedDot()
   },
   // es6数组去重方法
   dedupe: function(array) {

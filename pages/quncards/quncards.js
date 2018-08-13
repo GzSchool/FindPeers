@@ -20,14 +20,23 @@
        util.getUserGroupById(openid).then(function(res) {
          console.log(res.data.data)
          var len = res.data.data.length;
+         let j = 0;
          for (var i = 0; i < len; i++) {
            // 处理时间截取字母T之前的年月日
            res.data.data[i].ctTime = res.data.data[i].ctTime.split('T')[0];
-          //  if (res.data.data[i].saveFalse > 0) {
-          //    wx.showTabBarRedDot({
-          //      index: 1,
-          //    })
-          //  }
+           if (res.data.data[i].hint == 1) {
+             wx.showTabBarRedDot({
+               index: 1,
+             })
+           }
+           if (res.data.data[i].hint == 0) {
+             j ++;
+             if (j == len) {
+               wx.hideTabBarRedDot({
+                 index: 1,
+               })
+             }
+           }
          }
          that.setData({
            list: res.data.data,

@@ -17,16 +17,11 @@ App({
     urlOfGetCardByOpenID: '/userCard/findOneByOpenId', //获取当前用户信息
   },
   onLaunch: function (ops) {
-    // this.globalData.appOPS = ops
-    // console.log(ops)
     var openid = wx.getStorageSync('openid');
     if (openid) {
       this.globalData.openid = openid
     }
     this.login()
-    // wx.showTabBarRedDot({
-    //   index: 1,
-    // })
     // 热更新
     const updateManager = wx.getUpdateManager()
     updateManager.onCheckForUpdate(function (res) {
@@ -106,6 +101,21 @@ App({
         wx.clearStorage()
         that.globalData.addPhone = false
         that.globalData.notadd = true;
+      }
+    })
+  },
+  // 查询红点
+  queryRedDot() {
+    util.getUserGroupById(this.globalData.openid).then(function (res) {
+      let len = res.data.data.length
+      if (len > 0) {
+        for (var i = 0; i < len; i++) {
+          if (res.data.data[i].hint == 1) {
+            wx.showTabBarRedDot({
+              index: 1,
+            })
+          }
+        }
       }
     })
   }
