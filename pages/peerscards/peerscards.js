@@ -22,6 +22,11 @@ Page({
     animationData: {},//动画
     userInfo: {},     // 缓存获取用户信息 - 用户提交formid时拿到用户名
     appOPS: '',
+    homepage:"",
+    compayWeb:"",
+    demand:"",
+    resources:"",
+    synopsis:"",
     addPhone: false,  //判断是否添加了手机号
     checkSave: true,    //检验是不是保存了这个名片
     isgroup: '',      //判断是否是在群里点击的
@@ -77,7 +82,30 @@ Page({
           isgroup: false,
           addPhone:true
         })
-      } 
+      }
+      util.getCardsById(that.data.othercardid).then(function (res) {
+        console.log(res)
+        that.setData({
+          name: res.data.data[0].username,
+          wechatnum: res.data.data[0].userWechat,
+          company: res.data.data[0].userCompany,
+          idustry: res.data.data[0].userIndustry,
+          city: res.data.data[0].userCity,
+          email: res.data.data[0].userEmail,
+          phone: res.data.data[0].userPhone,
+          image: res.data.data[0].userImg,
+          otheropenId: res.data.data[0].openId,
+          userJob: res.data.data[0].userJob,
+          id: res.data.data[0].id,
+          cardType: res.data.data[0].cardType,
+          homepage: res.data.data[0].homePage,
+          companyWeb: res.data.data[0].companyPage,
+          synopsis: res.data.data[0].synopsis,
+          resources: res.data.data[0].resources,
+          demand: res.data.data[0].demand
+        })
+        
+      })
       // 等于 1044 是群里点击的
       if (that.data.appOPS.scene == 1044) {
         // 群里点击的回带shareTickets可以用这个获取groupid
@@ -404,6 +432,22 @@ Page({
         url: '/pages/teampeers/teampeers?openid=' + openid + '&groupid=' + groupId,
       })
     }
+  },
+  copy: function (e) {
+    console.log(e)
+    var num = e.currentTarget.dataset.num;
+    wx.setClipboardData({
+      data: num,
+      success: function (a) {
+        app.showToast('复制成功');
+        console.log(a)
+        // wx.getClipboardData({
+        //   success:function(res){
+        //     console.log(res)
+        //   }
+        // })
+      }
+    })
   },
   //分享
   onShareAppMessage: function (a) {

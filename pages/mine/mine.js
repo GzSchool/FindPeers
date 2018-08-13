@@ -15,12 +15,15 @@ Page({
     img1:"/pages/images/about1.png",  
     img2:"/pages/images/right.png",
     id:"",           //名片ID
-    image:"/pages/images/findpeer.png",        //小程序码
-    QRCode:"",       //小程序二维码
+    image: "/pages/images/findpeer.png",        //小程序码
+    QRCode:app.globalData.QRCode,       //小程序二维码
     userImg:"",      //用户头像
   },
   //页面加载
   onLoad:function(){
+    this.setData({
+      QRCode: app.globalData.QRCode
+    })
     wx.showShareMenu({
       withShareTicket: true
     })
@@ -38,10 +41,6 @@ Page({
           userImg: res.data.userImg,
           id: res.data.id
         })
-        let userPhotoUrl = that.data.userImg;
-        let openId = app.globalData.openid;
-        let page = "pages/peerscards/peerscard";
-        let scene = "othercardid" + that.data.id;
       },
       fail: function (res) {
         that.getData()
@@ -70,11 +69,6 @@ Page({
           id: res.id
         })
       }
-    })
-  },
-  makeWxQrCode(){
-    util.makeWxQrCode().then(function(res){
-      console.log(res)
     })
   },
   //分享

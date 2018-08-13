@@ -394,6 +394,29 @@
   width: 100%;
   flex: 1;
 } */
+  .content .con-li .con-li-right {
+    flex: 1;
+    border-bottom: 1rpx solid #D8D8D8;
+    padding: 22rpx 32rpx 22rpx 0;
+  }
+  .content .con-li .con-li-right1 {
+    flex: 1;
+    border-bottom: 1rpx solid #D8D8D8;
+    padding: 22rpx 22rpx 22rpx 0;
+    word-break: break-all;
+  }
+  .content .con-li .con-li-copy{
+    /* min-width: 96rpx; */
+    /* height: 100%; */
+    /* padding-left: 30rpx; */
+    padding-top: 30rpx;
+    padding-right: 32rpx;
+    border-bottom: 1rpx solid #D8D8D8;  
+  }
+  .content .con-li .con-li-copy image{
+    width: 34rpx;
+    height: 42rpx;
+  }
 .card-set {
   position: fixed;
   z-index: 300;

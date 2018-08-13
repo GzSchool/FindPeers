@@ -151,11 +151,11 @@ Page({
       success:function(a){
         app.showToast('复制成功');
         console.log(a)
-        wx.getClipboardData({
-          success:function(res){
-            console.log(res)
-          }
-        })
+        // wx.getClipboardData({
+        //   success:function(res){
+        //     console.log(res)
+        //   }
+        // })
       }
     })
   },

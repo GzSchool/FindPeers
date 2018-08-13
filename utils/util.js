@@ -1,5 +1,4 @@
 //服务器地址
-// var server = 'http://192.168.2.123:8080'
 var server = "https://www.eqxuan.cn"
 var app = getApp();
 const formatTime = date => {
@@ -429,7 +428,7 @@ function IsURL(str_url) {
 function makeWxQrCode(userPhotoUrl, scene, page, openId){
   return new Promise(function(resolve){
     wx.request({
-      method: 'POST',      
+      method: 'GET',      
       url: server + '/user/makeWxQrCode',
       data: {
         userPhotoUrl: userPhotoUrl,

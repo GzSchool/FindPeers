@@ -191,15 +191,17 @@
       <view class='img-box'><image src='../images/card/homepage.png' style='width:36rpx;height:33rpx'></image>
       </view>
     </view>
-    <view class='con-li-right'>{{homepage}}sdsadaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</view>
-    <view class="con-li-copy"><image src="/pages/images/card/copy.png"></image></view>    
+    <view class='con-li-right1'>
+    {{homepage}}
+    </view>     
+    <view class="con-li-copy" bindtap='copy' data-num="{{homepage}}"><image src="/pages/images/card/copy.png"></image></view>  
   </view>
   <view class='con-li' wx:if="{{companyWeb}}">
     <view class='con-li-left'>
       <view class='img-box'><image src='../images/card/companyWeb.png' style='width:36rpx;height:33rpx'></image>
       </view>
     </view>
-    <view class='con-li-right'>{{companyWeb}}</view>
+    <view class='con-li-right'><text selectable='true'>{{companyWeb}}</text></view>
   </view>
   <view class='con-li' wx:if='{{demand}}'>
     <view class='con-li-left'>
