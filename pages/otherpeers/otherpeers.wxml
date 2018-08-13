@@ -260,6 +260,14 @@
     <view class='con-li-right' style='border-bottom:none'>{{synopsis}}</view>
   </view>
 </view>
+<view class='card-remark'>
+  <view class='card-remark-icon'>
+    <image src='../images/card/remark.png'></image>
+  </view>
+  <view class='input-box'>
+    <input type='text' bindblur='addRemark' placeholder='为这张名片添加备注' value='{{remark}}'></input>
+  </view>
+</view>
 <!-- <view class='main'>
   <view class='main-top'>
     <view class='top-left'>

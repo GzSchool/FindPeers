@@ -33,20 +33,20 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
+			"current": 1,
 			"list": [
 				{
 					"id": 0,
 					"name": "21",
-					"pathName": "pages/peerscards/peerscards",
-					"query": "othercardid=1201001",
-					"scene": "1011"
+					"pathName": "pages/otherpeers/otherpeers",
+					"query": "cardId=1201373",
+					"scene": "1001"
 				},
 				{
 					"id": 1,
 					"name": "21",
 					"pathName": "pages/peerscards/peerscards",
-					"query": "othercardid=1201002",
+					"query": "othercardid=1201001",
 					"scene": "1044",
 					"shareInfo": {
 						"groupName": "测试模拟群4",

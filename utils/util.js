@@ -375,6 +375,27 @@ function addRemark(openId, cardId, remark) {
   })
 }
 /*
+  当前用户openid 与 目标用户cardid 获取用户信息
+*/
+function getPeerInfo(openId, cardId) {
+  return new Promise(function (res) {
+    wx.request({
+      method: 'GET',
+      url: server + '/userPeer/getPeerInfo',
+      data: {
+        openId: openId,
+        cardId: cardId
+      },
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (b) {
+        res(b)
+      }
+    })
+  })
+}
+/*
   手机号验证
  */
 function testPhone(phone) {
@@ -443,5 +464,7 @@ module.exports = {
   sharePage: sharePage,
   shareToQunOrPersonal: shareToQunOrPersonal,
   IsURL: IsURL,
-  makeWxQrCode:makeWxQrCode
+  makeWxQrCode:makeWxQrCode,
+  getPeerInfo: getPeerInfo,
+  addRemark: addRemark
 }

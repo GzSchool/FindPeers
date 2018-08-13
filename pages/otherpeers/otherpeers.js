@@ -29,6 +29,7 @@ Page({
     userInfo: {},        // 用户信息
     addPhone:"" ,         //判断用户是否已添加手机号
     cardType:"",         //卡片样式ID
+    remark: '', // 备注
   },
   /**
    * 生命周期函数--监听页面加载
@@ -75,26 +76,30 @@ Page({
     }
     let server = app.globalData.server;
     let cardId = that.data.cardId
-    util.getCardsById(cardId).then(function(res) {
-      console.log(res.data.data[0])
+    let openId = app.globalData.openid
+    console.log(openId)
+    console.log(cardId)
+    // util.getCardsById(cardId).then(function (res) {
+    util.getPeerInfo(openId, cardId).then(function (res) {
+      console.log(res.data.data)
       that.setData({
-        name: res.data.data[0].username,
-        wechatnum: res.data.data[0].userWechat,
-        company: res.data.data[0].userCompany,
-        idustry: res.data.data[0].userIndustry,
-        city: res.data.data[0].userCity,
-        email: res.data.data[0].userEmail,
-        phone: res.data.data[0].userPhone,
-        image: res.data.data[0].userImg,
-        homepage: res.data.data[0].homePage,
-        companyWeb: res.data.data[0].companyPage,
-        otheropenId: res.data.data[0].openId,
-        id: res.data.data[0].id,
-        demand: res.data.data[0].demand,       // 需求
-        resources: res.data.data[0].resources, // 资源
-        synopsis: res.data.data[0].synopsis,   // 简介
-        userJob: res.data.data[0].userJob,      // 职位
-        cardType: res.data.data[0].cardType,
+        name: res.data.data.username,
+        wechatnum: res.data.data.userWechat,
+        company: res.data.data.userCompany,
+        idustry: res.data.data.userIndustry,
+        city: res.data.data.userCity,
+        email: res.data.data.userEmail,
+        phone: res.data.data.userPhone,
+        image: res.data.data.userImg,
+        homepage: res.data.data.homePage,
+        companyWeb: res.data.data.companyPage,
+        otheropenId: res.data.data.openId,
+        id: res.data.data.id,
+        demand: res.data.data.demand,       // 需求
+        resources: res.data.data.resources, // 资源
+        synopsis: res.data.data.synopsis,   // 简介
+        userJob: res.data.data.userJob,      // 职位
+        cardType: res.data.data.cardType,
       })
     })
   },
@@ -275,5 +280,16 @@ Page({
         // 转发失败
       }
     }
+  },
+  addRemark:function (e) {
+    let openId = app.globalData.openid
+    let cardId = this.data.cardId
+    let remark = e.detail.value
+    console.log(openId)
+    console.log(cardId)
+    console.log(remark)
+    util.addRemark(openId, cardId, remark).then(function (res) {
+      console.log(res.data)
+    })
   }
 })
