@@ -33,23 +33,8 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 1,
-			"list": [
-				{
-					"id": 0,
-					"name": "21",
-					"pathName": "pages/peerscards/peerscards",
-					"query": "cardId=1201373",
-					"scene": "1001"
-				},
-				{
-					"id": 1,
-					"name": "21",
-					"pathName": "pages/peerscards/peerscards",
-					"query": "othercardid=1201001",
-					"scene": "1011"
-				}
-			]
+			"current": 0,
+			"list": []
 		}
 	}
 }
