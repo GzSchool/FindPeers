@@ -18,7 +18,7 @@ App({
   },
   onLaunch: function (ops) {
     // this.globalData.appOPS = ops
-    // console.log(ops)
+    console.log(ops)
     var openid = wx.getStorageSync('openid');
     if (openid) {
       this.globalData.openid = openid
