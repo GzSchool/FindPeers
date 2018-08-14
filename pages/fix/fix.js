@@ -39,14 +39,15 @@ Page({
     email: "", //邮箱
     homepage: "", //个人主页
     companyWeb: "", //公司官网
-    isshow0: false, //是否显示需求
-    isshow1: false, //是否显示资源
-    isshow2: false, //是否显示个人主页
-    isshow3: false, //是否显示公司官网
+    isshow0: false, //显示公司官网
+    isshow1: false, //显示个人主页
+    isshow2: false, //显示需求
+    isshow3: false, //显示资源
     image: "", //用户头像
     prepare: '', //用户名字拼音
     region: '',
     customItem: '',
+    list: []
   },
   //页面加载
   onLoad: function(a) {
@@ -88,22 +89,23 @@ Page({
           count: res.data.synopsis.length, // 简介长度
           cardType: res.data.cardType
         })
-        if (that.data.demand !== '') {
+        // let list = []
+        if (that.data.homepage !== '') {
           that.setData({
-            isshow0: true
+            isshow0: true,
           })
         }
-        if (that.data.resource !== '') {
+        if (that.data.companyWeb !== '') {
           that.setData({
             isshow1: true
           })
         }
-        if (that.data.homepage !== '') {
+        if (that.data.demand !== '') {
           that.setData({
             isshow2: true
           })
         }
-        if (that.data.companyWeb !== '') {
+        if (that.data.resource !== '') {
           that.setData({
             isshow3: true
           })
@@ -167,22 +169,22 @@ Page({
           count: b.data.data.synopsis.length, // 简介长度
           cardType: b.data.data.cardType
         })
-        if (that.data.demand !== '') {
+        if (that.data.homepage !== '') {
           that.setData({
             isshow0: true
           })
         }
-        if (that.data.resource !== '') {
+        if (that.data.companyWeb !== '') {
           that.setData({
             isshow1: true
           })
         }
-        if (that.data.homepage !== '') {
+        if (that.data.demand !== '') {
           that.setData({
             isshow2: true
           })
         }
-        if (that.data.companyWeb !== '') {
+        if (that.data.resource !== '') {
           that.setData({
             isshow3: true
           })
@@ -194,23 +196,23 @@ Page({
   addmore: function() {
     var that = this
     wx.showActionSheet({
-      itemList: ["个人主页", "公司官网", "需求", "资源"],
+      itemList: that.data.list,
       success: function(res) {
         if (res.tapIndex == 0) {
           that.setData({
-            isshow2: true
+            isshow0: true,
           })
         } else if (res.tapIndex == 1) {
           that.setData({
-            isshow3: true
+            isshow1: true
           })
         } else if (res.tapIndex == 2) {
           that.setData({
-            isshow0: true
+            isshow2: true
           })
-        } else {
+        } else if (res.tapIndex == 3) {
           that.setData({
-            isshow1: true
+            isshow3: true
           })
         }
       }

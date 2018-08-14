@@ -267,22 +267,6 @@
     <view class='main-li' wx:if='{{isshow0}}'>
       <view class='star'></view>
       <view class='title'>
-        <text>需</text>
-        <text>求:</text>
-      </view>
-      <input placeholder-class="phcolor" placeholder='需求' bindinput='adddemand' type='text' value='{{demand}}' maxlength='40'></input>
-    </view>
-    <view class='main-li' wx:if='{{isshow1}}'>
-      <view class='star'></view>
-      <view class='title'>
-        <text>资</text>
-        <text>源:</text>
-      </view>
-      <input placeholder-class="phcolor" placeholder='资源' bindinput='addresource' type='text' value='{{resource}}' maxlength='40'></input>
-    </view>
-    <view class='main-li' wx:if='{{isshow2}}'>
-      <view class='star'></view>
-      <view class='title'>
         <text>个</text>
         <text>人</text>
         <text>主</text>
@@ -290,7 +274,7 @@
       </view>
       <input placeholder-class="phcolor" placeholder='个人主页' bindinput='addHomepage' type='text' value='{{homepage}}' maxlength='40'></input>
     </view>
-    <view class='main-li' wx:if='{{isshow3}}'>
+    <view class='main-li' wx:if='{{isshow1}}'>
       <view class='star'></view>
       <view class='title'>
         <text>公</text>
@@ -299,6 +283,22 @@
         <text>网:</text>
       </view>
       <input placeholder-class="phcolor" placeholder='公司官网' bindinput='addCompanyWeb' type='text' value='{{companyWeb}}' maxlength='40'></input>
+    </view>
+    <view class='main-li' wx:if='{{isshow2}}'>
+      <view class='star'></view>
+      <view class='title'>
+        <text>需</text>
+        <text>求:</text>
+      </view>
+      <input placeholder-class="phcolor" placeholder='需求' bindinput='adddemand' type='text' value='{{demand}}' maxlength='40'></input>
+    </view>
+    <view class='main-li' wx:if='{{isshow3}}'>
+      <view class='star'></view>
+      <view class='title'>
+        <text>资</text>
+        <text>源:</text>
+      </view>
+      <input placeholder-class="phcolor" placeholder='资源' bindinput='addresource' type='text' value='{{resource}}' maxlength='40'></input>
     </view>
   </view>
   <view class='more' bindtap='addmore'>添加更多信息</view>

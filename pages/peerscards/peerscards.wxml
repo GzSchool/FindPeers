@@ -265,7 +265,7 @@
     <image src='../images/card/remark.png'></image>
   </view>
   <view class='input-box'>
-    <input type='text' value='{{remark}}' bindblur='addRemark' placeholder='为这张名片添加备注'></input>
+    <input type='text' value='{{remark}}' placeholder-style='color:#cccccc;' bindblur='addRemark' placeholder='为这张名片添加备注'></input>
   </view>
 </view>
 <!-- <view class='main'>
