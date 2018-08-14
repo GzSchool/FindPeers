@@ -266,7 +266,7 @@
     <image src='../images/card/remark.png'></image>
   </view>
   <view class='input-box'>
-    <input type='text' placeholder-style='color:#cccccc;' bindblur='addRemark' placeholder='为这张名片添加备注' value='{{remark}}'></input>
+    <input type='text' placeholder-style='color:#cccccc;' bindblur='addRemark' maxlength='20' placeholder='为这张名片添加备注' value='{{remark}}'></input>
   </view>
 </view>
 <view class='maskLayer' wx:if="{{chooseSize}}" bindtap='hideModal'></view>

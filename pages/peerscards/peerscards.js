@@ -29,7 +29,7 @@ Page({
     animationData: {}, //动画
     userInfo: {}, // 缓存获取用户信息 - 用户提交formid时拿到用户名
     appOPS: '',   // globalData路由参数判断scene
-    samePeer: false, //判断名片跟用户是不是同一人  
+    samePeer: true, //判断名片跟用户是不是同一人  
     addPhone: false, //判断是否添加了手机号
     checkSave: true, //检验是不是保存了这个名片
     isgroup: '', //判断是否是在群里点击的
@@ -106,8 +106,6 @@ Page({
           addPhone: true
         })
       }
-      that.checkedSave(app.globalData.openid, that.data.othercardid)      
-      console.log("checkedSave1111111111111111111111111111111")      
       // 等于 1044 是群里点击的
       if (that.data.appOPS.scene == 1044) {
         // 群里点击的回带shareTickets可以用这个获取groupid

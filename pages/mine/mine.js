@@ -43,8 +43,13 @@ Page({
         let scene = res.id;
         let openid = app.globalData.openid
         util.makeWxQrCode(userPhotoUrl, scene, page, openid).then(function (res) {
-          console.log(res)
-          app.globalData.QRCode = ("https://www.eqxuan.cn/" + openid + ".png")
+          if (res.data.success) {
+            app.globalData.QRCode = ("https://www.eqxuan.cn/" + openid + ".png")
+            that.data.QRCode = app.globalData.QRCode
+            }else{
+            app.globalData.QRCode = ""
+            that.data.QRCode = ""
+            }          
         })
       },
       fail: function (res) {
@@ -62,8 +67,13 @@ Page({
         let page = "pages/peerscards/peerscards";
         let scene = res.id;
         util.makeWxQrCode(userPhotoUrl, scene, page, openid).then(function (res) {
-          console.log(res)
-          app.globalData.QRCode = ("https://www.eqxuan.cn/" + openid + ".png")
+          if (res.data.success) {
+            app.globalData.QRCode = ("https://www.eqxuan.cn/" + openid + ".png")
+            that.data.QRCode = app.globalData.QRCode
+          } else {
+            app.globalData.QRCode = ""
+            that.data.QRCode = ""
+          }  
         })
         that.setData({
           notadd: true
@@ -123,8 +133,13 @@ Page({
     let scene = that.data.id;
     let openid = app.globalData.openid
     util.makeWxQrCode(userPhotoUrl, scene, page, openid).then(function (res) {
-      console.log(res)
-      app.globalData.QRCode = ("https://www.eqxuan.cn/" + openid + ".png")
+      if (res.data.success) {
+        app.globalData.QRCode = ("https://www.eqxuan.cn/" + openid + ".png")
+        that.data.QRCode = app.globalData.QRCode
+      } else {
+        app.globalData.QRCode = ""
+        that.data.QRCode = ""
+      }  
     })
   },
   save (e) {

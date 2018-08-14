@@ -33,13 +33,13 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 1,
+			"current": 0,
 			"list": [
 				{
 					"id": 0,
 					"name": "21",
 					"pathName": "pages/peerscards/peerscards",
-					"query": "othercardid=1203802",
+					"query": "othercardid=1203801",
 					"scene": "1001"
 				},
 				{
