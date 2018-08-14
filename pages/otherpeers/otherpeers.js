@@ -80,8 +80,6 @@ Page({
     let openId = app.globalData.openid
     console.log(openId)
     console.log(cardId)
-    console.log(that.data.isSave)
-    // util.getCardsById(cardId).then(function (res) {
     if (that.data.isSave) {
       util.getPeerInfo(openId, cardId).then(function (res) {
         console.log(res.data.data)
