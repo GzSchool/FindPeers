@@ -120,10 +120,6 @@ Page({
               }
               // 获取GID           
               util.getCardsById(that.data.othercardid).then(function(card) {
-                console.log(card.data.data[0].openId)
-                console.log(encryptedData)
-                console.log(app.globalData.openid)
-                console.log(iv)
                 wx.request({
                   method: 'POST',
                   url: server + '/userGroup/saveOrUpdate',
@@ -137,7 +133,6 @@ Page({
                     'content-type': 'application/json'
                   },
                   success: function(c) {
-                    console.log(c)
                     if (c.data.data) {
                       that.setData({
                         groupId: c.data.data
@@ -157,7 +152,6 @@ Page({
                 // 用户标识访问数据库获取用户信息
                 that.getMyData(openid)
                 // 检查是否保存
-                console.log(that.data.checkSave)
                 if (that.data.checkSave) {
                   that.getPeerInfo(openid, that.data.othercardid)
                 } else {
@@ -165,10 +159,6 @@ Page({
                 }
                 // 获取GID           
                 util.getCardsById(that.data.othercardid).then(function(card) {
-                  console.log(card.data.data[0].openId)
-                  console.log(encryptedData)
-                  console.log(app.globalData.openid)
-                  console.log(iv)
                   wx.request({
                     method: 'POST',
                     url: server + '/userGroup/saveOrUpdate',
@@ -182,7 +172,6 @@ Page({
                       'content-type': 'application/json'
                     },
                     success: function(c) {
-                      console.log(c)
                       if (c.data.data) {
                         that.setData({
                           groupId: c.data.data
@@ -210,7 +199,6 @@ Page({
           }
           var openid = app.globalData.openid;
           // 检查保存
-          console.log(that.data.checkSave)
           if (that.data.checkSave) {
             that.getPeerInfo(openid, that.data.othercardid)
           } else {
@@ -229,7 +217,6 @@ Page({
     var that = this
     util.getMyData(openid).then(function(res) {
       console.log('mydata')
-      console.log(res)
       if (res) {
         app.globalData.notadd = false
         that.setData({
@@ -282,8 +269,6 @@ Page({
   // 获取同行名片信息
   getPeerInfo(openId, otherId) {
     let that = this
-    console.log(openId)
-    console.log(otherId)
     util.getPeerInfo(openId, otherId).then(function(res) {
       console.log(res)
       that.setData({
@@ -299,6 +284,10 @@ Page({
         companyWeb: res.data.data.companyPage,
         otheropenId: res.data.data.openId,
         userJob: res.data.data.userJob,
+        demand: res.data.data.demand,       // 需求
+        resources: res.data.data.resources, // 资源
+        synopsis: res.data.data.synopsis,   // 简介
+        userJob: res.data.data.userJob,      // 职位
         id: res.data.data.id,
         cardType: res.data.data.cardType,
         remark: res.data.data.remark ? res.data.data.remark : ''        
@@ -321,6 +310,10 @@ Page({
         homepage: res.data.data[0].homePage,
         companyWeb: res.data.data[0].companyPage,
         otheropenId: res.data.data[0].openId,
+        demand: res.data.data[0].demand,       // 需求
+        resources: res.data.data[0].resources, // 资源
+        synopsis: res.data.data[0].synopsis,   // 简介
+        userJob: res.data.data[0].userJob,      // 职位
         userJob: res.data.data[0].userJob,
         id: res.data.data[0].id,
         cardType: res.data.data[0].cardType,
