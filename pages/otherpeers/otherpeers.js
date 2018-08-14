@@ -80,9 +80,7 @@ Page({
     let openId = app.globalData.openid
     console.log(openId)
     console.log(cardId)
-    console.log(that.data.isSave)
     // util.getCardsById(cardId).then(function (res) {
-      if(that.data.isSave){
     util.getPeerInfo(openId, cardId).then(function (res) {
       console.log(res.data.data)
       that.setData({
@@ -106,31 +104,6 @@ Page({
         remark: res.data.data.remark ? res.data.data.remark : '',
       })
     })
-      }else{
-        util.getPeerInfo(cardId).then(function (res) {
-          console.log(res.data.data)
-          that.setData({
-            name: res.data.data.username,
-            wechatnum: res.data.data.userWechat,
-            company: res.data.data.userCompany,
-            idustry: res.data.data.userIndustry,
-            city: res.data.data.userCity,
-            email: res.data.data.userEmail,
-            phone: res.data.data.userPhone,
-            image: res.data.data.userImg,
-            homepage: res.data.data.homePage,
-            companyWeb: res.data.data.companyPage,
-            otheropenId: res.data.data.openId,
-            id: res.data.data.id,
-            demand: res.data.data.demand,       // 需求
-            resources: res.data.data.resources, // 资源
-            synopsis: res.data.data.synopsis,   // 简介
-            userJob: res.data.data.userJob,      // 职位
-            cardType: res.data.data.cardType,
-            remark: res.data.data.remark ? res.data.data.remark : '',
-          })
-        })
-      }
   },
   //添加信息按钮
   addcards: function(e) {
