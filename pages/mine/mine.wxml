@@ -15,5 +15,5 @@
     <image class="img2" src="{{img2}}"></image>
   </view>
 
-  <button class="share" open-type='share'>推荐给同行</button>
+  <button class="share" open-type='share'>推送该名片</button>
 </view>
