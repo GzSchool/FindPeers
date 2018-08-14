@@ -1,5 +1,5 @@
 //服务器地址
-var server = 'http://192.168.2.150:8766'
+// var server = 'http://192.168.2.150:8766'
 var server = "https://www.eqxuan.cn"
 var app = getApp();
 const formatTime = date => {
@@ -509,7 +509,8 @@ module.exports = {
   shareToQunOrPersonal: shareToQunOrPersonal,
   IsURL: IsURL,
   makeWxQrCode:makeWxQrCode,
-  getPeerInfo: getPeerInfo,
-  addRemark: addRemark,
-  getUserPhone: getUserPhone
+  getPeerInfo: getPeerInfo, // 获取同行信息（有备注的）openid+cardid
+  addRemark: addRemark,     // 添加备注
+  getUserPhone: getUserPhone, // 获取用户手机号
+  userFromId: userFromId, // 获取formid
 }

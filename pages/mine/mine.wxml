@@ -14,6 +14,7 @@
     <text class="about">如何在微信中查看“名片Live”小程序</text>
     <image class="img2" src="{{img2}}"></image>
   </view>
-
-  <button class="share" open-type='share'>推送该名片</button>
+<form bindsubmit="save" report-submit='true'>
+  <button class="share" form-type="submit" open-type='share'>推送该名片</button>
+  </form>
 </view>

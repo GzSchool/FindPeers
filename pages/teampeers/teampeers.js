@@ -30,7 +30,6 @@ Page({
       openid: ops.openid,
       groupId: ops.groupid,
       notadd: app.globalData.notadd,
-      list: [],
       searching: true
     }) 
     var list = [];
