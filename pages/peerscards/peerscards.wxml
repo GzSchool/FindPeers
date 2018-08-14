@@ -265,7 +265,7 @@
   <view class='card-remark-icon'>
     <image src='../images/card/remark.png'></image>
   </view>
-  <view class='input-box' wx:if="{{remark}}">
+  <view class='input-box'>
     <input type='text' value='{{remark}}' placeholder-style='color:#cccccc;' bindblur='addRemark' placeholder='为这张名片添加备注'></input>
   </view>
 </view>
