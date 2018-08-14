@@ -33,19 +33,14 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 1,
+			"current": 0,
 			"list": [
 				{
 					"id": 0,
 					"name": "21",
 					"pathName": "pages/peerscards/peerscards",
 					"query": "othercardid=1203803",
-					"scene": "1044",
-					"shareInfo": {
-						"groupName": "测试模拟群0",
-						"shareName": "b7kflJMJk2Lx6fxAc7tv_Mz8nqmQCQUo_rC2AIoSZ3g@cr4dev",
-						"shareKey": "mQe4fPHQrfcHT_ajUG38d2lNm9UM3Bxw2fGNgmVl6krx8CMVOgJJpag3p9sPdEEzPwmeLUqci4wdZ3wexPQWdw~~"
-					}
+					"scene": "1001"
 				},
 				{
 					"id": 1,
