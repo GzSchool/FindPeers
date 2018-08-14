@@ -93,11 +93,28 @@ Page({
       url: '../findUs/findUs',
     })
   },
- //
-  viewImage:function(e){
+ //点击放大预览 再长按可以转发，保存，识别（真机可测）
+  viewImage:function(e){           
+    // var image = this.data.QRCode;
     // wx.previewImage({
-    //   current: '/pages/images/findpeer.png', // 当前显示图片的http链接
-    //   urls: image // 需要预览的图片http链接列表
-    // })
-  }
+    //    current: image, // 当前显示图片的http链接
+    //    urls: [image], // 需要预览的图片http链接列表
+    //    success:function(e){
+    //      console.log(e)
+    //    }
+    //  })
+  },
+  // scan:function(e){
+  //   wx.scanCode({
+  //     onlyFromCamera:false,
+  //     scanType: ['qrCode'],
+  //     success:function(res){
+  //       if(res.path){
+  //         wx.navigateTo({
+  //           url:"/" + res.path,
+  //         })
+  //       }
+  //     }
+  //   })
+  // }
 })

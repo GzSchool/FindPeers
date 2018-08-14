@@ -100,6 +100,7 @@ Page({
         synopsis: res.data.data.synopsis,   // 简介
         userJob: res.data.data.userJob,      // 职位
         cardType: res.data.data.cardType,
+        remark: res.data.data.remark ? res.data.data.remark : '',
       })
     })
   },

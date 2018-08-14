@@ -299,6 +299,7 @@ Page({
             image: a.userInfo.avatarUrl,
             prepare: pinyin.getFullChars(a.userInfo.nickName).toUpperCase()
           })
+          console.log(a.userInfo.gender)
           that.getData()
         },
         fail: function() {

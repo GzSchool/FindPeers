@@ -7,7 +7,7 @@
     <view wx:if='{{company}}' class="card-info">{{company}}</view>
     <image class="card-img"  wx:if="{{!QRCode}}" src="{{image}}"></image>
     <image class="card-img" wx:if="{{QRCode}}" src="{{QRCode}}" bindtap='viewImage'></image>
-    <view class="card-help">微信扫一扫二维码</view>
+    <view class="card-help" bindtap='scan'>微信扫一扫二维码</view>
   </view>
   <view class="find" bindtap='findUs'>
     <image class="img1" src="{{img1}}"></image>
