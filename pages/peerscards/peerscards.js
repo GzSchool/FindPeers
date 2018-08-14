@@ -3,7 +3,6 @@ var util = require('../../utils/util.js');
 var app = getApp();
 Page({
   data: {
-    myCardId: '',
     server: app.globalData.server, //服务器地址
     groupId: 0, //群组ID
     cardId: [], //名片ID数组
@@ -52,8 +51,7 @@ Page({
       success: function(res) {
         console.log(res)
         that.setData({
-          userInfo: res.data,
-          myCardId: res.data.id
+          userInfo: res.data
         })
         if (res.data.userPhone) {
           app.globalData.addPhone = true
@@ -88,12 +86,8 @@ Page({
       that.getPeerData(that.data.othercardid)
       that.checkedSave(app.globalData.openid, that.data.othercardid)
       // 获取 othercardid 用户信息
-      if (app.globalData.openid) {
-        if (that.data.checkSave) {
-          that.getPeerInfo(app.globalData.openid, that.data.othercardid)
-        } else {
-          that.getPeerData(that.data.othercardid)
-        }
+      if (that.data.checkSave) {
+        that.getPeerInfo(app.globalData.openid, that.data.othercardid)
       }
       if (that.data.appOPS.scene == 1044) {
         that.setData({
@@ -127,7 +121,7 @@ Page({
               } else {
                 that.getPeerData(that.data.othercardid)
               }
-              // 获取GID           
+              // 获取GID 
               util.getCardsById(that.data.othercardid).then(function(card) {
                 wx.request({
                   method: 'POST',
@@ -150,45 +144,6 @@ Page({
                   }
                 })
               })
-            } else {
-              // 登录
-              util.Login(url).then(function(data) {
-                if (data) {
-                  app.globalData.openid = data
-                }
-                var openid = app.globalData.openid;
-                // 用户标识访问数据库获取用户信息
-                that.getMyData(openid)
-                // 检查是否保存
-                if (that.data.checkSave) {
-                  that.getPeerInfo(openid, that.data.othercardid)
-                } else {
-                  that.getPeerData(that.data.othercardid)
-                }
-                // 获取GID           
-                util.getCardsById(that.data.othercardid).then(function(card) {
-                  wx.request({
-                    method: 'POST',
-                    url: server + '/userGroup/saveOrUpdate',
-                    data: {
-                      openId: app.globalData.openid,
-                      otherOpenId: card.data.data[0].openId,
-                      encryptedData: encryptedData,
-                      iv: iv
-                    },
-                    header: {
-                      'content-type': 'application/json'
-                    },
-                    success: function(c) {
-                      if (c.data.data) {
-                        that.setData({
-                          groupId: c.data.data
-                        })
-                      }
-                    }
-                  })
-                })
-              })
             }
           }
         })
@@ -209,26 +164,8 @@ Page({
             that.getPeerData(that.data.othercardid)
           }
           that.getMyData(openid)
-        } else {
-          // 登录
-          util.Login(url).then(function (data) {
-            if (data) {
-              app.globalData.openid = data
-              var openid = app.globalData.openid
-              // 检查保存
-              if (that.data.checkSave) {
-                console.log(that.data.checkSave)
-                that.getPeerInfo(openid, that.data.othercardid)
-              } else {
-                console.log(that.data.checkSave)
-                that.getPeerData(that.data.othercardid)
-              }
-              that.getMyData(openid)
-            }
-          })
         }
       }
-      console.log(that.data.checkSave)      
     }
     wx.showShareMenu({
       withShareTicket: true
@@ -268,17 +205,9 @@ Page({
     let that = this
     console.log(openid)
     console.log(otherid)    
-    util.checkSave(openid, otherid).then(function(a) {
-      console.log("checkedSave2222222222222222222")                  
+    util.checkSave(openid, otherid).then(function(a) {           
       console.log(that.data.otheropenId)
-      console.log(openid == that.data.otheropenId)          
-      // if (openid == that.data.otheropenId) {
-      //   that.setData({
-      //     isSave: true,
-      //     checkSave:true,
-      //     samePeer: true
-      //   })
-      // }
+      console.log(openid == that.data.otheropenId) 
       if (a.data.data) {
         that.setData({
           checkSave: true,
@@ -352,7 +281,7 @@ Page({
       })
       if (app.globalData.openid == res.data.data[0].openId){
         that.setData({
-          checkSave:true,
+          checkSave:true, 
           samePeer: true
         })
       }
