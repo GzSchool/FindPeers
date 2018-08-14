@@ -37,6 +37,7 @@ Page({
     introduction: "", //简介
     resource: "", //资源
     email: "", //邮箱
+    itemList: ["个人主页", "公司官网", "需求", "资源"],    
     homepage: "", //个人主页
     companyWeb: "", //公司官网
     isshow0: false, //是否显示需求
@@ -193,8 +194,9 @@ Page({
   //点击添加更多
   addmore: function() {
     var that = this
+    let itemList = that.data.itemList;
     wx.showActionSheet({
-      itemList: ["个人主页", "公司官网", "需求", "资源"],
+      itemList: itemList,
       success: function(res) {
         if (res.tapIndex == 0) {
           that.setData({
@@ -434,7 +436,7 @@ Page({
   onShareAppMessage: function(a) {
     var that = this
     return {
-      title: '找同行',
+      title: '名片Live',
       path: '/pages/findmore/findmore',
       success: function(res) {
         let openId = app.globalData.openid;

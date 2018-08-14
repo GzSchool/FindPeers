@@ -231,7 +231,8 @@
         <image src='../images/card/companyWeb.png' style='width:36rpx;height:33rpx'></image>
       </view>
     </view>
-    <view class='con-li-right'><text selectable='true'>{{companyWeb}}</text></view>
+    <view class='con-li-right1'>{{companyWeb}}</view>
+    <view class="con-li-copy" bindtap='copy' data-num="{{companyWeb}}"><image src="/pages/images/card/copy.png"></image></view>
   </view>
   <view class='con-li' wx:if='{{demand}}'>
     <view class='con-li-left'>
@@ -337,7 +338,7 @@
   <form bindsubmit="save" report-submit='true'>
     <button class="footer-btn" wx:if="{{!checkSave&&!notadd}}" form-type="submit">保存到名片夹</button>
   </form> 
-  <button class="{{isgroup?'footer-btn':'footer-find'}}" wx:if='{{checkSave||!isgroup}}' bindtap='back'>进入我的同行信息</button>
+  <button class="{{isgroup?'footer-btn':'footer-find'}}" wx:if='{{checkSave||!isgroup}}' bindtap='back'>进入我的名片夹</button>
   <button class="footer-btn" wx:if='{{notadd}}' open-type='getUserInfo' bindgetuserinfo='addcards'>添加个人信息</button>
   <button class="footer-find"  wx:if='{{isgroup}}' bindtap='toTeamPeers'>查看本群名片</button>
 </view>

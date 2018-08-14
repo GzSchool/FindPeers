@@ -122,9 +122,12 @@ Page({
     let back = that.data.back;
     util.saveOrUpdate(openid, groupId, 1, cardIds).then(function(res) {
       if (back) {
-        wx.navigateTo({
-          url: '/pages/teampeers/teampeers?openid=' + openid + '&groupid=' + groupId,
+        wx.navigateBack({
+          delta:1
         })
+        // wx.navigateTo({
+        //   url: '/pages/teampeers/teampeers?openid=' + openid + '&groupid=' + groupId,
+        // })
       } else {
         wx.switchTab({
           url: '/pages/findmore/findmore',
@@ -201,7 +204,7 @@ Page({
     } else {
       wx.showModal({
         title: '温馨提示',
-        content: '该同行名片手机号为空',
+        content: '该名片手机号为空',
         confirmText: '知道了',
         success: function(res) {
           that.hideModal();
@@ -234,9 +237,12 @@ Page({
       util.saveOrUpdate(openid, groupId, 2, cardIds, saveName, formId).then(function (res) {
         console.log(res)
         if (back) {
-          wx.redirectTo({
-            url: '/pages/teampeers/teampeers?openid=' + openid + '&groupid=' + groupId,
+          wx.navigateBack({
+            delta:1
           })
+          // wx.redirectTo({
+          //   url: '/pages/teampeers/teampeers?openid=' + openid + '&groupid=' + groupId,
+          // })
         } else {
           wx.switchTab({
             url: '/pages/findmore/findmore',
@@ -266,7 +272,7 @@ Page({
   onShareAppMessage: function (a) {
     var that = this
     return {
-      title: '同行信息',
+      title: '名片信息',
       path: '/pages/peerscards/peerscards?othercardid=' + that.data.id,
       success: function (res) {
         let openId = app.globalData.openid;

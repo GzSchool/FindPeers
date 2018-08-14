@@ -230,7 +230,7 @@
     <view class='main-li'>
       <view class='star'></view>
       <view class='title'><text>手</text><text>机</text><text>号:</text></view>
-      <input maxlength='11' placeholder-class="phcolor" placeholder='填写可见同行手机号' bindinput='addphone' type='number' value='{{phone}}' name="phone"></input>
+      <input maxlength='11' placeholder-class="phcolor" placeholder='填写可见该名片手机号' bindinput='addphone' type='number' value='{{phone}}' name="phone"></input>
       <!-- <button style='padding:0;' class='wx-get' open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">微信获取</button> -->
     </view>
     <view class='main-li'>

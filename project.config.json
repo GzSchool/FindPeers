@@ -12,7 +12,7 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.2.2",
-	"appid": "wx34fefa15f676d944",
+	"appid": "wxff9f09664798581a",
 	"projectname": "%E6%89%BE%E5%90%8C%E8%A1%8C",
 	"isGameTourist": false,
 	"condition": {
@@ -33,13 +33,13 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 1,
+			"current": 0,
 			"list": [
 				{
 					"id": 0,
 					"name": "21",
 					"pathName": "pages/peerscards/peerscards",
-					"query": "cardId=1201373",
+					"query": "othercardid=1203801",
 					"scene": "1001"
 				},
 				{

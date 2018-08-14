@@ -11,7 +11,7 @@
   </view>
   <view class="find" bindtap='findUs'>
     <image class="img1" src="{{img1}}"></image>
-    <text class="about">如何在微信中查看“找同行”小程序</text>
+    <text class="about">如何在微信中查看“名片Live”小程序</text>
     <image class="img2" src="{{img2}}"></image>
   </view>
 

@@ -22,7 +22,7 @@ Page({
     let that = this
     let otheropenId = that.data.otheropenId;
     return {
-      title: '找同行',
+      title: '名片Live',
       path: '/pages/findmore/findmore',
       success: function (res) {
         let openId = app.globalData.openid;
