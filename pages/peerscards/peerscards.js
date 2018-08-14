@@ -76,8 +76,8 @@ Page({
           othercardid: ops.scene
         })
       }
-      that.getPeerData(that.data.othercardid)
       that.checkedSave(app.globalData.openid, that.data.othercardid)
+      that.getPeerData(that.data.othercardid)
       // 获取 othercardid 用户信息
       if (app.globalData.openid) {
         if (that.data.checkSave) {
@@ -146,7 +146,6 @@ Page({
               util.Login(url).then(function(data) {
                 if (data) {
                   app.globalData.openid = data
-                  var openid = app.globalData.openid
                 }
                 var openid = app.globalData.openid;
                 // 用户标识访问数据库获取用户信息
@@ -164,7 +163,7 @@ Page({
                     url: server + '/userGroup/saveOrUpdate',
                     data: {
                       openId: app.globalData.openid,
-                      otherOpenId: card.data.data.openId,
+                      otherOpenId: card.data.data[0].openId,
                       encryptedData: encryptedData,
                       iv: iv
                     },
@@ -192,6 +191,7 @@ Page({
           addPhone: true
         })
         if (app.globalData.openid) {
+          var openid = app.globalData.openid          
           if (that.data.checkSave) {
             that.getPeerInfo(openid, that.data.othercardid)
           } else {
@@ -252,19 +252,24 @@ Page({
   // 检查保存
   checkedSave(openid, otherid) {
     let that = this
+    console.log(openid)
+    console.log(otherid)    
     util.checkSave(openid, otherid).then(function(a) {
       console.log(a)
+      console.log(that.data.otheropenId)          
+      if (openid == that.data.otheropenId) {
+        that.setData({
+          isSave: true,
+          checkSave:true,
+          samePeer: true
+        })
+      }
       if (a.data.data) {
         that.setData({
           checkSave: true,
           samePeer: false
         })
-      } else if (openid == that.data.otheropenId) {
-        that.setData({
-          checkSave: true,
-          samePeer: true
-        })
-      } else {
+      }else {
         that.setData({
           checkSave: false,
           samePeer: true
@@ -319,7 +324,7 @@ Page({
         demand: res.data.data[0].demand,       // 需求
         resources: res.data.data[0].resources, // 资源
         synopsis: res.data.data[0].synopsis,   // 简介
-        userJob: res.data.data[0].userJob,      // 职位
+        userJob: res.data.data[0].userJob,     // 职位
         userJob: res.data.data[0].userJob,
         id: res.data.data[0].id,
         cardType: res.data.data[0].cardType,

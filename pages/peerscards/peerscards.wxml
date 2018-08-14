@@ -200,7 +200,7 @@
   </view>
 </view>
 <view class='content'>
-  <view class='con-li'>
+  <view class='con-li' wx:if='{{idustry}}'>
     <view class='con-li-left'>
       <view class='img-box'>
         <image src='../images/card/mes_industry.png' style='width:36rpx;height:32rpx'></image>
@@ -208,7 +208,7 @@
     </view>
     <view class='con-li-right'>{{idustry}}</view>
   </view>
-  <view class='con-li'>
+  <view class='con-li' wx:if='{{company}}'>
     <view class='con-li-left'>
       <view class='img-box'>
         <image src='../images/card/mes_company.png' style='width:36rpx;height:33rpx'></image>
@@ -265,7 +265,7 @@
   <view class='card-remark-icon'>
     <image src='../images/card/remark.png'></image>
   </view>
-  <view class='input-box'>
+  <view class='input-box' wx:if="{{remark}}">
     <input type='text' value='{{remark}}' placeholder-style='color:#cccccc;' bindblur='addRemark' placeholder='为这张名片添加备注'></input>
   </view>
 </view>
