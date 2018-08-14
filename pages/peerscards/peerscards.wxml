@@ -17,10 +17,10 @@
       <view class='card-down-right'>
         <view class='card-mes over-flow-hide'>地址：{{city}}</view>
         <view class='card-mes over-flow-hide'>公司：{{company}}</view>
-        <view class='card-mes over-flow-hide' wx:if="{{phone}}" bindtap='copy' data-num='{{phone}}'><view wx:if="{{!notadd&&addPhone}}">电话：<text selectable='true'>{{phone}}</text></view></view>
+        <view class='card-mes over-flow-hide' wx:if="{{phone&&!notadd&&addPhone}}" bindtap='copy' data-num='{{phone}}'>电话：<text wx:if="{{!notadd&&addPhone}}" selectable='true'>{{phone}}</text></view>
         <view class='card-mes over-flow-hide' wx:if='{{notadd||!addPhone}}'>电话：<text class="shades">需添加信息才可查看</text></view>
         <view class='card-mes over-flow-hide' wx:if="{{wechatnum&&!notadd}}">微信：<text selectable='true'>{{wechatnum}}</text></view>
-        <view class='info-right shades' wx:if='{{notadd}}'>微信：<text class="shades">需添加信息才可查看</text></view>
+        <view class='card-mes over-flow-hide' wx:if='{{notadd}}'>微信：<text class="shades">需添加信息才可查看</text></view>
         <view class='card-mes over-flow-hide' wx:if="{{email}}">邮箱：<text selectable='true'>{{email}}</text></view>
       </view>
     </view>

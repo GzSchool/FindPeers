@@ -468,6 +468,27 @@ function makeWxQrCode(userPhotoUrl, scene, page, openId){
     })
   })
 }
+/**
+ * formID获取
+ */
+function userFromId(formIds, openId) {
+  return new Promise(function (resolve) {
+    wx.request({
+      method: 'POST',
+      url: server + '/userFromId/save',
+      data: {
+        formIds: [],
+        openId: openId,
+      },
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        resolve(res)
+      }
+    })
+  })
+}
 module.exports = {
   formatTime: formatTime,
   formatNumber: formatNumber,

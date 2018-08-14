@@ -3,37 +3,37 @@ var util = require('../../utils/util.js');
 var app = getApp();
 Page({
   data: {
-    name: "", //用户名字
-    city: "", //用户城市
-    idustry: "", //用户行业
     server: app.globalData.server, //服务器地址
-    company: "", //用户公司
     groupId: 0, //群组ID
     cardId: [], //名片ID数组
     id: "", //名片ID
+    otheropenId: "", //别人的用户标识
+    othercardid: '', //别人的名片ID
+    cardType: "", //名片类型
+    name: "", //用户名字
+    city: "", //用户城市
+    idustry: "", //用户行业
+    company: "", //用户公司
     phone: "", //用户手机号
     wechatnum: "", //用户微信号
     image: "", //用户头像
     email: "", //用户邮箱
     userJob: '', //用户职务
-    otheropenId: "", //别人的用户标识
-    othercardid: '', //别人的名片ID
+    homepage: "", // 个人主页
+    compayWeb: "", // 公司官网  
+    demand: "",  // 需求
+    resources: "", // 资源
+    synopsis: "",  // 简介
     chooseSize: false, //选择动画
     animationData: {}, //动画
     userInfo: {}, // 缓存获取用户信息 - 用户提交formid时拿到用户名
-    appOPS: '',
-    homepage: "",
-    compayWeb: "",
-    samePeer: false, //判断名片跟用户是不是同一人    
-    demand: "",
-    resources: "",
-    synopsis: "",
+    appOPS: '',   // globalData路由参数判断scene
+    samePeer: false, //判断名片跟用户是不是同一人  
     addPhone: false, //判断是否添加了手机号
     checkSave: true, //检验是不是保存了这个名片
     isgroup: '', //判断是否是在群里点击的
     notadd: false, //用户是否添加信息
-    cardType: "", //名片类型
-    remark: ''
+    remark: '' // 备注
   },
   //页面加载
   onLoad: function(ops) {
@@ -63,21 +63,21 @@ Page({
     // 拷贝自 app.js
     let server = app.globalData.server
     let url = app.globalData.urlOfLogin
-    // 要是有id 说明点击的别人分享的（只有两个 一是：群里点击的， 二是：别人分享的）
+    // 要是有id 说明点击的别人分享的（只有两个 一是：群里点击的、扫描二维码， 二是：别人分享的）
     if (ops.othercardid || ops.scene) {
-      app.globalData.othercardid = ops.othercardid;
-      that.checkedSave(app.globalData.openid, ops.othercardid)      
+      app.globalData.othercardid = ops.othercardid; 
       that.setData({
         othercardid: ops.othercardid,
         appOPS: app.globalData.appOPS
       })
       if (ops.scene) {
-        that.checkedSave(app.globalData.openid,ops.scene)
         app.globalData.othercardid = ops.scene;
         that.setData({
           othercardid: ops.scene
         })
       }
+      that.getPeerData(that.data.othercardid)
+      that.checkedSave(app.globalData.openid, that.data.othercardid)
       // 获取 othercardid 用户信息
       if (app.globalData.openid) {
         if (that.data.checkSave) {
@@ -191,22 +191,29 @@ Page({
           isgroup: false,
           addPhone: true
         })
-        // 登录
-        util.Login(url).then(function(data) {
-          if (data) {
-            app.globalData.openid = data
-            var openid = app.globalData.openid
-          }
-          var openid = app.globalData.openid;
-          // 检查保存
+        if (app.globalData.openid) {
           if (that.data.checkSave) {
             that.getPeerInfo(openid, that.data.othercardid)
           } else {
             that.getPeerData(that.data.othercardid)
           }
-
           that.getMyData(openid)
-        })
+        } else {
+          // 登录
+          util.Login(url).then(function (data) {
+            if (data) {
+              app.globalData.openid = data
+              var openid = app.globalData.openid
+              // 检查保存
+              if (that.data.checkSave) {
+                that.getPeerInfo(openid, that.data.othercardid)
+              } else {
+                that.getPeerData(that.data.othercardid)
+              }
+              that.getMyData(openid)
+            }
+          })
+        }
       }
     }
     wx.showShareMenu({
@@ -216,7 +223,6 @@ Page({
   getMyData(openid) {
     var that = this
     util.getMyData(openid).then(function(res) {
-      console.log('mydata')
       if (res) {
         app.globalData.notadd = false
         that.setData({

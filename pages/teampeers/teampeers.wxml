@@ -2,7 +2,7 @@
 <view class='search' bindtap='inputSearch'>
   <view class='search-in'>
     <image src='/pages/images/3.png' mode="aspectFit"></image>
-    <input disabled='false' placeholder='{{key}}' placeholder-style='font-size:26rpx;color:#ccc;'></input>
+    <input disabled='false' placeholder=' 微信号、城市、公司、行业等进行搜索' placeholder-style='font-size:26rpx;color:#ccc;'></input>
   </view>
 </view>
 <view class='main'>

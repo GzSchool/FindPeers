@@ -14,7 +14,6 @@ Page({
     notadd: "",               //判断用户是否已添加信息
     listOfSave: [],           //当前用户未保存的
     server: "",               //服务器地址
-    key: " 微信号、城市、公司、行业等进行搜索", //搜索
     selectAll: false,         //选择全部
     hasSelect: false,         //单个选择
     formId: '',               //表单ID
