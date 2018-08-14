@@ -47,7 +47,7 @@ Page({
     prepare: '', //用户名字拼音
     region: '',
     customItem: '',
-    list: []
+    list: ['个人主页', '公司官网', '需求','资源']
   },
   //页面加载
   onLoad: function(a) {
@@ -89,27 +89,42 @@ Page({
           count: res.data.synopsis.length, // 简介长度
           cardType: res.data.cardType
         })
-        // let list = []
-        if (that.data.homepage !== '') {
+        if (that.data.homepage) {
           that.setData({
             isshow0: true,
           })
         }
-        if (that.data.companyWeb !== '') {
+        if (that.data.companyWeb) {
           that.setData({
             isshow1: true
           })
         }
-        if (that.data.demand !== '') {
+        if (that.data.demand) {
           that.setData({
             isshow2: true
           })
         }
-        if (that.data.resource !== '') {
+        if (that.data.resource) {
           that.setData({
             isshow3: true
           })
         }
+        // let list = []
+        // if (!that.data.homepage) {
+        //   list.push('个人主页')
+        // }
+        // if (!that.data.companyWeb) {
+        //   list.push('公司官网')
+        // }
+        // if (!that.data.demand) {
+        //   list.push('需求')
+        // }
+        // if (!that.data.resource) {
+        //   list.push('资源')
+        // }
+        // that.setData({
+        //   list: list
+        // })
       },
       fail: function(res) {
         that.getMyData()
@@ -189,34 +204,56 @@ Page({
             isshow3: true
           })
         }
+        // let list = []
+        // if (!that.data.homepage) {
+        //   list.push('个人主页')
+        // }
+        // if (!that.data.companyWeb) {
+        //   list.push('公司官网')
+        // }
+        // if (!that.data.demand) {
+        //   list.push('需求')
+        // }
+        // if (!that.data.resource) {
+        //   list.push('资源')
+        // }
+        // that.setData({
+        //   list: list
+        // })
       }
     })
   },
   //点击添加更多
   addmore: function() {
     var that = this
-    wx.showActionSheet({
-      itemList: that.data.list,
-      success: function(res) {
-        if (res.tapIndex == 0) {
-          that.setData({
-            isshow0: true,
-          })
-        } else if (res.tapIndex == 1) {
-          that.setData({
-            isshow1: true
-          })
-        } else if (res.tapIndex == 2) {
-          that.setData({
-            isshow2: true
-          })
-        } else if (res.tapIndex == 3) {
-          that.setData({
-            isshow3: true
-          })
+    if (that.data.list.length > 0) {
+      let list = []
+      wx.showActionSheet({
+        itemList: that.data.list,
+        success: function (res) {
+          console.log(res)
+          if (res.tapIndex == 0) {
+            that.setData({
+              isshow0: true,
+            })
+          } else if (res.tapIndex == 1) {
+            that.setData({
+              isshow1: true,
+            })
+          } else if (res.tapIndex == 2) {
+            that.setData({
+              isshow2: true,
+            })
+          } else if (res.tapIndex == 3) {
+            that.setData({
+              isshow3: true,
+            })
+          }
         }
-      }
-    })
+      })
+    } else {
+      app.showToast('没有更多信息')
+    }
   },
   //填写名字
   addname: function(e) {

@@ -29,7 +29,7 @@ Page({
   },
   onLoad: function(a) {
     // wx.navigateTo({
-    //   url: '../addcards/addcards',
+    //   url: '../fix/fix',
     // })
     console.log(a)
     let that = this
@@ -55,6 +55,22 @@ Page({
       },
       fail: function(res) {
         console.log(res)
+      }
+    })
+    wx.getStorage({
+      key: 'list_con',
+      success: function(res) {
+        that.setData({
+          list_con: res.data
+        })
+      },
+    })
+    wx.getStorage({
+      key: 'list_letter',
+      success: function (res) {
+        that.setData({
+          list_letter: res.data
+        })
       }
     })
     wx.showShareMenu({
@@ -102,7 +118,9 @@ Page({
           app.globalData.addPhone = false
           app.globalData.notadd = true;
           that.setData({
-            notadd: true
+            notadd: true,
+            list_con: [],
+            list_letter: []
           })
         }
         that.getData()
@@ -138,55 +156,74 @@ Page({
         that.setData({
           list_length: length
         })
-      }
-      // 如果是大写字母则push进letter
-      for (let i = 0; i < length; i++) {
-        // 如果prepare为空
-        if (!res.data.data[i].prepare) {
-          res.data.data[i].prepare = pinyin.getFullChars(res.data.data[i].username).toUpperCase()
+        // 如果是大写字母则push进letter
+        for (let i = 0; i < length; i++) {
+          // 如果prepare为空
+          if (!res.data.data[i].prepare) {
+            res.data.data[i].prepare = pinyin.getFullChars(res.data.data[i].username).toUpperCase()
+          }
+          if (res.data.data[i].prepare && validateUpperCase(res.data.data[i].prepare.slice(0, 1))) {
+            letter.push(res.data.data[i].prepare.slice(0, 1))
+          }
         }
-        if (res.data.data[i].prepare && validateUpperCase(res.data.data[i].prepare.slice(0, 1))) {
-          letter.push(res.data.data[i].prepare.slice(0, 1))
+        letter.sort()
+        // 如果存在非大写字母
+        for (let i = 0; i < length; i++) {
+          if (res.data.data[i].prepare == null || !validateUpperCase(res.data.data[i].prepare.slice(0, 1))) {
+            letter.push('zz')
+          }
         }
-      }
-      letter.sort()
-      // 如果存在非大写字母
-      for (let i = 0; i < length; i++) {
-        if (res.data.data[i].prepare == null || !validateUpperCase(res.data.data[i].prepare.slice(0, 1))) {
-          letter.push('zz')
-        }
-      }
-      // 去重
-      letter = that.dedupe(letter)
-      let len = letter.length;
-      letter.forEach(function (a, b) {
-        con[b] = {
-          letter: a,
-          data: []
-        }
+        // 去重
+        letter = that.dedupe(letter)
+        let len = letter.length;
+        letter.forEach(function (a, b) {
+          con[b] = {
+            letter: a,
+            data: []
+          }
+          res.data.data.forEach(function (c, d) {
+            if (a == c.prepare.slice(0, 1)) {
+              con[b].data.push(c)
+            }
+          })
+        })
         res.data.data.forEach(function (c, d) {
-          if (a == c.prepare.slice(0, 1)) {
-            con[b].data.push(c)
+          if (!validateUpperCase(c.prepare.slice(0, 1))) {
+            con[len - 1].data.push(c)
           }
         })
-      })
-      res.data.data.forEach(function (c, d) {
-        if (!validateUpperCase(c.prepare.slice(0, 1))) {
-          con[len - 1].data.push(c)
-        }
-      })
-      // console.log(that.spliceList(con, 80))
-      that.setData({
-        list_con: that.spliceList(con, 10),
-        list_letter: letter,
-      })
-      that.setData({
-        list_con: that.spliceList(con, 80)
-      })
-      that.setData({
-        list_con: con,
-      })
-      console.log(that.data.list_con)
+        that.setData({
+          list_con: that.spliceList(con, 10),
+          list_letter: letter,
+        })
+        that.setData({
+          list_con: that.spliceList(con, 80)
+        })
+        that.setData({
+          list_con: con,
+        })
+        wx.setStorage({
+          key: 'list_con',
+          data: con,
+        })
+        wx.setStorage({
+          key: 'list_letter',
+          data: letter,
+        })
+      } else {
+        that.setData({
+          list_con: [],
+          list_letter: []
+        })
+        wx.setStorage({
+          key: 'list_con',
+          data: [],
+        })
+        wx.setStorage({
+          key: 'list_letter',
+          data: [],
+        })
+      }
     });
   },
   // 企业详情
