@@ -14,7 +14,7 @@ page {
 }
 
 .card .card-info.card-name {
-  height: 70rpx;
+  height: 57rpx;
   line-height: 70rpx;
   font-size: 30rpx;
 }

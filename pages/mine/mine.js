@@ -42,6 +42,14 @@ Page({
           userImg: res.data.userImg,
           id: res.data.id
         })
+        let userPhotoUrl = res.userImg;
+        let page = "pages/peerscards/peerscards";
+        let scene = res.id;
+        let openid = app.globalData.openid
+        util.makeWxQrCode(userPhotoUrl, scene, page, openid).then(function (res) {
+          console.log(res)
+          app.globalData.QRCode = ("https://www.eqxuan.cn/" + openid + ".png")
+        })
       },
       fail: function (res) {
         that.getData()
@@ -112,6 +120,17 @@ Page({
        }
      })
   },
+  onShow:function(){
+    let that = this
+    let userPhotoUrl = that.data.userImg;
+    let page = "pages/peerscards/peerscards";
+    let scene = that.data.id;
+    let openid = app.globalData.openid
+    util.makeWxQrCode(userPhotoUrl, scene, page, openid).then(function (res) {
+      console.log(res)
+      app.globalData.QRCode = ("https://www.eqxuan.cn/" + openid + ".png")
+    })
+  }
   // scan:function(e){
   //   wx.scanCode({
   //     onlyFromCamera:false,
