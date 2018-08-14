@@ -31,12 +31,12 @@ Page({
     companyWeb:"",//公司官网
     back: "", //是否返回
     isshow: '', //是否显示
-    isshow0: false, //需求是否显示
-    isshow1: false, //资源是否显示
-    isshow2:false,  //个人主页是否显示
-    isshow3:false, //公司官网是否显示
+    isshow0: false, //个人主页是否显示
+    isshow1: false, //公司官网是否显示
+    isshow2: false,  //需求是否显示
+    isshow3: false, //资源是否显示
     formId: '',
-    itemList: ["需求", "资源","个人主页","公司官网"], // 添加更多项
+    list: ["个人主页", "公司官网", "需求", "资源"], // 添加更多项
     saveLoading: false,
     region: '',
     customItem: '',
@@ -72,32 +72,6 @@ Page({
         that.setData({
           image: a.userInfo.avatarUrl
         })
-      }
-    })
-  },
-  // 用户点击添加更多
-  addmore: function() {
-    var that = this
-    wx.showActionSheet({
-      itemList: ["需求", "资源", "个人主页", "公司官网"],
-      success: function(res) {
-        if (res.tapIndex == 0) {
-          that.setData({
-            isshow0: true
-          })
-        } else if (res.tapIndex == 1) {
-          that.setData({
-            isshow1: true
-          })
-        } else if (res.tapIndex == 2) {
-          that.setData({
-            isshow2: true
-          })
-        } else if (res.tapIndex == 3) {
-          that.setData({
-            isshow3: true
-          })
-        }
       }
     })
   },
@@ -197,25 +171,35 @@ Page({
     console.log(e.detail.errMsg)
     console.log(e.detail.iv)
     console.log(e.detail.encryptedData)
-    wx.login({ //微信获取手机号需要code解密      
-      success: function(res) {
-        if (res.code) {
-          console.log(res.code)
-          // wx.request({
-          //   method: 'POST',
-          //   data: {
-          //     code: e.detail.code,
-          //     iv: e.detail.iv,
-          //     encryptedData: e.detail.encryptedData
-          //   },
-          //   url: server + '/userCard/saveOrUpdate',
-          //   header: {
-          //     'content-type': 'application/json'
-          //   },
-          // })
-        }
-      }
+    var that = this
+    var openId = app.globalData.openid
+    var iv = e.detail.iv
+    var encryptedData = e.detail.encryptedData
+    util.getUserPhone(openId, iv, encryptedData).then(function(res){
+      console.log(res)
+      that.setData({
+        phone: res.data.data
+      })
     })
+    // wx.login({ //微信获取手机号需要code解密      
+    //   success: function(res) {
+    //     if (res.code) {
+    //       console.log(res.code)
+    //       wx.request({
+    //         method: 'POST',
+    //         data: {
+    //           openId: e.detail.code,
+    //           iv: e.detail.iv,
+    //           encryptedData: e.detail.encryptedData
+    //         },
+    //         url: server + '/userCard/saveOrUpdate',
+    //         header: {
+    //           'content-type': 'application/json'
+    //         },
+    //       })
+    //     }
+    //   }
+    // })
     // if (e.detail.errMsg == 'getPhoneNumber:fail user deny') {
     // } else {
     // }
@@ -365,6 +349,39 @@ Page({
     let id = e.currentTarget.dataset.idx
     this.setData({
       cardType: id
+    })
+  },
+  //点击添加更多
+  bindPickerChange(e) {
+    let id = e.detail.value
+    if (this.data.list[id] == '个人主页') {
+      this.setData({
+        isshow0: true
+      })
+    }
+    if (this.data.list[id] == '公司官网') {
+      this.setData({
+        isshow1: true
+      })
+    }
+    if (this.data.list[id] == '需求') {
+      this.setData({
+        isshow2: true
+      })
+    }
+    if (this.data.list[id] == '资源') {
+      this.setData({
+        isshow3: true
+      })
+    }
+    let list = []
+    for (var i = 0; i < this.data.list.length; i++) {
+      if (this.data.list[id] !== this.data.list[i]) {
+        list.push(this.data.list[i])
+      }
+    }
+    this.setData({
+      list: list
     })
   }
 })

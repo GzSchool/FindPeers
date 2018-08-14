@@ -254,7 +254,7 @@
         <text>号:</text>
       </view>
       <input placeholder-class="phcolor" maxlength='11' placeholder='填写可见同行手机号' bindinput='addphone' type='number' value='{{phone}}'></input>
-      <!-- <button style='padding:0;' class='wx-get' open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">微信获取</button> -->
+      <button style='padding:0;' class='wx-get' open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">微信获取</button>
     </view>
     <view class='main-li'>
       <view class='star'></view>
@@ -272,7 +272,7 @@
         <text>主</text>
         <text>页:</text>
       </view>
-      <input placeholder-class="phcolor" placeholder='个人主页' bindinput='addHomepage' type='text' value='{{homepage}}' maxlength='40'></input>
+      <input placeholder-class="phcolor" placeholder='个人主页或公众号' bindinput='addHomepage' type='text' value='{{homepage}}' maxlength='40'></input>
     </view>
     <view class='main-li' wx:if='{{isshow1}}'>
       <view class='star'></view>
@@ -301,7 +301,9 @@
       <input placeholder-class="phcolor" placeholder='资源' bindinput='addresource' type='text' value='{{resource}}' maxlength='40'></input>
     </view>
   </view>
-  <view class='more' bindtap='addmore'>添加更多信息</view>
+  <picker bindchange="bindPickerChange"  range="{{list}}">
+  <view class='more'>添加更多信息</view>
+  </picker>
   <view class='intro'>
     <view class='intro-title'>
       <view>简介</view>

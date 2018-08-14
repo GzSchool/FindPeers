@@ -1,4 +1,5 @@
 //服务器地址
+var server = 'http://192.168.2.150:8766'
 var server = "https://www.eqxuan.cn"
 var app = getApp();
 const formatTime = date => {
@@ -396,6 +397,28 @@ function getPeerInfo(openId, cardId) {
   })
 }
 /*
+  获取用户手机号
+*/
+function getUserPhone(openId, iv, encryptedData) {
+  return new Promise(function (res) {
+    wx.request({
+      method: 'GET',
+      url: server + '/user/getUserPhone',
+      data: {
+        openId: openId,
+        iv: iv,
+        encryptedData: encryptedData
+      },
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (b) {
+        res(b)
+      }
+    })
+  })
+}
+/*
   手机号验证
  */
 function testPhone(phone) {
@@ -466,5 +489,6 @@ module.exports = {
   IsURL: IsURL,
   makeWxQrCode:makeWxQrCode,
   getPeerInfo: getPeerInfo,
-  addRemark: addRemark
+  addRemark: addRemark,
+  getUserPhone: getUserPhone
 }

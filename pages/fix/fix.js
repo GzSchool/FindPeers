@@ -48,7 +48,7 @@ Page({
     prepare: '', //用户名字拼音
     region: '',
     customItem: '',
-    list: ['个人主页', '公司官网', '需求','资源']
+    list: []
   },
   //页面加载
   onLoad: function(a) {
@@ -110,22 +110,22 @@ Page({
             isshow3: true
           })
         }
-        // let list = []
-        // if (!that.data.homepage) {
-        //   list.push('个人主页')
-        // }
-        // if (!that.data.companyWeb) {
-        //   list.push('公司官网')
-        // }
-        // if (!that.data.demand) {
-        //   list.push('需求')
-        // }
-        // if (!that.data.resource) {
-        //   list.push('资源')
-        // }
-        // that.setData({
-        //   list: list
-        // })
+        let list = []
+        if (!that.data.homepage) {
+          list.push('个人主页')
+        }
+        if (!that.data.companyWeb) {
+          list.push('公司官网')
+        }
+        if (!that.data.demand) {
+          list.push('需求')
+        }
+        if (!that.data.resource) {
+          list.push('资源')
+        }
+        that.setData({
+          list: list
+        })
       },
       fail: function(res) {
         that.getMyData()
@@ -205,56 +205,24 @@ Page({
             isshow3: true
           })
         }
-        // let list = []
-        // if (!that.data.homepage) {
-        //   list.push('个人主页')
-        // }
-        // if (!that.data.companyWeb) {
-        //   list.push('公司官网')
-        // }
-        // if (!that.data.demand) {
-        //   list.push('需求')
-        // }
-        // if (!that.data.resource) {
-        //   list.push('资源')
-        // }
-        // that.setData({
-        //   list: list
-        // })
+        let list = []
+        if (!that.data.homepage) {
+          list.push('个人主页')
+        }
+        if (!that.data.companyWeb) {
+          list.push('公司官网')
+        }
+        if (!that.data.demand) {
+          list.push('需求')
+        }
+        if (!that.data.resource) {
+          list.push('资源')
+        }
+        that.setData({
+          list: list
+        })
       }
     })
-  },
-  //点击添加更多
-  addmore: function () {
-    var that = this
-    if (that.data.list.length > 0) {
-      let list = []
-      wx.showActionSheet({
-        itemList: that.data.list,
-        success: function (res) {
-          console.log(res)
-          if (res.tapIndex == 0) {
-            that.setData({
-              isshow0: true,
-            })
-          } else if (res.tapIndex == 1) {
-            that.setData({
-              isshow1: true,
-            })
-          } else if (res.tapIndex == 2) {
-            that.setData({
-              isshow2: true,
-            })
-          } else if (res.tapIndex == 3) {
-            that.setData({
-              isshow3: true,
-            })
-          }
-        }
-      })
-    } else {
-      app.showToast('没有更多信息')
-    } 
   },
   //填写名字
   addname: function(e) {
@@ -352,22 +320,20 @@ Page({
   },
   //点击获取手机号
   getPhoneNumber: function(e) {
-    wx.login({ //微信获取手机号需要code解密      
-      success: function(res) {
-        if (res.code) {
-          // wx.request({
-          //   method: 'POST',
-          //   data: {
-          //     code: e.detail.code,
-          //     iv: e.detail.iv,
-          //     encryptedData: e.detail.encryptedData
-          //   },
-          //   url: server + '/userCard/saveOrUpdate',
-          //   header: {
-          //     'content-type': 'application/json'
-          //   },
-          // })
-        }
+    console.log(e)
+    console.log(e.detail.errMsg)
+    console.log(e.detail.iv)
+    console.log(e.detail.encryptedData)
+    var that = this
+    var openId = app.globalData.openid
+    var iv = e.detail.iv
+    var encryptedData = e.detail.encryptedData
+    util.getUserPhone(openId, iv, encryptedData).then(function (res) {
+      console.log(res.data)
+      if (res.data.data) {
+        that.setData({
+          phone: res.data.data
+        })
       }
     })
     if (e.detail.errMsg == 'getPhoneNumber:fail user deny') {} else {}
@@ -493,6 +459,39 @@ Page({
     let id = e.currentTarget.dataset.idx
     this.setData({
       cardType: id
+    })
+  },
+  //点击添加更多
+  bindPickerChange (e) {
+    let id = e.detail.value
+    if (this.data.list[id] == '个人主页') {
+      this.setData({
+        isshow0: true
+      })
+    }
+    if (this.data.list[id] == '公司官网') {
+      this.setData({
+        isshow1: true
+      })
+    }
+    if (this.data.list[id] == '需求') {
+      this.setData({
+        isshow2: true
+      })
+    }
+    if (this.data.list[id] == '资源') {
+      this.setData({
+        isshow3: true
+      })
+    }
+    let list = []
+    for(var i = 0; i < this.data.list.length; i ++) {
+      if (this.data.list[id] !== this.data.list[i]){
+        list.push(this.data.list[i])
+      }
+    }
+    this.setData({
+      list: list
     })
   }
 })
