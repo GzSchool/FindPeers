@@ -24,6 +24,7 @@ Page({
     appOPS: '',
     homepage:"",
     compayWeb:"",
+    samePeer: false,   //判断名片跟用户是不是同一人    
     demand:"",
     resources:"",
     synopsis:"",
@@ -246,15 +247,18 @@ Page({
     util.checkSave(openid, otherid).then(function (a) {
       if (a.data.data) {
         that.setData({
-          checkSave: true
+          checkSave: true,
+          samePeer: false          
         })
       }else if(openid == that.data.otheropenId){
         that.setData({
-          checkSave: true
+          checkSave: true,
+          samePeer:true
         })
       } else {
         that.setData({
-          checkSave: false
+          checkSave: false,
+          samePeer: false          
         })
       }
     })

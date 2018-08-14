@@ -88,13 +88,6 @@ App({
           key: 'userInfo',
           data: res
         })
-        let userPhotoUrl = res.userImg;
-        let page = "pages/peerscards/peerscards";
-        let scene = res.id;
-        util.makeWxQrCode(userPhotoUrl, scene, page, openid).then(function (res) {
-          console.log(res)
-          that.globalData.QRCode=("https://www.eqxuan.cn/" + openid + ".png")
-        })
       } else {
         // 登录失败清空本地缓存
         that.globalData.QRCode="";
