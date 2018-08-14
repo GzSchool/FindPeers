@@ -14,7 +14,7 @@ page{
 .main-ul .main-li{
   border-bottom: 1rpx solid #D9D8D9;
   height: 94rpx;
-  /* line-height: 66rpx; */
+  line-height: 94rpx;
   font-size: 30rpx;
   color: #505050;
   display: flex;
@@ -42,6 +42,10 @@ page{
   min-width: 100rpx;
   display: flex;
   justify-content: space-between;
+}
+.main-ul .main-li .title text {
+  height: 100%;
+  line-height: 100%;
 }
 .main-ul .main-li image {
   width: 16rpx;

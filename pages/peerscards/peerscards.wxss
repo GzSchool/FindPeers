@@ -161,6 +161,8 @@ Page {
   z-index: 999;
   background-color: #fff;
   width: 100%;
+  /* border-top: 1rpx solid #eeeeee; */
+  box-shadow: -2rpx 0rpx 5rpx #efefef;
 }
 
 .choose .choose-in {

@@ -29,7 +29,7 @@ Page({
   },
   onLoad: function(a) {
     // wx.navigateTo({
-    //   url: '../addcards/addcards',
+    //   url: '../fix/fix',
     // })
     console.log(a)
     let that = this

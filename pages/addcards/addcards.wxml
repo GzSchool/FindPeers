@@ -196,7 +196,7 @@
   <view class='main-ul'>
     <view class='main-li'>
       <view class='star'></view>
-      <view class='title'> <text>姓</text><text>名:</text></view>
+      <view class='title'><text>姓</text><text>名:</text></view>
       <input maxlength='8' placeholder-class="phcolor" placeholder='姓名' bindinput='addname' type='text' value='{{name}}' name="name"></input>
     </view>
     <view class='main-li'>

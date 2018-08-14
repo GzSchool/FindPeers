@@ -24,18 +24,18 @@ Page({
     wechatnum: "",          //用户微信号
     email:"",               //用户邮箱
     userJob: '',            //用户职务
-    homepage:"www.chaomu.com",            //用户个人主页
-    companyWeb:"www.gezhiwenhua.com",          //公司官网   
+    homepage:'',            //用户个人主页
+    companyWeb: '',          //公司官网   
     groupId:"",             //群组ID
     image:"",               //用户头像
     demand: '',             //需求     
     resources: '',          //资源
     synopsis: '',           //简介
     cardType: 1
-    // shareing: false
   },
   //页面加载
   onLoad:function(a){
+    console.log('mycard onload')
     wx.showShareMenu({
       withShareTicket: true
     })
@@ -83,7 +83,6 @@ Page({
       that.data.back = true,
       that.data.groupId = a.groupId
     }
-    
   },
   //获取用户信息
   getData() {
@@ -160,9 +159,6 @@ Page({
     })
   },
   onShow:function(){
-    // this.setData({
-    //   shareing: false
-    // })
   },
   //转发分享
   onShareAppMessage: function (a) {

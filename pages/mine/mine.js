@@ -2,10 +2,6 @@
 var app=getApp();
 var util = require('../../utils/util.js');
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
     name:"",         //用户名字
     industry:"",     //用户行业
@@ -131,17 +127,4 @@ Page({
       app.globalData.QRCode = ("https://www.eqxuan.cn/" + openid + ".png")
     })
   }
-  // scan:function(e){
-  //   wx.scanCode({
-  //     onlyFromCamera:false,
-  //     scanType: ['qrCode'],
-  //     success:function(res){
-  //       if(res.path){
-  //         wx.navigateTo({
-  //           url:"/" + res.path,
-  //         })
-  //       }
-  //     }
-  //   })
-  // }
 })

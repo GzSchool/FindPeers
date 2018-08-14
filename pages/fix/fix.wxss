@@ -56,6 +56,10 @@ Page{
   display: flex;
   justify-content: space-between;
 }
+.main-ul .main-li .title text {
+  height: 100%;
+  line-height: 100%;
+}
 .main-ul .main-li image {
   width: 16rpx;
   height: 25rpx;
