@@ -34,69 +34,7 @@ Page{
   border-bottom: 1rpx solid #D8D8D8;
   padding: 22rpx 32rpx 22rpx 0;
 }
-/* .main{
-  box-sizing: border-box;
-  background-color: #ffffff;
-  padding: 29rpx 40rpx;
-  box-shadow: 0rpx 2rpx 10rpx #eeeeee;
-}
-.main .main-top {
-  display: flex;
-}
-.main .main-top .top-left {
-  flex: 1;
-}
-.main .main-top .top-left .info{
-  color: #606060;
-  font-size: 26rpx;
-  line-height: 46rpx;
-}
-.main .main-top .top-left .info.name{
-  font-size: 30rpx;
-  color: #505050;
-  line-height: 64rpx;
-}
-.main .main-top .top-right{
-  width: 160rpx;
-  height: 160rpx;
-}
-.main .main-top .top-right image{
-  background-color: #f8f8f8;
-  width: 160rpx;
-  height: 160rpx;
-  border-radius: 20rpx;
-}
-.main .main-down {
-  margin-top: 60rpx;
-  box-sizing: border-box;
-  display: flex;
-}
-.main .main-down .down-left .contact-info{
-  font-size: 26rpx;
-  color: #606060;
-  line-height: 48rpx;
-  display: flex;
-  align-items: center;
-}
-.main .main-down .down-left .contact-info .info-left {
-  min-width: 34rpx;
-  text-align: left;
-  align-self: flex-start;
-}
-.main .main-down .down-left{
-  flex: 1;
-  overflow:hidden;
-}
-.main .main-down .down-right {
-  text-align: center;
-  min-width: 54rpx;
-  height: 54rpx;
-  align-self: flex-end;
-}
-.main .main-down .down-right image{
-  width: 36rpx;
-  height: 36rpx;
-} */
+
 .footer {
   position: fixed;
   bottom: 30rpx;
