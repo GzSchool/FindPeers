@@ -66,11 +66,13 @@ Page({
     // 要是有id 说明点击的别人分享的（只有两个 一是：群里点击的， 二是：别人分享的）
     if (ops.othercardid || ops.scene) {
       app.globalData.othercardid = ops.othercardid;
+      that.checkedSave(app.globalData.openid, ops.othercardid)      
       that.setData({
         othercardid: ops.othercardid,
         appOPS: app.globalData.appOPS
       })
       if (ops.scene) {
+        that.checkedSave(app.globalData.openid,ops.scene)
         app.globalData.othercardid = ops.scene;
         that.setData({
           othercardid: ops.scene
@@ -78,8 +80,7 @@ Page({
       }
       // 获取 othercardid 用户信息
       if (app.globalData.openid) {
-        let checkSave = that.checkedSave(app.globalData.openid, that.data.othercardid);
-        if (checkSave) {
+        if (that.data.checkSave) {
           that.getPeerInfo(app.globalData.openid, that.data.othercardid)
         } else {
           that.getPeerData(that.data.othercardid)
@@ -111,8 +112,8 @@ Page({
               // 用户标识访问数据库获取用户信息
               that.getMyData(openid)
               // 检查是否保存
-              let checkSave = that.checkedSave(openid, that.data.othercardid);
-              if (checkSave) {
+              console.log(that.data.checkSave)
+              if (that.data.checkSave) {
                 that.getPeerInfo(openid, that.data.othercardid)
               } else {
                 that.getPeerData(that.data.othercardid)
@@ -156,8 +157,8 @@ Page({
                 // 用户标识访问数据库获取用户信息
                 that.getMyData(openid)
                 // 检查是否保存
-                let checkSave = that.checkedSave(openid, that.data.othercardid);
-                if (checkSave) {
+                console.log(that.data.checkSave)
+                if (that.data.checkSave) {
                   that.getPeerInfo(openid, that.data.othercardid)
                 } else {
                   that.getPeerData(that.data.othercardid)
@@ -209,8 +210,8 @@ Page({
           }
           var openid = app.globalData.openid;
           // 检查保存
-          let checkSave = that.checkedSave(openid, that.data.othercardid);
-          if (checkSave) {
+          console.log(that.data.checkSave)
+          if (that.data.checkSave) {
             that.getPeerInfo(openid, that.data.othercardid)
           } else {
             that.getPeerData(that.data.othercardid)
@@ -259,24 +260,22 @@ Page({
   checkedSave(openid, otherid) {
     let that = this
     util.checkSave(openid, otherid).then(function(a) {
+      console.log(a)
       if (a.data.data) {
         that.setData({
           checkSave: true,
           samePeer: false
         })
-        return true;
       } else if (openid == that.data.otheropenId) {
         that.setData({
           checkSave: true,
           samePeer: true
         })
-        return false;
       } else {
         that.setData({
           checkSave: false,
           samePeer: true
         })
-        return false;
       }
     })
   },
