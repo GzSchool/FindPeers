@@ -460,6 +460,7 @@ Page({
         let otherOpenId = that.data.otheropenId;
         util.sharePage(openId, otherOpenId, res).then(function(e) {
           console.log(e)
+          that.hideModal();
         })
       },
       fail: function(res) {
