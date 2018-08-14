@@ -32,7 +32,7 @@
 </view>
 <view class='noresult' wx:if='{{noresult&&list.length==0}}'>
   <image src='../images/none.png'></image>
-  <view>没有找到你想要的同行信息</view>
+  <view>没有找到你想要的名片信息</view>
 </view>
 <view class='searching' wx:if='{{searching}}'>
 <view class='weui-loading'></view> 加载中···</view>

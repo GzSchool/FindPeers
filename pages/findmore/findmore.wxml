@@ -31,7 +31,7 @@
   <view class='mine-card res-card'>
     <view class='card-title'>
       <view class='title-tips'></view>
-      <view class='title-name'>收到的同行信息</view>
+      <view class='title-name'>收到的名片信息</view>
     </view>
   </view>
   <view class='mes-list'>
@@ -42,14 +42,14 @@
           <image src='../images/logo.png'></image>
         </view>
         <view class='li-right'>
-          <view class='mes-name'>找同行团队
+          <view class='mes-name'>名片Live团队
             <text>教育行业</text>
           </view>
           <view class='mes-info'>北京市海淀区</view>
           <view class='mes-info'>北京格致文化传播有限公司</view>
         </view>
       </view>
-      <!-- <view class='letter'>同行信息</view> -->
+      <!-- <view class='letter'>名片信息</view> -->
       <!-- <view class='mes-li' wx:for="{{list}}" wx:for-index="index" wx:for-item="item" data-id="{{item.id}}" wx:key="11" data-key='{{item.openId}}' data-saveFlag='{{item.saveFlag}}' bindtap='select'>
         <view class='li-left'>
           <image src='{{item.userImg}}'></image>

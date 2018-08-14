@@ -21,6 +21,7 @@ Page({
   },
   //页面初始化（只加载一次）
   onLoad: function(ops) {
+    console.log(ops)
     wx.showShareMenu({
       withShareTicket: true
     })
@@ -216,7 +217,7 @@ Page({
     let that = this
     let otheropenId = that.data.otheropenId;
     return {
-      title: '找同行',
+      title: '名片Live',
       path: '/pages/findmore/findmore',
       success: function (res) {
         let openId = app.globalData.openid;
@@ -231,7 +232,12 @@ Page({
     }
   },
   onShow:function(e){
+    var ops = { openid: this.data.openid, groupid: this.data.groupId };
+    this.onLoad(ops);
     let that = this
+    that.setData({
+      selectAll:false
+    })
     wx.getStorage({
       key: 'userInfo',
       success: function(res) {

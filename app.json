@@ -18,7 +18,7 @@
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#ffffff",
-    "navigationBarTitleText": "找同行",
+    "navigationBarTitleText": "名片Live",
     "navigationBarTextStyle": "black",
     "backgroundColor": "#d6dbe0"
   },
@@ -30,7 +30,7 @@
     "list": [
       {
         "pagePath": "pages/findmore/findmore",
-        "text": "找同行",
+        "text": "名片夹",
         "iconPath": "pages/images/menu_1.png",
         "selectedIconPath": "pages/images/menu_1_active.png"
       },

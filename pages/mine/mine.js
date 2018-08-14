@@ -54,12 +54,20 @@ Page({
     //获取用户个人信息
     util.getMyData(openid).then(function (res) {
       if (!res) {
+        let userPhotoUrl = res.userImg;
+        let page = "pages/peerscards/peerscards";
+        let scene = res.id;
+        util.makeWxQrCode(userPhotoUrl, scene, page, openid).then(function (res) {
+          console.log(res)
+          app.globalData.QRCode = ("https://www.eqxuan.cn/" + openid + ".png")
+        })
         that.setData({
           notadd: true
         })
         app.globalData.notadd = true
       } else {
         app.globalData.notadd = false
+        app.globalData.QRCode = ""
         that.setData({
           name: res.username,
           userJob: res.userJob,
@@ -76,7 +84,7 @@ Page({
   onShareAppMessage: function (a) {
     let that = this
     return {
-      title: '我的同行信息',
+      title: '我的名片信息',
       path: '/pages/peerscards/peerscards?othercardid=' + that.data.id,
       success: function (res) {
         let openid = app.globalData.openid;
@@ -95,14 +103,14 @@ Page({
   },
  //点击放大预览 再长按可以转发，保存，识别（真机可测）
   viewImage:function(e){           
-    // var image = this.data.QRCode;
-    // wx.previewImage({
-    //    current: image, // 当前显示图片的http链接
-    //    urls: [image], // 需要预览的图片http链接列表
-    //    success:function(e){
-    //      console.log(e)
-    //    }
-    //  })
+    var image = this.data.QRCode;
+    wx.previewImage({
+       current: image, // 当前显示图片的http链接
+       urls: [image], // 需要预览的图片http链接列表
+       success:function(e){
+         console.log(e)
+       }
+     })
   },
   // scan:function(e){
   //   wx.scanCode({

@@ -37,6 +37,7 @@ Page({
     introduction: "", //简介
     resource: "", //资源
     email: "", //邮箱
+    itemList: ["个人主页", "公司官网", "需求", "资源"],    
     homepage: "", //个人主页
     companyWeb: "", //公司官网
     isshow0: false, //显示公司官网
@@ -224,7 +225,7 @@ Page({
     })
   },
   //点击添加更多
-  addmore: function() {
+  addmore: function () {
     var that = this
     if (that.data.list.length > 0) {
       let list = []
@@ -253,7 +254,7 @@ Page({
       })
     } else {
       app.showToast('没有更多信息')
-    }
+    } 
   },
   //填写名字
   addname: function(e) {
@@ -473,7 +474,7 @@ Page({
   onShareAppMessage: function(a) {
     var that = this
     return {
-      title: '找同行',
+      title: '名片Live',
       path: '/pages/findmore/findmore',
       success: function(res) {
         let openId = app.globalData.openid;

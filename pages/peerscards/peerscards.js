@@ -377,7 +377,7 @@ Page({
     } else {
       wx.showModal({
         title: '温馨提示',
-        content: '该同行名片手机号为空',
+        content: '该张名片手机号为空',
         confirmText: '知道了',
         success: function(res) {
           that.hideModal();
@@ -450,7 +450,7 @@ Page({
     var openId = app.globalData.openid;
     var id = that.data.othercardid;
     return {
-      title: '同行信息',
+      title: '名片信息',
       path: '/pages/peerscards/peerscards?othercardid=' + that.data.othercardid,
       success: function (res) {
         let openId = app.globalData.openid;

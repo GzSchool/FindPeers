@@ -20,7 +20,7 @@ Page({
     notadd: false, //是否未添加信息
     scrollTop: 0, //滚动菜单
     screenHeight: '', //滚动菜单高度 
-    list_con: [], // 同行数据列表
+    list_con: [], // 名片数据列表
     list_length: 0, // 一共保存多少张
     topNum: 0, // 距离顶部高度
     list_id: '', // 锚点
@@ -137,7 +137,7 @@ Page({
       })
     }
   },
-  // 获取同行数据
+  // 获取名片数据
   getData() {
     console.log('getData')
     var that = this;
@@ -323,7 +323,7 @@ Page({
     var that = this
     var otheropenId = that.data.otheropenId;
     return {
-      title: '找同行',
+      title: '名片Live',
       path: '/pages/findmore/findmore',
       success: function(res) {
         let openId = app.globalData.openid;

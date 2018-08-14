@@ -231,7 +231,8 @@
         <image src='../images/card/companyWeb.png' style='width:36rpx;height:33rpx'></image>
       </view>
     </view>
-    <view class='con-li-right'><text selectable='true'>{{companyWeb}}</text></view>
+    <view class='con-li-right1'>{{companyWeb}}</view>
+    <view class="con-li-copy" bindtap='copy' data-num="{{companyWeb}}"><image src="/pages/images/card/copy.png"></image></view>
   </view>
   <view class='con-li' wx:if='{{demand}}'>
     <view class='con-li-left'>
@@ -344,7 +345,7 @@
     <button class="footer-btn" wx:if='{{!isSave&&!notadd}}' form-type="submit">保存到名片夹</button>
   </form>
   <button class="footer-btn" wx:if='{{notadd}}' open-type='getUserInfo' bindgetuserinfo='addcards'>添加个人信息</button>
-  <button class="write" wx:if='{{isSave}}' bindtap='remove'>删除同行信息</button>
+  <button class="write" wx:if='{{isSave}}' bindtap='remove'>删除本张名片</button>
 </view>
 <view class='card-set' wx:if='{{!notadd && !chooseSize}}' bindtap='chooseSize'>
   <view class='card-set-icon'><image src='../images/card/card_set.png'></image></view>
