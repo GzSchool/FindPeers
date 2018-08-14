@@ -34,7 +34,7 @@ Page({
     checkSave: true, //检验是不是保存了这个名片
     isgroup: '', //判断是否是在群里点击的
     notadd: false, //用户是否添加信息
-    remark: '' // 备注
+    remark: "" // 备注
   },
   //页面加载
   onLoad: function(ops) {
@@ -106,6 +106,8 @@ Page({
           addPhone: true
         })
       }
+      that.checkedSave(app.globalData.openid, that.data.othercardid)      
+      console.log("checkedSave1111111111111111111111111111111")      
       // 等于 1044 是群里点击的
       if (that.data.appOPS.scene == 1044) {
         // 群里点击的回带shareTickets可以用这个获取groupid
@@ -193,6 +195,7 @@ Page({
           }
         })
         // 点击的个人的分享
+        console.log(that.data.checkSave)
       } else {
         console.log("点击个人的分享")
         that.setData({
@@ -200,7 +203,8 @@ Page({
           addPhone: true
         })
         if (app.globalData.openid) {
-          var openid = app.globalData.openid          
+          var openid = app.globalData.openid   
+          console.log(that.data.checkSave)       
           if (that.data.checkSave) {
             that.getPeerInfo(openid, that.data.othercardid)
           } else {
@@ -215,8 +219,10 @@ Page({
               var openid = app.globalData.openid
               // 检查保存
               if (that.data.checkSave) {
+                console.log(that.data.checkSave)
                 that.getPeerInfo(openid, that.data.othercardid)
               } else {
+                console.log(that.data.checkSave)
                 that.getPeerData(that.data.othercardid)
               }
               that.getMyData(openid)
@@ -224,6 +230,7 @@ Page({
           })
         }
       }
+      console.log(that.data.checkSave)      
     }
     wx.showShareMenu({
       withShareTicket: true
@@ -264,15 +271,16 @@ Page({
     console.log(openid)
     console.log(otherid)    
     util.checkSave(openid, otherid).then(function(a) {
-      console.log(a)
-      console.log(that.data.otheropenId)          
-      if (openid == that.data.otheropenId) {
-        that.setData({
-          isSave: true,
-          checkSave:true,
-          samePeer: true
-        })
-      }
+      console.log("checkedSave2222222222222222222")                  
+      console.log(that.data.otheropenId)
+      console.log(openid == that.data.otheropenId)          
+      // if (openid == that.data.otheropenId) {
+      //   that.setData({
+      //     isSave: true,
+      //     checkSave:true,
+      //     samePeer: true
+      //   })
+      // }
       if (a.data.data) {
         that.setData({
           checkSave: true,
@@ -312,6 +320,12 @@ Page({
         cardType: res.data.data.cardType,
         remark: res.data.data.remark ? res.data.data.remark : ''        
       })
+      if (app.globalData.openid == res.data.data.openId) {
+        that.setData({
+          checkSave: true,
+          samePeer: true
+        })
+      }
     })
   },
   getPeerData(othercardid) {
@@ -338,6 +352,13 @@ Page({
         id: res.data.data[0].id,
         cardType: res.data.data[0].cardType,
       })
+      if (app.globalData.openid == res.data.data[0].openId){
+        that.setData({
+          checkSave:true,
+          samePeer: true
+        })
+      }
+      console.log("getpeerData22222222222222222222222222")      
     })
   },
   addcards: function(e) {
