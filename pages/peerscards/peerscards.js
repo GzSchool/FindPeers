@@ -3,6 +3,7 @@ var util = require('../../utils/util.js');
 var app = getApp();
 Page({
   data: {
+    myCardId: '',
     server: app.globalData.server, //服务器地址
     groupId: 0, //群组ID
     cardId: [], //名片ID数组
@@ -39,12 +40,20 @@ Page({
   onLoad: function(ops) {
     console.log(ops)
     let that = this
+    var openid = wx.getStorageSync('openid');
+    if (openid) {
+      app.globalData.openid = openid
+      that.data.openid = openid
+    } else {
+      app.login()
+    }
     wx.getStorage({
       key: 'userInfo',
       success: function(res) {
         console.log(res)
         that.setData({
-          userInfo: res.data
+          userInfo: res.data,
+          myCardId: res.data.id
         })
         if (res.data.userPhone) {
           app.globalData.addPhone = true
@@ -76,8 +85,8 @@ Page({
           othercardid: ops.scene
         })
       }
-      that.checkedSave(app.globalData.openid, that.data.othercardid)
       that.getPeerData(that.data.othercardid)
+      that.checkedSave(app.globalData.openid, that.data.othercardid)
       // 获取 othercardid 用户信息
       if (app.globalData.openid) {
         if (that.data.checkSave) {
