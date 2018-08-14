@@ -2,7 +2,6 @@
 page {
   background-color: #f8f8f8;
   padding-top: 22rpx;
-  /* box-sizing: border-box; */
 }
 .main {
   background-color: #ffffff;

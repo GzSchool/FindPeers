@@ -13,7 +13,6 @@ Page({
     openid: "", //用户标识
     othercardid: "", //分享的人的标识
     groupId: "", //群id
-    userId: 0, //用户id
     name: "", //用户名字
     wechatnum: "", //用户填写的微信号
     image: "", //用户的微信头像
@@ -30,7 +29,6 @@ Page({
     homepage:"",//个人主页
     companyWeb:"",//公司官网
     back: "", //是否返回
-    isshow: '', //是否显示
     isshow0: false, //个人主页是否显示
     isshow1: false, //公司官网是否显示
     isshow2: false,  //需求是否显示
@@ -166,11 +164,9 @@ Page({
       that.getData()
     }
   },
-  getPhoneNumber: function(e) { //用户点击微信获取手机
+  // 用户点击微信获取手机
+  getPhoneNumber: function(e) { 
     console.log(e)
-    console.log(e.detail.errMsg)
-    console.log(e.detail.iv)
-    console.log(e.detail.encryptedData)
     var that = this
     var openId = app.globalData.openid
     var iv = e.detail.iv
@@ -181,25 +177,6 @@ Page({
         phone: res.data.data
       })
     })
-    // wx.login({ //微信获取手机号需要code解密      
-    //   success: function(res) {
-    //     if (res.code) {
-    //       console.log(res.code)
-    //       wx.request({
-    //         method: 'POST',
-    //         data: {
-    //           openId: e.detail.code,
-    //           iv: e.detail.iv,
-    //           encryptedData: e.detail.encryptedData
-    //         },
-    //         url: server + '/userCard/saveOrUpdate',
-    //         header: {
-    //           'content-type': 'application/json'
-    //         },
-    //       })
-    //     }
-    //   }
-    // })
     // if (e.detail.errMsg == 'getPhoneNumber:fail user deny') {
     // } else {
     // }
@@ -293,7 +270,6 @@ Page({
           app.showToast("保存成功");
           if (othercardid != "") {
             app.globalData.notadd = false
-            //  + '&notadd=false'
             wx.redirectTo({
               url: '/pages/peerscards/peerscards?othercardid=' + othercardid,
             })
@@ -345,6 +321,7 @@ Page({
       }
     }
   },
+  // 选择名片类型
   chooseCard: function (e) {
     let id = e.currentTarget.dataset.idx
     this.setData({
@@ -385,26 +362,3 @@ Page({
     })
   }
 })
-
-// ,
-// submitInfo: function(e) {
-//   this.setData({
-//     formId: e.detail.formId
-//   })
-//   console.log(this.data.formId)
-//   let that = this
-//   if (this.data.name == '' || this.data.name == null) {
-//     wx.getUserInfo({
-//       success: function (a) {
-//         console.log(a)
-//         that.setData({
-//           name: a.userInfo.nickName,
-//           image: a.userInfo.avatarUrl
-//         })
-//         that.getData()
-//       }
-//     })
-//   } else {
-//     this.getData()
-//   }
-// }

@@ -11,7 +11,6 @@ Page({
     loading: false,   // 显示加载中
     loadAll: false,   // 是否已加载全部
     noresult: false,  // 是否显示无搜索结果
-    key: " 微信号、城市、公司、行业等进行搜索",
     searching: false, 
   },
   //页面加载

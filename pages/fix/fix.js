@@ -36,8 +36,7 @@ Page({
     demand: "", //需求
     introduction: "", //简介
     resource: "", //资源
-    email: "", //邮箱
-    itemList: ["个人主页", "公司官网", "需求", "资源"],    
+    email: "", //邮箱  
     homepage: "", //个人主页
     companyWeb: "", //公司官网
     isshow0: false, //显示公司官网
@@ -48,7 +47,7 @@ Page({
     prepare: '', //用户名字拼音
     region: '',
     customItem: '',
-    list: []
+    list: [] // picker列表
   },
   //页面加载
   onLoad: function(a) {
@@ -139,7 +138,7 @@ Page({
       })
     }
   },
-  // 获取个人信息，缓存获取失败时调用
+  // 获取个人信息，缓存获取失败时调用 
   getMyData() {
     let that = this
     that.data.openid = app.globalData.openid;
@@ -321,9 +320,6 @@ Page({
   //点击获取手机号
   getPhoneNumber: function(e) {
     console.log(e)
-    console.log(e.detail.errMsg)
-    console.log(e.detail.iv)
-    console.log(e.detail.encryptedData)
     var that = this
     var openId = app.globalData.openid
     var iv = e.detail.iv
@@ -455,6 +451,7 @@ Page({
       }
     }
   },
+  // 选择卡片类型
   chooseCard: function(e) {
     let id = e.currentTarget.dataset.idx
     this.setData({

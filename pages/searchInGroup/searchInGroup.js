@@ -11,7 +11,6 @@ Page({
     searching: false, // 搜索中
     list: [],
     mes: '', // 输入框内容
-    key: " 微信号、城市、公司、行业等进行搜索",
     groupid: '',
     // pageNum: 1, //当前页数
     // pageSize: 10, //显示数量
