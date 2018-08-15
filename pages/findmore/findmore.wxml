@@ -39,7 +39,7 @@
       <!-- <view class='letter'>Z</view> -->
       <view class='mes-li' bindtap='trans'>
         <view class='li-left'>
-          <image src='../images/logo.png'></image>
+          <image src='../images/card/peerLive.png'></image>
         </view>
         <view class='li-right'>
           <view class='mes-name'>名片Live团队

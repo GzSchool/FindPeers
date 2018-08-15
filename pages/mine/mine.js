@@ -28,7 +28,6 @@ Page({
     wx.getStorage({
       key: 'userInfo',
       success: function (res) {
-        console.log(res)
         that.setData({
           name: res.data.username,
           userJob: res.data.userJob,
@@ -38,9 +37,9 @@ Page({
           userImg: res.data.userImg,
           id: res.data.id
         })
-        let userPhotoUrl = res.userImg;
+        let userPhotoUrl = res.data.userImg;
         let page = "pages/peerscards/peerscards";
-        let scene = res.id;
+        let scene = res.data.id;
         let openid = app.globalData.openid
         util.makeWxQrCode(userPhotoUrl, scene, page, openid).then(function (res) {
           if (res.data.success) {
@@ -63,6 +62,11 @@ Page({
     //获取用户个人信息
     util.getMyData(openid).then(function (res) {
       if (!res) {
+        that.setData({
+          notadd: true
+        })
+        app.globalData.notadd = true
+      } else {
         let userPhotoUrl = res.userImg;
         let page = "pages/peerscards/peerscards";
         let scene = res.id;
@@ -73,13 +77,8 @@ Page({
           } else {
             app.globalData.QRCode = ""
             that.data.QRCode = ""
-          }  
+          }
         })
-        that.setData({
-          notadd: true
-        })
-        app.globalData.notadd = true
-      } else {
         app.globalData.notadd = false
         app.globalData.QRCode = ""
         that.setData({
@@ -132,15 +131,20 @@ Page({
     let page = "pages/peerscards/peerscards";
     let scene = that.data.id;
     let openid = app.globalData.openid
-    util.makeWxQrCode(userPhotoUrl, scene, page, openid).then(function (res) {
-      if (res.data.success) {
-        app.globalData.QRCode = ("https://www.eqxuan.cn/" + openid + ".png")
-        that.data.QRCode = app.globalData.QRCode
-      } else {
-        app.globalData.QRCode = ""
-        that.data.QRCode = ""
-      }  
-    })
+    if(openid&&userPhotoUrl){
+      util.makeWxQrCode(userPhotoUrl, scene, page, openid).then(function (res) {
+        if (res.data.success) {
+          app.globalData.QRCode = ("https://www.eqxuan.cn/" + openid + ".png")
+          that.data.QRCode = app.globalData.QRCode
+        } else {
+          app.globalData.QRCode = ""
+          that.data.QRCode = ""
+        }
+      })
+    }else{
+      app.globalData.QRCode = ""
+      that.data.QRCode = ""
+    }
   },
   save (e) {
     console.log(e.detail.formId)
