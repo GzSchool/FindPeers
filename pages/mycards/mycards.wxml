@@ -66,10 +66,10 @@
     <view class='card-middle'>
       <image src='../images/card/card_1.png'></image>
     </view>
-    <view class='card-down'>
+    <view class='card-down' wx:if='{{mineInfo.phone}}'>
       <view class='card-mes' wx:if='{{mineInfo.phone}}'>
         <image src='../images/card/mes_phone.png' style='width:26rpx;height:26rpx;'></image><text selectable='true'>{{mineInfo.phone}}</text></view>
-      <view class='card-mes' >
+      <view class='card-mes' wx:if='{{mineInfo.wechatnum}}'>
         <image src='../images/card/mes_wechat.png' style='width:26rpx;height:21rpx;'></image><text selectable='true'>{{mineInfo.wechatnum}}</text></view>
       <view class='card-mes' wx:if='{{mineInfo.email}}'>
         <image src='../images/card/mes_email.png' style='width:26rpx;height:17rpx;'></image><text selectable='true'>{{mineInfo.email}}</text></view>
@@ -107,7 +107,7 @@
             <image src='../images/card/card_4/mes_phone_4.png' style='width:26rpx;height:26rpx;'></image>
           </view><text selectable='true'>{{mineInfo.phone}}</text>
         </view>
-        <view class='card-mes'>
+        <view class='card-mes' wx:if='{{mineInfo.wechatnum}}'>
           <view class='mes-icon'>
             <image src='../images/card/card_4/mes_wechat_4.png' style='width:25rpx;height:20rpx;'></image>
           </view>
@@ -154,7 +154,7 @@
             </view>
             <text class='over-flow-hide' selectable='true'>{{mineInfo.phone}}</text>
           </view>
-          <view class='card-mes'>
+          <view class='card-mes' wx:if='{{mineInfo.wechatnum}}'>
             <view class='mes-icon'>
               <image src='../images/card/card_5/mes_wechat_5.png'></image>
             </view>

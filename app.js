@@ -7,6 +7,7 @@ App({
     notadd: false,
     QRCode:"",
     openid: '',
+    userImage:"",       //用户头像
     userImg:"",         //用户头像
     addPhone: '',       //判断是否已添加手机号
     othercardid: '',    //点击别人分享的别人的id
@@ -17,11 +18,15 @@ App({
     urlOfGetCardByOpenID: '/userCard/findOneByOpenId', //获取当前用户信息
   },
   onLaunch: function (ops) {
+    let that = this
     var openid = wx.getStorageSync('openid');
     if (openid) {
-      this.globalData.openid = openid
+      that.globalData.openid = openid
     }
     this.login()
+  },
+  onShow: function (ops) {
+    this.globalData.appOPS = ops
     // 热更新
     const updateManager = wx.getUpdateManager()
     updateManager.onCheckForUpdate(function (res) {
@@ -48,9 +53,23 @@ App({
         showCancel: false
       })
     })
-  },
-  onShow: function (ops) {
-    this.globalData.appOPS = ops
+    let that = this
+    wx.getSetting({
+      success: function (e) {
+        if (e.authSetting['scope.userInfo']) {
+          wx.getUserInfo({
+            success: function (res) {
+              that.globalData.userImage = res.userInfo.avatarUrl
+            }
+          })
+        } else {
+          that.globalData.userImage = ""
+        }
+      }, fail: function (e) {
+        that.globalData.userImage = ""
+        console.log(e)
+      }
+    })
   },
   onHide: function () {
     this.globalData.appOPS = ''
@@ -88,7 +107,12 @@ App({
           key: 'userInfo',
           data: res
         })
-        let userPhotoUrl = res.userImg;
+        let userPhotoUrl = "";
+        if(that.globalData.userImage){
+          userPhotoUrl = that.globalData.userImage
+        }else{
+          userPhotoUrl = res.userImg;
+        }
         let page = "pages/peerscards/peerscards";
         let scene = res.id;
         util.makeWxQrCode(userPhotoUrl, scene, page, openid).then(function (res) {

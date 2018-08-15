@@ -37,7 +37,12 @@ Page({
           userImg: res.data.userImg,
           id: res.data.id
         })
-        let userPhotoUrl = res.data.userImg;
+        let userPhotoUrl = "";
+        if(app.globalData.userImage){
+          userPhotoUrl = app.globalData.userImage;
+        }else{
+          userPhotoUrl = res.data.userImg
+        }
         let page = "pages/peerscards/peerscards";
         let scene = res.data.id;
         let openid = app.globalData.openid
@@ -67,7 +72,12 @@ Page({
         })
         app.globalData.notadd = true
       } else {
-        let userPhotoUrl = res.userImg;
+        let userPhotoUrl = "";
+        if (app.globalData.userImage) {
+          userPhotoUrl = app.globalData.userImage;
+        } else {
+          userPhotoUrl = res.userImg
+        }
         let page = "pages/peerscards/peerscards";
         let scene = res.id;
         util.makeWxQrCode(userPhotoUrl, scene, page, openid).then(function (res) {
@@ -127,7 +137,12 @@ Page({
   },
   onShow:function(){
     let that = this
-    let userPhotoUrl = that.data.userImg;
+    let userPhotoUrl = "";
+    if (app.globalData.userImage) {
+      userPhotoUrl = app.globalData.userImage;
+    } else {
+      userPhotoUrl = that.data.userImg
+    }
     let page = "pages/peerscards/peerscards";
     let scene = that.data.id;
     let openid = app.globalData.openid

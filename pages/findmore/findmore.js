@@ -94,7 +94,13 @@ Page({
             data: res,
           })
           if(!app.globalData.QRCode){
-          let userPhotoUrl = res.userImg;
+
+          let userPhotoUrl = ""
+          if(app.globalData.userImage){
+            userPhotoUrl = app.globalData.userImage;
+          }else{
+            userPhotoUrl = res.userImg;
+          }
           let page = "pages/peerscards/peerscards";
           let scene = res.id;
           util.makeWxQrCode(userPhotoUrl, scene, page, openid).then(function (res) {
