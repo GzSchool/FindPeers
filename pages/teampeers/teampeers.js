@@ -144,8 +144,12 @@ Page({
           }
           that.setData({
             list: list,
-            listOfSave: listOfSave
+            listOfSave: listOfSave,
+            list_length: adc.data.data.result.length - listOfSave.length,
           });
+          console.log('---')
+          console.log(that.data.listOfSave)
+          console.log(that.data.list_length)
         })
         wx.hideLoading()
         if (res.data.success && res.statusCode == 200) {
@@ -245,7 +249,7 @@ Page({
   },
   onShow:function(e){
     var ops = { openid: this.data.openid, groupid: this.data.groupId };
-    // this.onLoad(ops);
+    this.onLoad(ops);
     let that = this
     that.setData({
       selectAll:false
