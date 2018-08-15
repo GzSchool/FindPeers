@@ -1,7 +1,7 @@
 /* pages/company/company.wxss */
 page {
   background-color: #f8f8f8;
-  padding-top: 22rpx;
+  /* padding-top: 22rpx; */
 }
 .main {
   background-color: #ffffff;

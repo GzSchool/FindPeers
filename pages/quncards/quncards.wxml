@@ -15,7 +15,7 @@
           <view class='title-name'>
           <open-data type="groupName" open-gid="{{item.groupId}}"></open-data>
           </view>
-          <view class='title-time'>{{item.ctTime}}</view>
+          <view class='title-time'>{{item.upTime}}</view>
         </view>
         <view class='count'><text style='margin-right:40rpx;'>未保存:{{item.saveFalse}}张</text><text>已保存:{{item.saveTrue}}张</text></view>
       </view>

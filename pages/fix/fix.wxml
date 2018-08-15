@@ -284,7 +284,7 @@
         <text>官</text>
         <text>网:</text>
       </view>
-      <input placeholder-class="phcolor" placeholder='公司官网' bindinput='addCompanyWeb' type='text' value='{{companyWeb}}' maxlength='40'></input>
+      <input placeholder-class="phcolor" placeholder='公司官网或公众号' bindinput='addCompanyWeb' type='text' value='{{companyWeb}}' maxlength='40'></input>
     </view>
     <view class='main-li' wx:if='{{isshow2}}'>
       <view class='star'></view>

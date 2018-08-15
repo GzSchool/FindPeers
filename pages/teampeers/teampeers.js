@@ -17,6 +17,8 @@ Page({
     selectAll: false,         //选择全部
     hasSelect: false,         //单个选择
     formId: '',               //表单ID
+    list_length: 0,
+    // saveFalseNum: 0,
   },
   //页面初始化（只加载一次）
   onLoad: function(ops) {
@@ -38,20 +40,28 @@ Page({
     var groupId = that.data.groupId;
     //获取群里用户
     util.getGroupCards(openId, groupId,1,600).then(function(res) {
-      console.log(res.data.data)
+      console.log(res.data)
       var length = res.data.data.result.length;
-      that.setData({
-        list: res.data.data.result.slice(0, 10)
-      });
-      for (var i = 0; i < length; i++) {
-        res.data.data.result[i].isselect = false
-        if (res.data.data.result[i].saveFlag == 1) {
-          listOfSave.push(res.data.data.result[i].id)
+      // for (var i = 0; i < length; i++) {
+      //   res.data.data.result[i].isselect = false
+      //   if (res.data.data.result[i].saveFlag == 1) {
+      //     listOfSave.push(res.data.data.result[i].id)
+      //   }
+      // }
+      res.data.data.result.forEach(function(a,b){
+        a.isselect = false
+        if (a.saveFlag == 1) {
+          listOfSave.push(a.id)
         }
-      }
+      })
+      that.setData({
+        list: res.data.data.result.slice(0, 10),
+        // saveFalseNum: res.data.data.saveFalseNum,
+        listOfSave: listOfSave,
+        list_length: res.data.data.result.length - listOfSave.length,
+      });
       that.setData({
         list: res.data.data.result,
-        listOfSave: listOfSave,
         searching: false
       })
     })
@@ -235,7 +245,7 @@ Page({
   },
   onShow:function(e){
     var ops = { openid: this.data.openid, groupid: this.data.groupId };
-    this.onLoad(ops);
+    // this.onLoad(ops);
     let that = this
     that.setData({
       selectAll:false
