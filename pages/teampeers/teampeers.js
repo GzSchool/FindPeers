@@ -117,12 +117,7 @@ Page({
       //保存用户  
       wx.showLoading({
         title: '保存中...',
-      })
-      console.log(openid)
-      console.log(groupid)
-      console.log(activeList)
-      console.log(saveName)
-      console.log(formId)      
+      })      
       util.saveOrUpdate(openid, groupid, 2, activeList, saveName, formId).then(function (res) {
         console.log(res)      
         
