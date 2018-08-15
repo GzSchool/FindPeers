@@ -20,7 +20,7 @@
     "navigationBarBackgroundColor": "#ffffff",
     "navigationBarTitleText": "名片Live",
     "navigationBarTextStyle": "black",
-    "backgroundColor": "#d6dbe0"
+    "backgroundColor": "#ffffff"
   },
   "tabBar": {
     "color": "#949494",
