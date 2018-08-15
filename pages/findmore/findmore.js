@@ -103,6 +103,10 @@ Page({
           }
           let page = "pages/peerscards/peerscards";
           let scene = res.id;
+            console.log(userPhotoUrl)
+            console.log(scene)
+            console.log(page)
+            console.log(openid)
           util.makeWxQrCode(userPhotoUrl, scene, page, openid).then(function (res) {
             console.log(res)
             app.globalData.QRCode = ("https://www.eqxuan.cn/" + openid + ".png")
