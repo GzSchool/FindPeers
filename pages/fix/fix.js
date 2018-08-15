@@ -319,20 +319,23 @@ Page({
   },
   //点击获取手机号
   getPhoneNumber: function(e) {
-    console.log(e)
-    var that = this
-    var openId = app.globalData.openid
-    var iv = e.detail.iv
-    var encryptedData = e.detail.encryptedData
-    util.getUserPhone(openId, iv, encryptedData).then(function (res) {
-      console.log(res.data)
-      if (res.data.data) {
-        that.setData({
-          phone: res.data.data
-        })
-      }
-    })
-    if (e.detail.errMsg == 'getPhoneNumber:fail user deny') {} else {}
+    if (e.detail.errMsg == 'getPhoneNumber:fail user deny') {
+      // app.showToast('取消授权')
+    } else {
+      console.log(e)
+      var that = this
+      var openId = app.globalData.openid
+      var iv = e.detail.iv
+      var encryptedData = e.detail.encryptedData
+      util.getUserPhone(openId, iv, encryptedData).then(function (res) {
+        console.log(res.data)
+        if (res.data.data) {
+          that.setData({
+            phone: res.data.data
+          })
+        }
+      })
+    }
   },
   //设置行业
   chooseIn() {

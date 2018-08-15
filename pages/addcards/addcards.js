@@ -166,20 +166,20 @@ Page({
   },
   // 用户点击微信获取手机
   getPhoneNumber: function(e) { 
-    console.log(e)
-    var that = this
-    var openId = app.globalData.openid
-    var iv = e.detail.iv
-    var encryptedData = e.detail.encryptedData
-    util.getUserPhone(openId, iv, encryptedData).then(function(res){
-      console.log(res)
-      that.setData({
-        phone: res.data.data
+    if (e.detail.errMsg == 'getPhoneNumber:fail user deny') {
+    } else {
+      console.log(e)
+      var that = this
+      var openId = app.globalData.openid
+      var iv = e.detail.iv
+      var encryptedData = e.detail.encryptedData
+      util.getUserPhone(openId, iv, encryptedData).then(function (res) {
+        console.log(res)
+        that.setData({
+          phone: res.data.data
+        })
       })
-    })
-    // if (e.detail.errMsg == 'getPhoneNumber:fail user deny') {
-    // } else {
-    // }
+    }
   },
   chooseIn() {
     wx.navigateTo({
