@@ -477,7 +477,7 @@ function userFromId(formIds, openId) {
       method: 'POST',
       url: server + '/userFromId/save',
       data: {
-        formIds: formIds,
+        fromIds: formIds, // 是fromId
         openId: openId,
       },
       header: {

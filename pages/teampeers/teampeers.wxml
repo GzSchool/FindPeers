@@ -30,7 +30,8 @@
   <view class='crowd-title'>
     <view class='crowd-title-left' wx:if='{{listOfSave.length!==0}}' bindtap='selectAll'>
       <image class="select {{selectAll?'':'noselect'}}" src="{{selectAll?'../images/select.png':'../images/select_no.png'}}"></image>全选</view>
-    <view class='crowd-title-middle'>{{listOfSave.length}}张名片未保存</view>
+    <view class='crowd-title-middle' wx:if='{{listOfSave.length>0}}'>{{listOfSave.length}}张名片未保存</view>
+    <view class='crowd-title-middle' wx:if='{{listOfSave.length==0}}'>{{list.length}}张名片已保存</view>
     <view class="crowd-title-right" wx:if='{{!hasSelect&&listOfSave.length>0}}'>保存</view>
     <!-- <view class="crowd-title-right active" wx:if='{{hasSelect&&listOfSave.length>0&&click}}' bindtap='aaa'>保存</view> -->
     <form bindsubmit="save" report-submit='true'>
