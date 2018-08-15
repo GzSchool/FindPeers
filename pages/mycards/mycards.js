@@ -178,5 +178,15 @@ Page({
         console.log(res)
       }
     }
+  },
+  save(e) {
+    console.log(e.detail.formId)
+    let formId = []
+    formId.push(e.detail.formId)
+    console.log(formId)
+    let openid = app.globalData.openid
+    util.userFromId(formId, openid).then(function (res) {
+      console.log(res)
+    })
   }
 })

@@ -8,12 +8,6 @@ Page({
       withShareTicket: true
     })
   },
-  //联系客服
-  touch: function(e) {
-    console.log(e)
-    var that = this
-    that.data.server = app.globalData.server;
-  },
   //转发分享
   onShareAppMessage: function (a) {
     var that = this
@@ -32,5 +26,16 @@ Page({
         // 转发失败
       }
     }
+  },
+  //联系客服
+  save(e) {
+    console.log(e.detail.formId)
+    let formId = []
+    formId.push(e.detail.formId)
+    console.log(formId)
+    let openid = app.globalData.openid
+    util.userFromId(formId, openid).then(function (res) {
+      console.log(res)
+    })
   }
 })

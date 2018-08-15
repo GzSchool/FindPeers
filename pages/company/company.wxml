@@ -22,4 +22,6 @@
     </view>
   </view>
 </view>
-<button class='btn' open-type='contact' bindtap='touch'>联系客服</button>
+<form bindsubmit="save" report-submit='true'>
+<button class='btn' form-type="submit" open-type='contact'>联系客服</button>
+  </form>
