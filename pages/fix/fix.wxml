@@ -202,7 +202,7 @@
       <input placeholder-class="phcolor" placeholder='姓名' bindinput='addname' type='text' value='{{name}}' maxlength='8'></input>
     </view>
     <!-- 手机号 -->
-    <view class='main-li'>
+    <view class='main-li' style='height:100rpx;'>
       <view class='star'>*</view>
       <view class='title'>
         <text>手</text>
