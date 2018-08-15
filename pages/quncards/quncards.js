@@ -23,7 +23,7 @@
          let j = 0;
          for (var i = 0; i < len; i++) {
            // 处理时间截取字母T之前的年月日
-           res.data.data[i].ctTime = res.data.data[i].ctTime.split('T')[0];
+           res.data.data[i].upTime = res.data.data[i].upTime.split('T')[0];
            if (res.data.data[i].hint == 1) {
              wx.showTabBarRedDot({
                index: 1,
