@@ -192,15 +192,16 @@ Page({
             con[len - 1].data.push(c)
           }
         })
-        that.setData({
-          list_con: that.spliceList(con, 10),
-          list_letter: letter,
-        })
-        that.setData({
-          list_con: that.spliceList(con, 80)
-        })
+        // that.setData({
+        //   list_con: that.spliceList(con, 10),
+        //   list_letter: letter,
+        // })
+        // that.setData({
+        //   list_con: that.spliceList(con, 80)
+        // })
         that.setData({
           list_con: con,
+          list_letter: letter,
         })
         wx.setStorage({
           key: 'list_con',
