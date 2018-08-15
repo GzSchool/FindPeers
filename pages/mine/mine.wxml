@@ -15,6 +15,6 @@
     <image class="img2" src="{{img2}}"></image>
   </view>
 <form bindsubmit="save" report-submit='true'>
-  <button class="share" form-type="submit" open-type='share'>推送该名片</button>
+  <button class="share" form-type="submit" open-type='share'>推荐给朋友</button>
   </form>
 </view>

@@ -118,8 +118,17 @@ Page({
       wx.showLoading({
         title: '保存中...',
       })
+      console.log(openid)
+      console.log(groupid)
+      console.log(activeList)
+      console.log(saveName)
+      console.log(formId)      
       util.saveOrUpdate(openid, groupid, 2, activeList, saveName, formId).then(function (res) {
+        console.log(res)      
+        
         util.getGroupCards(openid, groupid, 1, 600).then(function (adc) {
+          console.log(adc)      
+          
           var length = adc.data.data.result.length;
           for (var i = 0; i < length; i++) {
             adc.data.data.result[i].isselect = false
