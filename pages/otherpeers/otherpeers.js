@@ -26,7 +26,6 @@ Page({
     synopsis: '',        // 简介
     otheropenId: "",     //同行标识
     userInfo: {},        // 用户信息
-    addPhone:"" ,         //判断用户是否已添加手机号
     cardType:"",         //卡片样式ID
     remark: '', // 备注
   },
@@ -49,7 +48,6 @@ Page({
       }
     })
     that.setData({
-      addPhone: app.globalData.addPhone,
       cardId: ops.cardId,
       notadd: app.globalData.notadd,
       groupId: ops.groupId,

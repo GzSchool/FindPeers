@@ -9,7 +9,6 @@ App({
     openid: '',
     userImage:"",       //用户头像
     userImg:"",         //用户头像
-    addPhone: '',       //判断是否已添加手机号
     othercardid: '',    //点击别人分享的别人的id
     industry: industry, // 行业数据
     server: 'https://www.eqxuan.cn',
@@ -85,6 +84,7 @@ App({
     let that = this
     let url = this.globalData.urlOfLogin
     util.Login(url).then(function (data) {
+      console.log('---------' + data)
       if (data) {
         that.globalData.openid = data
         wx.setStorageSync('openid', that.globalData.openid);
@@ -98,9 +98,9 @@ App({
   getUserData(openid) {
     let that = this
     util.getMyData(openid).then(function (res) {
+      console.log("333333333333333333333")
       console.log(res)
       if (res) {
-        res.userPhone ? that.globalData.addPhone = true : that.globalData.addPhone = false
         that.globalData.notadd = false;
         that.globalData.userImg = res.userImg;
         wx.setStorage({
@@ -126,7 +126,6 @@ App({
         // 登录失败清空本地缓存
         that.globalData.QRCode="";
         wx.clearStorage()
-        that.globalData.addPhone = false
         that.globalData.notadd = true;
       }
     })
