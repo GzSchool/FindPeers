@@ -2,9 +2,10 @@
 import pinyin from '../../utils/pinyin.js'
 import {
   validateEmail_none,
-  isvalidatemobile_none,
+  isvalidatemobile,
   validateUpperCase // 大写字母
 } from '../../utils/validate.js'
+var util = require('../../utils/util.js');
 var app = getApp();
 Page({
   data: {
@@ -196,14 +197,12 @@ Page({
     } else {
       back = this.data.back
     }
-    if (!isvalidatemobile_none(this.data.phone)) {
+    if (!isvalidatemobile(this.data.phone)) {
       app.showToast('手机号格式不正确')
     } else if (!validateEmail_none(this.data.email)) {
       app.showToast('邮箱格式不正确')
     } else if (this.data.job == '') {
       app.showToast('职务不能为空')
-    } else if (this.data.wechatnum == "") {
-      app.showToast('微信号不能为空')
     } else if (this.data.company == "") {
       app.showToast('公司名称不能为空')
     } else if (this.data.idustry == "") {

@@ -199,11 +199,12 @@
       <view class='title'><text>姓</text><text>名:</text></view>
       <input maxlength='8' placeholder-class="phcolor" placeholder='姓名' bindinput='addname' type='text' value='{{name}}' name="name"></input>
     </view>
-    <view class='main-li'>
+    <view class='main-li' style='height:100rpx;'>
       <view class='star'>*</view>
-      <view class='title'><text>微</text><text>信</text><text>号:</text></view>
-      <input maxlength='25' placeholder-class="phcolor" placeholder='必填' bindinput='addnumber' type='text' value='{{wechatnum}}' name="number"></input>
-    </view>
+      <view class='title'><text>手</text><text>机</text><text>号:</text></view>
+      <input maxlength='11' placeholder-class="phcolor" placeholder='填写可见该名片手机号' bindinput='addphone' type='number' value='{{phone}}' name="phone"></input>
+      <button style='padding:0;' class='wx-get' open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">微信获取</button>
+    </view>    
     <view class='main-li'>
       <view class='star'>*</view>
       <view class='title'><text>公</text><text>司:</text></view>
@@ -229,9 +230,8 @@
     </view>
     <view class='main-li'>
       <view class='star'></view>
-      <view class='title'><text>手</text><text>机</text><text>号:</text></view>
-      <input maxlength='11' placeholder-class="phcolor" placeholder='填写可见该名片手机号' bindinput='addphone' type='number' value='{{phone}}' name="phone"></input>
-      <button style='padding:0;' class='wx-get' open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">微信获取</button>
+      <view class='title'><text>微</text><text>信</text><text>号:</text></view>
+      <input maxlength='25' placeholder-class="phcolor" placeholder='微信号' bindinput='addnumber' type='text' value='{{wechatnum}}' name="number"></input>
     </view>
     <view class='main-li'>
       <view class='star'></view>
