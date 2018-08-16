@@ -26,6 +26,11 @@ App({
   },
   onShow: function (ops) {
     this.globalData.appOPS = ops
+    var openid = wx.getStorageSync('openid');
+    if (openid) {
+      this.globalData.openid = openid
+    }
+    this.login()
     // 热更新
     const updateManager = wx.getUpdateManager()
     updateManager.onCheckForUpdate(function (res) {
