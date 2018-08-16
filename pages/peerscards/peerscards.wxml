@@ -17,10 +17,10 @@
       <view class='card-down-right'>
         <view class='card-mes over-flow-hide'>地址：{{city}}</view>
         <view class='card-mes over-flow-hide'>公司：{{company}}</view>
-        <view class='card-mes over-flow-hide' wx:if="{{phone}}" bindtap='copy' data-num='{{phone}}'>电话：<text wx:if="{{!notadd}}" selectable='true'>{{phone}}</text></view>
-        <view class='card-mes over-flow-hide' wx:if='{{notadd}}'>电话：<text class="shades">需添加信息才可查看</text></view>
-        <view class='card-mes over-flow-hide' wx:if="{{wechatnum&&!notadd}}">微信：<text selectable='true'>{{wechatnum}}</text></view>
-        <view class='card-mes over-flow-hide' wx:if='{{notadd}}'>微信：<text class="shades">需添加信息才可查看</text></view>
+        <view class='card-mes over-flow-hide' wx:if="{{phone}}" bindtap='copy' data-num='{{phone}}'>电话：<text wx:if="{{!notadd}}" selectable='true'>{{phone}}</text><text class="shades" wx:if="{{notadd}}">需添加信息才可查看</text></view>
+        <!-- <view class='card-mes over-flow-hide' wx:if='{{notadd}}'>电话：<text class="shades">需添加信息才可查看</text></view> -->
+        <view class='card-mes over-flow-hide' wx:if="{{wechatnum}}">微信：<text wx:if='{{!notadd}}' selectable='true'>{{wechatnum}}</text><text class="shades" wx:if='{{notadd}}'>需添加信息才可查看</text></view>
+        <!-- <view class='card-mes over-flow-hide' wx:if='{{notadd}}'>微信：<text class="shades">需添加信息才可查看</text></view> -->
         <view class='card-mes over-flow-hide' wx:if="{{email}}">邮箱：<text selectable='true'>{{email}}</text></view>
       </view>
     </view>
@@ -270,11 +270,11 @@
   </view>
 </view>
 <view class="footer">
+  <button class="footer-btn" wx:if='{{notadd||!canSave}}' open-type='getUserInfo' bindgetuserinfo='addcards'>添加个人信息</button>
   <form bindsubmit="save" report-submit='true'>
-    <button class="footer-btn" wx:if="{{!checkSave&&!notadd}}" form-type="submit">保存到名片夹</button>
+    <button class="footer-btn" wx:if="{{!checkSave&&canSave}}" form-type="submit">保存到名片夹</button>
   </form> 
   <button class="{{isgroup?'footer-btn':'footer-find'}}" wx:if='{{checkSave||!isgroup}}' bindtap='back'>进入我的名片夹</button>
-  <button class="footer-btn" wx:if='{{notadd}}' open-type='getUserInfo' bindgetuserinfo='addcards'>添加个人信息</button>
   <button class="footer-find"  wx:if='{{isgroup}}' bindtap='toTeamPeers'>查看本群名片</button>
 </view>
 

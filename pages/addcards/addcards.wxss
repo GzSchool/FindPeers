@@ -22,9 +22,9 @@ page{
 }
 .main-ul .main-li .wx-get{
   width: 130rpx;
-  height: 44rpx;
+  height: 54rpx;
   color: #2C7FE7;
-  font-size: 20rpx;
+  font-size: 24rpx;
   border: 1px solid #2C7FE7;
   border-radius: 10rpx;
   text-align: center;

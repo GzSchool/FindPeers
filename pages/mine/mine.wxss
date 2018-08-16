@@ -31,7 +31,7 @@ page {
   margin-top: 15rpx;
   width: 280rpx;
   height: 280rpx;
-  border-radius: 50%;
+  border-radius: 35%;
 }
 
 .card .card-help {

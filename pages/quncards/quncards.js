@@ -23,14 +23,18 @@
          let j = 0;
          for (var i = 0; i < len; i++) {
            // 处理时间截取字母T之前的年月日
-           res.data.data[i].upTime = res.data.data[i].upTime.split('T')[0];
+           if (res.data.data.upTime) {
+             res.data.data[i].upTime = res.data.data[i].upTime.split('T')[0];
+           } else {
+             res.data.data[i].upTime = res.data.data[i].ctTime.split('T')[0];
+           }
            if (res.data.data[i].hint == 1) {
              wx.showTabBarRedDot({
                index: 1,
              })
            }
            if (res.data.data[i].hint == 0) {
-             j ++;
+             j++;
              if (j == len) {
                wx.hideTabBarRedDot({
                  index: 1,
