@@ -42,7 +42,10 @@ Page({
     let that = this
     let url = app.globalData.urlOfLogin    
     var openid = wx.getStorageSync('openid');
-    let server = app.globalData.server    
+    let server = app.globalData.server  
+    that.setData({
+      appOPS: app.globalData.appOPS
+    })
     if (that.data.appOPS.scene == 1044) {
       that.setData({
         isgroup: true,
