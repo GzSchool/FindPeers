@@ -50,6 +50,9 @@ Page({
           if (res.data.success) {
             app.globalData.QRCode = ("https://www.eqxuan.cn/" + openid + ".png")
             that.data.QRCode = app.globalData.QRCode
+            that.setData({
+              QRCode: app.globalData.QRCode
+            })
             }else{
             app.globalData.QRCode = ""
             that.data.QRCode = ""
@@ -84,13 +87,15 @@ Page({
           if (res.data.success) {
             app.globalData.QRCode = ("https://www.eqxuan.cn/" + openid + ".png")
             that.data.QRCode = app.globalData.QRCode
+            that.setData({
+              QRCode: app.globalData.QRCode
+            })
           } else {
             app.globalData.QRCode = ""
             that.data.QRCode = ""
           }
         })
         app.globalData.notadd = false
-        app.globalData.QRCode = ""
         that.setData({
           name: res.username,
           userJob: res.userJob,
@@ -146,11 +151,15 @@ Page({
     let page = "pages/peerscards/peerscards";
     let scene = that.data.id;
     let openid = app.globalData.openid
+    console.log(app.globalData.QRCode)
     if(openid&&userPhotoUrl){
       util.makeWxQrCode(userPhotoUrl, scene, page, openid).then(function (res) {
         if (res.data.success) {
           app.globalData.QRCode = ("https://www.eqxuan.cn/" + openid + ".png")
           that.data.QRCode = app.globalData.QRCode
+          that.setData({
+            QRCode: app.globalData.QRCode
+          })
         } else {
           app.globalData.QRCode = ""
           that.data.QRCode = ""

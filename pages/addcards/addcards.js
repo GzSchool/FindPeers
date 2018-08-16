@@ -39,7 +39,6 @@ Page({
     saveLoading: false,
     region: '',
     customItem: '',
-    addPhone: "",
     QRCode:"",    //小程序二维码
   },
   onLoad: function(res) {
@@ -255,12 +254,6 @@ Page({
         success: function(res) {
           that.data.saveLoading = true
           app.globalData.notadd = false
-          console.log(res)
-          if (that.data.phone) {
-            app.globalData.addPhone = true
-          } else {
-            app.globalData.addPhone = false
-          }
           var openid = app.globalData.openid;
           console.log(openid)
           var othercardid = app.globalData.othercardid;

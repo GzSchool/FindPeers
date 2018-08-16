@@ -87,7 +87,6 @@ Page({
       // 使用用户标识访问数据库获取用户信息
       util.getMyData(openid).then(function(res) {
         if (res) {
-          res.userPhone ? app.globalData.addPhone = true : app.globalData.addPhone = false
           app.globalData.notadd = false;
           wx.setStorage({
             key: 'userInfo',
@@ -103,6 +102,10 @@ Page({
           }
           let page = "pages/peerscards/peerscards";
           let scene = res.id;
+            console.log(userPhotoUrl)
+            console.log(scene)
+            console.log(page)
+            console.log(openid)
           util.makeWxQrCode(userPhotoUrl, scene, page, openid).then(function (res) {
             console.log(res)
             app.globalData.QRCode = ("https://www.eqxuan.cn/" + openid + ".png")
@@ -121,7 +124,6 @@ Page({
         } else {
           // 登录失败清空本地缓存
           wx.clearStorage()
-          app.globalData.addPhone = false
           app.globalData.notadd = true;
           that.setData({
             notadd: true,
