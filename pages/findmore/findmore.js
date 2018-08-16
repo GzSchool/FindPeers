@@ -109,7 +109,7 @@ Page({
             if (!app.globalData.QRCode) {
               util.makeWxQrCode(userPhotoUrl, scene, page, openid).then(function(res) {
                 console.log(res)
-                app.globalData.QRCode = ("https://www.eqxuan.cn/" + openid + ".png")
+                app.globalData.QRCode = ("http://www.eqxuan.cn/" + openid + ".png")
               })
             }
           }

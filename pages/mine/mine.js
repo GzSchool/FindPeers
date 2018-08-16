@@ -56,7 +56,7 @@ Page({
           util.makeWxQrCode(userPhotoUrl, scene, page, openid).then(function(res) {
             console.log(res.data)
             if (res.data.data) {
-              app.globalData.QRCode = ("https://www.eqxuan.cn/" + openid + ".png")
+              app.globalData.QRCode = ("http://www.eqxuan.cn/" + openid + ".png")
               that.data.QRCode = app.globalData.QRCode
               that.setData({
                 QRCode: app.globalData.QRCode
@@ -100,7 +100,7 @@ Page({
           util.makeWxQrCode(userPhotoUrl, scene, page, openid).then(function(res) {
             console.log(res.data)
             if (res.data.data) {
-              app.globalData.QRCode = ("https://www.eqxuan.cn/" + openid + ".png")
+              app.globalData.QRCode = ("http://www.eqxuan.cn/" + openid + ".png")
               that.data.QRCode = app.globalData.QRCode
               that.setData({
                 QRCode: app.globalData.QRCode
@@ -176,7 +176,7 @@ Page({
       } else {
         util.makeWxQrCode(userPhotoUrl, scene, page, openid).then(function(res) {
           if (res.data.data) {
-            app.globalData.QRCode = ("https://www.eqxuan.cn/" + openid + ".png")
+            app.globalData.QRCode = ("http://www.eqxuan.cn/" + openid + ".png")
             that.data.QRCode = app.globalData.QRCode
             that.setData({
               QRCode: app.globalData.QRCode

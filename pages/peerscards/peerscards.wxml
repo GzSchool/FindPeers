@@ -271,7 +271,7 @@
 </view>
 <view class="footer">
   <button class="footer-btn" wx:if='{{notadd||!canSave}}' open-type='getUserInfo' bindgetuserinfo='addcards'>添加个人信息</button>
-  <form bindsubmit="save" report-submit='true'>
+  <form bindsubmit="save" wx:if="{{!checkSave}}" report-submit='true'>
     <button class="footer-btn" wx:if="{{!checkSave&&canSave}}" form-type="submit">保存到名片夹</button>
   </form> 
   <button class="{{isgroup?'footer-btn':'footer-find'}}" wx:if='{{checkSave||!isgroup}}' bindtap='back'>进入我的名片夹</button>
