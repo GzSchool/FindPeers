@@ -120,12 +120,10 @@ App({
         }
         let page = "pages/peerscards/peerscards";
         let scene = res.id;
-        var l = ("https://www.eqxuan.cn/" + openid + "1.png");
-        console.log(l)
         console.log(scene)
         util.makeWxQrCode(userPhotoUrl, scene, page, openid).then(function (res) {
           if (res.data.success) {
-            that.globalData.QRCode = ("https://www.eqxuan.cn/" + openid + ".png")            
+            that.globalData.QRCode = ("http://www.eqxuan.cn/" + openid + ".png")            
           } else {
             that.globalData.QRCode = ""
           }  
