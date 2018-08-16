@@ -589,6 +589,16 @@ Page({
     }
   },
   onShow: function (ops) {
+    var that = this
+    if (that.data.appOPS.scene == 1044) {
+      that.setData({
+        isgroup: true,
+      })
+    } else {
+      that.setData({
+        isgroup: false,
+      })
+    }
     // app.showToast('show')
     // 场景为新用户从群内点进别人名片，添加个人名片后返回
     // this.data.notadd = app.globalData.notadd
