@@ -58,8 +58,8 @@
 					"id": 2,
 					"name": "21",
 					"pathName": "pages/peerscards/peerscards",
-					"query": "",
-					"scene": "1011"
+					"query": "othercardid=5",
+					"scene": "1012"
 				}
 			]
 		}

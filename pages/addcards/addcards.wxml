@@ -243,7 +243,7 @@
       <view class='title'><text>个</text><text>人</text><text>主</text><text>页:</text></view>
       <input maxlength='40' placeholder-class="phcolor" placeholder='个人主页或公众号' bindinput='addHomepage' type='text' value='{{homepage}}' name="resource"></input>
     </view>
-    <view class='main-li' wx:if='{{isshow1}}'>
+    <view class='main-li'>
       <view class='star'></view>
       <view class='title'><text>公</text><text>司</text><text>官</text><text>网:</text></view>
       <input maxlength='40' placeholder-class="phcolor" placeholder='公司官网或公众号' bindinput='addCompanyWeb' type='text' value='{{companyWeb}}' name="resource"></input>

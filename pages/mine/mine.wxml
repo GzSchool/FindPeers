@@ -5,8 +5,8 @@
     <view wx:if='{{industry}}' class="card-info">{{industry}}</view>
     <view wx:if='{{city}}' class="card-info">{{userJob}}</view>
     <view wx:if='{{company}}' class="card-info">{{company}}</view>
-    <image class="card-img"  wx:if="{{!QRCode}}" src="{{image}}"></image>
-    <image class="card-img" wx:if="{{QRCode}}" src="{{QRCode}}" bindtap='viewImage'></image>
+    <image class="card-img"  wx:if="{{!QRCode}}" src="{{image}}" data-num="{{image}}" bindtap='viewImage'></image>
+    <image class="card-img" wx:if="{{QRCode}}" src="{{QRCode}}" data-num="{{QRCode}}" bindtap='viewImage'></image>
     <view class="card-help" bindtap='scan'>微信扫一扫二维码</view>
   </view>
   <view class="find" bindtap='findUs'>
