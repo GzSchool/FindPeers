@@ -5,8 +5,8 @@
       <view class='mark'></view>
     </view>
     <view class='card-top'>
-      <view class='mes-name over-flow-hide'>{{name}}</view>
-      <view class='mes-job over-flow-hide'>{{userJob}}</view>
+      <view class='mes-name over-flow-hide'><text selectable='true'>{{name}}</text></view>
+      <view class='mes-job over-flow-hide'><text selectable='true'>{{userJob}}</text></view>
     </view>
     <view class='card-down'>
       <view class='card-down-left'>
@@ -15,9 +15,9 @@
         </view>
       </view>
       <view class='card-down-right'>
-        <view class='card-mes over-flow-hide'>地址：{{city}}</view>
-        <view class='card-mes over-flow-hide'>公司：{{company}}</view>
-        <view class='card-mes over-flow-hide' wx:if="{{phone}}" bindtap='copy' data-num='{{phone}}'>电话：<text wx:if="{{!notadd}}" selectable='true'>{{phone}}</text><text class="shades" wx:if="{{notadd}}">需添加信息才可查看</text></view>
+        <view class='card-mes over-flow-hide'>地址：<text selectable='true'>{{city}}</text></view>
+        <view class='card-mes over-flow-hide'>公司：<text selectable='true'>{{company}}</text></view>
+        <view class='card-mes over-flow-hide' wx:if="{{phone}}"  data-num='{{phone}}'>电话：<text wx:if="{{!notadd}}" selectable='true'>{{phone}}</text><text class="shades" wx:if="{{notadd}}">需添加信息才可查看</text></view>
         <!-- <view class='card-mes over-flow-hide' wx:if='{{notadd}}'>电话：<text class="shades">需添加信息才可查看</text></view> -->
         <view class='card-mes over-flow-hide' wx:if="{{wechatnum}}">微信：<text wx:if='{{!notadd}}' selectable='true'>{{wechatnum}}</text><text class="shades" wx:if='{{notadd}}'>需添加信息才可查看</text></view>
         <!-- <view class='card-mes over-flow-hide' wx:if='{{notadd}}'>微信：<text class="shades">需添加信息才可查看</text></view> -->
@@ -30,8 +30,8 @@
     <view class='card-layer'>
       <view class='card-top'>
         <view class='card-top-left'>
-          <view class='info-name over-flow-hide'>{{name}}</view>
-          <view class='info-job over-flow-hide'>{{userJob}}</view>
+          <view class='info-name over-flow-hide'><text selectable='true'>{{name}}</text></view>
+          <view class='info-job over-flow-hide'><text selectable='true'>{{userJob}}</text></view>
         </view>
         <view class='card-top-right'>
           <view class='img-box'>
@@ -42,11 +42,11 @@
       <view class='card-down'>
         <view class='card-mes'>
           <image src='../images/card/card_2/mes_addr_2.png' style='width:26rpx;height:26rpx;'></image>
-          <text>{{city}}</text>
+          <text selectable='true'>{{city}}</text>
         </view>
         <view class='card-mes'>
           <image src='../images/card/card_2/mes_comp_2.png' style='width:26rpx;height:26rpx;'></image>
-          <text class='over-flow-hide'>{{company}}</text>
+          <text class='over-flow-hide' selectable='true'>{{company}}</text>
         </view>
         <view class='card-mes' wx:if='{{phone}}'>
           <image src='../images/card/card_2/mes_phone_2.png' style='width:26rpx;height:26rpx;'></image>
@@ -68,10 +68,10 @@
   <view class='main-card-3 main-card-box' wx:if='{{cardType==3}}'>
     <view class='card-top'>
       <view class='card-top-left'>
-        <view class='card-name'>{{name}}</view>
-        <view class='card-info'>{{userJob}}</view>
-        <view class='card-info'>{{city}}</view>
-        <view class='card-info'>{{company}}</view>
+        <view class='card-name'><text selectable='true'>{{name}}</text></view>
+        <view class='card-info'><text selectable='true'>{{userJob}}</text></view>
+        <view class='card-info'><text selectable='true'>{{city}}</text></view>
+        <view class='card-info'><text selectable='true'>{{company}}</text></view>
       </view>
       <view class='card-top-right'>
         <view class='img-box'>
@@ -104,8 +104,8 @@
     <view class='card-layer'>
       <view class='card-top'>
         <view class='card-top-left'>
-          <view class='mes-name over-flow-hide'>{{name}}</view>
-          <view class='mes-job over-flow-hide'>{{userJob}}</view>
+          <view class='mes-name over-flow-hide'><text selectable='true'>{{name}}</text></view>
+          <view class='mes-job over-flow-hide'><text selectable='true'>{{userJob}}</text></view>
         </view>
         <view class='card-top-right'>
           <view class='img-box'>
@@ -118,13 +118,13 @@
           <view class='mes-icon'>
             <image src='../images/card/card_4/mes_addr_4.png' style='width:20rpx;height:26rpx;'></image>
           </view>
-          <text class='over-flow-hide'>{{city}}</text>
+          <text class='over-flow-hide' selectable='true'>{{city}}</text>
         </view>
         <view class='card-mes over-flow-hide'>
           <view class='mes-icon'>
             <image src='../images/card/card_4/mes_comp_4.png' style='width:25rpx;height:24rpx;'></image>
           </view>
-          <text class='over-flow-hide'>{{company}}</text>
+          <text class='over-flow-hide' selectable='true'>{{company}}</text>
         </view>
         <view class='card-mes' wx:if='{{phone}}'>
           <view class='mes-icon'>
@@ -152,8 +152,8 @@
     <image class='bg-card' src='../images/card/card_5/bg_card_5.png'></image>
     <view class='card-layer'>
       <view class='card-top'>
-        <view class='mes-name over-flow-hide'>{{name}}</view>
-        <view class='mes-job over-flow-hide'>{{userJob}}</view>
+        <view class='mes-name over-flow-hide'><text selectable='true'>{{name}}</text></view>
+        <view class='mes-job over-flow-hide'><text selectable='true'>{{userJob}}</text></view>
       </view>
       <view class='card-down'>
         <view class='card-down-left'>
@@ -166,13 +166,13 @@
             <view class='mes-icon'>
               <image src='../images/card/card_5/mes_addr_5.png'></image>
             </view>
-            <text class='over-flow-hide'>{{city}}</text>
+            <text class='over-flow-hide' selectable='true'>{{city}}</text>
           </view>
           <view class='card-mes'>
             <view class='mes-icon'>
               <image src='../images/card/card_5/mes_comp_5.png'></image>
             </view>
-            <text class='over-flow-hide'>{{company}}</text>
+            <text class='over-flow-hide' selectable='true'>{{company}}</text>
           </view>
           <view class='card-mes' wx:if='{{phone}}'>
             <view class='mes-icon'>
