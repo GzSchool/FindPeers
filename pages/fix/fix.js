@@ -113,9 +113,6 @@ Page({
         if (!that.data.homepage) {
           list.push('个人主页')
         }
-        if (!that.data.companyWeb) {
-          list.push('公司官网')
-        }
         if (!that.data.demand) {
           list.push('需求')
         }
@@ -207,9 +204,6 @@ Page({
         let list = []
         if (!that.data.homepage) {
           list.push('个人主页')
-        }
-        if (!that.data.companyWeb) {
-          list.push('公司官网')
         }
         if (!that.data.demand) {
           list.push('需求')
@@ -465,11 +459,6 @@ Page({
     if (this.data.list[id] == '个人主页') {
       this.setData({
         isshow0: true
-      })
-    }
-    if (this.data.list[id] == '公司官网') {
-      this.setData({
-        isshow1: true
       })
     }
     if (this.data.list[id] == '需求') {

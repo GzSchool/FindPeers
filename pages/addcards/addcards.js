@@ -35,7 +35,7 @@ Page({
     isshow2: false,  //需求是否显示
     isshow3: false, //资源是否显示
     formId: '',
-    list: ["个人主页", "公司官网", "需求", "资源"], // 添加更多项
+    list: ["个人主页", "需求", "资源"], // 添加更多项
     saveLoading: false,
     region: '',
     customItem: '',
@@ -326,11 +326,6 @@ Page({
     if (this.data.list[id] == '个人主页') {
       this.setData({
         isshow0: true
-      })
-    }
-    if (this.data.list[id] == '公司官网') {
-      this.setData({
-        isshow1: true
       })
     }
     if (this.data.list[id] == '需求') {

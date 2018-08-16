@@ -67,7 +67,7 @@ Page({
     })
     wx.getStorage({
       key: 'list_letter',
-      success: function (res) {
+      success: function(res) {
         that.setData({
           list_letter: res.data
         })
@@ -92,24 +92,26 @@ Page({
             key: 'userInfo',
             data: res,
           })
-          if(!app.globalData.QRCode){
+          if (!app.globalData.QRCode) {
 
-          let userPhotoUrl = ""
-          if(app.globalData.userImage){
-            userPhotoUrl = app.globalData.userImage;
-          }else{
-            userPhotoUrl = res.userImg;
-          }
-          let page = "pages/peerscards/peerscards";
-          let scene = res.id;
+            let userPhotoUrl = ""
+            if (app.globalData.userImage) {
+              userPhotoUrl = app.globalData.userImage;
+            } else {
+              userPhotoUrl = res.userImg;
+            }
+            let page = "pages/peerscards/peerscards";
+            let scene = res.id;
             console.log(userPhotoUrl)
             console.log(scene)
             console.log(page)
             console.log(openid)
-          util.makeWxQrCode(userPhotoUrl, scene, page, openid).then(function (res) {
-            console.log(res)
-            app.globalData.QRCode = ("https://www.eqxuan.cn/" + openid + ".png")
-          })
+            if (!app.globalData.QRCode) {
+              util.makeWxQrCode(userPhotoUrl, scene, page, openid).then(function(res) {
+                console.log(res)
+                app.globalData.QRCode = ("https://www.eqxuan.cn/" + openid + ".png")
+              })
+            }
           }
           that.setData({
             name: res.username,
@@ -155,7 +157,7 @@ Page({
     })
     var openid = app.globalData.openid;
     // 获取当前保存的同行名片
-    util.getMyPeers(openid).then(function (res) {
+    util.getMyPeers(openid).then(function(res) {
       console.log(res.data.data)
       let letter = [];
       let con = [];
@@ -184,18 +186,18 @@ Page({
         // 去重
         letter = that.dedupe(letter)
         let len = letter.length;
-        letter.forEach(function (a, b) {
+        letter.forEach(function(a, b) {
           con[b] = {
             letter: a,
             data: []
           }
-          res.data.data.forEach(function (c, d) {
+          res.data.data.forEach(function(c, d) {
             if (a == c.prepare.slice(0, 1)) {
               con[b].data.push(c)
             }
           })
         })
-        res.data.data.forEach(function (c, d) {
+        res.data.data.forEach(function(c, d) {
           if (!validateUpperCase(c.prepare.slice(0, 1))) {
             con[len - 1].data.push(c)
           }
@@ -315,7 +317,10 @@ Page({
     let m = 0
     let list = []
     for (j; j < con.length; j++) {
-      list[j] = { letter: con[j].letter, data: [] }
+      list[j] = {
+        letter: con[j].letter,
+        data: []
+      }
       for (k; k < con[j].data.length; k++) {
         m++
         if (m <= num) {

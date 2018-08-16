@@ -33,7 +33,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
+			"current": 2,
 			"list": [
 				{
 					"id": 0,
@@ -53,6 +53,13 @@
 						"shareName": "mVvXaQXUnHryNRoFgdjPxok6k_1ZvAf17_pujWeSXC8@cr4dev",
 						"shareKey": "yGrA89-3jQL8ZZLMty8gsJbrF0hPXAPrFiyDqPfv6Ru1ieBZznyjxfABjrkNwT_wAqo2Cy1DdHhXAC9H1P6BWQ~~"
 					}
+				},
+				{
+					"id": 2,
+					"name": "21",
+					"pathName": "pages/peerscards/peerscards",
+					"query": "othercardid=5",
+					"scene": "1012"
 				}
 			]
 		}
