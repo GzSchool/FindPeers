@@ -63,8 +63,13 @@
   background-color: #ccc;
   border-radius: 8rpx;
   margin: 30rpx 20rpx 30rpx 8rpx;
+  -webkit-box-shadow: 0rpx 0rpx 0rpx #aeaeae;
+  -moz-box-shadow: 0rpx 0rpx 0rpx #aeaeae;
+  box-shadow: 0rpx 0rpx 0rpx #aeaeae;
 }
 .choose-card .choose-card-in.active {
+  -webkit-box-shadow: 2rpx 2rpx 15rpx #aeaeae;
+  -moz-box-shadow: 2rpx 2rpx 15rpx #aeaeae;
   box-shadow: 2rpx 2rpx 15rpx #aeaeae;
 }
 .choose-card .choose-card-in.active image{
