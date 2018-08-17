@@ -1,6 +1,7 @@
 // pages/teampeers/teampeers.js
 var app = getApp()
 var util = require('../../utils/util.js');
+var mta = require('../../utils/mta_analysis.js');
 Page({
   data: {
     openid: "",               //用户标识
@@ -22,6 +23,7 @@ Page({
   },
   //页面初始化（只加载一次）
   onLoad: function(ops) {
+    mta.Page.init();
     console.log(ops)
     wx.showShareMenu({
       withShareTicket: true

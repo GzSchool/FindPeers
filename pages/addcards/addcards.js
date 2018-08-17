@@ -6,6 +6,7 @@ import {
   validateUpperCase // 大写字母
 } from '../../utils/validate.js'
 var util = require('../../utils/util.js');
+var mta = require('../../utils/mta_analysis.js');
 var app = getApp();
 Page({
   data: {
@@ -42,6 +43,7 @@ Page({
     QRCode:"",    //小程序二维码
   },
   onLoad: function(res) {
+    mta.Page.init();
     wx.showShareMenu({
       withShareTicket: true
     })

@@ -13,7 +13,7 @@
       <view class='title-name'>我的名片</view>
     </view>
     <view class='mine-info'>
-      <button class='btn' wx:if='{{notadd}}' open-type="getUserInfo" bindgetuserinfo='addcards'>添加我的信息</button>
+      <button class='btn' wx:if='{{notadd}}' open-type="getUserInfo" bindgetuserinfo='addcards'>制作我的名片</button>
       <view class='mes-li' wx:if='{{!notadd}}' bindtap='mycards'>
         <view class='li-left'>
           <image src='{{image}}'></image>

@@ -1,6 +1,7 @@
 // pages/mine/mine.js
 var app = getApp();
 var util = require('../../utils/util.js');
+var mta = require('../../utils/mta_analysis.js');
 Page({
   data: {
     name: "", //用户名字
@@ -17,6 +18,7 @@ Page({
   },
   //页面加载
   onLoad: function() {
+    mta.Page.init();
     if (app.globalData.QRCode) {
       this.setData({
         QRCode: app.globalData.QRCode

@@ -1,8 +1,12 @@
 // pages/findUs/findUs.js
+var mta = require('../../utils/mta_analysis.js');
+var app = getApp();
+var util = require('../../utils/util.js');
 Page({
   data: {
   },
   onLoad: function (options) {
+    mta.Page.init();
     wx.showShareMenu({
       withShareTicket: true
     })

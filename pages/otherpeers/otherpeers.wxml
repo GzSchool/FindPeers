@@ -17,9 +17,9 @@
       <view class='card-down-right'>
         <view class='card-mes over-flow-hide'>地址：<text selectable='true'>{{city}}</text></view>
         <view class='card-mes over-flow-hide'>公司：<text selectable='true'>{{company}}</text></view>
-        <view class='card-mes over-flow-hide' wx:if="{{phone}}">电话：<text wx:if="{{!notadd}}" selectable='true'>{{phone}}</text><text wx:if="{{notadd}}"  class="shades">需添加信息才可查看</text></view>
+        <view class='card-mes over-flow-hide' wx:if="{{phone}}">电话：<text wx:if="{{!notadd}}" selectable='true' bindtap='makePhoneCall' data-phone='{{phone}}'>{{phone}}</text><text wx:if="{{notadd}}"  class="shades">需添加信息才可查看</text></view>
         <!-- <view class='card-mes over-flow-hide' wx:if='{{notadd}}'>电话：<text class="shades">需添加信息才可查看</text></view> -->
-        <view class='card-mes over-flow-hide' wx:if="{{wechatnum}}">微信：<text wx:if='{{!notadd}}' selectable='true'>{{wechatnum}}</text><text wx:if='{{notadd}}' class="shades">需添加信息才可查看</text></view>
+        <view class='card-mes over-flow-hide' wx:if="{{wechatnum}}">微信：<text selectable='true'>{{wechatnum}}</text></view>
         <!-- <view class='info-right shades' wx:if='{{notadd}}'>微信：<text class="shades">需添加信息才可查看</text></view> -->
         <view class='card-mes over-flow-hide' wx:if="{{email}}">邮箱：<text selectable='true'>{{email}}</text></view>
       </view>
@@ -50,13 +50,12 @@
         </view>
         <view class='card-mes' wx:if='{{phone}}'>
           <image src='../images/card/card_2/mes_phone_2.png' style='width:26rpx;height:26rpx;'></image>
-          <text wx:if='{{!notadd}}' selectable='true'>{{phone}}</text>
+          <text wx:if='{{!notadd}}' selectable='true' bindtap='makePhoneCall' data-phone='{{phone}}'>{{phone}}</text>
           <text class="shades" wx:if="{{notadd}}">需添加信息才可查看</text>
         </view>
         <view class='card-mes' wx:if='{{wechatnum}}'>
           <image src='../images/card/card_2/mes_wechat_2.png' style='width:26rpx;height:26rpx;'></image>
-          <text class='over-flow-hide' wx:if="{{!notadd}}" selectable='true'>{{wechatnum}}</text>
-          <text class='over-flow-hide shades' wx:if="{{notadd}}">需添加信息才可查看</text>
+          <text class='over-flow-hide' selectable='true'>{{wechatnum}}</text>
         </view>
         <view class='card-mes' wx:if="{{email}}">
           <image src='../images/card/card_2/mes_email_2.png' style='width:26rpx;height:26rpx;'></image>
@@ -85,13 +84,12 @@
     <view class='card-down'>
       <view class='card-mes' wx:if='{{phone}}'>
         <image src='../images/card/mes_phone.png' style='width:26rpx;height:26rpx;'></image>
-        <text wx:if='{{!notadd}}' selectable='true'>{{phone}}</text>
+        <text wx:if='{{!notadd}}' selectable='true' bindtap='makePhoneCall' data-phone='{{phone}}'>{{phone}}</text>
         <text class="shades" wx:if="{{notadd}}">需添加信息才可查看</text>
       </view>
       <view class='card-mes' wx:if="{{wechatnum}}">
         <image src='../images/card/mes_wechat.png' style='width:26rpx;height:21rpx;'></image>
-        <text wx:if="{{!notadd}}" selectable='true'>{{wechatnum}}</text>
-        <text class='shades' wx:if="{{notadd}}">需添加信息才可查看</text>
+        <text selectable='true'>{{wechatnum}}</text>
       </view>
       <view class='card-mes' wx:if='{{mineInfo.email}}'>
         <image src='../images/card/mes_email.png' style='width:26rpx;height:17rpx;'></image>
@@ -130,15 +128,14 @@
           <view class='mes-icon'>
             <image src='../images/card/card_4/mes_phone_4.png' style='width:26rpx;height:26rpx;'></image>
           </view>
-          <text wx:if='{{!notadd}}' selectable='true'>{{phone}}</text>
+          <text wx:if='{{!notadd}}' selectable='true' bindtap='makePhoneCall' data-phone='{{phone}}'>{{phone}}</text>
           <text class="shades" wx:if="{{notadd}}">需添加信息才可查看</text>
         </view>
         <view class='card-mes' wx:if="{{wechatnum}}">
           <view class='mes-icon'>
             <image src='../images/card/card_4/mes_wechat_4.png' style='width:25rpx;height:20rpx;'></image>
           </view>
-          <text wx:if="{{!notadd}}" selectable='true'>{{wechatnum}}</text>
-          <text class='shades' wx:if="{{notadd}}">需添加信息才可查看</text>
+          <text selectable='true'>{{wechatnum}}</text>
         </view>
         <view class='card-mes' wx:if='{{email}}'>
           <view class='mes-icon'>
@@ -178,15 +175,14 @@
             <view class='mes-icon'>
               <image src='../images/card/card_5/mes_phone_5.png'></image>
             </view>
-            <text wx:if='{{!notadd}}' selectable='true'>{{phone}}</text>
+            <text wx:if='{{!notadd}}' selectable='true' bindtap='makePhoneCall' data-phone='{{phone}}'>{{phone}}</text>
             <text class="shades" wx:if="{{notadd}}">需添加信息才可查看</text>
           </view>
           <view class='card-mes' wx:if="{{wechatnum}}">
             <view class='mes-icon'>
               <image src='../images/card/card_5/mes_wechat_5.png'></image>
             </view>
-            <text class='over-flow-hide' wx:if="{{!notadd}}" selectable='true'>{{wechatnum}}</text>
-            <text class='over-flow-hide shades' wx:if="{{notadd}}">需添加信息才可查看</text>
+            <text class='over-flow-hide' selectable='true'>{{wechatnum}}</text>
           </view>
           <view class='card-mes' wx:if='{{email}}'>
             <view class='mes-icon'>
@@ -279,7 +275,7 @@
   <form bindsubmit="save" report-submit='true'>
     <button class="footer-btn" wx:if='{{!isSave&&!notadd}}' form-type="submit">保存到名片夹</button>
   </form>
-  <button class="footer-btn" wx:if='{{notadd}}' open-type='getUserInfo' bindgetuserinfo='addcards'>添加个人信息</button>
+  <button class="footer-btn" wx:if='{{notadd}}' open-type='getUserInfo' bindgetuserinfo='addcards'>制作我的名片</button>
   <button class="write" wx:if='{{isSave}}' bindtap='remove'>删除本张名片</button>
 </view>
 <view class='card-set' wx:if='{{!notadd && !chooseSize}}' bindtap='chooseSize'>

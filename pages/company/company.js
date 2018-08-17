@@ -1,10 +1,12 @@
 // pages/company/company.js
 var util = require('../../utils/util.js');
+var mta = require('../../utils/mta_analysis.js');
 var app = getApp()
 Page({
   data: {
   },
   onLoad: function (ops) {
+    mta.Page.init();
     wx.showShareMenu({
       withShareTicket: true
     })
