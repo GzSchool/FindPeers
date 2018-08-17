@@ -38,15 +38,15 @@
 				{
 					"id": 0,
 					"name": "21",
-					"pathName": "pages/mine/mine",
-					"query": "",
-					"scene": "1001"
+					"pathName": "pages/peerscards/peerscards",
+					"query": "othercardid=6",
+					"scene": "1007"
 				},
 				{
 					"id": 1,
 					"name": "21",
 					"pathName": "pages/peerscards/peerscards",
-					"query": "othercardid=5",
+					"query": "othercardid=6",
 					"scene": "1044",
 					"shareInfo": {
 						"groupName": "测试模拟群2",

@@ -5,6 +5,7 @@ import {
   validateUpperCase
 } from '../../utils/validate.js'
 var util = require('../../utils/util.js');
+var mta = require('../../utils/mta_analysis.js');
 Page({
   data: {
     name: '', //用户名字
@@ -28,6 +29,7 @@ Page({
     floorstatus: false, // 回到顶部
   },
   onLoad: function(a) {
+    mta.Page.init();
     // wx.navigateTo({
     //   url: '../fix/fix',
     // })

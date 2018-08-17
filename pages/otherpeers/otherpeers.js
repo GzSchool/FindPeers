@@ -1,6 +1,7 @@
 // pages/otherpeers/otherpeers.js
 var app = getApp();
 var util = require('../../utils/util.js');
+var mta = require('../../utils/mta_analysis.js');
 Page({
   data: {
     cardId: "",          //名片ID
@@ -33,6 +34,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (ops) {
+    mta.Page.init();
     console.log(ops)
     wx.showShareMenu({
       withShareTicket: true
@@ -211,13 +213,22 @@ Page({
     }, 200)
   },
   //点击保存到通讯录
-  saveToPhone: function () {
+  saveToPhone: function (e) {
+    console.log(e)
     let that = this
     if (that.data.phone) {
       wx.addPhoneContact({
         firstName: that.data.name,
         mobilePhoneNumber: that.data.phone,
+        weChatNumber: that.data.wechatnum,
+        organization:that.data.company,
+        title:that.data.userJob,
+        email:that.data.email,
+        addressCity:that.data.city,
+        remark: that.data.remark,
+        url:that.data.companyWeb,
         success: function (a) {
+          console.log(a)
           that.hideModal();
         },
         fail: function (p) {
@@ -288,6 +299,18 @@ Page({
         //     console.log(res)
         //   }
         // })
+      }
+    })
+  },
+  //点击拨打电话
+  makePhoneCall: function (e) {
+    console.log(e)
+    let phoneNumber = e.currentTarget.dataset.phone;
+    console.log(phoneNumber)
+    wx.makePhoneCall({
+      phoneNumber: phoneNumber,
+      success: function (a) {
+        console.log(a)
       }
     })
   },

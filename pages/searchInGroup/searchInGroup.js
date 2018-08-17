@@ -2,6 +2,7 @@
 // pages/inputSearch/inputSearch.js
 var app = getApp()
 var util = require('../../utils/util.js');
+var mta = require('../../utils/mta_analysis.js');
 Page({
   data: {
     notadd: app.globalData.notadd, //判断是否已添加信息
@@ -37,6 +38,7 @@ Page({
   },
   //页面加载
   onLoad: function(options) {
+    mta.Page.init();
     let val = this.options.groupid
     this.setData({
       notadd: app.globalData.notadd,

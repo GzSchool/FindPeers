@@ -9,7 +9,7 @@
   <view class='mine-title'><open-data type="groupName" open-gid="{{groupId}}"></open-data></view>
   <view class='mine-card'>
     <view class='mine-info'>
-      <button class='btn' wx:if='{{notadd}}' open-type="getUserInfo" bindgetuserinfo='addcards'>添加我的信息</button>
+      <button class='btn' wx:if='{{notadd}}' open-type="getUserInfo" bindgetuserinfo='addcards'>制作我的名片</button>
       <view class='mes-li' wx:if='{{!notadd}}' bindtap='mycards'>
         <view class='li-left'>
           <image src='{{image}}'></image>

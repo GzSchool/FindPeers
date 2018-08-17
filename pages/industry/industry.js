@@ -1,11 +1,14 @@
 // pages/industry/industry.js
 const app = getApp()
+var mta = require('../../utils/mta_analysis.js');
+var util = require('../../utils/util.js');
 Page({
   data: {
     active: 0, // 当前选中
     industry: app.globalData.industry, // 行业数据
   },
   onLoad: function (options) {
+    mta.Page.init();
   },
   // 选中父行业
   chooseParent (e) {

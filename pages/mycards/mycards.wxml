@@ -3,8 +3,8 @@
   <view class='main-card-1 main-card-box' wx:if='{{cardType==1}}'>
     <view class='card-mark'><view class='mark'></view></view>
     <view class='card-top'>
-      <view class='mes-name over-flow-hide'>{{mineInfo.name}}</view>
-      <view class='mes-job over-flow-hide'>{{mineInfo.userJob}}</view>
+      <view class='mes-name over-flow-hide'><text selectable='true'>{{mineInfo.name}}</text></view>
+      <view class='mes-job over-flow-hide'><text selectable='true'>{{mineInfo.userJob}}</text></view>
     </view>
     <view class='card-down'>
       <view class='card-down-left'>
@@ -13,8 +13,8 @@
         </view>
       </view>
       <view class='card-down-right'>
-        <view class='card-mes over-flow-hide'>地址：{{mineInfo.city}}</view>
-        <view class='card-mes over-flow-hide'>公司：{{mineInfo.company}}</view>
+        <view class='card-mes over-flow-hide'>地址：<text selectable='true'>{{mineInfo.city}}</text></view>
+        <view class='card-mes over-flow-hide'>公司：<text selectable='true'>{{mineInfo.company}}</text></view>
         <view class='card-mes over-flow-hide' wx:if="{{mineInfo.phone}}"><text selectable='true'>电话：{{mineInfo.phone}}</text></view>
         <view class='card-mes over-flow-hide' wx:if="{{mineInfo.wechatnum}}">微信：<text selectable='true'>{{mineInfo.wechatnum}}</text></view>
         <view class='card-mes over-flow-hide' wx:if="{{mineInfo.email}}">邮箱：<text selectable='true'>{{mineInfo.email}}</text></view>
@@ -26,8 +26,8 @@
     <view class='card-layer'>
       <view class='card-top'>
         <view class='card-top-left'>
-          <view class='info-name over-flow-hide'>{{mineInfo.name}}</view>
-          <view class='info-job over-flow-hide'>{{mineInfo.userJob}}</view>
+          <view class='info-name over-flow-hide'><text selectable='true'>{{mineInfo.name}}</text></view>
+          <view class='info-job over-flow-hide'><text selectable='true'>{{mineInfo.userJob}}</text></view>
         </view>
         <view class='card-top-right'>
           <view class='img-box'>
@@ -37,9 +37,9 @@
       </view>
       <view class='card-down'>
         <view class='card-mes'>
-          <image src='../images/card/card_2/mes_addr_2.png' style='width:26rpx;height:26rpx;'></image><text>{{mineInfo.city}}</text></view>
+          <image src='../images/card/card_2/mes_addr_2.png' style='width:26rpx;height:26rpx;'></image><text selectable='true'>{{mineInfo.city}}</text></view>
         <view class='card-mes'>
-          <image src='../images/card/card_2/mes_comp_2.png' style='width:26rpx;height:26rpx;'></image><text class='over-flow-hide'>{{mineInfo.company}}</text></view>
+          <image src='../images/card/card_2/mes_comp_2.png' style='width:26rpx;height:26rpx;'></image><text selectable='true' class='over-flow-hide'>{{mineInfo.company}}</text></view>
         <view class='card-mes' wx:if='{{mineInfo.phone}}'>
           <image src='../images/card/card_2/mes_phone_2.png' style='width:26rpx;height:26rpx;'></image><text selectable='true'>{{mineInfo.phone}}</text></view>
         <view class='card-mes' wx:if='{{mineInfo.wechatnum}}'>
@@ -52,10 +52,10 @@
   <view class='main-card-3 main-card-box' wx:if='{{cardType==3}}'>
     <view class='card-top'>
       <view class='card-top-left'>
-        <view class='card-name'>{{mineInfo.name}}</view>
-        <view class='card-info'>{{mineInfo.userJob}}</view>
-        <view class='card-info'>{{mineInfo.city}}</view>
-        <view class='card-info'>{{mineInfo.company}}</view>
+        <view class='card-name'><text selectable='true'>{{mineInfo.name}}</text></view>
+        <view class='card-info'><text selectable='true'>{{mineInfo.userJob}}</text></view>
+        <view class='card-info'><text selectable='true'>{{mineInfo.city}}</text></view>
+        <view class='card-info'><text selectable='true'>{{mineInfo.company}}</text></view>
       </view>
       <view class='card-top-right'>
         <view class='img-box'>
@@ -67,7 +67,7 @@
       <image src='../images/card/card_1.png'></image>
     </view>
     <view class='card-down' wx:if='{{mineInfo.phone}}'>
-      <view class='card-mes' wx:if='{{mineInfo.phone}}'>
+      <view class='card-mes'>
         <image src='../images/card/mes_phone.png' style='width:26rpx;height:26rpx;'></image><text selectable='true'>{{mineInfo.phone}}</text></view>
       <view class='card-mes' wx:if='{{mineInfo.wechatnum}}'>
         <image src='../images/card/mes_wechat.png' style='width:26rpx;height:21rpx;'></image><text selectable='true'>{{mineInfo.wechatnum}}</text></view>
@@ -80,8 +80,8 @@
     <view class='card-layer'>
       <view class='card-top'>
         <view class='card-top-left'>
-          <view class='mes-name over-flow-hide'>{{mineInfo.name}}</view>
-          <view class='mes-job over-flow-hide'>{{mineInfo.userJob}}</view>
+          <view class='mes-name over-flow-hide'><text selectable='true'>{{mineInfo.name}}</text></view>
+          <view class='mes-job over-flow-hide'><text selectable='true'>{{mineInfo.userJob}}</text></view>
         </view>
         <view class='card-top-right'>
           <view class='img-box'>
@@ -94,13 +94,13 @@
           <view class='mes-icon'>
             <image src='../images/card/card_4/mes_addr_4.png' style='width:20rpx;height:26rpx;'></image>
           </view>
-          <text class='over-flow-hide'>{{mineInfo.city}}</text>
+          <text class='over-flow-hide' selectable='true'>{{mineInfo.city}}</text>
         </view>
         <view class='card-mes over-flow-hide'>
           <view class='mes-icon'>
             <image src='../images/card/card_4/mes_comp_4.png' style='width:25rpx;height:24rpx;'></image>
           </view>
-          <text class='over-flow-hide'>{{mineInfo.company}}</text>
+          <text class='over-flow-hide' selectable='true'>{{mineInfo.company}}</text>
         </view>
         <view class='card-mes' wx:if='{{mineInfo.phone}}'>
           <view class='mes-icon'>
@@ -126,8 +126,8 @@
     <image class='bg-card' src='../images/card/card_5/bg_card_5.png'></image>
     <view class='card-layer'>
       <view class='card-top'>
-        <view class='mes-name over-flow-hide'>{{mineInfo.name}}</view>
-        <view class='mes-job over-flow-hide'>{{mineInfo.userJob}}</view>
+        <view class='mes-name over-flow-hide'><text selectable='true'>{{mineInfo.name}}</text></view>
+        <view class='mes-job over-flow-hide'><text selectable='true'>{{mineInfo.userJob}}</text></view>
       </view>
       <view class='card-down'>
         <view class='card-down-left'>
@@ -140,13 +140,13 @@
             <view class='mes-icon'>
               <image src='../images/card/card_5/mes_addr_5.png'></image>
             </view>
-            <text class='over-flow-hide'>{{mineInfo.city}}</text>
+            <text class='over-flow-hide' selectable='true'>{{mineInfo.city}}</text>
           </view>
           <view class='card-mes'>
             <view class='mes-icon'>
               <image src='../images/card/card_5/mes_comp_5.png'></image>
             </view>
-            <text class='over-flow-hide'>{{mineInfo.company}}</text>
+            <text class='over-flow-hide' selectable='true'>{{mineInfo.company}}</text>
           </view>
           <view class='card-mes' wx:if='{{mineInfo.phone}}'>
             <view class='mes-icon'>

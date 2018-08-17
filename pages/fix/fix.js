@@ -6,6 +6,7 @@ import {
   validateUpperCase // 大写字母
 } from '../../utils/validate.js'
 var util = require('../../utils/util.js');
+var mta = require('../../utils/mta_analysis.js');
 var app = getApp();
 Page({
   data: {
@@ -51,6 +52,7 @@ Page({
   },
   //页面加载
   onLoad: function(a) {
+    mta.Page.init();
     var that = this
     wx.showShareMenu({
       withShareTicket: true

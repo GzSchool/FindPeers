@@ -1,5 +1,6 @@
 //app.js
 var util=require('/utils/util.js');
+var mta=require('/utils/mta_analysis.js');
 const industry = require('/utils/industry.js')
 App({
   globalData: {
@@ -18,6 +19,13 @@ App({
   },
   onLaunch: function (ops) {
     let that = this
+    mta.App.init({
+      "appID": "500632336",
+      "eventID": "500632348",
+      "statPullDownFresh": true,
+      "statShareApp": true,
+      "statReachBottom": true
+    });
     var openid = wx.getStorageSync('openid');
     if (openid) {
       that.globalData.openid = openid

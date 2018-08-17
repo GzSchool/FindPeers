@@ -1,6 +1,7 @@
 // pages/mycards/mycards.js
 var app=getApp();
 var util = require('../../utils/util.js');
+var mta = require('../../utils/mta_analysis.js');
 Page({
   data: {
     mineInfo: {                //缓存  
@@ -35,6 +36,7 @@ Page({
   },
   //页面加载
   onLoad:function(a){
+    mta.Page.init();
     console.log('mycard onload')
     wx.showShareMenu({
       withShareTicket: true
