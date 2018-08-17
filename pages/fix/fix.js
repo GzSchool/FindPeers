@@ -47,7 +47,7 @@ Page({
     prepare: '', //用户名字拼音
     region: '',
     customItem: '',
-    list: [] // picker列表
+    list: [], // picker列表
   },
   //页面加载
   onLoad: function(a) {
