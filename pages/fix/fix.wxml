@@ -229,7 +229,7 @@
       <input placeholder-class="phcolor" disabled='disabled' bindtap='chooseIn' placeholder='必填' value='{{idustry}}'></input>
       <image src='/pages/images/right.png' bindtap='chooseIn'></image>
     </view>
-    <picker mode='region' bindchange="cityChange" value='{{region}}' custom-item="{{customItem}}">
+    <picker mode='multiSelector' bindchange="cityChange" bindcolumnchange="provinceChange" value='{{multiIndex}}' range="{{city_PRO}}">
       <view class='main-li'>
         <view class='star'>*</view>
         <view class='title'>

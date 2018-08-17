@@ -7,6 +7,7 @@ import {
 } from '../../utils/validate.js'
 var util = require('../../utils/util.js');
 var mta = require('../../utils/mta_analysis.js');
+const industry = require('../../utils/industry.js')
 var app = getApp();
 Page({
   data: {
@@ -46,9 +47,9 @@ Page({
     isshow3: false, //显示资源
     image: "", //用户头像
     prepare: '', //用户名字拼音
-    region: '',
-    customItem: '',
     list: [], // picker列表
+    multiIndex: [0, 0], //城市索引
+    city_PRO: [industry.province, industry.city[0].child], //城市列表
   },
   //页面加载
   onLoad: function(a) {
@@ -418,13 +419,6 @@ Page({
       })
     }
   },
-  //选择城市
-  cityChange(e) {
-    let dedupeCity = this.dedupe(e.detail.value)
-    this.setData({
-      city: dedupeCity.join('')
-    })
-  },
   //es6去重
   dedupe: function(array) {
     return Array.from(new Set(array))
@@ -482,5 +476,27 @@ Page({
     this.setData({
       list: list
     })
+  },
+  cityChange: function (e) {
+    var idx = e.detail.value
+    var city = []
+    city.push(this.data.city_PRO[0][idx[0]])
+    city.push(this.data.city_PRO[1][idx[1]])
+    this.setData({
+      city: this.dedupe(city).join(''),
+      multiIndex: [idx[0], idx[1]]
+    })
+  },
+  provinceChange: function (e) {
+    var that = this
+    switch (e.detail.column) {
+      case 0:
+        var idx = e.detail.value
+        var cityList = industry.city[idx].child
+        that.setData({
+          multiIndex: [idx, 0],
+          city_PRO: [industry.province, cityList]
+        })
+    }
   }
 })
