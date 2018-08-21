@@ -29,6 +29,7 @@ Page({
     userInfo: {},        // 用户信息
     cardType:"",         //卡片样式ID
     remark: '', // 备注
+    listOfAlbum: ['https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJWN4NNhDKzcv21j2JNqhooxX2rxboRVO7Y9HebGdgia5DhMxWWCt4FBb9KhYC6AGnoAZ4KXjX3tUQ/132', 'https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJWN4NNhDKzcv21j2JNqhooxX2rxboRVO7Y9HebGdgia5DhMxWWCt4FBb9KhYC6AGnoAZ4KXjX3tUQ/132', 'https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJWN4NNhDKzcv21j2JNqhooxX2rxboRVO7Y9HebGdgia5DhMxWWCt4FBb9KhYC6AGnoAZ4KXjX3tUQ/132', 'https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJWN4NNhDKzcv21j2JNqhooxX2rxboRVO7Y9HebGdgia5DhMxWWCt4FBb9KhYC6AGnoAZ4KXjX3tUQ/132', 'https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJWN4NNhDKzcv21j2JNqhooxX2rxboRVO7Y9HebGdgia5DhMxWWCt4FBb9KhYC6AGnoAZ4KXjX3tUQ/132'],
   },
   /**
    * 生命周期函数--监听页面加载

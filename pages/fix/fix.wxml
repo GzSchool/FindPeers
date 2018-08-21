@@ -8,7 +8,7 @@
     </view>
     <view class='card-down'>
       <view class='card-down-left'>
-        <view class='img-box'>
+        <view class='img-box' bindtap='transImage'>
           <image src='{{image}}'></image>
         </view>
       </view>
@@ -30,7 +30,7 @@
           <view class='info-job over-flow-hide'>{{mineInfo.userJob}}</view>
         </view>
         <view class='card-top-right'>
-          <view class='img-box'>
+          <view class='img-box' bindtap='transImage'>
             <image src='{{image}}'></image>
           </view>
         </view>
@@ -59,7 +59,7 @@
       </view>
       <view class='card-top-right'>
         <view class='img-box'>
-          <image src='{{image}}'></image>
+          <image src='{{image}}' bindtap='transImage'></image>
         </view>
       </view>
     </view>
@@ -85,7 +85,7 @@
         </view>
         <view class='card-top-right'>
           <view class='img-box'>
-            <image src='{{image}}'></image>
+            <image src='{{image}}' bindtap='transImage'></image>
           </view>
         </view>
       </view>
@@ -133,7 +133,7 @@
       <view class='card-down'>
         <view class='card-down-left'>
           <view class='img-box'>
-            <image src='{{image}}'></image>
+            <image src='{{image}}' bindtap='transImage'></image>
           </view>
         </view>
         <view class='card-down-right'>
@@ -313,6 +313,18 @@
     </view>
     <textarea maxlength='140' placeholder-class="phcolor" placeholder='请您填写自我介绍或公司简介' bindinput='introInput' type='text' value='{{introduction}}'></textarea>
   </view>
+  <view class='Album'>
+    <view class='textAlbum'>名片相册：</view>
+    <view class='chooseAlbum'>
+      <view class="chooseAlbum-box" wx:for='{{listOfAlbum}}'>
+        <image src='{{item}}'>
+        </image>
+        <image class='close' src='../images/removeAlbum.png' data-index='{{index}}'  bindtap='removeAlbum'></image>        
+      </view>
+      <view class='chooseAlbum-add' wx:if='{{listOfAlbum.length<9}}'>
+        <image src='../images/addAlbum.png' bindtap='chooseAlbum'></image>
+      </view>
+    </view>
+  </view>
 </view>
-
 <view class="save-btn" bindtap='save'>保存</view>

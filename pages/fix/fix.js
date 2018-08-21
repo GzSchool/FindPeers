@@ -50,6 +50,8 @@ Page({
     list: [], // picker列表
     multiIndex: [0, 0], //城市索引
     city_PRO: [industry.province, industry.city[0].child], //城市列表
+    listOfAlbum: [],
+    chooseCount: 9,
   },
   //页面加载
   onLoad: function(a) {
@@ -84,8 +86,8 @@ Page({
           image: res.data.userImg,
           demand: res.data.demand,
           resource: res.data.resources,
-          homepage:res.data.homePage,
-          companyWeb:res.data.companyPage,
+          homepage: res.data.homePage,
+          companyWeb: res.data.companyPage,
           introduction: res.data.synopsis,
           id: res.data.id,
           job: res.data.userJob,
@@ -300,9 +302,13 @@ Page({
         success: function(a) {
           that.setData({
             name: a.userInfo.nickName,
-            image: a.userInfo.avatarUrl,
             prepare: pinyin.getFullChars(a.userInfo.nickName).toUpperCase()
           })
+          if(!that.data.image){
+            that.setData({
+              image: a.userInfo.avatarUrl,
+            })
+          }
           console.log(a.userInfo.gender)
           that.getData()
         },
@@ -324,7 +330,7 @@ Page({
       var openId = app.globalData.openid
       var iv = e.detail.iv
       var encryptedData = e.detail.encryptedData
-      util.getUserPhone(openId, iv, encryptedData).then(function (res) {
+      util.getUserPhone(openId, iv, encryptedData).then(function(res) {
         console.log(res.data)
         if (res.data.data) {
           that.setData({
@@ -384,8 +390,8 @@ Page({
           userJob: this.data.job,
           demand: this.data.demand,
           resources: this.data.resource,
-          homePage:this.data.homepage,
-          companyPage:this.data.companyWeb,
+          homePage: this.data.homepage,
+          companyPage: this.data.companyWeb,
           synopsis: this.data.introduction,
           userEmail: this.data.email,
           userImg: this.data.image,
@@ -397,6 +403,7 @@ Page({
           'content-type': 'application/json'
         },
         success: function(res) {
+          console.log(res)
           app.showToast("修改成功");
           app.getUserData(app.globalData.openid)
           //是否是从群里点击的
@@ -450,7 +457,7 @@ Page({
     })
   },
   //点击添加更多
-  bindPickerChange (e) {
+  bindPickerChange(e) {
     let id = e.detail.value
     if (this.data.list[id] == '个人主页') {
       this.setData({
@@ -468,8 +475,8 @@ Page({
       })
     }
     let list = []
-    for(var i = 0; i < this.data.list.length; i ++) {
-      if (this.data.list[id] !== this.data.list[i]){
+    for (var i = 0; i < this.data.list.length; i++) {
+      if (this.data.list[id] !== this.data.list[i]) {
         list.push(this.data.list[i])
       }
     }
@@ -477,7 +484,7 @@ Page({
       list: list
     })
   },
-  cityChange: function (e) {
+  cityChange: function(e) {
     var idx = e.detail.value
     var city = []
     city.push(this.data.city_PRO[0][idx[0]])
@@ -487,7 +494,7 @@ Page({
       multiIndex: [idx[0], idx[1]]
     })
   },
-  provinceChange: function (e) {
+  provinceChange: function(e) {
     var that = this
     switch (e.detail.column) {
       case 0:
@@ -498,5 +505,68 @@ Page({
           city_PRO: [industry.province, cityList]
         })
     }
+  },
+  transImage: function(e) {
+    var that = this
+    var openId = app.globalData.openid   
+    var list = [] 
+    var index = 'touxiang'
+    wx.chooseImage({
+      count: 1,
+      success: function(res) {
+        console.log(res)
+        that.setData({
+          image: res.tempFilePaths
+        })
+        list.push(res.tempFilePaths)
+        console.log(list)
+      util.fileUpload(openId, 1, list, index).then(function(a){
+        console.log(a)
+        that.setData({
+          image:a.data
+        })
+      })
+      },
+    })
+  },
+  chooseAlbum: function(a) {
+    let that = this
+    console.log(that.data.chooseCount)
+    let count = that.data.chooseCount
+    var openId = app.globalData.openid
+    var index = 'xiangce'
+    wx.chooseImage({
+      count: count,
+      success: function(res) {
+        let len = res.tempFilePaths.length;
+        let list = that.data.listOfAlbum;
+        for (var i in res.tempFilePaths) {
+          list.push(res.tempFilePaths[i])
+        }
+        console.log(list)
+        that.setData({
+          listOfAlbum: list,
+          chooseCount: that.data.chooseCount - len
+        })
+        console.log(res.tempFiles[0].size/1024 + 'kB')
+        // for(var i = 0; i < res.tempFilePaths.length; i++){
+        // util.fileUpload(openId, 1, res.tempFilePaths[i], index+i).then(function(a) {
+        //   console.log(a)
+        // })
+        // }
+        console.log(res)
+      },
+    })
+  },
+  removeAlbum: function(a) {
+    let that = this
+    let index = a.currentTarget.dataset.index;
+    let listOfAlbum = that.data.listOfAlbum;
+    listOfAlbum.splice(index, 1)
+    that.setData({
+      listOfAlbum: listOfAlbum,
+      chooseCount: that.data.chooseCount + 1
+    })
+    console.log(that.data.chooseCount)
   }
 })

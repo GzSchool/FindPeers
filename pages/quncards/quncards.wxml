@@ -4,7 +4,7 @@
     <view class='tips'></view>
     <view>群列表</view>
   </view>
-  <view class='mes-ul' wx:if='{{list.length!==0}}'>
+<view class='mes-ul' wx:if='{{list.length!==0}}'>
     <view class='mes-li' wx:for="{{list}}" wx:for-index="index" wx:for-item="item" wx:key="11" data-key="{{item.groupId}}" data-id="{{item.openId}}" open-name='{{groupName}}' bindtap='search'>
       <view class='li-left join'>
         <image src='{{cell}}' class='{{item.beforeNineImg.length<5?item.beforeNineImg.length==1?"join-1":"join-4":"join-9"}}' wx:for-index='cellindex' wx:for-item='cell' wx:for='{{item.beforeNineImg}}' wx:key='{{1}}'></image>
@@ -22,6 +22,12 @@
     </view>
   </view>
 </view>
-  <view class='searching' wx:if='{{searching&&list.length ==0}}'>
+<view class='searching' wx:if='{{searching&&list.length ==0}}'>
     <view class='weui-loading'></view> 加载中···
   </view>
+<view wx:if='{{qunEmpty&&list.length ==0}}'>
+  <view class='qunEmpty-box'>
+    <image src='../images/qunEmpty.png'></image>
+  </view>
+  <view class='qunEmpty-text'>把名片发送到任意一个微信群即可体验。</view>
+</view>

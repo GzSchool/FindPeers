@@ -5,7 +5,8 @@ var mta = require('../../utils/mta_analysis.js');
    Page({
      data: {
        list: [],
-       searching: false
+       searching: false,
+       qunEmpty:false
      },
      //页面加载
      onLoad: function(a) {
@@ -43,6 +44,11 @@ var mta = require('../../utils/mta_analysis.js');
                })
              }
            }
+         }
+         if(!res.data.data){
+           that.setData({
+             qunEmpty:true
+           })
          }
          that.setData({
            list: res.data.data,

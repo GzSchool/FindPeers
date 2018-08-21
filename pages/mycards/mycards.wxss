@@ -57,3 +57,22 @@ Page{
   color: #2c7fe7;
   border: 1px solid #2c7fe7;
 }
+.Album{
+  width: 100%;
+  margin-top: 20rpx;
+  background-color: #ffffff;
+  padding: 30rpx 4rpx 0rpx 40rpx;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.Album .Album-box{
+  width: 200rpx;
+  height: 200rpx;
+  margin-right: 36rpx;
+  margin-bottom: 30rpx;
+}
+.Album .Album-box image{
+  width: 200rpx;
+  height: 200rpx;
+}

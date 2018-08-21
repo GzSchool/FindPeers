@@ -257,6 +257,11 @@
     <view class='con-li-right' style='border-bottom:none'>{{synopsis}}</view>
   </view>
 </view>
+<view class='Album' wx:if='{{listOfAlbum.length>0}}'>
+  <view class='Album-box' wx:for='{{listOfAlbum}}'>
+      <image src='{{item}}'></image>
+  </view>
+</view>
 <view class='card-remark' wx:if="{{!samePeer}}">
   <view class='card-remark-icon'>
     <image src='../images/card/remark.png'></image>

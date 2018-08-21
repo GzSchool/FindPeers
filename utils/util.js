@@ -471,6 +471,30 @@ function makeWxQrCode(userPhotoUrl, scene, page, openId){
   })
 }
 /**
+ * 上传图片
+ */
+function fileUpload(openId, cardId, multipartFileList, index){
+  return new Promise(function(resolve){
+    wx.uploadFile({
+      url: server + '/user/fileUpload',
+      filePath: multipartFileList,
+      name:'file',
+      formData: {
+        openId: openId,
+        cardId: cardId,
+        index:  index,
+        // files:  multipartFileList
+      },
+      header: {
+        'content-type': 'multipart/form-data'
+      },
+      success:function(res){
+        resolve(res)
+      }
+    })
+  })
+}
+/**
  * formID获取
  */
 function userFromId(formIds, openId) {
@@ -515,4 +539,5 @@ module.exports = {
   addRemark: addRemark,     // 添加备注
   getUserPhone: getUserPhone, // 获取用户手机号
   userFromId: userFromId, // 获取formid
+  fileUpload: fileUpload
 }
