@@ -65,12 +65,21 @@ page{
   background-color: #ffffff;
   border-bottom: 1rpx solid #D9D8D9;
 }
+.mine-card .mine-info .mes-li .saveNum{
+  margin-left:50rpx;
+  font-size: 20rpx;
+  color: #606060;
+}
 .mine-card .mine-info .mes-li .li-left image{
   margin-right: 40rpx;
   width: 120rpx;
   height: 120rpx;
   background-color: #f8f8f8;
   border-radius: 20rpx;
+}
+.mine-card .mine-info .mes-li .li-right{
+  padding: 0;
+  width: 50%;
 }
 .mine-card .mine-info .mes-li .li-right .mes-name{
   /* height: 48rpx; */

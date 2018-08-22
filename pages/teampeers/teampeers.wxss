@@ -44,7 +44,106 @@ page {
   text-align: center;
   border-bottom: 1rpx solid #d9d8d9;
 }
+.mine-card{
+  background-color: #ffffff;
+  /* border-bottom: 1rpx solid transparent; */
+  margin-bottom: 18rpx;
+  box-shadow: 0rpx 2rpx 10rpx #eeeeee;
+}
+.mine-card.res-card{
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+/* .mine-card .card-title{
+  height: 69rpx;
+  line-height: 69rpx;
+  padding-left: 40rpx;
+  display: flex;
+  align-items: center;
+  color: #323232;
+  font-size: 30rpx;
+  border-bottom: 1rpx solid #D9D8D9;
+}
+.mine-card .card-title .title-tips{
+  background-color: #007AFF;
+  width: 2px;
+  height: 24rpx;
+  margin-right: 16rpx;
+} */
+.mine-card .mine-info{
+  background-color: #ffffff;
+}
 
+.mine-card .mine-info .mes-li{
+  display: flex;
+  align-items: center;
+  padding: 19rpx 40rpx;
+  background-color: #ffffff;
+  border-bottom: 1rpx solid #D9D8D9;
+}
+.mine-card .mine-info .mes-li .saveNum{
+  margin-left:50rpx;
+  font-size: 20rpx;
+  color: #606060;
+}
+.mine-card .mine-info .mes-li .li-left image{
+  margin-right: 40rpx;
+  width: 120rpx;
+  height: 120rpx;
+  background-color: #f8f8f8;
+  border-radius: 20rpx;
+}
+.mine-card .mine-info .mes-li .li-right{
+  padding: 0;
+  width: 50%;
+}
+.mine-card .mine-info .mes-li .li-right .mes-name{
+  /* height: 48rpx; */
+  line-height: 48rpx;
+  color: #505050;
+  font-size: 28rpx;
+}
+.mine-card .mine-info .mes-li .li-right .mes-name text{
+  font-size: 20rpx;
+  color: #606060;
+  padding-left: 29rpx;
+}
+.mine-card .mine-info .mes-li .li-right .mes-info{
+  color: #606060;
+  /* height: 44rpx; */
+  line-height: 44rpx;
+  font-size: 24rpx;
+}
+
+.mine-card .mine-info .btn{
+  width: 240rpx;
+  height: 60rpx;
+  line-height: 58rpx;
+  color: #2C7FE7;
+  font-size: 30rpx;
+  border: 1px solid #2C7FE7;
+  background-color: #ffffff;
+  margin:57rpx auto 53rpx;
+  border-radius: 10rpx;
+  text-align: center;
+}
+.mine-card .card-more {
+  height: 69rpx;
+  line-height: 69rpx;
+  text-align: center;
+  color:#2C7FE7; 
+  font-size: 28rpx;
+}
+.mine-card .card-more image {
+  transform: rotate(90deg);
+  width:12rpx;
+  height:20rpx;
+  margin-left: 12rpx;
+}
+.mine-card .card-more.hide-more image {
+  transform: rotate(-90deg);
+}
+/* 
 .mine-card {
   padding-left: 40rpx;
 }
@@ -82,7 +181,6 @@ page {
 }
 
 .mine-card .mine-info .mes-li .li-right .mes-name {
-  /* height: 48rpx; */
   line-height: 48rpx;
   color: #505050;
   font-size: 28rpx;
@@ -96,7 +194,6 @@ page {
 
 .mine-card .mine-info .mes-li .li-right .mes-info {
   color: #606060;
-  /* height: 44rpx; */
   line-height: 44rpx;
   font-size: 24rpx;
 }
@@ -143,7 +240,7 @@ page {
   margin: 57rpx auto 53rpx;
   border-radius: 10rpx;
   text-align: center;
-}
+} */
 
 .crowd-title {
   height: 68rpx;

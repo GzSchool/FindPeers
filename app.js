@@ -109,36 +109,36 @@ App({
   // 使用用户标识访问数据库获取用户信息
   getUserData(openid) {
     let that = this
-    util.getMyData(openid).then(function (res) {
+    util.getMyDataList(openid).then(function (res) {
       console.log("333333333333333333333")
       console.log(res)
-      if (res) {
+      if (res.data[0]) {
         that.globalData.notadd = false;
-        that.globalData.userImg = res.userImg;
-        wx.setStorage({
-          key: 'userInfo',
-          data: res
-        })
-        let userPhotoUrl = "";
-        if(that.globalData.userImage){
-          userPhotoUrl = that.globalData.userImage
-        }else{
-          userPhotoUrl = res.userImg;
-        }
-        let page = "pages/peerscards/peerscards";
-        let scene = res.id;
-        console.log(scene)
-        util.makeWxQrCode(userPhotoUrl, scene, page, openid, res.id, 'wxQrCode').then(function (res) {
-          if (res.data.success) {
-            that.globalData.QRCode = ("http://www.eqxuan.cn/" + openid + ".png")            
-          } else {
-            that.globalData.QRCode = ""
-          }  
-        })
+        // that.globalData.userImg = res.userImg;
+        // wx.setStorage({
+        //   key: 'userInfo',
+        //   data: res
+        // })
+        // let userPhotoUrl = "";
+        // if(that.globalData.userImage){
+        //   userPhotoUrl = that.globalData.userImage
+        // }else{
+        //   userPhotoUrl = res.userImg;
+        // }
+        // let page = "pages/peerscards/peerscards";
+        // let scene = res.id;
+        // console.log(scene)
+        // util.makeWxQrCode(userPhotoUrl, scene, page, openid, res.id, 'wxQrCode').then(function (res) {
+        //   if (res.data.success) {
+        //     that.globalData.QRCode = ("http://www.eqxuan.cn/" + openid + ".png")            
+        //   } else {
+        //     that.globalData.QRCode = ""
+        //   }  
+        // })
       } else {
         // 登录失败清空本地缓存
-        that.globalData.QRCode="";
-        wx.clearStorage()
+        // that.globalData.QRCode="";
+        // wx.clearStorage()
         that.globalData.notadd = true;
       }
     })

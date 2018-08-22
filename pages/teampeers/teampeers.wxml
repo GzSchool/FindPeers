@@ -6,41 +6,12 @@
   </view>
 </view>
 <view class='main'>
-  <view class='mine-title'><open-data type="groupName" open-gid="{{groupId}}"></open-data></view>
+  <view class='mine-title'>
+    <open-data type="groupName" open-gid="{{groupId}}"></open-data>
+  </view>
   <view class='mine-card'>
     <view class='mine-info'>
-      <button class='btn' wx:if='{{notadd}}' open-type="getUserInfo" bindgetuserinfo='addcards'>制作我的名片</button>
-      <view class='mes-li' wx:if='{{!notadd}}' bindtap='mycards'>
-        <view class='li-left'>
-          <image src='{{image}}'></image>
-        </view>
-        <view class='li-right'>
-          <view class='mes-name'>{{name}}
-            <text>{{industry}}</text>
-          </view>
-          <view class='mes-info'>{{city}}</view>
-          <view class='mes-info'>{{company}}</view>
-        </view>
-        <!-- <view class='li-share' catchtap='chooseSize' wx:if='{{false}}'>
-          <image src='../images/share.png'></image>
-        </view> -->
-      </view>
-    </view>
-  </view>
-  <view class='crowd-title'>
-    <view class='crowd-title-left' wx:if='{{listOfSave.length!==0}}' bindtap='selectAll'>
-      <image class="select {{selectAll?'':'noselect'}}" src="{{selectAll?'../images/select.png':'../images/select_no.png'}}"></image>全选</view>
-    <view class='crowd-title-middle' wx:if='{{listOfSave.length}}'>{{listOfSave.length}}张名片未保存</view>
-    <view class='crowd-title-middle' wx:if='{{listOfSave.length==0&&list_length!==0}}'>{{list_length}}张名片已保存</view>
-    <view class="crowd-title-right" wx:if='{{!hasSelect&&listOfSave.length>0}}'>保存</view>
-    <!-- <view class="crowd-title-right active" wx:if='{{hasSelect&&listOfSave.length>0&&click}}' bindtap='aaa'>保存</view> -->
-    <form bindsubmit="save" report-submit='true'>
-      <button form-type="submit" class="crowd-title-right active" wx:if='{{hasSelect&&listOfSave.length>0}}'>保存</button>
-    </form>
-  </view>
-  <view class='mine-card mine-card-bb'>
-    <view class='mine-info'>
-      <view class='mes-li' wx:for="{{list}}" wx:for-item="item" data-index='{{index}}' wx:key="11" data-id='{{item.id}}' data-saveFlag='{{item.saveFlag}}' bindtap='goPeers'>
+      <view class='mes-li' wx:if='{{!notadd&&index<num}}' data-id='{{item.id}}' wx:for='{{cardList}}' wx:for-item='item' bindtap='mycards' data-index='{{index}}'>
         <view class='li-left'>
           <image src='{{item.userImg}}'></image>
         </view>
@@ -51,16 +22,72 @@
           <view class='mes-info'>{{item.userCity}}</view>
           <view class='mes-info'>{{item.userCompany}}</view>
         </view>
-        <view wx:if='{{item.saveFlag == 1}}' class='li-select' data-index='{{index}}' catchtap='selectOne'>
-          <image class="select {{item.isselect?'':'noselect'}}" src="{{item.isselect?'../images/select.png':'../images/select_no.png'}}"></image>
+        <view class='saveNum'>{{item.saveNum}}人已存</view>
+      </view>
+      <view style='padding-bottom:1rpx;'>
+        <button class='btn' wx:if='{{notadd}}' open-type="getUserInfo" bindgetuserinfo='addcards'>制作我的名片</button>
+      </view>
+    </view>
+    <view class='mine-info' wx:if='{{showMoreCard&&cardNumber<=4}}'>
+      <button class='btn' open-type="getUserInfo" bindgetuserinfo='addcards'>制作我的名片</button>
+    </view>
+    <view class='card-more' data-type='1' bindtap='moreCard' wx:if='{{!showMoreCard}}'>查看更多
+      <image src='../images/right.png'></image>
+    </view>
+    <view class='card-more hide-more' data-type='2' bindtap='moreCard' wx:if='{{showMoreCard}}'>收起
+      <image src='../images/right.png'></image>
+    </view>
+  </view>
+  <!-- <button class='btn' wx:if='{{notadd}}' open-type="getUserInfo" bindgetuserinfo='addcards'>制作我的名片</button> -->
+  <!-- <view class='mes-li' wx:if='{{!notadd}}' bindtap='mycards'>
+        <view class='li-left'>
+          <image src='{{image}}'></image>
         </view>
+        <view class='li-right'>
+          <view class='mes-name'>{{name}}
+            <text>{{industry}}</text>
+          </view>
+          <view class='mes-info'>{{city}}</view>
+          <view class='mes-info'>{{company}}</view>
+        </view> -->
+  <!-- <view class='li-share' catchtap='chooseSize' wx:if='{{false}}'>
+          <image src='../images/share.png'></image>
+        </view> -->
+  <!-- </view> -->
+<view class='crowd-title'>
+  <view class='crowd-title-left' wx:if='{{listOfSave.length!==0}}' bindtap='selectAll'>
+    <image class="select {{selectAll?'':'noselect'}}" src="{{selectAll?'../images/select.png':'../images/select_no.png'}}"></image>全选</view>
+  <view class='crowd-title-middle' wx:if='{{listOfSave.length}}'>{{listOfSave.length}}张名片未保存</view>
+  <view class='crowd-title-middle' wx:if='{{listOfSave.length==0&&list_length!==0}}'>{{list_length}}张名片已保存</view>
+  <view class="crowd-title-right" wx:if='{{!hasSelect&&listOfSave.length>0}}'>保存</view>
+  <!-- <view class="crowd-title-right active" wx:if='{{hasSelect&&listOfSave.length>0&&click}}' bindtap='aaa'>保存</view> -->
+  <form bindsubmit="save" report-submit='true'>
+    <button form-type="submit" class="crowd-title-right active" wx:if='{{hasSelect&&listOfSave.length>0}}'>保存</button>
+  </form>
+</view>
+<view class='mine-card mine-card-bb'>
+  <view class='mine-info'>
+    <view class='mes-li' wx:for="{{list}}" wx:for-item="item" data-index='{{index}}' wx:key="11" data-id='{{item.id}}' data-saveFlag='{{item.saveFlag}}' bindtap='goPeers'>
+      <view class='li-left'>
+        <image src='{{item.userImg}}'></image>
+      </view>
+      <view class='li-right'>
+        <view class='mes-name'>{{item.username}}
+          <text>{{item.userIndustry}}</text>
+        </view>
+        <view class='mes-info'>{{item.userCity}}</view>
+        <view class='mes-info'>{{item.userCompany}}</view>
+      </view>
+      <view wx:if='{{item.saveFlag == 1}}' class='li-select' data-index='{{index}}' catchtap='selectOne'>
+        <image class="select {{item.isselect?'':'noselect'}}" src="{{item.isselect?'../images/select.png':'../images/select_no.png'}}"></image>
       </view>
     </view>
   </view>
 </view>
-  <view class='searching' wx:if='{{searching}}'>
-    <view class='weui-loading'></view> 加载中···
-  </view>
+</view>
+<view class='searching' wx:if='{{searching}}'>
+  <view class='weui-loading'></view> 加载中···
+</view>
 <!-- <view class='maskLayer' wx:if="{{chooseSize}}" bindtap='hideModal' catchtouchmove="preventD"></view>
 <view class='popup' wx:if="{{chooseSize}}" animation='{{animationData}}'>
   <view class='popup-title'>

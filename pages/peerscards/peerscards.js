@@ -177,8 +177,9 @@ Page({
   },
   getMyData(openid) {
     var that = this
-    util.getMyData(openid).then(function(res) {
-      if (res) {
+    util.getMyDataList(openid).then(function(res) {
+      console.log(res.data.data)
+      if (res.data.data) {
         app.globalData.notadd = false
         that.setData({
           notadd: false,

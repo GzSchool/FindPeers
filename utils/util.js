@@ -82,7 +82,7 @@ function getMyDataList(openid) {
         'content-type': 'application/json'
       },
       success: function (d) {
-        resolve(d.data.data);
+        resolve(d);
       }
     })
   })
@@ -605,5 +605,6 @@ module.exports = {
   userFromId: userFromId, // 获取formid
   getSMS: getSMS,          // 获取短信验证码接口
   checkSMS: checkSMS,  // 校验短信验证码
-  fileUpload: fileUpload
+  fileUpload: fileUpload,
+  getMyDataList: getMyDataList
 }
