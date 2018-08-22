@@ -369,6 +369,7 @@ Page({
     }, 200)
   },
   saveToPhone: function () {
+    mta.Event.stat("save_mobile_peercard");
     var that = this
     if (that.data.phone) {
       wx.addPhoneContact({
@@ -406,6 +407,7 @@ Page({
     }
   },
   save: function (e) {
+    mta.Event.stat("save_list_peerscard");
     var that = this
     var server = app.globalData.server;
     var openid = app.globalData.openid;
@@ -506,6 +508,7 @@ Page({
     // this.onLoad(ops)    
   },
   addRemark: function (e) {
+    mta.Event.stat("add_remark_peer");
     let openId = app.globalData.openid
     let cardId = this.data.othercardid
     let remark = e.detail.value

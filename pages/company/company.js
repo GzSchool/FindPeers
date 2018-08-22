@@ -32,6 +32,7 @@ Page({
   },
   //联系客服
   save(e) {
+    mta.Event.stat("contact_us");
     console.log(e.detail.formId)
     let formId = []
     formId.push(e.detail.formId)

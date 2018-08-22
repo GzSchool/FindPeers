@@ -215,6 +215,7 @@ Page({
   },
   //点击保存到通讯录
   saveToPhone: function (e) {
+    mta.Event.stat("save_mobile_otherpeer");
     console.log(e)
     let that = this
     if (that.data.phone) {
@@ -257,6 +258,7 @@ Page({
    * 保存其他用户名片夹 formId推送提示
    */
   save: function (e) {
+    mta.Event.stat("save_list_otherpeer");
     if (app.globalData.notadd) {
       app.showToast('请先添加个人信息')
     } else {
@@ -336,6 +338,7 @@ Page({
     }
   },
   addRemark: function (e) {
+    mta.Event.stat("add_remark");
     let openId = app.globalData.openid
     let cardId = this.data.cardId
     let remark = e.detail.value
