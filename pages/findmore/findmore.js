@@ -27,6 +27,8 @@ Page({
     list_id: '', // 锚点
     list_letter: [], // 锚点列表
     floorstatus: false, // 回到顶部
+    showMoreCard: false,
+    cardNumber: 4
   },
   onLoad: function(a) {
     mta.Page.init();
@@ -352,6 +354,14 @@ Page({
         console.log(a)
         console.log(res)
       }
+    }
+  },
+  moreCard(e) {
+    var id = e.currentTarget.dataset.type
+    if(id == 1) {
+      this.setData({ showMoreCard: true })
+    } else if (id == 2) {
+      this.setData({ showMoreCard: false })
     }
   }
 })

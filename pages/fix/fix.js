@@ -10,6 +10,10 @@ var mta = require('../../utils/mta_analysis.js');
 const industry = require('../../utils/industry.js')
 var app = getApp();
 Page({
+  modeSMS: false,
+  code: '', // 短信验证码
+  isGet: false,
+  sec: 60,
   data: {
     mineInfo: { //缓存  
       name: '', //用户名字
@@ -254,7 +258,14 @@ Page({
   },
   //填写手机号
   addphone: function(e) {
-    this.data.phone = e.detail.value
+    this.setData({
+      phone: e.detail.value,
+      modeSMS: e.detail.value ? true : false
+    })
+  },
+  //填写验证码
+  addcode: function (e) {
+    this.data.code = e.detail.value
   },
   //填写需求
   adddemand: function(e) {
@@ -288,6 +299,30 @@ Page({
   //点击保存按钮
   save: function() {
     let that = this
+    if (that.data.modeSMS) {
+      if (String(that.data.code).length!==4){
+        app.showToast('验证码不正确')
+      } else if (!isvalidatemobile(that.data.phone)) {
+        app.showToast('手机号格式不正确')
+      } else {
+        var openid = app.globalData.openid
+        var code = that.data.code
+        var phone = that.data.phone
+        util.checkSMS(openid, phone, code).then(function (res) {
+          console.log(res)
+          if (res.statusCode == 200 && !res.data.success) {
+            app.showToast(res.data.message)
+          } else if (res.data.success) {
+            that.submit()
+          }
+        })
+      }
+    } else {
+      that.submit()
+    }
+  },
+  submit() {
+    let that = this
     let prepare = pinyin.getFullChars(that.data.name).toUpperCase()
     let begin_letter = pinyin.getFullChars(that.data.name).toUpperCase().slice(0, 1)
     if (!validateUpperCase(begin_letter)) {
@@ -297,7 +332,7 @@ Page({
     //名字是空的时候获取微信名字
     if (this.data.name == '' || this.data.name == null) {
       wx.getUserInfo({
-        success: function(a) {
+        success: function (a) {
           that.setData({
             name: a.userInfo.nickName,
             image: a.userInfo.avatarUrl,
@@ -306,7 +341,7 @@ Page({
           console.log(a.userInfo.gender)
           that.getData()
         },
-        fail: function() {
+        fail: function () {
           app.showToast("姓名不能为空")
         }
       })
@@ -328,7 +363,8 @@ Page({
         console.log(res.data)
         if (res.data.data) {
           that.setData({
-            phone: res.data.data
+            phone: res.data.data,
+            modeSMS: false
           })
         }
       })
@@ -497,6 +533,34 @@ Page({
           multiIndex: [idx, 0],
           city_PRO: [industry.province, cityList]
         })
+    }
+  },
+  getCode() {
+    var that = this
+    if (!isvalidatemobile(that.data.phone)) {
+      app.showToast('请输入正确的手机号')
+    } else {
+      var phone = that.data.phone
+      var openid = app.globalData.openid
+      util.getSMS(openid, phone).then(function (res) {
+        console.log(res)
+      })
+      that.setData({ isGet: true, sec: 60 })
+      var remain = 60;
+      var time = setInterval(function () {
+        if (remain == 1) {
+          clearInterval(time)
+          that.setData({
+            sec: 60,
+            isGet: false
+          })
+          return false
+        }
+        remain--;
+        that.setData({
+          sec: remain
+        })
+      }, 1000)
     }
   }
 })

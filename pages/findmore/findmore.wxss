@@ -30,14 +30,13 @@ page{
 }
 .mine-card{
   background-color: #ffffff;
-  padding-bottom: 1rpx;
+  /* padding-bottom: 1rpx; */
   margin-bottom: 18rpx;
   box-shadow: 0rpx 2rpx 10rpx #eeeeee;
 }
 .mine-card.res-card{
   margin-bottom: 0;
   padding-bottom: 0;
-  border-bottom: 1rpx solid #D9D8D9;
 }
 .mine-card .card-title{
   height: 69rpx;
@@ -47,6 +46,7 @@ page{
   align-items: center;
   color: #323232;
   font-size: 30rpx;
+  border-bottom: 1rpx solid #D9D8D9;
 }
 .mine-card .card-title .title-tips{
   background-color: #007AFF;
@@ -56,7 +56,6 @@ page{
 }
 .mine-card .mine-info{
   background-color: #ffffff;
-  border-top: 1rpx solid #D9D8D9;
 }
 
 .mine-card .mine-info .mes-li{
@@ -64,6 +63,7 @@ page{
   align-items: center;
   padding: 19rpx 40rpx;
   background-color: #ffffff;
+  border-bottom: 1rpx solid #D9D8D9;
 }
 .mine-card .mine-info .mes-li .li-left image{
   margin-right: 40rpx;
@@ -101,6 +101,25 @@ page{
   margin:57rpx auto 53rpx;
   border-radius: 10rpx;
   text-align: center;
+}
+/* 
+  多张名片
+ */
+.mine-card .card-more {
+  height: 69rpx;
+  line-height: 69rpx;
+  text-align: center;
+  color:#2C7FE7; 
+  font-size: 28rpx;
+}
+.mine-card .card-more image {
+  transform: rotate(90deg);
+  width:12rpx;
+  height:20rpx;
+  margin-left: 12rpx;
+}
+.mine-card .card-more.hide-more image {
+  transform: rotate(-90deg);
 }
 .mes-list{
   position: relative;

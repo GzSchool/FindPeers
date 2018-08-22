@@ -22,6 +22,7 @@ App({
     mta.App.init({
       "appID": "500632336",
       "eventID": "500632348",
+      "lauchOpts": ops,
       "statPullDownFresh": true,
       "statShareApp": true,
       "statReachBottom": true
@@ -97,6 +98,8 @@ App({
         that.globalData.openid = data
         wx.setStorageSync('openid', that.globalData.openid);
         that.getUserData(data)
+        mta.Data.userInfo = { 'open_id': data };
+        console.log(mta)
       } else {
         wx.clearStorage()
       }

@@ -210,8 +210,19 @@
         <text>号:</text>
       </view>
       <input placeholder-class="phcolor" maxlength='11' placeholder='填写可见同行手机号' bindinput='addphone' type='number' value='{{phone}}'></input>
-      <button style='padding:0;' class='wx-get' open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">微信获取</button>
+      <button wx:if='{{!phone}}' style='padding:0;' class='wx-get' open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">微信获取</button>
     </view>
+    <view class='main-li' style='height:88rpx;' wx:if='{{modeSMS&&phone}}'>
+      <view class='star'></view>
+      <view class='title'>
+        <text>验</text>
+        <text>证</text>
+        <text>码:</text>
+      </view>
+      <input placeholder-class="phcolor" maxlength='4' placeholder='验证码' bindinput='addcode' type='number' value='{{code}}'></input>
+      <view class='send-sms'><text bindtap='getCode' wx:if='{{!isGet}}'>获取验证码</text><text wx:if='{{isGet}}'>{{sec}}s后重新发送</text></view>
+    </view>
+    <!-- <view><text bindtap='getCode' wx:if='{{!isGet}}'>获取验证码</text><text wx:if='{{isGet}}'>{{sec}}s后重新发送</text></view> -->
     <view class='main-li'>
       <view class='star'>*</view>
       <view class='title'>

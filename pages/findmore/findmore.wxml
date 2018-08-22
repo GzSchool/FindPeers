@@ -26,7 +26,60 @@
           <view class='mes-info'>{{company}}</view>
         </view>
       </view>
+      <!-- <view class='mes-li' wx:if='{{!notadd&&showMoreCard&&cardNumber>=2}}' bindtap='mycards'>
+        <view class='li-left'>
+          <image src='{{image}}'></image>
+        </view>
+        <view class='li-right'>
+          <view class='mes-name'>{{name}}
+            <text>{{idustry}}</text>
+          </view>
+          <view class='mes-info'>{{city}}</view>
+          <view class='mes-info'>{{company}}</view>
+        </view>
+      </view>
+      <view class='mes-li' wx:if='{{!notadd&&showMoreCard&&cardNumber>=3}}' bindtap='mycards'>
+        <view class='li-left'>
+          <image src='{{image}}'></image>
+        </view>
+        <view class='li-right'>
+          <view class='mes-name'>{{name}}
+            <text>{{idustry}}</text>
+          </view>
+          <view class='mes-info'>{{city}}</view>
+          <view class='mes-info'>{{company}}</view>
+        </view>
+      </view>
+      <view class='mes-li' wx:if='{{!notadd&&showMoreCard&&cardNumber>=4}}' bindtap='mycards'>
+        <view class='li-left'>
+          <image src='{{image}}'></image>
+        </view>
+        <view class='li-right'>
+          <view class='mes-name'>{{name}}
+            <text>{{idustry}}</text>
+          </view>
+          <view class='mes-info'>{{city}}</view>
+          <view class='mes-info'>{{company}}</view>
+        </view>
+      </view>
+      <view class='mes-li' wx:if='{{!notadd&&showMoreCard&&cardNumber>=5}}' bindtap='mycards'>
+        <view class='li-left'>
+          <image src='{{image}}'></image>
+        </view>
+        <view class='li-right'>
+          <view class='mes-name'>{{name}}
+            <text>{{idustry}}</text>
+          </view>
+          <view class='mes-info'>{{city}}</view>
+          <view class='mes-info'>{{company}}</view>
+        </view>
+      </view> -->
     </view>
+    <!-- <view class='mine-info' wx:if='{{showMoreCard&&cardNumber<=4}}'>
+      <button class='btn' open-type="getUserInfo" bindgetuserinfo='addcards'>制作我的名片</button>
+    </view>
+    <view class='card-more' data-type='1' bindtap='moreCard' wx:if='{{!showMoreCard}}'>查看更多<image src='../images/right.png'></image></view>
+    <view class='card-more hide-more' data-type='2' bindtap='moreCard' wx:if='{{showMoreCard}}'>收起<image src='../images/right.png'></image></view> -->
   </view>
   <view class='mine-card res-card'>
     <view class='card-title'>
