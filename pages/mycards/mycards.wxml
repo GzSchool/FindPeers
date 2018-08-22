@@ -228,6 +228,11 @@
     <view class='con-li-right' style='border-bottom:none'>{{synopsis}}</view>
   </view>
 </view>
+<view class='Album' wx:if='{{listOfAlbum.length>0}}'>
+  <view class='Album-box' wx:for='{{listOfAlbum}}'>
+      <image src='{{item}}'></image>
+  </view>
+</view>
 <view class="footer">
 <form bindsubmit="save" report-submit='true'>
     <button class="footer-btn" form-type="submit" open-type='share'>发送本张名片</button>

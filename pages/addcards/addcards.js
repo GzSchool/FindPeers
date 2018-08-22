@@ -46,6 +46,8 @@ Page({
     QRCode: "",    //小程序二维码
     multiIndex: [0, 0], //城市索引
     city_PRO: [industry.province, industry.city[0].child], //城市列表
+    listOfAlbum:[],
+    chooseCount: 9,    
   },
   onLoad: function(res) {
     mta.Page.init();
@@ -189,9 +191,13 @@ Page({
         success: function(a) {
           that.setData({
             name: a.userInfo.nickName,
-            image: a.userInfo.avatarUrl,
             prepare: pinyin.getFullChars(a.userInfo.nickName).toUpperCase()
           })
+          if(!that.data.image){
+            that.setData({
+              image: a.userInfo.avatarUrl,              
+            })
+          }
           console.log(that.data.prepare)
           that.getData()
         },
@@ -430,5 +436,63 @@ Page({
         })
       }, 1000)
     }
+  },
+  transImage: function (e) {
+    var that = this
+    var openId = app.globalData.openid
+    var list = []
+    var index = 'touxiang'
+    wx.chooseImage({
+      count: 1,
+      success: function (res) {
+        console.log(res)
+        that.setData({
+          image: res.tempFilePaths
+        })
+        list.push(res.tempFilePaths)
+        util.fileUpload(openId, 1, list, index).then(function(a){
+          console.log(a)
+          that.setData({
+            image:a.data
+          })
+        })
+      },
+    })
+  },
+  chooseAlbum: function (a) {
+    let that = this
+    let openId = app.globalData.openid
+    var index = 'xiangce'
+    wx.chooseImage({
+      count: that.data.chooseCount,
+      success: function (res) {
+        let len = res.tempFilePaths.length;
+        let list = that.data.listOfAlbum;
+        for( var i in res.tempFilePaths){
+          list.push(res.tempFilePaths[i])
+        }
+        console.log(list)
+        that.setData({
+          listOfAlbum:list,
+          chooseCount: that.data.chooseCount - len
+        })
+        for(var i = 0;i < list.length; i++ ){
+        util.fileUpload(openId, 1, list[i], index + i).then(function(re){
+          console.log(re)
+        })
+      }
+        console.log(res)
+      },
+    })
+  },
+  removeAlbum:function(a){
+    let that = this
+    let index = a.currentTarget.dataset.index;
+    let listOfAlbum = that.data.listOfAlbum;
+    listOfAlbum.splice(index,1)
+    that.setData({
+      listOfAlbum:listOfAlbum,
+      chooseCount:that.data.chooseCount + 1
+    })
   }
 })

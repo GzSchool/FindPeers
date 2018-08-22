@@ -1,132 +1,10 @@
 <!--pages/addCards/addcards.wxml-->
 <form bindsubmit="save" report-submit='true'>
-<view class='main-card'>
-  <view class='main-card-1 main-card-box' wx:if='{{cardType==1}}'>
-    <view class='card-mark'><view class='mark'></view></view>
-    <view class='card-top'>
-      <view class='mes-name over-flow-hide'>{{name}}</view>
-      <view class='mes-job over-flow-hide'>{{job}}</view>
-    </view>
-    <view class='card-down'>
-      <view class='card-down-left'>
-        <view class='img-box'>
-          <image src='{{image}}'></image>
-        </view>
+  <view class='main-card'>
+    <view class='main-card-1 main-card-box' wx:if='{{cardType==1}}'>
+      <view class='card-mark'>
+        <view class='mark'></view>
       </view>
-      <view class='card-down-right'>
-        <view class='card-mes over-flow-hide'>地址：{{city}}</view>
-        <view class='card-mes over-flow-hide'>公司：{{company}}</view>
-        <view class='card-mes over-flow-hide'>电话：{{phone}}</view>
-        <view class='card-mes over-flow-hide'>微信：{{wechatnum}}</view>
-        <view class='card-mes over-flow-hide'>邮箱：{{email}}</view>
-      </view>
-    </view>
-  </view>
-  <view class='main-card-2 main-card-box' wx:if='{{cardType==2}}'>
-    <image class='bg-card' src='../images/card/card_2/bg_card_2.png'></image>
-    <view class='card-layer'>
-      <view class='card-top'>
-        <view class='card-top-left'>
-          <view class='info-name over-flow-hide'>{{name}}</view>
-          <view class='info-job over-flow-hide'>{{job}}</view>
-        </view>
-        <view class='card-top-right'>
-          <view class='img-box'>
-            <image src='{{image}}'></image>
-          </view>
-        </view>
-      </view>
-      <view class='card-down'>
-        <view class='card-mes'>
-          <image src='../images/card/card_2/mes_addr_2.png' style='width:26rpx;height:26rpx;'></image><text>{{city}}</text></view>
-        <view class='card-mes'>
-          <image src='../images/card/card_2/mes_comp_2.png' style='width:26rpx;height:26rpx;'></image><text class='over-flow-hide'>{{company}}</text></view>
-        <view class='card-mes'>
-          <image src='../images/card/card_2/mes_phone_2.png' style='width:26rpx;height:26rpx;'></image><text>{{phone}}</text></view>
-        <view class='card-mes'>
-          <image src='../images/card/card_2/mes_wechat_2.png' style='width:26rpx;height:26rpx;'></image><text class='over-flow-hide'>{{wechatnum}}</text></view>
-        <view class='card-mes'>
-          <image src='../images/card/card_2/mes_email_2.png' style='width:26rpx;height:26rpx;'></image><text class='over-flow-hide'>{{email}}</text></view>
-      </view>
-    </view>
-  </view>
-  <view class='main-card-3 main-card-box' wx:if='{{cardType==3}}'>
-    <view class='card-top'>
-      <view class='card-top-left'>
-        <view class='card-name'>{{name}}</view>
-        <view class='card-info'>{{job}}</view>
-        <view class='card-info'>{{city}}</view>
-        <view class='card-info'>{{company}}</view>
-      </view>
-      <view class='card-top-right'>
-        <view class='img-box'>
-          <image src='{{image}}'></image>
-        </view>
-      </view>
-    </view>
-    <view class='card-middle'>
-      <image src='../images/card/card_1.png'></image>
-    </view>
-    <view class='card-down'>
-      <view class='card-mes'>
-        <image src='../images/card/mes_phone.png' style='width:26rpx;height:26rpx;'></image>{{phone}}</view>
-      <view class='card-mes'>
-        <image src='../images/card/mes_wechat.png' style='width:26rpx;height:21rpx;'></image>{{wechatnum}}</view>
-      <view class='card-mes'>
-        <image src='../images/card/mes_email.png' style='width:26rpx;height:17rpx;'></image>{{email}}</view>
-    </view>
-  </view>
-  <view class='main-card-4 main-card-box' wx:if='{{cardType==4}}'>
-    <image class='bg-card' src='../images/card/card_4/bg_card_4.png'></image>
-    <view class='card-layer'>
-      <view class='card-top'>
-        <view class='card-top-left'>
-          <view class='mes-name over-flow-hide'>{{name}}</view>
-          <view class='mes-job over-flow-hide'>{{job}}</view>
-        </view>
-        <view class='card-top-right'>
-          <view class='img-box'>
-            <image src='{{image}}'></image>
-          </view>
-        </view>
-      </view>
-      <view class='card-down'>
-        <view class='card-mes'>
-          <view class='mes-icon'>
-            <image src='../images/card/card_4/mes_addr_4.png' style='width:20rpx;height:26rpx;'></image>
-          </view>
-          <text class='over-flow-hide'>{{city}}</text>
-        </view>
-        <view class='card-mes over-flow-hide'>
-          <view class='mes-icon'>
-            <image src='../images/card/card_4/mes_comp_4.png' style='width:25rpx;height:24rpx;'></image>
-          </view>
-          <text class='over-flow-hide'>{{company}}</text>
-        </view>
-        <view class='card-mes'>
-          <view class='mes-icon'>
-            <image src='../images/card/card_4/mes_phone_4.png' style='width:26rpx;height:26rpx;'></image>
-          </view>
-          {{phone}}
-        </view>
-        <view class='card-mes'>
-          <view class='mes-icon'>
-            <image src='../images/card/card_4/mes_wechat_4.png' style='width:25rpx;height:20rpx;'></image>
-          </view>
-          {{wechatnum}}
-        </view>
-        <view class='card-mes'>
-          <view class='mes-icon'>
-            <image src='../images/card/card_4/mes_email_4.png' style='width:26rpx;height:17rpx;'></image>
-          </view>
-          {{email}}
-        </view>
-      </view>
-    </view>
-  </view>
-  <view class='main-card-5 main-card-box' wx:if='{{cardType==5}}'>
-    <image class='bg-card' src='../images/card/card_5/bg_card_5.png'></image>
-    <view class='card-layer'>
       <view class='card-top'>
         <view class='mes-name over-flow-hide'>{{name}}</view>
         <view class='mes-job over-flow-hide'>{{job}}</view>
@@ -134,43 +12,131 @@
       <view class='card-down'>
         <view class='card-down-left'>
           <view class='img-box'>
-            <image src='{{image}}'></image>
+            <image src='{{image}}' bindtap='transImage'></image>
           </view>
         </view>
         <view class='card-down-right'>
-          <view class='card-mes'>
-            <view class='mes-icon'>
-              <image src='../images/card/card_5/mes_addr_5.png'></image>
+          <view class='card-mes over-flow-hide'>地址：{{city}}</view>
+          <view class='card-mes over-flow-hide'>公司：{{company}}</view>
+          <view class='card-mes over-flow-hide'>电话：{{phone}}</view>
+          <view class='card-mes over-flow-hide'>微信：{{wechatnum}}</view>
+          <view class='card-mes over-flow-hide'>邮箱：{{email}}</view>
+        </view>
+      </view>
+    </view>
+    <view class='main-card-2 main-card-box' wx:if='{{cardType==2}}'>
+      <image class='bg-card' src='../images/card/card_2/bg_card_2.png'></image>
+      <view class='card-layer'>
+        <view class='card-top'>
+          <view class='card-top-left'>
+            <view class='info-name over-flow-hide'>{{name}}</view>
+            <view class='info-job over-flow-hide'>{{job}}</view>
+          </view>
+          <view class='card-top-right'>
+            <view class='img-box'>
+              <image src='{{image}}' bindtap='transImage'></image>
             </view>
-            <text class='over-flow-hide'>{{city}}</text>
+          </view>
+        </view>
+        <view class='card-down'>
+          <view class='card-mes'>
+            <image src='../images/card/card_2/mes_addr_2.png' style='width:26rpx;height:26rpx;'></image>
+            <text>{{city}}</text>
           </view>
           <view class='card-mes'>
-            <view class='mes-icon'>
-              <image src='../images/card/card_5/mes_comp_5.png'></image>
-            </view>
+            <image src='../images/card/card_2/mes_comp_2.png' style='width:26rpx;height:26rpx;'></image>
             <text class='over-flow-hide'>{{company}}</text>
           </view>
           <view class='card-mes'>
-            <view class='mes-icon'>
-              <image src='../images/card/card_5/mes_phone_5.png'></image>
-            </view>
-            <text class='over-flow-hide'>{{phone}}</text>
+            <image src='../images/card/card_2/mes_phone_2.png' style='width:26rpx;height:26rpx;'></image>
+            <text>{{phone}}</text>
           </view>
           <view class='card-mes'>
-            <view class='mes-icon'>
-              <image src='../images/card/card_5/mes_wechat_5.png'></image>
-            </view>
+            <image src='../images/card/card_2/mes_wechat_2.png' style='width:26rpx;height:26rpx;'></image>
             <text class='over-flow-hide'>{{wechatnum}}</text>
           </view>
           <view class='card-mes'>
-            <view class='mes-icon'>
-              <image src='../images/card/card_5/mes_email_5.png'></image>
-            </view>
+            <image src='../images/card/card_2/mes_email_2.png' style='width:26rpx;height:26rpx;'></image>
             <text class='over-flow-hide'>{{email}}</text>
           </view>
         </view>
       </view>
     </view>
+    <view class='main-card-3 main-card-box' wx:if='{{cardType==3}}'>
+      <view class='card-top'>
+        <view class='card-top-left'>
+          <view class='card-name'>{{name}}</view>
+          <view class='card-info'>{{job}}</view>
+          <view class='card-info'>{{city}}</view>
+          <view class='card-info'>{{company}}</view>
+        </view>
+        <view class='card-top-right'>
+          <view class='img-box'>
+            <image src='{{image}}' bindtap='transImage'></image>
+          </view>
+        </view>
+      </view>
+      <view class='card-middle'>
+        <image src='../images/card/card_1.png'></image>
+      </view>
+      <view class='card-down'>
+        <view class='card-mes'>
+          <image src='../images/card/mes_phone.png' style='width:26rpx;height:26rpx;'></image>{{phone}}</view>
+        <view class='card-mes'>
+          <image src='../images/card/mes_wechat.png' style='width:26rpx;height:21rpx;'></image>{{wechatnum}}</view>
+        <view class='card-mes'>
+          <image src='../images/card/mes_email.png' style='width:26rpx;height:17rpx;'></image>{{email}}</view>
+      </view>
+    </view>
+    <view class='main-card-4 main-card-box' wx:if='{{cardType==4}}'>
+      <image class='bg-card' src='../images/card/card_4/bg_card_4.png'></image>
+      <view class='card-layer'>
+        <view class='card-top'>
+          <view class='card-top-left'>
+            <view class='mes-name over-flow-hide'>{{name}}</view>
+            <view class='mes-job over-flow-hide'>{{job}}</view>
+          </view>
+          <view class='card-top-right'>
+            <view class='img-box'>
+              <image src='{{image}}' bindtap='transImage'></image>
+            </view>
+          </view>
+        </view>
+        <view class='card-down'>
+          <view class='card-mes'>
+            <view class='mes-icon'>
+              <image src='../images/card/card_4/mes_addr_4.png' style='width:20rpx;height:26rpx;'></image>
+            </view>
+            <text class='over-flow-hide'>{{city}}</text>
+          </view>
+          <view class='card-mes over-flow-hide'>
+            <view class='mes-icon'>
+              <image src='../images/card/card_4/mes_comp_4.png' style='width:25rpx;height:24rpx;'></image>
+            </view>
+            <text class='over-flow-hide'>{{company}}</text>
+          </view>
+          <view class='card-mes'>
+            <view class='mes-icon'>
+              <image src='../images/card/card_4/mes_phone_4.png' style='width:26rpx;height:26rpx;'></image>
+            </view>
+            {{phone}}
+          </view>
+          <view class='card-mes'>
+            <view class='mes-icon'>
+              <image src='../images/card/card_4/mes_wechat_4.png' style='width:25rpx;height:20rpx;'></image>
+            </view>
+            {{wechatnum}}
+          </view>
+          <view class='card-mes'>
+            <view class='mes-icon'>
+              <image src='../images/card/card_4/mes_email_4.png' style='width:26rpx;height:17rpx;'></image>
+            </view>
+            {{email}}
+          </view>
+        </view>
+      </view>
+    </view>
+<<<<<<< HEAD
   </view>
 </view>
 <view class='choose-card'>
@@ -225,62 +191,211 @@
       <view class='title'><text>行</text><text>业:</text></view>
 <input placeholder-class="phcolor" disabled='disabled' bindtap='chooseIn' placeholder='必填' type='text' value='{{idustry}}'></input>
       <image src='/pages/images/right.png' bindtap='chooseIn'></image>
+=======
+    <view class='main-card-5 main-card-box' wx:if='{{cardType==5}}'>
+      <image class='bg-card' src='../images/card/card_5/bg_card_5.png'></image>
+      <view class='card-layer'>
+        <view class='card-top'>
+          <view class='mes-name over-flow-hide'>{{name}}</view>
+          <view class='mes-job over-flow-hide'>{{job}}</view>
+        </view>
+        <view class='card-down'>
+          <view class='card-down-left'>
+            <view class='img-box'>
+              <image src='{{image}}' bindtap='transImage'></image>
+            </view>
+          </view>
+          <view class='card-down-right'>
+            <view class='card-mes'>
+              <view class='mes-icon'>
+                <image src='../images/card/card_5/mes_addr_5.png'></image>
+              </view>
+              <text class='over-flow-hide'>{{city}}</text>
+            </view>
+            <view class='card-mes'>
+              <view class='mes-icon'>
+                <image src='../images/card/card_5/mes_comp_5.png'></image>
+              </view>
+              <text class='over-flow-hide'>{{company}}</text>
+            </view>
+            <view class='card-mes'>
+              <view class='mes-icon'>
+                <image src='../images/card/card_5/mes_phone_5.png'></image>
+              </view>
+              <text class='over-flow-hide'>{{phone}}</text>
+            </view>
+            <view class='card-mes'>
+              <view class='mes-icon'>
+                <image src='../images/card/card_5/mes_wechat_5.png'></image>
+              </view>
+              <text class='over-flow-hide'>{{wechatnum}}</text>
+            </view>
+            <view class='card-mes'>
+              <view class='mes-icon'>
+                <image src='../images/card/card_5/mes_email_5.png'></image>
+              </view>
+              <text class='over-flow-hide'>{{email}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+>>>>>>> 9a9a00ce32d6b6c4ffc3f15bb83c776f7c0b74fb
     </view>
-    <picker mode='multiSelector' bindchange="cityChange" bindcolumnchange="provinceChange" value='{{multiIndex}}' range="{{city_PRO}}">
-    <view class='main-li'>
-      <view class='star'>*</view>
-      <view class='title'><text>城</text><text>市:</text></view>
-      <input disabled='disabled' maxlength='40' placeholder-class="phcolor" placeholder='必填' bindinput='addcity' type='text' value='{{city}}'></input>
+  </view>
+  <view class='choose-card'>
+    <scroll-view scroll-x>
+      <view class='choose-card-in {{cardType==1?"active":""}}' data-idx='1' bindtap='chooseCard'>
+        <image src='../images/card/choose_1.png'></image>
+      </view>
+      <view class='choose-card-in {{cardType==2?"active":""}}' data-idx='2' bindtap='chooseCard'>
+        <image src='../images/card/choose_2.png'></image>
+      </view>
+      <view class='choose-card-in {{cardType==3?"active":""}}' data-idx='3' bindtap='chooseCard'>
+        <image src='../images/card/choose_3.png'></image>
+      </view>
+      <view class='choose-card-in {{cardType==4?"active":""}}' data-idx='4' bindtap='chooseCard'>
+        <image src='../images/card/choose_4.png'></image>
+      </view>
+      <view class='choose-card-in {{cardType==5?"active":""}}' data-idx='5' bindtap='chooseCard'>
+        <image src='../images/card/choose_5.png'></image>
+      </view>
+    </scroll-view>
+  </view>
+  <view class='main'>
+    <view class='main-ul'>
+      <view class='main-li'>
+        <view class='star'></view>
+        <view class='title'>
+          <text>姓</text>
+          <text>名:</text>
+        </view>
+        <input maxlength='8' placeholder-class="phcolor" placeholder='姓名' bindinput='addname' type='text' value='{{name}}' name="name"></input>
+      </view>
+      <view class='main-li' style='height:100rpx;'>
+        <view class='star'>*</view>
+        <view class='title'>
+          <text>手</text>
+          <text>机</text>
+          <text>号:</text>
+        </view>
+        <input maxlength='11' placeholder-class="phcolor" placeholder='填写可见该名片手机号' bindinput='addphone' type='number' value='{{phone}}' name="phone"></input>
+        <button style='padding:0;' class='wx-get' open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">微信获取</button>
+      </view>
+      <view class='main-li'>
+        <view class='star'>*</view>
+        <view class='title'>
+          <text>公</text>
+          <text>司:</text>
+        </view>
+        <input maxlength='25' placeholder-class="phcolor" placeholder='必填' bindinput='addcompany' type='text' value='{{company}}' name="company"></input>
+      </view>
+      <view class='main-li'>
+        <view class='star'>*</view>
+        <view class='title'>
+          <text>行</text>
+          <text>业:</text>
+        </view>
+        <input placeholder-class="phcolor" disabled='disabled' bindtap='chooseIn' placeholder='必填' type='text' value='{{idustry}}'></input>
+        <image src='/pages/images/right.png' bindtap='chooseIn'></image>
+      </view>
+      <picker mode='multiSelector' bindchange="cityChange" bindcolumnchange="provinceChange" value='{{multiIndex}}' range="{{city_PRO}}">
+        <view class='main-li'>
+          <view class='star'>*</view>
+          <view class='title'>
+            <text>城</text>
+            <text>市:</text>
+          </view>
+          <input disabled='disabled' maxlength='40' placeholder-class="phcolor" placeholder='必填' bindinput='addcity' type='text' value='{{city}}'></input>
+        </view>
+      </picker>
+      <view class='main-li'>
+        <view class='star'>*</view>
+        <view class='title'>
+          <text>职</text>
+          <text>务:</text>
+        </view>
+        <input maxlength='20' placeholder-class="phcolor" placeholder='填写公司职务' bindinput='addjob' type='text' value='{{job}}'></input>
+      </view>
+      <view class='main-li'>
+        <view class='star'></view>
+        <view class='title'>
+          <text>微</text>
+          <text>信</text>
+          <text>号:</text>
+        </view>
+        <input maxlength='25' placeholder-class="phcolor" placeholder='微信号' bindinput='addnumber' type='text' value='{{wechatnum}}' name="number"></input>
+      </view>
+      <view class='main-li'>
+        <view class='star'></view>
+        <view class='title'>
+          <text>邮</text>
+          <text>箱:</text>
+        </view>
+        <input maxlength='40' placeholder-class="phcolor" placeholder='邮箱' bindinput='addemail' type='text' value='{{email}}'></input>
+      </view>
+      <view class='main-li'>
+        <view class='star'></view>
+        <view class='title'>
+          <text>公</text>
+          <text>司</text>
+          <text>官</text>
+          <text>网:</text>
+        </view>
+        <input maxlength='40' placeholder-class="phcolor" placeholder='公司官网或公众号' bindinput='addCompanyWeb' type='text' value='{{companyWeb}}' name="resource"></input>
+      </view>
+      <view class='main-li' wx:if='{{isshow0}}'>
+        <view class='star'></view>
+        <view class='title'>
+          <text>个</text>
+          <text>人</text>
+          <text>主</text>
+          <text>页:</text>
+        </view>
+        <input maxlength='40' placeholder-class="phcolor" placeholder='个人主页或公众号' bindinput='addHomepage' type='text' value='{{homepage}}' name="resource"></input>
+      </view>
+      <view class='main-li' wx:if='{{isshow2}}'>
+        <view class='star'></view>
+        <view class='title'>
+          <text>需</text>
+          <text>求:</text>
+        </view>
+        <input maxlength='40' placeholder-class="phcolor" placeholder='需求' bindinput='adddemand' type='text' value='{{demand}}' name="demand"></input>
+      </view>
+      <view class='main-li' wx:if='{{isshow3}}'>
+        <view class='star'></view>
+        <view class='title'>
+          <text>资</text>
+          <text>源:</text>
+        </view>
+        <input maxlength='40' placeholder-class="phcolor" placeholder='资源' bindinput='addresource' type='text' value='{{resource}}' name="resource"></input>
+      </view>
     </view>
+    <picker bindchange="bindPickerChange" range="{{list}}">
+      <view class='more'>添加更多信息</view>
     </picker>
-    <view class='main-li'>
-      <view class='star'>*</view>
-      <view class='title'><text>职</text><text>务:</text></view>
-      <input maxlength='20' placeholder-class="phcolor" placeholder='填写公司职务' bindinput='addjob' type='text' value='{{job}}'></input>
+    <view class='intro'>
+      <view class='intro-title'>
+        <view>简介</view>
+        <view class='count'>{{count}}/140</view>
+      </view>
+      <textarea maxlength='140' placeholder-class="phcolor" placeholder='请您填写自我介绍或公司简介' bindinput='introInput' type='text' value='{{introduction}}'></textarea>
     </view>
-    <view class='main-li'>
-      <view class='star'></view>
-      <view class='title'><text>微</text><text>信</text><text>号:</text></view>
-      <input maxlength='25' placeholder-class="phcolor" placeholder='微信号' bindinput='addnumber' type='text' value='{{wechatnum}}' name="number"></input>
-    </view>
-    <view class='main-li'>
-      <view class='star'></view>
-      <view class='title'><text>邮</text><text>箱:</text></view>
-      <input maxlength='40' placeholder-class="phcolor" placeholder='邮箱' bindinput='addemail' type='text' value='{{email}}'></input>
-    </view>
-    <view class='main-li'>
-      <view class='star'></view>
-      <view class='title'><text>公</text><text>司</text><text>官</text><text>网:</text></view>
-      <input maxlength='40' placeholder-class="phcolor" placeholder='公司官网或公众号' bindinput='addCompanyWeb' type='text' value='{{companyWeb}}' name="resource"></input>
-    </view>
-    <view class='main-li' wx:if='{{isshow0}}'>
-      <view class='star'></view>
-      <view class='title'><text>个</text><text>人</text><text>主</text><text>页:</text></view>
-      <input maxlength='40' placeholder-class="phcolor" placeholder='个人主页或公众号' bindinput='addHomepage' type='text' value='{{homepage}}' name="resource"></input>
-    </view>
-    <view class='main-li' wx:if='{{isshow2}}'>
-      <view class='star'></view>
-      <view class='title'><text>需</text><text>求:</text></view>
-      <input maxlength='40' placeholder-class="phcolor" placeholder='需求' bindinput='adddemand' type='text' value='{{demand}}' name="demand"></input>
-    </view>
-    <view class='main-li' wx:if='{{isshow3}}'>
-      <view class='star'></view>
-      <view class='title'><text>资</text><text>源:</text></view>
-      <input maxlength='40' placeholder-class="phcolor" placeholder='资源' bindinput='addresource' type='text' value='{{resource}}' name="resource"></input>
+    <view class='Album'>
+    <view class='textAlbum'>名片相册：</view>
+    <view class='chooseAlbum'>
+      <view class="chooseAlbum-box" wx:for='{{listOfAlbum}}'>
+        <image src='{{item}}'>
+        </image>
+        <image class='close' src='../images/removeAlbum.png' data-index='{{index}}'  bindtap='removeAlbum'></image>        
+      </view>
+      <view class='chooseAlbum-add' wx:if='{{listOfAlbum.length<9}}'>
+        <image src='../images/addAlbum.png' bindtap='chooseAlbum'></image>
+      </view>
     </view>
   </view>
-  <picker bindchange="bindPickerChange" range="{{list}}">
-    <view class='more'>添加更多信息</view>
-  </picker>
-  <view class='intro'>
-    <view class='intro-title'>
-      <view>简介</view>
-      <view class='count'>{{count}}/140</view>
-    </view>
-    <textarea maxlength='140' placeholder-class="phcolor" placeholder='请您填写自我介绍或公司简介' bindinput='introInput' type='text' value='{{introduction}}'></textarea>
   </view>
-</view>
-<!-- <view class='save-btn' bindtap='save'>保存</view> -->
-<button class='save-btn' form-type="submit" wx:if='{{!saveLoading}}'>保存</button>
-<button class='weui-button save-btn' wx:if='{{saveLoading}}'><view class='weui-loading'></view>保存</button>
+  <!-- <view class='save-btn' bindtap='save'>保存</view> -->
+  <button class='save-btn' form-type="submit" wx:if='{{!saveLoading}}'>保存</button>
+  <button class='weui-button save-btn' wx:if='{{saveLoading}}'>
+    <view class='weui-loading'></view>保存</button>
 </form>

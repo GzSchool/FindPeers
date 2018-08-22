@@ -32,7 +32,8 @@ Page({
     demand: '',             //需求     
     resources: '',          //资源
     synopsis: '',           //简介
-    cardType: 1
+    cardType: 1,
+    listOfAlbum: ['https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJWN4NNhDKzcv21j2JNqhooxX2rxboRVO7Y9HebGdgia5DhMxWWCt4FBb9KhYC6AGnoAZ4KXjX3tUQ/132', 'https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJWN4NNhDKzcv21j2JNqhooxX2rxboRVO7Y9HebGdgia5DhMxWWCt4FBb9KhYC6AGnoAZ4KXjX3tUQ/132', 'https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJWN4NNhDKzcv21j2JNqhooxX2rxboRVO7Y9HebGdgia5DhMxWWCt4FBb9KhYC6AGnoAZ4KXjX3tUQ/132', 'https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJWN4NNhDKzcv21j2JNqhooxX2rxboRVO7Y9HebGdgia5DhMxWWCt4FBb9KhYC6AGnoAZ4KXjX3tUQ/132', 'https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJWN4NNhDKzcv21j2JNqhooxX2rxboRVO7Y9HebGdgia5DhMxWWCt4FBb9KhYC6AGnoAZ4KXjX3tUQ/132'],
   },
   //页面加载
   onLoad:function(a){

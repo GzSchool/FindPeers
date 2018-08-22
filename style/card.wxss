@@ -26,14 +26,14 @@
   height: 410rpx;
 }
 .main-card .img-box {
-  width: 120rpx;
-  height: 120rpx;
+  width: 180rpx;
+  height: 180rpx;
   background-color: #e4e4e4;
   border-radius: 15rpx;
 }
 .main-card .img-box image {
-  width: 120rpx;
-  height: 120rpx;
+  width: 180rpx;
+  height: 180rpx;
   border-radius: 15rpx;
 }
 .over-flow-hide {
@@ -115,7 +115,7 @@
   display: flex;
 }
 .main-card .main-card-1 .card-down .card-down-left {
-  padding-right: 80rpx;
+  padding-right: 20rpx;
 }
 .main-card .main-card-1 .card-down .card-down-right {
   border-left: 1rpx solid #CECECE;
@@ -153,10 +153,10 @@
   line-height: 36rpx;
 }
 .main-card .main-card-2 .card-top .card-top-right {
-  width: 170rpx;
-  height: 154rpx;
-  padding-top: 34rpx;
-  padding-left: 10rpx;
+  width: 180rpx;
+  height: 180rpx;
+  padding-top: 30rpx;
+  /* padding-left: 10rpx; */
 }
 .main-card .main-card-2 .card-down .card-mes {
   height: 46rpx;
@@ -205,9 +205,9 @@
   white-space: nowrap;
 }
 .main-card .main-card-3 .card-top .card-top-right{
-  min-width: 170rpx;
+  min-width: 180rpx;
   background-color: transparent;
-  padding: 40rpx 25rpx 0;
+  padding: 40rpx 0 0;
 }
 .main-card .main-card-3 .card-middle {
   height: 26rpx;
@@ -257,9 +257,9 @@
   line-height: 38rpx;
 }
 .main-card .main-card-4 .card-top .card-top-right {
-  width: 170rpx;
+  width: 180rpx;
   padding-top: 34rpx;
-  padding-left: 12rpx;
+  /* padding-left: 12rpx; */
 }
 .main-card .main-card-4 .card-down {
   height: 230rpx;
@@ -305,7 +305,7 @@
   padding-left: 31rpx;
 }
 .main-card .main-card-5 .card-down .card-down-left {
-  padding-right: 76rpx;
+  padding-right: 30rpx;
   padding-top: 6rpx;
 }
 .main-card .main-card-5 .card-down .card-down-right {

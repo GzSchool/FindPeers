@@ -9,6 +9,11 @@
     <image class="card-img" wx:if="{{QRCode}}" src="{{QRCode}}" data-num="{{QRCode}}" bindtap='viewImage'></image>
     <view class="card-help" bindtap='scan'>微信扫一扫二维码</view>
   </view>
+  <view class="find" bindtap='ganerate'>
+    <image class="img1" src="{{img1}}"></image>
+    <text class="about">点击生成我的名片二维码</text>
+    <image class="img2" src="{{img2}}"></image>
+  </view>
   <view class="find" bindtap='findUs'>
     <image class="img1" src="{{img1}}"></image>
     <text class="about">如何在微信中查看“名片Live”小程序</text>

@@ -203,5 +203,10 @@ Page({
     util.userFromId(formId, openid).then(function(res) {
       console.log(res)
     })
+  },
+  ganerate:function(a){
+    wx.navigateTo({
+      url: '../ganerate/ganerate',
+    })
   }
 })

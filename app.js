@@ -12,6 +12,7 @@ App({
     userImg:"",         //用户头像
     othercardid: '',    //点击别人分享的别人的id
     industry: industry.industry, // 行业数据
+    // server: 'http://192.168.2.150:8766',
     server: 'https://www.eqxuan.cn',
     urlOfLogin:'/user/userAuthor',           //登录接口
     urlOfAddOrUpdate: '/userCard/saveOrUpdate',  //添加或修改个人信息接口
