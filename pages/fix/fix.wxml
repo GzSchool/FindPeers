@@ -267,7 +267,7 @@
         <text>信</text>
         <text>号:</text>
       </view>
-      <input placeholder-class="phcolor" placeholder='必填' bindinput='addnumber' type='text' value='{{wechatnum}}' maxlength='20'></input>
+      <input placeholder-class="phcolor" placeholder='微信号' bindinput='addnumber' type='text' value='{{wechatnum}}' maxlength='20'></input>
     </view>
     <view class='main-li'>
       <view class='star'></view>

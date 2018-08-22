@@ -1,6 +1,6 @@
 <!--pages/mine/mine.wxml-->
 <view class="mine">
-  <view class="card">
+  <!-- <view class="card">
     <view wx:if='{{name}}' class="card-info card-name">{{name}}</view>
     <view wx:if='{{industry}}' class="card-info">{{industry}}</view>
     <view wx:if='{{city}}' class="card-info">{{userJob}}</view>
@@ -8,145 +8,145 @@
     <image class="card-img" wx:if="{{!QRCode}}" src="{{image}}" data-num="{{image}}" bindtap='viewImage'></image>
     <image class="card-img" wx:if="{{QRCode}}" src="{{QRCode}}" data-num="{{QRCode}}" bindtap='viewImage'></image>
     <view class="card-help" bindtap='scan'>微信扫一扫二维码</view>
-  </view>
+  </view> -->
   
-<!-- <swiper style='height:500rpx;background-color: #fff;' indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+<swiper style='height:500rpx;background-color: #fff;' indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
   <view class='main-card'>
-    <swiper-item wx:for='{{cd_list}}' wx:key='1'>
-      <view wx:if='{{item == 1 }}' class='main-card-1 main-card-box'>
+    <swiper-item wx:for='{{cd_list}}'  wx:key='1'>
+      <view wx:if='{{item == 1 }}' data-index='{{index}}' class='main-card-1 main-card-box'>
         <view class='card-mark'>
           <view class='mark'></view>
         </view>
         <view class='card-top'>
           <view class='mes-name over-flow-hide'>
-            <text selectable='true'>{{mineInfo.name}}</text>
+            <text selectable='true'>{{cardList[index].username}}</text>
           </view>
           <view class='mes-job over-flow-hide'>
-            <text selectable='true'>{{mineInfo.userJob}}</text>
+            <text selectable='true'>{{cardList[index].userJob}}</text>
           </view>
         </view>
         <view class='card-down'>
           <view class='card-down-left'>
             <view class='img-box'>
-              <image src='{{image}}'></image>
+              <image src='{{cardList[index].userImg}}'></image>
             </view>
           </view>
           <view class='card-down-right'>
             <view class='card-mes over-flow-hide'>地址：
-              <text selectable='true'>{{mineInfo.city}}</text>
+              <text selectable='true'>{{cardList[index].userCity}}</text>
             </view>
             <view class='card-mes over-flow-hide'>公司：
-              <text selectable='true'>{{mineInfo.company}}</text>
+              <text selectable='true'>{{cardList[index].userCompany}}</text>
             </view>
-            <view class='card-mes over-flow-hide' wx:if="{{mineInfo.phone}}">
-              <text selectable='true'>电话：{{mineInfo.phone}}</text>
+            <view class='card-mes over-flow-hide' wx:if="{{cardList[index].userPhone}}">
+              <text selectable='true'>电话：{{cardList[index].userPhone}}</text>
             </view>
-            <view class='card-mes over-flow-hide' wx:if="{{mineInfo.wechatnum}}">微信：
-              <text selectable='true'>{{mineInfo.wechatnum}}</text>
+            <view class='card-mes over-flow-hide' wx:if="{{cardList[index].userWechat}}">微信：
+              <text selectable='true'>{{cardList[index].userWechat}}</text>
             </view>
-            <view class='card-mes over-flow-hide' wx:if="{{mineInfo.email}}">邮箱：
-              <text selectable='true'>{{mineInfo.email}}</text>
+            <view class='card-mes over-flow-hide' wx:if="{{cardList[index].userEmail}}">邮箱：
+              <text selectable='true'>{{cardList[index].userEmail}}</text>
             </view>
           </view>
         </view>
       </view>
-      <view wx:if='{{item == 2 }}' class='main-card-2 main-card-box'>
+      <view wx:if='{{item == 2 }}' data-index='{{index}}' class='main-card-2 main-card-box'>
         <image class='bg-card' src='../images/card/card_2/bg_card_2.png'></image>
         <view class='card-layer'>
           <view class='card-top'>
             <view class='card-top-left'>
               <view class='info-name over-flow-hide'>
-                <text selectable='true'>{{mineInfo.name}}</text>
+                <text selectable='true'>{{cardList[index].username}}</text>
               </view>
               <view class='info-job over-flow-hide'>
-                <text selectable='true'>{{mineInfo.userJob}}</text>
+                <text selectable='true'>{{cardList[index].userJob}}</text>
               </view>
             </view>
             <view class='card-top-right'>
               <view class='img-box'>
-                <image src='{{image}}'></image>
+                <image src='{{cardList[index].userImg}}'></image>
               </view>
             </view>
           </view>
           <view class='card-down'>
             <view class='card-mes'>
               <image src='../images/card/card_2/mes_addr_2.png' style='width:26rpx;height:26rpx;'></image>
-              <text selectable='true'>{{mineInfo.city}}</text>
+              <text selectable='true'>{{cardList[index].userCity}}</text>
             </view>
             <view class='card-mes'>
               <image src='../images/card/card_2/mes_comp_2.png' style='width:26rpx;height:26rpx;'></image>
-              <text selectable='true' class='over-flow-hide'>{{mineInfo.company}}</text>
+              <text selectable='true' class='over-flow-hide'>{{cardList[index].userCompany}}</text>
             </view>
-            <view class='card-mes' wx:if='{{mineInfo.phone}}'>
+            <view class='card-mes' wx:if='{{cardList[index].userPhone}}'>
               <image src='../images/card/card_2/mes_phone_2.png' style='width:26rpx;height:26rpx;'></image>
-              <text selectable='true'>{{mineInfo.phone}}</text>
+              <text selectable='true'>{{cardList[index].userPhone}}</text>
             </view>
-            <view class='card-mes' wx:if='{{mineInfo.wechatnum}}'>
+            <view class='card-mes' wx:if='{{cardList[index].userWechat}}'>
               <image src='../images/card/card_2/mes_wechat_2.png' style='width:26rpx;height:26rpx;'></image>
-              <text class='over-flow-hide' selectable='true'>{{mineInfo.wechatnum}}</text>
+              <text class='over-flow-hide' selectable='true'>{{cardList[index].userWechat}}</text>
             </view>
-            <view class='card-mes' wx:if="{{mineInfo.email}}">
+            <view class='card-mes' wx:if="{{cardList[index].userEmail}}">
               <image src='../images/card/card_2/mes_email_2.png' style='width:26rpx;height:26rpx;'></image>
-              <text class='over-flow-hide' selectable='true'>{{mineInfo.email}}</text>
+              <text class='over-flow-hide' selectable='true'>{{cardList[index].userEmail}}</text>
             </view>
           </view>
         </view>
       </view>
-      <view wx:if='{{item == 3 }}' class='main-card-3 main-card-box'>
+      <view wx:if='{{item == 3 }}' data-index='{{index}}' class='main-card-3 main-card-box'>
         <view class='card-top'>
           <view class='card-top-left'>
             <view class='card-name'>
-              <text selectable='true'>{{mineInfo.name}}</text>
+              <text selectable='true'>{{cardList[index].username}}</text>
             </view>
             <view class='card-info'>
-              <text selectable='true'>{{mineInfo.userJob}}</text>
+              <text selectable='true'>{{cardList[index].userJob}}</text>
             </view>
             <view class='card-info'>
-              <text selectable='true'>{{mineInfo.city}}</text>
+              <text selectable='true'>{{cardList[index].userCity}}</text>
             </view>
             <view class='card-info'>
-              <text selectable='true'>{{mineInfo.company}}</text>
+              <text selectable='true'>{{cardList[index].userCompany}}</text>
             </view>
           </view>
           <view class='card-top-right'>
             <view class='img-box'>
-              <image src='{{image}}'></image>
+              <image src='{{cardList[index].userImg}}'></image>
             </view>
           </view>
         </view>
         <view class='card-middle'>
           <image src='../images/card/card_1.png'></image>
         </view>
-        <view class='card-down' wx:if='{{mineInfo.phone}}'>
+        <view class='card-down' wx:if='{{cardList[index].userPhone}}'>
           <view class='card-mes'>
             <image src='../images/card/mes_phone.png' style='width:26rpx;height:26rpx;'></image>
-            <text selectable='true'>{{mineInfo.phone}}</text>
+            <text selectable='true'>{{cardList[index].userPhone}}</text>
           </view>
-          <view class='card-mes' wx:if='{{mineInfo.wechatnum}}'>
+          <view class='card-mes' wx:if='{{cardList[index].userWechat}}'>
             <image src='../images/card/mes_wechat.png' style='width:26rpx;height:21rpx;'></image>
-            <text selectable='true'>{{mineInfo.wechatnum}}</text>
+            <text selectable='true'>{{cardList[index].userWechat}}</text>
           </view>
-          <view class='card-mes' wx:if='{{mineInfo.email}}'>
+          <view class='card-mes' wx:if='{{cardList[index].userEmail}}'>
             <image src='../images/card/mes_email.png' style='width:26rpx;height:17rpx;'></image>
-            <text selectable='true'>{{mineInfo.email}}</text>
+            <text selectable='true'>{{cardList[index].userEmail}}</text>
           </view>
         </view>
       </view>
-      <view wx:if='{{item == 4 }}' class='main-card-4 main-card-box'>
+      <view wx:if='{{item == 4 }}' data-index='{{index}}' class='main-card-4 main-card-box'>
         <image class='bg-card' src='../images/card/card_4/bg_card_4.png'></image>
         <view class='card-layer'>
           <view class='card-top'>
             <view class='card-top-left'>
               <view class='mes-name over-flow-hide'>
-                <text selectable='true'>{{mineInfo.name}}</text>
+                <text selectable='true'>{{cardList[index].username}}</text>
               </view>
               <view class='mes-job over-flow-hide'>
-                <text selectable='true'>{{mineInfo.userJob}}</text>
+                <text selectable='true'>{{cardList[index].userJob}}</text>
               </view>
             </view>
             <view class='card-top-right'>
               <view class='img-box'>
-                <image src='{{image}}'></image>
+                <image src='{{cardList[index].userImg}}'></image>
               </view>
             </view>
           </view>
@@ -155,50 +155,50 @@
               <view class='mes-icon'>
                 <image src='../images/card/card_4/mes_addr_4.png' style='width:20rpx;height:26rpx;'></image>
               </view>
-              <text class='over-flow-hide' selectable='true'>{{mineInfo.city}}</text>
+              <text class='over-flow-hide' selectable='true'>{{cardList[index].userCity}}</text>
             </view>
             <view class='card-mes over-flow-hide'>
               <view class='mes-icon'>
                 <image src='../images/card/card_4/mes_comp_4.png' style='width:25rpx;height:24rpx;'></image>
               </view>
-              <text class='over-flow-hide' selectable='true'>{{mineInfo.company}}</text>
+              <text class='over-flow-hide' selectable='true'>{{cardList[index].userCompany}}</text>
             </view>
-            <view class='card-mes' wx:if='{{mineInfo.phone}}'>
+            <view class='card-mes' wx:if='{{cardList[index].userPhone}}'>
               <view class='mes-icon'>
                 <image src='../images/card/card_4/mes_phone_4.png' style='width:26rpx;height:26rpx;'></image>
               </view>
-              <text selectable='true'>{{mineInfo.phone}}</text>
+              <text selectable='true'>{{cardList[index].userPhone}}</text>
             </view>
-            <view class='card-mes' wx:if='{{mineInfo.wechatnum}}'>
+            <view class='card-mes' wx:if='{{cardList[index].userWechat}}'>
               <view class='mes-icon'>
                 <image src='../images/card/card_4/mes_wechat_4.png' style='width:25rpx;height:20rpx;'></image>
               </view>
-              <text selectable='true'>{{mineInfo.wechatnum}}</text>
+              <text selectable='true'>{{cardList[index].userWechat}}</text>
             </view>
-            <view class='card-mes' wx:if='{{mineInfo.email}}'>
+            <view class='card-mes' wx:if='{{cardList[index].userEmail}}'>
               <view class='mes-icon'>
                 <image src='../images/card/card_4/mes_email_4.png' style='width:26rpx;height:17rpx;'></image>
               </view>
-              <text selectable='true'>{{mineInfo.email}}</text>
+              <text selectable='true'>{{cardList[index].userEmail}}</text>
             </view>
           </view>
         </view>
       </view>
-      <view wx:if='{{item == 5 }}' class='main-card-5 main-card-box'>
+      <view wx:if='{{item == 5 }}' data-index='{{index}}' class='main-card-5 main-card-box'>
         <image class='bg-card' src='../images/card/card_5/bg_card_5.png'></image>
         <view class='card-layer'>
           <view class='card-top'>
             <view class='mes-name over-flow-hide'>
-              <text selectable='true'>{{mineInfo.name}}</text>
+              <text selectable='true'>{{cardList[index].username}}</text>
             </view>
             <view class='mes-job over-flow-hide'>
-              <text selectable='true'>{{mineInfo.userJob}}</text>
+              <text selectable='true'>{{cardList[index].userJob}}</text>
             </view>
           </view>
           <view class='card-down'>
             <view class='card-down-left'>
               <view class='img-box'>
-                <image src='{{image}}'></image>
+                <image src='{{cardList[index].userImg}}'></image>
               </view>
             </view>
             <view class='card-down-right'>
@@ -206,31 +206,31 @@
                 <view class='mes-icon'>
                   <image src='../images/card/card_5/mes_addr_5.png'></image>
                 </view>
-                <text class='over-flow-hide' selectable='true'>{{mineInfo.city}}</text>
+                <text class='over-flow-hide' selectable='true'>{{cardList[index].userCity}}</text>
               </view>
               <view class='card-mes'>
                 <view class='mes-icon'>
                   <image src='../images/card/card_5/mes_comp_5.png'></image>
                 </view>
-                <text class='over-flow-hide' selectable='true'>{{mineInfo.company}}</text>
+                <text class='over-flow-hide' selectable='true'>{{cardList[index].userCompany}}</text>
               </view>
-              <view class='card-mes' wx:if='{{mineInfo.phone}}'>
+              <view class='card-mes' wx:if='{{cardList[index].userPhone}}'>
                 <view class='mes-icon'>
                   <image src='../images/card/card_5/mes_phone_5.png'></image>
                 </view>
-                <text class='over-flow-hide' selectable='true'>{{mineInfo.phone}}</text>
+                <text class='over-flow-hide' selectable='true'>{{cardList[index].userPhone}}</text>
               </view>
-              <view class='card-mes' wx:if='{{mineInfo.wechatnum}}'>
+              <view class='card-mes' wx:if='{{cardList[index].userWechat}}'>
                 <view class='mes-icon'>
                   <image src='../images/card/card_5/mes_wechat_5.png'></image>
                 </view>
-                <text class='over-flow-hide' selectable='true'>{{mineInfo.wechatnum}}</text>
+                <text class='over-flow-hide' selectable='true'>{{cardList[index].userWechat}}</text>
               </view>
-              <view class='card-mes' wx:if='{{mineInfo.email}}'>
+              <view class='card-mes' wx:if='{{cardList[index].userEmail}}'>
                 <view class='mes-icon'>
                   <image src='../images/card/card_5/mes_email_5.png'></image>
                 </view>
-                <text class='over-flow-hide' selectable='true'>{{mineInfo.email}}</text>
+                <text class='over-flow-hide' selectable='true'>{{cardList[index].userEmail}}</text>
               </view>
             </view>
           </view>
@@ -238,7 +238,7 @@
       </view>
     </swiper-item>
   </view>
-</swiper> -->
+</swiper>
   <view class="find" bindtap='ganerate'>
     <image class="img1" src="{{img1}}"></image>
     <text class="about">点击生成我的名片二维码</text>

@@ -20,6 +20,9 @@ Page({
     image: "/pages/images/findpeer.png", //小程序码
     QRCode: "", //小程序二维码
     userImg: "", //用户头像
+    cardNumber: '',
+    cardList: [],
+    num: 1,
   },
   //页面加载
   onLoad: function() {
@@ -34,99 +37,59 @@ Page({
       withShareTicket: true
     })
     let that = this
-    wx.getStorage({
-      key: 'userInfo',
-      success: function(res) {
+    let openid = app.globalData.openid
+    util.getMyDataList(openid).then(function(res){
+      console.log(res.data.data)
+      if(res.data.data){
+        var cd_list = []
+        for (var i = 0; i < res.data.data.length; i++) {
+          cd_list.push(res.data.data[i].cardType)
+        }
         that.setData({
-          name: res.data.username,
-          userJob: res.data.userJob,
-          company: res.data.userCompany,
-          idustry: res.data.userIndustry,
-          city: res.data.userCity,
-          userImg: res.data.userImg,
-          id: res.data.id
+          cardList:res.data.data,
+          cardNumber:res.data.data.length,
+          cd_list:cd_list
         })
-        let userPhotoUrl = "";
-        if (!res.data.userImg) {
-          userPhotoUrl = app.globalData.userImage;
-        } else {
-          userPhotoUrl = res.data.userImg
-        }
-        let page = "pages/peerscards/peerscards";
-        let scene = res.data.id;
-        let openid = app.globalData.openid
-        if (app.globalData.QRCode) {
-          that.setData({
-            QRCode: app.globalData.QRCode
-          })
-        } else {
-          util.makeWxQrCode(userPhotoUrl, scene, page, openid, res.data.id, 'wxQrCode').then(function(res) {
-            console.log(res.data)
-            if (res.data.data) {
-              app.globalData.QRCode = ("http://www.eqxuan.cn/" + openid + ".png")
-              that.data.QRCode = app.globalData.QRCode
-              that.setData({
-                QRCode: app.globalData.QRCode
-              })
-            } else {
-              app.globalData.QRCode = ""
-              that.data.QRCode = ""
-            }
-          })
-        }
-      },
-      fail: function(res) {
-        that.getData()
       }
     })
+    // wx.getStorage({
+    //   key: 'userInfo',
+    //   success: function(res) {
+    //     that.setData({
+    //       name: res.data.username,
+    //       userJob: res.data.userJob,
+    //       company: res.data.userCompany,
+    //       idustry: res.data.userIndustry,
+    //       city: res.data.userCity,
+    //       userImg: res.data.userImg,
+    //       id: res.data.id
+    //     })
+    //   },
+    //   fail: function(res) {
+    //     that.getData()
+    //   }
+    // })
   },
   getData() {
     let that = this
     let openid = app.globalData.openid
     //获取用户个人信息
-    util.getMyData(openid).then(function(res) {
-      if (!res) {
+    util.getMyDataList(openid).then(function(res) {
+      if (!res.data.data) {
         that.setData({
           notadd: true
         })
         app.globalData.notadd = true
       } else {
-        let userPhotoUrl = "";
-        if (app.globalData.userImage) {
-          userPhotoUrl = app.globalData.userImage;
-        } else {
-          userPhotoUrl = res.userImg
-        }
-        let page = "pages/peerscards/peerscards";
-        let scene = res.id;
-        if (app.globalData.QRCode) {
-          that.setData({
-            QRCode: app.globalData.QRCode
-          })
-        } else {
-          util.makeWxQrCode(userPhotoUrl, scene, page, openid, res.id, 'wxQrCode').then(function(res) {
-            console.log(res.data)
-            if (res.data.data) {
-              app.globalData.QRCode = ("http://www.eqxuan.cn/" + openid + ".png")
-              that.data.QRCode = app.globalData.QRCode
-              that.setData({
-                QRCode: app.globalData.QRCode
-              })
-            } else {
-              app.globalData.QRCode = ""
-              that.data.QRCode = ""
-            }
-          })
-        }
         app.globalData.notadd = false
         that.setData({
-          name: res.username,
-          userJob: res.userJob,
-          company: res.userCompany,
-          idustry: res.userIndustry,
-          city: res.userCity,
-          userImg: res.userImg,
-          id: res.id
+          name: res.data.data[0].username,
+          userJob: res.data.data[0].userJob,
+          company: res.data.data[0].userCompany,
+          idustry: res.data.data[0].userIndustry,
+          city: res.data.data[0].userCity,
+          userImg: res.data.data[0].userImg,
+          id: res.data.data[0].id
         })
       }
     })
@@ -164,40 +127,6 @@ Page({
     })
   },
   onShow: function() {
-    let that = this
-    let userPhotoUrl = "";
-    if (app.globalData.userImage) {
-      userPhotoUrl = app.globalData.userImage;
-    } else {
-      userPhotoUrl = that.data.userImg
-    }
-    let page = "pages/peerscards/peerscards";
-    let scene = that.data.id;
-    let openid = app.globalData.openid
-    console.log(app.globalData.QRCode)
-    if (openid && userPhotoUrl) {
-      if (app.globalData.QRCode) {
-        that.setData({
-          QRCode: app.globalData.QRCode
-        })
-      } else {
-        util.makeWxQrCode(userPhotoUrl, scene, page, openid, that.data.id, 'wxQrCode').then(function(res) {
-          if (res.data.data) {
-            app.globalData.QRCode = ("http://www.eqxuan.cn/" + openid + ".png")
-            that.data.QRCode = app.globalData.QRCode
-            that.setData({
-              QRCode: app.globalData.QRCode
-            })
-          } else {
-            app.globalData.QRCode = ""
-            that.data.QRCode = ""
-          }
-        })
-      }
-    } else {
-      app.globalData.QRCode = ""
-      that.data.QRCode = ""
-    }
   },
   save(e) {
     console.log(e.detail.formId)
