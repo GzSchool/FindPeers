@@ -1,0 +1,2 @@
+<!--pages/ganerate/ganerate.wxml-->
+<canvas canvas-id='ganerate' style='width:99%;height:470rpx;border:1rpx solid black'></canvas>

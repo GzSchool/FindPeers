@@ -385,7 +385,7 @@ Page({
           image: res.tempFilePaths
         })
         list.push(res.tempFilePaths)
-        util.fileUpload(openId, 1, list, index).then(function(a){
+        util.fileUpload(openId, 1, res.tempFilePaths[0], index).then(function(a){
           console.log(a)
           that.setData({
             image:a.data

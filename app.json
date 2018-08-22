@@ -1,11 +1,11 @@
 {
   "pages": [
+    "pages/ganerate/ganerate",    
     "pages/findmore/findmore",
     "pages/otherpeers/otherpeers",
     "pages/peerscards/peerscards",
     "pages/addcards/addcards",
     "pages/mycards/mycards",    
-    "pages/ganerate/ganerate",    
     "pages/company/company",
     "pages/quncards/quncards",
     "pages/mine/mine",
