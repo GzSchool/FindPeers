@@ -33,7 +33,7 @@ Page({
     resources: '',          //资源
     synopsis: '',           //简介
     cardType: 1,
-    listOfAlbum: ['https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJWN4NNhDKzcv21j2JNqhooxX2rxboRVO7Y9HebGdgia5DhMxWWCt4FBb9KhYC6AGnoAZ4KXjX3tUQ/132', 'https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJWN4NNhDKzcv21j2JNqhooxX2rxboRVO7Y9HebGdgia5DhMxWWCt4FBb9KhYC6AGnoAZ4KXjX3tUQ/132', 'https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJWN4NNhDKzcv21j2JNqhooxX2rxboRVO7Y9HebGdgia5DhMxWWCt4FBb9KhYC6AGnoAZ4KXjX3tUQ/132', 'https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJWN4NNhDKzcv21j2JNqhooxX2rxboRVO7Y9HebGdgia5DhMxWWCt4FBb9KhYC6AGnoAZ4KXjX3tUQ/132', 'https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJWN4NNhDKzcv21j2JNqhooxX2rxboRVO7Y9HebGdgia5DhMxWWCt4FBb9KhYC6AGnoAZ4KXjX3tUQ/132'],
+    listOfAlbum: ['https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJF2LUt5pJt4NXyiahzN6UBOTIKmhouTicAOpRe8g87I4r6bx6DyGWkERe2GzhYZR4NBR6u9HxLEdQg/132', 'https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJF2LUt5pJt4NXyiahzN6UBOTIKmhouTicAOpRe8g87I4r6bx6DyGWkERe2GzhYZR4NBR6u9HxLEdQg/132', 'https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJF2LUt5pJt4NXyiahzN6UBOTIKmhouTicAOpRe8g87I4r6bx6DyGWkERe2GzhYZR4NBR6u9HxLEdQg/132', 'https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJF2LUt5pJt4NXyiahzN6UBOTIKmhouTicAOpRe8g87I4r6bx6DyGWkERe2GzhYZR4NBR6u9HxLEdQg/132', 'https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJF2LUt5pJt4NXyiahzN6UBOTIKmhouTicAOpRe8g87I4r6bx6DyGWkERe2GzhYZR4NBR6u9HxLEdQg/132'],
   },
   //页面加载
   onLoad:function(a){

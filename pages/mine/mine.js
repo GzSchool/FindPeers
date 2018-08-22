@@ -60,7 +60,7 @@ Page({
             QRCode: app.globalData.QRCode
           })
         } else {
-          util.makeWxQrCode(userPhotoUrl, scene, page, openid).then(function(res) {
+          util.makeWxQrCode(userPhotoUrl, scene, page, openid, res.data.id, 'wxQrCode').then(function(res) {
             console.log(res.data)
             if (res.data.data) {
               app.globalData.QRCode = ("http://www.eqxuan.cn/" + openid + ".png")
@@ -104,7 +104,7 @@ Page({
             QRCode: app.globalData.QRCode
           })
         } else {
-          util.makeWxQrCode(userPhotoUrl, scene, page, openid).then(function(res) {
+          util.makeWxQrCode(userPhotoUrl, scene, page, openid, res.id, 'wxQrCode').then(function(res) {
             console.log(res.data)
             if (res.data.data) {
               app.globalData.QRCode = ("http://www.eqxuan.cn/" + openid + ".png")
@@ -181,7 +181,7 @@ Page({
           QRCode: app.globalData.QRCode
         })
       } else {
-        util.makeWxQrCode(userPhotoUrl, scene, page, openid).then(function(res) {
+        util.makeWxQrCode(userPhotoUrl, scene, page, openid, that.data.id, 'wxQrCode').then(function(res) {
           if (res.data.data) {
             app.globalData.QRCode = ("http://www.eqxuan.cn/" + openid + ".png")
             that.data.QRCode = app.globalData.QRCode

@@ -1,8 +1,8 @@
 // App id: 500632377
 // App Secret key: 532a899611b5c8c3f44256cbcde1e509
 //服务器地址
-// var server = 'http://192.168.2.150:8766'
-var server = "https://www.eqxuan.cn"
+var server = 'http://192.168.2.150:8766'
+// var server = "https://www.eqxuan.cn"
 var app = getApp();
 const formatTime = date => {
   const year = date.getFullYear()
@@ -48,7 +48,7 @@ function Login(url) {
   })
 }
 /*
-  用户的openid向数据库获取信息，判断是不是再数据库里添加过数据
+  用户的openid向数据库获取信息，判断是不是再数据库里添加过数据(弃置)
 */
 function getMyData(openid) {
   return new Promise(function(resolve) {
@@ -67,7 +67,26 @@ function getMyData(openid) {
     })
   })
 }
-
+/**
+ *用openid获取用户卡片集合
+ */
+function getMyDataList(openid) {
+  return new Promise(function (resolve) {
+    wx.request({
+      method: 'GET',
+      url: server + '/userCard/findCardList',
+      data: {
+        openId: openid
+      },
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (d) {
+        resolve(d.data.data);
+      }
+    })
+  })
+}
 /*
   从数据库获取这个用户已经保存的同行信息
 */
@@ -450,16 +469,18 @@ function IsURL(str_url) {
 /**
  * 小程序二维码
  */
-function makeWxQrCode(userPhotoUrl, scene, page, openId){
+function makeWxQrCode(userPhotoUrl, scene, page, openId, cardId, index){
   return new Promise(function(resolve){
     wx.request({
       method: 'GET',      
-      url: server + '/user/makeWxQrCode',
+      url: server + '/file/makeWxQrCode',
       data: {
         userPhotoUrl: userPhotoUrl,
         scene: scene,
         page: page,
         openId: openId,
+        cardId:cardId,
+        index:index,
       },
       header: {
         'content-type': 'application/json'
@@ -476,7 +497,7 @@ function makeWxQrCode(userPhotoUrl, scene, page, openId){
 function fileUpload(openId, cardId, multipartFileList, index){
   return new Promise(function(resolve){
     wx.uploadFile({
-      url: server + '/user/fileUpload',
+      url: server + '/file/fileUpload',
       filePath: multipartFileList,
       name:'file',
       formData: {
