@@ -139,8 +139,9 @@ Page({
     })
   },
   ganerate:function(a){
+    let id=this.data.id
     wx.navigateTo({
-      url: '../ganerate/ganerate',
+      url: '../ganerate/ganerate?id=' + id,
     })
   }
 })

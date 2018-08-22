@@ -1,15 +1,23 @@
 // pages/ganerate/ganerate.js
 import { promisify } from '../../utils/index.js'
+let util = require('../../utils/util.js')
+let app = getApp()
 Page({
   data: {
-  
+  id:'',
   },
   onLoad: function (options) {
     // const ctx = wx.createCanvasContext('ganerate')
     // ctx.setFillStyle('blue')
     // ctx.draw()
     // console.log(ctx)
-
+    let that = this
+    that.setData({
+      id:options.id
+    })
+    util.getCardsById(this.data.id).then(function(res){
+      console.log(res)
+    })
     const wxGetImageInfo = promisify(wx.getImageInfo)
     Promise.all([
       wxGetImageInfo({
@@ -47,6 +55,15 @@ Page({
       wx.showToast({
         title: '已保存到相册'
       })
+    })
+  },
+  makeQRCode(){
+    let openid = app.globalData.openid;
+    let id = this.data.id;
+    let userImg = this.data.image;
+    let page = 'pages/peerscards/peerscards';
+    util.makeWxQrCode(userImg, id, page, openid, id, 'makeWxQrCode').then(function(res){
+      console.log(res)
     })
   }
 })
