@@ -136,62 +136,6 @@
         </view>
       </view>
     </view>
-<<<<<<< HEAD
-  </view>
-</view>
-<view class='choose-card'>
-  <scroll-view scroll-x>
-    <view class='choose-card-in {{cardType==1?"active":""}}' data-idx='1' bindtap='chooseCard'>
-      <image src='../images/card/choose_1.png'></image>
-    </view>
-    <view class='choose-card-in {{cardType==2?"active":""}}' data-idx='2' bindtap='chooseCard'>
-      <image src='../images/card/choose_2.png'></image>
-    </view>
-    <view class='choose-card-in {{cardType==3?"active":""}}' data-idx='3' bindtap='chooseCard'>
-      <image src='../images/card/choose_3.png'></image>
-    </view>
-    <view class='choose-card-in {{cardType==4?"active":""}}' data-idx='4' bindtap='chooseCard'>
-      <image src='../images/card/choose_4.png'></image>
-    </view>
-    <view class='choose-card-in {{cardType==5?"active":""}}' data-idx='5' bindtap='chooseCard'>
-      <image src='../images/card/choose_5.png'></image>
-    </view>
-  </scroll-view>
-</view>
-<view class='main'>
-  <view class='main-ul'>
-    <view class='main-li'>
-      <view class='star'></view>
-      <view class='title'><text>姓</text><text>名:</text></view>
-      <input maxlength='8' placeholder-class="phcolor" placeholder='姓名' bindinput='addname' type='text' value='{{name}}' name="name"></input>
-    </view>
-    <view class='main-li' style='height:100rpx;'>
-      <view class='star'>*</view>
-      <view class='title'><text>手</text><text>机</text><text>号:</text></view>
-      <input maxlength='11' placeholder-class="phcolor" placeholder='填写可见该名片手机号' bindinput='addphone' type='number' value='{{phone}}' name="phone"></input>
-      <button wx:if='{{!phone}}' style='padding:0;' class='wx-get' open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">微信获取</button>
-    </view>
-    <view class='main-li' style='height:88rpx;' wx:if='{{modeSMS&&phone}}'>
-      <view class='star'></view>
-      <view class='title'>
-        <text>验</text>
-        <text>证</text>
-        <text>码:</text>
-      </view>
-      <input placeholder-class="phcolor" maxlength='4' placeholder='验证码' bindinput='addcode' type='number' value='{{code}}'></input>
-      <view class='send-sms'><text bindtap='getCode' wx:if='{{!isGet}}'>获取验证码</text><text wx:if='{{isGet}}'>{{sec}}s后重新发送</text></view>
-    </view>
-    <view class='main-li'>
-      <view class='star'>*</view>
-      <view class='title'><text>公</text><text>司:</text></view>
-      <input maxlength='25' placeholder-class="phcolor" placeholder='必填' bindinput='addcompany' type='text' value='{{company}}' name="company"></input>
-    </view>
-    <view class='main-li'>
-      <view class='star'>*</view>
-      <view class='title'><text>行</text><text>业:</text></view>
-<input placeholder-class="phcolor" disabled='disabled' bindtap='chooseIn' placeholder='必填' type='text' value='{{idustry}}'></input>
-      <image src='/pages/images/right.png' bindtap='chooseIn'></image>
-=======
     <view class='main-card-5 main-card-box' wx:if='{{cardType==5}}'>
       <image class='bg-card' src='../images/card/card_5/bg_card_5.png'></image>
       <view class='card-layer'>
@@ -239,7 +183,7 @@
           </view>
         </view>
       </view>
->>>>>>> 9a9a00ce32d6b6c4ffc3f15bb83c776f7c0b74fb
+
     </view>
   </view>
   <view class='choose-card'>
@@ -261,6 +205,7 @@
       </view>
     </scroll-view>
   </view>
+
   <view class='main'>
     <view class='main-ul'>
       <view class='main-li'>
@@ -279,7 +224,20 @@
           <text>号:</text>
         </view>
         <input maxlength='11' placeholder-class="phcolor" placeholder='填写可见该名片手机号' bindinput='addphone' type='number' value='{{phone}}' name="phone"></input>
-        <button style='padding:0;' class='wx-get' open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">微信获取</button>
+        <button wx:if='{{!phone}}' style='padding:0;' class='wx-get' open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">微信获取</button>
+      </view>
+      <view class='main-li' style='height:88rpx;' wx:if='{{modeSMS&&phone}}'>
+        <view class='star'></view>
+        <view class='title'>
+          <text>验</text>
+          <text>证</text>
+          <text>码:</text>
+        </view>
+        <input placeholder-class="phcolor" maxlength='4' placeholder='验证码' bindinput='addcode' type='number' value='{{code}}'></input>
+        <view class='send-sms'>
+          <text bindtap='getCode' wx:if='{{!isGet}}'>获取验证码</text>
+          <text wx:if='{{isGet}}'>{{sec}}s后重新发送</text>
+        </view>
       </view>
       <view class='main-li'>
         <view class='star'>*</view>
@@ -381,18 +339,18 @@
       <textarea maxlength='140' placeholder-class="phcolor" placeholder='请您填写自我介绍或公司简介' bindinput='introInput' type='text' value='{{introduction}}'></textarea>
     </view>
     <view class='Album'>
-    <view class='textAlbum'>名片相册：</view>
-    <view class='chooseAlbum'>
-      <view class="chooseAlbum-box" wx:for='{{listOfAlbum}}'>
-        <image src='{{item}}'>
-        </image>
-        <image class='close' src='../images/removeAlbum.png' data-index='{{index}}'  bindtap='removeAlbum'></image>        
-      </view>
-      <view class='chooseAlbum-add' wx:if='{{listOfAlbum.length<9}}'>
-        <image src='../images/addAlbum.png' bindtap='chooseAlbum'></image>
+      <view class='textAlbum'>名片相册：</view>
+      <view class='chooseAlbum'>
+        <view class="chooseAlbum-box" wx:for='{{listOfAlbum}}'>
+          <image src='{{item}}'>
+          </image>
+          <image class='close' src='../images/removeAlbum.png' data-index='{{index}}' bindtap='removeAlbum'></image>
+        </view>
+        <view class='chooseAlbum-add' wx:if='{{listOfAlbum.length<9}}'>
+          <image src='../images/addAlbum.png' bindtap='chooseAlbum'></image>
+        </view>
       </view>
     </view>
-  </view>
   </view>
   <!-- <view class='save-btn' bindtap='save'>保存</view> -->
   <button class='save-btn' form-type="submit" wx:if='{{!saveLoading}}'>保存</button>
