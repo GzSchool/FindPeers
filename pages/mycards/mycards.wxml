@@ -185,6 +185,7 @@
       </view>
     </view>
     <view class='con-li-right'>{{company}}</view>
+    <view class="con-li-copy" bindtap='copy' data-num="{{company}}"><image src="/pages/images/card/copy.png"></image></view>   
   </view>
   <view class='con-li' wx:if="{{homepage}}">
     <view class='con-li-left'>

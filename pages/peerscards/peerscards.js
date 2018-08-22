@@ -22,31 +22,31 @@ Page({
     userJob: '', //用户职务
     homepage: "", // 个人主页
     companyWeb: "", // 公司官网  
-    demand: "",  // 需求
+    demand: "", // 需求
     resources: "", // 资源
-    synopsis: "",  // 简介
+    synopsis: "", // 简介
     chooseSize: false, //选择动画
     animationData: {}, //动画
     userInfo: {}, // 缓存获取用户信息 - 用户提交formid时拿到用户名
-    appOPS: app.globalData.appOPS,   // globalData路由参数判断scene
+    appOPS: app.globalData.appOPS, // globalData路由参数判断scene
     samePeer: true, //判断名片跟用户是不是同一人  
     checkSave: true, //检验是不是保存了这个名片
     isgroup: '', //判断是否是在群里点击的
     notadd: false, //用户是否添加信息
     remark: "", // 备注
     canSave: true,
-    listOfAlbum: ['https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJWN4NNhDKzcv21j2JNqhooxX2rxboRVO7Y9HebGdgia5DhMxWWCt4FBb9KhYC6AGnoAZ4KXjX3tUQ/132', 'https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJWN4NNhDKzcv21j2JNqhooxX2rxboRVO7Y9HebGdgia5DhMxWWCt4FBb9KhYC6AGnoAZ4KXjX3tUQ/132', 'https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJWN4NNhDKzcv21j2JNqhooxX2rxboRVO7Y9HebGdgia5DhMxWWCt4FBb9KhYC6AGnoAZ4KXjX3tUQ/132', 'https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJWN4NNhDKzcv21j2JNqhooxX2rxboRVO7Y9HebGdgia5DhMxWWCt4FBb9KhYC6AGnoAZ4KXjX3tUQ/132', 'https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJWN4NNhDKzcv21j2JNqhooxX2rxboRVO7Y9HebGdgia5DhMxWWCt4FBb9KhYC6AGnoAZ4KXjX3tUQ/132'],
-  
+    listOfAlbum: ['https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJF2LUt5pJt4NXyiahzN6UBOTIKmhouTicAOpRe8g87I4r6bx6DyGWkERe2GzhYZR4NBR6u9HxLEdQg/132', 'https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJF2LUt5pJt4NXyiahzN6UBOTIKmhouTicAOpRe8g87I4r6bx6DyGWkERe2GzhYZR4NBR6u9HxLEdQg/132', 'https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJF2LUt5pJt4NXyiahzN6UBOTIKmhouTicAOpRe8g87I4r6bx6DyGWkERe2GzhYZR4NBR6u9HxLEdQg/132', 'https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJF2LUt5pJt4NXyiahzN6UBOTIKmhouTicAOpRe8g87I4r6bx6DyGWkERe2GzhYZR4NBR6u9HxLEdQg/132', 'https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJF2LUt5pJt4NXyiahzN6UBOTIKmhouTicAOpRe8g87I4r6bx6DyGWkERe2GzhYZR4NBR6u9HxLEdQg/132'],
+
   },
   //页面加载
-  onLoad: function (ops) {
+  onLoad: function(ops) {
     mta.Page.init();
     console.log(ops)
-    console.log(app.globalData.appOPS)    
+    console.log(app.globalData.appOPS)
     let that = this
-    let url = app.globalData.urlOfLogin    
+    let url = app.globalData.urlOfLogin
     var openid = wx.getStorageSync('openid');
-    let server = app.globalData.server  
+    let server = app.globalData.server
     that.setData({
       appOPS: app.globalData.appOPS
     })
@@ -72,83 +72,85 @@ Page({
           othercardid: ops.scene
         })
       }
-    if (openid) {
-    app.globalData.openid = openid
-     that.data.openid = openid
-          var othercardid = that.data.othercardid;
-          that.getMyData(openid)
-          if (that.data.appOPS.scene == 1044) {
-            var shareTickets = that.data.appOPS.shareTicket;
-            wx.getShareInfo({
-              shareTicket: shareTickets,
-              success: function (res) {
-                console.log(res)
-                var encryptedData = res.encryptedData;
-                var iv = res.iv;
-                that.getGroupId(othercardid, encryptedData, iv)
-              }
-            })
-          } else {
-            that.checkedSave(openid, othercardid)
-          }
-        
-    } else {
-    //  app.login()
-      util.Login(url).then(function (data) {
-        console.log('---------' + data)
-        if (data) {
-          app.globalData.openid = data
-          wx.setStorageSync('openid', app.globalData.openid);
-          app.getUserData(data);
-          var openid = data;
-          var othercardid = that.data.othercardid;
-          that.getMyData(openid)
-          if (that.data.appOPS.scene == 1044){
-            var shareTickets = that.data.appOPS.shareTicket;
-            wx.getShareInfo({
-              shareTicket: shareTickets,
-              success: function (res) {
-                console.log(res)
-                var encryptedData = res.encryptedData;
-                var iv = res.iv;
-                that.getGroupId(othercardid, encryptedData, iv)
-              }
-            })              
-          }else{
-              that.checkedSave(openid, othercardid)
-          }
+      if (openid) {
+        app.globalData.openid = openid
+        that.data.openid = openid
+        var othercardid = that.data.othercardid;
+        that.getMyData(openid)
+        console.log('++++++++++++++++++++++++++++++++++++++++++++++++++++')
+        if (that.data.appOPS.scene == 1044) {
+          console.log('++++++++++++++++++++++++++++++++++++++++++++++++++++==========================================')          
+          var shareTickets = that.data.appOPS.shareTicket;
+          wx.getShareInfo({
+            shareTicket: shareTickets,
+            success: function(res) {
+              console.log(res)
+              var encryptedData = res.encryptedData;
+              var iv = res.iv;
+              that.getGroupId(othercardid, encryptedData, iv)
+            }
+          })
         } else {
-          wx.clearStorage()
+          console.log('------------------------------------------------------------')          
+          that.checkedSave(openid, othercardid)
+        }
+      } else {
+        //  app.login()
+        util.Login(url).then(function(data) {
+          console.log('---------' + data)
+          if (data) {
+            app.globalData.openid = data
+            wx.setStorageSync('openid', app.globalData.openid);
+            app.getUserData(data);
+            var openid = data;
+            var othercardid = that.data.othercardid;
+            that.getMyData(openid)
+            if (that.data.appOPS.scene == 1044) {
+              var shareTickets = that.data.appOPS.shareTicket;
+              wx.getShareInfo({
+                shareTicket: shareTickets,
+                success: function(res) {
+                  console.log(res)
+                  var encryptedData = res.encryptedData;
+                  var iv = res.iv;
+                  that.getGroupId(othercardid, encryptedData, iv)
+                }
+              })
+            } else {
+              that.checkedSave(openid, othercardid)
+            }
+          } else {
+            wx.clearStorage()
+          }
+        })
+      }
+      wx.getStorage({
+        key: 'userInfo',
+        success: function(res) {
+          console.log(res)
+          that.setData({
+            userInfo: res.data
+          })
+        },
+        fail: function() {
+          // app.globalData.notadd = true
+          // that.setData({
+          //   notadd: true
+          // })
         }
       })
-    }
-    wx.getStorage({
-      key: 'userInfo',
-      success: function (res) {
-        console.log(res)
-        that.setData({
-          userInfo: res.data
-        })
-      },
-      fail: function () {
-        // app.globalData.notadd = true
-        // that.setData({
-        //   notadd: true
-        // })
-      }
-    })
     }
     wx.showShareMenu({
       withShareTicket: true
     })
   },
-  getGroupId(othercardid, encryptedData, iv){
+  getGroupId(othercardid, encryptedData, iv) {
     let that = this
-    let server = app.globalData.server    
-    let openid = app.globalData.openid        
-    util.getCardsById(othercardid).then(function (card) {
+    let server = app.globalData.server
+    let openid = app.globalData.openid
+    util.getCardsById(othercardid).then(function(card) {
       that.setData({
-        otheropenId :card.data.data[0].openId
+        otheropenId: card.data.data[0].openId
       })
       wx.request({
         method: 'POST',
@@ -162,42 +164,42 @@ Page({
         header: {
           'content-type': 'application/json'
         },
-        success: function (c) {
+        success: function(c) {
           if (c.data.data) {
             that.setData({
               groupId: c.data.data
             })
           }
-          that.checkedSave(openid, othercardid)          
+          that.checkedSave(openid, othercardid)
         }
       })
     })
   },
   getMyData(openid) {
     var that = this
-    util.getMyData(openid).then(function (res) {
+    util.getMyData(openid).then(function(res) {
       if (res) {
         app.globalData.notadd = false
         that.setData({
           notadd: false,
-          canSave: true          
+          canSave: true
         })
       } else {
         app.globalData.notadd = true
         that.setData({
           canSave: false
         })
-        if(that.data.appOPS.scene == 1044){
-          console.log("-------------++++++++++++++++++++++++++++++++++++++")          
+        if (that.data.appOPS.scene == 1044) {
+          console.log("-------------++++++++++++++++++++++++++++++++++++++")
           that.setData({
             notadd: true,
           })
-        }else{
+        } else {
           console.log("-------------===========================")
           that.setData({
             notadd: false
           })
-        }        
+        }
       }
     })
   },
@@ -206,7 +208,7 @@ Page({
     let that = this
     console.log(openid)
     console.log(otherid)
-    util.checkSave(openid, otherid).then(function (a) {
+    util.checkSave(openid, otherid).then(function(a) {
       console.log(a)
       console.log(that.data.otheropenId)
       console.log(openid == that.data.otheropenId)
@@ -228,7 +230,7 @@ Page({
   // 获取同行名片信息
   getPeerInfo(openId, otherId) {
     let that = this
-    util.getPeerInfo(openId, otherId).then(function (res) {
+    util.getPeerInfo(openId, otherId).then(function(res) {
       console.log(res)
       that.setData({
         name: res.data.data.username,
@@ -243,10 +245,10 @@ Page({
         companyWeb: res.data.data.companyPage,
         otheropenId: res.data.data.openId,
         userJob: res.data.data.userJob,
-        demand: res.data.data.demand,       // 需求
+        demand: res.data.data.demand, // 需求
         resources: res.data.data.resources, // 资源
-        synopsis: res.data.data.synopsis,   // 简介
-        userJob: res.data.data.userJob,      // 职位
+        synopsis: res.data.data.synopsis, // 简介
+        userJob: res.data.data.userJob, // 职位
         id: res.data.data.id,
         cardType: res.data.data.cardType,
         remark: res.data.data.remark ? res.data.data.remark : ''
@@ -261,7 +263,7 @@ Page({
   },
   getPeerData(othercardid) {
     let that = this
-    util.getCardsById(othercardid).then(function (res) {
+    util.getCardsById(othercardid).then(function(res) {
       console.log(res)
       that.setData({
         name: res.data.data[0].username,
@@ -275,10 +277,10 @@ Page({
         homepage: res.data.data[0].homePage,
         companyWeb: res.data.data[0].companyPage,
         otheropenId: res.data.data[0].openId,
-        demand: res.data.data[0].demand,       // 需求
+        demand: res.data.data[0].demand, // 需求
         resources: res.data.data[0].resources, // 资源
-        synopsis: res.data.data[0].synopsis,   // 简介
-        userJob: res.data.data[0].userJob,     // 职位
+        synopsis: res.data.data[0].synopsis, // 简介
+        userJob: res.data.data[0].userJob, // 职位
         userJob: res.data.data[0].userJob,
         id: res.data.data[0].id,
         cardType: res.data.data[0].cardType,
@@ -292,7 +294,7 @@ Page({
       console.log("getpeerData22222222222222222222222222")
     })
   },
-  addcards: function (e) {
+  addcards: function(e) {
     var that = this
     var openid = app.globalData.openid;
     if (e.detail.userInfo) {
@@ -301,25 +303,25 @@ Page({
       })
     }
   },
-  remove: function () {
+  remove: function() {
     var that = this
     var server = app.globalData.server;
     var othercardid = app.globalData.othercardid;
     var groupId = that.data.groupId;
     var openid = app.globalData.openid;
     var cardId = that.data.cardId
-    util.saveOrUpdate(openid, groupId, 1, cardId).then(function (res) {
+    util.saveOrUpdate(openid, groupId, 1, cardId).then(function(res) {
       wx.switchTab({
         url: '/pages/findmore/findmore',
       })
     })
   },
-  back: function () {
+  back: function() {
     wx.switchTab({
       url: '/pages/findmore/findmore',
     })
   },
-  chooseSize: function (e) {
+  chooseSize: function(e) {
     // 用that取代this，防止不必要的情况发生
     var that = this;
     // 创建一个动画实例
@@ -341,14 +343,14 @@ Page({
       chooseSize: true
     })
     // 设置setTimeout来改变y轴偏移量，实现有感觉的滑动
-    setTimeout(function () {
+    setTimeout(function() {
       animation.translateY(0).step()
       that.setData({
         animationData: animation.export()
       })
     }, 200)
   },
-  hideModal: function (e) {
+  hideModal: function(e) {
     var that = this;
     var animation = wx.createAnimation({
       duration: 1000,
@@ -360,7 +362,7 @@ Page({
       animationData: animation.export()
 
     })
-    setTimeout(function () {
+    setTimeout(function() {
       animation.translateY(0).step()
       that.setData({
         animationData: animation.export(),
@@ -368,7 +370,7 @@ Page({
       })
     }, 200)
   },
-  saveToPhone: function () {
+  saveToPhone: function() {
     mta.Event.stat("save_mobile_peercard");
     var that = this
     if (that.data.phone) {
@@ -382,10 +384,10 @@ Page({
         addressCity: that.data.city,
         remark: that.data.remark,
         url: that.data.companyWeb,
-        success: function (a) {
+        success: function(a) {
           that.hideModal();
         },
-        fail: function (p) {
+        fail: function(p) {
           that.hideModal();
         }
       })
@@ -394,19 +396,19 @@ Page({
         title: '温馨提示',
         content: '该张名片手机号为空',
         confirmText: '知道了',
-        success: function (res) {
+        success: function(res) {
           that.hideModal();
           that.setData({
             showModal2: false
           });
         },
-        fail: function (p) {
+        fail: function(p) {
           that.hideModal();
         }
       })
     }
   },
-  save: function (e) {
+  save: function(e) {
     mta.Event.stat("save_list_peerscard");
     var that = this
     var server = app.globalData.server;
@@ -420,17 +422,17 @@ Page({
     console.log(openid)
     console.log(groupId)
     console.log(cardId)
-    util.saveOrUpdate(openid, groupId, 2, cardId, saveName, formId).then(function (res) {
+    util.saveOrUpdate(openid, groupId, 2, cardId, saveName, formId).then(function(res) {
       console.log(res)
       wx.switchTab({
         url: '/pages/findmore/findmore',
       })
     })
   },
-  backToFind: function () {
+  backToFind: function() {
     this.hideModal()
   },
-  toTeamPeers: function (e) {
+  toTeamPeers: function(e) {
     if (this.data.groupId) {
       var that = this
       var groupId = that.data.groupId;
@@ -442,21 +444,21 @@ Page({
     }
   },
   //点击拨打电话
-  makePhoneCall:function(e){
+  makePhoneCall: function(e) {
     let phoneNumber = e.currentTarget.dataset.phone;
     wx.makePhoneCall({
       phoneNumber: phoneNumber,
-      success:function(a){
+      success: function(a) {
         console.log(a)
       }
     })
   },
-  copy: function (e) {
+  copy: function(e) {
     console.log(e)
     var num = e.currentTarget.dataset.num;
     wx.setClipboardData({
       data: num,
-      success: function (a) {
+      success: function(a) {
         app.showToast('复制成功');
         console.log(a)
         // wx.getClipboardData({
@@ -468,7 +470,7 @@ Page({
     })
   },
   //分享
-  onShareAppMessage: function (a) {
+  onShareAppMessage: function(a) {
     var server = app.globalData.server;
     var that = this
     var otheropenId = that.data.otheropenId;
@@ -477,20 +479,20 @@ Page({
     return {
       title: '名片信息',
       path: '/pages/peerscards/peerscards?othercardid=' + that.data.othercardid,
-      success: function (res) {
+      success: function(res) {
         let openId = app.globalData.openid;
         let otherOpenId = that.data.otheropenId;
-        util.sharePage(openId, otherOpenId, res).then(function (e) {
+        util.sharePage(openId, otherOpenId, res).then(function(e) {
           console.log(e)
           that.hideModal();
         })
       },
-      fail: function (res) {
+      fail: function(res) {
         // 转发失败
       }
     }
   },
-  onShow: function (ops) {
+  onShow: function(ops) {
     var that = this
     if (that.data.appOPS.scene == 1044) {
       that.setData({
@@ -507,12 +509,12 @@ Page({
     // var ops = {othercardid: app.globalData.othercardid}
     // this.onLoad(ops)    
   },
-  addRemark: function (e) {
+  addRemark: function(e) {
     mta.Event.stat("add_remark_peer");
     let openId = app.globalData.openid
     let cardId = this.data.othercardid
     let remark = e.detail.value
-    util.addRemark(openId, cardId, remark).then(function (res) {
+    util.addRemark(openId, cardId, remark).then(function(res) {
       console.log(res.data)
     })
   }

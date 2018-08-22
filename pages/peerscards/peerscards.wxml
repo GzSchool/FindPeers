@@ -204,6 +204,15 @@
     </view>
     <view class='con-li-right'>{{idustry}}</view>
   </view>
+  <view class='con-li' wx:if="{{phone}}">
+    <view class='con-li-left'>
+      <view class='img-box'>
+        <image src='../images/mes_phone.png' style='width:36rpx;height:33rpx'></image>
+      </view>
+    </view>
+    <view class='con-li-right'>{{phone}}</view>
+    <view class="con-li-copy1" data-phone="{{phone}}" bindtap='makePhoneCall'><image src="/pages/images/callPhone.png"></image></view>  
+  </view>
   <view class='con-li' wx:if='{{company}}'>
     <view class='con-li-left'>
       <view class='img-box'>
@@ -211,6 +220,7 @@
       </view>
     </view>
     <view class='con-li-right'>{{company}}</view>
+    <view class="con-li-copy" bindtap='copy' data-num="{{company}}"><image src="/pages/images/card/copy.png"></image></view>   
   </view>
   <view class='con-li' wx:if="{{homepage}}">
     <view class='con-li-left'>

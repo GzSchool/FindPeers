@@ -56,6 +56,7 @@ Page({
     city_PRO: [industry.province, industry.city[0].child], //城市列表
     listOfAlbum: [],
     chooseCount: 9,
+    transAvater:""
   },
   //页面加载
   onLoad: function(a) {
@@ -266,7 +267,7 @@ Page({
     })
   },
   //填写验证码
-  addcode: function (e) {
+  addcode: function(e) {
     this.data.code = e.detail.value
   },
   //填写需求
@@ -301,16 +302,32 @@ Page({
   //点击保存按钮
   save: function() {
     let that = this
+    var openid = app.globalData.openid
+    var index = 'xiangce'
+    let cardid = that.data.id
+    let listOfAlbum = that.data.listOfAlbum;
+    if (listOfAlbum) {
+      for (var i = 0; i < listOfAlbum.length; i++) {
+        util.fileUpload(openid, cardid, listOfAlbum[i], index + i).then(function(a) {
+          console.log(a)
+        })
+      }
+    }
+    if (that.data.transAvater) {
+      var mes = 'touxiang'
+      util.fileUpload(openid, cardid, that.data.transAvater, mes + i).then(function(a){
+        console.log(a)
+      })
+    }
     if (that.data.modeSMS) {
-      if (String(that.data.code).length!==4){
+      if (String(that.data.code).length !== 4) {
         app.showToast('验证码不正确')
       } else if (!isvalidatemobile(that.data.phone)) {
         app.showToast('手机号格式不正确')
       } else {
-        var openid = app.globalData.openid
         var code = that.data.code
         var phone = that.data.phone
-        util.checkSMS(openid, phone, code).then(function (res) {
+        util.checkSMS(openid, phone, code).then(function(res) {
           console.log(res)
           if (res.statusCode == 200 && !res.data.success) {
             app.showToast(res.data.message)
@@ -334,12 +351,12 @@ Page({
     //名字是空的时候获取微信名字
     if (this.data.name == '' || this.data.name == null) {
       wx.getUserInfo({
-        success: function (a) {
+        success: function(a) {
           that.setData({
             name: a.userInfo.nickName,
             prepare: pinyin.getFullChars(a.userInfo.nickName).toUpperCase()
           })
-          if(!that.data.image){
+          if (!that.data.image) {
             that.setData({
               image: a.userInfo.avatarUrl,
             })
@@ -347,7 +364,7 @@ Page({
           console.log(a.userInfo.gender)
           that.getData()
         },
-        fail: function () {
+        fail: function() {
           app.showToast("姓名不能为空")
         }
       })
@@ -404,7 +421,7 @@ Page({
           this.data.name = a.userInfo.nickName;
         }
       })
-    } else if (this.data.image == '' || this.data.image == null) {
+    } else if (this.data.transAvater == '' || this.data.transAvater == null) {
       wx.getUserInfo({
         success: function(a) {
           this.data.image = a.userInfo.avatarUrl;
@@ -434,7 +451,7 @@ Page({
           prepare: this.data.prepare,
           cardType: this.data.cardType
         },
-        url: server + '/userCard/saveOrUpdate',
+        url: server + '/userCard/updateCard',
         header: {
           'content-type': 'application/json'
         },
@@ -549,12 +566,15 @@ Page({
     } else {
       var phone = that.data.phone
       var openid = app.globalData.openid
-      util.getSMS(openid, phone).then(function (res) {
+      util.getSMS(openid, phone).then(function(res) {
         console.log(res)
       })
-      that.setData({ isGet: true, sec: 60 })
+      that.setData({
+        isGet: true,
+        sec: 60
+      })
       var remain = 60;
-      var time = setInterval(function () {
+      var time = setInterval(function() {
         if (remain == 1) {
           clearInterval(time)
           that.setData({
@@ -572,8 +592,7 @@ Page({
   },
   transImage: function(e) {
     var that = this
-    var openId = app.globalData.openid   
-    var list = [] 
+    var openId = app.globalData.openid
     var index = 'touxiang'
     var cardid = that.data.id
     console.log(cardid)
@@ -582,16 +601,15 @@ Page({
       success: function(res) {
         console.log(res)
         that.setData({
-          image: res.tempFilePaths
+          image: "",
+          transAvater: res.tempFilePaths[0]
         })
-        list.push(res.tempFilePaths)
-        console.log(list)
-      util.fileUpload(openId, 1, res.tempFilePaths[0], index).then(function(a){
-        console.log(a)
-        that.setData({
-          image:a.data
-        })
-      })
+        // util.fileUpload(openId, 1, res.tempFilePaths[0], index).then(function(a) {
+        //   console.log(a)
+        //   that.setData({
+        //     image: a.data
+        //   })
+        // })
       },
     })
   },
@@ -599,8 +617,6 @@ Page({
     let that = this
     console.log(that.data.chooseCount)
     let count = that.data.chooseCount
-    var openId = app.globalData.openid
-    var index = 'xiangce'
     wx.chooseImage({
       count: count,
       success: function(res) {
@@ -614,7 +630,7 @@ Page({
           listOfAlbum: list,
           chooseCount: that.data.chooseCount - len
         })
-        console.log(res.tempFiles[0].size/1024 + 'kB')
+        console.log(res.tempFiles[0].size / 1024 + 'kB')
         // for(var i = 0; i < res.tempFilePaths.length; i++){
         // util.fileUpload(openId, 1, res.tempFilePaths[i], index+i).then(function(a) {
         //   console.log(a)

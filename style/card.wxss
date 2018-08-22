@@ -426,6 +426,18 @@
     width: 34rpx;
     height: 42rpx;
   }
+  .content .con-li .con-li-copy1{
+    /* min-width: 96rpx; */
+    /* height: 100%; */
+    /* padding-left: 30rpx; */
+    padding-top: 30rpx;
+    padding-right: 53rpx;
+    border-bottom: 1rpx solid #D8D8D8;  
+  }
+  .content .con-li .con-li-copy1 image{
+    width: 42rpx;
+    height: 40rpx;
+  }
 .card-set {
   position: fixed;
   z-index: 300;
