@@ -575,6 +575,8 @@ Page({
     var openId = app.globalData.openid   
     var list = [] 
     var index = 'touxiang'
+    var cardid = that.data.id
+    console.log(cardid)
     wx.chooseImage({
       count: 1,
       success: function(res) {

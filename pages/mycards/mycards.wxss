@@ -69,7 +69,7 @@ Page{
 .Album .Album-box{
   width: 200rpx;
   height: 200rpx;
-  margin-right: 36rpx;
+  margin-right: 34rpx;
   margin-bottom: 30rpx;
 }
 .Album .Album-box image{

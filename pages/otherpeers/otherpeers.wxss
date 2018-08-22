@@ -184,15 +184,16 @@ Page {
   width: 100%;
   margin-top: 20rpx;
   background-color: #ffffff;
-  padding: 30rpx 4rpx 0rpx 40rpx;
+  padding: 30rpx 6rpx 0rpx 40rpx;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  /* justify-content: space-between; */
 }
 .Album .Album-box{
   width: 200rpx;
   height: 200rpx;
-  margin-right: 36rpx;
+  margin-right: 34rpx;
   margin-bottom: 30rpx;
 }
 .Album .Album-box image{

@@ -48,6 +48,7 @@ Page({
     city_PRO: [industry.province, industry.city[0].child], //城市列表
     listOfAlbum:[],
     chooseCount: 9,    
+    transAvater:"",
   },
   onLoad: function(res) {
     mta.Page.init();
@@ -261,7 +262,7 @@ Page({
           this.data.name = a.userInfo.nickName;
         }
       })
-    } else if (this.data.image == '') {
+    } else if (this.data.transAvater == '') {
       wx.getUserInfo({
         success: function(a) {
           console.log(a)
@@ -302,6 +303,7 @@ Page({
           app.globalData.notadd = false
           var openid = app.globalData.openid;
           console.log(openid)
+          var id = res.data.data.id;
           var othercardid = app.globalData.othercardid;
           var openid = that.data.openid;
           var groupId = that.data.groupId;
@@ -440,16 +442,15 @@ Page({
   transImage: function (e) {
     var that = this
     var openId = app.globalData.openid
-    var list = []
     var index = 'touxiang'
     wx.chooseImage({
       count: 1,
       success: function (res) {
         console.log(res)
         that.setData({
-          image: res.tempFilePaths
+          image: "",
+          transAvater: res.tempFilePaths,
         })
-        list.push(res.tempFilePaths)
         util.fileUpload(openId, 1, res.tempFilePaths[0], index).then(function(a){
           console.log(a)
           that.setData({
