@@ -243,6 +243,7 @@ Page({
   },
   // 企业详情
   trans: function() {
+    mta.Event.stat("to_company_page");
     wx.navigateTo({
       url: '/pages/company/company',
     })

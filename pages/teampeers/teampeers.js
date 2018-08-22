@@ -105,6 +105,7 @@ Page({
   },
   //保存用户名片
   save: function (e) {
+    mta.Event.stat("save_list_team");
     if (app.globalData.notadd) {
       app.showToast('请先添加个人信息')
     } else {

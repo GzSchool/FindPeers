@@ -133,6 +133,7 @@ Page({
   },
   //修改名片
   viewThisCards:function(){
+    mta.Event.stat("to_fix_page");
     let openid = app.globalData.openid;
     let groupId= this.data.groupId;
     if(this.data.back){
@@ -183,6 +184,7 @@ Page({
     }
   },
   save(e) {
+    mta.Event.stat("mycards_send");
     console.log(e.detail.formId)
     let formId = []
     formId.push(e.detail.formId)
