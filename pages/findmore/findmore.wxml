@@ -13,10 +13,23 @@
       <view class='title-name'>我的名片</view>
     </view>
     <view class='mine-info'>
+    <view class='mes-li' wx:if='{{!notadd&&index<num}}' data-id='{{item.id}}' wx:for='{{cardList}}' wx:for-item='item' bindtap='mycards' data-index='{{index}}'>
+        <view class='li-left'>
+          <image src='{{item.userImg}}'></image>
+        </view>
+        <view class='li-right'>
+          <view class='mes-name'>{{item.username}}
+            <text>{{item.userIndustry}}</text>
+          </view>
+          <view class='mes-info'>{{item.userCity}}</view>
+          <view class='mes-info'>{{item.userCompany}}</view>
+        </view>
+        <view class='saveNum'>{{item.saveNum}}人已存</view>        
+      </view>
       <view style='padding-bottom:1rpx;'>
         <button class='btn' wx:if='{{notadd}}' open-type="getUserInfo" bindgetuserinfo='addcards'>制作我的名片</button>
       </view>
-      <view class='mes-li' wx:if='{{!notadd}}' bindtap='mycards'>
+      <!-- <view class='mes-li' wx:if='{{!notadd}}' bindtap='mycards'>
         <view class='li-left'>
           <image src='{{image}}'></image>
         </view>
@@ -75,7 +88,7 @@
           <view class='mes-info'>{{city}}</view>
           <view class='mes-info'>{{company}}</view>
         </view>
-      </view>
+      </view> -->
     </view>
     <view class='mine-info' wx:if='{{showMoreCard&&cardNumber<=4}}'>
       <button class='btn' open-type="getUserInfo" bindgetuserinfo='addcards'>制作我的名片</button>

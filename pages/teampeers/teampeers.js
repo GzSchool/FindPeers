@@ -19,6 +19,10 @@ Page({
     hasSelect: false,         //单个选择
     formId: '',               //表单ID
     list_length: 0,
+    showMoreCard: false,
+    cardNumber: '',
+    cardList: [],
+    num: 1,
     // saveFalseNum: 0,
   },
   //页面初始化（只加载一次）
@@ -68,17 +72,50 @@ Page({
       })
     })
     //获取用户个人信息
-    util.getMyData(openId).then(function(res) {
-      if (res) {
-        that.setData({
-          name: res.username,
-          company: res.userCompany,
-          industry: res.userIndustry,
-          city: res.userCity,
-          image: res.userImg,
-        })
-      }
+    util.getMyDataList(openId).then(function(res){
+       if(res.data.data){
+         if (res.data.data) {
+           app.globalData.notadd = false;
+           wx.setStorage({
+             key: 'userInfo',
+             data: res,
+           })
+           that.setData({
+             cardList: res.data.data,
+             cardNumber: res.data.data.length,
+             notadd:false
+             // name: res.username,
+             // wechatnum: res.userWechat,
+             // company: res.userCompany,
+             // idustry: res.userIndustry,
+             // city: res.userCity,
+             // email: res.userEmail,
+             // phone: res.userPhone,
+             // image: res.userImg,
+           })
+       }
+       } else {
+         // 登录失败清空本地缓存
+         // wx.clearStorage()
+         app.globalData.notadd = true;
+         that.setData({
+           notadd: true,
+           list_con: [],
+           list_letter: []
+         })
+       }
     })
+    // util.getMyData(openId).then(function(res) {
+    //   if (res) {
+    //     that.setData({
+    //       name: res.username,
+    //       company: res.userCompany,
+    //       industry: res.userIndustry,
+    //       city: res.userCity,
+    //       image: res.userImg,
+    //     })
+    //   }
+    // })
   },
   //个人分享
   share: function() {
@@ -97,10 +134,11 @@ Page({
     })
   },
   //点击个人信息
-  mycards: function() {
+  mycards: function(a) {
     var groupId = this.data.groupId;
+    var id = a.currentTarget.dataset.id
     wx.navigateTo({
-      url: '/pages/mycards/mycards?back=true' + '&groupId=' + groupId,
+      url: '/pages/mycards/mycards?back=true&id=' + id,
     })
   },
   //保存用户名片
@@ -281,5 +319,13 @@ Page({
         })
       }
     })
+  },
+  moreCard(e) {
+    var id = e.currentTarget.dataset.type;
+    if (id == 1) {
+      this.setData({ showMoreCard: true, num: 5 })
+    } else if (id == 2) {
+      this.setData({ showMoreCard: false, num: 1 })
+    }
   }
 })

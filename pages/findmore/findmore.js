@@ -28,7 +28,9 @@ Page({
     list_letter: [], // 锚点列表
     floorstatus: false, // 回到顶部
     showMoreCard: false,
-    cardNumber: 2
+    cardNumber: '',
+    cardList:[],
+    num:1,
   },
   onLoad: function(a) {
     mta.Page.init();
@@ -89,48 +91,31 @@ Page({
       }
       var openid = app.globalData.openid;
       // 使用用户标识访问数据库获取用户信息
-      util.getMyData(openid).then(function(res) {
+      util.getMyDataList(openid).then(function(res) {
         console.log(res)
-        if (res) {
+        if (res.data.data) {
           app.globalData.notadd = false;
           wx.setStorage({
             key: 'userInfo',
             data: res,
           })
-          if (!app.globalData.QRCode) {
-
-            let userPhotoUrl = ""
-            if (app.globalData.userImage) {
-              userPhotoUrl = app.globalData.userImage;
-            } else {
-              userPhotoUrl = res.userImg;
-            }
-            let page = "pages/peerscards/peerscards";
-            let scene = res.id;
-            console.log(userPhotoUrl)
-            console.log(scene)
-            console.log(page)
-            console.log(openid)
-            if (!app.globalData.QRCode) {
-              util.makeWxQrCode(userPhotoUrl, scene, page, openid, res.id, 'wxQrCode').then(function(res) {
-                console.log(res)
-                app.globalData.QRCode = ("http://www.eqxuan.cn/" + openid + ".png")
-              })
-            }
-          }
           that.setData({
-            name: res.username,
-            wechatnum: res.userWechat,
-            company: res.userCompany,
-            idustry: res.userIndustry,
-            city: res.userCity,
-            email: res.userEmail,
-            phone: res.userPhone,
-            image: res.userImg,
+            cardList:res.data.data,
+            cardNumber:res.data.data.length,
+            notadd:false
+            // name: res.username,
+            // wechatnum: res.userWechat,
+            // company: res.userCompany,
+            // idustry: res.userIndustry,
+            // city: res.userCity,
+            // email: res.userEmail,
+            // phone: res.userPhone,
+            // image: res.userImg,
           })
+          console.log(that.data.cardList)
         } else {
           // 登录失败清空本地缓存
-          wx.clearStorage()
+          // wx.clearStorage()
           app.globalData.notadd = true;
           that.setData({
             notadd: true,
@@ -250,11 +235,15 @@ Page({
     })
   },
   // 查看我的名片
-  mycards: function() {
-    var openid = app.globalData.openid
+  mycards: function(a) {
+    console.log(a)
+    var id = a.currentTarget.dataset.id;
     wx.navigateTo({
-      url: '/pages/mycards/mycards?openid=' + openid,
+      url: '/pages/mycards/mycards?id=' + id,
     })
+    // wx.navigateTo({
+    //   url: '/pages/mycards/mycards?openid=' + openid,
+    // })
   },
   // 添加个人信息按钮
   addcards: function(e) {
@@ -359,11 +348,11 @@ Page({
     }
   },
   moreCard(e) {
-    var id = e.currentTarget.dataset.type
+    var id = e.currentTarget.dataset.type;
     if(id == 1) {
-      this.setData({ showMoreCard: true })
+      this.setData({ showMoreCard: true,num:5 })
     } else if (id == 2) {
-      this.setData({ showMoreCard: false })
+      this.setData({ showMoreCard: false, num: 1})
     }
   }
 })

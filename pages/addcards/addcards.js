@@ -196,10 +196,12 @@ Page({
             prepare: pinyin.getFullChars(a.userInfo.nickName).toUpperCase()
           })
           if(that.data.transAvater){
+            console.log('--------------------------------')            
             that.setData({
               image: ''
             })
           }else{
+            console.log('++++++++++++++++++++++++++++')            
             that.setData({
               image: a.userInfo.avatarUrl
             })
@@ -217,6 +219,7 @@ Page({
           image: ''
         })
       } else {
+        console.log('++++++++++++++++++++++++++++')
         wx.getUserInfo({
           success: function (a) {
             that.setData({

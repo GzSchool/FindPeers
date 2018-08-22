@@ -44,106 +44,142 @@ Page({
     })
     console.log(a)
     let that = this
-    wx.getStorage({
-      key: 'userInfo',
-      success: function (res) {
-        console.log(res)
-        that.setData({
-          name: res.data.username,
-          wechatnum: res.data.userWechat,
-          company: res.data.userCompany,
-          idustry: res.data.userIndustry,
-          city: res.data.userCity,
-          email: res.data.userEmail,
-          phone: res.data.userPhone,
-          image: res.data.userImg,
-          id: res.data.id,
-          demand: res.data.demand,      //需求
-          resources: res.data.resources,//资源
-          synopsis: res.data.synopsis,  //简介
-          userJob: res.data.userJob,     // 职位
-          homepage:res.data.homePage,    //个人主页
-          companyWeb:res.data.companyPage, //公司主页
-          cardType: res.data.cardType,
-          mineInfo: {
-            name: res.data.username,
-            idustry: res.data.userIndustry,
-            city: res.data.userCity,
-            company: res.data.userCompany,
-            phone: res.data.userPhone,
-            wechatnum: res.data.userWechat,
-            email: res.data.userEmail,
-            userJob: res.data.userJob
-          }
-        })
-      },
-      fail: function (res) {
-        that.getData()
-      }
+    that.setData({
+      id:a.id
     })
-    that.getData()
-    console.log(a.back)
+    // wx.getStorage({
+    //   key: 'userInfo',
+    //   success: function (res) {
+    //     console.log(res)
+    //     that.setData({
+    //       name: res.data.username,
+    //       wechatnum: res.data.userWechat,
+    //       company: res.data.userCompany,
+    //       idustry: res.data.userIndustry,
+    //       city: res.data.userCity,
+    //       email: res.data.userEmail,
+    //       phone: res.data.userPhone,
+    //       image: res.data.userImg,
+    //       id: res.data.id,
+    //       demand: res.data.demand,      //需求
+    //       resources: res.data.resources,//资源
+    //       synopsis: res.data.synopsis,  //简介
+    //       userJob: res.data.userJob,     // 职位
+    //       homepage:res.data.homePage,    //个人主页
+    //       companyWeb:res.data.companyPage, //公司主页
+    //       cardType: res.data.cardType,
+    //       mineInfo: {
+    //         name: res.data.username,
+    //         idustry: res.data.userIndustry,
+    //         city: res.data.userCity,
+    //         company: res.data.userCompany,
+    //         phone: res.data.userPhone,
+    //         wechatnum: res.data.userWechat,
+    //         email: res.data.userEmail,
+    //         userJob: res.data.userJob
+    //       }
+    //     })
+    //   },
+    //   fail: function (res) {
+    //     that.getData()
+    //   }
+    // })
+    // that.getData()
+    // console.log(a.back)
     if(a.back){
       that.data.back = true,
       that.data.groupId = a.groupId
     }
-  },
-  //获取用户信息
-  getData() {
-    let that = this
-    let openid = app.globalData.openid;
-    util.getMyData(openid).then(function (res) {
+    util.getCardsById(that.data.id).then(function(res){
       console.log(res)
-      if (!res) {
-        that.setData({
-          notadd: true
-        })
-        app.globalData.notadd = true
-      } else {
-        app.globalData.notadd = false
-        that.setData({
-          name: res.username,
-          wechatnum: res.userWechat,
-          company: res.userCompany,
-          idustry: res.userIndustry,
-          city: res.userCity,
-          email: res.userEmail,
-          phone: res.userPhone,
-          image: res.userImg,
-          id: res.id,
-          demand: res.demand,      //需求
-          resources: res.resources,//资源
-          synopsis: res.synopsis,  //简介
-          userJob: res.userJob,     // 职位
-          homepage: res.homePage,    //个人主页
-          companyWeb: res.companyPage, //公司主页
-          cardType: res.cardType,
-          mineInfo: {
-            name: res.username,
-            idustry: res.userIndustry,
-            city: res.userCity,
-            company: res.userCompany,
-            phone: res.userPhone,
-            wechatnum: res.userWechat,
-            email: res.userEmail,
-            userJob: res.userJob
-          }
-        })
-      }
+      that.setData({
+        mineInfo: {
+            name: res.data.data[0].username,
+          idustry: res.data.data[0].userIndustry,
+          city: res.data.data[0].userCity,
+          company: res.data.data[0].userCompany,
+          phone: res.data.data[0].userPhone,
+          wechatnum: res.data.data[0].userWechat,
+          email: res.data.data[0].userEmail,
+          userJob: res.data.data[0].userJob
+          },
+        name: res.data.data[0].username,
+        wechatnum: res.data.data[0].userWechat,
+        company: res.data.data[0].userCompany,
+        idustry: res.data.data[0].userIndustry,
+        city: res.data.data[0].userCity,
+        email: res.data.data[0].userEmail,
+        phone: res.data.data[0].userPhone,
+        image: res.data.data[0].userImg,
+        id: res.data.data[0].id,
+        demand: res.data.data[0].demand,      //需求
+        resources: res.data.data[0].resources,//资源
+        synopsis: res.data.data[0].synopsis,  //简介
+        userJob: res.data.data[0].userJob,     // 职位
+        homepage: res.data.data[0].homePage,    //个人主页
+        companyWeb: res.data.data[0].companyPage, //公司主页
+        cardType: res.data.data[0].cardType,
+      })
     })
   },
+  //获取用户信息
+  // getData() {
+  //   let that = this
+  //   let openid = app.globalData.openid;
+  //   util.getMyData(openid).then(function (res) {
+  //     console.log(res)
+  //     if (!res) {
+  //       that.setData({
+  //         notadd: true
+  //       })
+  //       app.globalData.notadd = true
+  //     } else {
+  //       app.globalData.notadd = false
+  //       that.setData({
+  //         name: res.username,
+  //         wechatnum: res.userWechat,
+  //         company: res.userCompany,
+  //         idustry: res.userIndustry,
+  //         city: res.userCity,
+  //         email: res.userEmail,
+  //         phone: res.userPhone,
+  //         image: res.userImg,
+  //         id: res.id,
+  //         demand: res.demand,      //需求
+  //         resources: res.resources,//资源
+  //         synopsis: res.synopsis,  //简介
+  //         userJob: res.userJob,     // 职位
+  //         homepage: res.homePage,    //个人主页
+  //         companyWeb: res.companyPage, //公司主页
+  //         cardType: res.cardType,
+  //         mineInfo: {
+  //           name: res.username,
+  //           idustry: res.userIndustry,
+  //           city: res.userCity,
+  //           company: res.userCompany,
+  //           phone: res.userPhone,
+  //           wechatnum: res.userWechat,
+  //           email: res.userEmail,
+  //           userJob: res.userJob
+  //         }
+  //       })
+  //     }
+  //   })
+  // },
   //修改名片
-  viewThisCards:function(){
+  viewThisCards:function(a){
+    console.log(a)
+    let id = a.currentTarget.dataset.id
     mta.Event.stat("to_fix_page");
     let openid = app.globalData.openid;
     let groupId= this.data.groupId;
     if(this.data.back){
       wx.navigateTo({
-        url: '/pages/fix/fix?back=true&groupId=' + groupId + '&openid=' + openid,
+        url: '/pages/fix/fix?back=true&groupId=' + groupId + '&id=' + id,
       })
     }else{
       wx.navigateTo({
-        url: '/pages/fix/fix',
+        url: '/pages/fix/fix?id=' + id,
       })
     }
   },
