@@ -38,7 +38,7 @@
 				{
 					"id": 0,
 					"name": "21",
-					"pathName": "pages/mine/mine",
+					"pathName": "pages/ganerate/ganerate",
 					"query": "othercardid=20",
 					"scene": "1007"
 				},

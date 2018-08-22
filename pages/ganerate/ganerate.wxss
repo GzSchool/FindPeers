@@ -1,2 +1,22 @@
 /* pages/ganerate/ganerate.wxss */
-.d{}
+page {
+  background-color: #f8f8f8;
+  padding-top: 40rpx;
+}
+.main .main-in {
+  width: 300px;
+  height: 500px;
+  background-color: rgba(204, 204, 204, 0.329);
+  margin: 0 auto;
+}
+.save {
+  margin: 50rpx auto 20rpx;
+  width: 670rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  background-color: #2c7fe7;
+  text-align: center;
+  font-size: 34rpx;
+  color: #fff;
+  border-radius: 10rpx;
+}

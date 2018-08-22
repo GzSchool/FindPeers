@@ -1,68 +1,52 @@
 // pages/ganerate/ganerate.js
+import { promisify } from '../../utils/index.js'
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
   
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function (options) {
-    const ctx = wx.createCanvasContext('ganerate')
-    ctx.setFillStyle('blue')
-    ctx.draw()
-    console.log(ctx)
-  },
+    // const ctx = wx.createCanvasContext('ganerate')
+    // ctx.setFillStyle('blue')
+    // ctx.draw()
+    // console.log(ctx)
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
+    const wxGetImageInfo = promisify(wx.getImageInfo)
+    Promise.all([
+      wxGetImageInfo({
+        src: 'http://pic.97uimg.com/gallery_big/03/93/86/62/63/558f072d7c4c5.jpeg'
+      }),
+      wxGetImageInfo({
+        src: 'http://www.eqxuan.cn/o5Z7M4vcelivChdKg8r8kwqQWaJE.png'
+      })
+    ]).then(res => {
+      console.log(res)
+      const ctx = wx.createCanvasContext('shareCanvas')
+      ctx.drawImage(res[0].path, 0, 0, 300, 500)
+      ctx.setTextAlign('center')    // 文字居中
+      ctx.setFillStyle('#111111')  // 文字颜色：黑色
+      ctx.setFontSize(18)         // 文字字号：22px
+      ctx.fillText("李盼", 300 / 2, 250)
+      ctx.fillText("设计", 300 / 2, 280)
+      const qrImgSize = 90
+      ctx.drawImage(res[1].path, 28, 350, qrImgSize, qrImgSize)
+      ctx.stroke()
+      ctx.draw()
+    })
+    
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
+  save () {
+    const wxCanvasToTempFilePath = promisify(wx.canvasToTempFilePath)
+    const wxSaveImageToPhotosAlbum = promisify(wx.saveImageToPhotosAlbum)
+    wxCanvasToTempFilePath({
+      canvasId: 'shareCanvas'
+    }, this).then(res => {
+      return wxSaveImageToPhotosAlbum({
+        filePath: res.tempFilePath
+      })
+    }).then(res => {
+      wx.showToast({
+        title: '已保存到相册'
+      })
+    })
   }
 })
