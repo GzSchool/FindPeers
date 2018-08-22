@@ -37,6 +37,15 @@ Page {
   display: flex;
   align-items: center;
 }
+.main-ul .main-li .send-sms {
+  background-color: #2C7FE7;
+  color: #fff;
+  font-size: 28rpx;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0 14rpx;
+}
 
 .main-ul .main-li .wx-get {
   width: 130rpx;

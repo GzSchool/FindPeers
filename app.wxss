@@ -1,16 +1,6 @@
 /**app.wxss**/
 @import 'style/weui.wxss';
 @import 'style/card.wxss';
-.container {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  padding: 200rpx 0;
-  box-sizing: border-box;
-  background-color: #d6dbe0;
-} 
 page{
   /* background-color:"#d6dbe0"; */
   width: 100%;

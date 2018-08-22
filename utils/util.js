@@ -515,6 +515,49 @@ function userFromId(formIds, openId) {
     })
   })
 }
+/**
+ * 获取短信验证码接口
+ */
+function getSMS(openid, phone) {
+  return new Promise(function (resolve) {
+    wx.request({
+      method: 'GET',
+      url: server + '/sms/sendCode',
+      data: {
+        openId: openid,
+        mobile: phone
+      },
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        resolve(res)
+      }
+    })
+  })
+}
+/**
+ * 校验短信验证码接口
+ */
+function checkSMS(openid, phone, code) {
+  return new Promise(function (resolve) {
+    wx.request({
+      method: 'GET',
+      url: server + '/sms/checkCode',
+      data: {
+        openId: openid,
+        mobile: phone,
+        code: code
+      },
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        resolve(res)
+      }
+    })
+  })
+}
 module.exports = {
   formatTime: formatTime,
   formatNumber: formatNumber,
@@ -539,5 +582,7 @@ module.exports = {
   addRemark: addRemark,     // 添加备注
   getUserPhone: getUserPhone, // 获取用户手机号
   userFromId: userFromId, // 获取formid
+  getSMS: getSMS,          // 获取短信验证码接口
+  checkSMS: checkSMS,  // 校验短信验证码
   fileUpload: fileUpload
 }

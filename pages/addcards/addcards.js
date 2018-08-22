@@ -11,6 +11,10 @@ const industry = require('../../utils/industry.js')
 var app = getApp();
 Page({
   data: {
+    modeSMS: false,
+    code: '', // 短信验证码
+    isGet: false,
+    sec: 60,
     cardType: 1,
     count: 0, //简介字数
     openid: "", //用户标识
@@ -110,10 +114,16 @@ Page({
       job: e.detail.value
     })
   },
-  addphone: function(e) {
+  //填写手机号
+  addphone: function (e) {
     this.setData({
-      phone: e.detail.value
+      phone: e.detail.value,
+      modeSMS: e.detail.value?true:false
     })
+  },
+  //填写验证码
+  addcode: function (e) {
+    this.data.code = e.detail.value
   },
   adddemand: function(e) {
     this.data.demand = e.detail.value
@@ -143,8 +153,34 @@ Page({
       count: i
     })
   },
+  //点击保存按钮 event 形参传递formid
+  save: function (e) {
+    let that = this
+    if (that.data.modeSMS) {
+      if (String(that.data.code).length !== 4) {
+        app.showToast('验证码不正确')
+      } else if(!isvalidatemobile(that.data.phone)) {
+        app.showToast('手机号格式不正确')
+      } else {
+        var openid = app.globalData.openid
+        var code = that.data.code
+        var phone = that.data.phone
+        util.checkSMS(openid, phone, code).then(function (res) {
+          console.log(res)
+          if (res.statusCode == 200 && !res.data.success) {
+            app.showToast(res.data.message)
+          } else if (res.data.success) {
+            that.submit(e)
+          }
+        })
+      }
+    } else {
+      that.submit(e)
+    }
+  },
   // 用户点击保存
-  save: function(e) {
+  submit: function(e) {
+    console.log(e)
     this.setData({
       formId: e.detail.formId
     })
@@ -185,7 +221,8 @@ Page({
       util.getUserPhone(openId, iv, encryptedData).then(function (res) {
         console.log(res)
         that.setData({
-          phone: res.data.data
+          phone: res.data.data,
+          modeSMS: false
         })
       })
     }
@@ -370,6 +407,34 @@ Page({
           multiIndex: [idx, 0],
           city_PRO: [industry.province, cityList]
         })
+    }
+  },
+  getCode() {
+    var that = this
+    if (!isvalidatemobile(that.data.phone)) {
+      app.showToast('请输入正确的手机号')
+    } else {
+      var phone = that.data.phone
+      var openid = app.globalData.openid
+      util.getSMS(openid, phone).then(function (res) {
+        console.log(res)
+      })
+      that.setData({ isGet: true, sec: 60 })
+      var remain = 60;
+      var time = setInterval(function () {
+        if (remain == 1) {
+          clearInterval(time)
+          that.setData({
+            sec: 60,
+            isGet: false
+          })
+          return false
+        }
+        remain--;
+        that.setData({
+          sec: remain
+        })
+      }, 1000)
     }
   },
   transImage: function (e) {

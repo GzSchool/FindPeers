@@ -60,6 +60,13 @@
 					"pathName": "pages/peerscards/peerscards",
 					"query": "othercardid=4",
 					"scene": "1012"
+				},
+				{
+					"id": 3,
+					"name": "21",
+					"pathName": "pages/addcards/addcards",
+					"query": "othercardid=4",
+					"scene": "1012"
 				}
 			]
 		}
