@@ -81,6 +81,7 @@ Page({
         that.getData()
       }
     })
+    that.getData()
     console.log(a.back)
     if(a.back){
       that.data.back = true,
@@ -167,6 +168,7 @@ Page({
   //转发分享
   onShareAppMessage: function (a) {
     let that = this
+    console.log('_++++__' + that.data.id)
     return {
       title: '我的名片信息',
       path: '/pages/peerscards/peerscards?othercardid=' + that.data.id,

@@ -30,7 +30,7 @@ page{
 }
 .mine-card{
   background-color: #ffffff;
-  padding-bottom: 1rpx;
+  /* border-bottom: 1rpx solid transparent; */
   margin-bottom: 18rpx;
   box-shadow: 0rpx 2rpx 10rpx #eeeeee;
 }

@@ -18,7 +18,7 @@
     </view>
     <view class='info'>
       <view class='info-left'>关于：</view>
-      <view class='info-right'>"名片Live"是一款共享各行信息的平台，名片管理收发的微信小程序，是由北京格致文化传播有限公司独立开发运营。</view>
+      <view class='info-right'>"名片Live"是一款共享各行信息的平台，名片管理收发的微信小程序，是由北京格致文化传播有限公司独立开发运营。v01.00.01</view>
     </view>
   </view>
 </view>

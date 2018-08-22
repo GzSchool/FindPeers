@@ -28,7 +28,7 @@ Page({
     list_letter: [], // 锚点列表
     floorstatus: false, // 回到顶部
     showMoreCard: false,
-    cardNumber: 4
+    cardNumber: 2
   },
   onLoad: function(a) {
     mta.Page.init();

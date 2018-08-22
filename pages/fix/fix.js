@@ -353,6 +353,7 @@ Page({
       wx.getUserInfo({
         success: function(a) {
           that.setData({
+            image: a.userInfo.avatarUrl,
             name: a.userInfo.nickName,
             prepare: pinyin.getFullChars(a.userInfo.nickName).toUpperCase()
           })

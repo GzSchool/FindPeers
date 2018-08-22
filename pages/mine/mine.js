@@ -4,6 +4,11 @@ var util = require('../../utils/util.js');
 var mta = require('../../utils/mta_analysis.js');
 Page({
   data: {
+    cd_list: [5,5,3,2,2],
+    indicatorDots: true,
+    autoplay: false,
+    interval: 2500,
+    duration: 800,
     name: "", //用户名字
     industry: "", //用户行业
     city: "", //用户城市
