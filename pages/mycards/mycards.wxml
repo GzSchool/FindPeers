@@ -8,7 +8,7 @@
     </view>
     <view class='card-down'>
       <view class='card-down-left'>
-        <view class='img-box'>
+        <view class='img-box1'>
           <image src='{{image}}'></image>
         </view>
       </view>
@@ -84,7 +84,7 @@
           <view class='mes-job over-flow-hide'><text selectable='true'>{{mineInfo.userJob}}</text></view>
         </view>
         <view class='card-top-right'>
-          <view class='img-box'>
+          <view class='img-box1'>
             <image src='{{image}}'></image>
           </view>
         </view>

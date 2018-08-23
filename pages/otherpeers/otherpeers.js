@@ -29,7 +29,7 @@ Page({
     userInfo: {},        // 用户信息
     cardType:"",         //卡片样式ID
     remark: '', // 备注
-    listOfAlbum: ['https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJF2LUt5pJt4NXyiahzN6UBOTIKmhouTicAOpRe8g87I4r6bx6DyGWkERe2GzhYZR4NBR6u9HxLEdQg/132', 'https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJF2LUt5pJt4NXyiahzN6UBOTIKmhouTicAOpRe8g87I4r6bx6DyGWkERe2GzhYZR4NBR6u9HxLEdQg/132', 'https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJF2LUt5pJt4NXyiahzN6UBOTIKmhouTicAOpRe8g87I4r6bx6DyGWkERe2GzhYZR4NBR6u9HxLEdQg/132', 'https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJF2LUt5pJt4NXyiahzN6UBOTIKmhouTicAOpRe8g87I4r6bx6DyGWkERe2GzhYZR4NBR6u9HxLEdQg/132', 'https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJF2LUt5pJt4NXyiahzN6UBOTIKmhouTicAOpRe8g87I4r6bx6DyGWkERe2GzhYZR4NBR6u9HxLEdQg/132'],
+    listOfAlbum: [],
   },
   /**
    * 生命周期函数--监听页面加载
@@ -102,6 +102,7 @@ Page({
           userJob: res.data.data.userJob,      // 职位
           cardType: res.data.data.cardType,
           remark: res.data.data.remark ? res.data.data.remark : '',
+          listOfAlbum: res.data.data.photo ? res.data.data.photo:[],          
         })
       })
     } else {
@@ -126,6 +127,7 @@ Page({
           userJob: res.data.data[0].userJob,      // 职位
           cardType: res.data.data[0].cardType,
           remark: res.data.data[0].remark ? res.data.data[0].remark : '',
+          listOfAlbum: res.data.data[0].photo ? res.data.data[0].photo:[],
         })
       })
     }

@@ -212,7 +212,7 @@ page {
   width: 306rpx;
   line-height: 28rpx;
   background-color: #e6e6e6;
-}
+}*/
 
 .mine-card .mine-info .mes-li .li-share {
   align-self: flex-start;
@@ -222,13 +222,14 @@ page {
 .mine-card .mine-info .mes-li .li-select {
   align-self: center;
   padding: 22rpx 40rpx;
+  margin-left:34px;
 }
 
 .mine-card .mine-info .mes-li .li-share image {
   width: 25rpx;
   height: 27rpx;
 }
-
+/*
 .mine-card .mine-info .btn {
   width: 240rpx;
   height: 60rpx;

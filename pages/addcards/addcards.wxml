@@ -11,7 +11,7 @@
       </view>
       <view class='card-down'>
         <view class='card-down-left'>
-          <view class='img-box'>
+          <view class='img-box1'>
             <image src='{{image}}' bindtap='transImage'></image>
           </view>
         </view>
@@ -97,7 +97,7 @@
             <view class='mes-job over-flow-hide'>{{job}}</view>
           </view>
           <view class='card-top-right'>
-            <view class='img-box'>
+            <view class='img-box1'>
               <image src='{{image}}' bindtap='transImage'></image>
             </view>
           </view>

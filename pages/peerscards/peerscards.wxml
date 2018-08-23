@@ -10,7 +10,7 @@
     </view>
     <view class='card-down'>
       <view class='card-down-left'>
-        <view class='img-box'>
+        <view class='img-box1'>
           <image src='{{image}}'></image>
         </view>
       </view>
@@ -106,7 +106,7 @@
           <view class='mes-job over-flow-hide'><text selectable='true'>{{userJob}}</text></view>
         </view>
         <view class='card-top-right'>
-          <view class='img-box'>
+          <view class='img-box1'>
             <image src='{{image}}'></image>
           </view>
         </view>
@@ -285,6 +285,7 @@
   <form bindsubmit="save" wx:if="{{!checkSave}}" report-submit='true'>
     <button class="footer-btn" wx:if="{{!checkSave&&canSave}}" form-type="submit">保存到名片夹</button>
   </form> 
+  <button class="footer-btn" wx:if='{{!isgroup&&checkSave}}' open-type='share' bindtap='trans'>转发同行信息</button>  
   <button class="{{isgroup?'footer-btn':'footer-find'}}" wx:if='{{checkSave||!isgroup}}' bindtap='back'>进入我的名片夹</button>
   <button class="footer-find"  wx:if='{{isgroup}}' bindtap='toTeamPeers'>查看本群名片</button>
 </view>
@@ -295,7 +296,8 @@
 </view>
 <view class='maskLayer' wx:if="{{chooseSize}}" bindtap='hideModal'></view>
     <view class='choose' wx:if="{{chooseSize}}" animation='{{animationData}}'>
-      <button class="choose-in" open-type='share' bindtap='trans'>转发</button>
+      <!-- <button class="choose-in" open-type='share' bindtap='trans'>转发</button> -->
+      <button class="choose-in" wx:if='{{checkSave&&!notadd}}' bindtap='remove'>删除同行信息</button>      
       <button class="choose-in" bindtap='saveToPhone'>保存到通讯录</button>
       <button class="choose-in" bindtap='backToFind'>取消</button>
     </view>

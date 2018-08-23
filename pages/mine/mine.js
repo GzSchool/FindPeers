@@ -139,7 +139,7 @@ Page({
       console.log(res)
     })
   },
-  ganerate:function(a){
+  ganerate:function(){
     let id=this.data.id
     console.log(id)
     wx.navigateTo({

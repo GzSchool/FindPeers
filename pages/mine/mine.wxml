@@ -28,7 +28,7 @@
         </view>
         <view class='card-down'>
           <view class='card-down-left'>
-            <view class='img-box'>
+            <view class='img-box1'>
               <image src='{{cardList[index].userImg}}'></image>
             </view>
           </view>
@@ -146,7 +146,7 @@
               </view>
             </view>
             <view class='card-top-right'>
-              <view class='img-box'>
+              <view class='img-box1'>
                 <image src='{{cardList[index].userImg}}'></image>
               </view>
             </view>
