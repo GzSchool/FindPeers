@@ -295,30 +295,30 @@ Page({
     that.setData({
       selectAll:false
     })
-    wx.getStorage({
-      key: 'userInfo',
-      success: function(res) {
-        that.setData({
-          name: res.data.username,
-          company: res.data.userCompany,
-          industry: res.data.userIndustry,
-          city: res.data.userCity,
-          image: res.data.userImg,
-        })
-      },
-    })
-    let openId = app.globalData.openid;
-    util.getMyData(openId).then(function (res) {
-      if (res) {
-        that.setData({
-          name: res.username,
-          company: res.userCompany,
-          industry: res.userIndustry,
-          city: res.userCity,
-          image: res.userImg,
-        })
-      }
-    })
+    // wx.getStorage({
+    //   key: 'userInfo',
+    //   success: function(res) {
+    //     that.setData({
+    //       name: res.data.username,
+    //       company: res.data.userCompany,
+    //       industry: res.data.userIndustry,
+    //       city: res.data.userCity,
+    //       image: res.data.userImg,
+    //     })
+    //   },
+    // })
+    // let openId = app.globalData.openid;
+    // util.getMyData(openId).then(function (res) {
+    //   if (res) {
+    //     that.setData({
+    //       name: res.username,
+    //       company: res.userCompany,
+    //       industry: res.userIndustry,
+    //       city: res.userCity,
+    //       image: res.userImg,
+    //     })
+    //   }
+    // })
   },
   moreCard(e) {
     var id = e.currentTarget.dataset.type;

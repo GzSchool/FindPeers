@@ -1,16 +1,18 @@
 .main-card {
-  background-color: #ffffff;
+  background-color: #fff;
   padding: 30rpx 40rpx;
 }
+
 .main-card .main-card-box {
   position: relative;
-  background-color: #FAFAFA;
+  background-color: #fafafa;
   width: 670rpx;
   height: 410rpx;
   border-radius: 24rpx;
   border: 1rpx solid #f1f1f1;
   box-shadow: 2rpx 2rpx 15rpx #e4e4e4;
 }
+
 .main-card .bg-card {
   width: 670rpx;
   height: 410rpx;
@@ -19,42 +21,61 @@
   left: 0;
   z-index: 0;
 }
+
 .main-card .card-layer {
   position: absolute;
   z-index: 1;
   width: 670rpx;
   height: 410rpx;
 }
+
 .main-card .img-box {
+  width: 160rpx;
+  height: 160rpx;
+  background-color: #e4e4e4;
+  border-radius: 15rpx;
+}
+
+.main-card .img-box1 {
   width: 180rpx;
   height: 180rpx;
   background-color: #e4e4e4;
   border-radius: 15rpx;
 }
-.main-card .img-box image {
+
+.main-card .img-box1 image {
   width: 180rpx;
   height: 180rpx;
   border-radius: 15rpx;
 }
+
+.main-card .img-box image {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 15rpx;
+}
+
 .over-flow-hide {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-.shades{
-  color: #FE0000;
-  /* font-size: 20rpx; */
-  /* height: 28rpx; */
-  /* line-height: 28rpx; */
+
+.shades {
+  color: #fe0000;
+  /* font-size: 20rpx; *//* height: 28rpx; *//* line-height: 28rpx; */
   width: 306rpx;
 }
+
 /* 选择卡片类型 */
+
 .choose-card {
   width: 710rpx;
   margin-left: 20rpx;
   display: flex;
   white-space: nowrap;
 }
+
 .choose-card .choose-card-in {
   display: inline-block;
   min-width: 128rpx;
@@ -67,62 +88,76 @@
   -moz-box-shadow: 0rpx 0rpx 0rpx #aeaeae;
   box-shadow: 0rpx 0rpx 0rpx #aeaeae;
 }
+
 .choose-card .choose-card-in.active {
   -webkit-box-shadow: 2rpx 2rpx 15rpx #aeaeae;
   -moz-box-shadow: 2rpx 2rpx 15rpx #aeaeae;
   box-shadow: 2rpx 2rpx 15rpx #aeaeae;
 }
-.choose-card .choose-card-in.active image{
+
+.choose-card .choose-card-in.active image {
   border: 1rpx solid transparent;
 }
+
 .choose-card .choose-card-in:last-child {
   margin-right: 8rpx;
 }
-.choose-card .choose-card-in image{
+
+.choose-card .choose-card-in image {
   border-radius: 8rpx;
   border: 1rpx solid #eaeaea;
   width: 150rpx;
   height: 92rpx;
 }
+
 /* 卡片1 */
+
 .main-card .main-card-1 .card-mark {
   margin-top: 20rpx;
 }
+
 .main-card .main-card-1 .card-mark .mark {
   width: 40rpx;
   height: 38rpx;
-  background-color: #CECECE;
+  background-color: #cecece;
 }
+
 .main-card .main-card-1 .card-top {
   padding-left: 37rpx;
   padding-top: 13rpx;
 }
+
 .main-card .main-card-1 .card-top .mes-name {
   font-size: 34rpx;
   color: #505050;
   height: 44rpx;
   line-height: 44rpx;
 }
+
 .main-card .main-card-1 .card-top .mes-job {
   font-size: 24rpx;
   color: #323232;
   height: 30rpx;
   line-height: 30rpx;
 }
+
 .main-card .main-card-1 .card-down {
   padding-top: 15rpx;
   padding-left: 37rpx;
   display: flex;
 }
+
 .main-card .main-card-1 .card-down .card-down-left {
-  padding-right: 20rpx;
+  padding-right: 23rpx;
 }
+
 .main-card .main-card-1 .card-down .card-down-right {
-  border-left: 1rpx solid #CECECE;
+  border-left: 1rpx solid #cecece;
   height: 202rpx;
   font-size: 24rpx;
   color: #323232;
 }
+
 .main-card .main-card-1 .card-down .card-down-right .card-mes {
   height: 40rpx;
   line-height: 40rpx;
@@ -130,34 +165,41 @@
   padding-right: 4rpx;
   width: 430rpx;
 }
+
 /* 卡片2 */
+
 .main-card .main-card-2 .card-top {
   display: flex;
   height: 154rpx;
 }
+
 .main-card .main-card-2 .card-top .card-top-left {
   width: 500rpx;
   padding-left: 54rpx;
   padding-top: 26rpx;
 }
+
 .main-card .main-card-2 .card-top .card-top-left .info-name {
   font-size: 38rpx;
   color: #505050;
   height: 57rpx;
   line-height: 57rpx;
 }
+
 .main-card .main-card-2 .card-top .card-top-left .info-job {
   font-size: 28rpx;
   color: #323232;
   height: 36rpx;
   line-height: 36rpx;
 }
+
 .main-card .main-card-2 .card-top .card-top-right {
   width: 180rpx;
-  height: 180rpx;
+  height: 194rpx;
   padding-top: 30rpx;
-  /* padding-left: 10rpx; */
+  padding-right: 20rpx;
 }
+
 .main-card .main-card-2 .card-down .card-mes {
   height: 46rpx;
   line-height: 46rpx;
@@ -171,21 +213,26 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
 .main-card .main-card-2 .card-down .card-mes image {
   min-width: 26rpx;
   min-height: 26rpx;
   margin-right: 15rpx;
 }
+
 /* 卡片3 */
-.main-card .main-card-3 .card-top{
+
+.main-card .main-card-3 .card-top {
   height: 226rpx;
   display: flex;
 }
-.main-card .main-card-3 .card-top .card-top-left{
+
+.main-card .main-card-3 .card-top .card-top-left {
   width: 500rpx;
   padding-left: 30rpx;
   padding-top: 10rpx;
 }
+
 .main-card .main-card-3 .card-top .card-top-left .card-name {
   height: 77rpx;
   line-height: 77rpx;
@@ -195,7 +242,8 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-.main-card .main-card-3 .card-top .card-top-left .card-info{
+
+.main-card .main-card-3 .card-top .card-top-left .card-info {
   height: 44rpx;
   line-height: 44rpx;
   font-size: 28rpx;
@@ -204,24 +252,29 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-.main-card .main-card-3 .card-top .card-top-right{
+
+.main-card .main-card-3 .card-top .card-top-right {
   min-width: 180rpx;
   background-color: transparent;
   padding: 40rpx 0 0;
 }
+
 .main-card .main-card-3 .card-middle {
   height: 26rpx;
   width: 100%;
   display: flex;
 }
+
 .main-card .main-card-3 .card-middle image {
   height: 26rpx;
   width: 100%;
 }
+
 .main-card .main-card-3 .card-down {
   padding-top: 13rpx;
   padding-left: 32rpx;
 }
+
 .main-card .main-card-3 .card-down .card-mes {
   height: 42rpx;
   line-height: 42rpx;
@@ -230,41 +283,51 @@
   display: flex;
   align-items: center;
 }
-.main-card .main-card-3 .card-down .card-mes image{
+
+.main-card .main-card-3 .card-down .card-mes image {
   margin-right: 15rpx;
 }
+
 /* 卡片4 */
+
 .main-card .main-card-4 .card-top {
   display: flex;
   height: 170rpx;
 }
+
 .main-card .main-card-4 .card-top .card-top-left {
   width: 500rpx;
   padding-left: 83rpx;
   padding-top: 28rpx;
   flex: 1;
 }
+
 .main-card .main-card-4 .card-top .card-top-left .mes-name {
   font-size: 38rpx;
   color: #505050;
   height: 52rpx;
   line-height: 52rpx;
 }
+
 .main-card .main-card-4 .card-top .card-top-left .mes-job {
   font-size: 28rpx;
   color: #323232;
   height: 38rpx;
   line-height: 38rpx;
 }
+
 .main-card .main-card-4 .card-top .card-top-right {
-  width: 180rpx;
+  width: 203rpx;
   padding-top: 34rpx;
-  /* padding-left: 12rpx; */
+  padding-right: 23rpx;
+  height: 214rpx;
 }
+
 .main-card .main-card-4 .card-down {
   height: 230rpx;
   padding-left: 83rpx;
 }
+
 .main-card .main-card-4 .card-down .card-mes {
   height: 44rpx;
   line-height: 44rpx;
@@ -272,6 +335,7 @@
   color: #323232;
   display: flex;
 }
+
 .main-card .main-card-4 .card-down .card-mes .mes-icon {
   min-width: 28rpx;
   text-align: center;
@@ -280,38 +344,46 @@
   justify-content: center;
   margin-right: 10rpx;
 }
+
 /* 卡片5 */
+
 .main-card .main-card-5 .card-top {
   height: 114rpx;
   width: 100%;
   padding: 32rpx 10rpx 0 29rpx;
 }
+
 .main-card .main-card-5 .card-top .mes-name {
   font-size: 38rpx;
   color: #505050;
   height: 47rpx;
   left: 47rpx;
 }
+
 .main-card .main-card-5 .card-top .mes-job {
   font-size: 26rpx;
   color: #323232;
   height: 35rpx;
   line-height: 35rpx;
 }
+
 .main-card .main-card-5 .card-down {
   display: flex;
   width: 100%;
   padding-top: 12rpx;
   padding-left: 31rpx;
 }
+
 .main-card .main-card-5 .card-down .card-down-left {
   padding-right: 30rpx;
   padding-top: 6rpx;
 }
+
 .main-card .main-card-5 .card-down .card-down-right {
   width: 442rpx;
   padding-right: 10rpx;
 }
+
 .main-card .main-card-5 .card-down .card-down-right .card-mes {
   width: 100%;
   height: 36rpx;
@@ -320,6 +392,7 @@
   color: #323232;
   display: flex;
 }
+
 .main-card .main-card-5 .card-down .card-down-right .card-mes .mes-icon {
   width: 28rpx;
   display: flex;
@@ -327,63 +400,72 @@
   align-content: center;
   margin-right: 12rpx;
 }
+
 .main-card .main-card-5 .card-down .card-down-right .card-mes .mes-icon image {
   width: 26rpx;
   height: 26rpx;
 }
 
 .content {
-  background-color: #ffffff;
+  background-color: #fff;
   margin-top: 25rpx;
   font-size: 30rpx;
   color: #606060;
   line-height: 52rpx;
 }
+
 .content .con-li {
   display: flex;
 }
+
 .content .con-li .con-li-left {
   min-width: 96rpx;
   height: 100%;
   padding-left: 30rpx;
   padding-top: 22rpx;
 }
-.content .con-li .con-li-left .img-box{
+
+.content .con-li .con-li-left .img-box {
   height: 52rpx;
   display: flex;
   align-items: center;
   text-align: center;
   justify-content: center;
 }
-.content .con-li .con-li-left .img-box image{
+
+.content .con-li .con-li-left .img-box image {
   width: 36rpx;
   height: 36rpx;
 }
+
 .content .con-li .con-li-right {
   flex: 1;
-  border-bottom: 1rpx solid #D8D8D8;
+  border-bottom: 1rpx solid #d8d8d8;
   padding: 22rpx 32rpx 22rpx 0;
 }
-.content .con-li .con-li-copy{
+
+.content .con-li .con-li-copy {
   min-width: 96rpx;
-  /* height: 100%; */
-  /* padding-left: 30rpx; */
+  /* height: 100%; *//* padding-left: 30rpx; */
   padding-top: 22rpx;
 }
-.content .con-li .con-li-copy image{
+
+.content .con-li .con-li-copy image {
   width: 34rpx;
   height: 42rpx;
 }
+
 .card-remark {
   height: 96rpx;
   line-height: 96rpx;
-  background-color: #ffffff;
+  background-color: #fff;
   margin-top: 25rpx;
   display: flex;
   align-items: center;
   font-size: 30rpx;
   color: #606060;
 }
+
 .card-remark .card-remark-icon {
   width: 96rpx;
   height: 35rpx;
@@ -391,53 +473,59 @@
   padding-left: 30rpx;
   justify-content: center;
 }
+
 .card-remark .card-remark-icon image {
   width: 36rpx;
   height: 35rpx;
 }
-.card-remark .input-box{
+
+.card-remark .input-box {
   flex: 1;
   padding-right: 10rpx;
 }
+
 /* .card-remark .card-remark .input-box input {
   width: 100%;
   flex: 1;
 } */
-  .content .con-li .con-li-right {
-    flex: 1;
-    border-bottom: 1rpx solid #D8D8D8;
-    padding: 22rpx 32rpx 22rpx 0;
-  }
-  .content .con-li .con-li-right1 {
-    flex: 1;
-    border-bottom: 1rpx solid #D8D8D8;
-    padding: 22rpx 22rpx 22rpx 0;
-    word-break: break-all;
-  }
-  .content .con-li .con-li-copy{
-    /* min-width: 96rpx; */
-    /* height: 100%; */
-    /* padding-left: 30rpx; */
-    padding-top: 30rpx;
-    padding-right: 32rpx;
-    border-bottom: 1rpx solid #D8D8D8;  
-  }
-  .content .con-li .con-li-copy image{
-    width: 34rpx;
-    height: 42rpx;
-  }
-  .content .con-li .con-li-copy1{
-    /* min-width: 96rpx; */
-    /* height: 100%; */
-    /* padding-left: 30rpx; */
-    padding-top: 30rpx;
-    padding-right: 53rpx;
-    border-bottom: 1rpx solid #D8D8D8;  
-  }
-  .content .con-li .con-li-copy1 image{
-    width: 42rpx;
-    height: 40rpx;
-  }
+
+.content .con-li .con-li-right {
+  flex: 1;
+  border-bottom: 1rpx solid #d8d8d8;
+  padding: 22rpx 32rpx 22rpx 0;
+}
+
+.content .con-li .con-li-right1 {
+  flex: 1;
+  border-bottom: 1rpx solid #d8d8d8;
+  padding: 22rpx 22rpx 22rpx 0;
+  word-break: break-all;
+}
+
+.content .con-li .con-li-copy {
+  /* min-width: 96rpx; *//* height: 100%; *//* padding-left: 30rpx; */
+  padding-top: 30rpx;
+  padding-right: 32rpx;
+  border-bottom: 1rpx solid #d8d8d8;
+}
+
+.content .con-li .con-li-copy image {
+  width: 34rpx;
+  height: 42rpx;
+}
+
+.content .con-li .con-li-copy1 {
+  /* min-width: 96rpx; *//* height: 100%; *//* padding-left: 30rpx; */
+  padding-top: 30rpx;
+  padding-right: 53rpx;
+  border-bottom: 1rpx solid #d8d8d8;
+}
+
+.content .con-li .con-li-copy1 image {
+  width: 42rpx;
+  height: 40rpx;
+}
+
 .card-set {
   position: fixed;
   z-index: 300;
@@ -446,26 +534,30 @@
   width: 100rpx;
   height: 100rpx;
   border-radius: 50%;
-  background-color: #ffffff;
-  border: 1rpx solid #D8D8D8;
+  background-color: #fff;
+  border: 1rpx solid #d8d8d8;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding-top: 15rpx;
 }
+
 .card-set .card-set-icon {
   width: 42rpx;
   height: 42rpx;
   margin-bottom: 4rpx;
 }
+
 .card-set .card-set-icon image {
   width: 42rpx;
   height: 42rpx;
 }
+
 .card-set .set-text {
-  color: #B3B3B3;
+  color: #b3b3b3;
   font-size: 20rpx;
 }
+
 .pholder {
-  color: #CCCCCC;
+  color: #ccc;
 }

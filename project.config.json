@@ -39,14 +39,14 @@
 					"id": 0,
 					"name": "21",
 					"pathName": "pages/ganerate/ganerate",
-					"query": "othercardid=20",
+					"query": "othercardid=2",
 					"scene": "1007"
 				},
 				{
 					"id": 1,
 					"name": "21",
 					"pathName": "pages/peerscards/peerscards",
-					"query": "othercardid=28",
+					"query": "othercardid=2",
 					"scene": "1044",
 					"shareInfo": {
 						"groupName": "测试模拟群2",
@@ -58,7 +58,7 @@
 					"id": 2,
 					"name": "21",
 					"pathName": "pages/peerscards/peerscards",
-					"query": "othercardid=4",
+					"query": "othercardid=2",
 					"scene": "1012"
 				},
 				{

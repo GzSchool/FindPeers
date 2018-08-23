@@ -35,7 +35,7 @@ Page({
     notadd: false, //用户是否添加信息
     remark: "", // 备注
     canSave: true,
-    listOfAlbum: ['https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJF2LUt5pJt4NXyiahzN6UBOTIKmhouTicAOpRe8g87I4r6bx6DyGWkERe2GzhYZR4NBR6u9HxLEdQg/132', 'https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJF2LUt5pJt4NXyiahzN6UBOTIKmhouTicAOpRe8g87I4r6bx6DyGWkERe2GzhYZR4NBR6u9HxLEdQg/132', 'https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJF2LUt5pJt4NXyiahzN6UBOTIKmhouTicAOpRe8g87I4r6bx6DyGWkERe2GzhYZR4NBR6u9HxLEdQg/132', 'https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJF2LUt5pJt4NXyiahzN6UBOTIKmhouTicAOpRe8g87I4r6bx6DyGWkERe2GzhYZR4NBR6u9HxLEdQg/132', 'https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJF2LUt5pJt4NXyiahzN6UBOTIKmhouTicAOpRe8g87I4r6bx6DyGWkERe2GzhYZR4NBR6u9HxLEdQg/132'],
+    listOfAlbum: [],
 
   },
   //页面加载
@@ -252,7 +252,8 @@ Page({
         userJob: res.data.data.userJob, // 职位
         id: res.data.data.id,
         cardType: res.data.data.cardType,
-        remark: res.data.data.remark ? res.data.data.remark : ''
+        remark: res.data.data.remark ? res.data.data.remark : '',
+        listOfAlbum: res.data.data.photo ? res.data.data.photo:[],
       })
       if (app.globalData.openid == res.data.data.openId) {
         that.setData({
@@ -285,6 +286,7 @@ Page({
         userJob: res.data.data[0].userJob,
         id: res.data.data[0].id,
         cardType: res.data.data[0].cardType,
+        listOfAlbum: res.data.data[0].photo ? res.data.data[0].photo : [],        
       })
       if (app.globalData.openid == res.data.data[0].openId) {
         that.setData({
@@ -306,12 +308,11 @@ Page({
   },
   remove: function() {
     var that = this
-    var server = app.globalData.server;
-    var othercardid = app.globalData.othercardid;
+    var othercardid = that.data.othercardid;
     var groupId = that.data.groupId;
     var openid = app.globalData.openid;
-    var cardId = that.data.cardId
-    util.saveOrUpdate(openid, groupId, 1, cardId).then(function(res) {
+    var cardId = that.data.othercardid
+    util.saveOrUpdate(openid, groupId, 1, [cardId]).then(function(res) {
       wx.switchTab({
         url: '/pages/findmore/findmore',
       })

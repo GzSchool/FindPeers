@@ -518,12 +518,13 @@ function fileUpload(openId, cardId, multipartFileList, index){
     wx.uploadFile({
       url: server + '/file/fileUpload',
       filePath: multipartFileList,
+      // fileList: fileList,
       name:'file',
       formData: {
         openId: openId,
         cardId: cardId,
         index:  index,
-        // files:  multipartFileList
+        // fileList:  fileList
       },
       header: {
         'content-type': 'multipart/form-data'

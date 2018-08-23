@@ -181,6 +181,7 @@ Page({
         companyWeb: res.data.data.companyPage, //公司主页
         cardType: res.data.data.cardType,
         count: res.data.data.synopsis.length, // 简介长度
+        listOfAlbum: res.data.data.photo?res.data.data:[],        
       })
       if (that.data.homepage) {
           that.setData({
@@ -680,8 +681,10 @@ Page({
   chooseAlbum: function(a) {
     let that = this
     console.log(that.data.chooseCount)
-    let count = that.data.chooseCount
+    let count = that.data.chooseCount;
+    let openId = app.globalData.openid
     let filepath=''
+    let index = 'xiangce'
     wx.chooseImage({
       count: count,
       success: function(res) {
@@ -689,7 +692,7 @@ Page({
         let list = that.data.listOfAlbum;
         for (var i =0;i< res.tempFilePaths.length;i++) {
           filepath +=res.tempFilePaths[i]+';'
-          // list.push(res.tempFilePaths[i])
+          list.push(res.tempFilePaths[i])
         }
         console.log(filepath)
         that.setData({
@@ -700,7 +703,7 @@ Page({
         console.log(that.data.filepath)
         console.log(res.tempFiles[0].size / 1024 + 'kB')
         // for(var i = 0; i < res.tempFilePaths.length; i++){
-        // util.fileUpload(openId, 1, res.tempFilePaths[i], index+i).then(function(a) {
+        // util.fileUpload(openId, that.data.id, res.tempFilePaths[0], index, list).then(function(a) {
         //   console.log(a)
         // })
         // }
