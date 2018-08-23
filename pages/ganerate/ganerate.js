@@ -4,17 +4,48 @@ let util = require('../../utils/util.js')
 let app = getApp()
 Page({
   data: {
-  id:'',
+    mineInfo: {
+      name: '',
+      idustry: '',
+      city: '',
+      company: '',
+      phone: '',
+      wechatnum: '',
+      email: '',
+      userJob: '',
+      id: '',
+    },
+    id:'',
+    width: '',
+    height: '',
+    r_px: ''
   },
   onLoad: function (options) {
+    let that = this
+    wx.getSystemInfo({
+      //获取系统信息成功，将系统窗口的宽高赋给页面的宽高
+      success: function (res) {
+        console.log(res)
+        that.setData({
+          width: 0.8*res.windowWidth,
+          height: 0.8*res.windowHeight,
+          r_px: res.windowWidth/750
+        })
+      }
+    })
+    console.log(that.data)
+    wx.showShareMenu({
+      withShareTicket: true
+    })
+    console.log(options)
     // const ctx = wx.createCanvasContext('ganerate')
     // ctx.setFillStyle('blue')
     // ctx.draw()
     // console.log(ctx)
-    let that = this
     that.setData({
       id:options.id
     })
+    that.getMyData()
     util.getDataById(this.data.id).then(function(res){
       console.log(res)
     })
@@ -64,6 +95,61 @@ Page({
     let page = 'pages/peerscards/peerscards';
     util.makeWxQrCode(userImg, id, page, openid, id, 'makeWxQrCode').then(function(res){
       console.log(res)
+    })
+  },
+  //转发分享
+  onShareAppMessage: function (a) {
+    var that = this
+    return {
+      title: '名片Live',
+      path: '/pages/findmore/findmore',
+      success: function (res) {
+        let openId = app.globalData.openid;
+        let otherOpenId = app.globalData.openid;
+        util.sharePage(openId, otherOpenId, res).then(function (e) {
+          console.log(e)
+        })
+      },
+      fail: function (res) {
+        console.log(res)
+        // 转发失败
+      }
+    }
+  },
+  getMyData() {
+    let that = this
+    util.getDataById(that.data.id).then(function (res) {
+      console.log('==++')
+      console.log(res)
+      that.setData({
+        mineInfo: {
+          name: res.data.data.username,
+          idustry: res.data.data.userIndustry,
+          city: res.data.data.userCity,
+          company: res.data.data.userCompany,
+          phone: res.data.data.userPhone,
+          wechatnum: res.data.data.userWechat,
+          email: res.data.data.userEmail,
+          userJob: res.data.data.userJob,
+          id: res.data.data.id,
+        },
+        name: res.data.data.username,
+        wechatnum: res.data.data.userWechat,
+        company: res.data.data.userCompany,
+        idustry: res.data.data.userIndustry,
+        city: res.data.data.userCity,
+        email: res.data.data.userEmail,
+        phone: res.data.data.userPhone,
+        image: res.data.data.userImg,
+        id: res.data.data.id,
+        demand: res.data.data.demand,      //需求
+        resources: res.data.data.resources,//资源
+        synopsis: res.data.data.synopsis,  //简介
+        userJob: res.data.data.userJob,     // 职位
+        homepage: res.data.data.homePage,    //个人主页
+        companyWeb: res.data.data.companyPage, //公司主页
+        cardType: res.data.data.cardType,
+      })
     })
   }
 })

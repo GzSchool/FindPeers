@@ -4,9 +4,11 @@ page {
   padding-top: 40rpx;
 }
 .main .main-in {
-  width: 300px;
-  height: 500px;
-  background-color: rgba(204, 204, 204, 0.329);
+  /* background-color: rgba(204, 204, 204, 0.329); */
+  margin: 0 auto;
+}
+.main .main-in canvas{
+  display: block;
   margin: 0 auto;
 }
 .save {

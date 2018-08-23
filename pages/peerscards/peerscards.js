@@ -483,7 +483,8 @@ Page({
       success: function(res) {
         let openId = app.globalData.openid;
         let otherOpenId = that.data.otheropenId;
-        util.sharePage(openId, otherOpenId, res).then(function(e) {
+        let id = that.data.othercardid
+        util.sharePage(openId, otherOpenId, res, id).then(function(e) {
           console.log(e)
           that.hideModal();
         })

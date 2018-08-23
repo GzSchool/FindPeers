@@ -47,6 +47,7 @@ Page({
         }
         that.setData({
           cardList:res.data.data,
+          id: res.data.data[0].id,
           cardNumber:res.data.data.length,
           cd_list:cd_list
         })
@@ -140,8 +141,15 @@ Page({
   },
   ganerate:function(a){
     let id=this.data.id
+    console.log(id)
     wx.navigateTo({
       url: '../ganerate/ganerate?id=' + id,
+    })
+  },
+  chooseCard(e) {
+    var idx = e.detail.current
+    this.setData({
+      id: this.data.cardList[idx].id
     })
   }
 })

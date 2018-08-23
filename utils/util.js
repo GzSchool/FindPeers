@@ -317,9 +317,9 @@ function getOpenGid(openid, otherOpenId, shareTickets) {
   })
 }
 /**
- * 分享（除了几个特殊页面以外的）
+ * 分享（除了几个特殊页面以外的）添加cardid
  */
-function sharePage(openId, otherOpenId, res) {
+function sharePage(openId, otherOpenId, res, cardid) {
   return new Promise(function(resolve) {
     console.log(res)
     var shareTickets = res.shareTickets;
@@ -339,7 +339,8 @@ function sharePage(openId, otherOpenId, res) {
             openId: openId,
             otherOpenId: otherOpenId,
             encryptedData: encryptedData,
-            iv: iv
+            iv: iv,
+            cardId: cardid
           },
 
           header: {
@@ -355,9 +356,9 @@ function sharePage(openId, otherOpenId, res) {
   })
 }
 /**
- * 分享转发（几个包含信息的页面）
+ * 分享转发（几个包含信息的页面）添加cardid
  */
-function shareToQunOrPersonal(openId, otherOpenId, res) {
+function shareToQunOrPersonal(openId, otherOpenId, res, cardid) {
   return new Promise(function(resolve) {
     var shareTickets = res.shareTickets;
     console.log(shareTickets)
@@ -373,14 +374,13 @@ function shareToQunOrPersonal(openId, otherOpenId, res) {
         wx.request({
           method: 'POST',
           url: server + '/userGroup/saveOrUpdate',
-
           data: {
             openId: openId,
             otherOpenId: otherOpenId,
             encryptedData: encryptedData,
-            iv: iv
+            iv: iv,
+            cardId: cardid
           },
-
           header: {
             'content-type': 'application/json'
           },

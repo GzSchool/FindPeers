@@ -266,7 +266,7 @@ Page({
         let openid = app.globalData.openid;
         let otherOpneId = app.globalData.openid;
         let id = that.data.id;
-        util.shareToQunOrPersonal(openid, otherOpneId, res).then(function (e) {
+        util.shareToQunOrPersonal(openid, otherOpneId, res, id).then(function (e) {
           console.log(e)
         })
       },

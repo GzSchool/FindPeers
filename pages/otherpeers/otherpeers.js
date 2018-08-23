@@ -326,7 +326,11 @@ Page({
       success: function (res) {
         let openId = app.globalData.openid;
         let otherOpenId = that.data.otheropenId;
-        util.sharePage(openId, otherOpenId, res).then(function (e) {
+        // util.sharePage(openId, otherOpenId, res).then(function (e) {
+        //   console.log(e)
+        // })
+        let id = that.data.cardId;
+        util.shareToQunOrPersonal(openId, otherOpenId, res, id).then(function (e) {
           console.log(e)
         })
       },

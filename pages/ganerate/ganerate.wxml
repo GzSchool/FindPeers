@@ -1,5 +1,5 @@
 <!--pages/ganerate/ganerate.wxml-->
 <view class='main'>
-  <view class='main-in'><canvas canvas-id="shareCanvas" style="width:300px;height:500px"/></view>
+  <view class='main-in'><canvas canvas-id="shareCanvas" style="width:300px;height:495px"/></view>
   <button class="save" bindtap='save'>保存图片</button>
 </view>

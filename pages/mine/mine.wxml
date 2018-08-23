@@ -10,7 +10,7 @@
     <view class="card-help" bindtap='scan'>微信扫一扫二维码</view>
   </view> -->
   
-<swiper style='height:500rpx;background-color: #fff;' indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+<swiper style='height:500rpx;background-color: #fff;' indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" bindchange='chooseCard'>
   <view class='main-card'>
 
     <swiper-item wx:for='{{cd_list}}'  wx:key='1'>
