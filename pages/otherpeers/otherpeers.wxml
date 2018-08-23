@@ -282,13 +282,15 @@
 </view>
 <view class='maskLayer' wx:if="{{chooseSize}}" bindtap='hideModal'></view>
     <view class='choose' wx:if="{{chooseSize}}" animation='{{animationData}}'>
-      <button class="choose-in" open-type='share' bindtap='trans'>转发</button>
+    <button class="choose-in" wx:if='{{!isSave&&!notadd}}' form-type="submit">保存到名片夹</button>    
+      <!-- <button class="choose-in" open-type='share' bindtap='trans'>转发</button> -->
       <button class="choose-in" bindtap='saveToPhone'>保存到通讯录</button>
       <button class="choose-in" bindtap='hideModal'>取消</button>
     </view>
 <view class="footer">
   <form bindsubmit="save" report-submit='true'>
-    <button class="footer-btn" wx:if='{{!isSave&&!notadd}}' form-type="submit">保存到名片夹</button>
+      <button class="footer-btn" wx:if='{{!isSave&&!notadd}}' open-type='share' bindtap='trans'>转发</button>  
+    <!-- <button class="footer-btn" wx:if='{{!isSave&&!notadd}}' form-type="submit">保存到名片夹</button> -->
   </form>
   <button class="footer-btn" wx:if='{{notadd}}' open-type='getUserInfo' bindgetuserinfo='addcards'>制作我的名片</button>
   <button class="write" wx:if='{{isSave}}' bindtap='remove'>删除本张名片</button>

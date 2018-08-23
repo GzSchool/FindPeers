@@ -34,7 +34,39 @@ Page{
   border-bottom: 1rpx solid #D8D8D8;
   padding: 22rpx 32rpx 22rpx 0;
 }
+.maskLayer {
+  background-color: transparent;
+  opacity: 0;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 99;
+}
 
+.choose {
+  /* height: 360rpx; */
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 999;
+  background-color: #fff;
+  width: 100%;
+  box-shadow: -2rpx 0rpx 5rpx #efefef;
+}
+
+.choose .choose-in {
+  background-color: #fff;
+  height: 90rpx;
+  line-height: 90rpx;
+  border-bottom: 1rpx solid #d8d8d8;
+  border-radius: 0rpx;
+  width: 100%;
+  color: #505050;
+  font-size: 28rpx;
+}
 .footer {
   position: fixed;
   bottom: 30rpx;

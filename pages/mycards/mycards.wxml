@@ -234,9 +234,19 @@
       <image src='{{item}}'></image>
   </view>
 </view>
+<view class='card-set' wx:if='{{!notadd && !chooseSize}}' bindtap='chooseSize'>
+  <view class='card-set-icon'><image src='../images/card/card_set.png'></image></view>
+  <view class='set-text'>设置</view>
+</view>
+<view class='maskLayer' wx:if="{{chooseSize}}" bindtap='hideModal'></view>
+    <view class='choose' wx:if="{{chooseSize}}" animation='{{animationData}}'>
+      <button class="choose-in" data-id='{{id}}' bindtap='viewThisCards'>修改本张名片</button>
+      <button class="choose-in" bindtap='deleteCard'>删除本张名片</button>
+      <button class="choose-in" bindtap='hideModal'>取消</button>
+    </view>
 <view class="footer">
 <form bindsubmit="save" report-submit='true'>
     <button class="footer-btn" form-type="submit" open-type='share'>发送本张名片</button>
-    <button class="footer-btn white" form-type="submit" data-id='{{id}}' bindtap='viewThisCards'>修改本张名片</button>
+    <!-- <button class="footer-btn white" form-type="submit" data-id='{{id}}' bindtap='viewThisCards'>修改本张名片</button> -->
   </form>
 </view>

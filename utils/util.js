@@ -1,8 +1,8 @@
 // App id: 500632377
 // App Secret key: 532a899611b5c8c3f44256cbcde1e509
 //服务器地址
-var server = 'http://192.168.2.150:8766'
-// var server = "https://www.eqxuan.cn"
+// var server = 'http://192.168.2.150:8766'
+var server = "https://www.eqxuan.cn"
 var app = getApp();
 const formatTime = date => {
   const year = date.getFullYear()

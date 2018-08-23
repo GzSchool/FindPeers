@@ -4,7 +4,7 @@ var util = require('../../utils/util.js');
 var mta = require('../../utils/mta_analysis.js');
 Page({
   data: {
-    cd_list: [5,5,3,2,2],
+    cd_list: [],
     indicatorDots: true,
     autoplay: false,
     interval: 2500,
