@@ -12,6 +12,7 @@
   
 <swiper style='height:500rpx;background-color: #fff;' indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
   <view class='main-card'>
+
     <swiper-item wx:for='{{cd_list}}'  wx:key='1'>
       <view wx:if='{{item == 1 }}' data-index='{{index}}' class='main-card-1 main-card-box'>
         <view class='card-mark'>
@@ -240,7 +241,7 @@
   </view>
 </swiper>
   <view class="find" bindtap='ganerate'>
-    <image class="img1" src="{{img1}}"></image>
+    <image class="img1" src="../images/qrcode.png"></image>
     <text class="about">点击生成我的名片二维码</text>
     <image class="img2" src="{{img2}}"></image>
   </view>

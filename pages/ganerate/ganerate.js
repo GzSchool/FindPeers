@@ -15,7 +15,7 @@ Page({
     that.setData({
       id:options.id
     })
-    util.getCardsById(this.data.id).then(function(res){
+    util.getDataById(this.data.id).then(function(res){
       console.log(res)
     })
     const wxGetImageInfo = promisify(wx.getImageInfo)

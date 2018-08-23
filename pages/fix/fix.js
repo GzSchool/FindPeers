@@ -57,7 +57,8 @@ Page({
     city_PRO: [industry.province, industry.city[0].child], //城市列表
     listOfAlbum: [],
     chooseCount: 9,
-    transAvater:""
+    transAvater:"",
+    filepath:'',
   },
   //页面加载
   onLoad: function(a) {
@@ -149,37 +150,37 @@ Page({
         groupId: a.groupId
       })
     }
-    util.getCardsById(that.data.id).then(function (res) {
+    util.getDataById(that.data.id).then(function (res) {
       console.log(res)
       that.setData({
         mineInfo: {
-          name: res.data.data[0].username,
-          idustry: res.data.data[0].userIndustry,
-          city: res.data.data[0].userCity,
-          company: res.data.data[0].userCompany,
-          phone: res.data.data[0].userPhone,
-          wechatnum: res.data.data[0].userWechat,
-          email: res.data.data[0].userEmail,
-          userJob: res.data.data[0].userJob,
-          image:res.data.data[0].userImg
+          name: res.data.data.username,
+          idustry: res.data.data.userIndustry,
+          city: res.data.data.userCity,
+          company: res.data.data.userCompany,
+          phone: res.data.data.userPhone,
+          wechatnum: res.data.data.userWechat,
+          email: res.data.data.userEmail,
+          userJob: res.data.data.userJob,
+          image:res.data.data.userImg
         },
-        name: res.data.data[0].username,
-        wechatnum: res.data.data[0].userWechat,
-        company: res.data.data[0].userCompany,
-        idustry: res.data.data[0].userIndustry,
-        city: res.data.data[0].userCity,
-        email: res.data.data[0].userEmail,
-        phone: res.data.data[0].userPhone,
-        image: res.data.data[0].userImg,
-        id: res.data.data[0].id,
-        demand: res.data.data[0].demand,      //需求
-        resource: res.data.data[0].resources,//资源
-        introduction: res.data.data[0].synopsis,  //简介
-        job: res.data.data[0].userJob,     // 职位
-        homepage: res.data.data[0].homePage,    //个人主页
-        companyWeb: res.data.data[0].companyPage, //公司主页
-        cardType: res.data.data[0].cardType,
-        count: res.data.data[0].synopsis.length, // 简介长度
+        name: res.data.data.username,
+        wechatnum: res.data.data.userWechat,
+        company: res.data.data.userCompany,
+        idustry: res.data.data.userIndustry,
+        city: res.data.data.userCity,
+        email: res.data.data.userEmail,
+        phone: res.data.data.userPhone,
+        image: res.data.data.userImg,
+        id: res.data.data.id,
+        demand: res.data.data.demand,      //需求
+        resource: res.data.data.resources,//资源
+        introduction: res.data.data.synopsis,  //简介
+        job: res.data.data.userJob,     // 职位
+        homepage: res.data.data.homePage,    //个人主页
+        companyWeb: res.data.data.companyPage, //公司主页
+        cardType: res.data.data.cardType,
+        count: res.data.data.synopsis.length, // 简介长度
       })
       if (that.data.homepage) {
           that.setData({
@@ -680,19 +681,23 @@ Page({
     let that = this
     console.log(that.data.chooseCount)
     let count = that.data.chooseCount
+    let filepath=''
     wx.chooseImage({
       count: count,
       success: function(res) {
         let len = res.tempFilePaths.length;
         let list = that.data.listOfAlbum;
-        for (var i in res.tempFilePaths) {
-          list.push(res.tempFilePaths[i])
+        for (var i =0;i< res.tempFilePaths.length;i++) {
+          filepath +=res.tempFilePaths[i]+';'
+          // list.push(res.tempFilePaths[i])
         }
-        console.log(list)
+        console.log(filepath)
         that.setData({
+          filepath: filepath,
           listOfAlbum: list,
           chooseCount: that.data.chooseCount - len
         })
+        console.log(that.data.filepath)
         console.log(res.tempFiles[0].size / 1024 + 'kB')
         // for(var i = 0; i < res.tempFilePaths.length; i++){
         // util.fileUpload(openId, 1, res.tempFilePaths[i], index+i).then(function(a) {

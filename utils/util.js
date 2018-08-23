@@ -1,8 +1,8 @@
 // App id: 500632377
 // App Secret key: 532a899611b5c8c3f44256cbcde1e509
 //服务器地址
-// var server = 'http://192.168.2.150:8766'
-var server = "https://www.eqxuan.cn"
+var server = 'http://192.168.2.150:8766'
+// var server = "https://www.eqxuan.cn"
 var app = getApp();
 const formatTime = date => {
   const year = date.getFullYear()
@@ -173,7 +173,26 @@ function getCardsById(cardId) {
     })
   })
 }
-
+/**
+ * 
+ */
+function getDataById(cardId) {
+  return new Promise(function (res) {
+    wx.request({
+      method: 'GET',
+      url: server + '/userCard/findCardById',
+      data: {
+        id: cardId
+      },
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (b) {
+        res(b)
+      }
+    })
+  })
+}
 /*
   保存同行信息跟删除同行信息 saveFlag=1时删除 saveFlag=2时是保存
 */
@@ -606,5 +625,6 @@ module.exports = {
   getSMS: getSMS,          // 获取短信验证码接口
   checkSMS: checkSMS,  // 校验短信验证码
   fileUpload: fileUpload,
-  getMyDataList: getMyDataList
+  getMyDataList: getMyDataList,
+  getDataById: getDataById
 }

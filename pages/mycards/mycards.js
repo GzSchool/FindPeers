@@ -90,35 +90,35 @@ Page({
       that.data.back = true,
       that.data.groupId = a.groupId
     }
-    util.getCardsById(that.data.id).then(function(res){
+    util.getDataById(that.data.id).then(function(res){
       console.log(res)
       that.setData({
         mineInfo: {
-            name: res.data.data[0].username,
-          idustry: res.data.data[0].userIndustry,
-          city: res.data.data[0].userCity,
-          company: res.data.data[0].userCompany,
-          phone: res.data.data[0].userPhone,
-          wechatnum: res.data.data[0].userWechat,
-          email: res.data.data[0].userEmail,
-          userJob: res.data.data[0].userJob
+            name: res.data.data.username,
+          idustry: res.data.data.userIndustry,
+          city: res.data.data.userCity,
+          company: res.data.data.userCompany,
+          phone: res.data.data.userPhone,
+          wechatnum: res.data.data.userWechat,
+          email: res.data.data.userEmail,
+          userJob: res.data.data.userJob
           },
-        name: res.data.data[0].username,
-        wechatnum: res.data.data[0].userWechat,
-        company: res.data.data[0].userCompany,
-        idustry: res.data.data[0].userIndustry,
-        city: res.data.data[0].userCity,
-        email: res.data.data[0].userEmail,
-        phone: res.data.data[0].userPhone,
-        image: res.data.data[0].userImg,
-        id: res.data.data[0].id,
-        demand: res.data.data[0].demand,      //需求
-        resources: res.data.data[0].resources,//资源
-        synopsis: res.data.data[0].synopsis,  //简介
-        userJob: res.data.data[0].userJob,     // 职位
-        homepage: res.data.data[0].homePage,    //个人主页
-        companyWeb: res.data.data[0].companyPage, //公司主页
-        cardType: res.data.data[0].cardType,
+        name: res.data.data.username,
+        wechatnum: res.data.data.userWechat,
+        company: res.data.data.userCompany,
+        idustry: res.data.data.userIndustry,
+        city: res.data.data.userCity,
+        email: res.data.data.userEmail,
+        phone: res.data.data.userPhone,
+        image: res.data.data.userImg,
+        id: res.data.data.id,
+        demand: res.data.data.demand,      //需求
+        resources: res.data.data.resources,//资源
+        synopsis: res.data.data.synopsis,  //简介
+        userJob: res.data.data.userJob,     // 职位
+        homepage: res.data.data.homePage,    //个人主页
+        companyWeb: res.data.data.companyPage, //公司主页
+        cardType: res.data.data.cardType,
       })
     })
   },
